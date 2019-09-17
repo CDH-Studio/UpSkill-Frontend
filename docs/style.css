@@ -285,12 +285,11 @@ fieldset[disabled] .btn-xl.active {
   color: #ffffff;
   background-color: #f24405;
 }
-
 @media (min-width: 768px) {
   .navbar-default {
     padding: 25px 0;
     border: 0;
-    background-color: #222;
+    background-color: transparent;
     -webkit-transition: padding 0.3s;
     -moz-transition: padding 0.3s;
     transition: padding 0.3s;
@@ -316,7 +315,6 @@ fieldset[disabled] .btn-xl.active {
     font-size: 1.5em;
   }
 }
-
 /* CSS for header */
 
 header {
@@ -332,34 +330,21 @@ header .intro-text {
 }
 header .intro-text .intro-lead-in {
   margin-bottom: 25px;
-  font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 22px;
-  font-style: italic;
   line-height: 22px;
+  z-index: 1;
+  background-color: #000;
+  font-style: normal;
+  font-weight: 400;
 }
-header .intro-text .intro-heading {
-  margin-bottom: 25px;
-  font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
-  font-size: 70px;
-  font-weight: 700;
-  line-height: 50px;
-  margin-top: 30px;
-  margin-bottom: 40px;
-}
+
 @media (min-width: 768px) {
   header .intro-text .intro-lead-in {
     margin-bottom: 25px;
-    font-family: "Droid Serif", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 40px;
-    font-style: italic;
     line-height: 40px;
-  }
-  header .intro-text .intro-heading {
-    margin-bottom: 50px;
-    font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 75px;
-    font-weight: 700;
-    line-height: 75px;
   }
 }
 
@@ -451,6 +436,8 @@ img.topLogo {
 
 img.upSkillLogo {
   margin-bottom: 20px;
+  z-index: 1;
+  background-color: #000;
 }
 
 .img-centered {
@@ -654,5 +641,14 @@ footer ul.quicklinks {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
-  z-index: -1;
+}
+
+.center-logo {
+  width: 250px;
+  margin-bottom: 30px;
+}
+@media (min-width: 768px) {
+  .center-logo {
+    width: 400px;
+  }
 }
