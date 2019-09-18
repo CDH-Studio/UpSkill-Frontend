@@ -24,7 +24,7 @@ particlesJS(
         }
       },
       color: {
-        value: "#fca577"
+        value: "#fff"
       },
       shape: {
         type: "circle",
@@ -42,8 +42,8 @@ particlesJS(
         }
       },
       opacity: {
-        value: 0.5,
-        random: false,
+        value: 0.8,
+        random: true,
         anim: {
           enable: false,
           speed: 1,
@@ -66,13 +66,13 @@ particlesJS(
         distance: 150,
         color: "#f24405",
         opacity: 0.4,
-        width: 2.5
+        width: 1.8
       },
       move: {
         enable: true,
         speed: 1,
         direction: "none",
-        random: false,
+        random: true,
         straight: false,
         out_mode: "out",
         attract: {
@@ -120,14 +120,6 @@ particlesJS(
         }
       }
     },
-    retina_detect: true,
-    config_demo: {
-      hide_card: false,
-      background_color: "#b61924",
-      background_image: "",
-      background_position: "50% 50%",
-      background_repeat: "no-repeat",
-      background_size: "cover"
-    }
+    retina_detect: true
   }
 );
