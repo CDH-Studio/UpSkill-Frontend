@@ -399,7 +399,8 @@ img.topLogo {
 img.upSkillLogo {
   margin-bottom: 20px;
   z-index: 1;
-  background-color: #000;
+  /* background-color: #000; */
+  pointer-events: none;
 }
 
 .img-centered {
