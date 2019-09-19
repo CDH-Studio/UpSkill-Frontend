@@ -2,6 +2,7 @@
 
 body {
   overflow-x: hidden;
+  overflow-y: auto;
   font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
 }
@@ -281,7 +282,7 @@ fieldset[disabled] .btn-xl.active {
 
 header {
   text-align: center;
-  color: #fff;
+  color: #000;
 }
 header .intro-text {
   height: 100vh;
@@ -296,7 +297,7 @@ header .intro-text .intro-lead-in {
   font-size: 22px;
   line-height: 22px;
   z-index: 1;
-  background-color: #000;
+  /* background-color: #000; */
   font-style: normal;
   font-weight: 400;
 }
@@ -393,7 +394,8 @@ div.transbox {
 }
 
 img.topLogo {
-  margin-top: -11px;
+  margin-top: -12px;
+  border-radius: 20%;
 }
 
 img.upSkillLogo {
@@ -428,12 +430,12 @@ ul.social-buttons li a {
   display: block;
   width: 40px;
   height: 40px;
-  border-radius: 100%;
+  border-radius: 20%;
   font-size: 20px;
   line-height: 40px;
   outline: 0;
   color: #fff;
-  background-color: #222;
+  background-color: #f24405;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
@@ -442,7 +444,7 @@ ul.social-buttons li a {
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
-  background-color: #359dfe;
+  background-color: #000;
 }
 
 .btn:focus,
@@ -456,6 +458,7 @@ ul.social-buttons li a:active {
 
 .team-image {
   max-width: 60% !important;
+  border-radius: 15%;
 }
 
 .team-member {
@@ -465,7 +468,6 @@ ul.social-buttons li a:active {
 
 .team-member img {
   margin: 0 auto;
-  border: 7px solid rgb(241, 241, 241);
 }
 
 .team-member h4 {
@@ -607,11 +609,22 @@ footer ul.quicklinks {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #000;
-  background-image: url("");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 50%;
+  background: linear-gradient(180deg, rgb(70, 70, 70) 10%, #f7f7f7 100%);
+  /* background: linear-gradient(
+    135deg,
+    rgb(0, 0, 0) 0%,
+    rgb(0, 0, 0) 66%,
+    rgb(245, 189, 51) 66%,
+    rgb(245, 189, 51) 69%,
+    rgb(254, 99, 119) 69%,
+    rgb(254, 99, 119) 78%,
+    rgb(250, 144, 85) 78%,
+    rgb(250, 144, 85) 84%,
+    rgb(243, 211, 34) 84%,
+    rgb(243, 211, 34) 90%,
+    rgb(247, 166, 68) 90%,
+    rgb(247, 166, 68) 100%
+  ); */
 }
 
 .center-logo {
