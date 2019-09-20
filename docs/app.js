@@ -24,7 +24,7 @@ particlesJS(
         }
       },
       color: {
-        value: "#f24405"
+        value: "#faa"
       },
       shape: {
         type: "circle",
@@ -52,7 +52,7 @@ particlesJS(
         }
       },
       size: {
-        value: 5,
+        value: 3,
         random: true,
         anim: {
           enable: false,
@@ -64,9 +64,9 @@ particlesJS(
       line_linked: {
         enable: true,
         distance: 150,
-        color: "#fff",
+        color: "#f24405",
         opacity: 0.4,
-        width: 1.8
+        width: 1.4
       },
       move: {
         enable: true,
