@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 body {
   overflow-x: hidden;
   overflow-y: auto;
@@ -244,34 +243,69 @@ fieldset[disabled] .btn-xl.active {
   color: #ffffff;
   background-color: #f24405;
 }
-@media (min-width: 768px) {
-  .navbar-default {
-    padding: 25px 0;
-    border: 0;
-    background-color: transparent;
-    -webkit-transition: padding 0.3s;
-    -moz-transition: padding 0.3s;
-    transition: padding 0.3s;
-  }
+.navbar-default {
+  padding: 25px 0;
+  border: 0;
+  background-color: transparent;
+  -webkit-transition: padding 0.3s;
+  -moz-transition: padding 0.3s;
+  transition: padding 0.3s;
+}
 
-  .navbar-default .navbar-brand {
-    font-size: 2em;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-  }
+.navbar-default .navbar-brand {
+  font-size: 2em;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
 
-  .navbar-default .navbar-nav > .active > a {
-    border-radius: 3px;
-  }
+.navbar-default .navbar-nav > .active > a {
+  border-radius: 3px;
+}
 
-  .navbar-default.navbar-shrink {
-    padding: 10px 0;
-    background-color: #222;
-  }
+.navbar-default.navbar-shrink {
+  padding: 10px 0;
+  background-color: #222;
+}
 
-  .navbar-default.navbar-shrink .navbar-brand {
-    font-size: 1.5em;
+.navbar-default.navbar-shrink .navbar-brand {
+  font-size: 1.5em;
+} /* CSS to make the navbar collapse at large */
+@media (max-width: 1000px) {
+  .navbar-header {
+    float: none;
+  }
+  .navbar-left,
+  .navbar-right {
+    float: none !important;
+  }
+  .navbar-toggle {
+    display: block;
+  }
+  .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  .navbar-fixed-top {
+    top: 0;
+    border-width: 0 0 1px;
+  }
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+  .navbar-nav {
+    float: none !important;
+    margin-top: 7.5px;
+  }
+  .navbar-nav > li {
+    float: none;
+  }
+  .navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .collapse.in {
+    display: block !important;
   }
 }
 
@@ -353,6 +387,10 @@ section h3.section-subheading {
 .panel-margin {
   margin: 10px 10px;
   max-width: 300px;
+}
+
+.orangeBorder {
+  border-color: #f24405 !important;
 }
 
 /* CSS for background video */
@@ -518,7 +556,106 @@ ul.social-buttons li a:active {
 }
 
 section#contact {
-  background-image: url("assets/images/contact-background-image.png");
+  background: linear-gradient(
+      135deg,
+      rgba(16, 16, 16, 0.07) 0%,
+      rgba(16, 16, 16, 0.07) 3%,
+      rgba(12, 12, 12, 0.07) 3%,
+      rgba(12, 12, 12, 0.07) 8%,
+      rgba(225, 225, 225, 0.07) 8%,
+      rgba(225, 225, 225, 0.07) 30%,
+      rgba(185, 185, 185, 0.07) 30%,
+      rgba(185, 185, 185, 0.07) 57%,
+      rgba(98, 98, 98, 0.07) 57%,
+      rgba(98, 98, 98, 0.07) 95%,
+      rgba(149, 149, 149, 0.07) 95%,
+      rgba(149, 149, 149, 0.07) 97%,
+      rgba(104, 104, 104, 0.07) 97%,
+      rgba(104, 104, 104, 0.07) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(46, 46, 46, 0.06) 0%,
+      rgba(46, 46, 46, 0.06) 7%,
+      rgba(85, 85, 85, 0.06) 7%,
+      rgba(85, 85, 85, 0.06) 51%,
+      rgba(235, 235, 235, 0.06) 51%,
+      rgba(235, 235, 235, 0.06) 56%,
+      rgba(160, 160, 160, 0.06) 56%,
+      rgba(160, 160, 160, 0.06) 58%,
+      rgba(128, 128, 128, 0.06) 58%,
+      rgba(128, 128, 128, 0.06) 67%,
+      rgba(18, 18, 18, 0.06) 67%,
+      rgba(18, 18, 18, 0.06) 74%,
+      rgba(253, 253, 253, 0.06) 74%,
+      rgba(253, 253, 253, 0.06) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(251, 251, 251, 0.04) 0%,
+      rgba(251, 251, 251, 0.04) 2%,
+      rgba(168, 168, 168, 0.04) 2%,
+      rgba(168, 168, 168, 0.04) 11%,
+      rgba(53, 53, 53, 0.04) 11%,
+      rgba(53, 53, 53, 0.04) 19%,
+      rgba(122, 122, 122, 0.04) 19%,
+      rgba(122, 122, 122, 0.04) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(83, 83, 83, 0.01) 0%,
+      rgba(83, 83, 83, 0.01) 7%,
+      rgba(124, 124, 124, 0.01) 7%,
+      rgba(124, 124, 124, 0.01) 44%,
+      rgba(148, 148, 148, 0.01) 44%,
+      rgba(148, 148, 148, 0.01) 71%,
+      rgba(149, 149, 149, 0.01) 71%,
+      rgba(149, 149, 149, 0.01) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(251, 251, 251, 0.02) 0%,
+      rgba(251, 251, 251, 0.02) 16%,
+      rgba(173, 173, 173, 0.02) 16%,
+      rgba(173, 173, 173, 0.02) 18%,
+      rgba(90, 90, 90, 0.02) 18%,
+      rgba(90, 90, 90, 0.02) 19%,
+      rgba(249, 249, 249, 0.02) 19%,
+      rgba(249, 249, 249, 0.02) 52%,
+      rgba(199, 199, 199, 0.02) 52%,
+      rgba(199, 199, 199, 0.02) 55%,
+      rgba(4, 4, 4, 0.02) 55%,
+      rgba(4, 4, 4, 0.02) 99%,
+      rgba(86, 86, 86, 0.02) 99%,
+      rgba(86, 86, 86, 0.02) 100%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(89, 89, 89, 0.01) 0%,
+      rgba(89, 89, 89, 0.01) 3%,
+      rgba(60, 60, 60, 0.01) 3%,
+      rgba(60, 60, 60, 0.01) 13%,
+      rgba(45, 45, 45, 0.01) 13%,
+      rgba(45, 45, 45, 0.01) 36%,
+      rgba(86, 86, 86, 0.01) 36%,
+      rgba(86, 86, 86, 0.01) 73%,
+      rgba(11, 11, 11, 0.01) 73%,
+      rgba(11, 11, 11, 0.01) 81%,
+      rgba(144, 144, 144, 0.01) 81%,
+      rgba(144, 144, 144, 0.01) 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(219, 219, 219, 0.09) 0%,
+      rgba(219, 219, 219, 0.09) 27%,
+      rgba(223, 223, 223, 0.09) 27%,
+      rgba(223, 223, 223, 0.09) 64%,
+      rgba(129, 129, 129, 0.09) 64%,
+      rgba(129, 129, 129, 0.09) 89%,
+      rgba(18, 18, 18, 0.09) 89%,
+      rgba(18, 18, 18, 0.09) 100%
+    ),
+    linear-gradient(90deg, rgb(255, 109, 65), rgb(255, 47, 0));
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -610,8 +747,7 @@ footer ul.quicklinks {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, transparent 90%, #f7f7f7 99%),
-    linear-gradient(180deg, #461300 10%, #ff4400 100%);
+  background: linear-gradient(180deg, #461300 5%, #ff4400 90%, #f7f7f7 99%);
 
   /* background: linear-gradient(
     135deg,
@@ -641,8 +777,14 @@ footer ul.quicklinks {
 }
 
 img.architecture {
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
   margin-top: 50px;
+  box-shadow: 0px 0px 25px #ff926b;
+}
+
+img.prototype {
+  margin-top: 50px;
+  box-shadow: 0px 0px 25px #ff926b;
 }
 /*Start of Timeline code*/
 a {
