@@ -609,7 +609,8 @@ footer ul.quicklinks {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgb(70, 70, 70) 10%, #f7f7f7 100%);
+  background: linear-gradient(180deg, transparent 40%, #f7f7f7 99%),
+    linear-gradient(100deg, #b64117, #f24405);
   /* background: linear-gradient(
     135deg,
     rgb(0, 0, 0) 0%,
@@ -635,6 +636,11 @@ footer ul.quicklinks {
   .center-logo {
     width: 400px;
   }
+}
+
+img.architecture {
+  background-color: #f7f7f7;
+  margin-top: 50px;
 }
 /*Start of Timeline code*/
 a {
