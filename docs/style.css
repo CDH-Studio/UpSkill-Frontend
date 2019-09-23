@@ -4,7 +4,7 @@ body {
   overflow-y: auto;
   font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
-  background: linear-gradient(90deg, #fc9f7d, #ff4400);
+  background-color: #f7f7f7;
 }
 
 /* CSS for text, p, h1, button, a, etc. */
