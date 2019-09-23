@@ -1,6 +1,6 @@
 # UpSkill
 
-An improved directory and emplyee search tool
+An improved directory and employee search tool
 
 [Website](https://cdh-studio.github.io/UpSkill/)
 
