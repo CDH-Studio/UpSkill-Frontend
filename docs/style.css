@@ -1026,3 +1026,22 @@ h4 {
   }
 }
 /*End of Timeline code*/
+
+aside.clients img {
+  margin: 50px auto;
+}
+
+/* CSS for the client component rescaling */
+.client-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.client-child {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50px;
+}
