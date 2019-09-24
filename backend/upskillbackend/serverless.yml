@@ -13,8 +13,6 @@
 
 service: upskillbackend
 # app and org for use with dashboard.serverless.com
-app: upskillbackend
-org: rrab087
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -61,6 +59,12 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    event:
+      -http: GET hello/
+  newFunction:
+    handler: handler.testfunction
+    event:
+      -http: GET testfunction/
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -112,3 +116,6 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+plugins:
+  - serverless-offline
