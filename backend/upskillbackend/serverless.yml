@@ -59,12 +59,16 @@ provider:
 functions:
   hello:
     handler: handler.hello
-    event:
-      -http: GET hello/
+    events:
+      - http:
+          path: hello/
+          method: GET
   newFunction:
     handler: handler.testfunction
-    event:
-      -http: GET testfunction/
+    events:
+      - http:
+          path: testfunction/
+          method: GET
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
