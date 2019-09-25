@@ -10,7 +10,7 @@ function App() {
         <p>Welcome to UpSkill</p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://cdh-studio.github.io/UpSkill/"
           target="_blank"
           rel="noopener noreferrer"
         >
