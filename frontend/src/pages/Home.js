@@ -27,7 +27,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <h2>Home</h2>
+        <h2 style={styles.title}>Home</h2>
         <Dropdown
           placeholder="Skillzzz"
           fluid
@@ -35,6 +35,7 @@ export default class Home extends Component {
           search
           selection
           options={options}
+          style={styles.dropdown}
         />
         <Button
           color="orange"
@@ -51,3 +52,13 @@ export default class Home extends Component {
     );
   }
 }
+
+const styles = {
+  title: {
+    color: "#f24405",
+    float: "center"
+  },
+  dropdown: {
+    text_align: "center"
+  }
+};
