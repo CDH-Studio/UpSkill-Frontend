@@ -1,24 +1,21 @@
-import React from "react";
-import logo from "./assets/Logo3Rounded.png";
+import React, { Component } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Home, About, Landing } from "./pages/index";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Welcome to UpSkill</p>
-        <a
-          className="App-link"
-          href="https://cdh-studio.github.io/UpSkill/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  goto = link => this.props.history.push(link);
+  render() {
+    return (
+      <Router>
+        <div>
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/about" component={About} />
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
