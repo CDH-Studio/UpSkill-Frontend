@@ -34,7 +34,7 @@ export default class Home extends Component {
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <Dropdown
-              placeholder="Skillzzz"
+              placeholder="Select desired skills..."
               fluid
               multiple
               search
