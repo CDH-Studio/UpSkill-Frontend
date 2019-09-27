@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Button, Icon, Dropdown } from "semantic-ui-react";
+import { Button, Dropdown, Grid, Image } from "semantic-ui-react";
+import logo3 from "../assets/fullLogo3.svg";
 
 const options = [
   { key: "angular", text: "Angular", value: "angular" },
@@ -26,39 +27,54 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
-        <h2 style={styles.title}>Home</h2>
-        <Dropdown
-          placeholder="Skillzzz"
-          fluid
-          multiple
-          search
-          selection
-          options={options}
-          style={styles.dropdown}
-        />
-        <Button
-          color="orange"
-          inverted
-          onClick={() => this.goto("/about")}
-          animated="fade"
-        >
-          <Button.Content visible>Go to About</Button.Content>
-          <Button.Content hidden>
-            <Icon name="question" />
-          </Button.Content>
-        </Button>
+      <div style={styles.mainGroup}>
+        <Grid centered>
+          <Grid.Row style={styles.row}>
+            <Image src={logo3} alt="Skillhub" size="large"></Image>
+          </Grid.Row>
+          <Grid.Row style={styles.row}>
+            <Dropdown
+              placeholder="Skillzzz"
+              fluid
+              multiple
+              search
+              selection
+              options={options}
+              style={styles.dropdown}
+            />
+          </Grid.Row>
+          <Grid.Row style={styles.row}>
+            <Button style={styles.button} color="orange">
+              Search
+            </Button>
+            <Button style={styles.button} basic color="orange">
+              Advanced Search
+            </Button>
+          </Grid.Row>
+        </Grid>
       </div>
     );
   }
 }
 
 const styles = {
-  title: {
-    color: "#f24405",
-    float: "center"
-  },
   dropdown: {
-    text_align: "center"
+    textAlign: "left",
+    width: "800px"
+  },
+
+  mainGroup: {
+    paddingTop: "200px"
+  },
+
+  row: {
+    padding: "3px"
+  },
+
+  button: {
+    width: "150px",
+    marginLeft: "30px",
+    marginRight: "30px",
+    marginTop: "20px"
   }
 };
