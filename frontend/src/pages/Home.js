@@ -27,10 +27,15 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div style={styles.mainGroup}>
+      <div>
         <Grid centered>
           <Grid.Row style={styles.row}>
-            <Image src={logo3} alt="Skillhub" size="large"></Image>
+            <Image
+              style={styles.logo}
+              src={logo3}
+              alt="Skillhub"
+              size="large"
+            ></Image>
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <Dropdown
@@ -63,8 +68,10 @@ const styles = {
     width: "800px"
   },
 
-  mainGroup: {
-    paddingTop: "200px"
+  logo: {
+    paddingTop: "200px",
+    paddingLeft: "50px",
+    paddingRight: "50px"
   },
 
   row: {
@@ -72,9 +79,10 @@ const styles = {
   },
 
   button: {
-    width: "150px",
+    width: "170px",
     marginLeft: "30px",
     marginRight: "30px",
-    marginTop: "20px"
+    marginTop: "20px",
+    fontSize: "110%"
   }
 };
