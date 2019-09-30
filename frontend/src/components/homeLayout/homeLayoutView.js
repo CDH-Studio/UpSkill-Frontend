@@ -53,8 +53,7 @@ const styles = {
   },
 
   grid: {
-    width: "100%",
-    margin: "auto"
+    width: "100%"
   },
 
   logo: {

@@ -107,7 +107,8 @@ const styles = {
   },
 
   form: {
-    width: "100%"
+    width: "100%",
+    maxWidth: "800px"
   },
 
   formRow: {
