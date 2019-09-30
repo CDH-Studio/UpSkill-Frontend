@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Grid, Image } from "semantic-ui-react";
+
 import logo3 from "../../assets/fullLogo3.svg";
 import SearchForm from "../searchForm/searchFormController";
 
@@ -7,32 +8,32 @@ import SearchForm from "../searchForm/searchFormController";
  * A form for creating a search query
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
- * showAdvancedFields       False                   Whether or not to show advanced options or just skills
- * redirectButtonURL        "/advanced"             the url of the page to redirect to
  * redirectButtonText       "Advanced search"       The text to display on the redirect button
+ * redirectButtonURL        "/advanced"             the url of the page to redirect to
  * redirectFunction         None                    The function to call with the redirectButtonURL
+ * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
 export default class HomeLayoutView extends Component {
   render() {
     return (
       <Grid centered>
         <Grid.Row style={styles.row}>
-          <Image style={styles.logo} src={logo3} alt="Skillhub" size="large" />
+          <Image alt="Skillhub" size="large" src={logo3} style={styles.logo} />
         </Grid.Row>
         <Grid.Row style={styles.row}>
           <SearchForm showAdvancedFields={this.props.showAdvancedFields} />
         </Grid.Row>
         <Grid.Row style={styles.row}>
-          <Button style={styles.button} color="orange">
+          <Button color="orange" style={styles.button}>
             Search
           </Button>
           <Button
-            style={styles.button}
             basic
             color="orange"
             onClick={() =>
               this.props.redirectFunction(this.props.redirectButtonURL)
             }
+            style={styles.button}
           >
             {this.props.redirectButtonText}
           </Button>
@@ -44,9 +45,9 @@ export default class HomeLayoutView extends Component {
 
 const styles = {
   logo: {
-    paddingTop: "200px",
     paddingLeft: "50px",
-    paddingRight: "50px"
+    paddingRight: "50px",
+    paddingTop: "200px"
   },
 
   row: {
@@ -55,10 +56,10 @@ const styles = {
   },
 
   button: {
-    width: "170px",
+    fontSize: "110%",
     marginLeft: "30px",
     marginRight: "30px",
     marginTop: "20px",
-    fontSize: "110%"
+    width: "170px"
   }
 };

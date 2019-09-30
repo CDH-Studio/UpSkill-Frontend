@@ -2,17 +2,16 @@ import React, { Component } from "react";
 import { Dropdown, Form, Input } from "semantic-ui-react";
 
 /**
- * A form for creating a search query
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * advancedFieldWidth       400px                   The width to use for advanced fields
- * primaryFieldWidth        800px                   The width to use for the primary skills dropdown
- * showAdvancedFields       True                    Whether or not to show advanced options or just skills
- * jobTitles                []                      Array of job title options
- * skills                   []                      Array of skill options
  * departments              []                      Array of department options
+ * jobTitles                []                      Array of job title options
  * locations                []                      Array of location options
+ * primaryFieldWidth        800px                   The width to use for the primary skills dropdown
  * securityClearances       []                      Array of security clearance options
+ * showAdvancedFields       True                    Whether or not to show advanced options or just skills
+ * skills                   []                      Array of skill options
  */
 export default class SearchFormView extends Component {
   constructor(props) {
@@ -25,12 +24,12 @@ export default class SearchFormView extends Component {
       <Form>
         <Form.Field style={styles.formRow}>
           <Dropdown
-            placeholder="Select desired skills..."
             fluid
             multiple
+            options={this.props.skills}
+            placeholder="Select desired skills..."
             search
             selection
-            options={this.props.skills}
             style={styles.primaryDropdown}
           />
         </Form.Field>
@@ -47,45 +46,45 @@ export default class SearchFormView extends Component {
       <React.Fragment>
         <Form.Field style={styles.formRow}>
           <Dropdown
-            placeholder="Job Title"
             fluid
-            search
-            selection
-            style={styles.advancedComponent}
             options={this.props.jobTitles}
+            placeholder="Job Title"
+            search
+            selection
+            style={styles.advancedComponent}
           />
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
           <Dropdown
-            placeholder="Department"
             fluid
-            search
-            selection
-            style={styles.advancedComponent}
             options={this.props.departments}
+            placeholder="Department"
+            search
+            selection
+            style={styles.advancedComponent}
           />
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
           <Dropdown
-            placeholder="Location"
             fluid
-            search
-            selection
-            style={styles.advancedComponent}
             options={this.props.locations}
+            placeholder="Location"
+            search
+            selection
+            style={styles.advancedComponent}
           />
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
           <Dropdown
-            placeholder="Security Clearance"
             fluid
+            options={this.props.securityClearances}
+            placeholder="Security Clearance"
             search
             selection
             style={styles.advancedComponent}
-            options={this.props.securityClearances}
           />
         </Form.Field>
 
@@ -102,14 +101,14 @@ export default class SearchFormView extends Component {
 }
 
 const styles = {
-  primaryDropdown: {
-    textAlign: "left",
-    width: "800px"
-  },
-
   advancedComponent: {
     textAlign: "left",
     width: "400px"
+  },
+
+  form: {
+    paddingLeft: "15px",
+    paddingRight: "15px"
   },
 
   formRow: {
@@ -118,8 +117,8 @@ const styles = {
     textAlign: "left"
   },
 
-  form: {
-    paddingLeft: "15px",
-    paddingRight: "15px"
+  primaryDropdown: {
+    textAlign: "left",
+    width: "800px"
   }
 };

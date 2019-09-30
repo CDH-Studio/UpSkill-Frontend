@@ -1,6 +1,6 @@
-import Home from "./Home";
 import About from "./About";
-import Landing from "./Landing";
 import Advanced from "./Advanced";
+import Home from "./Home";
+import Landing from "./Landing";
 
-export { Landing, Home, About, Advanced };
+export { About, Advanced, Home, Landing };

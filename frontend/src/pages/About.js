@@ -9,10 +9,10 @@ export default class About extends Component {
       <div>
         <h2>About</h2>
         <Button
+          animated="fade"
           color="orange"
           inverted
           onClick={() => this.goto("/home")}
-          animated="fade"
         >
           <Button.Content visible>Go to Home</Button.Content>
           <Button.Content hidden>

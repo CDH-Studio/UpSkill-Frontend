@@ -1,14 +1,15 @@
-import HomeLayoutView from "./homeLayoutView";
 import React, { Component } from "react";
+
+import HomeLayoutView from "./homeLayoutView";
 
 /**
  * A form for creating a search query
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
- * showAdvancedFields       False                   Whether or not to show advanced options or just skills
- * redirectButtonURL        "/advanced"             the url of the page to redirect to
  * redirectButtonText       "Advanced search"       The text to display on the redirect button
+ * redirectButtonURL        "/advanced"             the url of the page to redirect to
  * redirectFunction         None                    The function to call with the redirectButtonURL
+ * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
 export default class HomeLayoutController extends Component {
   render() {
@@ -24,7 +25,7 @@ export default class HomeLayoutController extends Component {
 }
 
 HomeLayoutController.defaultProps = {
-  showAdvancedFields: false,
+  redirectButtonText: "Advanced search",
   redirectButtonURL: "/advanced",
-  redirectButtonText: "Advanced search"
+  showAdvancedFields: false
 };

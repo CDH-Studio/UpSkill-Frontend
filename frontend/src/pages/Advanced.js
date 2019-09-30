@@ -12,10 +12,10 @@ export default class Home extends Component {
   render() {
     return (
       <HomeLayout
-        showAdvancedFields={true}
-        redirectButtonURL={"/home"}
         redirectButtonText={"Basic search"}
+        redirectButtonURL={"/home"}
         redirectFunction={this.goto}
+        showAdvancedFields={true}
       />
     );
   }

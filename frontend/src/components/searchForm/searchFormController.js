@@ -6,26 +6,26 @@ import SearchFormView from "./searchFormView";
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * advancedFieldWidth       400px                   The width to use for advanced fields
- * primaryFieldWidth        800px                   The width to use for the primary skills dropdown
- * showAdvancedFields       True                    Whether or not to show advanced options or just skills
- * jobTitles                []                      Array of job title options
- * skills                   []                      Array of skill options
  * departments              []                      Array of department options
+ * jobTitles                []                      Array of job title options
  * locations                []                      Array of location options
+ * primaryFieldWidth        800px                   The width to use for the primary skills dropdown
  * securityClearances       []                      Array of security clearance options
+ * showAdvancedFields       True                    Whether or not to show advanced options or just skills
+ * skills                   []                      Array of skill options
  */
 export default class SearchFormController extends Component {
   render() {
     return (
       <SearchFormView
         advancedFieldWidth={this.props.advancedFieldWidth}
-        primaryFieldWidth={this.props.primaryFieldWidth}
-        showAdvancedFields={this.props.showAdvancedFields}
-        jobTitles={this.props.jobTitles}
-        skills={this.props.skills}
         departments={this.props.departments}
+        jobTitles={this.props.jobTitles}
         locations={this.props.locations}
+        primaryFieldWidth={this.props.primaryFieldWidth}
         securityClearances={this.props.securityClearances}
+        showAdvancedFields={this.props.showAdvancedFields}
+        skills={this.props.skills}
       />
     );
   }
@@ -33,24 +33,19 @@ export default class SearchFormController extends Component {
 
 SearchFormController.defaultProps = {
   advancedFieldWidth: "400px",
-  primaryFieldWidth: "800px",
-  showAdvancedFields: true,
-  jobTitles: [
-    { key: "Job1", value: "Job1", text: "Job1" },
-    { key: "Job2", value: "Job2", text: "Job2" }
-  ],
-  skills: [
-    { key: "skills1", value: "skills1", text: "skill1" },
-    { key: "skills2", value: "skills1", text: "skill2" }
-  ],
   departments: [
     { key: "department1", value: "department1", text: "department1" },
     { key: "department2", value: "department2", text: "department2" }
+  ],
+  jobTitles: [
+    { key: "Job1", value: "Job1", text: "Job1" },
+    { key: "Job2", value: "Job2", text: "Job2" }
   ],
   locations: [
     { key: "locations1", value: "locations1", text: "locations1" },
     { key: "locations2", value: "locations2", text: "locations2" }
   ],
+  primaryFieldWidth: "800px",
   securityClearances: [
     {
       key: "securityClearances1",
@@ -62,5 +57,11 @@ SearchFormController.defaultProps = {
       value: "securityClearances2",
       text: "securityClearances2"
     }
+  ],
+  showAdvancedFields: true,
+
+  skills: [
+    { key: "skills1", value: "skills1", text: "skill1" },
+    { key: "skills2", value: "skills1", text: "skill2" }
   ]
 };
