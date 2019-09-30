@@ -110,7 +110,8 @@ export default class SearchFormView extends Component {
 const styles = {
   advancedComponent: {
     textAlign: "left",
-    width: "400px"
+    maxWidth: "400px",
+    width: "100%"
   },
 
   form: {
