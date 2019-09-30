@@ -21,7 +21,7 @@ export default class SearchFormView extends Component {
 
   render() {
     return (
-      <Form>
+      <Form style={styles.form}>
         <Form.Field style={styles.formRow}>
           <Dropdown
             fluid
@@ -107,8 +107,7 @@ const styles = {
   },
 
   form: {
-    paddingLeft: "15px",
-    paddingRight: "15px"
+    width: "100%"
   },
 
   formRow: {
@@ -119,6 +118,7 @@ const styles = {
 
   primaryDropdown: {
     textAlign: "left",
-    width: "800px"
+    maxWidth: "800px",
+    width: "100%"
   }
 };

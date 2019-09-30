@@ -16,7 +16,7 @@ import SearchForm from "../searchForm/searchFormController";
 export default class HomeLayoutView extends Component {
   render() {
     return (
-      <Grid centered>
+      <Grid centered style={styles.grid}>
         <Grid.Row style={styles.row}>
           <Image alt="Skillhub" size="large" src={logo3} style={styles.logo} />
         </Grid.Row>
@@ -44,6 +44,19 @@ export default class HomeLayoutView extends Component {
 }
 
 const styles = {
+  button: {
+    fontSize: "110%",
+    marginLeft: "30px",
+    marginRight: "30px",
+    marginTop: "20px",
+    width: "170px"
+  },
+
+  grid: {
+    width: "100%",
+    margin: "auto"
+  },
+
   logo: {
     paddingLeft: "50px",
     paddingRight: "50px",
@@ -52,14 +65,6 @@ const styles = {
 
   row: {
     padding: "3px",
-    width: "800px"
-  },
-
-  button: {
-    fontSize: "110%",
-    marginLeft: "30px",
-    marginRight: "30px",
-    marginTop: "20px",
-    width: "170px"
+    width: "100%"
   }
 };
