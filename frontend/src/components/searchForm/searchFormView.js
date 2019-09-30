@@ -23,6 +23,7 @@ export default class SearchFormView extends Component {
     return (
       <Form style={styles.form}>
         <Form.Field style={styles.formRow}>
+          <label>Desired Skills</label>
           <Dropdown
             fluid
             multiple
@@ -45,6 +46,7 @@ export default class SearchFormView extends Component {
     return (
       <React.Fragment>
         <Form.Field style={styles.formRow}>
+          <label>Job Title</label>
           <Dropdown
             fluid
             options={this.props.jobTitles}
@@ -56,6 +58,7 @@ export default class SearchFormView extends Component {
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
+          <label>Department</label>
           <Dropdown
             fluid
             options={this.props.departments}
@@ -67,6 +70,7 @@ export default class SearchFormView extends Component {
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
+          <label>Location</label>
           <Dropdown
             fluid
             options={this.props.locations}
@@ -78,6 +82,7 @@ export default class SearchFormView extends Component {
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
+          <label>Security Clearance</label>
           <Dropdown
             fluid
             options={this.props.securityClearances}
@@ -89,10 +94,12 @@ export default class SearchFormView extends Component {
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
+          <label>First Name</label>
           <Input placeholder="First name" style={styles.advancedComponent} />
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
+          <label>Last Name</label>
           <Input placeholder="Last name" style={styles.advancedComponent} />
         </Form.Field>
       </React.Fragment>
@@ -113,7 +120,7 @@ const styles = {
 
   formRow: {
     padding: "3px",
-    height: "30px",
+    height: "55px",
     textAlign: "left"
   },
 
