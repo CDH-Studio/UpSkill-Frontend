@@ -131,7 +131,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/upskillbackend/dev/1569865848423-2019-09-30T17:50:48.423Z/upskillbackend.zip"
+                "S3Key": "serverless/upskillbackend/dev/1569941159719-2019-10-01T14:45:59.719Z/upskillbackend.zip"
               },
               "FunctionName": "upskillbackend-dev-hello",
               "Handler": "handler.hello",
@@ -150,14 +150,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "HelloLambdaVersionXhiWbJlAQjcbUvFRea4HiwZob3SJYXzLUZMeea9kfs": {
+          "HelloLambdaVersionP1LpSNzQMKlHyz9JyQ409Xtm0Rs4FgohXNOD9YUZ4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "MbQFQChn0qFpjt6WzOQe15uYPJs+Nb7TyDRGEYJWcrk="
+              "CodeSha256": "6Dvf7kfToSfOshOL+oYLKzmqClHwbkNUm8TGquDgplE="
             }
           },
           "NewFunctionLambdaFunction": {
@@ -167,7 +167,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/upskillbackend/dev/1569865848423-2019-09-30T17:50:48.423Z/upskillbackend.zip"
+                "S3Key": "serverless/upskillbackend/dev/1569941159719-2019-10-01T14:45:59.719Z/upskillbackend.zip"
               },
               "FunctionName": "upskillbackend-dev-newFunction",
               "Handler": "handler.testfunction",
@@ -186,14 +186,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "NewFunctionLambdaVersionEdYxyEJQRmxB11jGvf7dVnioqW09MoNw9UoQEFrQs": {
+          "NewFunctionLambdaVersiont9yP67m2x35YslLha105480UV23uGfNsN5hqhTWT4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "NewFunctionLambdaFunction"
               },
-              "CodeSha256": "MbQFQChn0qFpjt6WzOQe15uYPJs+Nb7TyDRGEYJWcrk="
+              "CodeSha256": "6Dvf7kfToSfOshOL+oYLKzmqClHwbkNUm8TGquDgplE="
             }
           },
           "GetEmployeeInfoLambdaFunction": {
@@ -203,7 +203,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/upskillbackend/dev/1569865848423-2019-09-30T17:50:48.423Z/upskillbackend.zip"
+                "S3Key": "serverless/upskillbackend/dev/1569941159719-2019-10-01T14:45:59.719Z/upskillbackend.zip"
               },
               "FunctionName": "upskillbackend-dev-getEmployeeInfo",
               "Handler": "API/geds/index.getEmployeeInfo",
@@ -222,14 +222,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetEmployeeInfoLambdaVersionDXczmPAEKFqn1HLO06Ba9Ppi7DA6VrqVsPzrfN4gjE": {
+          "GetEmployeeInfoLambdaVersionPajGQ0Beq8PNeZv1zwchh8lRw2BttUyGIefQAh3IOA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetEmployeeInfoLambdaFunction"
               },
-              "CodeSha256": "MbQFQChn0qFpjt6WzOQe15uYPJs+Nb7TyDRGEYJWcrk="
+              "CodeSha256": "6Dvf7kfToSfOshOL+oYLKzmqClHwbkNUm8TGquDgplE="
             }
           },
           "ApiGatewayRestApi": {
@@ -429,7 +429,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1569865839040": {
+          "ApiGatewayDeployment1569941149662": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -564,19 +564,19 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionXhiWbJlAQjcbUvFRea4HiwZob3SJYXzLUZMeea9kfs"
+              "Ref": "HelloLambdaVersionP1LpSNzQMKlHyz9JyQ409Xtm0Rs4FgohXNOD9YUZ4"
             }
           },
           "NewFunctionLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "NewFunctionLambdaVersionEdYxyEJQRmxB11jGvf7dVnioqW09MoNw9UoQEFrQs"
+              "Ref": "NewFunctionLambdaVersiont9yP67m2x35YslLha105480UV23uGfNsN5hqhTWT4"
             }
           },
           "GetEmployeeInfoLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetEmployeeInfoLambdaVersionDXczmPAEKFqn1HLO06Ba9Ppi7DA6VrqVsPzrfN4gjE"
+              "Ref": "GetEmployeeInfoLambdaVersionPajGQ0Beq8PNeZv1zwchh8lRw2BttUyGIefQAh3IOA"
             }
           },
           "ServiceEndpoint": {
@@ -686,7 +686,7 @@
     "artifact": "/Users/rizvirab/Documents/UpSkill/UpSkill/backend/.serverless/upskillbackend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/upskillbackend/dev/1569865848423-2019-09-30T17:50:48.423Z",
+    "artifactDirectoryName": "serverless/upskillbackend/dev/1569941159719-2019-10-01T14:45:59.719Z",
     "artifact": "upskillbackend.zip"
   }
 }

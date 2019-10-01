@@ -2,7 +2,7 @@
 const axios = require("axios");
 
 async function getEmployeeInfo(event) {
-  const searchValue = event.pathParameters.searchValue;
+  const searchValue = decodeURI(event.pathParameters.searchValue);
 
   let info = await searchEmployee(searchValue).catch(err => {
     return {
@@ -95,10 +95,10 @@ async function searchEmployee(searchValue) {
       }
     })
     .catch(err => {
+      console.error(err);
       if (err.responce.status == 429) {
         return Promise.reject("Limits exceeded");
       }
-      console.error(err);
     });
 
   return info;
