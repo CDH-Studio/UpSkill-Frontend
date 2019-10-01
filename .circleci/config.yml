@@ -22,15 +22,6 @@ jobs:
     docker:
       - image: circleci/node:10.16.3
     steps:
-      - run:
-          name: Install Node dependencies
-          command: cd backend && npm test
-
-  backend-offline:
-    working_directory: ~/UpSkill
-    docker:
-      - image: circleci/node:10.16.3
-    steps:
       - checkout
       - run:
           name: Install Node dependencies
@@ -38,6 +29,9 @@ jobs:
       - run:
           name: Deploy serverless offline
           command: sh -c "cd backend && npm run serve" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 10
+      - run:
+          name: Install Node dependencies
+          command: cd backend && npm test
 
 workflows:
   version: 2
@@ -47,7 +41,4 @@ workflows:
 
   build-deploy-backend:
     jobs:
-      - backend-offline
-      - backend-test:
-          requires:
-            - backend-offline
+      - backend-test
