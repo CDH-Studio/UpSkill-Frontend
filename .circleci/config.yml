@@ -46,3 +46,9 @@ jobs:
       - checkout
 
       - run: npm test
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - jest-test
