@@ -29,6 +29,8 @@ jobs:
       - run:
           name: Deploy serverless offline
           command: sh -c "cd backend && npm run serve" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 10
+          background: true
+
       - run:
           name: Install Node dependencies
           command: cd backend && npm test
