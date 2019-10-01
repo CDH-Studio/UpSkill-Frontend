@@ -22,6 +22,16 @@ async function getEmployeeInfo(event) {
       statusCode: 429
     };
   }
+
+  if (info.length == 0) {
+    return {
+      body: JSON.stringify({
+        message: "No results found",
+        code: 204
+      }),
+      statusCode: 204
+    };
+  }
   const returnObject = {
     body: JSON.stringify({
       data: info,
@@ -50,9 +60,28 @@ async function searchEmployee(searchValue) {
     }
   })
     .then(res => {
-      console.log(res.data[0].organizationInformation.organization);
       for (let i = 0; i < res.data.length; i++) {
         const employee = res.data[i];
+
+        let currentBranch = employee;
+        let organization = [];
+        while (currentBranch.organizationInformation != null) {
+          let branchInfo = {
+            organizationId:
+              currentBranch.organizationInformation.organization.id,
+            organization: {
+              addressInformation:
+                currentBranch.organizationInformation.organization
+                  .addressInformation,
+              description:
+                currentBranch.organizationInformation.organization.description
+            }
+          };
+          organization.push(branchInfo);
+          currentBranch = currentBranch.organizationInformation.organization;
+        }
+        organization = organization.reverse();
+
         let empInfo = {
           id: employee.id,
           givenName: employee.givenName,
@@ -60,7 +89,7 @@ async function searchEmployee(searchValue) {
           title: employee.title,
           phoneNumber: employee.contactInformation.phoneNumber,
           email: employee.contactInformation.email,
-          organizationId: employee.organizationInformation.organization.id
+          organization: organization
         };
         info.push(empInfo);
       }
@@ -71,9 +100,6 @@ async function searchEmployee(searchValue) {
       }
       console.error(err);
     });
-  // console.log("INFO: ~~~~~~~~~~~~~~~~~");
-
-  // console.log(info);
 
   return info;
 }
