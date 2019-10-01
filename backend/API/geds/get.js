@@ -8,9 +8,9 @@ async function getEmployeeInfo(event) {
     return {
       body: JSON.stringify({
         message: err,
-        code: 429
+        code: 500
       }),
-      statusCode: 429
+      statusCode: 500
     };
   });
   if (info.statusCode == 429) {
