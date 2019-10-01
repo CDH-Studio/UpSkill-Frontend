@@ -5,11 +5,12 @@
 version: 2
 jobs:
   jest-test:
-    working_directory: ~/UpSkill/frontend
+    working_directory: ~/UpSkill
     docker:
       - image: circleci/node:10.16.3
     steps:
       - checkout
+      - run: cd frontend/
       - run: npm i
       - run: npm test
 
