@@ -37,7 +37,7 @@ jobs:
           command: cd backend && npm i
       - run:
           name: Deploy serverless offline
-          command: cd backend && npm run serve
+          command: sh -c "cd backend && npm run serve" & PID=$! && echo "PID is $PID and PWD is $PWD" && sleep 10
 
 workflows:
   version: 2

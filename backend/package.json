@@ -13,7 +13,7 @@
     "serverless-offline": "^5.11.0"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "serve": "serverless offline start"
   },
   "author": "Rizvi Rab",
