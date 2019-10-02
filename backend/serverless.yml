@@ -23,6 +23,8 @@ provider:
   runtime: nodejs10.x
   region: ca-central-1
 
+apiName: upskill
+
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
@@ -60,15 +62,15 @@ functions:
   hello:
     handler: handler.hello
     events:
-      - http:
-          path: hello/
-          method: GET
+      - http: GET hello/
   newFunction:
     handler: handler.testfunction
     events:
-      - http:
-          path: testfunction/
-          method: GET
+      - http: GET testfunction/
+  getEmployeeInfo:
+    handler: API/geds/index.getEmployeeInfo
+    events:
+      - http: GET getEmployeeInfo/{searchValue}
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

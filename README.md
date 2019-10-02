@@ -2,6 +2,8 @@
 
 An improved directory and employee search tool
 
+[![CircleCI](https://circleci.com/gh/CDH-Studio/UpSkill/tree/development.svg?style=svg)](https://circleci.com/gh/CDH-Studio/UpSkill/tree/development)
+
 [Website](https://cdh-studio.github.io/UpSkill/)
 
 # Table of Contents
