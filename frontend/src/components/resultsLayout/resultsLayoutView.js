@@ -2,11 +2,7 @@ import React, { Component } from "react";
 import SearchFormController from "../searchForm/searchFormController";
 import logo3 from "../../assets/fullLogo3.svg";
 import "./resultStyles.css";
-import { Button, Icon, Image } from "semantic-ui-react";
-
-const styles = {};
-
-console.log(styles);
+import { Icon, Image } from "semantic-ui-react";
 
 export default class ResultsLayoutView extends Component {
   constructor(props) {
@@ -14,7 +10,6 @@ export default class ResultsLayoutView extends Component {
     this.wideView = true;
     this.state = { displayingSidebar: true };
     this.searchHider = this.searchHider.bind(this);
-    console.log("styles", styles, styles.logoBox);
   }
 
   componentDidMount() {
@@ -30,7 +25,6 @@ export default class ResultsLayoutView extends Component {
     let newVal = window.innerWidth > 800;
 
     if (this.wideView && this.state.displayingSidebar && !newVal) {
-      console.log("hiding sidebar");
       this.setState({ displayingSidebar: false });
       document.getElementById("searchSidebar").classList.add("hidden");
     }
@@ -38,7 +32,6 @@ export default class ResultsLayoutView extends Component {
   }
 
   render() {
-    console.log("render");
     return (
       <div>
         <div className="logoBox">
@@ -81,35 +74,3 @@ export default class ResultsLayoutView extends Component {
     }
   }
 }
-/*
-const styles = {
-  logoBox: {
-    position: "absolute",
-    top: "10px",
-    width: "350px"
-  },
-  sidebar: {
-    position: "absolute",
-    top: "150px",
-    bottom: " 0px",
-    width: "350px",
-    paddingLeft: "10px",
-    paddingRight: "10px",
-    borderRight: "2px solid #FE9A76"
-  },
-  closeSidebarButton: {
-    position: "absolute",
-    top: "50%",
-    size: "150%",
-    left: "350px",
-    color: "#FE9A76"
-  },
-  openSidebarButton: {
-    marginTop: "75px",
-    position: "absolute",
-    size: "150%",
-    top: "50%",
-    color: "#FE9A76"
-  }
-};
-*/

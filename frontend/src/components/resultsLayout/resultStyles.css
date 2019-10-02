@@ -5,13 +5,13 @@
 }
 
 .sideBar {
-  position: absolute;
-  top: 150px;
+  border-right: 2px solid #fe9a76;
   bottom: 0px;
-  width: 350px;
   padding-left: 10px;
   padding-right: 10px;
-  border-right: 2px solid #fe9a76;
+  position: absolute;
+  top: 150px;
+  width: 350px;
 
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
@@ -28,10 +28,10 @@
 }
 
 .closeSidebarButton {
+  color: #fe9a76;
+  left: 345px;
   position: absolute;
   top: 50%;
-  left: 345px;
-  color: #fe9a76;
 }
 
 .closeSidebarButton:hover {
@@ -43,9 +43,9 @@
 }
 
 .openSidebarButton {
+  color: #fe9a76;
   position: absolute;
   top: 50%;
-  color: #fe9a76;
 }
 
 .openSidebarButton:hover {
