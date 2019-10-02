@@ -1,0 +1,38 @@
+.logoBox {
+  position: absolute;
+  top: 10px;
+  width: 350px;
+}
+
+.sideBar {
+  position: absolute;
+  top: 150px;
+  bottom: 0px;
+  width: 350px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: 2px solid #fe9a76;
+}
+
+.closeSidebarButton {
+  position: absolute;
+  top: 50%;
+  left: 310px;
+  color: #fe9a76;
+}
+
+.closeSidebarButton.icon {
+  font-size: 30px;
+}
+
+.openSidebarButton {
+  margin-top: 150px;
+  position: absolute;
+  size: 150%;
+  top: 50%;
+  color: #fe9a76;
+}
+
+.openSidebarButton.icon {
+  font-size: 30px;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { About, Advanced, Home, Landing } from "./pages/index";
+import { About, Advanced, Home, Landing, Results } from "./pages/index";
 
 class App extends Component {
   goto = link => this.props.history.push(link);
@@ -18,6 +18,7 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/about" component={About} />
           <Route exact path="/advanced" component={Advanced} />
+          <Route exact path="/results" component={Results} />
           <Route exact path="/home" component={Home} />
         </div>
       </Router>
