@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Button, Dropdown, Grid, Image } from "semantic-ui-react";
 import logo3 from "../assets/fullLogo3.svg";
+import Logout from "./Logout";
 
 const options = [
   { key: "angular", text: "Angular", value: "angular" },
@@ -28,6 +29,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
+        <Logout keycloak={this.props.keycloak}></Logout>
         <Grid centered>
           <Grid.Row style={styles.row}>
             <Image
