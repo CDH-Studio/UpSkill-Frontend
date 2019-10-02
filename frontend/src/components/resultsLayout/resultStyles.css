@@ -12,13 +12,30 @@
   padding-left: 10px;
   padding-right: 10px;
   border-right: 2px solid #fe9a76;
+
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+.sideBar.hidden {
+  -webkit-transform: translate(-350px, 0);
+  -moz-transform: translate(-350px, 0);
+  -o-transform: translate(-350px, 0);
+  -ms-transform: translate(-350px, 0);
+  transform: translate(-350px, 0);
 }
 
 .closeSidebarButton {
   position: absolute;
   top: 50%;
-  left: 310px;
+  left: 345px;
   color: #fe9a76;
+}
+
+.closeSidebarButton:hover {
+  color: #e58463;
 }
 
 .closeSidebarButton.icon {
@@ -26,11 +43,13 @@
 }
 
 .openSidebarButton {
-  margin-top: 150px;
   position: absolute;
-  size: 150%;
   top: 50%;
   color: #fe9a76;
+}
+
+.openSidebarButton:hover {
+  color: #e58463;
 }
 
 .openSidebarButton.icon {

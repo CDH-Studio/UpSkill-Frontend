@@ -32,6 +32,7 @@ export default class ResultsLayoutView extends Component {
     if (this.wideView && this.state.displayingSidebar && !newVal) {
       console.log("hiding sidebar");
       this.setState({ displayingSidebar: false });
+      document.getElementById("searchSidebar").classList.add("hidden");
     }
     this.wideView = newVal;
   }
@@ -43,34 +44,38 @@ export default class ResultsLayoutView extends Component {
         <div className="logoBox">
           <Image alt="Skillhub" size="medium" centered src={logo3} />
         </div>
-        {this.renderSidebar()}
+        <div className="sideBar" id="searchSidebar">
+          <SearchFormController
+            advancedFieldWidth={"300px"}
+            primaryFieldWidth={"347px"}
+          />
+        </div>
+        {this.renderSidebarButton()}
       </div>
     );
   }
 
-  renderSidebar() {
+  renderSidebarButton() {
     if (this.state.displayingSidebar) {
       return (
-        <React.Fragment>
-          <div className="sideBar">
-            <SearchFormController
-              advancedFieldWidth={"300px"}
-              primaryFieldWidth={"347px"}
-            />
-          </div>
-          <Icon
-            className="closeSidebarButton"
-            name="angle double left"
-            onClick={() => this.setState({ displayingSidebar: false })}
-          />
-        </React.Fragment>
+        <Icon
+          className="closeSidebarButton"
+          name="angle left"
+          onClick={() => {
+            document.getElementById("searchSidebar").classList.add("hidden");
+            this.setState({ displayingSidebar: false });
+          }}
+        />
       );
     } else {
       return (
         <Icon
           className="openSidebarButton"
-          name="angle double right"
-          onClick={() => this.setState({ displayingSidebar: true })}
+          name="angle right"
+          onClick={() => {
+            document.getElementById("searchSidebar").classList.remove("hidden");
+            this.setState({ displayingSidebar: true });
+          }}
         />
       );
     }
