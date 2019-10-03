@@ -41,22 +41,22 @@ class App extends Component {
               <Route
                 exact
                 path="/advanced"
-                render={() => (
-                  <Advanced keycloak={this.state.keycloak} history={history} />
+                render={routeProps => (
+                  <Advanced keycloak={this.state.keycloak} {...routeProps} />
                 )}
               />
               <Route
                 exact
                 path="/home"
-                render={() => (
-                  <Home keycloak={this.state.keycloak} history={history} />
+                render={routeProps => (
+                  <Home keycloak={this.state.keycloak} {...routeProps} />
                 )}
               />
               <Route
                 exact
                 path="/results"
-                render={() => (
-                  <Results keycloak={this.state.keycloak} history={history} />
+                render={routeProps => (
+                  <Results keycloak={this.state.keycloak} {...routeProps} />
                 )}
               />
             </div>
