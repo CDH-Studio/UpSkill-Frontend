@@ -15,10 +15,11 @@ export default class HomeLayoutController extends Component {
   render() {
     return (
       <HomeLayoutView
-        showAdvancedFields={this.props.showAdvancedFields}
+        keycloak={this.props.keycloak}
         redirectButtonURL={this.props.redirectButtonURL}
         redirectButtonText={this.props.redirectButtonText}
         redirectFunction={this.props.redirectFunction}
+        showAdvancedFields={this.props.showAdvancedFields}
       />
     );
   }

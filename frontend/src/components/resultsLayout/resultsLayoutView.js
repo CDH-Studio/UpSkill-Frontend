@@ -34,7 +34,7 @@ export default class ResultsLayoutView extends Component {
   render() {
     return (
       <div>
-        <NavigationBar />
+        <NavigationBar keycloak={this.props.keycloak} />
         <div className="bodyContent" id="bodyContent">
           <div className="sideBar">
             <SearchFormController

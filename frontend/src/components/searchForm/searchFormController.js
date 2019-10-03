@@ -62,7 +62,6 @@ SearchFormController.defaultProps = {
     }
   ],
   showAdvancedFields: true,
-
   skills: [
     { key: "skills1", value: "skills1", text: "skill1" },
     { key: "skills2", value: "skills1", text: "skill2" }

@@ -5,6 +5,11 @@ export default class Results extends Component {
   goto = link => this.props.history.push(link);
 
   render() {
-    return <ResultsLayout redirectFunction={this.goto} />;
+    return (
+      <ResultsLayout
+        keycloak={this.props.keycloak}
+        redirectFunction={this.goto}
+      />
+    );
   }
 }

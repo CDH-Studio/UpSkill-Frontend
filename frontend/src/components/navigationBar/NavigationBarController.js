@@ -3,6 +3,6 @@ import NavigationBarView from "./NavigationBarView";
 
 export default class NavigationBarController extends Component {
   render() {
-    return <NavigationBarView />;
+    return <NavigationBarView keycloak={this.props.keycloak} />;
   }
 }

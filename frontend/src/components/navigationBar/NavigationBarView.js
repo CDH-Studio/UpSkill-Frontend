@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Icon, Menu } from "semantic-ui-react";
+import Logout from "../logout/Logout";
 //import Logo from "../../assets/Logo3Rounded.png";
 
 export default class NavigationBarView extends Component {
@@ -11,7 +12,7 @@ export default class NavigationBarView extends Component {
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item name="My Profile" />
-          <Menu.Item name="Logout" />
+          <Logout keycloak={this.props.keycloak} />
         </Menu.Menu>
       </Menu>
     );

@@ -9,6 +9,7 @@ import NavigationBar from "../navigationBar/NavigationBarController";
  * A form for creating a search query
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
+ * keycloak                 null                    The keycloak instance being used
  * redirectButtonText       "Advanced search"       The text to display on the redirect button
  * redirectButtonURL        "/advanced"             the url of the page to redirect to
  * redirectFunction         None                    The function to call with the redirectButtonURL
@@ -18,7 +19,7 @@ export default class HomeLayoutView extends Component {
   render() {
     return (
       <div>
-        <NavigationBar />
+        <NavigationBar keycloak={this.props.keycloak} />
         <Grid centered style={styles.grid}>
           <Grid.Row style={styles.row}>
             <Image
