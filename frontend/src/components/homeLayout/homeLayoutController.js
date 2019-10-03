@@ -19,6 +19,7 @@ export default class HomeLayoutController extends Component {
         redirectButtonURL={this.props.redirectButtonURL}
         redirectButtonText={this.props.redirectButtonText}
         redirectFunction={this.props.redirectFunction}
+        keycloak={this.props.keycloak}
       />
     );
   }
