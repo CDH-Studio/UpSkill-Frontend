@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import SearchFormController from "../searchForm/searchFormController";
-import logo3 from "../../assets/fullLogo3.svg";
 import "./resultStyles.css";
-import { Icon, Image } from "semantic-ui-react";
+import { Icon, Grid } from "semantic-ui-react";
+import NavigationBar from "../navigationBar/NavigationBarController";
 
 export default class ResultsLayoutView extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export default class ResultsLayoutView extends Component {
 
     if (this.wideView && this.state.displayingSidebar && !newVal) {
       this.setState({ displayingSidebar: false });
-      document.getElementById("searchSidebar").classList.add("hidden");
+      document.getElementById("bodyContent").classList.add("searchless");
     }
     this.wideView = newVal;
   }
@@ -34,14 +34,20 @@ export default class ResultsLayoutView extends Component {
   render() {
     return (
       <div>
-        <div className="logoBox">
-          <Image alt="Skillhub" size="medium" centered src={logo3} />
-        </div>
-        <div className="sideBar" id="searchSidebar">
-          <SearchFormController
-            advancedFieldWidth={"300px"}
-            primaryFieldWidth={"347px"}
-          />
+        <NavigationBar />
+        <div className="bodyContent" id="bodyContent">
+          <div className="sideBar">
+            <SearchFormController
+              advancedFieldWidth={"300px"}
+              invertLabels={true}
+              primaryFieldWidth={"347px"}
+            />
+          </div>
+          <div className="resultContent">
+            <Grid>
+              <Grid.Row>content goes here</Grid.Row>
+            </Grid>
+          </div>
         </div>
         {this.renderSidebarButton()}
       </div>
@@ -55,7 +61,7 @@ export default class ResultsLayoutView extends Component {
           className="closeSidebarButton"
           name="angle left"
           onClick={() => {
-            document.getElementById("searchSidebar").classList.add("hidden");
+            document.getElementById("bodyContent").classList.add("searchless");
             this.setState({ displayingSidebar: false });
           }}
         />
@@ -66,7 +72,9 @@ export default class ResultsLayoutView extends Component {
           className="openSidebarButton"
           name="angle right"
           onClick={() => {
-            document.getElementById("searchSidebar").classList.remove("hidden");
+            document
+              .getElementById("bodyContent")
+              .classList.remove("searchless");
             this.setState({ displayingSidebar: true });
           }}
         />

@@ -6,6 +6,7 @@ import { Dropdown, Form, Input } from "semantic-ui-react";
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * advancedFieldWidth       400px                   The width to use for advanced fields
  * departments              []                      Array of department options
+ * invertLabels             false                   Whether to invert the label text of form fields
  * jobTitles                []                      Array of job title options
  * locations                []                      Array of location options
  * primaryFieldWidth        800px                   The width to use for the primary skills dropdown
@@ -21,7 +22,7 @@ export default class SearchFormView extends Component {
 
   render() {
     return (
-      <Form style={styles.form}>
+      <Form inverted={this.props.invertLabels} style={styles.form}>
         <Form.Field style={styles.formRow}>
           <label>Desired Skills</label>
           <Dropdown

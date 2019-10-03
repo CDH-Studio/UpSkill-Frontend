@@ -3,6 +3,7 @@ import { Button, Grid, Image } from "semantic-ui-react";
 
 import logo3 from "../../assets/fullLogo3.svg";
 import SearchForm from "../searchForm/searchFormController";
+import NavigationBar from "../navigationBar/NavigationBarController";
 
 /**
  * A form for creating a search query
@@ -16,29 +17,37 @@ import SearchForm from "../searchForm/searchFormController";
 export default class HomeLayoutView extends Component {
   render() {
     return (
-      <Grid centered style={styles.grid}>
-        <Grid.Row style={styles.row}>
-          <Image alt="Skillhub" size="large" src={logo3} style={styles.logo} />
-        </Grid.Row>
-        <Grid.Row style={styles.row}>
-          <SearchForm showAdvancedFields={this.props.showAdvancedFields} />
-        </Grid.Row>
-        <Grid.Row style={styles.row}>
-          <Button color="orange" style={styles.button}>
-            Search
-          </Button>
-          <Button
-            basic
-            color="orange"
-            onClick={() =>
-              this.props.redirectFunction(this.props.redirectButtonURL)
-            }
-            style={styles.button}
-          >
-            {this.props.redirectButtonText}
-          </Button>
-        </Grid.Row>
-      </Grid>
+      <div>
+        <NavigationBar />
+        <Grid centered style={styles.grid}>
+          <Grid.Row style={styles.row}>
+            <Image
+              alt="Skillhub"
+              size="large"
+              src={logo3}
+              style={styles.logo}
+            />
+          </Grid.Row>
+          <Grid.Row style={styles.row}>
+            <SearchForm showAdvancedFields={this.props.showAdvancedFields} />
+          </Grid.Row>
+          <Grid.Row style={styles.row}>
+            <Button color="violet" style={styles.button}>
+              Search
+            </Button>
+            <Button
+              basic
+              color="violet"
+              onClick={() =>
+                this.props.redirectFunction(this.props.redirectButtonURL)
+              }
+              style={styles.button}
+            >
+              {this.props.redirectButtonText}
+            </Button>
+          </Grid.Row>
+        </Grid>
+      </div>
     );
   }
 }
