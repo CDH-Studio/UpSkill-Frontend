@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import HomeLayout from "../components/homeLayout/homeLayoutController";
 
-export default class Home extends Component {
+export default class Advanced extends Component {
   goto = link => this.props.history.push(link);
 
   constructor(props) {

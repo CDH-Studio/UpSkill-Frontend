@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Home, About, Landing, Advanced } from "./pages/index";
+import { About, Advanced, Home, Landing, Results } from "./pages/index";
 import Keycloak from "keycloak-js";
 import { createBrowserHistory } from "history";
 
@@ -38,12 +38,25 @@ class App extends Component {
             <div>
               <Route exact path="/" component={Landing} />
               <Route exact path="/about" component={About} />
-              <Route exact path="/advanced" component={Advanced} />
+              <Route
+                exact
+                path="/advanced"
+                render={routeProps => (
+                  <Advanced keycloak={this.state.keycloak} {...routeProps} />
+                )}
+              />
               <Route
                 exact
                 path="/home"
-                render={() => (
-                  <Home keycloak={this.state.keycloak} history={history}></Home>
+                render={routeProps => (
+                  <Home keycloak={this.state.keycloak} {...routeProps} />
+                )}
+              />
+              <Route
+                exact
+                path="/results"
+                render={routeProps => (
+                  <Results keycloak={this.state.keycloak} {...routeProps} />
                 )}
               />
             </div>

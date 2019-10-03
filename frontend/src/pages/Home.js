@@ -6,7 +6,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <HomeLayout redirectFunction={this.goto} keycloak={this.props.keycloak} />
+      <HomeLayout keycloak={this.props.keycloak} redirectFunction={this.goto} />
     );
   }
 }

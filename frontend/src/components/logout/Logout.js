@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 
 class Logout extends Component {
   logout() {
@@ -9,26 +9,7 @@ class Logout extends Component {
   }
 
   render() {
-    return (
-      <Button
-        style={styles.button}
-        basic
-        color="orange"
-        onClick={() => this.logout()}
-      >
-        Logout
-      </Button>
-    );
+    return <Menu.Item name="Logout" onClick={() => this.logout()} />;
   }
 }
 export default withRouter(Logout);
-
-const styles = {
-  button: {
-    width: "170px",
-    marginLeft: "30px",
-    marginRight: "30px",
-    marginTop: "20px",
-    fontSize: "110%"
-  }
-};

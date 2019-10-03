@@ -3,22 +3,23 @@ import { Button, Grid, Image } from "semantic-ui-react";
 
 import logo3 from "../../assets/fullLogo3.svg";
 import SearchForm from "../searchForm/searchFormController";
-import Logout from "../logout/Logout";
+import NavigationBar from "../navigationBar/NavigationBarController";
 
 /**
  * A form for creating a search query
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
+ * keycloak                 null                    The keycloak instance being used
  * redirectButtonText       "Advanced search"       The text to display on the redirect button
- * redirectButtonURL        "/advanced"             the url of the page to redirect to
- * redirectFunction         None                    The function to call with the redirectButtonURL
+ * redirectButtonURL        "/advanced"             The url of the page to redirect to
+ * redirectFunction         null                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
 export default class HomeLayoutView extends Component {
   render() {
     return (
       <div>
-        <Logout keycloak={this.props.keycloak}></Logout>
+        <NavigationBar keycloak={this.props.keycloak} />
         <Grid centered style={styles.grid}>
           <Grid.Row style={styles.row}>
             <Image
@@ -32,12 +33,12 @@ export default class HomeLayoutView extends Component {
             <SearchForm showAdvancedFields={this.props.showAdvancedFields} />
           </Grid.Row>
           <Grid.Row style={styles.row}>
-            <Button color="orange" style={styles.button}>
+            <Button color="violet" style={styles.button}>
               Search
             </Button>
             <Button
               basic
-              color="orange"
+              color="violet"
               onClick={() =>
                 this.props.redirectFunction(this.props.redirectButtonURL)
               }
