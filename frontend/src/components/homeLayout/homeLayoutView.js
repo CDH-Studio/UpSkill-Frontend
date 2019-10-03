@@ -11,8 +11,8 @@ import NavigationBar from "../navigationBar/NavigationBarController";
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * keycloak                 null                    The keycloak instance being used
  * redirectButtonText       "Advanced search"       The text to display on the redirect button
- * redirectButtonURL        "/advanced"             the url of the page to redirect to
- * redirectFunction         None                    The function to call with the redirectButtonURL
+ * redirectButtonURL        "/advanced"             The url of the page to redirect to
+ * redirectFunction         null                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
 export default class HomeLayoutView extends Component {
