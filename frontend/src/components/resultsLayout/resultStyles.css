@@ -1,17 +1,13 @@
 .logoBox {
   position: absolute;
   top: 10px;
-  width: 350px;
+  width: 200px;
 }
 
-.sideBar {
-  border-right: 2px solid #fe9a76;
+.bodyContent {
   bottom: 0px;
-  padding-left: 10px;
-  padding-right: 10px;
   position: absolute;
-  top: 150px;
-  width: 350px;
+  top: 48px;
 
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
@@ -19,7 +15,7 @@
   transition: 0.3s ease-in-out;
 }
 
-.sideBar.hidden {
+.bodyContent.searchless {
   -webkit-transform: translate(-350px, 0);
   -moz-transform: translate(-350px, 0);
   -o-transform: translate(-350px, 0);
@@ -27,15 +23,32 @@
   transform: translate(-350px, 0);
 }
 
+.resultContent {
+  left: 350px;
+  padding-left: 40px;
+  padding-top: 10x;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+
+.sideBar {
+  background-image: linear-gradient(to left, #6435c9 50%, #322059);
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 350px;
+}
+
 .closeSidebarButton {
-  color: #fe9a76;
+  color: #6435c9;
   left: 345px;
   position: absolute;
   top: 50%;
 }
 
 .closeSidebarButton:hover {
-  color: #e08060;
+  color: #9455ff;
 }
 
 .closeSidebarButton.icon {
@@ -43,13 +56,13 @@
 }
 
 .openSidebarButton {
-  color: #fe9a76;
+  color: #6435c9;
   position: absolute;
   top: 50%;
 }
 
 .openSidebarButton:hover {
-  color: #e08060;
+  color: #9455ff;
 }
 
 .openSidebarButton.icon {
