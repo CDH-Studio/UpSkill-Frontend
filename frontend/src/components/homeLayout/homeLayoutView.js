@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Grid, Image } from "semantic-ui-react";
+import { FormattedMessage } from "react-intl";
 
 import logo3 from "../../assets/fullLogo3.svg";
 import SearchForm from "../searchForm/searchFormController";
@@ -15,11 +16,14 @@ import NavigationBar from "../navigationBar/NavigationBarController";
  * redirectFunction         null                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
-export default class HomeLayoutView extends Component {
+class HomeLayoutView extends Component {
   render() {
     return (
       <div>
-        <NavigationBar keycloak={this.props.keycloak} />
+        <NavigationBar
+          keycloak={this.props.keycloak}
+          changeLanguage={this.props.changeLanguage}
+        />
         <Grid centered style={styles.grid}>
           <Grid.Row style={styles.row}>
             <Image
@@ -34,7 +38,7 @@ export default class HomeLayoutView extends Component {
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <Button color="violet" style={styles.button}>
-              Search
+              <FormattedMessage id="search.button.text" />
             </Button>
             <Button
               basic
@@ -78,3 +82,5 @@ const styles = {
     width: "100%"
   }
 };
+
+export default HomeLayoutView;
