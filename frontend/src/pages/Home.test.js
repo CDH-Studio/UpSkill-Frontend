@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import Home from "./Home";
-
 import { shallow } from "enzyme";
+
+import Home from "./Home";
 
 it("contains home layout", () => {
   const wrapper = shallow(<Home />);

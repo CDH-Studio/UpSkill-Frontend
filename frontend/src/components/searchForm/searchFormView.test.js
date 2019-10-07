@@ -1,7 +1,7 @@
 import React from "react";
-import SearchFormView from "./searchFormView";
-
 import { shallow } from "enzyme";
+
+import SearchFormView from "./searchFormView";
 
 it("SearchFormView with showAdvancedFields=true renders critical components", () => {
   const wrapper = shallow(<SearchFormView showAdvancedFields={true} />);
