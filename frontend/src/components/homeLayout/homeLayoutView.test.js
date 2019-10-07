@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import HomeLayoutView from "./HomeLayoutView";
+import HomeLayoutView from "./homeLayoutView";
 
 it("home layout view contains critical components", () => {
   const wrapper = shallow(<HomeLayoutView />);
