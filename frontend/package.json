@@ -50,11 +50,15 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.4.2",
     "jest": "^24.9.0",
+    "jest-enzyme": "^7.1.1",
     "react-test-renderer": "^16.10.2"
   },
   "jest": {
     "setupFiles": [
       "./test/jestsetup.js"
+    ],
+    "setupFilesAfterEnv": [
+      "./node_modules/jest-enzyme/lib/index.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"

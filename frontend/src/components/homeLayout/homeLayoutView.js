@@ -33,12 +33,13 @@ export default class HomeLayoutView extends Component {
             <SearchForm showAdvancedFields={this.props.showAdvancedFields} />
           </Grid.Row>
           <Grid.Row style={styles.row}>
-            <Button color="violet" style={styles.button}>
+            <Button color="violet" id="searchButton" style={styles.button}>
               Search
             </Button>
             <Button
               basic
               color="violet"
+              id="toggleAdvancedButton"
               onClick={() =>
                 this.props.redirectFunction(this.props.redirectButtonURL)
               }

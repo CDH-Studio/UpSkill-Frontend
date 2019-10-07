@@ -12,7 +12,7 @@ export default class NavigationBarView extends Component {
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item name="My Profile" />
-          <Logout keycloak={this.props.keycloak} />
+          <Logout keycloak={this.props.keycloak} id="logoutButton" />
         </Menu.Menu>
       </Menu>
     );
