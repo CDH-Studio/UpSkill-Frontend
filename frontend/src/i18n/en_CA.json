@@ -1,0 +1,18 @@
+{
+  "my.profile": "My Profile",
+  "sign.out": "Logout",
+  "lang": "Francais",
+  "lang.code": "fr",
+
+  "search.button.text": "Search",
+  "basic.search.button.text": "Basic search",
+  "advanced.search.button.text": "Advanced search",
+
+  "advanced.search.form.desired.skills": "Desired Skills",
+  "advanced.search.form.job.title": "Job Title",
+  "advanced.search.form.department": "Department",
+  "advanced.search.form.location": "Location",
+  "advanced.search.form.security.clearance": "Security Clearence",
+  "advanced.search.form.first.name": "First Name",
+  "advanced.search.form.last.name": "Last Name"
+}

@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "keycloak-js": "4.8.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.2"
+    "react-intl": "^3.3.2",
+    "react-router-dom": "^5.1.0",
+    "react-scripts": "3.1.2",
+    "semantic-ui": "^2.4.2",
+    "semantic-ui-react": "^0.88.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,7 +30,11 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "IE 10"
     ]
+  },
+  "devDependencies": {
+    "browserslist": "^4.7.0"
   }
 }
