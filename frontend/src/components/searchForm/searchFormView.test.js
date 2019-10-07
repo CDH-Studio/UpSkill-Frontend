@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import SearchFormView from "./searchFormView";
 
 import { shallow } from "enzyme";

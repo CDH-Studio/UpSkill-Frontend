@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import HomeLayoutView from "./HomeLayoutView";
 
 import { shallow } from "enzyme";
