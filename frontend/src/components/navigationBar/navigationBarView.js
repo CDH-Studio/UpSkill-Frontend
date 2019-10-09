@@ -10,14 +10,14 @@ export default class NavigationBarView extends Component {
     return (
       <Menu color="violet" fixed="top" inverted size="huge" fluid>
         <Menu.Item style={{ paddingTop: "5px", paddingBottom: "5px" }}>
-          <Image src={Logo} style={{ maxWidth: "50px" }}></Image>
+          <Image src={Logo} style={{ maxWidth: "50px" }} />
         </Menu.Item>
         <Menu.Menu position="right">
           {/* <Menu.Item name="My Profile" /> */}
           <Menu.Item>
             <FormattedMessage id="my.profile" />
           </Menu.Item>
-          <Logout keycloak={this.props.keycloak} />
+          <Logout id="logoutButton" keycloak={this.props.keycloak} />
           <ChangeLanguage changeLanguage={this.props.changeLanguage} />
         </Menu.Menu>
       </Menu>

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import SearchFormController from "../searchForm/searchFormController";
-import "./resultStyles.css";
 import { Icon, Grid } from "semantic-ui-react";
-import NavigationBar from "../navigationBar/NavigationBarController";
+
+import "./resultStyles.css";
+import NavigationBar from "../navigationBar/navigationBarController";
 
 export default class ResultsLayoutView extends Component {
   constructor(props) {
@@ -34,7 +35,10 @@ export default class ResultsLayoutView extends Component {
   render() {
     return (
       <div>
-        <NavigationBar keycloak={this.props.keycloak} />
+        <NavigationBar
+          changeLanguage={this.props.changeLanguage}
+          keycloak={this.props.keycloak}
+        />
         <div className="bodyContent" id="bodyContent">
           <div className="sideBar">
             <SearchFormController

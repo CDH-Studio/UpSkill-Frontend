@@ -7,6 +7,7 @@ export default class Results extends Component {
   render() {
     return (
       <ResultsLayout
+        changeLanguage={this.props.changeLanguage}
         keycloak={this.props.keycloak}
         redirectFunction={this.goto}
       />

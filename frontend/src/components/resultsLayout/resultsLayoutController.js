@@ -3,6 +3,11 @@ import ResultsLayoutView from "./resultsLayoutView";
 
 export default class ResultsLayoutController extends Component {
   render() {
-    return <ResultsLayoutView keycloak={this.props.keycloak} />;
+    return (
+      <ResultsLayoutView
+        changeLanguage={this.props.changeLanguage}
+        keycloak={this.props.keycloak}
+      />
+    );
   }
 }

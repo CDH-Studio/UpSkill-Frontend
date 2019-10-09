@@ -16,8 +16,9 @@ class HomeLayoutController extends Component {
   render() {
     return (
       <HomeLayoutView
-        keycloak={this.props.keycloak}
         changeLanguage={this.props.changeLanguage}
+        intl={this.props.intl}
+        keycloak={this.props.keycloak}
         redirectButtonURL={this.props.redirectButtonURL}
         redirectButtonText={this.props.redirectButtonText}
         redirectFunction={this.props.redirectFunction}

@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 
 import logo3 from "../../assets/fullLogo3.svg";
 import SearchForm from "../searchForm/searchFormController";
-import NavigationBar from "../navigationBar/NavigationBarController";
+import NavigationBar from "../navigationBar/navigationBarController";
 
 /**
  * A form for creating a search query
@@ -34,15 +34,19 @@ class HomeLayoutView extends Component {
             />
           </Grid.Row>
           <Grid.Row style={styles.row}>
-            <SearchForm showAdvancedFields={this.props.showAdvancedFields} />
+            <SearchForm
+              showAdvancedFields={this.props.showAdvancedFields}
+              intl={this.props.intl}
+            />
           </Grid.Row>
           <Grid.Row style={styles.row}>
-            <Button color="violet" style={styles.button}>
+            <Button color="violet" id="searchButton" style={styles.button}>
               <FormattedMessage id="search.button.text" />
             </Button>
             <Button
               basic
               color="violet"
+              id="toggleAdvancedButton"
               onClick={() =>
                 this.props.redirectFunction(this.props.redirectButtonURL)
               }

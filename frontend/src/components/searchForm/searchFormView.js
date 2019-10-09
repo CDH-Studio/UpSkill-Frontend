@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { injectIntl } from "react-intl";
+
 import { Dropdown, Form, Input } from "semantic-ui-react";
-import { FormattedMessage } from "react-intl";
 
 /**
  *
@@ -15,7 +16,7 @@ import { FormattedMessage } from "react-intl";
  * showAdvancedFields       True                    Whether or not to show advanced options or just skills
  * skills                   []                      Array of skill options
  */
-export default class SearchFormView extends Component {
+class SearchFormView extends Component {
   constructor(props) {
     super(props);
     this.renderAdvancedFields = this.renderAdvancedFields.bind(this);
@@ -26,15 +27,17 @@ export default class SearchFormView extends Component {
       <Form inverted={this.props.invertLabels} style={styles.form}>
         <Form.Field style={styles.formRow}>
           <label>
-            <FormattedMessage id="advanced.search.form.desired.skills" />
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.desired.skills"
+            })}
           </label>
           <Dropdown
             fluid
             multiple
             options={this.props.skills}
-            placeholder={
-              <FormattedMessage id="advanced.search.form.desired.skills" />
-            }
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.desired.skills"
+            })}
             search
             selection
             style={styles.primaryDropdown}
@@ -53,14 +56,16 @@ export default class SearchFormView extends Component {
       <React.Fragment>
         <Form.Field style={styles.formRow}>
           <label>
-            <FormattedMessage id="advanced.search.form.job.title" />
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.job.title"
+            })}
           </label>
           <Dropdown
             fluid
             options={this.props.jobTitles}
-            placeholder={
-              <FormattedMessage id="advanced.search.form.job.title" />
-            }
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.job.title"
+            })}
             search
             selection
             style={styles.advancedComponent}
@@ -69,14 +74,16 @@ export default class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            <FormattedMessage id="advanced.search.form.department" />
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.department"
+            })}
           </label>
           <Dropdown
             fluid
             options={this.props.departments}
-            placeholder={
-              <FormattedMessage id="advanced.search.form.department" />
-            }
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.department"
+            })}
             search
             selection
             style={styles.advancedComponent}
@@ -85,14 +92,16 @@ export default class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            <FormattedMessage id="advanced.search.form.location" />
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.location"
+            })}
           </label>
           <Dropdown
             fluid
             options={this.props.locations}
-            placeholder={
-              <FormattedMessage id="advanced.search.form.location" />
-            }
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.location"
+            })}
             search
             selection
             style={styles.advancedComponent}
@@ -101,14 +110,16 @@ export default class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            <FormattedMessage id="advanced.search.form.security.clearance" />
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.security.clearance"
+            })}
           </label>
           <Dropdown
             fluid
             options={this.props.securityClearances}
-            placeholder={
-              <FormattedMessage id="advanced.search.form.security.clearance" />
-            }
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.security.clearance"
+            })}
             search
             selection
             style={styles.advancedComponent}
@@ -117,36 +128,31 @@ export default class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            <FormattedMessage id="advanced.search.form.first.name" />
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.first.name"
+            })}
           </label>
-          <FormattedMessage
-            id="advanced.search.form.first.name"
-            defaultMessage="first.name"
-          >
-            {placeholder => (
-              <Input
-                placeholder={placeholder}
-                style={styles.advancedComponent}
-              />
-            )}
-          </FormattedMessage>
+
+          <Input
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.first.name"
+            })}
+            style={styles.advancedComponent}
+          />
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
           <label>
-            <FormattedMessage id="advanced.search.form.last.name" />
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.last.name"
+            })}
           </label>
-          <FormattedMessage
-            id="advanced.search.form.last.name"
-            defaultMessage="last.name"
-          >
-            {placeholder => (
-              <Input
-                placeholder={placeholder}
-                style={styles.advancedComponent}
-              />
-            )}
-          </FormattedMessage>
+          <Input
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.last.name"
+            })}
+            style={styles.advancedComponent}
+          />
         </Form.Field>
       </React.Fragment>
     );
@@ -177,3 +183,5 @@ const styles = {
     width: "100%"
   }
 };
+
+export default injectIntl(SearchFormView);
