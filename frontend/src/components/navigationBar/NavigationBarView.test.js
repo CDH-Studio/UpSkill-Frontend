@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import NavigationBarView from "./NavigationBarView";
+import NavigationBarView from "./navigationBarView";
 
 it("home layout view contains critical components", () => {
   const wrapper = shallow(<NavigationBarView />);

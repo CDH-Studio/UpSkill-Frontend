@@ -8,6 +8,7 @@ import SearchFormView from "./searchFormView";
  * advancedFieldWidth       400px                   The width to use for advanced fields
  * departments              []                      Array of department options
  * invertLabels             false                   Whether to invert the label text of form fields
+ * intl                     N/A                     provided by react-intl
  * jobTitles                []                      Array of job title options
  * locations                []                      Array of location options
  * primaryFieldWidth        800px                   The width to use for the primary skills dropdown
@@ -21,6 +22,7 @@ export default class SearchFormController extends Component {
       <SearchFormView
         advancedFieldWidth={this.props.advancedFieldWidth}
         departments={this.props.departments}
+        intl={this.props.intl}
         invertLabels={this.props.invertLabels}
         jobTitles={this.props.jobTitles}
         locations={this.props.locations}

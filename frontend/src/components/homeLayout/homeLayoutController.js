@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 
 import HomeLayoutView from "./homeLayoutView";
 
@@ -11,10 +12,12 @@ import HomeLayoutView from "./homeLayoutView";
  * redirectFunction         None                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
-export default class HomeLayoutController extends Component {
+class HomeLayoutController extends Component {
   render() {
     return (
       <HomeLayoutView
+        changeLanguage={this.props.changeLanguage}
+        intl={this.props.intl}
         keycloak={this.props.keycloak}
         redirectButtonURL={this.props.redirectButtonURL}
         redirectButtonText={this.props.redirectButtonText}
@@ -26,7 +29,9 @@ export default class HomeLayoutController extends Component {
 }
 
 HomeLayoutController.defaultProps = {
-  redirectButtonText: "Advanced search",
+  redirectButtonText: <FormattedMessage id="advanced.search.button.text" />,
   redirectButtonURL: "/advanced",
   showAdvancedFields: false
 };
+
+export default HomeLayoutController;

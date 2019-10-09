@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { injectIntl } from "react-intl";
+
 import { Dropdown, Form, Input } from "semantic-ui-react";
 
 /**
@@ -14,7 +16,7 @@ import { Dropdown, Form, Input } from "semantic-ui-react";
  * showAdvancedFields       True                    Whether or not to show advanced options or just skills
  * skills                   []                      Array of skill options
  */
-export default class SearchFormView extends Component {
+class SearchFormView extends Component {
   constructor(props) {
     super(props);
     this.renderAdvancedFields = this.renderAdvancedFields.bind(this);
@@ -24,12 +26,18 @@ export default class SearchFormView extends Component {
     return (
       <Form inverted={this.props.invertLabels} style={styles.form}>
         <Form.Field style={styles.formRow}>
-          <label>Desired Skills</label>
+          <label>
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.desired.skills"
+            })}
+          </label>
           <Dropdown
             fluid
             multiple
             options={this.props.skills}
-            placeholder="Select desired skills..."
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.desired.skills"
+            })}
             search
             selection
             style={styles.primaryDropdown}
@@ -47,11 +55,17 @@ export default class SearchFormView extends Component {
     return (
       <React.Fragment>
         <Form.Field style={styles.formRow}>
-          <label>Job Title</label>
+          <label>
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.job.title"
+            })}
+          </label>
           <Dropdown
             fluid
             options={this.props.jobTitles}
-            placeholder="Job Title"
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.job.title"
+            })}
             search
             selection
             style={styles.advancedComponent}
@@ -59,11 +73,17 @@ export default class SearchFormView extends Component {
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
-          <label>Department</label>
+          <label>
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.department"
+            })}
+          </label>
           <Dropdown
             fluid
             options={this.props.departments}
-            placeholder="Department"
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.department"
+            })}
             search
             selection
             style={styles.advancedComponent}
@@ -71,11 +91,17 @@ export default class SearchFormView extends Component {
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
-          <label>Location</label>
+          <label>
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.location"
+            })}
+          </label>
           <Dropdown
             fluid
             options={this.props.locations}
-            placeholder="Location"
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.location"
+            })}
             search
             selection
             style={styles.advancedComponent}
@@ -83,11 +109,17 @@ export default class SearchFormView extends Component {
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
-          <label>Security Clearance</label>
+          <label>
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.security.clearance"
+            })}
+          </label>
           <Dropdown
             fluid
             options={this.props.securityClearances}
-            placeholder="Security Clearance"
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.security.clearance"
+            })}
             search
             selection
             style={styles.advancedComponent}
@@ -95,13 +127,32 @@ export default class SearchFormView extends Component {
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
-          <label>First Name</label>
-          <Input placeholder="First name" style={styles.advancedComponent} />
+          <label>
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.first.name"
+            })}
+          </label>
+
+          <Input
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.first.name"
+            })}
+            style={styles.advancedComponent}
+          />
         </Form.Field>
 
         <Form.Field style={styles.formRow}>
-          <label>Last Name</label>
-          <Input placeholder="Last name" style={styles.advancedComponent} />
+          <label>
+            {this.props.intl.formatMessage({
+              id: "advanced.search.form.last.name"
+            })}
+          </label>
+          <Input
+            placeholder={this.props.intl.formatMessage({
+              id: "advanced.search.form.last.name"
+            })}
+            style={styles.advancedComponent}
+          />
         </Form.Field>
       </React.Fragment>
     );
@@ -132,3 +183,5 @@ const styles = {
     width: "100%"
   }
 };
+
+export default injectIntl(SearchFormView);

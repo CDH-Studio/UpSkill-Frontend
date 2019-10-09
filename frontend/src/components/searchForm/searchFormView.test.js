@@ -1,26 +1,36 @@
 import React from "react";
-import { shallow } from "enzyme";
 
+import wrapThenMount from "../../../__mocks__/componentWrapper";
 import SearchFormView from "./searchFormView";
 
-it("SearchFormView with showAdvancedFields=true renders critical components", () => {
-  const wrapper = shallow(<SearchFormView showAdvancedFields={true} />);
+const searchFormProps = {
+  departments: [],
+  jobTitles: [],
+  locations: [],
+  securityClearances: [],
+  skills: []
+};
 
-  console.log(wrapper.html());
+it("SearchFormView with showAdvancedFields=true renders critical components", () => {
+  const wrapper = wrapThenMount(
+    <SearchFormView showAdvancedFields={true} {...searchFormProps} />
+  );
+
   const searchForms = wrapper.find("Form");
   expect(searchForms.length).toBe(1);
 
   const dropdowns = wrapper.find("Dropdown");
   expect(dropdowns.length).toBe(5);
 
-  const inputs = wrapper.find("Input");
-  expect(inputs.length).toBe(2);
+  const inputs = wrapper.find("FormField");
+  expect(inputs.length).toBe(7);
 });
 
 it("SearchFormView with showAdvancedFields=false renders critical components", () => {
-  const wrapper = shallow(<SearchFormView showAdvancedFields={false} />);
+  const wrapper = wrapThenMount(
+    <SearchFormView showAdvancedFields={false} {...searchFormProps} />
+  );
 
-  console.log(wrapper.html());
   const searchForms = wrapper.find("Form");
   expect(searchForms.length).toBe(1);
 

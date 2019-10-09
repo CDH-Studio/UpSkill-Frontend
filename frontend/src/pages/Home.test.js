@@ -1,10 +1,10 @@
 import React from "react";
-import { shallow } from "enzyme";
+import wrapThenMount from "../../__mocks__/componentWrapper";
 
 import Home from "./Home";
 
 it("contains home layout", () => {
-  const wrapper = shallow(<Home />);
+  const wrapper = wrapThenMount(<Home />, true, true);
   const layouts = wrapper.find("HomeLayoutController");
   expect(layouts.length).toBe(1);
 });
