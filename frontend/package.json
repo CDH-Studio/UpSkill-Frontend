@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "identity-obj-proxy": "^3.0.0",
-    "jest-cli": "^24.9.0",
-    "jest-enzyme": "^7.1.1",
     "keycloak-js": "4.8.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -50,7 +47,9 @@
     "browserslist": "^4.7.0",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "jest": "^24.9.0"
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
+    "jest-enzyme": "^7.1.1"
   },
   "jest": {
     "setupFiles": [
