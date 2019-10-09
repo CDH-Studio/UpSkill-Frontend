@@ -9,8 +9,16 @@ import messages_fr from "./i18n/fr_CA.json";
 import "./App.css";
 import { About, Advanced, Home, Landing, Results } from "./pages/index";
 
+let localLang = (() => {
+  if (localStorage.getItem("lang")) {
+    return localStorage.getItem("lang");
+  }
+  localStorage.setItem("lang", "en");
+  return localStorage.getItem("lang");
+})();
+
 let i18nConfig = {
-  locale: "en",
+  locale: localLang,
   messages: messages_en,
   formats: {
     number: {
@@ -28,7 +36,16 @@ const history = createBrowserHistory();
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { keycloak: null, authenticated: false, locale: "fr-CA" };
+
+    let language = localStorage.getItem("lang");
+    i18nConfig.messages = language === "fr" ? messages_fr : messages_en;
+
+    this.state = {
+      authenticated: false,
+      keycloak: null,
+      locale: language
+    };
+
     this.changeLanguage = this.changeLanguage.bind(this);
   }
 
@@ -52,6 +69,13 @@ class App extends Component {
 
     const keycloak = this.state.keycloak;
     if (keycloak) {
+      console.log(
+        "Render: ",
+        localStorage.getItem("lang"),
+        localLang,
+        i18nConfig.locale
+      );
+
       if (this.state.authenticated)
         return (
           <IntlProvider
@@ -106,7 +130,8 @@ class App extends Component {
   }
 
   changeLanguage(lang) {
-    switch (lang) {
+    localStorage.setItem("lang", lang);
+    switch (localStorage.getItem("lang")) {
       case "fr":
         i18nConfig.messages = messages_fr;
         break;
@@ -117,9 +142,9 @@ class App extends Component {
         i18nConfig.messages = messages_en;
         break;
     }
-    this.setState({ locale: lang });
-    i18nConfig.locale = lang;
-    this.forceUpdate();
+
+    i18nConfig.locale = localStorage.getItem("lang");
+    this.setState({ locale: localStorage.getItem("lang") });
   }
 }
 

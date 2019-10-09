@@ -35,7 +35,10 @@ export default class ResultsLayoutView extends Component {
   render() {
     return (
       <div>
-        <NavigationBar keycloak={this.props.keycloak} />
+        <NavigationBar
+          changeLanguage={this.props.changeLanguage}
+          keycloak={this.props.keycloak}
+        />
         <div className="bodyContent" id="bodyContent">
           <div className="sideBar">
             <SearchFormController
