@@ -11,6 +11,8 @@ class Advanced extends Component {
     this.state = { showAdvancedOptions: false };
   }
 
+  // const ButtonText =
+
   render() {
     return (
       <HomeLayoutController

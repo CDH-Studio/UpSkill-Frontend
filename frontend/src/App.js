@@ -119,7 +119,6 @@ class App extends Component {
     }
     this.setState({ locale: lang });
     i18nConfig.locale = lang;
-
     this.forceUpdate();
   }
 }

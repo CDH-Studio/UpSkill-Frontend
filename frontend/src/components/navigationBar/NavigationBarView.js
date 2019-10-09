@@ -3,14 +3,14 @@ import { Menu, Image } from "semantic-ui-react";
 import Logout from "../logout/Logout";
 import ChangeLanguage from "../changeLanguage/ChangeLanguage";
 import { FormattedMessage } from "react-intl";
-import logo5 from "../../assets/Logo5.png";
+import Logo from "../../assets/Logo5.png";
 
 export default class NavigationBarView extends Component {
   render() {
     return (
       <Menu color="violet" fixed="top" inverted size="huge" fluid>
         <Menu.Item style={{ paddingTop: "5px", paddingBottom: "5px" }}>
-          <Image src={logo5} style={{ maxWidth: "50px" }} />
+          <Image src={Logo} style={{ maxWidth: "50px" }} />
         </Menu.Item>
         <Menu.Menu position="right">
           {/* <Menu.Item name="My Profile" /> */}
