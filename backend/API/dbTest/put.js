@@ -19,7 +19,6 @@ putTest = async event => {
     ReturnValues: "UPDATED_NEW"
   };
 
-  console.log(params);
   const responseObject = await Models("put", params);
   return responseObject;
 };

@@ -1,11 +1,6 @@
 const AWS = require("aws-sdk");
 
-// var credentials = new AWS.SharedIniFileCredentials({
-//   profile: "501108984960_Client-Power-User"
-// });
-// AWS.config.credentials = credentials;
 AWS.config.loadFromPath("./config.json");
-
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 const post = params => {
