@@ -1,11 +1,14 @@
 const AWS = require("aws-sdk");
 
-var credentials = new AWS.SharedIniFileCredentials({
-  profile: "501108984960_Client-Power-User"
-});
-AWS.config.credentials = credentials;
+// var credentials = new AWS.SharedIniFileCredentials({
+//   profile: "501108984960_Client-Power-User"
+// });
+// AWS.config.credentials = credentials;
+AWS.config.loadFromPath("./config.json");
 
-post = params => {
+const docClient = new AWS.DynamoDB.DocumentClient();
+
+const post = params => {
   return new Promise((resolve, reject) => {
     docClient.put(params, (err, data) => {
       if (err) {

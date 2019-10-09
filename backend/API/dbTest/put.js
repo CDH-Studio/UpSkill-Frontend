@@ -10,9 +10,10 @@ putTest = async event => {
     Key: {
       id
     },
-    UpdateExpression: "SET value = :value, date = :date",
+    UpdateExpression: "SET #v = :val, #d = :date",
+    ExpressionAttributeNames: { "#v": "value", "#d": "date" },
     ExpressionAttributeValues: {
-      ":value": value,
+      ":val": value,
       ":date": Date.now()
     },
     ReturnValues: "UPDATED_NEW"

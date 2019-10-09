@@ -1,11 +1,6 @@
 const AWS = require("aws-sdk");
 
-// var credentials = new AWS.SharedIniFileCredentials({
-//   profile: "501108984960_Client-Power-User"
-// });
-// AWS.config.credentials = credentials;
 AWS.config.loadFromPath("./config.json");
-
 const docClient = new AWS.DynamoDB.DocumentClient();
 
 /*
@@ -19,8 +14,7 @@ const params = {
   ProjectionExpression: attribute
 };
 */
-
-get = params => {
+const get = params => {
   return new Promise((resolve, reject) => {
     docClient.get(params, (err, data) => {
       if (err) {
@@ -32,7 +26,6 @@ get = params => {
           })
         });
       }
-      console.log(data);
       if (data.Item && Object.keys(data.Item).length !== 0) {
         resolve({
           statusCode: 200,

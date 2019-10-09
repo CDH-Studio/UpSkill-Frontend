@@ -6,7 +6,9 @@ const AWS = require("aws-sdk");
 // AWS.config.credentials = credentials;
 AWS.config.loadFromPath("./config.json");
 
-put = params => {
+const docClient = new AWS.DynamoDB.DocumentClient();
+
+const put = params => {
   return new Promise((resolve, reject) => {
     docClient.update(params, (err, data) => {
       if (err) {
