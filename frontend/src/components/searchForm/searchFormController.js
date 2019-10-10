@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { injectIntl } from "react-intl";
+
 import SearchFormView from "./searchFormView";
 
 /**
@@ -7,16 +9,17 @@ import SearchFormView from "./searchFormView";
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * advancedFieldWidth       400px                   The width to use for advanced fields
  * departments              []                      Array of department options
- * invertLabels             false                   Whether to invert the label text of form fields
  * intl                     N/A                     provided by react-intl
+ * invertLabels             false                   Whether to invert the label text of form fields
  * jobTitles                []                      Array of job title options
  * locations                []                      Array of location options
  * primaryFieldWidth        800px                   The width to use for the primary skills dropdown
  * securityClearances       []                      Array of security clearance options
  * showAdvancedFields       true                    Whether or not to show advanced options or just skills
  * skills                   []                      Array of skill options
+ * updateSearch             []                      Function to call to update the search query
  */
-export default class SearchFormController extends Component {
+class SearchFormController extends Component {
   render() {
     return (
       <SearchFormView
@@ -29,7 +32,51 @@ export default class SearchFormController extends Component {
         primaryFieldWidth={this.props.primaryFieldWidth}
         securityClearances={this.props.securityClearances}
         showAdvancedFields={this.props.showAdvancedFields}
-        skills={this.props.skills}
+        skills={[
+          {
+            key: "axios",
+            value: "axios",
+            text: this.props.intl.formatMessage({
+              id: "search.field.primary.dropdown.axios"
+            })
+          },
+          {
+            key: "css",
+            value: "css",
+            text: this.props.intl.formatMessage({
+              id: "search.field.primary.dropdown.css"
+            })
+          },
+          {
+            key: "enzyme",
+            value: "enzyme",
+            text: this.props.intl.formatMessage({
+              id: "search.field.primary.dropdown.enzyme"
+            })
+          },
+          {
+            key: "html",
+            value: "html",
+            text: this.props.intl.formatMessage({
+              id: "search.field.primary.dropdown.html"
+            })
+          },
+          {
+            key: "javascript",
+            value: "javascript",
+            text: this.props.intl.formatMessage({
+              id: "search.field.primary.dropdown.javascript"
+            })
+          },
+          {
+            key: "jest",
+            value: "jest",
+            text: this.props.intl.formatMessage({
+              id: "search.field.primary.dropdown.jest"
+            })
+          }
+        ]}
+        updateSearch={this.props.updateSearch}
       />
     );
   }
@@ -63,9 +110,7 @@ SearchFormController.defaultProps = {
       text: "securityClearances2"
     }
   ],
-  showAdvancedFields: true,
-  skills: [
-    { key: "skills1", value: "skills1", text: "skill1" },
-    { key: "skills2", value: "skills1", text: "skill2" }
-  ]
+  showAdvancedFields: true
 };
+
+export default injectIntl(SearchFormController);

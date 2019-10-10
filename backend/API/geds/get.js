@@ -37,6 +37,9 @@ async function getEmployeeInfo(event) {
       data: info,
       code: 200
     }),
+    headers: {
+      "access-control-allow-origin": "*"
+    },
     statusCode: 200
   };
 

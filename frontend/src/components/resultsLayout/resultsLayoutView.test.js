@@ -10,7 +10,7 @@ it("home layout view contains critical components", () => {
   //const searchButtons = wrapper.find("#searchButton");
   //expect(searchButtons.length).toBe(1);
 
-  const searchForms = wrapper.find("SearchFormController");
+  const searchForms = wrapper.find("injectIntl(SearchFormController)");
   expect(searchForms.length).toBe(1);
 
   const navigationBars = wrapper.find("NavigationBarController");

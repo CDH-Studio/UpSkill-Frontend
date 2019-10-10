@@ -4,7 +4,7 @@ import { injectIntl } from "react-intl";
 import HomeLayoutController from "../components/homeLayout/homeLayoutController";
 
 class Home extends Component {
-  goto = link => this.props.history.push(link);
+  goto = (link, state) => this.props.history.push(link, state);
 
   render() {
     return (

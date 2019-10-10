@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import SearchFormController from "../searchForm/searchFormController";
-import { Icon, Grid } from "semantic-ui-react";
+import { Card, Grid, Icon } from "semantic-ui-react";
 
 import "./resultStyles.css";
 import NavigationBar from "../navigationBar/navigationBarController";
@@ -11,6 +11,7 @@ export default class ResultsLayoutView extends Component {
     this.wideView = true;
     this.state = { displayingSidebar: true };
     this.searchHider = this.searchHider.bind(this);
+    this.renderResultCards = this.renderResultCards.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +50,7 @@ export default class ResultsLayoutView extends Component {
           </div>
           <div className="resultContent">
             <Grid>
-              <Grid.Row>content goes here</Grid.Row>
+              <Grid.Row>{this.renderResultCards()}</Grid.Row>
             </Grid>
           </div>
         </div>
@@ -84,5 +85,29 @@ export default class ResultsLayoutView extends Component {
         />
       );
     }
+  }
+
+  renderResultCards() {
+    if (!this.props.results) {
+      return null;
+    }
+    if (this.props.results instanceof Error) {
+      return (
+        "An error was encountered! Please try again.\n\n" +
+        String(this.props.results)
+      );
+    }
+    let cards = [];
+    for (var i = 0; i < this.props.results.data.data.length; i++) {
+      let person = this.props.results.data.data[i];
+      cards.push(
+        <Card
+          header={person.givenName + " " + person.surname}
+          meta={person.title.en}
+          description={"Lorem ipsum dolor sit amet, wingardium leviosa"}
+        />
+      );
+    }
+    return <Card.Group>{cards}</Card.Group>;
   }
 }
