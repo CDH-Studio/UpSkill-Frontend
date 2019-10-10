@@ -22,6 +22,7 @@ provider:
   name: aws
   runtime: nodejs10.x
   region: ca-central-1
+  role: arn:aws:iam::501108984960:role/UpSkillLambdaToDynamoDB
 
 apiName: upskill
 
@@ -71,6 +72,14 @@ functions:
     handler: API/geds/index.getEmployeeInfo
     events:
       - http: GET getEmployeeInfo/{searchValue}
+  getTest:
+    handler: API/dbTest/index.get
+    events:
+      - http: GET test/{id}
+  putTest:
+    handler: API/dbTest/index.put
+    events:
+      - http: PUT test/
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
