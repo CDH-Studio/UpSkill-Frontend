@@ -16,7 +16,28 @@ export default class ResultsLayoutController extends Component {
     }
 
     if (validSearch) {
+      url.substring(0, url.length - 1);
       console.log("should run query with", url);
+
+      // Make a request for a user with a given ID
+      axios
+        .get(
+          "https://llk2ikcegh.execute-api.ca-central-1.amazonaws.com/dev/getEmployeeInfo/" +
+            searchQuery.firstName +
+            "%20" +
+            searchQuery.lastName
+        )
+        .then(function(response) {
+          // handle success
+          console.log(response);
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .finally(function() {
+          // always executed
+        });
     }
   }
 
