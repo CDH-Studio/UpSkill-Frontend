@@ -11,7 +11,8 @@ it("home layout view contains critical components", () => {
   const toggleAdvancedButtons = wrapper.find("#toggleAdvancedButton");
   expect(toggleAdvancedButtons.length).toBe(1);
 
-  const searchForms = wrapper.find("SearchFormController");
+  const searchForms = wrapper.find("injectIntl(SearchFormController)");
+  console.log(wrapper.debug());
   expect(searchForms.length).toBe(1);
 
   const navigationBars = wrapper.find("NavigationBarController");
