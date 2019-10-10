@@ -10,6 +10,7 @@ export default class Results extends Component {
         changeLanguage={this.props.changeLanguage}
         keycloak={this.props.keycloak}
         redirectFunction={this.goto}
+        searchQuery={this.props.location.state.searchQuery}
       />
     );
   }

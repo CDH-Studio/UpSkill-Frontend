@@ -34,6 +34,8 @@ class SearchFormView extends Component {
           <Dropdown
             fluid
             multiple
+            name="primaryDropdown"
+            onChange={this.props.updateSearch}
             options={this.props.skills}
             placeholder={this.props.intl.formatMessage({
               id: "advanced.search.form.desired.skills"

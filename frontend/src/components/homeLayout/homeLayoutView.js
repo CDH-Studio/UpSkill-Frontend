@@ -11,8 +11,8 @@ import NavigationBar from "../navigationBar/navigationBarController";
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * keycloak                 null                    The keycloak instance being used
- * redirectButtonText       "Advanced search"       The text to display on the redirect button
- * redirectButtonURL        "/advanced"             The url of the page to redirect to
+ * typeButtonText           "Advanced search"       The text to display on the toggle search type button
+ * typeButtonURL            "/advanced"             The url of the page the search type button should redirect to
  * redirectFunction         null                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
@@ -36,11 +36,16 @@ class HomeLayoutView extends Component {
           <Grid.Row style={styles.row}>
             <SearchForm
               showAdvancedFields={this.props.showAdvancedFields}
-              intl={this.props.intl}
+              updateSearch={this.props.updateSearch}
             />
           </Grid.Row>
           <Grid.Row style={styles.row}>
-            <Button color="violet" id="searchButton" style={styles.button}>
+            <Button
+              color="violet"
+              id="searchButton"
+              style={styles.button}
+              onClick={this.props.performSearch}
+            >
               <FormattedMessage id="search.button.text" />
             </Button>
             <Button
@@ -48,11 +53,11 @@ class HomeLayoutView extends Component {
               color="violet"
               id="toggleAdvancedButton"
               onClick={() =>
-                this.props.redirectFunction(this.props.redirectButtonURL)
+                this.props.redirectFunction(this.props.typeButtonURL)
               }
               style={styles.button}
             >
-              {this.props.redirectButtonText}
+              {this.props.typeButtonText}
             </Button>
           </Grid.Row>
         </Grid>
