@@ -3,6 +3,23 @@ import ResultsLayoutView from "./resultsLayoutView";
 import axios from "axios";
 
 export default class ResultsLayoutController extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { results: null };
+
+    const handleResponse = response => {
+      console.log("handleResponse", response);
+      this.setState({ results: response });
+    };
+    this.handleResponse = handleResponse.bind(this);
+
+    const handleError = error => {
+      console.log("handleError", error);
+      this.setState({ results: error });
+    };
+    this.handleError = handleError.bind(this);
+  }
+
   componentDidMount() {
     const { searchQuery } = this.props;
     let url = "/search?";
@@ -27,14 +44,8 @@ export default class ResultsLayoutController extends Component {
             "%20" +
             searchQuery.lastName
         )
-        .then(function(response) {
-          // handle success
-          console.log(response);
-        })
-        .catch(function(error) {
-          // handle error
-          console.log(error);
-        })
+        .then(this.handleResponse)
+        .catch(this.handleError)
         .finally(function() {
           // always executed
         });
@@ -46,6 +57,7 @@ export default class ResultsLayoutController extends Component {
       <ResultsLayoutView
         changeLanguage={this.props.changeLanguage}
         keycloak={this.props.keycloak}
+        results={this.state.results}
         searchQuery={this.props.searchQuery}
       />
     );
