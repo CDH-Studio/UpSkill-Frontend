@@ -34,14 +34,14 @@ export default class ResultsLayoutController extends Component {
 
     if (validSearch) {
       url.substring(0, url.length - 1);
-      url = decodeURI(url);
+      url = encodeURI(url);
       console.log("should run query with", url);
 
       // Make a request for a user with a given ID
       axios
         .get(
           "https://llk2ikcegh.execute-api.ca-central-1.amazonaws.com/dev/getEmployeeInfo/" +
-            decodeURI(searchQuery.firstName + " " + searchQuery.lastName)
+            encodeURI(searchQuery.firstName + " " + searchQuery.lastName)
         )
         .then(this.handleResponse)
         .catch(this.handleError)
