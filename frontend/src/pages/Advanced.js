@@ -17,12 +17,12 @@ class Advanced extends Component {
       <HomeLayoutController
         changeLanguage={changeLanguage}
         keycloak={keycloak}
+        redirectFunction={this.goto}
+        showAdvancedFields={true}
         typeButtonText={intl.formatMessage({
           id: "basic.search.button.text"
         })}
         typeButtonURL={"/home"}
-        redirectFunction={this.goto}
-        showAdvancedFields={true}
       />
     );
   }

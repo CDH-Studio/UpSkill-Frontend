@@ -10,8 +10,8 @@ export default class NavigationBarView extends Component {
     const { changeLanguage, keycloak } = this.props;
 
     return (
-      <Menu color="violet" fixed="top" inverted size="huge" fluid>
-        <Menu.Item style={{ paddingTop: "5px", paddingBottom: "5px" }}>
+      <Menu color="violet" fixed="top" fluid inverted size="huge">
+        <Menu.Item style={{ paddingBottom: "5px", paddingTop: "5px" }}>
           <Image src={Logo} style={{ maxWidth: "50px" }} />
         </Menu.Item>
         <Menu.Menu position="right">

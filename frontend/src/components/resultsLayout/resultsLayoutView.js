@@ -102,9 +102,9 @@ export default class ResultsLayoutView extends Component {
       let person = results.data.data[i];
       cards.push(
         <Card
+          description={"Lorem ipsum dolor sit amet, wingardium leviosa"}
           header={person.givenName + " " + person.surname}
           meta={person.title.en}
-          description={"Lorem ipsum dolor sit amet, wingardium leviosa"}
         />
       );
     }
