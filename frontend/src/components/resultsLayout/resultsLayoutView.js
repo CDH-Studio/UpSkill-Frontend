@@ -1,36 +1,14 @@
 import React, { Component } from "react";
-import SearchFormController from "../searchForm/searchFormController";
-import { Card, Grid, Icon } from "semantic-ui-react";
+import { Card, Grid, Image, Label } from "semantic-ui-react";
 
+import tempProfilePicture from "../../assets/tempProfilePicture.png";
 import "./resultStyles.css";
 import NavigationBar from "../navigationBar/navigationBarController";
 
 export default class ResultsLayoutView extends Component {
   constructor(props) {
     super(props);
-    this.wideView = true;
-    this.state = { displayingSidebar: true };
-    this.searchHider = this.searchHider.bind(this);
     this.renderResultCards = this.renderResultCards.bind(this);
-  }
-
-  componentDidMount() {
-    this.searchHider();
-    window.addEventListener("resize", this.searchHider);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.searchHider);
-  }
-
-  searchHider() {
-    let newVal = window.innerWidth > 800;
-
-    if (this.wideView && this.state.displayingSidebar && !newVal) {
-      this.setState({ displayingSidebar: false });
-      document.getElementById("bodyContent").classList.add("searchless");
-    }
-    this.wideView = newVal;
   }
 
   render() {
@@ -38,51 +16,13 @@ export default class ResultsLayoutView extends Component {
     return (
       <div>
         <NavigationBar changeLanguage={changeLanguage} keycloak={keycloak} />
-        <div className="bodyContent" id="bodyContent">
-          <div className="sideBar">
-            <SearchFormController
-              advancedFieldWidth={"300px"}
-              invertLabels={true}
-              primaryFieldWidth={"347px"}
-            />
-          </div>
-          <div className="resultContent">
-            <Grid>
-              <Grid.Row>{this.renderResultCards()}</Grid.Row>
-            </Grid>
-          </div>
+        <div className="resultContent">
+          <Grid>
+            <Grid.Row>{this.renderResultCards()}</Grid.Row>
+          </Grid>
         </div>
-        {this.renderSidebarButton()}
       </div>
     );
-  }
-
-  renderSidebarButton() {
-    if (this.state.displayingSidebar) {
-      return (
-        <Icon
-          className="closeSidebarButton"
-          name="angle left"
-          onClick={() => {
-            document.getElementById("bodyContent").classList.add("searchless");
-            this.setState({ displayingSidebar: false });
-          }}
-        />
-      );
-    } else {
-      return (
-        <Icon
-          className="openSidebarButton"
-          name="angle right"
-          onClick={() => {
-            document
-              .getElementById("bodyContent")
-              .classList.remove("searchless");
-            this.setState({ displayingSidebar: true });
-          }}
-        />
-      );
-    }
   }
 
   renderResultCards() {
@@ -101,13 +41,53 @@ export default class ResultsLayoutView extends Component {
     for (var i = 0; i < results.data.data.length; i++) {
       let person = results.data.data[i];
       cards.push(
-        <Card
-          description={"Lorem ipsum dolor sit amet, wingardium leviosa"}
-          header={person.givenName + " " + person.surname}
-          meta={person.title.en}
-        />
+        <Card>
+          <Card.Content>
+            <Image floated="right" size="mini" src={tempProfilePicture} />
+            <Card.Header>{person.givenName + " " + person.surname}</Card.Header>
+            <Card.Meta>{person.title.en}</Card.Meta>
+          </Card.Content>
+          <Card.Content>
+            <Label
+              style={{ marginBottom: "2px", marginTop: "2px" }}
+              color="purple"
+            >
+              React
+            </Label>
+            <Label
+              style={{ marginBottom: "2px", marginTop: "2px" }}
+              color="purple"
+            >
+              Javascript
+            </Label>
+            <Label
+              style={{ marginBottom: "2px", marginTop: "2px" }}
+              color="purple"
+            >
+              CSS
+            </Label>
+            <Label
+              style={{ marginBottom: "2px", marginTop: "2px" }}
+              color="grey"
+            >
+              Redux
+            </Label>
+            <Label
+              style={{ marginBottom: "2px", marginTop: "2px" }}
+              color="grey"
+            >
+              Database management
+            </Label>
+            <Label
+              style={{ marginBottom: "2px", marginTop: "2px" }}
+              color="grey"
+            >
+              Python
+            </Label>
+          </Card.Content>
+        </Card>
       );
     }
-    return <Card.Group>{cards}</Card.Group>;
+    return <Card.Group fluid>{cards}</Card.Group>;
   }
 }
