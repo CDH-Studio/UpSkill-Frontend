@@ -7,6 +7,8 @@ import Logo from "../../assets/Logo5.png";
 
 export default class NavigationBarView extends Component {
   render() {
+    const { changeLanguage, keycloak } = this.props;
+
     return (
       <Menu color="violet" fixed="top" inverted size="huge" fluid>
         <Menu.Item style={{ paddingTop: "5px", paddingBottom: "5px" }}>
@@ -17,8 +19,8 @@ export default class NavigationBarView extends Component {
           <Menu.Item>
             <FormattedMessage id="my.profile" />
           </Menu.Item>
-          <Logout id="logoutButton" keycloak={this.props.keycloak} />
-          <ChangeLanguage changeLanguage={this.props.changeLanguage} />
+          <Logout id="logoutButton" keycloak={keycloak} />
+          <ChangeLanguage changeLanguage={changeLanguage} />
         </Menu.Menu>
       </Menu>
     );

@@ -4,11 +4,10 @@ import NavigationBarView from "./navigationBarView";
 
 export default class NavigationBarController extends Component {
   render() {
+    const { changeLanguage, keycloak } = this.props;
+
     return (
-      <NavigationBarView
-        changeLanguage={this.props.changeLanguage}
-        keycloak={this.props.keycloak}
-      />
+      <NavigationBarView changeLanguage={changeLanguage} keycloak={keycloak} />
     );
   }
 }

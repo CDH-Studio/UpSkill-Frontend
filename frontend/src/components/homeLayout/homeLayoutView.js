@@ -18,12 +18,20 @@ import NavigationBar from "../navigationBar/navigationBarController";
  */
 class HomeLayoutView extends Component {
   render() {
+    const {
+      changeLanguage,
+      keycloak,
+      performSearch,
+      redirectFunction,
+      showAdvancedFields,
+      typeButtonText,
+      typeButtonURL,
+      updateSearch
+    } = this.props;
+
     return (
       <div>
-        <NavigationBar
-          keycloak={this.props.keycloak}
-          changeLanguage={this.props.changeLanguage}
-        />
+        <NavigationBar keycloak={keycloak} changeLanguage={changeLanguage} />
         <Grid centered style={styles.grid}>
           <Grid.Row style={styles.row}>
             <Image
@@ -35,8 +43,8 @@ class HomeLayoutView extends Component {
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <SearchForm
-              showAdvancedFields={this.props.showAdvancedFields}
-              updateSearch={this.props.updateSearch}
+              showAdvancedFields={showAdvancedFields}
+              updateSearch={updateSearch}
             />
           </Grid.Row>
           <Grid.Row style={styles.row}>
@@ -44,7 +52,7 @@ class HomeLayoutView extends Component {
               color="violet"
               id="searchButton"
               style={styles.button}
-              onClick={this.props.performSearch}
+              onClick={performSearch}
             >
               <FormattedMessage id="search.button.text" />
             </Button>
@@ -52,12 +60,10 @@ class HomeLayoutView extends Component {
               basic
               color="violet"
               id="toggleAdvancedButton"
-              onClick={() =>
-                this.props.redirectFunction(this.props.typeButtonURL)
-              }
+              onClick={() => redirectFunction(typeButtonURL)}
               style={styles.button}
             >
-              {this.props.typeButtonText}
+              {typeButtonText}
             </Button>
           </Grid.Row>
         </Grid>

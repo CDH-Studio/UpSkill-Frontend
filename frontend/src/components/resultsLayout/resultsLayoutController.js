@@ -52,12 +52,14 @@ export default class ResultsLayoutController extends Component {
   }
 
   render() {
+    const { changeLanguage, keycloak, searchQuery } = this.props;
+
     return (
       <ResultsLayoutView
-        changeLanguage={this.props.changeLanguage}
-        keycloak={this.props.keycloak}
+        changeLanguage={changeLanguage}
+        keycloak={keycloak}
         results={this.state.results}
-        searchQuery={this.props.searchQuery}
+        searchQuery={searchQuery}
       />
     );
   }

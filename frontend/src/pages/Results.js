@@ -5,8 +5,8 @@ export default class Results extends Component {
   goto = link => this.props.history.push(link);
 
   render() {
+    const { changeLanguage, keycloak } = this.props;
     let searchQuery = null;
-
     try {
       searchQuery = this.props.location.state.searchQuery;
     } catch (err) {
@@ -14,10 +14,11 @@ export default class Results extends Component {
         throw err;
       }
     }
+
     return (
       <ResultsLayout
-        changeLanguage={this.props.changeLanguage}
-        keycloak={this.props.keycloak}
+        changeLanguage={changeLanguage}
+        keycloak={keycloak}
         redirectFunction={this.goto}
         searchQuery={searchQuery}
       />

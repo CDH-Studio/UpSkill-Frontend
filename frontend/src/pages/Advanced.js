@@ -12,11 +12,12 @@ class Advanced extends Component {
   }
 
   render() {
+    const { changeLanguage, intl, keycloak } = this.props;
     return (
       <HomeLayoutController
-        changeLanguage={this.props.changeLanguage}
-        keycloak={this.props.keycloak}
-        typeButtonText={this.props.intl.formatMessage({
+        changeLanguage={changeLanguage}
+        keycloak={keycloak}
+        typeButtonText={intl.formatMessage({
           id: "basic.search.button.text"
         })}
         typeButtonURL={"/home"}

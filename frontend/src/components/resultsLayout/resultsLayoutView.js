@@ -34,12 +34,10 @@ export default class ResultsLayoutView extends Component {
   }
 
   render() {
+    const { changeLanguage, keycloak } = this.props;
     return (
       <div>
-        <NavigationBar
-          changeLanguage={this.props.changeLanguage}
-          keycloak={this.props.keycloak}
-        />
+        <NavigationBar changeLanguage={changeLanguage} keycloak={keycloak} />
         <div className="bodyContent" id="bodyContent">
           <div className="sideBar">
             <SearchFormController
@@ -88,18 +86,20 @@ export default class ResultsLayoutView extends Component {
   }
 
   renderResultCards() {
-    if (!this.props.results) {
+    const { results } = this.props;
+
+    if (!results) {
       return null;
     }
-    if (this.props.results instanceof Error) {
+    if (results instanceof Error) {
       return (
-        "An error was encountered! Please try again.\n\n" +
-        String(this.props.results)
+        "An error was encountered! Please try again.\n\n" + String(results)
       );
     }
+
     let cards = [];
-    for (var i = 0; i < this.props.results.data.data.length; i++) {
-      let person = this.props.results.data.data[i];
+    for (var i = 0; i < results.data.data.length; i++) {
+      let person = results.data.data[i];
       cards.push(
         <Card
           header={person.givenName + " " + person.surname}

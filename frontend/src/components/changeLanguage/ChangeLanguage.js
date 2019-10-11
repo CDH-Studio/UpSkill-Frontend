@@ -8,7 +8,8 @@ class ChangeLanguage extends Component {
   };
 
   render() {
-    const languageCode = this.props.intl.formatMessage({ id: "lang.code" });
+    const { intl } = this.props;
+    const languageCode = intl.formatMessage({ id: "lang.code" });
     // const languageCode = "fr";
 
     return (
