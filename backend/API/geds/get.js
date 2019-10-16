@@ -1,8 +1,8 @@
 "use strict";
 const axios = require("axios");
 
-async function getEmployeeInfo(event) {
-  const searchValue = decodeURI(event.pathParameters.searchValue);
+async function getEmployeeInfo(searchValue) {
+  // const searchValue = decodeURI(event.pathParameters.searchValue);
 
   let info = await searchEmployee(searchValue).catch(err => {
     return {
