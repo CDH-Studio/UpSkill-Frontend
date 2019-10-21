@@ -26,20 +26,32 @@ class HomeLayoutController extends Component {
   }
 
   performSearch() {
-    this.props.redirectFunction("/results", { searchQuery: this.searchQuery });
+    const { redirectFunction } = this.props;
+
+    redirectFunction("/results", { searchQuery: this.searchQuery });
   }
 
   render() {
+    const {
+      changeLanguage,
+      intl,
+      keycloak,
+      redirectFunction,
+      showAdvancedFields,
+      typeButtonText,
+      typeButtonURL
+    } = this.props;
+
     return (
       <HomeLayoutView
-        changeLanguage={this.props.changeLanguage}
-        intl={this.props.intl}
-        keycloak={this.props.keycloak}
+        changeLanguage={changeLanguage}
+        intl={intl}
+        keycloak={keycloak}
         performSearch={this.performSearch}
-        redirectFunction={this.props.redirectFunction}
-        showAdvancedFields={this.props.showAdvancedFields}
-        typeButtonURL={this.props.typeButtonURL}
-        typeButtonText={this.props.typeButtonText}
+        redirectFunction={redirectFunction}
+        showAdvancedFields={showAdvancedFields}
+        typeButtonText={typeButtonText}
+        typeButtonURL={typeButtonURL}
         updateSearch={this.updateSearch}
       />
     );

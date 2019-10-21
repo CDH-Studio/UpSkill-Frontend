@@ -23,11 +23,12 @@ class SearchFormView extends Component {
   }
 
   render() {
+    const { intl, invertLabels, skills, updateSearch } = this.props;
     return (
-      <Form inverted={this.props.invertLabels} style={styles.form}>
+      <Form inverted={invertLabels} style={styles.form}>
         <Form.Field style={styles.formRow}>
           <label>
-            {this.props.intl.formatMessage({
+            {intl.formatMessage({
               id: "advanced.search.form.desired.skills"
             })}
           </label>
@@ -35,9 +36,9 @@ class SearchFormView extends Component {
             fluid
             multiple
             name="primaryDropdown"
-            onChange={this.props.updateSearch}
-            options={this.props.skills}
-            placeholder={this.props.intl.formatMessage({
+            onChange={updateSearch}
+            options={skills}
+            placeholder={intl.formatMessage({
               id: "advanced.search.form.desired.skills"
             })}
             search
@@ -51,21 +52,31 @@ class SearchFormView extends Component {
   }
 
   renderAdvancedFields() {
-    if (!this.props.showAdvancedFields) {
+    const {
+      departments,
+      intl,
+      jobTitles,
+      locations,
+      securityClearances,
+      showAdvancedFields,
+      updateSearch
+    } = this.props;
+
+    if (!showAdvancedFields) {
       return null;
     }
     return (
       <React.Fragment>
         <Form.Field style={styles.formRow}>
           <label>
-            {this.props.intl.formatMessage({
+            {intl.formatMessage({
               id: "advanced.search.form.job.title"
             })}
           </label>
           <Dropdown
             fluid
-            options={this.props.jobTitles}
-            placeholder={this.props.intl.formatMessage({
+            options={jobTitles}
+            placeholder={intl.formatMessage({
               id: "advanced.search.form.job.title"
             })}
             search
@@ -76,14 +87,14 @@ class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            {this.props.intl.formatMessage({
+            {intl.formatMessage({
               id: "advanced.search.form.department"
             })}
           </label>
           <Dropdown
             fluid
-            options={this.props.departments}
-            placeholder={this.props.intl.formatMessage({
+            options={departments}
+            placeholder={intl.formatMessage({
               id: "advanced.search.form.department"
             })}
             search
@@ -94,14 +105,14 @@ class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            {this.props.intl.formatMessage({
+            {intl.formatMessage({
               id: "advanced.search.form.location"
             })}
           </label>
           <Dropdown
             fluid
-            options={this.props.locations}
-            placeholder={this.props.intl.formatMessage({
+            options={locations}
+            placeholder={intl.formatMessage({
               id: "advanced.search.form.location"
             })}
             search
@@ -112,14 +123,14 @@ class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            {this.props.intl.formatMessage({
+            {intl.formatMessage({
               id: "advanced.search.form.security.clearance"
             })}
           </label>
           <Dropdown
             fluid
-            options={this.props.securityClearances}
-            placeholder={this.props.intl.formatMessage({
+            options={securityClearances}
+            placeholder={intl.formatMessage({
               id: "advanced.search.form.security.clearance"
             })}
             search
@@ -130,15 +141,15 @@ class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            {this.props.intl.formatMessage({
+            {intl.formatMessage({
               id: "advanced.search.form.first.name"
             })}
           </label>
 
           <Input
             name="firstName"
-            onChange={this.props.updateSearch}
-            placeholder={this.props.intl.formatMessage({
+            onChange={updateSearch}
+            placeholder={intl.formatMessage({
               id: "advanced.search.form.first.name"
             })}
             style={styles.advancedComponent}
@@ -147,14 +158,14 @@ class SearchFormView extends Component {
 
         <Form.Field style={styles.formRow}>
           <label>
-            {this.props.intl.formatMessage({
+            {intl.formatMessage({
               id: "advanced.search.form.last.name"
             })}
           </label>
           <Input
             name="lastName"
-            onChange={this.props.updateSearch}
-            placeholder={this.props.intl.formatMessage({
+            onChange={updateSearch}
+            placeholder={intl.formatMessage({
               id: "advanced.search.form.last.name"
             })}
             style={styles.advancedComponent}

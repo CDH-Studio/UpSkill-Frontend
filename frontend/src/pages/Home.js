@@ -7,11 +7,12 @@ class Home extends Component {
   goto = (link, state) => this.props.history.push(link, state);
 
   render() {
+    const { changeLanguage, keycloak } = this.props;
     return (
       <HomeLayoutController
-        keycloak={this.props.keycloak}
+        changeLanguage={changeLanguage}
+        keycloak={keycloak}
         redirectFunction={this.goto}
-        changeLanguage={this.props.changeLanguage}
       />
     );
   }

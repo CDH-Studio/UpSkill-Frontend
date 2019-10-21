@@ -21,62 +21,75 @@ import SearchFormView from "./searchFormView";
  */
 class SearchFormController extends Component {
   render() {
+    const {
+      advancedFieldWidth,
+      departments,
+      intl,
+      invertLabels,
+      jobTitles,
+      locations,
+      primaryFieldWidth,
+      securityClearances,
+      showAdvancedFields,
+      updateSearch
+    } = this.props;
+
     return (
       <SearchFormView
-        advancedFieldWidth={this.props.advancedFieldWidth}
-        departments={this.props.departments}
-        intl={this.props.intl}
-        invertLabels={this.props.invertLabels}
-        jobTitles={this.props.jobTitles}
-        locations={this.props.locations}
-        primaryFieldWidth={this.props.primaryFieldWidth}
-        securityClearances={this.props.securityClearances}
-        showAdvancedFields={this.props.showAdvancedFields}
+        advancedFieldWidth={advancedFieldWidth}
+        departments={departments}
+        intl={intl}
+        invertLabels={invertLabels}
+        jobTitles={jobTitles}
+        locations={locations}
+        primaryFieldWidth={primaryFieldWidth}
+        securityClearances={securityClearances}
+        showAdvancedFields={showAdvancedFields}
         skills={[
           {
             key: "axios",
-            value: "axios",
-            text: this.props.intl.formatMessage({
+            text: intl.formatMessage({
               id: "search.field.primary.dropdown.axios"
-            })
+            }),
+            value: "axios"
           },
           {
             key: "css",
-            value: "css",
-            text: this.props.intl.formatMessage({
+            text: intl.formatMessage({
               id: "search.field.primary.dropdown.css"
-            })
+            }),
+            value: "css"
           },
           {
             key: "enzyme",
-            value: "enzyme",
-            text: this.props.intl.formatMessage({
+            text: intl.formatMessage({
               id: "search.field.primary.dropdown.enzyme"
-            })
+            }),
+            value: "enzyme"
           },
           {
             key: "html",
-            value: "html",
-            text: this.props.intl.formatMessage({
+            text: intl.formatMessage({
               id: "search.field.primary.dropdown.html"
-            })
+            }),
+            value: "html"
           },
           {
             key: "javascript",
-            value: "javascript",
-            text: this.props.intl.formatMessage({
+            text: intl.formatMessage({
               id: "search.field.primary.dropdown.javascript"
-            })
+            }),
+            value: "javascript"
           },
           {
             key: "jest",
-            value: "jest",
-            text: this.props.intl.formatMessage({
+            text: intl.formatMessage({
               id: "search.field.primary.dropdown.jest"
-            })
+            }),
+            value: "jest"
           }
         ]}
-        updateSearch={this.props.updateSearch}
+        updateSearch={updateSearch}
       />
     );
   }
@@ -85,29 +98,29 @@ class SearchFormController extends Component {
 SearchFormController.defaultProps = {
   advancedFieldWidth: "400px",
   departments: [
-    { key: "department1", value: "department1", text: "department1" },
-    { key: "department2", value: "department2", text: "department2" }
+    { key: "department1", text: "department1", value: "department1" },
+    { key: "department2", text: "department2", value: "department2" }
   ],
   invertLabels: false,
   jobTitles: [
-    { key: "Job1", value: "Job1", text: "Job1" },
-    { key: "Job2", value: "Job2", text: "Job2" }
+    { key: "Job1", text: "Job1", value: "Job1" },
+    { key: "Job2", text: "Job2", value: "Job2" }
   ],
   locations: [
-    { key: "locations1", value: "locations1", text: "locations1" },
-    { key: "locations2", value: "locations2", text: "locations2" }
+    { key: "locations1", text: "locations1", value: "locations1" },
+    { key: "locations2", text: "locations2", value: "locations2" }
   ],
   primaryFieldWidth: "800px",
   securityClearances: [
     {
       key: "securityClearances1",
-      value: "securityClearances1",
-      text: "securityClearances1"
+      text: "securityClearances1",
+      value: "securityClearances1"
     },
     {
       key: "securityClearances2",
-      value: "securityClearances2",
-      text: "securityClearances2"
+      text: "securityClearances2",
+      value: "securityClearances2"
     }
   ],
   showAdvancedFields: true
