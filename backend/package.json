@@ -9,5 +9,8 @@
     "express-session": "^1.17.0",
     "keycloak-connect": "^7.0.1",
     "pg": "^7.12.1"
+  },
+  "devDependencies": {
+    "@types/keycloak-connect": "^4.5.1"
   }
 }
