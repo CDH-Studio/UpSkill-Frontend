@@ -8,6 +8,7 @@ const geds = require("./API/geds/index");
 const Keycloak = require("keycloak-connect");
 const session = require("express-session");
 const expressHbs = require("express-handlebars");
+const db = require("./queries");
 
 const app = express(); // define our app using express
 
@@ -66,10 +67,16 @@ router.get("/getEmployeeInfo/:searchValue", keycloak.protect(), async function(
   res.json(JSON.parse(data.body));
 });
 
+router.get("/users", db.getUsers);
+router.get("/users/:id", db.getUserById);
+router.post("/users", db.createUser);
+router.put("/users/:id", db.updateUser);
+router.delete("/users/:id", db.deleteUser);
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
+
 app.use("/api", router);
 
 app.use(keycloak.middleware({ logout: "/" }));
