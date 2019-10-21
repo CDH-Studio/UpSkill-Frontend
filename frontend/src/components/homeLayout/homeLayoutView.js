@@ -4,26 +4,34 @@ import { FormattedMessage } from "react-intl";
 
 import logo3 from "../../assets/fullLogo3.svg";
 import SearchForm from "../searchForm/searchFormController";
-import NavigationBar from "../navigationBar/NavigationBarController";
+import NavigationBar from "../navigationBar/navigationBarController";
 
 /**
  * A form for creating a search query
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * keycloak                 null                    The keycloak instance being used
- * redirectButtonText       "Advanced search"       The text to display on the redirect button
- * redirectButtonURL        "/advanced"             The url of the page to redirect to
+ * typeButtonText           "Advanced search"       The text to display on the toggle search type button
+ * typeButtonURL            "/advanced"             The url of the page the search type button should redirect to
  * redirectFunction         null                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
 class HomeLayoutView extends Component {
   render() {
+    const {
+      changeLanguage,
+      keycloak,
+      performSearch,
+      redirectFunction,
+      showAdvancedFields,
+      typeButtonText,
+      typeButtonURL,
+      updateSearch
+    } = this.props;
+
     return (
       <div>
-        <NavigationBar
-          keycloak={this.props.keycloak}
-          changeLanguage={this.props.changeLanguage}
-        />
+        <NavigationBar keycloak={keycloak} changeLanguage={changeLanguage} />
         <Grid centered style={styles.grid}>
           <Grid.Row style={styles.row}>
             <Image
@@ -34,21 +42,28 @@ class HomeLayoutView extends Component {
             />
           </Grid.Row>
           <Grid.Row style={styles.row}>
-            <SearchForm showAdvancedFields={this.props.showAdvancedFields} />
+            <SearchForm
+              showAdvancedFields={showAdvancedFields}
+              updateSearch={updateSearch}
+            />
           </Grid.Row>
           <Grid.Row style={styles.row}>
-            <Button color="violet" style={styles.button}>
+            <Button
+              color="violet"
+              id="searchButton"
+              style={styles.button}
+              onClick={performSearch}
+            >
               <FormattedMessage id="search.button.text" />
             </Button>
             <Button
               basic
               color="violet"
-              onClick={() =>
-                this.props.redirectFunction(this.props.redirectButtonURL)
-              }
+              id="toggleAdvancedButton"
+              onClick={() => redirectFunction(typeButtonURL)}
               style={styles.button}
             >
-              {this.props.redirectButtonText}
+              {typeButtonText}
             </Button>
           </Grid.Row>
         </Grid>

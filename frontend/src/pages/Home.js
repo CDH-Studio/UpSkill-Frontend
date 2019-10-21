@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import HomeLayout from "../components/homeLayout/homeLayoutController";
 import { injectIntl } from "react-intl";
 
+import HomeLayoutController from "../components/homeLayout/homeLayoutController";
+
 class Home extends Component {
-  goto = link => this.props.history.push(link);
+  goto = (link, state) => this.props.history.push(link, state);
 
   render() {
+    const { changeLanguage, keycloak } = this.props;
     return (
-      <HomeLayout
-        keycloak={this.props.keycloak}
+      <HomeLayoutController
+        changeLanguage={changeLanguage}
+        keycloak={keycloak}
         redirectFunction={this.goto}
-        changeLanguage={this.props.changeLanguage}
       />
     );
   }

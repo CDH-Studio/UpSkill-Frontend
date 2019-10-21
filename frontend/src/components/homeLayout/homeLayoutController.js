@@ -13,23 +13,54 @@ import HomeLayoutView from "./homeLayoutView";
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
 class HomeLayoutController extends Component {
+  constructor(props) {
+    super(props);
+
+    this.searchQuery = {};
+    this.updateSearch = this.updateSearch.bind(this);
+    this.performSearch = this.performSearch.bind(this);
+  }
+
+  updateSearch(e, { name, value }) {
+    this.searchQuery[name] = value;
+  }
+
+  performSearch() {
+    const { redirectFunction } = this.props;
+
+    redirectFunction("/results", { searchQuery: this.searchQuery });
+  }
+
   render() {
+    const {
+      changeLanguage,
+      intl,
+      keycloak,
+      redirectFunction,
+      showAdvancedFields,
+      typeButtonText,
+      typeButtonURL
+    } = this.props;
+
     return (
       <HomeLayoutView
-        keycloak={this.props.keycloak}
-        changeLanguage={this.props.changeLanguage}
-        redirectButtonURL={this.props.redirectButtonURL}
-        redirectButtonText={this.props.redirectButtonText}
-        redirectFunction={this.props.redirectFunction}
-        showAdvancedFields={this.props.showAdvancedFields}
+        changeLanguage={changeLanguage}
+        intl={intl}
+        keycloak={keycloak}
+        performSearch={this.performSearch}
+        redirectFunction={redirectFunction}
+        showAdvancedFields={showAdvancedFields}
+        typeButtonText={typeButtonText}
+        typeButtonURL={typeButtonURL}
+        updateSearch={this.updateSearch}
       />
     );
   }
 }
 
 HomeLayoutController.defaultProps = {
-  redirectButtonText: <FormattedMessage id="advanced.search.button.text" />,
-  redirectButtonURL: "/advanced",
+  typeButtonText: <FormattedMessage id="advanced.search.button.text" />,
+  typeButtonURL: "/advanced",
   showAdvancedFields: false
 };
 

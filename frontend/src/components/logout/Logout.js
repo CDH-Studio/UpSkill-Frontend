@@ -5,8 +5,10 @@ import { FormattedMessage } from "react-intl";
 
 class Logout extends Component {
   logout() {
-    this.props.history.push("/");
-    this.props.keycloak.logout();
+    const { history, keycloak } = this.props;
+
+    history.push("/");
+    keycloak.logout();
   }
 
   render() {

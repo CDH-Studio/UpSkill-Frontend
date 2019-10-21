@@ -1,28 +1,28 @@
 import React, { Component } from "react";
-import HomeLayout from "../components/homeLayout/homeLayoutController";
 import { injectIntl } from "react-intl";
 
+import HomeLayoutController from "../components/homeLayout/homeLayoutController";
+
 class Advanced extends Component {
-  goto = link => this.props.history.push(link);
+  goto = (link, state) => this.props.history.push(link, state);
 
   constructor(props) {
     super(props);
     this.state = { showAdvancedOptions: false };
   }
 
-  // const ButtonText =
-
   render() {
+    const { changeLanguage, intl, keycloak } = this.props;
     return (
-      <HomeLayout
-        redirectButtonText={this.props.intl.formatMessage({
-          id: "basic.search.button.text"
-        })}
-        redirectButtonURL={"/home"}
+      <HomeLayoutController
+        changeLanguage={changeLanguage}
+        keycloak={keycloak}
         redirectFunction={this.goto}
         showAdvancedFields={true}
-        keycloak={this.props.keycloak}
-        changeLanguage={this.props.changeLanguage}
+        typeButtonText={intl.formatMessage({
+          id: "basic.search.button.text"
+        })}
+        typeButtonURL={"/home"}
       />
     );
   }
