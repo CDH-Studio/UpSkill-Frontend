@@ -23,6 +23,7 @@ app.engine(
 );
 app.set("view engine", "hbs");
 
+// Configure session to use memoryStore and Setup keycloak middleware to use the session memoryStore.
 var memoryStore = new session.MemoryStore();
 var keycloak = new Keycloak({ store: memoryStore });
 
@@ -46,17 +47,12 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 8080; // set our port
 
 // ROUTES FOR OUR API
-// =============================================================================
 const router = express.Router(); // get an instance of the express Router
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get("/", function(req, res) {
+// test route to make sure everything is working (accessed at GET http://localhost:8080/api/)
+router.get("/", keycloak.protect(), function(req, res) {
   res.json({ message: "hooray! welcome to our api!" });
 });
-
-// router.param("searchValue", function(req, res) {
-//     res.json({ message: "hooray! welcome to our api!" });
-//   });
 
 router.get("/getEmployeeInfo/:searchValue", keycloak.protect(), async function(
   req,
@@ -79,9 +75,9 @@ router.delete("/users/:id", keycloak.protect(), db.deleteUser);
 
 app.use("/api", router);
 
+// Set the logout route to use keycloak middleware to kill session
 app.use(keycloak.middleware({ logout: "/" }));
 
 // START THE SERVER
-// =============================================================================
 app.listen(port);
 console.log("Magic happens on port " + port);
