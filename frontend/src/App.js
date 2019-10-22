@@ -69,13 +69,6 @@ class App extends Component {
 
     const keycloak = this.state.keycloak;
     if (keycloak) {
-      console.log(
-        "Render: ",
-        localStorage.getItem("lang"),
-        localLang,
-        i18nConfig.locale
-      );
-
       if (this.state.authenticated) {
         console.log(keycloak);
         return (
