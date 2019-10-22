@@ -1,7 +1,6 @@
-// BASE SETUP
-// =============================================================================
+// BASE SETUP ==========================================================================
 
-// call the packages we need
+// Import the packages we need
 const express = require("express"); // call express
 const Keycloak = require("keycloak-connect");
 const session = require("express-session");
@@ -46,7 +45,7 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 8080; // set our port
 
-// ROUTES FOR OUR API
+// ROUTES FOR OUR API ===============================================
 const router = express.Router(); // get an instance of the express Router
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api/)
@@ -70,14 +69,14 @@ router.put("/users/:id", keycloak.protect(), db.updateUser);
 router.delete("/users/:id", keycloak.protect(), db.deleteUser);
 // more routes for our API will happen here
 
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
+// REGISTER OUR ROUTES ===============================================
+// Note: All of our routes will be prefixed with /api
 
 app.use("/api", router);
 
 // Set the logout route to use keycloak middleware to kill session
 app.use(keycloak.middleware({ logout: "/" }));
 
-// START THE SERVER
+// START THE SERVER ==================================================
 app.listen(port);
 console.log("Magic happens on port " + port);
