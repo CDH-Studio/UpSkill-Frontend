@@ -3,11 +3,11 @@
 
 // call the packages we need
 const express = require("express"); // call express
-const bodyParser = require("body-parser");
-const geds = require("./API/geds/index");
 const Keycloak = require("keycloak-connect");
 const session = require("express-session");
 const expressHbs = require("express-handlebars");
+const bodyParser = require("body-parser");
+const geds = require("./API/geds/index");
 const db = require("./API/dbTest/queries");
 
 const app = express(); // define our app using express
