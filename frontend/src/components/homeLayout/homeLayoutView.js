@@ -74,7 +74,6 @@ class HomeLayoutView extends Component {
 
 const styles = {
   button: {
-    fontSize: "110%",
     marginLeft: "30px",
     marginRight: "30px",
     marginTop: "20px",
