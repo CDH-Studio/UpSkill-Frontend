@@ -12,6 +12,9 @@ const db = require("./API/dbTest/queries");
 
 const app = express(); // define our app using express
 
+// Config() function reads the .env file and sets the environment variables
+dotenv.config();
+
 // Register 'handelbars' extension with The Mustache Express
 app.engine(
   "hbs",
@@ -26,7 +29,6 @@ app.set("view engine", "hbs");
 // Configure session to use memoryStore and Setup keycloak middleware to use the session memoryStore.
 var memoryStore = new session.MemoryStore();
 var keycloak = new Keycloak({ store: memoryStore });
-
 //session
 app.use(
   session({
