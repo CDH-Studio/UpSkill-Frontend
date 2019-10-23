@@ -6,6 +6,7 @@ const express = require("express"); // call express
 const app = express(); // define our app using express
 const bodyParser = require("body-parser");
 const geds = require("./API/geds/index");
+const db = require("./queries");
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -39,10 +40,16 @@ router.get("/getEmployeeInfo/:searchValue", async function(req, res) {
   res.json(JSON.parse(data.body));
 });
 
+router.get("/users", db.getUsers);
+router.get("/users/:id", db.getUserById);
+router.post("/users", db.createUser);
+router.put("/users/:id", db.updateUser);
+router.delete("/users/:id", db.deleteUser);
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
+
 app.use("/api", router);
 
 // START THE SERVER
