@@ -1,0 +1,6 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@fontSize: 16pt;
+@pageFont: Nunito Sans, Helvetica New, Helvetica;

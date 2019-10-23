@@ -1,0 +1,9 @@
+/*******************************
+    User Variable Overrides
+*******************************/
+@labelFontSize: 16pt;
+@inputFontSize: 16pt;
+@textAreaFontSize: 16pt;
+@groupedLabelFontSize: 16pt;
+@inlineLabelFontSize: 16pt;
+@inputLineHeight: 16pt;
