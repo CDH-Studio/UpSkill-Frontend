@@ -7,8 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "client": "cd frontend && react-scripts start",
-    "server": "cd backend && node server.js",
+    "client": "cd frontend && npm i && react-scripts start",
+    "server": "cd backend && npm i && node server.js",
     "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
