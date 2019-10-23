@@ -3,5 +3,5 @@
 *******************************/
 
 .ui.search {
-        font-size: 16pt !important;
+        font-size: 12pt !important;
 }
