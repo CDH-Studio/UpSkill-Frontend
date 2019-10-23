@@ -29,7 +29,7 @@ var keycloak = new Keycloak({ store: memoryStore });
 //session
 app.use(
   session({
-    secret: "ebb0afe4-4559-480f-bad5-5d19437fb438",
+    secret: "",
     resave: false,
     saveUninitialized: true,
     store: memoryStore
