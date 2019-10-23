@@ -6,6 +6,7 @@ const Keycloak = require("keycloak-connect");
 const session = require("express-session");
 const expressHbs = require("express-handlebars");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
 const geds = require("./API/geds/index");
 const db = require("./API/dbTest/queries");
 
@@ -29,7 +30,7 @@ var keycloak = new Keycloak({ store: memoryStore });
 //session
 app.use(
   session({
-    secret: "",
+    secret: process.env.KEYCLOAK_SECRET,
     resave: false,
     saveUninitialized: true,
     store: memoryStore
