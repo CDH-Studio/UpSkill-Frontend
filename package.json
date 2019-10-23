@@ -1,0 +1,28 @@
+{
+  "name": "upskill",
+  "version": "1.0.0",
+  "description": "An improved directory and employee search tool",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "client": "cd frontend && npm i && react-scripts start",
+    "server": "cd backend && npm i && node server.js",
+    "start": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CDH-Studio/UpSkill.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CDH-Studio/UpSkill/issues"
+  },
+  "homepage": "https://github.com/CDH-Studio/UpSkill#readme",
+  "dependencies": {
+    "concurrently": "^5.0.0",
+    "react-scripts": "^3.2.0"
+  }
+}
