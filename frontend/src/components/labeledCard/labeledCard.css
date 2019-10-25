@@ -1,0 +1,22 @@
+#sectioned-card {
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  width: 40%;
+  background-color: #cccccc;
+  border-radius: 0.28571429rem 0 0 0.28571429rem !important;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.ui.cards > .card > :first-child,
+.ui.card > :first-child {
+  font-size: 12pt;
+  border-radius: 0.28571429rem 0 0 0.28571429rem !important;
+}
+
+#section {
+  right: 0px;
+}

@@ -1,0 +1,45 @@
+#proficiencyTableBody td {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.violetColored {
+  color: #6435c9;
+}
+
+.body {
+  margin: 50px auto;
+  min-width: 500px;
+  max-width: 1200px;
+  padding: 25px;
+}
+
+.boldFont {
+  font-weight: bold;
+}
+
+.colorLabel {
+  color: #6435c9;
+  padding-right: 0.5em;
+}
+
+.boldLabel {
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+
+.noGapBelow {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.noGapAbove {
+  padding-top: 0px !important;
+  margin-top: 0px !important;
+}
+
+.schoolListing .row {
+  padding-bottom: 0px !important;
+  line-height: 14pt;
+  padding-top: 0px !important;
+}

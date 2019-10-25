@@ -10,7 +10,14 @@ import messages_fr from "./i18n/fr_CA.json";
 //import "./styles.global.less";
 import "./App.css";
 
-import { About, Advanced, Home, Landing, Results } from "./pages/index";
+import {
+  About,
+  Advanced,
+  Home,
+  Landing,
+  Results,
+  Profile
+} from "./pages/index";
 
 let localLang = (() => {
   if (localStorage.getItem("lang")) {
@@ -117,6 +124,17 @@ class App extends Component {
                   path="/results"
                   render={routeProps => (
                     <Results
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/profile"
+                  render={routeProps => (
+                    <Profile
                       keycloak={keycloak}
                       changeLanguage={this.changeLanguage}
                       {...routeProps}
