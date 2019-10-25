@@ -59,12 +59,12 @@ export default class secondaryGroupView extends Component {
   renderLanguageProficiencyCard() {
     const {
       firstLanguage,
-      secondaryReadingGrade,
-      secondaryReadingDate,
-      secondaryWritingGrade,
-      secondaryWritingDate,
+      secondaryOralDate,
       secondaryOralGrade,
-      secondaryOralDate
+      secondaryReadingDate,
+      secondaryReadingGrade,
+      secondaryWritingDate,
+      secondaryWritingGrade
     } = this.props.profileInfo;
 
     return (

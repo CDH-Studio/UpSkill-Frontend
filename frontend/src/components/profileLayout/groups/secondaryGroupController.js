@@ -4,9 +4,9 @@ import "./secondaryGroup.css";
 
 export default class secondaryGroupController extends Component {
   render() {
-    const { windowWidth, profileInfo } = this.props;
+    const { profileInfo, windowWidth } = this.props;
     return (
-      <SecondaryGroupView windowWidth={windowWidth} profileInfo={profileInfo} />
+      <SecondaryGroupView profileInfo={profileInfo} windowWidth={windowWidth} />
     );
   }
 }

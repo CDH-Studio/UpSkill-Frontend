@@ -1,14 +1,14 @@
-.phoneNumberArea {
-  width: 200px;
-  display: inline-block;
+.organizationList .icon {
+  position: relative;
+  top: -5px;
+  left: 0px;
 }
 
 .organizationList .list {
   padding-bottom: 0px !important;
 }
 
-.organizationList .icon {
-  position: relative;
-  top: -5px;
-  left: 0px;
+.phoneNumberArea {
+  width: 200px;
+  display: inline-block;
 }

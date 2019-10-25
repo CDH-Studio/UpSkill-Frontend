@@ -24,17 +24,49 @@ export default class ProfileLayoutController extends Component {
       <ProfileLayoutView
         changeLanguage={changeLanguage}
         keycloak={keycloak}
-        windowWidth={this.state.windowWidth}
         profileInfo={{
-          country: "Canada",
-          firstName: "Massadry",
-          lastName: "Smisdasth",
-          jobTitle: "Manager, Next Innovation",
-          telephone: "343-291-1366",
-          mobile: "613-402-8224",
-          email: "mary.smith@canada.ca",
-          team: "ABC Team",
           branch: "Chief Information Office Branch",
+
+          building: "CD Howe, Room 368l",
+          careerMobility: "Ready for movement",
+          careerSummary: [
+            {
+              content: "Payment Analyst",
+              endDate: "Present",
+              name: "Payments Canada",
+              startDate: "Aug 2017"
+            }
+          ],
+          city: "Ontario",
+
+          competencies: ["Thinking things through", "Achieve results"],
+          country: "Canada",
+          developmentalGoals: ["Mobalize people"],
+
+          education: [
+            {
+              content: "Telpher School of Buisness",
+              endDate: "Apr 2009",
+              name: "Masters of Business Administration",
+              startDate: "Sept 2007"
+            },
+            {
+              content: "Carleton University",
+              endDate: "Apr 2005",
+              name: "Software Engineering",
+              startDate: "Sept 2000"
+            }
+          ],
+          email: "mary.smith@canada.ca",
+          firstLanguage: "English",
+          firstName: "Massadry",
+          GitHubURL: "https://www.google.com",
+          groupOrLevel: "CS 04",
+          jobTitle: "Manager, Next Innovation",
+          lastName: "Smisdasth",
+          LinkedInURL: "https://www.bing.ca",
+          manager: "Chahine El Chaar",
+          mobile: "613-402-8224",
           organizationList: [
             "ABC Directorate",
             "ABC Division",
@@ -42,56 +74,26 @@ export default class ProfileLayoutController extends Component {
             "Digital Transformation Service Sector",
             "Innovation, Science and Economic Development Canada"
           ],
-          building: "CD Howe, Room 368l",
-          street: "235 Queen Street",
-          province: "Ottawa",
-          city: "Ontario",
           PO: "K1A 0H5",
-          LinkedInURL: "https://www.bing.ca",
-          GitHubURL: "https://www.google.com",
-          TwitterURL: "https://www.baidu.com",
-
-          status: "Indeterminate",
-          yearsOfService: 5.0,
-          groupOrLevel: "CS 04",
-          security: "Reliability",
-          manager: "Chahine El Chaar",
-          firstLanguage: "English",
-          secondLanguage: null,
-          secondaryReadingGrade: "C",
-          secondaryReadingDate: "Oct 17 2020",
-          secondaryWritingGrade: "B",
-          secondaryWritingDate: "Oct 17 2021",
-          secondaryOralGrade: "C",
+          province: "Ottawa",
           secondaryOralDate: "Nov 29 2018",
-          careerMobility: "Ready for movement",
-          talentMatrixResult: "Exceptional talent",
+          secondaryOralGrade: "C",
+          secondaryReadingDate: "Oct 17 2020",
+          secondaryReadingGrade: "C",
+          secondaryWritingDate: "Oct 17 2021",
+          secondaryWritingGrade: "B",
+          secondLanguage: null,
+          security: "Reliability",
           skills: ["Excel", "Project management", "Change management"],
-          competencies: ["Thinking things through", "Achieve results"],
-          developmentalGoals: ["Mobalize people"],
-          education: [
-            {
-              content: "Telpher School of Buisness",
-              name: "Masters of Business Administration",
-              startDate: "Sept 2007",
-              endDate: "Apr 2009"
-            },
-            {
-              content: "Carleton University",
-              name: "Software Engineering",
-              startDate: "Sept 2000",
-              endDate: "Apr 2005"
-            }
-          ],
-          careerSummary: [
-            {
-              name: "Payments Canada",
-              content: "Payment Analyst",
-              startDate: "Aug 2017",
-              endDate: "Present"
-            }
-          ]
+          status: "Indeterminate",
+          street: "235 Queen Street",
+          talentMatrixResult: "Exceptional talent",
+          team: "ABC Team",
+          telephone: "343-291-1366",
+          TwitterURL: "https://www.baidu.com",
+          yearsOfService: 5.0
         }}
+        windowWidth={this.state.windowWidth}
       />
     );
   }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Grid, List, Icon, Popup } from "semantic-ui-react";
+import { Card, Grid, List, Popup } from "semantic-ui-react";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
 
@@ -11,7 +11,7 @@ import "./primaryGroup.css";
  */
 export default class PrimaryGroupView extends Component {
   render() {
-    const { windowWidth, profileInfo } = this.props;
+    const { profileInfo, windowWidth } = this.props;
     const { firstName, lastName } = profileInfo;
     const useWideLayout = windowWidth > 1150;
 
@@ -23,11 +23,11 @@ export default class PrimaryGroupView extends Component {
         <Grid>
           <Grid.Column width={useWideLayout ? 3 : 4}>
             <img
+              src={tempProfilePic}
               style={{
                 maxHeight: "100%",
                 maxWidth: "100%"
               }}
-              src={tempProfilePic}
             />
           </Grid.Column>
           <Grid.Column width={useWideLayout ? 8 : 12}>
@@ -40,28 +40,28 @@ export default class PrimaryGroupView extends Component {
   }
 
   renderLabeledCards() {
-    const { windowWidth, profileInfo } = this.props;
-    const { status, groupOrLevel, yearsOfService, security } = profileInfo;
+    const { profileInfo, windowWidth } = this.props;
+    const { groupOrLevel, security, status, yearsOfService } = profileInfo;
 
     // When using the most wide or most skinny view there is only one column of labeled cards
     if (windowWidth <= 1150 && windowWidth > 750) {
       return (
         <React.Fragment>
           <Grid.Column width={8}>
-            <LabeledCardController labelText={"Status"} contentText={status} />
+            <LabeledCardController contentText={status} labelText={"Status"} />
             <LabeledCardController
-              labelText={"Group/Level"}
               contentText={groupOrLevel}
+              labelText={"Group/Level"}
             />
           </Grid.Column>
           <Grid.Column width={8}>
             <LabeledCardController
-              labelText={"Years of Service"}
               contentText={yearsOfService}
+              labelText={"Years of Service"}
             />
             <LabeledCardController
-              labelText={"Security"}
               contentText={security}
+              labelText={"Security"}
             />
           </Grid.Column>
         </React.Fragment>
@@ -70,32 +70,32 @@ export default class PrimaryGroupView extends Component {
     //When using the medium wideness view there are 2 columns of labeled cards
     return (
       <Grid.Column width={windowWidth > 1150 ? 5 : 16}>
-        <LabeledCardController labelText={"Status"} contentText={status} />
+        <LabeledCardController contentText={status} labelText={"Status"} />
         <LabeledCardController
-          labelText={"Group/Level"}
           contentText={groupOrLevel}
+          labelText={"Group/Level"}
         />
         <LabeledCardController
-          labelText={"Years of Service"}
           contentText={yearsOfService}
+          labelText={"Years of Service"}
         />
-        <LabeledCardController labelText={"Security"} contentText={security} />
+        <LabeledCardController contentText={security} labelText={"Security"} />
       </Grid.Column>
     );
   }
 
   renderPrimaryCard() {
     const {
-      jobTitle,
-      telephone,
-      mobile,
       branch,
-      email,
-      street,
-      province,
       country,
+      email,
+      jobTitle,
+      mobile,
       organizationList,
-      team
+      province,
+      street,
+      team,
+      telephone
     } = this.props.profileInfo;
 
     return (
@@ -137,8 +137,8 @@ export default class PrimaryGroupView extends Component {
         {unlistedItems.length > 1 ? (
           <List.Icon
             color="grey"
-            name="level up alternate"
             flipped="horizontally"
+            name="level up alternate"
           />
         ) : null}
         <List.Content>

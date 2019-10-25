@@ -9,7 +9,7 @@ import "./profileLayout.css";
 
 export default class ProfileLayoutView extends Component {
   render() {
-    const { changeLanguage, keycloak, windowWidth, profileInfo } = this.props;
+    const { changeLanguage, keycloak, profileInfo, windowWidth } = this.props;
 
     return (
       <div>
@@ -21,15 +21,15 @@ export default class ProfileLayoutView extends Component {
 
         <div className="body">
           <PrimaryGroupController
-            windowWidth={windowWidth}
             profileInfo={profileInfo}
+            windowWidth={windowWidth}
           />
 
           {this.renderExternalLinks()}
 
           <SecondaryGroupController
-            windowWidth={windowWidth}
             profileInfo={profileInfo}
+            windowWidth={windowWidth}
           />
 
           {this.renderSkillsCard()}
@@ -128,10 +128,10 @@ export default class ProfileLayoutView extends Component {
                   <div className="historyListing">
                     <Grid fluid>
                       <Grid.Row>
-                        <Grid.Column width={8} className="entryName">
+                        <Grid.Column className="entryName" width={8}>
                           {value.name}
                         </Grid.Column>
-                        <Grid.Column width={8} className="dateInfo">
+                        <Grid.Column className="dateInfo" width={8}>
                           {value.startDate} - {value.endDate}
                         </Grid.Column>
                       </Grid.Row>
