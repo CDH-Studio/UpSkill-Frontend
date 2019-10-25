@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import SecondaryGroupView from "./secondaryGroupView";
-import tempProfilePicture from "../../assets/tempProfilePicture.png";
 import "./secondaryGroup.css";
 
 export default class secondaryGroupController extends Component {

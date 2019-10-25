@@ -1,13 +1,12 @@
 import React, { Component } from "react";
-import PrimaryCardView from "./primaryCardView";
-import tempProfilePicture from "../../assets/tempProfilePicture.png";
+import PrimaryGroupView from "./primaryGroupView";
 
-export default class PrimaryCardController extends Component {
+export default class PrimaryGroupController extends Component {
   render() {
     const { profileInfo } = this.props;
 
     return (
-      <PrimaryCardView
+      <PrimaryGroupView
         windowWidth={this.props.windowWidth}
         profileInfo={profileInfo}
       />

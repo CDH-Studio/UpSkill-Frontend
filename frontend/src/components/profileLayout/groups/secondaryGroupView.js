@@ -20,7 +20,7 @@ export default class secondaryGroupView extends Component {
 
     if (useWideLayout) {
       return (
-        <Grid style={{ paddingTop: "1em" }} fluid>
+        <Grid fluid>
           <Grid.Row>
             <Grid.Column width={11}>
               {this.renderManagerCard()}
@@ -49,7 +49,7 @@ export default class secondaryGroupView extends Component {
     return (
       <Card fluid>
         <Card.Content>
-          <span class="colorLabel">Manager:</span>
+          <span className="colorLabel">Manager:</span>
           <span>{manager}</span>
         </Card.Content>
       </Card>
@@ -70,12 +70,12 @@ export default class secondaryGroupView extends Component {
     return (
       <Card fluid>
         <Card.Content>
-          <h5 class="violetColored">Official Language</h5>
+          <h5 className="violetColored">Official Language</h5>
           <div>
-            <span class="boldLabel">First Language</span>
+            <span className="boldLabel">First Language</span>
             <span>{firstLanguage}</span>
           </div>
-          <p class="boldLabel noGapBelow">Second Language Proficiency</p>
+          <p className="boldLabel noGapBelow">Second Language Proficiency</p>
           <Table basic="very" style={{ marginTop: "0px" }} celled collapsing>
             <Table.Body id="proficiencyTableBody">
               <Table.Row>
@@ -106,13 +106,13 @@ export default class secondaryGroupView extends Component {
     return (
       <Card fluid>
         <Card.Content>
-          <h5 class="violetColored">Talent Manager (link to TM tool)</h5>
+          <h5 className="violetColored">Talent Manager (link to TM tool)</h5>
           <div>
-            <span class="boldLabel">Career Mobility</span>
+            <span className="boldLabel">Career Mobility</span>
             <span>{careerMobility}</span>
           </div>
           <div>
-            <span class="boldLabel">Talent matrix result</span>
+            <span className="boldLabel">Talent matrix result</span>
             <span>{talentMatrixResult}</span>
           </div>
         </Card.Content>

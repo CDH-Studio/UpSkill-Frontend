@@ -1,8 +1,3 @@
-#proficiencyTableBody td {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
 .violetColored {
   color: #6435c9;
 }
@@ -12,6 +7,30 @@
   min-width: 500px;
   max-width: 1200px;
   padding: 25px;
+}
+
+.historyListing .row {
+  padding-bottom: 0px !important;
+  line-height: 14pt;
+  padding-top: 0px !important;
+}
+
+.historyListing .dateInfo {
+  text-align: right;
+}
+
+.historyListing .entryName {
+  font-weight: bold;
+}
+
+.noGapBelow {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.noGapAbove {
+  padding-top: 0px !important;
+  margin-top: 0px !important;
 }
 
 .boldFont {
@@ -26,20 +45,4 @@
 .boldLabel {
   font-weight: bold;
   padding-right: 0.5em;
-}
-
-.noGapBelow {
-  padding-bottom: 0px !important;
-  margin-bottom: 0px !important;
-}
-
-.noGapAbove {
-  padding-top: 0px !important;
-  margin-top: 0px !important;
-}
-
-.schoolListing .row {
-  padding-bottom: 0px !important;
-  line-height: 14pt;
-  padding-top: 0px !important;
 }

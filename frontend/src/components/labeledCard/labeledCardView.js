@@ -8,30 +8,17 @@ export default class LabeledCardView extends Component {
     const { labelText, contentText } = this.props;
 
     return (
-      <Card style={{ marginBottom: "11px", marginTop: "0px" }} fluid>
+      <Card className="labeledCard" fluid>
         <p
+          className="label"
           style={{
-            padding: "0.5em",
-            position: "absolute",
-            left: "0px",
-            height: "100%",
             width: this.props.labelWidth,
-            backgroundColor: this.props.labelColor,
-            borderRadius: "0.28571429rem  0.28571429rem  0 0 !important",
-            color: "white",
-            margin: "0px"
+            backgroundColor: this.props.labelColor
           }}
         >
           {labelText}
         </p>
-        <Card.Content
-          style={{
-            position: "relative",
-            left: this.props.labelWidth,
-            width: "50%",
-            padding: "0.25em"
-          }}
-        >
+        <Card.Content style={{ left: this.props.labelWidth }}>
           {contentText}
         </Card.Content>
       </Card>

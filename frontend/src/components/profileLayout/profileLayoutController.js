@@ -69,7 +69,6 @@ export default class ProfileLayoutController extends Component {
           skills: ["Excel", "Project management", "Change management"],
           competencies: ["Thinking things through", "Achieve results"],
           developmentalGoals: ["Mobalize people"],
-
           education: [
             {
               content: "Telpher School of Buisness",

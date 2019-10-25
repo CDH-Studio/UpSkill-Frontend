@@ -20,3 +20,25 @@
 #section {
   right: 0px;
 }
+
+.labeledCard {
+  margin-bottom: 11px;
+  margin-top: 0px;
+  font-size: 12pt;
+}
+
+.labeledCard .label {
+  padding: 0.5em;
+  position: absolute;
+  left: 0px;
+  height: 100%;
+  border-radius: 0.28571429rem 0.28571429rem 0 0 !important;
+  color: white;
+  margin: 0px;
+}
+
+.labeledCard .content {
+  position: relative;
+  width: 50%;
+  padding: 0.25em !important;
+}
