@@ -13,7 +13,7 @@ export default class PrimaryGroupView extends Component {
   render() {
     const { profileInfo, windowWidth } = this.props;
     const { firstName, lastName } = profileInfo;
-    const useWideLayout = windowWidth > 1150;
+    const useWideLayout = windowWidth > 1250;
 
     return (
       <div>
@@ -21,16 +21,16 @@ export default class PrimaryGroupView extends Component {
           {firstName} {lastName}
         </h1>
         <Grid>
-          <Grid.Column width={useWideLayout ? 3 : 4}>
+          <Grid.Column style={{paddingBottom:'0px'}} width={useWideLayout ? 3 : 5}>
             <img
               src={tempProfilePic}
               style={{
-                maxHeight: "100%",
+                maxHeight: "193px",
                 maxWidth: "100%"
               }}
             />
           </Grid.Column>
-          <Grid.Column width={useWideLayout ? 8 : 12}>
+          <Grid.Column width={useWideLayout ? 8 : 11}>
             {this.renderPrimaryCard()}
           </Grid.Column>
           {this.renderLabeledCards()}
@@ -44,17 +44,17 @@ export default class PrimaryGroupView extends Component {
     const { groupOrLevel, security, status, yearsOfService } = profileInfo;
 
     // When using the most wide or most skinny view there is only one column of labeled cards
-    if (windowWidth <= 1150 && windowWidth > 750) {
+    if (windowWidth <= 1250 && windowWidth > 750) {
       return (
         <React.Fragment>
-          <Grid.Column width={8}>
+          <Grid.Column className="secondRow" width={8}>
             <LabeledCardController contentText={status} labelText={"Status"} />
             <LabeledCardController
               contentText={groupOrLevel}
               labelText={"Group/Level"}
             />
           </Grid.Column>
-          <Grid.Column width={8}>
+          <Grid.Column className="secondRow" width={8}>
             <LabeledCardController
               contentText={yearsOfService}
               labelText={"Years of Service"}
@@ -69,7 +69,10 @@ export default class PrimaryGroupView extends Component {
     }
     //When using the medium wideness view there are 2 columns of labeled cards
     return (
-      <Grid.Column width={windowWidth > 1150 ? 5 : 16}>
+      <Grid.Column 
+        {...((windowWidth > 1250) ? {width:5} : {className:"secondRow", width:16})}
+      
+       >
         <LabeledCardController contentText={status} labelText={"Status"} />
         <LabeledCardController
           contentText={groupOrLevel}

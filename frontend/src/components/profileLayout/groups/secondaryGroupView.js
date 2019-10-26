@@ -16,7 +16,7 @@ export default class secondaryGroupView extends Component {
   render() {
     const { windowWidth } = this.props;
 
-    const useWideLayout = windowWidth > 1150;
+    const useWideLayout = windowWidth > 1250;
 
     if (useWideLayout) {
       return (
@@ -76,7 +76,7 @@ export default class secondaryGroupView extends Component {
             <span>{firstLanguage}</span>
           </div>
           <p className="boldLabel noGapBelow">Second Language Proficiency</p>
-          <Table basic="very" style={{ marginTop: "0px" }} celled collapsing>
+          <Table basic="very" style={{ marginTop: "0px" }} celled collapsing unstackable>
             <Table.Body id="proficiencyTableBody">
               <Table.Row>
                 <Table.Cell>Reading</Table.Cell>
