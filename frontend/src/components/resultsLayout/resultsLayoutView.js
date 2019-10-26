@@ -5,7 +5,8 @@ import tempProfilePicture from "../../assets/tempProfilePicture.png";
 import "./resultStyles.css";
 import NavigationBar from "../navigationBar/navigationBarController";
 
-export default class ResultsLayoutView extends Component {
+
+class ResultsLayoutView extends Component {
   constructor(props) {
     super(props);
     this.renderResultCards = this.renderResultCards.bind(this);
@@ -91,3 +92,5 @@ export default class ResultsLayoutView extends Component {
     return <Card.Group fluid>{cards}</Card.Group>;
   }
 }
+
+export default injectIntl(ResultsLayoutView);

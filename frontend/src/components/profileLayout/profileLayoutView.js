@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 import NavigationBar from "../navigationBar/navigationBarController";
 import { Card, Grid, Icon, Label, Menu } from "semantic-ui-react";
@@ -7,7 +8,7 @@ import PrimaryGroupController from "./groups/primaryGroupController";
 import SecondaryGroupController from "./groups/secondaryGroupController";
 import "./profileLayout.css";
 
-export default class ProfileLayoutView extends Component {
+class ProfileLayoutView extends Component {
   render() {
     const { changeLanguage, keycloak, profileInfo, windowWidth } = this.props;
 
@@ -107,10 +108,11 @@ export default class ProfileLayoutView extends Component {
   }
 
   renderCareerOverview() {
-    const { careerSummary } = this.props.profileInfo;
+    const {intl, profileInfo} = this.props;
+    const { careerSummary } = profileInfo;
 
     return this.renderGenericHistoryCard(
-      "Career Journey so Far",
+      intl.formatMessage({id:"profile.career.overview"}),
       careerSummary
     );
   }
@@ -149,3 +151,5 @@ export default class ProfileLayoutView extends Component {
     );
   }
 }
+
+export default injectIntl(ProfileLayoutView);
