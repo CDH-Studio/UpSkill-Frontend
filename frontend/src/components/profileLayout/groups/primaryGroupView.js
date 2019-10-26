@@ -104,9 +104,9 @@ export default class PrimaryGroupView extends Component {
           <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
           <Popup
-            trigger={<h5 className="noGapAbove">{branch}</h5>}
-            on="click"
             flowing
+            on="click"
+            trigger={<h5 className="noGapAbove">{branch}</h5>}
           >
             <Popup.Content>
               {this.renderOrganizationList([...organizationList, team])}

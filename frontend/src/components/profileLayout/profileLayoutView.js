@@ -46,7 +46,7 @@ export default class ProfileLayoutView extends Component {
     const { GitHubURL, LinkedInURL, TwitterURL } = this.props.profileInfo;
 
     return (
-      <Menu widths={3} color="violet" inverted>
+      <Menu color="violet" inverted widths={3}>
         <Menu.Item href={LinkedInURL} target="_blank">
           <Icon name="linkedin" />
           LinkedIn

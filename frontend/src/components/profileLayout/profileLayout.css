@@ -1,18 +1,18 @@
-.violetColored {
-  color: #6435c9;
-}
-
 .body {
   margin: 50px auto;
-  min-width: 500px;
   max-width: 1200px;
+  min-width: 500px;
   padding: 25px;
 }
 
-.historyListing .row {
-  padding-bottom: 0px !important;
-  line-height: 14pt;
-  padding-top: 0px !important;
+.boldLabel {
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+
+.colorLabel {
+  color: #6435c9;
+  padding-right: 0.5em;
 }
 
 .historyListing .dateInfo {
@@ -23,22 +23,22 @@
   font-weight: bold;
 }
 
-.noGapBelow {
+.historyListing .row {
+  line-height: 14pt;
   padding-bottom: 0px !important;
-  margin-bottom: 0px !important;
+  padding-top: 0px !important;
 }
 
 .noGapAbove {
-  padding-top: 0px !important;
   margin-top: 0px !important;
+  padding-top: 0px !important;
 }
 
-.colorLabel {
+.noGapBelow {
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.violetColored {
   color: #6435c9;
-  padding-right: 0.5em;
-}
-
-.boldLabel {
-  font-weight: bold;
-  padding-right: 0.5em;
 }
