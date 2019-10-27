@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Grid, List, Popup } from "semantic-ui-react";
+import { Grid, List, Popup } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
@@ -46,7 +46,8 @@ class PrimaryGroupView extends Component {
             width={useWideLayout ? 3 : 5}
           >
             <EditWrapperController button={<EditProfilePictureController/>} wrapperType="compactWrapper">
-              <img
+              <img 
+                alt="missing profile"
                 src={tempProfilePic}
                 style={{
                   maxHeight: "200px",
