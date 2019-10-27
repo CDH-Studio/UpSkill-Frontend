@@ -15,15 +15,19 @@
   padding-right: 0.5em;
 }
 
-.historyListing .dateInfo {
+.historyList {
+  padding-top:10pt !important;
+}
+
+.historyList .dateInfo {
   text-align: right;
 }
 
-.historyListing .entryName {
+.historyList .entryName {
   font-weight: bold;
 }
 
-.historyListing .row {
+.historyList div .row {
   line-height: 14pt;
   padding-bottom: 0px !important;
   padding-top: 0px !important;

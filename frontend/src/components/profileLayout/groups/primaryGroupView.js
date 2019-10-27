@@ -39,7 +39,7 @@ class PrimaryGroupView extends Component {
             style={{ paddingBottom: "0px" }}
             width={useWideLayout ? 3 : 5}
           >
-            <EditWrapperController>
+            <EditWrapperController buttonBackground="rgba(0,0,0,0.75)" buttonColor="#dddddd" wrapperType="compactWrapper">
               <img
                 src={tempProfilePic}
                 style={{
@@ -71,7 +71,7 @@ class PrimaryGroupView extends Component {
       id: "profile.years.of.service"
     });
 
-    // When using the most wide or most skinny view there is only one column of labeled cards
+    // When using the medium wideness view there are 2 columns of labeled cards
     if (windowWidth <= 1250 && windowWidth > 750) {
       return (
         <React.Fragment>
@@ -100,11 +100,11 @@ class PrimaryGroupView extends Component {
         </React.Fragment>
       );
     }
-    //When using the medium wideness view there are 2 columns of labeled cards
+    //When using the most wide or most skinny view there is only one column of labeled cards
     return (
       <Grid.Column
         {...(windowWidth > 1250
-          ? { width: 5 }
+          ? { className: "firstRowLabelCard", width: 5}
           : { className: "secondRow", width: 16 })}
       >
         <EditWrapperController>
@@ -141,7 +141,7 @@ class PrimaryGroupView extends Component {
     } = this.props.profileInfo;
 
     return (
-      <ProfileCardController id="primaryCard">
+      <ProfileCardController  id="primaryCard" style={{marginTop:"-20px"}} wrapperType="reducePaddingWrapper">
         <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
         <Popup

@@ -8,9 +8,7 @@
 }
 
 .innerButton {
-  color: #888888;
   font-size: 12pt;
-  min-width: 50px;
   position: absolute;
   right: 4pt;
   top: 4pt;
@@ -18,11 +16,15 @@
 }
 
 .outerButton {
-  color: #888888;
   font-size: 12pt;
   left: 100%;
   min-width: 50px;
   position: absolute;
   top: 4pt;
   z-index: 10;
+}
+
+.reducePaddingWrapper{
+  margin-top: -20px;
+  position: relative;
 }

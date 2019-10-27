@@ -49,7 +49,7 @@ class ProfileLayoutView extends Component {
     const { GitHubURL, LinkedInURL, TwitterURL } = this.props.profileInfo;
 
     return (
-      <EditWrapperController>
+      <EditWrapperController buttonColor="#DDDDDD">
         <Menu color="violet" inverted widths={3}>
           <Menu.Item href={LinkedInURL} target="_blank">
             <Icon name="linkedin" />
@@ -133,11 +133,10 @@ class ProfileLayoutView extends Component {
   renderGenericHistoryCard(cardName, cardEntrys) {
     return (
       <ProfileCardController cardName={cardName}>
-        <Grid divided="vertically" fluid>
+        <Grid className="historyList" divided="vertically" fluid>
           {cardEntrys.map((value, index) => (
             <Grid.Row>
               <Grid.Column width={16}>
-                <div className="historyListing">
                   <Grid fluid>
                     <Grid.Row>
                       <Grid.Column className="entryName" width={8}>
@@ -151,7 +150,6 @@ class ProfileLayoutView extends Component {
                       <Grid.Column width={16}>{value.content}</Grid.Column>
                     </Grid.Row>
                   </Grid>
-                </div>
               </Grid.Column>
             </Grid.Row>
           ))}

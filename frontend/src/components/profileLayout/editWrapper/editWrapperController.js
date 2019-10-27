@@ -8,6 +8,8 @@ export default class EditWrapperController extends Component {
 }
 
 EditWrapperController.defaultProps = {
+  buttonColor: "#bbbbbb",
+  buttonBackground: null,
   buttonType: "innerButton",
   editFunction: true,
   wrapperType: "defaultWrapper"
