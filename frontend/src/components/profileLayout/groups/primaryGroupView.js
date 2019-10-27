@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, Grid, List, Popup } from "semantic-ui-react";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
 
@@ -9,7 +10,7 @@ import "./primaryGroup.css";
 /**
  * This class generates the items at the start of the profile page that need to interact with eachother to responsively resize
  */
-export default class PrimaryGroupView extends Component {
+class PrimaryGroupView extends Component {
   render() {
     const { profileInfo, windowWidth } = this.props;
     const { firstName, lastName } = profileInfo;
@@ -21,7 +22,10 @@ export default class PrimaryGroupView extends Component {
           {firstName} {lastName}
         </h1>
         <Grid>
-          <Grid.Column style={{paddingBottom:'0px'}} width={useWideLayout ? 3 : 5}>
+          <Grid.Column
+            style={{ paddingBottom: "0px" }}
+            width={useWideLayout ? 3 : 5}
+          >
             <img
               src={tempProfilePic}
               style={{
@@ -40,28 +44,41 @@ export default class PrimaryGroupView extends Component {
   }
 
   renderLabeledCards() {
-    const { profileInfo, windowWidth } = this.props;
+    const { intl, profileInfo, windowWidth } = this.props;
     const { groupOrLevel, security, status, yearsOfService } = profileInfo;
+
+    const groupOrLevelLabel = intl.formatMessage({
+      id: "profile.group.or.level"
+    });
+    const securityLabel = intl.formatMessage({ id: "profile.security" });
+    const statusLabel = intl.formatMessage({ id: "profile.status" });
+    const yearsOfServiceLabel = intl.formatMessage({
+      id: "profile.years.of.service"
+    });
 
     // When using the most wide or most skinny view there is only one column of labeled cards
     if (windowWidth <= 1250 && windowWidth > 750) {
       return (
         <React.Fragment>
           <Grid.Column className="secondRow" width={8}>
-            <LabeledCardController contentText={status} labelText={"Status"} />
+            <LabeledCardController
+              contentText={status}
+              labelText={statusLabel}
+            />
             <LabeledCardController
               contentText={groupOrLevel}
-              labelText={"Group/Level"}
+              labelText={groupOrLevelLabel}
             />
+            \
           </Grid.Column>
           <Grid.Column className="secondRow" width={8}>
             <LabeledCardController
               contentText={yearsOfService}
-              labelText={"Years of Service"}
+              labelText={yearsOfServiceLabel}
             />
             <LabeledCardController
               contentText={security}
-              labelText={"Security"}
+              labelText={securityLabel}
             />
           </Grid.Column>
         </React.Fragment>
@@ -69,20 +86,24 @@ export default class PrimaryGroupView extends Component {
     }
     //When using the medium wideness view there are 2 columns of labeled cards
     return (
-      <Grid.Column 
-        {...((windowWidth > 1250) ? {width:5} : {className:"secondRow", width:16})}
-      
-       >
-        <LabeledCardController contentText={status} labelText={"Status"} />
+      <Grid.Column
+        {...(windowWidth > 1250
+          ? { width: 5 }
+          : { className: "secondRow", width: 16 })}
+      >
+        <LabeledCardController contentText={status} labelText={statusLabel} />
         <LabeledCardController
           contentText={groupOrLevel}
-          labelText={"Group/Level"}
+          labelText={groupOrLevelLabel}
         />
         <LabeledCardController
           contentText={yearsOfService}
-          labelText={"Years of Service"}
+          labelText={yearsOfServiceLabel}
         />
-        <LabeledCardController contentText={security} labelText={"Security"} />
+        <LabeledCardController
+          contentText={security}
+          labelText={securityLabel}
+        />
       </Grid.Column>
     );
   }
@@ -116,8 +137,12 @@ export default class PrimaryGroupView extends Component {
             </Popup.Content>
           </Popup>
 
-          <div className="phoneNumberArea">Tel: {telephone}</div>
-          <div className="phoneNumberArea">Cell: {mobile}</div>
+          <div className="phoneNumberArea">
+            <FormattedMessage id="profile.telephone" />: {telephone}
+          </div>
+          <div className="phoneNumberArea">
+            <FormattedMessage id="profile.cellphone" />: {mobile}
+          </div>
           <div>{email}</div>
 
           <div>
@@ -157,3 +182,5 @@ export default class PrimaryGroupView extends Component {
     );
   }
 }
+
+export default injectIntl(PrimaryGroupView);

@@ -50,37 +50,46 @@ class ProfileLayoutView extends Component {
       <Menu color="violet" inverted widths={3}>
         <Menu.Item href={LinkedInURL} target="_blank">
           <Icon name="linkedin" />
-          LinkedIn
+          <FormattedMessage id="profile.linkedin" />
         </Menu.Item>
         <Menu.Item href={GitHubURL} target="_blank">
           <Icon name="github" />
-          Github
+          <FormattedMessage id="profile.github" />
         </Menu.Item>
         <Menu.Item href={TwitterURL} target="_blank">
           <Icon name="twitter" />
-          Twitter
+          <FormattedMessage id="profile.twitter" />
         </Menu.Item>
       </Menu>
     );
   }
 
   renderSkillsCard() {
-    const { skills } = this.props.profileInfo;
+    const { intl, profileInfo } = this.props;
+    const { skills } = profileInfo;
 
-    return this.renderGenericTagsCard("Skills", skills);
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.skills" }),
+      skills
+    );
   }
 
   renderCompetenciesCard() {
-    const { competencies } = this.props.profileInfo;
+    const { intl, profileInfo } = this.props;
+    const { competencies } = profileInfo;
 
-    return this.renderGenericTagsCard("Competencies", competencies);
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.competencies" }),
+      competencies
+    );
   }
 
   renderDevelopmentalGoalsCard() {
-    const { developmentalGoals } = this.props.profileInfo;
+    const { intl, profileInfo } = this.props;
+    const { developmentalGoals } = profileInfo;
 
     return this.renderGenericTagsCard(
-      "Developmental Goals",
+      intl.formatMessage({ id: "profile.developmental.goals" }),
       developmentalGoals
     );
   }
@@ -102,17 +111,21 @@ class ProfileLayoutView extends Component {
   }
 
   renderEducationCard() {
-    const { education } = this.props.profileInfo;
+    const { intl, profileInfo } = this.props;
+    const { education } = profileInfo;
 
-    return this.renderGenericHistoryCard("Education", education);
+    return this.renderGenericHistoryCard(
+      intl.formatMessage({ id: "profile.education" }),
+      education
+    );
   }
 
   renderCareerOverview() {
-    const {intl, profileInfo} = this.props;
+    const { intl, profileInfo } = this.props;
     const { careerSummary } = profileInfo;
 
     return this.renderGenericHistoryCard(
-      intl.formatMessage({id:"profile.career.overview"}),
+      intl.formatMessage({ id: "profile.career.overview" }),
       careerSummary
     );
   }

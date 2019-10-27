@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Card, Grid, Table } from "semantic-ui-react";
+import { FormattedMessage, injectIntl } from "react-intl";
 
 import "./secondaryGroup.css";
 
-export default class secondaryGroupView extends Component {
+class secondaryGroupView extends Component {
   constructor(props) {
     super(props);
     this.renderManagerCard = this.renderManagerCard.bind(this);
@@ -76,7 +77,13 @@ export default class secondaryGroupView extends Component {
             <span>{firstLanguage}</span>
           </div>
           <p className="boldLabel noGapBelow">Second Language Proficiency</p>
-          <Table basic="very" style={{ marginTop: "0px" }} celled collapsing unstackable>
+          <Table
+            basic="very"
+            style={{ marginTop: "0px" }}
+            celled
+            collapsing
+            unstackable
+          >
             <Table.Body id="proficiencyTableBody">
               <Table.Row>
                 <Table.Cell>Reading</Table.Cell>
@@ -120,3 +127,5 @@ export default class secondaryGroupView extends Component {
     );
   }
 }
+
+export default injectIntl(secondaryGroupView);

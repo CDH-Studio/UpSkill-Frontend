@@ -5,8 +5,7 @@ import tempProfilePicture from "../../assets/tempProfilePicture.png";
 import "./resultStyles.css";
 import NavigationBar from "../navigationBar/navigationBarController";
 
-
-class ResultsLayoutView extends Component {
+export default class ResultsLayoutView extends Component {
   constructor(props) {
     super(props);
     this.renderResultCards = this.renderResultCards.bind(this);
@@ -93,4 +92,4 @@ class ResultsLayoutView extends Component {
   }
 }
 
-export default injectIntl(ResultsLayoutView);
+//export default injectIntl(ResultsLayoutView);
