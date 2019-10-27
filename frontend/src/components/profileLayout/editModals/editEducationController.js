@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import EditPrimaryInformationView from "./editPrimaryInformationView";
+import EditEducationView from "./editEducationView";
 
-export default class EditPrimaryInformationController extends Component {
+export default class EditEducationController extends Component {
   render() {
-    return <EditPrimaryInformationView {...this.props} />;
+    return <EditEducationView {...this.props} />;
   }
 }
 

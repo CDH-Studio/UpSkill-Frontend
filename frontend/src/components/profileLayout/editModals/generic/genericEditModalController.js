@@ -8,7 +8,7 @@ export default class EditGenericModalController extends Component {
 }
 
 EditGenericModalController.defaultProps={
-  buttonColor:"#555555",
   buttonBackgroundColor:null,
-  buttonClass:"innerButton"
+  buttonClass:"innerButton",
+  buttonColor:"#555555",
 }

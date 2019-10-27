@@ -9,7 +9,7 @@ export default class EditWrapperController extends Component {
     return(
     <EditableConsumer>
      {props => 
-        <EditWrapperView {...Object.assign({}, this.props, props)} />
+        <EditWrapperView {...Object.assign({}, props, this.props)} />
       }
     </EditableConsumer>);
   }

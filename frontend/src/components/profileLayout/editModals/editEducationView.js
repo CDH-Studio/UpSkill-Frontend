@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from 'react-intl';
 
 import GenericEditModalController from './generic/genericEditModalController.js';
-import './editPrimaryInformation.css';
+import './editEducation.css';
 
-class EditPrimaryInformationView extends Component {
+class EditEducationView extends Component {
   render() {
     const {intl} = this.props;
     return (
@@ -16,4 +16,4 @@ class EditPrimaryInformationView extends Component {
   }
 }
 
-export default injectIntl(EditPrimaryInformationView);
+export default injectIntl(EditEducationView);
