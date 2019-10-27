@@ -13,6 +13,10 @@
   width: 200px;
 }
 
+#primaryCard {
+  margin-top: 0px;
+}
+
 .secondRow {
   padding-top: 0px !important;
 }

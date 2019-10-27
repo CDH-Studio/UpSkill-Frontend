@@ -4,7 +4,9 @@ import { FormattedMessage, injectIntl } from "react-intl";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
 
+import EditWrapperController from "../editWrapper/editWrapperController";
 import LabeledCardController from "../../labeledCard/labeledCardController";
+import ProfileCardController from "../profileCard/profileCardController";
 import "./primaryGroup.css";
 
 /**
@@ -18,21 +20,34 @@ class PrimaryGroupView extends Component {
 
     return (
       <div>
-        <h1 style={{ marginBottom: "6px" }}>
-          {firstName} {lastName}
-        </h1>
+        <EditWrapperController
+          buttonType={"outerButton"}
+          wrapperType={"compactWrapper"}
+        >
+          <h1
+            style={{
+              display: "inline-flex",
+              marginBottom: "6px",
+              marginTop: "0px"
+            }}
+          >
+            {firstName} {lastName}
+          </h1>
+        </EditWrapperController>
         <Grid>
           <Grid.Column
             style={{ paddingBottom: "0px" }}
             width={useWideLayout ? 3 : 5}
           >
-            <img
-              src={tempProfilePic}
-              style={{
-                maxHeight: "193px",
-                maxWidth: "100%"
-              }}
-            />
+            <EditWrapperController>
+              <img
+                src={tempProfilePic}
+                style={{
+                  maxHeight: "193px",
+                  maxWidth: "100%"
+                }}
+              />
+            </EditWrapperController>
           </Grid.Column>
           <Grid.Column width={useWideLayout ? 8 : 11}>
             {this.renderPrimaryCard()}
@@ -69,13 +84,14 @@ class PrimaryGroupView extends Component {
               contentText={groupOrLevel}
               labelText={groupOrLevelLabel}
             />
-            \
           </Grid.Column>
           <Grid.Column className="secondRow" width={8}>
-            <LabeledCardController
-              contentText={yearsOfService}
-              labelText={yearsOfServiceLabel}
-            />
+            <EditWrapperController>
+              <LabeledCardController
+                contentText={yearsOfService}
+                labelText={yearsOfServiceLabel}
+              />
+            </EditWrapperController>
             <LabeledCardController
               contentText={security}
               labelText={securityLabel}
@@ -91,7 +107,9 @@ class PrimaryGroupView extends Component {
           ? { width: 5 }
           : { className: "secondRow", width: 16 })}
       >
-        <LabeledCardController contentText={status} labelText={statusLabel} />
+        <EditWrapperController>
+          <LabeledCardController contentText={status} labelText={statusLabel} />
+        </EditWrapperController>
         <LabeledCardController
           contentText={groupOrLevel}
           labelText={groupOrLevelLabel}
@@ -123,33 +141,31 @@ class PrimaryGroupView extends Component {
     } = this.props.profileInfo;
 
     return (
-      <Card fluid>
-        <Card.Content>
-          <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
+      <ProfileCardController id="primaryCard">
+        <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
-          <Popup
-            flowing
-            on="click"
-            trigger={<h5 className="noGapAbove">{branch}</h5>}
-          >
-            <Popup.Content>
-              {this.renderOrganizationList([...organizationList, team])}
-            </Popup.Content>
-          </Popup>
+        <Popup
+          flowing
+          on="click"
+          trigger={<h5 className="noGapAbove">{branch}</h5>}
+        >
+          <Popup.Content>
+            {this.renderOrganizationList([...organizationList, team])}
+          </Popup.Content>
+        </Popup>
 
-          <div className="phoneNumberArea">
-            <FormattedMessage id="profile.telephone" />: {telephone}
-          </div>
-          <div className="phoneNumberArea">
-            <FormattedMessage id="profile.cellphone" />: {mobile}
-          </div>
-          <div>{email}</div>
+        <div className="phoneNumberArea">
+          <FormattedMessage id="profile.telephone" />: {telephone}
+        </div>
+        <div className="phoneNumberArea">
+          <FormattedMessage id="profile.cellphone" />: {mobile}
+        </div>
+        <div>{email}</div>
 
-          <div>
-            {street}, {province}, {country}
-          </div>
-        </Card.Content>
-      </Card>
+        <div>
+          {street}, {province}, {country}
+        </div>
+      </ProfileCardController>
     );
   }
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Card, Grid, Table } from "semantic-ui-react";
+import { Grid, Table } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
+import ProfileCardController from "../profileCard/profileCardController";
 import "./secondaryGroup.css";
 
 class secondaryGroupView extends Component {
@@ -48,16 +49,17 @@ class secondaryGroupView extends Component {
     const { manager } = this.props.profileInfo;
 
     return (
-      <Card fluid>
-        <Card.Content>
-          <span className="colorLabel">Manager:</span>
-          <span>{manager}</span>
-        </Card.Content>
-      </Card>
+      <ProfileCardController>
+        <span className="colorLabel">
+          <FormattedMessage id="profile.manager" />:
+        </span>
+        <span>{manager}</span>
+      </ProfileCardController>
     );
   }
 
   renderLanguageProficiencyCard() {
+    const { intl, profileInfo } = this.props;
     const {
       firstLanguage,
       secondaryOralDate,
@@ -66,64 +68,77 @@ class secondaryGroupView extends Component {
       secondaryReadingGrade,
       secondaryWritingDate,
       secondaryWritingGrade
-    } = this.props.profileInfo;
+    } = profileInfo;
 
     return (
-      <Card fluid>
-        <Card.Content>
-          <h5 className="violetColored">Official Language</h5>
-          <div>
-            <span className="boldLabel">First Language</span>
-            <span>{firstLanguage}</span>
-          </div>
-          <p className="boldLabel noGapBelow">Second Language Proficiency</p>
-          <Table
-            basic="very"
-            style={{ marginTop: "0px" }}
-            celled
-            collapsing
-            unstackable
-          >
-            <Table.Body id="proficiencyTableBody">
-              <Table.Row>
-                <Table.Cell>Reading</Table.Cell>
-                <Table.Cell>{secondaryReadingGrade}</Table.Cell>
-                <Table.Cell>{secondaryReadingDate}</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell>Writing</Table.Cell>
-                <Table.Cell>{secondaryWritingGrade}</Table.Cell>
-                <Table.Cell>{secondaryWritingDate}</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell>Oral</Table.Cell>
-                <Table.Cell>{secondaryOralGrade}</Table.Cell>
-                <Table.Cell>{secondaryOralDate}</Table.Cell>
-              </Table.Row>
-            </Table.Body>
-          </Table>
-        </Card.Content>
-      </Card>
+      <ProfileCardController
+        cardName={intl.formatMessage({ id: "profile.official.language" })}
+      >
+        <div>
+          <span className="boldLabel">
+            <FormattedMessage id="profile.first.language" />
+          </span>
+          <span>{firstLanguage}</span>
+        </div>
+        <p className="boldLabel noGapBelow">
+          <FormattedMessage id="profile.second.language.proficiency" />
+        </p>
+        <Table
+          basic="very"
+          style={{ marginTop: "0px" }}
+          celled
+          collapsing
+          unstackable
+        >
+          <Table.Body id="proficiencyTableBody">
+            <Table.Row>
+              <Table.Cell>
+                <FormattedMessage id="profile.reading" />
+              </Table.Cell>
+              <Table.Cell>{secondaryReadingGrade}</Table.Cell>
+              <Table.Cell>{secondaryReadingDate}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                <FormattedMessage id="profile.writing" />
+              </Table.Cell>
+              <Table.Cell>{secondaryWritingGrade}</Table.Cell>
+              <Table.Cell>{secondaryWritingDate}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                <FormattedMessage id="profile.oral" />
+              </Table.Cell>
+              <Table.Cell>{secondaryOralGrade}</Table.Cell>
+              <Table.Cell>{secondaryOralDate}</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      </ProfileCardController>
     );
   }
 
   renderTalentMatrixCard() {
-    const { careerMobility, talentMatrixResult } = this.props.profileInfo;
+    const { intl, profileInfo } = this.props;
+    const { careerMobility, talentMatrixResult } = profileInfo;
 
     return (
-      <Card fluid>
-        <Card.Content>
-          <h5 className="violetColored">Talent Manager (link to TM tool)</h5>
-          <div>
-            <span className="boldLabel">Career Mobility</span>
-            <span>{careerMobility}</span>
-          </div>
-          <div>
-            <span className="boldLabel">Talent matrix result</span>
-            <span>{talentMatrixResult}</span>
-          </div>
-        </Card.Content>
-      </Card>
+      <ProfileCardController
+        cardName={intl.formatMessage({ id: "profile.talent.manager" })}
+      >
+        <div>
+          <span className="boldLabel">
+            <FormattedMessage id="profile.career.mobility" />
+          </span>
+          <span>{careerMobility}</span>
+        </div>
+        <div>
+          <span className="boldLabel">
+            <FormattedMessage id="profile.talent.matrix.result" />
+          </span>
+          <span>{talentMatrixResult}</span>
+        </div>
+      </ProfileCardController>
     );
   }
 }
