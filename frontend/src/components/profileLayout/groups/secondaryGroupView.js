@@ -25,7 +25,7 @@ class secondaryGroupView extends Component {
 
     if (useWideLayout) {
       return (
-        <Grid fluid>
+        <Grid>
           <Grid.Row>
             <Grid.Column width={11}>
               {this.renderManagerCard()}

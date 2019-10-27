@@ -148,11 +148,11 @@ class ProfileLayoutView extends Component {
   renderGenericHistoryCard(cardName, cardEntrys, button) {
     return (
       <ProfileCardController button={button} cardName={cardName}>
-        <Grid className="historyList" divided="vertically" fluid>
+        <Grid className="historyList" divided="vertically">
           {cardEntrys.map((value, index) => (
             <Grid.Row>
               <Grid.Column width={16}>
-                  <Grid fluid>
+                  <Grid>
                     <Grid.Row>
                       <Grid.Column className="entryName" width={8}>
                         {value.name}
