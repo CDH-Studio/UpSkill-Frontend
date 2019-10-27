@@ -4,7 +4,15 @@ import { FormattedMessage, injectIntl } from "react-intl";
 import NavigationBar from "../navigationBar/navigationBarController";
 import { Grid, Icon, Label, Menu } from "semantic-ui-react";
 
+import {EditableProvider} from './editableProvider/editableProvider'
+
 import EditWrapperController from "./editWrapper/editWrapperController";
+import EditMenuController from "./editModals/editMenuController";
+import EditSkillController from "./editModals/editSkillsController";
+import EditCompetenciesController from "./editModals/editCompetenciesController";
+import EditDevelopmentGoalsController from "./editModals/editDevelopmentGoalsController";
+import EditEducationController from "./editModals/editEducationController";
+import EditCareerOverviewController from "./editModals/editCareerOverviewController";
 import PrimaryGroupController from "./groups/primaryGroupController";
 import ProfileCardController from "./profileCard/profileCardController";
 import SecondaryGroupController from "./groups/secondaryGroupController";
@@ -15,6 +23,7 @@ class ProfileLayoutView extends Component {
     const { changeLanguage, keycloak, profileInfo, windowWidth } = this.props;
 
     return (
+      <EditableProvider value={{editable:null}}>
       <div>
         <NavigationBar
           changeLanguage={changeLanguage}
@@ -42,6 +51,7 @@ class ProfileLayoutView extends Component {
           {this.renderCareerOverview()}
         </div>
       </div>
+      </EditableProvider>
     );
   }
 
@@ -49,7 +59,7 @@ class ProfileLayoutView extends Component {
     const { GitHubURL, LinkedInURL, TwitterURL } = this.props.profileInfo;
 
     return (
-      <EditWrapperController buttonColor="#DDDDDD">
+      <EditWrapperController button={<EditMenuController />} buttonColor="#DDDDDD">
         <Menu color="violet" inverted widths={3}>
           <Menu.Item href={LinkedInURL} target="_blank">
             <Icon name="linkedin" />
@@ -74,7 +84,8 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.skills" }),
-      skills
+      skills,
+      <EditSkillController/>
     );
   }
 
@@ -84,7 +95,8 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.competencies" }),
-      competencies
+      competencies,
+      <EditCompetenciesController/>
     );
   }
 
@@ -94,13 +106,14 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.developmental.goals" }),
-      developmentalGoals
+      developmentalGoals,
+      <EditDevelopmentGoalsController/>
     );
   }
 
-  renderGenericTagsCard(cardName, cardTags) {
+  renderGenericTagsCard(cardName, cardTags, button) {
     return (
-      <ProfileCardController cardName={cardName}>
+      <ProfileCardController button={button} cardName={cardName}>
         {cardTags.map((value, index) => (
           <Label color="purple" basic>
             <p style={{ color: "black" }}>{value}</p>
@@ -116,7 +129,8 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericHistoryCard(
       intl.formatMessage({ id: "profile.education" }),
-      education
+      education,
+      <EditEducationController/>
     );
   }
 
@@ -126,13 +140,14 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericHistoryCard(
       intl.formatMessage({ id: "profile.career.overview" }),
-      careerSummary
+      careerSummary,
+      <EditCareerOverviewController/>
     );
   }
 
-  renderGenericHistoryCard(cardName, cardEntrys) {
+  renderGenericHistoryCard(cardName, cardEntrys, button) {
     return (
-      <ProfileCardController cardName={cardName}>
+      <ProfileCardController button={button} cardName={cardName}>
         <Grid className="historyList" divided="vertically" fluid>
           {cardEntrys.map((value, index) => (
             <Grid.Row>

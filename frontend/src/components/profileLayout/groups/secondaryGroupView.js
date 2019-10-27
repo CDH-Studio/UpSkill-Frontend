@@ -3,6 +3,9 @@ import { Grid, Table } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import ProfileCardController from "../profileCard/profileCardController";
+import EditLanguageProficiencyController from "../editModals/editManagerController"
+import EditManagerController from "../editModals/editManagerController";
+import EditTalentManagerController from "../editModals/editTalentManagerController";
 import "./secondaryGroup.css";
 
 class secondaryGroupView extends Component {
@@ -12,7 +15,7 @@ class secondaryGroupView extends Component {
     this.renderLanguageProficiencyCard = this.renderLanguageProficiencyCard.bind(
       this
     );
-    this.renderTalentMatrixCard = this.renderTalentMatrixCard.bind(this);
+    this.renderTalentManagerCard = this.renderTalentManagerCard.bind(this);
   }
 
   render() {
@@ -26,7 +29,7 @@ class secondaryGroupView extends Component {
           <Grid.Row>
             <Grid.Column width={11}>
               {this.renderManagerCard()}
-              {this.renderTalentMatrixCard()}
+              {this.renderTalentManagerCard()}
             </Grid.Column>
             <Grid.Column width={5}>
               {this.renderLanguageProficiencyCard()}
@@ -39,7 +42,7 @@ class secondaryGroupView extends Component {
         <React.Fragment>
           {this.renderManagerCard()}
           {this.renderLanguageProficiencyCard()}
-          {this.renderTalentMatrixCard()}
+          {this.renderTalentManagerCard()}
         </React.Fragment>
       );
     }
@@ -49,7 +52,7 @@ class secondaryGroupView extends Component {
     const { manager } = this.props.profileInfo;
 
     return (
-      <ProfileCardController>
+      <ProfileCardController button={<EditManagerController />}>
         <span className="colorLabel">
           <FormattedMessage id="profile.manager" />:
         </span>
@@ -72,6 +75,7 @@ class secondaryGroupView extends Component {
 
     return (
       <ProfileCardController
+      button={<EditLanguageProficiencyController />}
         cardName={intl.formatMessage({ id: "profile.official.language" })}
       >
         <div>
@@ -118,12 +122,13 @@ class secondaryGroupView extends Component {
     );
   }
 
-  renderTalentMatrixCard() {
+  renderTalentManagerCard() {
     const { intl, profileInfo } = this.props;
     const { careerMobility, talentMatrixResult } = profileInfo;
 
     return (
       <ProfileCardController
+      button={<EditTalentManagerController />}
         cardName={intl.formatMessage({ id: "profile.talent.manager" })}
       >
         <div>

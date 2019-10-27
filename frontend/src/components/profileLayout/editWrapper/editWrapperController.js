@@ -1,16 +1,21 @@
 import React, { Component } from "react";
+
+import {EditableConsumer} from '../editableProvider/editableProvider';
+
 import EditWrapperView from "./editWrapperView";
 
 export default class EditWrapperController extends Component {
   render() {
-    return <EditWrapperView {...this.props} />;
+    return(
+    <EditableConsumer>
+     {props => 
+        <EditWrapperView {...Object.assign({}, this.props, props)} />
+      }
+    </EditableConsumer>);
   }
 }
 
 EditWrapperController.defaultProps = {
-  buttonColor: "#bbbbbb",
-  buttonBackground: null,
-  buttonType: "innerButton",
-  editFunction: true,
+  buttonPosition: "innerButton",
   wrapperType: "defaultWrapper"
 };

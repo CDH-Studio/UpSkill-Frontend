@@ -5,20 +5,12 @@ import "./editWrapper.css";
 
 class EditWrapperView extends Component {
   render() {
-    const { buttonBackground, buttonColor, buttonType, children, editFunction, wrapperType } = this.props;
+    const { button, children, editable, wrapperType } = this.props;
 
-    let buttonStyle = {color:buttonColor}
-    if (buttonBackground ) {
-      buttonStyle['backgroundColor'] = buttonBackground;
-    }
-
-    if (editFunction) {
+    if (editable) {
       return (
         <div className={wrapperType}>
-          <p className={buttonType} onClick={editFunction} style={buttonStyle}>
-            [ <FormattedMessage id="profile.edit" /> ]
-          </p>
-
+          {button}
           {children}
         </div>
       );

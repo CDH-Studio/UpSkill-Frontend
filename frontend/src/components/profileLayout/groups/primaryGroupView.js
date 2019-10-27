@@ -9,6 +9,11 @@ import LabeledCardController from "../../labeledCard/labeledCardController";
 import ProfileCardController from "../profileCard/profileCardController";
 import "./primaryGroup.css";
 
+import EditNameController from "../editModals/editNameController";
+import EditPrimaryInformationController from "../editModals/editPrimaryInformationController";
+import EditProfilePictureController from "../editModals/editProfilePictureController";
+import EditLabelCardsController from "../editModals/editLabelCardsController";
+
 /**
  * This class generates the items at the start of the profile page that need to interact with eachother to responsively resize
  */
@@ -21,7 +26,8 @@ class PrimaryGroupView extends Component {
     return (
       <div>
         <EditWrapperController
-          buttonType={"outerButton"}
+          buttonPosition={"outerButton"}
+          button={<EditNameController/>}
           wrapperType={"compactWrapper"}
         >
           <h1
@@ -39,7 +45,7 @@ class PrimaryGroupView extends Component {
             style={{ paddingBottom: "0px" }}
             width={useWideLayout ? 3 : 5}
           >
-            <EditWrapperController buttonBackground="rgba(0,0,0,0.75)" buttonColor="#dddddd" wrapperType="compactWrapper">
+            <EditWrapperController button={<EditProfilePictureController/>} wrapperType="compactWrapper">
               <img
                 src={tempProfilePic}
                 style={{
@@ -86,7 +92,7 @@ class PrimaryGroupView extends Component {
             />
           </Grid.Column>
           <Grid.Column className="secondRow" width={8}>
-            <EditWrapperController>
+            <EditWrapperController button={<EditLabelCardsController/>}>
               <LabeledCardController
                 contentText={yearsOfService}
                 labelText={yearsOfServiceLabel}
@@ -107,7 +113,7 @@ class PrimaryGroupView extends Component {
           ? { className: "firstRowLabelCard", width: 5}
           : { className: "secondRow", width: 16 })}
       >
-        <EditWrapperController>
+        <EditWrapperController button={<EditLabelCardsController/>}>
           <LabeledCardController contentText={status} labelText={statusLabel} />
         </EditWrapperController>
         <LabeledCardController
@@ -141,7 +147,7 @@ class PrimaryGroupView extends Component {
     } = this.props.profileInfo;
 
     return (
-      <ProfileCardController  id="primaryCard" style={{marginTop:"-20px"}} wrapperType="reducePaddingWrapper">
+      <ProfileCardController  id="primaryCard" style={{marginTop:"-20px"}} button={<EditPrimaryInformationController/>} wrapperType="reducePaddingWrapper">
         <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
         <Popup
