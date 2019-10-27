@@ -23,7 +23,7 @@ class ProfileLayoutView extends Component {
     const { changeLanguage, keycloak, profileInfo, windowWidth } = this.props;
 
     return (
-      <EditableProvider value={{editable:null}}>
+      <EditableProvider value={{editable:false}}>
       <div>
         <NavigationBar
           changeLanguage={changeLanguage}

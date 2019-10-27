@@ -42,14 +42,14 @@ class PrimaryGroupView extends Component {
         </EditWrapperController>
         <Grid>
           <Grid.Column
-            style={{ paddingBottom: "0px" }}
+            style={{ paddingBottom: "0px", paddingRight:"0px"}}
             width={useWideLayout ? 3 : 5}
           >
             <EditWrapperController button={<EditProfilePictureController/>} wrapperType="compactWrapper">
               <img
                 src={tempProfilePic}
                 style={{
-                  maxHeight: "193px",
+                  maxHeight: "200px",
                   maxWidth: "100%"
                 }}
               />
