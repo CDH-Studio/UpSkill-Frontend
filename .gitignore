@@ -2,3 +2,5 @@
 backend/.serverless
 node_modules
 .env
+backend3/.env
+backend3/keycloak.json
