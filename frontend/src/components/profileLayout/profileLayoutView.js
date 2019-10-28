@@ -28,8 +28,6 @@ class ProfileLayoutView extends Component {
       windowWidth
     } = this.props;
 
-    console.log("editable", editable);
-
     return (
       <EditableProvider value={{ editable }}>
         <div>

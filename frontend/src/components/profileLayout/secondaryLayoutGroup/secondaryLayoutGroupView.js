@@ -3,7 +3,7 @@ import { Grid, Table } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import ProfileCardController from "../profileCard/profileCardController";
-import EditLanguageProficiencyController from "../editModals/editManager/editManagerController";
+import EditLanguageProficiencyController from "../editModals/editLanguageProficiency/editLanguageProficiencyController";
 import EditManagerController from "../editModals/editManager/editManagerController";
 import EditTalentManagerController from "../editModals/editTalentManager/editTalentManagerController";
 import "./secondaryLayoutGroup.css";

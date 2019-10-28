@@ -79,7 +79,29 @@ it("Editable profile view contains expected components", () => {
     />
   );
 
-  const names = ["edit"];
+  const names = [
+    "EditCareerOverviewView",
+    "EditCompetenciesView",
+    "EditDevelopmentGoalsView",
+    "EditEducationView",
+    "EditLabelCardsView",
+    "EditLanguageProficiencyView",
+    "EditManagerView",
+    "EditMenuView",
+    "EditNameView",
+    "EditPrimaryInformationView",
+    "EditProfilePictureView",
+    "EditSkillsView",
+    "EditTalentManagerView"
+  ];
+
+  console.log(wrapper.debug());
+
+  names.forEach(val => {
+    console.log("finding", val);
+    let instances = wrapper.find(val);
+    expect(instances.length).toBe(1);
+  });
 
   const outerEditButtons = wrapper.find(".outerButton");
   expect(outerEditButtons.length).toBe(1);
@@ -179,6 +201,28 @@ it("Non-editable profile view contains expected components", () => {
       windowWidth={1400}
     />
   );
+
+  const names = [
+    "EditCareerOverviewView",
+    "EditCompetenciesView",
+    "EditDevelopmentGoalsView",
+    "EditEducationView",
+    "EditLabelCardsView",
+    "EditLanguageProficiencyView",
+    "EditManagerView",
+    "EditMenuView",
+    "EditNameView",
+    "EditPrimaryInformationView",
+    "EditProfilePictureView",
+    "EditSkillsView",
+    "EditTalentManagerView"
+  ];
+
+  names.forEach(val => {
+    console.log("findingxx", val);
+    let instances = wrapper.find(val);
+    expect(instances.length).toBe(0);
+  });
 
   const outerEditButtons = wrapper.find(".outerButton");
   expect(outerEditButtons.length).toBe(0);
