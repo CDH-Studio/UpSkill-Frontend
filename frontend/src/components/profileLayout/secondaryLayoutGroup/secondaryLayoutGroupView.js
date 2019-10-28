@@ -3,10 +3,10 @@ import { Grid, Table } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import ProfileCardController from "../profileCard/profileCardController";
-import EditLanguageProficiencyController from "../editModals/editManagerController"
-import EditManagerController from "../editModals/editManagerController";
-import EditTalentManagerController from "../editModals/editTalentManagerController";
-import "./secondaryGroup.css";
+import EditLanguageProficiencyController from "../editModals/editManager/editManagerController";
+import EditManagerController from "../editModals/editManager/editManagerController";
+import EditTalentManagerController from "../editModals/editTalentManager/editTalentManagerController";
+import "./secondaryLayoutGroup.css";
 
 class secondaryGroupView extends Component {
   constructor(props) {
@@ -75,7 +75,7 @@ class secondaryGroupView extends Component {
 
     return (
       <ProfileCardController
-      button={<EditLanguageProficiencyController />}
+        button={<EditLanguageProficiencyController />}
         cardName={intl.formatMessage({ id: "profile.official.language" })}
       >
         <div>
@@ -128,7 +128,7 @@ class secondaryGroupView extends Component {
 
     return (
       <ProfileCardController
-      button={<EditTalentManagerController />}
+        button={<EditTalentManagerController />}
         cardName={intl.formatMessage({ id: "profile.talent.manager" })}
       >
         <div>

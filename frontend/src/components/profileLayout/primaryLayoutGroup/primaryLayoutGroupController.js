@@ -1,12 +1,15 @@
 import React, { Component } from "react";
-import PrimaryGroupView from "./primaryGroupView";
+import PrimaryLayoutGroupView from "./primaryLayoutGroupView";
 
 export default class PrimaryGroupController extends Component {
   render() {
     const { profileInfo, windowWidth } = this.props;
 
     return (
-      <PrimaryGroupView profileInfo={profileInfo} windowWidth={windowWidth} />
+      <PrimaryLayoutGroupView
+        profileInfo={profileInfo}
+        windowWidth={windowWidth}
+      />
     );
   }
 }

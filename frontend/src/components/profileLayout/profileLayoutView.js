@@ -4,18 +4,18 @@ import { FormattedMessage, injectIntl } from "react-intl";
 import NavigationBar from "../navigationBar/navigationBarController";
 import { Grid, Icon, Label, Menu } from "semantic-ui-react";
 
-import {EditableProvider} from './editableProvider/editableProvider'
+import { EditableProvider } from "./editableProvider/editableProvider";
 
 import EditWrapperController from "./editWrapper/editWrapperController";
-import EditMenuController from "./editModals/editMenuController";
-import EditSkillController from "./editModals/editSkillsController";
-import EditCompetenciesController from "./editModals/editCompetenciesController";
-import EditDevelopmentGoalsController from "./editModals/editDevelopmentGoalsController";
-import EditEducationController from "./editModals/editEducationController";
-import EditCareerOverviewController from "./editModals/editCareerOverviewController";
-import PrimaryGroupController from "./groups/primaryGroupController";
+import EditMenuController from "./editModals/editMenu/editMenuController";
+import EditSkillController from "./editModals/editSkills/editSkillsController";
+import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
+import EditDevelopmentGoalsController from "./editModals/editDevelopmentGoals/editDevelopmentGoalsController";
+import EditEducationController from "./editModals/editEducation/editEducationController";
+import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";
+import PrimaryLayoutGroupController from "./primaryLayoutGroup/primaryLayoutGroupController";
 import ProfileCardController from "./profileCard/profileCardController";
-import SecondaryGroupController from "./groups/secondaryGroupController";
+import SecondaryLayoutGroupController from "./secondaryLayoutGroup/secondaryLayoutGroupController";
 import "./profileLayout.css";
 
 class ProfileLayoutView extends Component {
@@ -23,34 +23,34 @@ class ProfileLayoutView extends Component {
     const { changeLanguage, keycloak, profileInfo, windowWidth } = this.props;
 
     return (
-      <EditableProvider value={{editable:false}}>
-      <div>
-        <NavigationBar
-          changeLanguage={changeLanguage}
-          keycloak={keycloak}
-          logoRedirectHome={true}
-        />
-
-        <div className="body">
-          <PrimaryGroupController
-            profileInfo={profileInfo}
-            windowWidth={windowWidth}
+      <EditableProvider value={{ editable: true }}>
+        <div>
+          <NavigationBar
+            changeLanguage={changeLanguage}
+            keycloak={keycloak}
+            logoRedirectHome={true}
           />
 
-          {this.renderExternalLinks()}
+          <div className="body">
+            <PrimaryLayoutGroupController
+              profileInfo={profileInfo}
+              windowWidth={windowWidth}
+            />
 
-          <SecondaryGroupController
-            profileInfo={profileInfo}
-            windowWidth={windowWidth}
-          />
+            {this.renderExternalLinks()}
 
-          {this.renderSkillsCard()}
-          {this.renderCompetenciesCard()}
-          {this.renderDevelopmentalGoalsCard()}
-          {this.renderEducationCard()}
-          {this.renderCareerOverview()}
+            <SecondaryLayoutGroupController
+              profileInfo={profileInfo}
+              windowWidth={windowWidth}
+            />
+
+            {this.renderSkillsCard()}
+            {this.renderCompetenciesCard()}
+            {this.renderDevelopmentalGoalsCard()}
+            {this.renderEducationCard()}
+            {this.renderCareerOverview()}
+          </div>
         </div>
-      </div>
       </EditableProvider>
     );
   }
@@ -59,7 +59,10 @@ class ProfileLayoutView extends Component {
     const { GitHubURL, LinkedInURL, TwitterURL } = this.props.profileInfo;
 
     return (
-      <EditWrapperController button={<EditMenuController />} buttonColor="#DDDDDD">
+      <EditWrapperController
+        button={<EditMenuController />}
+        buttonColor="#DDDDDD"
+      >
         <Menu color="violet" inverted widths={3}>
           <Menu.Item href={LinkedInURL} target="_blank">
             <Icon name="linkedin" />
@@ -85,7 +88,7 @@ class ProfileLayoutView extends Component {
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.skills" }),
       skills,
-      <EditSkillController/>
+      <EditSkillController />
     );
   }
 
@@ -96,7 +99,7 @@ class ProfileLayoutView extends Component {
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.competencies" }),
       competencies,
-      <EditCompetenciesController/>
+      <EditCompetenciesController />
     );
   }
 
@@ -107,7 +110,7 @@ class ProfileLayoutView extends Component {
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.developmental.goals" }),
       developmentalGoals,
-      <EditDevelopmentGoalsController/>
+      <EditDevelopmentGoalsController />
     );
   }
 
@@ -130,7 +133,7 @@ class ProfileLayoutView extends Component {
     return this.renderGenericHistoryCard(
       intl.formatMessage({ id: "profile.education" }),
       education,
-      <EditEducationController/>
+      <EditEducationController />
     );
   }
 
@@ -141,7 +144,7 @@ class ProfileLayoutView extends Component {
     return this.renderGenericHistoryCard(
       intl.formatMessage({ id: "profile.career.overview" }),
       careerSummary,
-      <EditCareerOverviewController/>
+      <EditCareerOverviewController />
     );
   }
 
@@ -152,19 +155,19 @@ class ProfileLayoutView extends Component {
           {cardEntrys.map((value, index) => (
             <Grid.Row>
               <Grid.Column width={16}>
-                  <Grid>
-                    <Grid.Row>
-                      <Grid.Column className="entryName" width={8}>
-                        {value.name}
-                      </Grid.Column>
-                      <Grid.Column className="dateInfo" width={8}>
-                        {value.startDate} - {value.endDate}
-                      </Grid.Column>
-                    </Grid.Row>
-                    <Grid.Row>
-                      <Grid.Column width={16}>{value.content}</Grid.Column>
-                    </Grid.Row>
-                  </Grid>
+                <Grid>
+                  <Grid.Row>
+                    <Grid.Column className="entryName" width={8}>
+                      {value.name}
+                    </Grid.Column>
+                    <Grid.Column className="dateInfo" width={8}>
+                      {value.startDate} - {value.endDate}
+                    </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                    <Grid.Column width={16}>{value.content}</Grid.Column>
+                  </Grid.Row>
+                </Grid>
               </Grid.Column>
             </Grid.Row>
           ))}

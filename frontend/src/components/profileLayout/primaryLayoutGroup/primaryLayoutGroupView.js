@@ -7,12 +7,12 @@ import tempProfilePic from "../../../assets/tempProfilePicture.png";
 import EditWrapperController from "../editWrapper/editWrapperController";
 import LabeledCardController from "../../labeledCard/labeledCardController";
 import ProfileCardController from "../profileCard/profileCardController";
-import "./primaryGroup.css";
+import "./primaryLayoutGroup.css";
 
-import EditNameController from "../editModals/editNameController";
-import EditPrimaryInformationController from "../editModals/editPrimaryInformationController";
-import EditProfilePictureController from "../editModals/editProfilePictureController";
-import EditLabelCardsController from "../editModals/editLabelCardsController";
+import EditNameController from "../editModals/editName/editNameController";
+import EditPrimaryInformationController from "../editModals/editPrimaryInformation/editPrimaryInformationController";
+import EditProfilePictureController from "../editModals/editProfilePicture/editProfilePictureController";
+import EditLabelCardsController from "../editModals/editLabelCards/editLabelCardsController";
 
 /**
  * This class generates the items at the start of the profile page that need to interact with eachother to responsively resize
@@ -27,7 +27,7 @@ class PrimaryGroupView extends Component {
       <div>
         <EditWrapperController
           buttonPosition={"outerButton"}
-          button={<EditNameController/>}
+          button={<EditNameController />}
           wrapperType={"compactWrapper"}
         >
           <h1
@@ -42,11 +42,14 @@ class PrimaryGroupView extends Component {
         </EditWrapperController>
         <Grid>
           <Grid.Column
-            style={{ paddingBottom: "0px", paddingRight:"0px"}}
+            style={{ paddingBottom: "0px", paddingRight: "0px" }}
             width={useWideLayout ? 3 : 5}
           >
-            <EditWrapperController button={<EditProfilePictureController/>} wrapperType="compactWrapper">
-              <img 
+            <EditWrapperController
+              button={<EditProfilePictureController />}
+              wrapperType="compactWrapper"
+            >
+              <img
                 alt="missing profile"
                 src={tempProfilePic}
                 style={{
@@ -93,7 +96,7 @@ class PrimaryGroupView extends Component {
             />
           </Grid.Column>
           <Grid.Column className="secondRow" width={8}>
-            <EditWrapperController button={<EditLabelCardsController/>}>
+            <EditWrapperController button={<EditLabelCardsController />}>
               <LabeledCardController
                 contentText={yearsOfService}
                 labelText={yearsOfServiceLabel}
@@ -111,10 +114,10 @@ class PrimaryGroupView extends Component {
     return (
       <Grid.Column
         {...(windowWidth > 1250
-          ? { className: "firstRowLabelCard", width: 5}
+          ? { className: "firstRowLabelCard", width: 5 }
           : { className: "secondRow", width: 16 })}
       >
-        <EditWrapperController button={<EditLabelCardsController/>}>
+        <EditWrapperController button={<EditLabelCardsController />}>
           <LabeledCardController contentText={status} labelText={statusLabel} />
         </EditWrapperController>
         <LabeledCardController
@@ -148,7 +151,12 @@ class PrimaryGroupView extends Component {
     } = this.props.profileInfo;
 
     return (
-      <ProfileCardController  id="primaryCard" style={{marginTop:"-20px"}} button={<EditPrimaryInformationController/>} wrapperType="reducePaddingWrapper">
+      <ProfileCardController
+        id="primaryCard"
+        style={{ marginTop: "-20px" }}
+        button={<EditPrimaryInformationController />}
+        wrapperType="reducePaddingWrapper"
+      >
         <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
         <Popup
