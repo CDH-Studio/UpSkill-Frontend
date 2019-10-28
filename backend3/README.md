@@ -1,4 +1,4 @@
-# upskill-backend
+# backend
 
 > Upskill backend
 
@@ -14,7 +14,7 @@ Getting up and running is as easy as 1, 2, 3.
 2. Install your dependencies
 
     ```
-    cd path/to/upskill-backend
+    cd path/to/backend
     npm install
     ```
 
