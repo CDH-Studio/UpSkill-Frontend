@@ -87,7 +87,7 @@ class App extends Component {
         i18nConfig.locale
       );
 
-      if (this.state.authenticated){
+      if (this.state.authenticated) {
         return (
           <IntlProvider
             locale={i18nConfig.locale}
@@ -146,8 +146,9 @@ class App extends Component {
             </Router>
           </IntlProvider>
         );
-                  }
-                else {return <div>Unable to authenticate!</div>};
+      } else {
+        return <div>Unable to authenticate!</div>;
+      }
     }
     return <div>Initializing Keycloak...</div>;
   }
