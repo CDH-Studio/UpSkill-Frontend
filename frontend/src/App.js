@@ -6,8 +6,6 @@ import { IntlProvider } from "react-intl";
 
 import messages_en from "./i18n/en_CA.json";
 import messages_fr from "./i18n/fr_CA.json";
-
-//import "./styles.global.less";
 import "./App.css";
 
 import {
@@ -78,16 +76,9 @@ class App extends Component {
     }
 
     const keycloak = this.state.keycloak;
-
     if (keycloak) {
-      console.log(
-        "Render: ",
-        localStorage.getItem("lang"),
-        localLang,
-        i18nConfig.locale
-      );
-
       if (this.state.authenticated) {
+        console.log(keycloak);
         return (
           <IntlProvider
             locale={i18nConfig.locale}
