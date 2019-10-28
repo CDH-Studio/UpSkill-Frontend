@@ -7,11 +7,11 @@ export default class LabeledCardController extends Component {
 
     return (
       <LabeledCardView
-        labelWidth={"50%"}
-        minLabelSize={"30px"}
+        contentText={contentText}
         labelColor={"#6435C9"}
         labelText={labelText}
-        contentText={contentText}
+        labelWidth={"50%"}
+        minLabelSize={"30px"}
       />
     );
   }
