@@ -8,7 +8,7 @@ import EditManagerController from "../editModals/editManager/editManagerControll
 import EditTalentManagerController from "../editModals/editTalentManager/editTalentManagerController";
 import "./secondaryLayoutGroup.css";
 
-class secondaryGroupView extends Component {
+class SecondaryLayoutGroupView extends Component {
   constructor(props) {
     super(props);
     this.renderManagerCard = this.renderManagerCard.bind(this);
@@ -148,4 +148,4 @@ class secondaryGroupView extends Component {
   }
 }
 
-export default injectIntl(secondaryGroupView);
+export default injectIntl(SecondaryLayoutGroupView);

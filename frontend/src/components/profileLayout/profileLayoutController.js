@@ -23,6 +23,7 @@ export default class ProfileLayoutController extends Component {
     return (
       <ProfileLayoutView
         changeLanguage={changeLanguage}
+        editable={true}
         keycloak={keycloak}
         profileInfo={{
           branch: "Chief Information Office Branch",

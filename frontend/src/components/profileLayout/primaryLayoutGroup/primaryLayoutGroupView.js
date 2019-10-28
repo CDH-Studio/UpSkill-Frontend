@@ -17,7 +17,7 @@ import EditLabelCardsController from "../editModals/editLabelCards/editLabelCard
 /**
  * This class generates the items at the start of the profile page that need to interact with eachother to responsively resize
  */
-class PrimaryGroupView extends Component {
+class PrimaryLayoutGroupView extends Component {
   render() {
     const { profileInfo, windowWidth } = this.props;
     const { firstName, lastName } = profileInfo;
@@ -214,4 +214,4 @@ class PrimaryGroupView extends Component {
   }
 }
 
-export default injectIntl(PrimaryGroupView);
+export default injectIntl(PrimaryLayoutGroupView);
