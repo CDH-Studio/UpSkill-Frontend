@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "api",
+    "password": "api",
+    "database": "test4",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "app-database-user",
+    "password": "app-database-password",
+    "database": "app-database",
+    "host": "backend-database",
+    "dialect": "postgres",
+    "define": {
+      "freezeTableName": true
+    },
+    "benchmark": true
+  }
+}
