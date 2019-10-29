@@ -9,7 +9,9 @@
   "scripts": {
     "client": "cd frontend && npm i && react-scripts start",
     "server": "cd backend && npm i && node server.js",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "feathers": "cd backend3 && npm start",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start2": "concurrently \"npm run client\" \"npm run feathers\""
   },
   "repository": {
     "type": "git",
