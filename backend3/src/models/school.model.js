@@ -15,7 +15,7 @@ module.exports = function(app) {
         allowNull: false,
         autoIncrement: false
       },
-      country: {
+      user_id: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
