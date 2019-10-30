@@ -4,7 +4,6 @@ const Sequelize = require("sequelize");
 dotenv.config();
 
 module.exports = function(app) {
-  // const connectionString = `postgres://${process.env.PGNAME}:${process.env.PGPASS}@localhost:${process.env.PGPORT}/db`;
   const sequelize = new Sequelize(
     process.env.PGDATABASE,
     process.env.PGUSERNAME,
