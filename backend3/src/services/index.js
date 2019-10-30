@@ -4,6 +4,7 @@ const school = require("./school/school.service.js");
 const careerMobility = require('./career_mobility/career_mobility.service.js');
 const competency = require('./competency/competency.service.js');
 const employmentStatus = require('./employment_status/employment_status.service.js');
+const secondLanguageProficiency = require('./second_language_proficiency/second_language_proficiency.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function(app) {
   app.configure(skill);
@@ -12,4 +13,5 @@ module.exports = function(app) {
   app.configure(careerMobility);
   app.configure(competency);
   app.configure(employmentStatus);
+  app.configure(secondLanguageProficiency);
 };
