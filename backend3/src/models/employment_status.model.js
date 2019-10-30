@@ -15,9 +15,11 @@ module.exports = function(app) {
         allowNull: false,
         autoIncrement: false
       },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false
+      description_en: {
+        type: DataTypes.STRING
+      },
+      description_fr: {
+        type: DataTypes.STRING
       }
     },
     {
