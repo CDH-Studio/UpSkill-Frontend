@@ -10,6 +10,7 @@ const talentMatrixResult = require("./talent_matrix_result/talent_matrix_result.
 const userCompetency = require("./user_competency/user_competency.service.js");
 const userDevelopmentalGoal = require('./user_developmental_goal/user_developmental_goal.service.js');
 const userProject = require('./user_project/user_project.service.js');
+const userSkill = require('./user_skill/user_skill.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function(app) {
   app.configure(skill);
@@ -24,4 +25,5 @@ module.exports = function(app) {
   app.configure(userCompetency);
   app.configure(userDevelopmentalGoal);
   app.configure(userProject);
+  app.configure(userSkill);
 };
