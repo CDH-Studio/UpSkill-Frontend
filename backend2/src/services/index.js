@@ -13,6 +13,7 @@ const userProject = require("./user_project/user_project.service.js");
 const userSkill = require("./user_skill/user_skill.service.js");
 const branch = require('./branch/branch.service.js');
 const careerJourney = require('./career_journey/career_journey.service.js');
+const department = require('./department/department.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function(app) {
   app.configure(skill);
@@ -30,4 +31,5 @@ module.exports = function(app) {
   app.configure(userSkill);
   app.configure(branch);
   app.configure(careerJourney);
+  app.configure(department);
 };
