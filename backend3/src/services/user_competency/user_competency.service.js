@@ -1,4 +1,4 @@
-// Initializes the `user_competency` service on path `/user-compentency`
+// Initializes the `user_competency` service on path `/user-competency`
 const { UserCompentency } = require("./user_competency.class");
 const createModel = require("../../models/user_competency.model");
 const hooks = require("./user_competency.hooks");
@@ -13,7 +13,7 @@ module.exports = function(app) {
   app.use("/user-compentency", new UserCompentency(options, app));
 
   // Get our initialized service so that we can register hooks
-  const service = app.service("user-compentency");
+  const service = app.service("user-competency");
 
   service.hooks(hooks);
 };
