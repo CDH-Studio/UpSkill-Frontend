@@ -5,8 +5,8 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function(app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const education = sequelizeClient.define(
-    "education",
+  const careerJourney = sequelizeClient.define(
+    "career_journey",
     {
       id: {
         type: DataTypes.UUID,
@@ -15,10 +15,15 @@ module.exports = function(app) {
         allowNull: false,
         autoIncrement: false
       },
-      program: {
+      organization: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
+        allowNull: false
+      },
+      job_title: {
+        type: DataTypes.STRING
+      },
+      description: {
+        type: DataTypes.TEXT
       },
       start_date: {
         type: DataTypes.DATE
@@ -37,10 +42,10 @@ module.exports = function(app) {
   );
 
   // eslint-disable-next-line no-unused-vars
-  education.associate = function(models) {
+  careerJourney.associate = function(models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return education;
+  return careerJourney;
 };
