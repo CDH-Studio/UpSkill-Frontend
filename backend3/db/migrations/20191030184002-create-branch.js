@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('fake_tables', {
+    return queryInterface.createTable('branches', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,6 +9,24 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       description: {
+        type: Sequelize.STRING
+      },
+      acronym_en: {
+        type: Sequelize.STRING
+      },
+      acronym_fr: {
+        type: Sequelize.STRING
+      },
+      description_en: {
+        type: Sequelize.STRING
+      },
+      description_fr: {
+        type: Sequelize.STRING
+      },
+      address_en: {
+        type: Sequelize.STRING
+      },
+      address_fr: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -22,6 +40,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('fake_tables');
+    return queryInterface.dropTable('branches');
   }
 };

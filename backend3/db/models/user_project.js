@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const fake_table = sequelize.define('fake_table', {
+  const user_project = sequelize.define('user_project', {
     description: DataTypes.STRING
   }, {});
-  fake_table.associate = function(models) {
+  user_project.associate = function(models) {
     // associations can be defined here
   };
-  return fake_table;
+  return user_project;
 };
