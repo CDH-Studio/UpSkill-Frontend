@@ -4,10 +4,9 @@ module.exports = {
     return queryInterface.createTable("career_journeys", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: UUIDV1
+        defaultValue: Sequelize.UUIDV1()
       },
       organization_en: {
         type: Sequelize.STRING

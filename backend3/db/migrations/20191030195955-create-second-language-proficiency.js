@@ -1,33 +1,30 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("branches", {
+    return queryInterface.createTable("second_language_proficiencies", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1()
       },
-      description: {
+      reading_proficiency: {
         type: Sequelize.STRING
       },
-      acronym_en: {
+      writing_proficiency: {
         type: Sequelize.STRING
       },
-      acronym_fr: {
+      oral_proficiency: {
         type: Sequelize.STRING
       },
-      description_en: {
-        type: Sequelize.STRING
+      reading_date: {
+        type: Sequelize.DATE
       },
-      description_fr: {
-        type: Sequelize.STRING
+      writing_date: {
+        type: Sequelize.DATE
       },
-      address_en: {
-        type: Sequelize.STRING
-      },
-      address_fr: {
-        type: Sequelize.STRING
+      oral_date: {
+        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -40,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("branches");
+    return queryInterface.dropTable("second_language_proficiencies");
   }
 };

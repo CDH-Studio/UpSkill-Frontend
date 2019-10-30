@@ -1,11 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const competency = sequelize.define('competency', {
+  const skill = sequelize.define('skill', {
     description_en: DataTypes.STRING,
     description_fr: DataTypes.STRING
   }, {});
-  competency.associate = function(models) {
+  skill.associate = function(models) {
     // associations can be defined here
   };
-  return competency;
+  return skill;
 };

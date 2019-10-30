@@ -1,18 +1,17 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("competencies", {
+    return queryInterface.createTable("skills", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: UUIDV1
+        defaultValue: Sequelize.UUIDV1()
       },
-      name_en: {
+      description_en: {
         type: Sequelize.STRING
       },
-      name_fr: {
+      description_fr: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -26,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("competencies");
+    return queryInterface.dropTable("skills");
   }
 };

@@ -1,32 +1,17 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("branches", {
+    return queryInterface.createTable("talent_matrix_results", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV1()
       },
-      description: {
-        type: Sequelize.STRING
-      },
-      acronym_en: {
-        type: Sequelize.STRING
-      },
-      acronym_fr: {
-        type: Sequelize.STRING
-      },
       description_en: {
         type: Sequelize.STRING
       },
       description_fr: {
-        type: Sequelize.STRING
-      },
-      address_en: {
-        type: Sequelize.STRING
-      },
-      address_fr: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -40,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("branches");
+    return queryInterface.dropTable("talent_matrix_results");
   }
 };
