@@ -5,7 +5,7 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function(app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const userCompentency = sequelizeClient.define(
+  const userCompetency = sequelizeClient.define(
     "user_competency",
     {
       id: {
@@ -26,10 +26,10 @@ module.exports = function(app) {
   );
 
   // eslint-disable-next-line no-unused-vars
-  userCompentency.associate = function(models) {
+  userCompetency.associate = function(models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return userCompentency;
+  return userCompetency;
 };

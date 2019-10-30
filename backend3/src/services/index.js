@@ -7,7 +7,7 @@ const employmentStatus = require("./employment_status/employment_status.service.
 const secondLanguageProficiency = require("./second_language_proficiency/second_language_proficiency.service.js");
 const securityClearance = require("./security_clearance/security_clearance.service.js");
 const talentMatrixResult = require("./talent_matrix_result/talent_matrix_result.service.js");
-const userCompentency = require("./user_competency/user_competency.service.js");
+const userCompetency = require("./user_competency/user_competency.service.js");
 // eslint-disable-next-line no-unused-vars
 module.exports = function(app) {
   app.configure(skill);
@@ -19,5 +19,5 @@ module.exports = function(app) {
   app.configure(secondLanguageProficiency);
   app.configure(securityClearance);
   app.configure(talentMatrixResult);
-  app.configure(userCompentency);
+  app.configure(userCompetency);
 };
