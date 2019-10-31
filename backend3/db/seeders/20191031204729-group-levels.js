@@ -8,7 +8,7 @@ module.exports = {
 
     */
     return queryInterface.bulkInsert(
-      "key_competencies",
+      "group_levels",
       [
         {
           description: "AS   01",
@@ -844,9 +844,7 @@ module.exports = {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
     */
+    return queryInterface.bulkDelete("key_competencies", null, {});
   }
 };
