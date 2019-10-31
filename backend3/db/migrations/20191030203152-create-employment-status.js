@@ -1,4 +1,5 @@
 "use strict";
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("employment_statuses", {
@@ -6,7 +7,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV1()
+        defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
       description_en: {
         type: Sequelize.STRING

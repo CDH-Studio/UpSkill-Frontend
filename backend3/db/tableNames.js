@@ -22,5 +22,6 @@ module.exports = {
   USER_DEVELOPMENTAL_GOALS: "user_developmental_goals",
   USER_ORGANIZATIONS: "user_organizations",
   USER_PROJECTS: "user_projects",
-  USER_SKILLS: "user_skills"
+  USER_SKILLS: "user_skills",
+  USERS: "users"
 };
