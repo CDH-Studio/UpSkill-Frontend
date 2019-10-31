@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV1()
+        defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
       country: {
         type: Sequelize.STRING
