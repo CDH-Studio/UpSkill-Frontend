@@ -7,7 +7,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
     */
     return queryInterface.bulkInsert(
-      "employment_statuses",
+      "security_clearances",
       [
         {
           description_en: "Reliability",
