@@ -845,6 +845,6 @@ module.exports = {
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
     */
-    return queryInterface.bulkDelete("key_competencies", null, {});
+    return queryInterface.bulkDelete("group_levels", null, {});
   }
 };
