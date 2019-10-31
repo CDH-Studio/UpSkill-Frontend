@@ -9,7 +9,7 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.sequelize.query(
-      'DROP EXTENSION IF NOT EXISTS "uuid-ossp";'
+      'DROP EXTENSION IF EXISTS "uuid-ossp";'
     );
   }
 };
