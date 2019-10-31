@@ -56,11 +56,6 @@ module.exports = {
           description_fr: "Duree determinee",
           createdAt: new Date(),
           updatedAt: new Date()
-        },
-        {
-          description_fr: "test",
-          createdAt: new Date(),
-          updatedAt: new Date()
         }
       ],
       {}
