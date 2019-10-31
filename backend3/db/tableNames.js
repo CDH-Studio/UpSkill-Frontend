@@ -23,5 +23,5 @@ module.exports = {
   USER_ORGANIZATIONS: "user_organizations",
   USER_PROJECTS: "user_projects",
   USER_SKILLS: "user_skills",
-  USERS: "user"
+  USERS: "users"
 };
