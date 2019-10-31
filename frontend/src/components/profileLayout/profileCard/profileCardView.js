@@ -5,12 +5,27 @@ import EditWrapperController from "../editWrapper/editWrapperController";
 
 export default class profileCardView extends Component {
   render() {
-    const { button, cardName, children, id, wrapperType } = this.props;
+    const {
+      button,
+      cardName,
+      children,
+      className,
+      fullHeight,
+      id,
+      wrapperType
+    } = this.props;
+
+    const heightStyle = fullHeight ? { height: "100%" } : {};
+
     return (
-      <EditWrapperController button={button} wrapperType={wrapperType}>
-        <Card fluid id={id}>
+      <EditWrapperController
+        button={button}
+        style={heightStyle}
+        wrapperType={wrapperType}
+      >
+        <Card fluid className={className} id={id} style={heightStyle}>
           <Card.Content>
-            {cardName && <h5 className="violetColored">{cardName}</h5>}
+            {cardName && <h5 className="blueColoredText">{cardName}</h5>}
             {children}
           </Card.Content>
         </Card>

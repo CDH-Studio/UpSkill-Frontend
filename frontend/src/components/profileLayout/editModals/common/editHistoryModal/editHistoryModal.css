@@ -1,0 +1,10 @@
+.historyModalButtonContainer {
+  padding-top: 16pt;
+  position: relative;
+  text-align: right;
+}
+
+.addHistoryItemButton {
+  position: absolute;
+  left: 0px;
+}

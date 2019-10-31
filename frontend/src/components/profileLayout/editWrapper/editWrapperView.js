@@ -5,12 +5,19 @@ import "./editWrapper.css";
 
 class EditWrapperView extends Component {
   render() {
-    const { button, children, editable, wrapperType } = this.props;
+    const {
+      button,
+      children,
+      editable,
+      profileInfo,
+      style,
+      wrapperType
+    } = this.props;
 
     if (editable) {
       return (
-        <div className={wrapperType}>
-          {button}
+        <div className={wrapperType} style={style}>
+          {React.createElement(button, { profileInfo })}
           {children}
         </div>
       );

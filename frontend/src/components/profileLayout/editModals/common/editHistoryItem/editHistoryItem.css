@@ -1,0 +1,12 @@
+.historyItemCard {
+  background-color: #f8f8f8 !important;
+}
+
+.removeHistoryItemButton {
+  font-size: 16pt;
+  padding: 6px;
+  position: absolute;
+  right: 6pt;
+  top: 0pt;
+  z-index: 100;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
-import GenericEditModalController from "../generic/genericEditModalController.js";
+import GenericEditModalController from "../common/genericEditModalController.js";
 import "./editTalentManager.css";
 
 class EditTalentManagerView extends Component {

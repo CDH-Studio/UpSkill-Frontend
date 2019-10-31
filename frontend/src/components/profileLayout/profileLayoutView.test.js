@@ -41,11 +41,11 @@ it("Editable profile view contains expected components", () => {
         email: "mary.smith@canada.ca",
         firstLanguage: "English",
         firstName: "Massadry",
-        GitHubURL: "https://www.google.com",
+        githubUrl: "https://www.google.com",
         groupOrLevel: "CS 04",
         jobTitle: "Manager, Next Innovation",
         lastName: "Smisdasth",
-        LinkedInURL: "https://www.bing.ca",
+        linkedinUrl: "https://www.bing.ca",
         manager: "Chahine El Chaar",
         mobile: "613-402-8224",
         organizationList: [
@@ -71,7 +71,7 @@ it("Editable profile view contains expected components", () => {
         talentMatrixResult: "Exceptional talent",
         team: "ABC Team",
         telephone: "343-291-1366",
-        TwitterURL: "https://www.baidu.com",
+        twitterUrl: "https://www.baidu.com",
         yearsOfService: 5.0
       }}
       editable={true}
@@ -82,7 +82,7 @@ it("Editable profile view contains expected components", () => {
   const names = [
     "EditCareerOverviewView",
     "EditCompetenciesView",
-    "EditDevelopmentGoalsView",
+    "EditdevelopmentalGoalsView",
     "EditEducationView",
     "EditLabelCardsView",
     "EditLanguageProficiencyView",
@@ -164,11 +164,11 @@ it("Non-editable profile view contains expected components", () => {
         email: "mary.smith@canada.ca",
         firstLanguage: "English",
         firstName: "Massadry",
-        GitHubURL: "https://www.google.com",
+        githubUrl: "https://www.google.com",
         groupOrLevel: "CS 04",
         jobTitle: "Manager, Next Innovation",
         lastName: "Smisdasth",
-        LinkedInURL: "https://www.bing.ca",
+        linkedinUrl: "https://www.bing.ca",
         manager: "Chahine El Chaar",
         mobile: "613-402-8224",
         organizationList: [
@@ -194,7 +194,7 @@ it("Non-editable profile view contains expected components", () => {
         talentMatrixResult: "Exceptional talent",
         team: "ABC Team",
         telephone: "343-291-1366",
-        TwitterURL: "https://www.baidu.com",
+        twitterUrl: "https://www.baidu.com",
         yearsOfService: 5.0
       }}
       editable={false}
@@ -205,7 +205,7 @@ it("Non-editable profile view contains expected components", () => {
   const names = [
     "EditCareerOverviewView",
     "EditCompetenciesView",
-    "EditDevelopmentGoalsView",
+    "EditdevelopmentalGoalsView",
     "EditEducationView",
     "EditLabelCardsView",
     "EditLanguageProficiencyView",

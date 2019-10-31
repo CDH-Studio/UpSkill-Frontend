@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
-import GenericEditModalController from "../generic/genericEditModalController.js";
+import EditTagsController from "../common/editTagsModal/editTagsModalController";
 import "./editCompetencies.css";
 
 class EditCompetenciesView extends Component {
   render() {
     const { intl } = this.props;
     return (
-      <GenericEditModalController
-        name={intl.formatMessage({ id: "profile.edit.primary.information" })}
-      >
-        <div>this is div2</div>
-        <div>more div2</div>
-      </GenericEditModalController>
+      <EditTagsController
+        dropdownName="competencies"
+        name={intl.formatMessage({ id: "profile.edit.competencies" })}
+        {...this.props}
+      />
     );
   }
 }

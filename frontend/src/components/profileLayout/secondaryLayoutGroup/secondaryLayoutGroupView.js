@@ -25,25 +25,37 @@ class SecondaryLayoutGroupView extends Component {
 
     if (useWideLayout) {
       return (
-        <Grid>
-          <Grid.Row>
-            <Grid.Column width={11}>
-              {this.renderManagerCard()}
-              {this.renderTalentManagerCard()}
-            </Grid.Column>
-            <Grid.Column width={5}>
-              {this.renderLanguageProficiencyCard()}
-            </Grid.Column>
-          </Grid.Row>
+        <Grid
+          className="noGapBelow"
+          style={{
+            marginTop: "0.75em",
+            paddingTop: "0px"
+          }}
+        >
+          <Grid.Column className="noGapAbove noGapBelow" width={11}>
+            {this.renderManagerCard()}
+            {this.renderTalentManagerCard()}
+          </Grid.Column>
+          <Grid.Column className="noGapAbove noGapBelow" width={5}>
+            {this.renderLanguageProficiencyCard()}
+          </Grid.Column>
         </Grid>
       );
     } else {
       return (
-        <React.Fragment>
-          {this.renderManagerCard()}
-          {this.renderLanguageProficiencyCard()}
-          {this.renderTalentManagerCard()}
-        </React.Fragment>
+        <Grid
+          className="noGapBelow"
+          style={{
+            marginTop: "1em",
+            paddingTop: "0px"
+          }}
+        >
+          <Grid.Column className="noGapAbove noGapBelow" width={16}>
+            {this.renderManagerCard()}
+            {this.renderLanguageProficiencyCard()}
+            {this.renderTalentManagerCard()}
+          </Grid.Column>
+        </Grid>
       );
     }
   }
@@ -52,7 +64,10 @@ class SecondaryLayoutGroupView extends Component {
     const { manager } = this.props.profileInfo;
 
     return (
-      <ProfileCardController button={<EditManagerController />}>
+      <ProfileCardController
+        button={EditManagerController}
+        className="noGapAbove"
+      >
         <span className="colorLabel">
           <FormattedMessage id="profile.manager" />:
         </span>
@@ -62,7 +77,7 @@ class SecondaryLayoutGroupView extends Component {
   }
 
   renderLanguageProficiencyCard() {
-    const { intl, profileInfo } = this.props;
+    const { intl, profileInfo, windowWidth } = this.props;
     const {
       firstLanguage,
       secondaryOralDate,
@@ -75,8 +90,9 @@ class SecondaryLayoutGroupView extends Component {
 
     return (
       <ProfileCardController
-        button={<EditLanguageProficiencyController />}
+        button={EditLanguageProficiencyController}
         cardName={intl.formatMessage({ id: "profile.official.language" })}
+        className={windowWidth > 1250 ? "compactCard" : null}
       >
         <div>
           <span className="boldLabel">
@@ -89,8 +105,8 @@ class SecondaryLayoutGroupView extends Component {
         </p>
         <Table
           basic="very"
-          style={{ marginTop: "0px" }}
           celled
+          className="noGapAbove"
           collapsing
           unstackable
         >
@@ -128,8 +144,9 @@ class SecondaryLayoutGroupView extends Component {
 
     return (
       <ProfileCardController
-        button={<EditTalentManagerController />}
+        button={EditTalentManagerController}
         cardName={intl.formatMessage({ id: "profile.talent.manager" })}
+        className="noGapBelow"
       >
         <div>
           <span className="boldLabel">

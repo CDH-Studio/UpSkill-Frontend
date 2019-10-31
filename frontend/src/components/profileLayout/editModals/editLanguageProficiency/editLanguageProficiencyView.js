@@ -1,19 +1,80 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
+import { Select, Form, Input, Grid, Checkbox } from "semantic-ui-react";
 
-import GenericEditModalController from "../generic/genericEditModalController.js";
+import GenericEditModalController, {
+  generateCommonProps
+} from "../common/genericEditModalController.js";
 import "./editLanguageProficiency.css";
 
 class EditLanguageProficiencyView extends Component {
   render() {
-    const { intl } = this.props;
+    const { handleApply, intl } = this.props;
     return (
       <GenericEditModalController
-        name={intl.formatMessage({ id: "profile.edit.official.language" })}
+        handleApply={handleApply}
+        name={intl.formatMessage({ id: "profile.edit.language.proficiency" })}
       >
-        <div>this is div2</div>
-        <div>more div2</div>
+        <Form onSubmit={handleApply}>
+          <Grid columns="one" divided>
+            <Grid.Row>
+              <Grid.Column>
+                <Form.Field
+                  {...generateCommonProps("firstLanguage", Select, this.props)}
+                />
+              </Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>
+                <Form.Field
+                  {...generateCommonProps(
+                    "gradedOnSecondLanguage",
+                    Checkbox,
+                    this.props
+                  )}
+                />
+              </Grid.Column>
+            </Grid.Row>
+            {this.renderSecondaryGrading()}
+          </Grid>
+        </Form>
       </GenericEditModalController>
+    );
+  }
+
+  renderSecondaryGrading() {
+    const { showSecondaryGrading } = this.props;
+    return (
+      <React.Fragment>
+        <Grid.Row>
+          <Grid.Column>
+            {["reading", "writing", "oral"].map((value, index) => (
+              <Form.Group>
+                <Form.Field
+                  disabled={!showSecondaryGrading}
+                  width={8}
+                  {...generateCommonProps(value + "Grade", Select, this.props)}
+                />
+                <Form.Field
+                  disabled={!showSecondaryGrading}
+                  width={2}
+                  {...generateCommonProps(value + "Month", Select, this.props)}
+                />
+                <Form.Field
+                  disabled={!showSecondaryGrading}
+                  width={2}
+                  {...generateCommonProps(value + "Day", Input, this.props)}
+                />
+                <Form.Field
+                  disabled={!showSecondaryGrading}
+                  width={4}
+                  {...generateCommonProps(value + "Year", Input, this.props)}
+                />
+              </Form.Group>
+            ))}
+          </Grid.Column>
+        </Grid.Row>
+      </React.Fragment>
     );
   }
 }

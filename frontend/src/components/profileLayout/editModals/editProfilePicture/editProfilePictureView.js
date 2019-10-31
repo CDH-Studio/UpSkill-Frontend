@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
-import GenericEditModalController from "../generic/genericEditModalController.js";
+import GenericEditModalController from "../common/genericEditModalController.js";
 import "./editProfilePicture.css";
 
 class EditProfilePictureView extends Component {

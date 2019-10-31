@@ -32,40 +32,51 @@ export default class ProfileLayoutController extends Component {
           careerMobility: "Ready for movement",
           careerSummary: [
             {
-              content: "Payment Analyst",
+              content: "this is content\nmore content",
               endDate: "Present",
-              name: "Payments Canada",
-              startDate: "Aug 2017"
+              header: "Payments Canada",
+              startDate: "Aug 2017",
+              subheader: "Payment Analyst"
             }
           ],
           city: "Ontario",
 
-          competencies: ["Thinking things through", "Achieve results"],
+          competencies: ["2"],
           country: "Canada",
-          developmentalGoals: ["Mobalize people"],
+          developmentalGoals: ["3"],
 
           education: [
             {
-              content: "Telpher School of Buisness",
+              content: "this is content\ni am content",
+              subheader: "Telpher School of Buisness",
               endDate: "Apr 2009",
-              name: "Masters of Business Administration",
+              header: "Masters of Business Administration",
               startDate: "Sept 2007"
             },
             {
-              content: "Carleton University",
+              content: "this is content\ni am content",
+              subheader: "Carleton University",
               endDate: "Apr 2005",
-              name: "Software Engineering",
+              header: "Software Engineering",
+              startDate: "Sept 2000"
+            },
+            {
+              content: "this is content\ni am content",
+              subheader: "smart people shcool",
+              endDate: "Apr 2005",
+              header: "smart people class",
               startDate: "Sept 2000"
             }
           ],
           email: "mary.smith@canada.ca",
           firstLanguage: "English",
           firstName: "Massadry",
-          GitHubURL: "https://www.google.com",
+          githubUrl: "https://www.google.com",
+          gradedOnSecondLanguage: true,
           groupOrLevel: "CS 04",
           jobTitle: "Manager, Next Innovation",
           lastName: "Smisdasth",
-          LinkedInURL: "https://www.bing.ca",
+          linkedinUrl: "https://www.bing.ca",
           manager: "Chahine El Chaar",
           mobile: "613-402-8224",
           organizationList: [
@@ -85,13 +96,13 @@ export default class ProfileLayoutController extends Component {
           secondaryWritingGrade: "B",
           secondLanguage: null,
           security: "Reliability",
-          skills: ["Excel", "Project management", "Change management"],
+          skills: ["1"],
           status: "Indeterminate",
           street: "235 Queen Street",
           talentMatrixResult: "Exceptional talent",
           team: "ABC Team",
           telephone: "343-291-1366",
-          TwitterURL: "https://www.baidu.com",
+          twitterUrl: "https://www.baidu.com",
           yearsOfService: 5.0
         }}
         windowWidth={this.state.windowWidth}
