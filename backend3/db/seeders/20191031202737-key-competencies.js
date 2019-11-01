@@ -17,8 +17,7 @@ module.exports = {
         },
         {
           description_en: "Collaborate with partners and stakeholders",
-          description_fr:
-            "Collaborer avec les partenaires et les parties prenantes",
+          description_fr: "Collaborer avec les partenaires et les intervenants",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -30,19 +29,19 @@ module.exports = {
         },
         {
           description_en: "Uphold integrity and respect",
-          description_fr: "Soutenir l'intégrité et le respect",
+          description_fr: "Préserver l'intégrité et le respect",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           description_en: "Mobilize people",
-          description_fr: "Mobiliser les gens",
+          description_fr: "Mobiliser des personnes",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           description_en: "Promote innovation and guide change",
-          description_fr: "Promouvoir l'innovation et guider le changement",
+          description_fr: "Promouvoir l'innovation et orienter le changement",
           createdAt: new Date(),
           updatedAt: new Date()
         }

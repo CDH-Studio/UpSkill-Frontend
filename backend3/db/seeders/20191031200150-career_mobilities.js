@@ -11,19 +11,19 @@ module.exports = {
       [
         {
           description_en: "Fit",
-          description_fr: "Ideal",
+          description_fr: "Bien placé dans son poste",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           description_en: "Move to more suitable role",
-          description_fr: "Passer à un rôle plus approprié",
+          description_fr: "Transfert vers un rôle plus approprié",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           description_en: "Develop in role",
-          description_fr: "Développer dans le rôle",
+          description_fr: "Se perfectionner dans son rôle",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -35,13 +35,13 @@ module.exports = {
         },
         {
           description_en: "Ready for lateral movement",
-          description_fr: "Prêt pour le mouvement latéral",
+          description_fr: "Prêt pour un mouvement latéral",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           description_en: "Ready for advancement",
-          description_fr: "Prêt pour l'avancement",
+          description_fr: "Prêt à être promu",
           createdAt: new Date(),
           updatedAt: new Date()
         }
