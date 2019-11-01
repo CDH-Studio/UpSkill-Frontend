@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
   const branch = sequelize.define(
     "branch",
     {
-      description: DataTypes.STRING,
       acronym_en: DataTypes.STRING,
       acronym_fr: DataTypes.STRING,
       description_en: DataTypes.STRING,
