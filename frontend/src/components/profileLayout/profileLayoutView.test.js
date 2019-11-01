@@ -2,6 +2,21 @@ import React from "react";
 import ProfileLayoutView from "./profileLayoutView";
 import wrapThenMount from "../../../__mocks__/componentWrapper";
 
+import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";
+import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
+import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";
+import EditEducationController from "./editModals/editEducation/editEducationController";
+import EditSkillController from "./editModals/editSkills/editSkillsController";
+
+import EditLanguageProficiencyController from "./editModals/editLanguageProficiency/editLanguageProficiencyController";
+import EditManagerController from "./editModals/editManager/editManagerController";
+import EditTalentManagerController from "./editModals/editTalentManager/editTalentManagerController";
+
+import EditLabelCardsController from "./editModals/editLabelCards/editLabelCardsController";
+import EditPrimaryInformationController from "./editModals/editPrimaryInformation/editPrimaryInformationController";
+import EditProfilePictureController from "./editModals/editProfilePicture/editProfilePictureController";
+import EditWrapperController from "./editWrapper/editWrapperController";
+
 it("Editable profile view contains expected components", () => {
   const wrapper = wrapThenMount(
     <ProfileLayoutView
@@ -79,41 +94,42 @@ it("Editable profile view contains expected components", () => {
     />
   );
 
-  const names = [
-    "EditCareerOverviewView",
-    "EditCompetenciesView",
-    "EditdevelopmentalGoalsView",
-    "EditEducationView",
-    "EditLabelCardsView",
-    "EditLanguageProficiencyView",
-    "EditManagerView",
-    "EditMenuView",
-    "EditNameView",
-    "EditPrimaryInformationView",
-    "EditProfilePictureView",
-    "EditSkillsView",
-    "EditTalentManagerView"
+  const classes = [
+    EditCareerOverviewController,
+    EditCompetenciesController,
+    EditDevelopmentalGoalsController,
+    EditEducationController,
+    EditSkillController,
+
+    EditLanguageProficiencyController,
+    EditManagerController,
+    EditTalentManagerController,
+
+    EditLabelCardsController,
+    EditPrimaryInformationController,
+    EditProfilePictureController
   ];
-
-  console.log(wrapper.debug());
-
-  names.forEach(val => {
+  //console.log(wrapper.debug());
+  classes.forEach(val => {
     console.log("finding", val);
-    let instances = wrapper.find(val);
-    expect(instances.length).toBe(1);
+
+    let instances = wrapper.find({
+      button: val
+    });
+    expect(instances.length > 0).toBe(true);
   });
 
   const outerEditButtons = wrapper.find(".outerButton");
-  expect(outerEditButtons.length).toBe(1);
+  expect(outerEditButtons.length).toBe(0);
 
   const innerEditButtons = wrapper.find(".innerButton");
-  expect(innerEditButtons.length).toBe(12);
+  expect(innerEditButtons.length).toBe(11);
 
   const editWrappers = wrapper.find("EditWrapperView");
-  expect(editWrappers.length).toBe(13);
+  expect(editWrappers.length).toBe(11);
 
   const cards = wrapper.find("Card");
-  expect(cards.length).toBe(13);
+  expect(cards.length).toBe(14);
 
   const navigationBarViews = wrapper.find("NavigationBarView");
   expect(navigationBarViews.length).toBe(1);
@@ -202,25 +218,25 @@ it("Non-editable profile view contains expected components", () => {
     />
   );
 
-  const names = [
-    "EditCareerOverviewView",
-    "EditCompetenciesView",
-    "EditdevelopmentalGoalsView",
-    "EditEducationView",
-    "EditLabelCardsView",
-    "EditLanguageProficiencyView",
-    "EditManagerView",
-    "EditMenuView",
-    "EditNameView",
-    "EditPrimaryInformationView",
-    "EditProfilePictureView",
-    "EditSkillsView",
-    "EditTalentManagerView"
+  const classes = [
+    EditCareerOverviewController,
+    EditCompetenciesController,
+    EditDevelopmentalGoalsController,
+    EditEducationController,
+    EditSkillController,
+
+    EditLanguageProficiencyController,
+    EditManagerController,
+    EditTalentManagerController,
+
+    EditLabelCardsController,
+    EditPrimaryInformationController,
+    EditProfilePictureController
   ];
 
-  names.forEach(val => {
+  classes.forEach(val => {
     console.log("findingxx", val);
-    let instances = wrapper.find(val);
+    let instances = wrapper.find({ button: val });
     expect(instances.length).toBe(0);
   });
 
@@ -231,10 +247,10 @@ it("Non-editable profile view contains expected components", () => {
   expect(innerEditButtons.length).toBe(0);
 
   const editWrappers = wrapper.find("EditWrapperView");
-  expect(editWrappers.length).toBe(13);
+  expect(editWrappers.length).toBe(11);
 
   const cards = wrapper.find("Card");
-  expect(cards.length).toBe(13);
+  expect(cards.length).toBe(14);
 
   const navigationBarViews = wrapper.find("NavigationBarView");
   expect(navigationBarViews.length).toBe(1);

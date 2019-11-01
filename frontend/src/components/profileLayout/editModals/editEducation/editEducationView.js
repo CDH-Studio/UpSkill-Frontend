@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
-import EditHistoryModal from "../common/editHistoryModal/editHistoryController";
+import EditHistoryModal from "../common/editHistoryModal/editHistoryModalController";
 
 class EditEducationView extends Component {
   render() {

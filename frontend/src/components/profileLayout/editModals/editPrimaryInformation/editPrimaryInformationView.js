@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { Form, Select, Input } from "semantic-ui-react";
 
-import GenericEditModalController, {
+import EditModalController, {
   generateCommonProps
-} from "../common/genericEditModalController.js";
+} from "../common/editModal/editModalController.js";
 import "./editPrimaryInformation.css";
 
 class EditPrimaryInformationView extends Component {
   render() {
     const { handleApply, intl } = this.props;
     return (
-      <GenericEditModalController
+      <EditModalController
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.primary.information" })}
       >
@@ -48,7 +48,7 @@ class EditPrimaryInformationView extends Component {
             {...generateCommonProps("location", Select, this.props)}
           />
         </Form>
-      </GenericEditModalController>
+      </EditModalController>
     );
   }
 }

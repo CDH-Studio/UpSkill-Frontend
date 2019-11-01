@@ -32,7 +32,7 @@ class ProfileLayoutView extends Component {
     } = this.props;
 
     return (
-      <EditableProvider value={{ editable: false, profileInfo }}>
+      <EditableProvider value={{ editable, profileInfo }}>
         <NavigationBar
           changeLanguage={changeLanguage}
           keycloak={keycloak}

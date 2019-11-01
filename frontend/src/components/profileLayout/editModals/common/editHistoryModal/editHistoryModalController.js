@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-import FieldManagingComponent from "../fieldManagingComponent";
-import EditHistoryView from "./editHistoryView";
+import EditHistoryModalView from "./editHistoryModalView";
 
-export default class EditHistoryController extends Component {
+export default class EditHistoryModalController extends Component {
   constructor(props) {
     super(props);
 
@@ -57,7 +56,7 @@ export default class EditHistoryController extends Component {
 
   render() {
     return (
-      <EditHistoryView
+      <EditHistoryModalView
         {...this.props}
         addItem={this.addItem}
         handleApply={this.handleApply}
@@ -78,8 +77,8 @@ export default class EditHistoryController extends Component {
   }
 }
 
-EditHistoryController.defaultProps = {
-  buttonBackgroundColor: null,
+EditHistoryModalController.defaultProps = {
+  buttonBackgroundColor: "rgba(0,0,0,0.05)",
   buttonClass: "innerButton",
   buttonColor: "#555555"
 };

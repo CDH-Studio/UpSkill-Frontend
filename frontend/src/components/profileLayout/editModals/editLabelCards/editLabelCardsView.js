@@ -3,9 +3,9 @@ import FieldManagingComponent from "../common/fieldManagingComponent";
 import { Form, Input, Select } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
-import GenericEditModalController, {
+import EditModalController, {
   generateCommonProps
-} from "../common/genericEditModalController.js";
+} from "../common/editModal/editModalController.js";
 import "./editLabelCards.css";
 
 class EditLabelCardsView extends Component {
@@ -22,7 +22,7 @@ class EditLabelCardsView extends Component {
       { key: "2", value: "2", text: "2" }
     ];
     return (
-      <GenericEditModalController
+      <EditModalController
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.label.cards" })}
       >
@@ -39,7 +39,7 @@ class EditLabelCardsView extends Component {
             {...generateCommonProps("security", Select, this.props)}
           />
         </Form>
-      </GenericEditModalController>
+      </EditModalController>
     );
   }
 }

@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { Select, Form, Input, Grid, Checkbox } from "semantic-ui-react";
 
-import GenericEditModalController, {
+import EditModalController, {
   generateCommonProps
-} from "../common/genericEditModalController.js";
+} from "../common/editModal/editModalController.js";
 import "./editLanguageProficiency.css";
 
 class EditLanguageProficiencyView extends Component {
   render() {
     const { handleApply, intl } = this.props;
     return (
-      <GenericEditModalController
+      <EditModalController
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.language.proficiency" })}
       >
@@ -38,7 +38,7 @@ class EditLanguageProficiencyView extends Component {
             {this.renderSecondaryGrading()}
           </Grid>
         </Form>
-      </GenericEditModalController>
+      </EditModalController>
     );
   }
 

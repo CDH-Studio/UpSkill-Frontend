@@ -5,5 +5,5 @@
 .ui.buttons .button,
 .ui.buttons .or,
 .ui.button {
-  font-size: 12pt;
+  font-size: 13pt;
 }

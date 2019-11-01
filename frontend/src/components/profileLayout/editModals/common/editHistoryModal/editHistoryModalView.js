@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { Form, Dropdown, Select, Modal, Button } from "semantic-ui-react";
 
+import { renderEditButton } from "../editModal/editModalView";
+
 import EditHistoryItemController from "../editHistoryItem/editHistoryItemController";
-import GenericEditModalController, {
+import EditModalController, {
   generateCommonProps
-} from "../genericEditModalController.js";
+} from "../editModal/editModalController.js";
 import "./editHistoryModal.css";
 
-class EditHistoryView extends Component {
+class EditHistoryModalView extends Component {
   render() {
     const {
       addItem,
@@ -23,17 +25,11 @@ class EditHistoryView extends Component {
     } = this.props;
     return (
       <Modal
-        trigger={
-          <p
-            className={buttonClass}
-            style={{
-              backgroundColor: buttonBackgroundColor,
-              color: buttonColor
-            }}
-          >
-            [<FormattedMessage id="profile.edit" />]
-          </p>
-        }
+        trigger={renderEditButton(
+          buttonBackgroundColor,
+          buttonClass,
+          buttonColor
+        )}
       >
         <Modal.Header>{name}</Modal.Header>
         <Modal.Content>
@@ -75,4 +71,4 @@ class EditHistoryView extends Component {
   }
 }
 
-export default injectIntl(EditHistoryView);
+export default injectIntl(EditHistoryModalView);

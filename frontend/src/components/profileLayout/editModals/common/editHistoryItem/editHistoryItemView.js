@@ -17,6 +17,7 @@ export default class EditHistoryItemController extends Component {
         <a
           className="removeHistoryItemButton"
           onClick={e => removeItemByIndex(index)}
+          href={null}
         >
           x
         </a>

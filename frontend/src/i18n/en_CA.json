@@ -63,6 +63,8 @@
   "profile.edit.developmental.goals": "Edit Developmental Goals",
   "profile.edit.education": "Edit Education",
   "profile.edit.career.overview": "Career Overview",
+  "profile.edit.profile.picture": "Edit Profile Picture",
+  "profile.edit.manager": "Edit Manager",
 
   "search.field.primary.dropdown.axios": "Axios",
   "search.field.primary.dropdown.css": "CSS",

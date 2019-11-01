@@ -1,10 +1,46 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
-import { Button, Modal } from "semantic-ui-react";
+import { Button, Icon, Modal } from "semantic-ui-react";
 
-import "./genericEditModal.css";
+import "./editModal.css";
 
-class genericEditModalView extends Component {
+export const renderEditButton = (
+  buttonBackgroundColor,
+  buttonClass,
+  buttonColor
+) => {
+  if (!buttonBackgroundColor) {
+    return (
+      <Icon
+        className={buttonClass}
+        style={{
+          color: buttonColor
+        }}
+        name="pencil alternate"
+      />
+    );
+  }
+
+  return (
+    <div
+      className={buttonClass}
+      style={{
+        backgroundColor: buttonBackgroundColor,
+        borderRadius: "12px",
+        padding: "1px 3px 2px 5px"
+      }}
+    >
+      <Icon
+        style={{
+          color: buttonColor
+        }}
+        name="pencil alternate"
+      />
+    </div>
+  );
+};
+
+class editModalView extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -25,17 +61,11 @@ class genericEditModalView extends Component {
         onClose={() => this.setState({ open: false })}
         open={this.state.open}
         onOpen={() => this.setState({ open: true })}
-        trigger={
-          <p
-            className={buttonClass}
-            style={{
-              backgroundColor: buttonBackgroundColor,
-              color: buttonColor
-            }}
-          >
-            [<FormattedMessage id="profile.edit" />]
-          </p>
-        }
+        trigger={renderEditButton(
+          buttonBackgroundColor,
+          buttonClass,
+          buttonColor
+        )}
       >
         <Modal.Header>{name}</Modal.Header>
         <Modal.Content>
@@ -58,4 +88,4 @@ class genericEditModalView extends Component {
   }
 }
 
-export default injectIntl(genericEditModalView);
+export default injectIntl(editModalView);

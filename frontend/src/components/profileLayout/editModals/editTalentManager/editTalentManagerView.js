@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
-import GenericEditModalController from "../common/genericEditModalController.js";
+import EditModalController from "../common/editModal/editModalController.js";
 import "./editTalentManager.css";
 
 class EditTalentManagerView extends Component {
   render() {
     const { intl } = this.props;
     return (
-      <GenericEditModalController
+      <EditModalController
         name={intl.formatMessage({ id: "profile.edit.primary.information" })}
       >
         <div>this is div2</div>
         <div>more div2</div>
-      </GenericEditModalController>
+      </EditModalController>
     );
   }
 }

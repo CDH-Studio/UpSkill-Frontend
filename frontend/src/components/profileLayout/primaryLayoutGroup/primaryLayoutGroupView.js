@@ -7,9 +7,9 @@ import tempProfilePic from "../../../assets/tempProfilePicture.png";
 import EditLabelCardsController from "../editModals/editLabelCards/editLabelCardsController";
 import EditPrimaryInformationController from "../editModals/editPrimaryInformation/editPrimaryInformationController";
 import EditProfilePictureController from "../editModals/editProfilePicture/editProfilePictureController";
-import LabeledCardController from "../../labeledCard/labeledCardController";
 import EditWrapperController from "../editWrapper/editWrapperController";
 
+import LabeledCardController from "../../labeledCard/labeledCardController";
 import ProfileCardController from "../profileCard/profileCardController";
 
 import "./primaryLayoutGroup.css";
@@ -27,7 +27,7 @@ class PrimaryLayoutGroupView extends Component {
         <Grid padded={false}>
           <Grid.Column
             width={useWideLayout ? 11 : 16}
-            style={{ marginBottom: "0px", paddingBottom: "0px" }}
+            style={{ marginBottom: "1em", paddingBottom: "0px" }}
           >
             {this.renderPrimaryCard()}
           </Grid.Column>
@@ -53,14 +53,18 @@ class PrimaryLayoutGroupView extends Component {
     // When using the medium wideness view there are 2 columns of labeled cards
     if (windowWidth <= 1250 && windowWidth > 750) {
       return (
-        <Grid.Column style={{ paddingTop: "0px" }} width={16}>
+        <Grid.Column
+          className="secondRow"
+          style={{ paddingTop: "0px" }}
+          width={16}
+        >
           <ProfileCardController
             button={EditLabelCardsController}
             cardName="Info"
             className="compactCard"
           >
             <Grid>
-              <Grid.Column className="secondRow" width={8}>
+              <Grid.Column width={8}>
                 <LabeledCardController
                   contentText={status}
                   labelText={statusLabel}
@@ -70,7 +74,7 @@ class PrimaryLayoutGroupView extends Component {
                   labelText={groupOrLevelLabel}
                 />
               </Grid.Column>
-              <Grid.Column className="secondRow" width={8}>
+              <Grid.Column width={8}>
                 <LabeledCardController
                   contentText={yearsOfService}
                   labelText={yearsOfServiceLabel}

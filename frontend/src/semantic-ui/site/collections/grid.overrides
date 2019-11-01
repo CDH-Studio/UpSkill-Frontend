@@ -7,9 +7,9 @@
   top: 0em;
   left: 0px;
 
-  width: calc(100% - @gutterWidth);
+  width: calc(100% - 10rem);
   height: 4px;
 
-  margin: 0% (@gutterWidth / 2);
-  box-shadow: 0px 4px 0px @blue;
+  margin: 0% (10rem / 2);
+  box-shadow: 0px 2px 0px @blue;
 }
