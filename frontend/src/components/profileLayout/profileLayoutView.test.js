@@ -109,10 +109,8 @@ it("Editable profile view contains expected components", () => {
     EditPrimaryInformationController,
     EditProfilePictureController
   ];
-  //console.log(wrapper.debug());
-  classes.forEach(val => {
-    console.log("finding", val);
 
+  classes.forEach(val => {
     let instances = wrapper.find({
       button: val
     });
@@ -219,24 +217,23 @@ it("Non-editable profile view contains expected components", () => {
   );
 
   const classes = [
-    EditCareerOverviewController,
-    EditCompetenciesController,
-    EditDevelopmentalGoalsController,
-    EditEducationController,
-    EditSkillController,
+    "EditCareerOverviewController",
+    "EditCompetenciesController",
+    "EditDevelopmentalGoalsController",
+    "EditEducationController",
+    "EditSkillController",
 
-    EditLanguageProficiencyController,
-    EditManagerController,
-    EditTalentManagerController,
+    "EditLanguageProficiencyController",
+    "EditManagerController",
+    "EditTalentManagerController",
 
-    EditLabelCardsController,
-    EditPrimaryInformationController,
-    EditProfilePictureController
+    "EditLabelCardsController",
+    "EditPrimaryInformationController",
+    "EditProfilePictureController"
   ];
 
   classes.forEach(val => {
-    console.log("findingxx", val);
-    let instances = wrapper.find({ button: val });
+    let instances = wrapper.find(val);
     expect(instances.length).toBe(0);
   });
 
