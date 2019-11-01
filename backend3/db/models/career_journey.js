@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   career_journey.associate = function(models) {
-    // associations can be defined here
+    career_journey.belongsTo(model.user);
   };
   return career_journey;
 };

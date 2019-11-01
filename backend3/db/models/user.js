@@ -22,6 +22,15 @@ module.exports = (sequelize, DataTypes) => {
   );
   user.associate = function(models) {
     user.belongsToMany(models.skill, { through: "user_skills" });
+    user.belongsToMany(models.competency, { through: "user_competencies" });
+    user.belongsToMany(models.organization, { through: "user_organizations" });
+    user.belongsTo(models.employment_status);
+    user.belongsTo(models.group_level);
+    user.belongsTo(models.security_clearance);
+    user.belongsTo(models.career_mobility);
+    user.belongsTo(models.talent_matrix_result);
+    user.belongsTo(models.key_competency);
+    user.belongsTo(models.second_language_proficiency);
   };
   return user;
 };
