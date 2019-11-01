@@ -19,12 +19,12 @@ import PrimaryLayoutGroupController from "./primaryLayoutGroup/primaryLayoutGrou
 import SecondaryLayoutGroupController from "./secondaryLayoutGroup/secondaryLayoutGroupController";
 
 import "./profileLayout.css";
-import { relative } from "path";
 
 class ProfileLayoutView extends Component {
   render() {
     const {
       changeLanguage,
+      dropdownOptions,
       editable,
       keycloak,
       profileInfo,
@@ -32,7 +32,7 @@ class ProfileLayoutView extends Component {
     } = this.props;
 
     return (
-      <EditableProvider value={{ editable, profileInfo }}>
+      <EditableProvider value={{ editable, profileInfo, dropdownOptions }}>
         <NavigationBar
           changeLanguage={changeLanguage}
           keycloak={keycloak}
@@ -61,12 +61,13 @@ class ProfileLayoutView extends Component {
   }
 
   renderSkillsCard() {
-    const { intl, profileInfo } = this.props;
-    const { skills } = profileInfo;
+    const { intl, profileInfo, dropdownOptions } = this.props;
+    const currentSkills = profileInfo.skills;
+    const availableSkills = profileInfo.skills;
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.skills" }),
-      skills,
+      currentSkills,
       EditSkillController
     );
   }

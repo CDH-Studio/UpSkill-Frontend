@@ -10,17 +10,7 @@ import "./editLabelCards.css";
 
 class EditLabelCardsView extends Component {
   render() {
-    const {
-      profileInfo,
-      dropdownOptions,
-      handleApply,
-      intl,
-      updateField
-    } = this.props;
-    const statusOptions = [
-      { key: "1", value: "1", text: "1" },
-      { key: "2", value: "2", text: "2" }
-    ];
+    const { handleApply, intl } = this.props;
     return (
       <EditModalController
         handleApply={handleApply}
