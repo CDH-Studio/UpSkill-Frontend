@@ -39,10 +39,22 @@ class PrimaryLayoutGroupView extends Component {
 
   renderLabeledCards() {
     const { intl, profileInfo, windowWidth } = this.props;
-    const { groupOrLevel, security, status, yearsOfService } = profileInfo;
+    const {
+      acting,
+      actingPeriodStartDate,
+      actingPeriodEndDate,
+      classification,
+      security,
+      status,
+      yearsOfService
+    } = profileInfo;
 
-    const groupOrLevelLabel = intl.formatMessage({
-      id: "profile.group.or.level"
+    const actingLabel = intl.formatMessage({ id: "profile.acting" });
+    const actingPeriodLabel = intl.formatMessage({
+      id: "profile.acting.period"
+    });
+    const classificationLabel = intl.formatMessage({
+      id: "profile.classification"
     });
     const securityLabel = intl.formatMessage({ id: "profile.security" });
     const statusLabel = intl.formatMessage({ id: "profile.status" });
@@ -70,18 +82,18 @@ class PrimaryLayoutGroupView extends Component {
                   labelText={statusLabel}
                 />
                 <LabeledCardController
-                  contentText={groupOrLevel}
-                  labelText={groupOrLevelLabel}
+                  contentText={yearsOfService}
+                  labelText={yearsOfServiceLabel}
                 />
               </Grid.Column>
               <Grid.Column width={8}>
                 <LabeledCardController
-                  contentText={yearsOfService}
-                  labelText={yearsOfServiceLabel}
-                />
-                <LabeledCardController
                   contentText={security}
                   labelText={securityLabel}
+                />
+                <LabeledCardController
+                  contentText={classification}
+                  labelText={classificationLabel}
                 />
               </Grid.Column>
             </Grid>
@@ -104,10 +116,6 @@ class PrimaryLayoutGroupView extends Component {
         >
           <LabeledCardController contentText={status} labelText={statusLabel} />
           <LabeledCardController
-            contentText={groupOrLevel}
-            labelText={groupOrLevelLabel}
-          />
-          <LabeledCardController
             contentText={yearsOfService}
             labelText={yearsOfServiceLabel}
           />
@@ -115,6 +123,22 @@ class PrimaryLayoutGroupView extends Component {
             contentText={security}
             labelText={securityLabel}
           />
+          <LabeledCardController
+            contentText={classification}
+            labelText={classificationLabel}
+          />
+          {acting && actingPeriodStartDate && (
+            <React.Fragment>
+              <LabeledCardController
+                contentText={acting}
+                labelText={actingLabel}
+              />
+              <LabeledCardController
+                contentText={actingPeriodStartDate + "-" + actingPeriodEndDate}
+                labelText={actingPeriodLabel}
+              />
+            </React.Fragment>
+          )}
         </ProfileCardController>
       </Grid.Column>
     );

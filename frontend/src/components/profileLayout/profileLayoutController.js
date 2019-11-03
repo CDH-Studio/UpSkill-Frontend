@@ -119,6 +119,9 @@ export default class ProfileLayoutController extends Component {
         editable={true}
         keycloak={keycloak}
         profileInfo={{
+          acting: "EX 01",
+          actingPeriodStartDate: "01/10/20",
+          actingPeriodEndDate: "10/10/21",
           branch: "Chief Information Office Branch",
 
           building: "CD Howe, Room 368l",
@@ -166,7 +169,7 @@ export default class ProfileLayoutController extends Component {
           firstName: "Massadry",
           githubUrl: "https://www.google.com",
           gradedOnSecondLanguage: true,
-          groupOrLevel: "CS 04",
+          classification: "CS 04",
           jobTitle: "Manager, Next Innovation",
           lastName: "Smisdasth",
           linkedinUrl: "https://www.bing.ca",

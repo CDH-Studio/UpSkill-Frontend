@@ -4,6 +4,9 @@
   "lang": "Francais",
   "lang.code": "fr",
 
+  "profile.classification": "Classification",
+  "profile.acting": "Acting Period",
+  "profile.acting.period": "Acting",
   "profile.career.mobility": "Career Mobility",
   "profile.career.overview": "Career Summary",
   "profile.cellphone": "Cell",
