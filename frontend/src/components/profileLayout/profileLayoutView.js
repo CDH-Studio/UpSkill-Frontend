@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import NavigationBar from "../navigationBar/navigationBarController";
-import { Label } from "semantic-ui-react";
+import { Grid, Label } from "semantic-ui-react";
 
 import { EditableProvider } from "./editableProvider/editableProvider";
 
@@ -40,6 +40,7 @@ class ProfileLayoutView extends Component {
         />
 
         <div className="body">
+          <Grid className="bodyGrid">
           <PrimaryLayoutGroupController
             profileInfo={profileInfo}
             windowWidth={windowWidth}
@@ -50,11 +51,24 @@ class ProfileLayoutView extends Component {
             windowWidth={windowWidth}
           />
 
-          {this.renderSkillsCard()}
-          {this.renderCompetenciesCard()}
-          {this.renderDevelopmentalGoalsCard()}
-          {this.renderEducationCard()}
-          {this.renderCareerOverview()}
+
+          <Grid.Row><Grid.Column>
+            {this.renderSkillsCard()}
+          </Grid.Column></Grid.Row>
+          <Grid.Row><Grid.Column>
+            {this.renderCompetenciesCard()}
+          </Grid.Column></Grid.Row>
+          <Grid.Row><Grid.Column>
+            {this.renderDevelopmentalGoalsCard()}
+          </Grid.Column></Grid.Row>
+          <Grid.Row><Grid.Column>
+            {this.renderEducationCard()}
+          </Grid.Column></Grid.Row>
+          <Grid.Row><Grid.Column>
+            {this.renderCareerOverviewCard()}
+          </Grid.Column></Grid.Row>
+
+          </Grid>
         </div>
       </EditableProvider>
     );
@@ -119,7 +133,7 @@ class ProfileLayoutView extends Component {
     );
   }
 
-  renderCareerOverview() {
+  renderCareerOverviewCard() {
     const { intl, profileInfo } = this.props;
     const { careerSummary } = profileInfo;
 

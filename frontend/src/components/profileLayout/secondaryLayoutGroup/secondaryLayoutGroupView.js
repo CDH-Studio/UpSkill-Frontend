@@ -25,10 +25,9 @@ class SecondaryLayoutGroupView extends Component {
 
     if (useWideLayout) {
       return (
-        <Grid
+        <Grid.Row
           className="noGapBelow"
           style={{
-            marginTop: "0.75em",
             paddingTop: "0px"
           }}
         >
@@ -39,11 +38,11 @@ class SecondaryLayoutGroupView extends Component {
           <Grid.Column className="noGapAbove noGapBelow" width={5}>
             {this.renderLanguageProficiencyCard()}
           </Grid.Column>
-        </Grid>
+        </Grid.Row>
       );
     } else {
       return (
-        <Grid
+        <Grid.Row
           className="noGapBelow"
           style={{
             marginTop: "1em",
@@ -55,7 +54,7 @@ class SecondaryLayoutGroupView extends Component {
             {this.renderLanguageProficiencyCard()}
             {this.renderTalentManagerCard()}
           </Grid.Column>
-        </Grid>
+        </Grid.Row>
       );
     }
   }
@@ -66,7 +65,7 @@ class SecondaryLayoutGroupView extends Component {
     return (
       <ProfileCardController
         button={EditManagerController}
-        className="noGapAbove"
+        className="belowGapCard  noGapAbove "
       >
         <span className="colorLabel">
           <FormattedMessage id="profile.manager" />:
@@ -93,6 +92,7 @@ class SecondaryLayoutGroupView extends Component {
         button={EditLanguageProficiencyController}
         cardName={intl.formatMessage({ id: "profile.official.language" })}
         className={windowWidth > 1250 ? "compactCard" : null}
+        fullHeight={windowWidth > 1250}
       >
         <div>
           <span className="boldLabel">

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Grid, Icon, List, Menu, Popup } from "semantic-ui-react";
+import { Card, Grid, Icon, Label, List, Menu, Popup } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
@@ -21,20 +21,36 @@ class PrimaryLayoutGroupView extends Component {
   render() {
     const { windowWidth } = this.props;
     const useWideLayout = windowWidth > 1250;
-
-    return (
-      <div>
-        <Grid padded={false}>
+    if (useWideLayout) {
+      return (
+        <Grid.Row>
           <Grid.Column
-            width={useWideLayout ? 11 : 16}
-            style={{ marginBottom: "1em", paddingBottom: "0px" }}
+          width={11}
           >
             {this.renderPrimaryCard()}
           </Grid.Column>
+          <Grid.Column width={5} className="noGapAbove">
           {this.renderLabeledCards()}
-        </Grid>
-      </div>
+          </Grid.Column>
+        </Grid.Row>
     );
+    } else {
+      return (
+      <React.Fragment>
+        <Grid.Row>
+        <Grid.Column
+        >
+          {this.renderPrimaryCard()}
+        </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+        <Grid.Column>
+        {this.renderLabeledCards()}
+        </Grid.Column>
+      </Grid.Row>
+    </React.Fragment>);
+    }
+
   }
 
   renderLabeledCards() {
@@ -65,82 +81,77 @@ class PrimaryLayoutGroupView extends Component {
     // When using the medium wideness view there are 2 columns of labeled cards
     if (windowWidth <= 1250 && windowWidth > 750) {
       return (
-        <Grid.Column
-          className="secondRow"
-          style={{ paddingTop: "0px" }}
-          width={16}
-        >
           <ProfileCardController
             button={EditLabelCardsController}
             cardName="Info"
             className="compactCard"
+            
           >
             <Grid>
               <Grid.Column width={8}>
-                <LabeledCardController
-                  contentText={status}
-                  labelText={statusLabel}
-                />
-                <LabeledCardController
-                  contentText={yearsOfService}
-                  labelText={yearsOfServiceLabel}
-                />
+                <Grid>
+                {this.renderLabeledItem(statusLabel,status)}
+
+                {this.renderLabeledItem(securityLabel,security)}
+                {acting && actingPeriodStartDate && 
+                    this.renderLabeledItem(actingLabel,acting)
+                }
+                </Grid>
               </Grid.Column>
               <Grid.Column width={8}>
-                <LabeledCardController
-                  contentText={security}
-                  labelText={securityLabel}
-                />
-                <LabeledCardController
-                  contentText={classification}
-                  labelText={classificationLabel}
-                />
+              <Grid>
+                {this.renderLabeledItem(yearsOfServiceLabel,yearsOfService)}
+                {this.renderLabeledItem(classificationLabel,classification)}
+                {acting && actingPeriodStartDate && 
+                    this.renderLabeledItem(actingPeriodLabel,actingPeriodStartDate + '-' + actingPeriodEndDate) 
+                }
+                </Grid>
               </Grid.Column>
             </Grid>
           </ProfileCardController>
-        </Grid.Column>
       );
     }
     //When using the most wide or most skinny view there is only one column of labeled cards
     return (
-      <Grid.Column
-        {...(windowWidth > 1250
-          ? { className: "firstRowLabelCardColumn", width: 5 }
-          : { className: "secondRow", width: 16 })}
-      >
         <ProfileCardController
           button={EditLabelCardsController}
           cardName="Info"
           className="compactCard"
-          fullHeight={windowWidth > 1250}
+          fullHeight={true}
         >
-          <LabeledCardController contentText={status} labelText={statusLabel} />
-          <LabeledCardController
-            contentText={yearsOfService}
-            labelText={yearsOfServiceLabel}
-          />
-          <LabeledCardController
-            contentText={security}
-            labelText={securityLabel}
-          />
-          <LabeledCardController
-            contentText={classification}
-            labelText={classificationLabel}
-          />
+          <Grid columns={2} style={{paddingTop:'16px'}}>
+            {this.renderLabeledItem(statusLabel,status)}
+            {this.renderLabeledItem(yearsOfServiceLabel,yearsOfService)}
+            {this.renderLabeledItem(securityLabel,security)}
+            {this.renderLabeledItem(classificationLabel,classification)}
+            
           {acting && actingPeriodStartDate && (
             <React.Fragment>
-              <LabeledCardController
-                contentText={acting}
-                labelText={actingLabel}
-              />
-              <LabeledCardController
-                contentText={actingPeriodStartDate + "-" + actingPeriodEndDate}
-                labelText={actingPeriodLabel}
-              />
+              {this.renderLabeledItem(actingLabel,acting)}
+              {this.renderLabeledItem(actingPeriodLabel,actingPeriodStartDate + '-' + actingPeriodEndDate) }
             </React.Fragment>
           )}
+
+          </Grid>
         </ProfileCardController>
+    );
+  }
+
+  renderLabeledItem(labelText, contentText) {
+    return (
+    <Grid.Row columns={2} style={{padding:'3px 0px'}}>
+      <Grid.Column  style={{ textAlign: "center", padding: "3px 0px 3px 3px" }}>
+        <Label
+          color="blue"
+          style={{ fontSize: "12pt", fontWeight: "normal" }}
+        >
+          {labelText}
+        </Label>
       </Grid.Column>
+      <Grid.Column style={{ padding: "0px" }}>
+        {contentText}
+      </Grid.Column>
+    </Grid.Row>
     );
   }
 
@@ -164,7 +175,6 @@ class PrimaryLayoutGroupView extends Component {
     } = this.props.profileInfo;
 
     return (
-      <div>
         <EditWrapperController
           id="primaryCard"
           button={EditPrimaryInformationController}
@@ -269,7 +279,6 @@ class PrimaryLayoutGroupView extends Component {
             </Menu>
           </Card>
         </EditWrapperController>
-      </div>
     );
   }
 

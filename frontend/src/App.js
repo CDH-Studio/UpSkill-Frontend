@@ -71,7 +71,7 @@ class App extends Component {
   render() {
     //If NOT using some version of Internet Explorer
     if (!/MSIE|Trident/.test(window.navigator.userAgent)) {
-      document.body.style = "background-color: #f8f8f8";
+      document.body.style = "background-color: #eeeeee";
     }
 
     const keycloak = this.state.keycloak;

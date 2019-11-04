@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Form, Input, TextArea } from "semantic-ui-react";
+import { Form, Icon, Grid, Input, TextArea } from "semantic-ui-react";
 import "./editHistoryItem.css";
 
 export default class EditHistoryItemController extends Component {
@@ -13,16 +13,17 @@ export default class EditHistoryItemController extends Component {
     const { item, index, removeItemByIndex } = this.props;
 
     return (
-      <Card className="historyItemCard" fluid style={{ position: "relative" }}>
-        <a
+      <Grid.Row style={{ position: "relative" }} width={16}>
+        <Icon
           className="removeHistoryItemButton"
+          name="trash alternate"
+          size="large"
           onClick={e => removeItemByIndex(index)}
           href={null}
-        >
-          x
-        </a>
-        <Card.Content>
-          <Form>
+        />
+          
+    
+          <Form style={{width:"100%"}}>
             <Form.Group widths="equal">
               <Form.Field
                 control={Input}
@@ -64,8 +65,7 @@ export default class EditHistoryItemController extends Component {
               />
             </Form.Field>
           </Form>
-        </Card.Content>
-      </Card>
+      </Grid.Row>
     );
   }
 

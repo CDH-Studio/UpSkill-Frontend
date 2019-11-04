@@ -26,3 +26,11 @@
   padding-bottom: 0.5em !important;
   margin-bottom: 1.5em !important;
 }
+
+.profileCard .menu {
+  background-image:linear-gradient(to right, #3040a0, #202870) !important;
+}
+
+.profileCard .label {
+  background-image:linear-gradient(to right, #3040a0, #202870) !important;
+}

@@ -11,8 +11,8 @@ export default class NavigationBarView extends Component {
 
     return (
       <Menu color="blue" fixed="top" fluid inverted>
-        <Menu.Item style={{ paddingBottom: "5px", paddingTop: "5px" }}>
-          <Image src={Logo} style={{ maxWidth: "50px" }} />
+        <Menu.Item style={{ paddingBottom: "8px", paddingTop: "8px" }}>
+          <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
         <Menu.Menu position="right">
           {/* <Menu.Item name="My Profile" /> */}
