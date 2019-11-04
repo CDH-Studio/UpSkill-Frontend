@@ -14,57 +14,63 @@ export default class EditHistoryItemController extends Component {
 
     return (
       <Grid.Row style={{ position: "relative" }} width={16}>
-        <Icon
+        <div
           className="removeHistoryItemButton"
-          name="trash alternate"
-          size="large"
-          onClick={e => removeItemByIndex(index)}
-          href={null}
-        />
-          
-    
-          <Form style={{width:"100%"}}>
-            <Form.Group widths="equal">
-              <Form.Field
-                control={Input}
-                name="header"
-                label="Name"
-                onChange={this.updateField}
-                placeholder={item.header}
-              />
-              <Form.Field
-                name="subheader"
-                control={Input}
-                label="School"
-                onChange={this.updateField}
-                placeholder={item.subheader}
-              />
-            </Form.Group>
-            <Form.Group widths="equal">
-              <Form.Field
-                name="startDate"
-                control={Input}
-                label="Start"
-                onChange={this.updateField}
-                placeholder={item.startDate}
-              />
-              <Form.Field
-                control={Input}
-                label="Stop"
-                name="endDate"
-                onChange={this.updateField}
-                placeholder={item.endDate}
-              />
-            </Form.Group>
-            <Form.Field>
-              <label>Additional Details</label>
-              <TextArea
-                name="content"
-                onChange={this.updateField}
-                placeholder={item.content}
-              />
-            </Form.Field>
-          </Form>
+          style={{
+            backgroundColor: "rgba(0,0,0,0.05)",
+            borderRadius: "12px",
+            padding: "0px 2px 2px 5px"
+          }}
+        >
+          <Icon
+            name="trash alternate"
+            onClick={e => removeItemByIndex(index)}
+            href={null}
+          />
+        </div>
+
+        <Form style={{ width: "100%" }}>
+          <Form.Group widths="equal">
+            <Form.Field
+              control={Input}
+              name="header"
+              label="Name"
+              onChange={this.updateField}
+              placeholder={item.header}
+            />
+            <Form.Field
+              name="subheader"
+              control={Input}
+              label="School"
+              onChange={this.updateField}
+              placeholder={item.subheader}
+            />
+          </Form.Group>
+          <Form.Group widths="equal">
+            <Form.Field
+              name="startDate"
+              control={Input}
+              label="Start"
+              onChange={this.updateField}
+              placeholder={item.startDate}
+            />
+            <Form.Field
+              control={Input}
+              label="Stop"
+              name="endDate"
+              onChange={this.updateField}
+              placeholder={item.endDate}
+            />
+          </Form.Group>
+          <Form.Field>
+            <label>Additional Details</label>
+            <TextArea
+              name="content"
+              onChange={this.updateField}
+              placeholder={item.content}
+            />
+          </Form.Field>
+        </Form>
       </Grid.Row>
     );
   }

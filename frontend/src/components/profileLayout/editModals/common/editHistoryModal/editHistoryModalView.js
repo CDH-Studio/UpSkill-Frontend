@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
-import { Form,Grid, Dropdown, Select, Modal, Button } from "semantic-ui-react";
+import { Form, Grid, Dropdown, Select, Modal, Button } from "semantic-ui-react";
 
 import { renderEditButton } from "../editModal/editModalView";
 
@@ -33,7 +33,7 @@ class EditHistoryModalView extends Component {
       >
         <Modal.Header>{name}</Modal.Header>
         <Modal.Content>
-          <Grid style={{paddingBottom:"1em"}} divided="vertically">
+          <Grid style={{ paddingBottom: "1em" }} divided="vertically">
             {items.map((item, index) => (
               <EditHistoryItemController
                 item={item}
@@ -42,28 +42,27 @@ class EditHistoryModalView extends Component {
                 updateListField={updateListField}
               />
             ))}
+            <Grid.Row style={{ padding: "0px" }}>
+              <Button
+                color="green"
+                onClick={e => {
+                  addItem();
+                }}
+                className="addHistoryItemButton"
+              >
+                Add Item
+              </Button>
+            </Grid.Row>
           </Grid>
 
-          <Button
-              color="green"
-              fluid
-              onClick={e => {
-                addItem();
-              }}
-              className="addHistoryItemButton"
-            >
-              Add Item
-            </Button>
-
           <div className="historyModalButtonContainer">
-            
             <Button primary color="blue" onClick={handleApply}>
               Apply
             </Button>
             <Button
               color="blue"
               onClick={e => this.setState({ open: false })}
-              secondary
+              basic
             >
               Cancel
             </Button>

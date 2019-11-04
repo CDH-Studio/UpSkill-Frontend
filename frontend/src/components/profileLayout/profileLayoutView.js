@@ -41,33 +41,31 @@ class ProfileLayoutView extends Component {
 
         <div className="body">
           <Grid className="bodyGrid">
-          <PrimaryLayoutGroupController
-            profileInfo={profileInfo}
-            windowWidth={windowWidth}
-          ></PrimaryLayoutGroupController>
+            <PrimaryLayoutGroupController
+              profileInfo={profileInfo}
+              windowWidth={windowWidth}
+            ></PrimaryLayoutGroupController>
 
-          <SecondaryLayoutGroupController
-            profileInfo={profileInfo}
-            windowWidth={windowWidth}
-          />
+            <SecondaryLayoutGroupController
+              profileInfo={profileInfo}
+              windowWidth={windowWidth}
+            />
 
-
-          <Grid.Row><Grid.Column>
-            {this.renderSkillsCard()}
-          </Grid.Column></Grid.Row>
-          <Grid.Row><Grid.Column>
-            {this.renderCompetenciesCard()}
-          </Grid.Column></Grid.Row>
-          <Grid.Row><Grid.Column>
-            {this.renderDevelopmentalGoalsCard()}
-          </Grid.Column></Grid.Row>
-          <Grid.Row><Grid.Column>
-            {this.renderEducationCard()}
-          </Grid.Column></Grid.Row>
-          <Grid.Row><Grid.Column>
-            {this.renderCareerOverviewCard()}
-          </Grid.Column></Grid.Row>
-
+            <Grid.Row>
+              <Grid.Column>{this.renderSkillsCard()}</Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>{this.renderCompetenciesCard()}</Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>{this.renderDevelopmentalGoalsCard()}</Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>{this.renderEducationCard()}</Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>{this.renderCareerOverviewCard()}</Grid.Column>
+            </Grid.Row>
           </Grid>
         </div>
       </EditableProvider>
