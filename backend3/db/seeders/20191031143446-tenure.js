@@ -6,60 +6,83 @@ module.exports = {
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
     */
-    return queryInterface.bulkInsert(
-      "tenures",
-      [
-        {
-          description_en: "Acting",
-          description_fr: "Par intérim",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Assignment",
-          description_fr: "Affectation",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Deployment",
-          description_fr: "Mutations",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Indeterminate",
-          description_fr: "Indeterminée",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Secondment",
-          description_fr: "Détachement",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Student",
-          description_fr: "Étudiant",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Casual",
-          description_fr: "Travailleur occasionnel",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Term",
-          description_fr: "Terme",
-          created_at: new Date(),
-          updated_at: new Date()
-        }
-      ],
-      {}
-    );
+    return queryInterface
+      .bulkInsert(
+        "tenures",
+        [
+          {
+            descriptionEn: "Acting",
+            descriptionFr: "Par intérim",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            descriptionEn: "Assignment",
+            descriptionFr: "Affectation",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            descriptionEn: "Deployment",
+            descriptionFr: "Mutations",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            descriptionEn: "Indeterminate",
+            descriptionFr: "Indeterminée",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            descriptionEn: "Secondment",
+            descriptionFr: "Détachement",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            descriptionEn: "Student",
+            descriptionFr: "Étudiant",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            descriptionEn: "Casual",
+            descriptionFr: "Travailleur occasionnel",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            descriptionEn: "Term",
+            descriptionFr: "Terme",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        ],
+        {}
+      )
+      .then(() => {
+        return queryInterface.bulkInsert(
+          "tenures",
+          [
+            {
+              id: "725c6d40-ddc3-4a55-bdf5-f85155091acd",
+              descriptionEn: "testtenure1",
+              descriptionFr: "testtenureee1",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              id: "e79756f5-ad53-4bad-a03c-22e8f8bf05de",
+              descriptionEn: "testtenure2",
+              descriptionFr: "testtenureee2",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }
+          ],
+          {}
+        );
+      });
   },
 
   down: (queryInterface, Sequelize) => {

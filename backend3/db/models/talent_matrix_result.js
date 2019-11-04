@@ -1,15 +1,15 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const talent_matrix_result = sequelize.define(
-    "talent_matrix_result",
+  const talentMatrixResult = sequelize.define(
+    "talentMatrixResult",
     {
-      description_en: DataTypes.STRING,
-      description_fr: DataTypes.STRING
+      descriptionEn: DataTypes.STRING,
+      descriptionFr: DataTypes.STRING
     },
     {}
   );
-  talent_matrix_result.associate = function(models) {
-    talent_matrix_result.hasOne(models.user);
+  talentMatrixResult.associate = function(models) {
+    talentMatrixResult.hasOne(models.user);
   };
-  return talent_matrix_result;
+  return talentMatrixResult;
 };

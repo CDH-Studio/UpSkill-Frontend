@@ -1,19 +1,19 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const second_language_proficiency = sequelize.define(
-    "second_language_proficiency",
+  const secondLanguageProficiency = sequelize.define(
+    "secondLanguageProficiency",
     {
-      reading_proficiency: DataTypes.STRING,
-      writing_proficiency: DataTypes.STRING,
-      oral_proficiency: DataTypes.STRING,
-      reading_date: DataTypes.DATE,
-      writing_date: DataTypes.DATE,
-      oral_date: DataTypes.DATE
+      readingProficiency: DataTypes.STRING,
+      writingProficiency: DataTypes.STRING,
+      oralProficiency: DataTypes.STRING,
+      readingDate: DataTypes.DATE,
+      writingDate: DataTypes.DATE,
+      oralDate: DataTypes.DATE
     },
     {}
   );
-  second_language_proficiency.associate = function(models) {
-    second_language_proficiency.hasOne(models.user);
+  secondLanguageProficiency.associate = function(models) {
+    secondLanguageProficiency.hasOne(models.user);
   };
-  return second_language_proficiency;
+  return secondLanguageProficiency;
 };

@@ -1,30 +1,30 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("career_mobilities", {
+    return queryInterface.createTable("careerMobilities", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
-      description_en: {
+      descriptionEn: {
         type: Sequelize.STRING
       },
-      description_fr: {
+      descriptionFr: {
         type: Sequelize.STRING
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("career_mobilities");
+    return queryInterface.dropTable("careerMobilities");
   }
 };

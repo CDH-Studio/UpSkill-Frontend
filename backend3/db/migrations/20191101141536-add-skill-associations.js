@@ -2,16 +2,16 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("user_skills", {
-      created_at: {
+    return queryInterface.createTable("userSkills", {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      user_id: {
+      userId: {
         type: Sequelize.UUID,
         primaryKey: true,
         references: {
@@ -19,7 +19,7 @@ module.exports = {
           key: "id" // key in Target model that we're referencing
         }
       },
-      skill_id: {
+      skillId: {
         type: Sequelize.UUID,
         primaryKey: true,
         references: {
@@ -32,6 +32,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     // remove table
-    return queryInterface.dropTable("user_skills");
+    return queryInterface.dropTable("userSkills");
   }
 };

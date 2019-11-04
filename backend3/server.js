@@ -42,7 +42,6 @@ app.set("view engine", "hbs");
 var memoryStore = new session.MemoryStore();
 var keycloak = new Keycloak({ store: memoryStore });
 //session
-console.log(process.env.KEYCLOAK_SECRET);
 app.use(
   session({
     secret: process.env.KEYCLOAK_SECRET,
@@ -83,7 +82,8 @@ router.get("/users/:id", keycloak.protect(), db.getUserById);
 router.post("/users", keycloak.protect(), db.createUser);
 router.put("/users/:id", keycloak.protect(), db.updateUser);
 router.delete("/users/:id", keycloak.protect(), db.deleteUser);
-router.get("/profile/:id", profile.getProfile);
+router.get("/profile/", profile.getProfile);
+router.get("/profile/:id", profile.getProfileById);
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES ===============================================

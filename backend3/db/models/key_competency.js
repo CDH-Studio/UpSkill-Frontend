@@ -1,15 +1,15 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const key_competency = sequelize.define(
-    "key_competency",
+  const keyCompetency = sequelize.define(
+    "keyCompetency",
     {
-      description_en: DataTypes.STRING,
-      description_fr: DataTypes.STRING
+      descriptionEn: DataTypes.STRING,
+      descriptionFr: DataTypes.STRING
     },
     {}
   );
-  key_competency.associate = function(models) {
-    key_competency.hasOne(models.user);
+  keyCompetency.associate = function(models) {
+    keyCompetency.hasOne(models.user);
   };
-  return key_competency;
+  return keyCompetency;
 };

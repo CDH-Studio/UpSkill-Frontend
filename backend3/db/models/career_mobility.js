@@ -1,15 +1,15 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const career_mobility = sequelize.define(
-    "career_mobility",
+  const careerMobility = sequelize.define(
+    "careerMobility",
     {
-      description_en: DataTypes.STRING,
-      description_fr: DataTypes.STRING
+      descriptionEn: DataTypes.STRING,
+      descriptionFr: DataTypes.STRING
     },
     {}
   );
-  career_mobility.associate = function(models) {
-    career_mobility.hasOne(models.user);
+  careerMobility.associate = function(models) {
+    careerMobility.hasOne(models.user);
   };
-  return career_mobility;
+  return careerMobility;
 };

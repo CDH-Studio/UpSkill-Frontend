@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const diploma = sequelize.define('diploma', {
-    description_en: DataTypes.STRING,
-    description_fr: DataTypes.STRING
+    descriptionEn: DataTypes.STRING,
+    descriptionFr: DataTypes.STRING
   }, {});
   diploma.associate = function(models) {
     // associations can be defined here

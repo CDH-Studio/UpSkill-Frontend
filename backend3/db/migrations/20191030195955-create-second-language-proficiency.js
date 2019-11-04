@@ -1,42 +1,42 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("second_language_proficiencies", {
+    return queryInterface.createTable("secondLanguageProficiencies", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
-      reading_proficiency: {
+      readingProficiency: {
         type: Sequelize.STRING
       },
-      writing_proficiency: {
+      writingProficiency: {
         type: Sequelize.STRING
       },
-      oral_proficiency: {
+      oralProficiency: {
         type: Sequelize.STRING
       },
-      reading_date: {
+      readingDate: {
         type: Sequelize.DATE
       },
-      writing_date: {
+      writingDate: {
         type: Sequelize.DATE
       },
-      oral_date: {
+      oralDate: {
         type: Sequelize.DATE
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("second_language_proficiencies");
+    return queryInterface.dropTable("secondLanguageProficiencies");
   }
 };

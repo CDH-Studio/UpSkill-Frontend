@@ -3,16 +3,16 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
-      .createTable("user_competencies", {
-        created_at: {
+      .createTable("userCompetencies", {
+        createdAt: {
           allowNull: false,
           type: Sequelize.DATE
         },
-        updated_at: {
+        updatedAt: {
           allowNull: false,
           type: Sequelize.DATE
         },
-        user_id: {
+        userId: {
           type: Sequelize.UUID,
           primaryKey: true,
           references: {
@@ -20,7 +20,7 @@ module.exports = {
             key: "id" // key in Target model that we're referencing
           }
         },
-        competency_id: {
+        competencyId: {
           type: Sequelize.UUID,
           primaryKey: true,
           references: {
@@ -30,16 +30,16 @@ module.exports = {
         }
       })
       .then(() => {
-        return queryInterface.createTable("user_development_goals", {
-          created_at: {
+        return queryInterface.createTable("userDevelopmentGoals", {
+          createdAt: {
             allowNull: false,
             type: Sequelize.DATE
           },
-          updated_at: {
+          updatedAt: {
             allowNull: false,
             type: Sequelize.DATE
           },
-          user_id: {
+          userId: {
             type: Sequelize.UUID,
             primaryKey: true,
             references: {
@@ -47,7 +47,7 @@ module.exports = {
               key: "id" // key in Target model that we're referencing
             }
           },
-          competency_id: {
+          competencyId: {
             type: Sequelize.UUID,
             primaryKey: true,
             references: {
@@ -61,8 +61,8 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     // remove table
-    return queryInterface.dropTable("user_competencies").then(() => {
-      return queryInterface.dropTable("user_development_goals");
+    return queryInterface.dropTable("userCompetencies").then(() => {
+      return queryInterface.dropTable("userDevelopmentGoals");
     });
   }
 };

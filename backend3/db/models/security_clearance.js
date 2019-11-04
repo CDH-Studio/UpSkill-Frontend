@@ -1,15 +1,15 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const security_clearance = sequelize.define(
-    "security_clearance",
+  const securityClearance = sequelize.define(
+    "securityClearance",
     {
-      description_en: DataTypes.STRING,
-      description_fr: DataTypes.STRING
+      descriptionEn: DataTypes.STRING,
+      descriptionFr: DataTypes.STRING
     },
     {}
   );
-  security_clearance.associate = function(models) {
-    security_clearance.hasOne(models.user);
+  securityClearance.associate = function(models) {
+    securityClearance.hasOne(models.user);
   };
-  return security_clearance;
+  return securityClearance;
 };

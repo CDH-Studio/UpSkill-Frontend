@@ -24,11 +24,11 @@ module.exports = {
       directorate: {
         type: Sequelize.STRING
       },
-      start_date: {
+      startDate: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      end_date: {
+      endDate: {
         allowNull: true,
         type: Sequelize.DATE
       },
@@ -36,11 +36,11 @@ module.exports = {
         allowNull: true,
         type: Sequelize.BOOLEAN
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }

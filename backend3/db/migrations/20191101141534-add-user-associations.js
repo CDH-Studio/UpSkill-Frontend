@@ -5,7 +5,7 @@ module.exports = {
     return queryInterface
       .addColumn(
         "users", // name of Source model
-        "tenure_id", // name of the key we're adding
+        "tenureId", // name of the key we're adding
         {
           type: Sequelize.UUID,
           references: {
@@ -20,11 +20,11 @@ module.exports = {
         return queryInterface
           .addColumn(
             "users", // name of Source model
-            "group_level_id", // name of the key we're adding
+            "groupLevelId", // name of the key we're adding
             {
               type: Sequelize.UUID,
               references: {
-                model: "group_levels", // name of Target model
+                model: "groupLevels", // name of Target model
                 key: "id" // key in Target model that we're referencing
               },
               onUpdate: "CASCADE",
@@ -35,11 +35,11 @@ module.exports = {
             return queryInterface
               .addColumn(
                 "users", // name of Source model
-                "security_clearance_id", // name of the key we're adding
+                "securityClearanceId", // name of the key we're adding
                 {
                   type: Sequelize.UUID,
                   references: {
-                    model: "security_clearances", // name of Target model
+                    model: "securityClearances", // name of Target model
                     key: "id" // key in Target model that we're referencing
                   },
                   onUpdate: "CASCADE",
@@ -51,11 +51,11 @@ module.exports = {
                 return queryInterface
                   .addColumn(
                     "users", // name of Source model
-                    "career_mobility_id", // name of the key we're adding
+                    "careerMobilityId", // name of the key we're adding
                     {
                       type: Sequelize.UUID,
                       references: {
-                        model: "career_mobilities", // name of Target model
+                        model: "careerMobilities", // name of Target model
                         key: "id" // key in Target model that we're referencing
                       },
                       onUpdate: "CASCADE",
@@ -66,11 +66,11 @@ module.exports = {
                     return queryInterface
                       .addColumn(
                         "users", // name of Source model
-                        "talent_matrix_result_id", // name of the key we're adding
+                        "talentMatrixResultId", // name of the key we're adding
                         {
                           type: Sequelize.UUID,
                           references: {
-                            model: "talent_matrix_results", // name of Target model
+                            model: "talentMatrixResults", // name of Target model
                             key: "id" // key in Target model that we're referencing
                           },
                           onUpdate: "CASCADE",
@@ -81,11 +81,11 @@ module.exports = {
                         return queryInterface
                           .addColumn(
                             "users", // name of Source model
-                            "key_competency_id", // name of the key we're adding
+                            "keyCompetencyId", // name of the key we're adding
                             {
                               type: Sequelize.UUID,
                               references: {
-                                model: "key_competencies", // name of Target model
+                                model: "keyCompetencies", // name of Target model
                                 key: "id" // key in Target model that we're referencing
                               },
                               onUpdate: "CASCADE",
@@ -95,11 +95,11 @@ module.exports = {
                           .then(() => {
                             return queryInterface.addColumn(
                               "users", // name of Source model
-                              "second_language_proficiency_id", // name of the key we're adding
+                              "secondLanguageProficiencyId", // name of the key we're adding
                               {
                                 type: Sequelize.UUID,
                                 references: {
-                                  model: "second_language_proficiencies", // name of Target model
+                                  model: "secondLanguageProficiencies", // name of Target model
                                   key: "id" // key in Target model that we're referencing
                                 },
                                 onUpdate: "CASCADE",
@@ -118,42 +118,42 @@ module.exports = {
     return queryInterface
       .removeColumn(
         "users", // name of Source model
-        "tenure_id" // key we want to remove
+        "tenureId" // key we want to remove
       )
       .then(() => {
         return queryInterface
           .removeColumn(
             "users", // name of Source model
-            "group_level_id" // key we want to remove
+            "groupLevelId" // key we want to remove
           )
           .then(() => {
             return queryInterface
               .removeColumn(
                 "users", // name of Source model
-                "security_clearance_id" // key we want to remove
+                "securityClearanceId" // key we want to remove
               )
               .then(() => {
                 return queryInterface
                   .removeColumn(
                     "users", // name of Source model
-                    "career_mobility_id" // key we want to remove
+                    "careerMobilityId" // key we want to remove
                   )
                   .then(() => {
                     return queryInterface
                       .removeColumn(
                         "users", // name of Source model
-                        "talent_matrix_result_id" // key we want to remove
+                        "talentMatrixResultId" // key we want to remove
                       )
                       .then(() => {
                         return queryInterface
                           .removeColumn(
                             "users", // name of Source model
-                            "key_competency_id" // key we want to remove
+                            "keyCompetencyId" // key we want to remove
                           )
                           .then(() => {
                             return queryInterface.removeColumn(
                               "users", // name of Source model
-                              "second_language_proficiency_id" // key we want to remove
+                              "secondLanguageProficiencyId" // key we want to remove
                             );
                           });
                       });

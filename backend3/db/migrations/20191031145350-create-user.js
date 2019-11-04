@@ -8,16 +8,16 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
-      first_name: {
+      firstName: {
         type: Sequelize.STRING
       },
-      last_name: {
+      lastName: {
         type: Sequelize.STRING
       },
       email: {
         type: Sequelize.STRING
       },
-      job_title: {
+      jobTitle: {
         type: Sequelize.STRING
       },
       phone: {
@@ -35,13 +35,13 @@ module.exports = {
       team: {
         type: Sequelize.STRING
       },
-      first_language: {
+      firstLanguage: {
         type: Sequelize.STRING
       },
-      second_language: {
+      secondLanguage: {
         type: Sequelize.STRING
       },
-      year_service: {
+      yearService: {
         type: Sequelize.INTEGER
       },
       linkedin: {
@@ -50,11 +50,11 @@ module.exports = {
       github: {
         type: Sequelize.STRING
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }

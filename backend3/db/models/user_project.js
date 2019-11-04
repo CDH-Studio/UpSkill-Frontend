@@ -1,14 +1,14 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const user_project = sequelize.define(
-    "user_project",
+  const userProject = sequelize.define(
+    "userProject",
     {
       description: DataTypes.STRING
     },
     {}
   );
-  user_project.associate = function(models) {
-    user_project.belongsTo(models.user);
+  userProject.associate = function(models) {
+    userProject.belongsTo(models.user);
   };
-  return user_project;
+  return userProject;
 };

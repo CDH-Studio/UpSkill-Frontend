@@ -1,5 +1,6 @@
 const get = require("./get");
 
 module.exports = {
-  getProfile: get.getProfile
+  getProfile: get.getProfile,
+  getProfileById: get.getProfileById
 };

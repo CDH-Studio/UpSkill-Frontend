@@ -10,22 +10,22 @@ module.exports = {
       "competencies",
       [
         {
-          description_en: "Thinking things through",
-          description_fr: "Réflexion approfondie",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Thinking things through",
+          descriptionFr: "Réflexion approfondie",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Achieve results",
-          description_fr: "Obtenir des résultats",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Achieve results",
+          descriptionFr: "Obtenir des résultats",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Humor",
-          description_fr: "Sens de l'humour",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Humor",
+          descriptionFr: "Sens de l'humour",
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ],
       {}

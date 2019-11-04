@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const tenure = sequelize.define(
     "tenure",
     {
-      description_en: DataTypes.STRING,
-      description_fr: DataTypes.STRING
+      descriptionEn: DataTypes.STRING,
+      descriptionFr: DataTypes.STRING
     },
     {}
   );

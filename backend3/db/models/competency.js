@@ -3,13 +3,13 @@ module.exports = (sequelize, DataTypes) => {
   const competency = sequelize.define(
     "competency",
     {
-      description_en: DataTypes.STRING,
-      description_fr: DataTypes.STRING
+      descriptionEn: DataTypes.STRING,
+      descriptionFr: DataTypes.STRING
     },
     {}
   );
   competency.associate = function(models) {
-    competency.belongsToMany(models.user, { through: "user_competencies" });
+    competency.belongsToMany(models.user, { through: "userCompetencies" });
   };
   return competency;
 };

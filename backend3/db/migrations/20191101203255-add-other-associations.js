@@ -4,8 +4,8 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
       .addColumn(
-        "user_projects", // name of Source model
-        "user_id", // name of the key we're adding
+        "userProjects", // name of Source model
+        "userId", // name of the key we're adding
         {
           type: Sequelize.UUID,
           references: {
@@ -20,7 +20,7 @@ module.exports = {
         return queryInterface
           .addColumn(
             "experiences", // name of Source model
-            "user_id", // name of the key we're adding
+            "userId", // name of the key we're adding
             {
               type: Sequelize.UUID,
               references: {
@@ -34,7 +34,7 @@ module.exports = {
           .then(() => {
             return queryInterface.addColumn(
               "organizations", // name of Source model
-              "user_id", // name of the key we're adding
+              "userId", // name of the key we're adding
               {
                 type: Sequelize.UUID,
                 references: {
@@ -52,19 +52,19 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface
       .removeColumn(
-        "user_projects", // name of Source model
-        "user_id" // key we want to remove
+        "userProjects", // name of Source model
+        "userId" // key we want to remove
       )
       .then(() => {
         return queryInterface
           .removeColumn(
             "experiences", // name of Source model
-            "user_id" // key we want to remove
+            "userId" // key we want to remove
           )
           .then(() => {
             return queryInterface.removeColumn(
               "organizations", // name of Source model
-              "user_id" // key we want to remove
+              "userId" // key we want to remove
             );
           });
       });
