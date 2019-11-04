@@ -11,7 +11,7 @@ module.exports = {
       [
         {
           description_en: "Reliability",
-          description_fr: "Fiabilité",
+          description_fr: "Cote de fiabilité",
           created_at: new Date(),
           updated_at: new Date()
         },
@@ -23,7 +23,7 @@ module.exports = {
         },
         {
           description_en: "Top Secret",
-          description_fr: "Top Secret",
+          description_fr: "Très Secret",
           created_at: new Date(),
           updated_at: new Date()
         }
