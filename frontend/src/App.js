@@ -87,6 +87,23 @@ class App extends Component {
           >
             <Router>
               <div>
+                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+                <div>
+                  <form>
+                    <textarea
+                      ref={textarea => (this.textArea = textarea)}
+                      value={keycloak.token}
+                    />
+                  </form>
+                  {document.queryCommandSupported("copy") && (
+                    <div>
+                      <button onClick={this.copyToClipboard}>Copy</button>
+                      {this.state.copySuccess}
+                    </div>
+                  )}
+                </div>
+                {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/about" component={About} />
                 <Route
@@ -143,6 +160,15 @@ class App extends Component {
     }
     return <div>Initializing Keycloak...</div>;
   }
+
+  //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  copyToClipboard = e => {
+    this.textArea.select();
+    document.execCommand("copy");
+    e.target.focus();
+    this.setState({ copySuccess: "Copied!" });
+  };
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   changeLanguage(lang) {
     localStorage.setItem("lang", lang);

@@ -9,7 +9,9 @@
   "scripts": {
     "client": "cd frontend && npm i && react-scripts start",
     "server": "cd backend && npm i && node server.js",
-    "start": "concurrently \"npm run server\" \"npm run client\""
+    "feathers": "cd backend3 && npm start",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start2": "concurrently \"npm run client\" \"npm run feathers\""
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,13 @@
   },
   "homepage": "https://github.com/CDH-Studio/UpSkill#readme",
   "dependencies": {
+    "axios": "^0.19.0",
     "concurrently": "^5.0.0",
+    "express-session": "^1.17.0",
+    "feathers-sequelize": "^6.1.0",
+    "keycloak-connect": "^7.0.1",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
     "react-scripts": "^3.2.0"
   }
 }
