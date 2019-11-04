@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("career_journeys", {
+    return queryInterface.createTable("experiences", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -43,6 +43,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("career_journeys");
+    return queryInterface.dropTable("experiences");
   }
 };

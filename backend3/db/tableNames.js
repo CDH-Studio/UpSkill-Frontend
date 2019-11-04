@@ -1,6 +1,6 @@
 module.exports = {
   BRANCHES: "branches",
-  CAREER_JOURNEYS: "career_journeys",
+  EXPERIENCES: "experiences",
   CAREER_MOBILITIES: "career_mobilities",
   COMPETENCIES: "competencies",
   DEPARTMENTS: "departments",
@@ -8,7 +8,7 @@ module.exports = {
   DIRECTORATES: "directorates",
   DIVISIONS: "divisions",
   EDUCATION: "education",
-  EMPLOYMENT_STATUSES: "employment_statuses",
+  TENURES: "tenures",
   GROUP_LEVELS: "group_levels",
   KEY_COMPETENCIES: "key_competencies",
   ORGANIZATIONS: "organizations",

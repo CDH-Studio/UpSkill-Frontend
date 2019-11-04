@@ -7,7 +7,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
     */
     return queryInterface.bulkInsert(
-      "employment_statuses",
+      "tenures",
       [
         {
           description_en: "Acting",
@@ -67,6 +67,6 @@ module.exports = {
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
     */
-    return queryInterface.bulkDelete("employment_statuses", null, {});
+    return queryInterface.bulkDelete("tenures", null, {});
   }
 };

@@ -5,11 +5,11 @@ module.exports = {
     return queryInterface
       .addColumn(
         "users", // name of Source model
-        "employment_status_id", // name of the key we're adding
+        "tenure_id", // name of the key we're adding
         {
           type: Sequelize.UUID,
           references: {
-            model: "employment_statuses", // name of Target model
+            model: "tenures", // name of Target model
             key: "id" // key in Target model that we're referencing
           },
           onUpdate: "CASCADE",
@@ -118,7 +118,7 @@ module.exports = {
     return queryInterface
       .removeColumn(
         "users", // name of Source model
-        "employment_status_id" // key we want to remove
+        "tenure_id" // key we want to remove
       )
       .then(() => {
         return queryInterface

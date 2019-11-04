@@ -1,10 +1,14 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  const group_level = sequelize.define('group_level', {
-    description: DataTypes.STRING
-  }, {});
+  const group_level = sequelize.define(
+    "group_level",
+    {
+      description: DataTypes.STRING
+    },
+    {}
+  );
   group_level.associate = function(models) {
-    // associations can be defined here
+    user.hasOne(models.user);
   };
   return group_level;
 };

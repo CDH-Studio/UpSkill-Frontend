@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const career_journey = sequelize.define(
-    "career_journey",
+  const experience = sequelize.define(
+    "experience",
     {
       organization_en: DataTypes.STRING,
       organization_fr: DataTypes.STRING,
@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  career_journey.associate = function(models) {
-    career_journey.belongsTo(model.user);
+  experience.associate = function(models) {
+    experience.belongsTo(model.user);
   };
-  return career_journey;
+  return experience;
 };

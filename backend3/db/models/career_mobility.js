@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   career_mobility.associate = function(models) {
-    // associations can be defined here
+    user.hasOne(models.user);
   };
   return career_mobility;
 };
