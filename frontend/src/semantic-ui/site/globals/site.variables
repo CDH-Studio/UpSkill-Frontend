@@ -4,3 +4,9 @@
 
 @fontSize: 16pt;
 @pageFont: Nunito Sans, Helvetica New, Helvetica;
+
+@h1: 28pt;
+@h2: 24pt;
+@h3: 21pt;
+@h4: 18pt;
+@h5: 16pt;

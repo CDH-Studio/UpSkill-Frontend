@@ -91,3 +91,5 @@ export default class ResultsLayoutView extends Component {
     return <Card.Group fluid>{cards}</Card.Group>;
   }
 }
+
+//export default injectIntl(ResultsLayoutView);

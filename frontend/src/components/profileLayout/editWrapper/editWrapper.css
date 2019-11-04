@@ -1,0 +1,30 @@
+.compactWrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.defaultWrapper {
+  position: relative;
+}
+
+.innerButton {
+  font-size: 12pt;
+  position: absolute;
+  right: 4pt;
+  top: 4pt;
+  z-index: 10;
+}
+
+.outerButton {
+  font-size: 12pt;
+  left: 100%;
+  min-width: 50px;
+  position: absolute;
+  top: 4pt;
+  z-index: 10;
+}
+
+.reducePaddingWrapper{
+  margin-top: -20px;
+  position: relative;
+}

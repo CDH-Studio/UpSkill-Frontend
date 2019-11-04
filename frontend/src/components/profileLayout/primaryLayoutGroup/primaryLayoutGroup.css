@@ -1,0 +1,22 @@
+.organizationList .icon {
+  left: 0px;
+  position: relative;
+  top: -5px;
+}
+
+.organizationList .list {
+  padding-bottom: 0px !important;
+}
+
+.phoneNumberArea {
+  display: inline-block;
+  width: 200px;
+}
+
+.firstRowLabelCard {
+  padding-top: 0px !important;
+}
+
+.secondRow {
+  padding-top: 0px !important;
+}

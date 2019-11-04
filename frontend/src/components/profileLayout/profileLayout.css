@@ -1,0 +1,48 @@
+.body {
+  margin: 50px auto;
+  max-width: 1200px;
+  min-width: 500px;
+  padding: 25px;
+}
+
+.boldLabel {
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+
+.colorLabel {
+  color: #6435c9;
+  padding-right: 0.5em;
+}
+
+.historyList {
+  padding-top:10pt !important;
+}
+
+.historyList .dateInfo {
+  text-align: right;
+}
+
+.historyList .entryName {
+  font-weight: bold;
+}
+
+.historyList div .row {
+  line-height: 14pt;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+.noGapAbove {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+.noGapBelow {
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.violetColored {
+  color: #6435c9;
+}

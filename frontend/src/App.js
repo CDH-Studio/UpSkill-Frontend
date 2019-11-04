@@ -7,7 +7,15 @@ import { IntlProvider } from "react-intl";
 import messages_en from "./i18n/en_CA.json";
 import messages_fr from "./i18n/fr_CA.json";
 import "./App.css";
-import { About, Advanced, Home, Landing, Results } from "./pages/index";
+
+import {
+  About,
+  Advanced,
+  Home,
+  Landing,
+  Results,
+  Profile
+} from "./pages/index";
 
 let localLang = (() => {
   if (localStorage.getItem("lang")) {
@@ -114,11 +122,24 @@ class App extends Component {
                     />
                   )}
                 />
+                <Route
+                  exact
+                  path="/profile"
+                  render={routeProps => (
+                    <Profile
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
               </div>
             </Router>
           </IntlProvider>
         );
-      } else return <div>Unable to authenticate!</div>;
+      } else {
+        return <div>Unable to authenticate!</div>;
+      }
     }
     return <div>Initializing Keycloak...</div>;
   }
