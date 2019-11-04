@@ -2,50 +2,172 @@ import React from "react";
 import ProfileLayoutView from "./profileLayoutView";
 import wrapThenMount from "../../../__mocks__/componentWrapper";
 
+import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";
+import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
+import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";
+import EditEducationController from "./editModals/editEducation/editEducationController";
+import EditSkillController from "./editModals/editSkills/editSkillsController";
+
+import EditLanguageProficiencyController from "./editModals/editLanguageProficiency/editLanguageProficiencyController";
+import EditManagerController from "./editModals/editManager/editManagerController";
+import EditTalentManagerController from "./editModals/editTalentManager/editTalentManagerController";
+
+import EditLabelCardsController from "./editModals/editLabelCards/editLabelCardsController";
+import EditPrimaryInformationController from "./editModals/editPrimaryInformation/editPrimaryInformationController";
+import EditProfilePictureController from "./editModals/editProfilePicture/editProfilePictureController";
+import EditWrapperController from "./editWrapper/editWrapperController";
+
 it("Editable profile view contains expected components", () => {
   const wrapper = wrapThenMount(
     <ProfileLayoutView
+      dropdownOptions={{
+        oralGrade: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        writingGrade: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        readingGrade: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        firstLanguage: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        readingMonth: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        writingMonth: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        oralMonth: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        competencies: [
+          { name: "1", value: "1", text: "1", key: "1" },
+          { name: "2", value: "2", text: "2", key: "2" },
+          { name: "3", value: "3", text: "3", key: "3" }
+        ],
+        developmentalGoals: [
+          { name: "1", value: "1", text: "1", key: "1" },
+          { name: "2", value: "2", text: "2", key: "2" },
+          { name: "3", value: "3", text: "3", key: "3" }
+        ],
+        skills: [
+          { name: "1", value: "1", text: "1", key: "1" },
+          { name: "2", value: "2", text: "2", key: "2" },
+          { name: "3", value: "3", text: "3", key: "3" }
+        ],
+        firstName: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        lastName: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        directorate: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        division: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        branch: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        sector: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        department: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        team: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        telephone: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        cellphone: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        email: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        location: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ]
+      }}
       profileInfo={{
+        acting: "EX 01",
+        actingPeriodStartDate: "01/10/20",
+        actingPeriodEndDate: "10/10/21",
         branch: "Chief Information Office Branch",
 
         building: "CD Howe, Room 368l",
         careerMobility: "Ready for movement",
         careerSummary: [
           {
-            content: "Payment Analyst",
+            content: "this is content\nmore content",
             endDate: "Present",
-            name: "Payments Canada",
-            startDate: "Aug 2017"
+            header: "Payments Canada",
+            startDate: "Aug 2017",
+            subheader: "Payment Analyst"
           }
         ],
         city: "Ontario",
 
-        competencies: ["Thinking things through", "Achieve results"],
+        competencies: ["2"],
         country: "Canada",
-        developmentalGoals: ["Mobalize people"],
+        developmentalGoals: ["3"],
 
         education: [
           {
-            content: "Telpher School of Buisness",
+            content: "this is content\ni am content",
+            subheader: "Telpher School of Buisness",
             endDate: "Apr 2009",
-            name: "Masters of Business Administration",
+            header: "Masters of Business Administration",
             startDate: "Sept 2007"
           },
           {
-            content: "Carleton University",
+            content: "this is content\ni am content",
+            subheader: "Carleton University",
             endDate: "Apr 2005",
-            name: "Software Engineering",
+            header: "Software Engineering",
+            startDate: "Sept 2000"
+          },
+          {
+            content: "this is content\ni am content",
+            subheader: "smart people shcool",
+            endDate: "Apr 2005",
+            header: "smart people class",
             startDate: "Sept 2000"
           }
         ],
         email: "mary.smith@canada.ca",
         firstLanguage: "English",
         firstName: "Massadry",
-        GitHubURL: "https://www.google.com",
-        groupOrLevel: "CS 04",
+        githubUrl: "https://www.google.com",
+        gradedOnSecondLanguage: true,
+        classification: "CS 04",
         jobTitle: "Manager, Next Innovation",
         lastName: "Smisdasth",
-        LinkedInURL: "https://www.bing.ca",
+        linkedinUrl: "https://www.bing.ca",
         manager: "Chahine El Chaar",
         mobile: "613-402-8224",
         organizationList: [
@@ -65,13 +187,13 @@ it("Editable profile view contains expected components", () => {
         secondaryWritingGrade: "B",
         secondLanguage: null,
         security: "Reliability",
-        skills: ["Excel", "Project management", "Change management"],
+        skills: ["1"],
         status: "Indeterminate",
         street: "235 Queen Street",
         talentMatrixResult: "Exceptional talent",
         team: "ABC Team",
         telephone: "343-291-1366",
-        TwitterURL: "https://www.baidu.com",
+        twitterUrl: "https://www.baidu.com",
         yearsOfService: 5.0
       }}
       editable={true}
@@ -79,41 +201,40 @@ it("Editable profile view contains expected components", () => {
     />
   );
 
-  const names = [
-    "EditCareerOverviewView",
-    "EditCompetenciesView",
-    "EditDevelopmentGoalsView",
-    "EditEducationView",
-    "EditLabelCardsView",
-    "EditLanguageProficiencyView",
-    "EditManagerView",
-    "EditMenuView",
-    "EditNameView",
-    "EditPrimaryInformationView",
-    "EditProfilePictureView",
-    "EditSkillsView",
-    "EditTalentManagerView"
+  const classes = [
+    EditCareerOverviewController,
+    EditCompetenciesController,
+    EditDevelopmentalGoalsController,
+    EditEducationController,
+    EditSkillController,
+
+    EditLanguageProficiencyController,
+    EditManagerController,
+    EditTalentManagerController,
+
+    EditLabelCardsController,
+    EditPrimaryInformationController,
+    EditProfilePictureController
   ];
 
-  console.log(wrapper.debug());
-
-  names.forEach(val => {
-    console.log("finding", val);
-    let instances = wrapper.find(val);
-    expect(instances.length).toBe(1);
+  classes.forEach(val => {
+    let instances = wrapper.find({
+      button: val
+    });
+    expect(instances.length > 0).toBe(true);
   });
 
   const outerEditButtons = wrapper.find(".outerButton");
-  expect(outerEditButtons.length).toBe(1);
+  expect(outerEditButtons.length).toBe(0);
 
   const innerEditButtons = wrapper.find(".innerButton");
-  expect(innerEditButtons.length).toBe(12);
+  expect(innerEditButtons.length).toBe(11);
 
   const editWrappers = wrapper.find("EditWrapperView");
-  expect(editWrappers.length).toBe(13);
+  expect(editWrappers.length).toBe(11);
 
   const cards = wrapper.find("Card");
-  expect(cards.length).toBe(13);
+  expect(cards.length).toBe(10);
 
   const navigationBarViews = wrapper.find("NavigationBarView");
   expect(navigationBarViews.length).toBe(1);
@@ -128,47 +249,154 @@ it("Editable profile view contains expected components", () => {
 it("Non-editable profile view contains expected components", () => {
   const wrapper = wrapThenMount(
     <ProfileLayoutView
+      dropdownOptions={{
+        oralGrade: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        writingGrade: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        readingGrade: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        firstLanguage: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        readingMonth: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        writingMonth: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        oralMonth: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        competencies: [
+          { name: "1", value: "1", text: "1", key: "1" },
+          { name: "2", value: "2", text: "2", key: "2" },
+          { name: "3", value: "3", text: "3", key: "3" }
+        ],
+        developmentalGoals: [
+          { name: "1", value: "1", text: "1", key: "1" },
+          { name: "2", value: "2", text: "2", key: "2" },
+          { name: "3", value: "3", text: "3", key: "3" }
+        ],
+        skills: [
+          { name: "1", value: "1", text: "1", key: "1" },
+          { name: "2", value: "2", text: "2", key: "2" },
+          { name: "3", value: "3", text: "3", key: "3" }
+        ],
+        firstName: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        lastName: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        directorate: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        division: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        branch: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        sector: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        department: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        team: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        telephone: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        cellphone: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        email: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ],
+        location: [
+          { key: "1", text: "1", value: "1" },
+          { key: "2", text: "2", value: "2" }
+        ]
+      }}
       profileInfo={{
+        acting: "EX 01",
+        actingPeriodStartDate: "01/10/20",
+        actingPeriodEndDate: "10/10/21",
         branch: "Chief Information Office Branch",
 
         building: "CD Howe, Room 368l",
         careerMobility: "Ready for movement",
         careerSummary: [
           {
-            content: "Payment Analyst",
+            content: "this is content\nmore content",
             endDate: "Present",
-            name: "Payments Canada",
-            startDate: "Aug 2017"
+            header: "Payments Canada",
+            startDate: "Aug 2017",
+            subheader: "Payment Analyst"
           }
         ],
         city: "Ontario",
 
-        competencies: ["Thinking things through", "Achieve results"],
+        competencies: ["2"],
         country: "Canada",
-        developmentalGoals: ["Mobalize people"],
+        developmentalGoals: ["3"],
 
         education: [
           {
-            content: "Telpher School of Buisness",
+            content: "this is content\ni am content",
+            subheader: "Telpher School of Buisness",
             endDate: "Apr 2009",
-            name: "Masters of Business Administration",
+            header: "Masters of Business Administration",
             startDate: "Sept 2007"
           },
           {
-            content: "Carleton University",
+            content: "this is content\ni am content",
+            subheader: "Carleton University",
             endDate: "Apr 2005",
-            name: "Software Engineering",
+            header: "Software Engineering",
+            startDate: "Sept 2000"
+          },
+          {
+            content: "this is content\ni am content",
+            subheader: "smart people shcool",
+            endDate: "Apr 2005",
+            header: "smart people class",
             startDate: "Sept 2000"
           }
         ],
         email: "mary.smith@canada.ca",
         firstLanguage: "English",
         firstName: "Massadry",
-        GitHubURL: "https://www.google.com",
-        groupOrLevel: "CS 04",
+        githubUrl: "https://www.google.com",
+        gradedOnSecondLanguage: true,
+        classification: "CS 04",
         jobTitle: "Manager, Next Innovation",
         lastName: "Smisdasth",
-        LinkedInURL: "https://www.bing.ca",
+        linkedinUrl: "https://www.bing.ca",
         manager: "Chahine El Chaar",
         mobile: "613-402-8224",
         organizationList: [
@@ -188,13 +416,13 @@ it("Non-editable profile view contains expected components", () => {
         secondaryWritingGrade: "B",
         secondLanguage: null,
         security: "Reliability",
-        skills: ["Excel", "Project management", "Change management"],
+        skills: ["1"],
         status: "Indeterminate",
         street: "235 Queen Street",
         talentMatrixResult: "Exceptional talent",
         team: "ABC Team",
         telephone: "343-291-1366",
-        TwitterURL: "https://www.baidu.com",
+        twitterUrl: "https://www.baidu.com",
         yearsOfService: 5.0
       }}
       editable={false}
@@ -202,24 +430,23 @@ it("Non-editable profile view contains expected components", () => {
     />
   );
 
-  const names = [
-    "EditCareerOverviewView",
-    "EditCompetenciesView",
-    "EditDevelopmentGoalsView",
-    "EditEducationView",
-    "EditLabelCardsView",
-    "EditLanguageProficiencyView",
-    "EditManagerView",
-    "EditMenuView",
-    "EditNameView",
-    "EditPrimaryInformationView",
-    "EditProfilePictureView",
-    "EditSkillsView",
-    "EditTalentManagerView"
+  const classes = [
+    "EditCareerOverviewController",
+    "EditCompetenciesController",
+    "EditDevelopmentalGoalsController",
+    "EditEducationController",
+    "EditSkillController",
+
+    "EditLanguageProficiencyController",
+    "EditManagerController",
+    "EditTalentManagerController",
+
+    "EditLabelCardsController",
+    "EditPrimaryInformationController",
+    "EditProfilePictureController"
   ];
 
-  names.forEach(val => {
-    console.log("findingxx", val);
+  classes.forEach(val => {
     let instances = wrapper.find(val);
     expect(instances.length).toBe(0);
   });
@@ -231,10 +458,10 @@ it("Non-editable profile view contains expected components", () => {
   expect(innerEditButtons.length).toBe(0);
 
   const editWrappers = wrapper.find("EditWrapperView");
-  expect(editWrappers.length).toBe(13);
+  expect(editWrappers.length).toBe(11);
 
   const cards = wrapper.find("Card");
-  expect(cards.length).toBe(13);
+  expect(cards.length).toBe(10);
 
   const navigationBarViews = wrapper.find("NavigationBarView");
   expect(navigationBarViews.length).toBe(1);

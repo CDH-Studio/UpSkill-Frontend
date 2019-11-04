@@ -1,0 +1,8 @@
+.removeHistoryItemButton {
+  font-size: 16pt;
+  padding: 6px;
+  position: absolute;
+  right: 6pt;
+  top: 6pt;
+  z-index: 100;
+}

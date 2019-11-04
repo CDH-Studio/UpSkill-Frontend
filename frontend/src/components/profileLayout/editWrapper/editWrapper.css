@@ -8,7 +8,7 @@
 }
 
 .innerButton {
-  font-size: 12pt;
+  font-size: 13pt;
   position: absolute;
   right: 4pt;
   top: 4pt;
@@ -16,7 +16,7 @@
 }
 
 .outerButton {
-  font-size: 12pt;
+  font-size: 13pt;
   left: 100%;
   min-width: 50px;
   position: absolute;
@@ -24,7 +24,7 @@
   z-index: 10;
 }
 
-.reducePaddingWrapper{
+.reducePaddingWrapper {
   margin-top: -20px;
   position: relative;
 }

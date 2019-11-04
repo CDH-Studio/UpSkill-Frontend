@@ -13,7 +13,7 @@
 
 .ui.cards > .card > :first-child,
 .ui.card > :first-child {
-  font-size: 12pt;
+  font-size: 13pt;
   border-radius: 0.28571429rem 0 0 0.28571429rem !important;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .labeledCard {
-  font-size: 12pt;
+  font-size: 13pt;
   margin-bottom: 15px !important;
   margin-top: 15px !important;
 }

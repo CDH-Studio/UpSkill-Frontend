@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
+
+import FieldManagingComponent from "../common/fieldManagingComponent";
 import EditMangerView from "./editManagerView";
 
-export default class EditMangerController extends Component {
+export default class EditMangerController extends FieldManagingComponent {
   render() {
-    return <EditMangerView {...this.props} />;
+    return <EditMangerView profileInfo={{ manager: null }} {...this.props} />;
   }
 }
-

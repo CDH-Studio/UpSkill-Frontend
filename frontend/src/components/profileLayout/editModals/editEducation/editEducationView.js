@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
-import GenericEditModalController from "../generic/genericEditModalController.js";
-import "./editEducation.css";
+import EditHistoryModal from "../common/editHistoryModal/editHistoryModalController";
 
 class EditEducationView extends Component {
   render() {
     const { intl } = this.props;
     return (
-      <GenericEditModalController
-        name={intl.formatMessage({ id: "profile.edit.primary.information" })}
-      >
-        <div>this is div2</div>
-        <div>more div2</div>
-      </GenericEditModalController>
+      <EditHistoryModal
+        name={intl.formatMessage({ id: "profile.edit.education" })}
+        {...this.props}
+      />
     );
   }
 }
