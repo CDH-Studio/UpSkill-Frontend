@@ -73,15 +73,15 @@ module.exports = {
           [
             {
               id: "ddc02520-ff45-11e9-8f0b-362b9e155667",
-              description_en: "testEarlyPromise",
-              description_fr: "testEmployéPrometteur",
+              descriptionEn: "testEarlyPromise",
+              descriptionFr: "testEmployéPrometteur",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "e4f5d678-ff45-11e9-8f0b-362b9e155667",
-              description_en: "testExceptionalTalent",
-              description_fr: "testFuturDirigeant",
+              descriptionEn: "testExceptionalTalent",
+              descriptionFr: "testFuturDirigeant",
               createdAt: new Date(),
               updatedAt: new Date()
             }
