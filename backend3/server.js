@@ -40,7 +40,6 @@ app.set("view engine", "hbs");
 var memoryStore = new session.MemoryStore();
 var keycloak = new Keycloak({ store: memoryStore });
 //session
-console.log(process.env.KEYCLOAK_SECRET);
 app.use(
   session({
     secret: process.env.KEYCLOAK_SECRET,
