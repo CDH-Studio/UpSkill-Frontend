@@ -75,9 +75,9 @@ class editModalView extends Component {
               Apply
             </Button>
             <Button
+              basic
               color="blue"
               onClick={e => this.setState({ open: false })}
-              secondary
             >
               Cancel
             </Button>

@@ -218,7 +218,6 @@ class PrimaryLayoutGroupView extends Component {
                   <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
                   <Popup
-                    flowing
                     on="click"
                     trigger={<h5 className="noGapAbove">{branch}</h5>}
                   >

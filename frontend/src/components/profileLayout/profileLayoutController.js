@@ -2,6 +2,76 @@ import React, { Component } from "react";
 
 import ProfileLayoutView from "./profileLayoutView";
 
+const unspecifiedValues = {
+  acting: "Unspecified",
+  actingPeriodStartDate: "Unspecified",
+  actingPeriodEndDate: "Unspecified",
+  branch: "Unspecified",
+
+  building: "Unspecified",
+  careerMobility: "Unspecified",
+  careerSummary: [
+    {
+      content: "Unspecified",
+      endDate: "Unspecified",
+      header: "Unspecified",
+      startDate: "Unspecified",
+      subheader: "Unspecified"
+    }
+  ],
+  city: "Unspecified",
+
+  competencies: [],
+  country: "Unspecified",
+  developmentalGoals: [],
+
+  education: [
+    {
+      content: "Unspecified",
+      subheader: "Unspecified",
+      endDate: "Unspecified",
+      header: "Unspecified",
+      startDate: "Unspecified"
+    }
+  ],
+  email: "Unspecified",
+  firstLanguage: "Unspecified",
+  firstName: "Unspecified",
+  githubUrl: "Unspecified",
+  gradedOnSecondLanguage: false,
+  classification: "Unspecified",
+  jobTitle: "Unspecified",
+  lastName: "Unspecified",
+  linkedinUrl: "Unspecified",
+  manager: "Unspecified",
+  mobile: "Unspecified",
+  organizationList: [
+    "Unspecified",
+    "Unspecified",
+    "Unspecified",
+    "Unspecified",
+    "Unspecified"
+  ],
+  PO: "Unspecified",
+  province: "Unspecified",
+  secondaryOralDate: "Unspecified",
+  secondaryOralGrade: "Unspecified",
+  secondaryReadingDate: "Unspecified",
+  secondaryReadingGrade: "Unspecified",
+  secondaryWritingDate: "Unspecified",
+  secondaryWritingGrade: "Unspecified",
+  secondLanguage: null,
+  security: "Unspecified",
+  skills: [],
+  status: "Unspecified",
+  street: "Unspecified",
+  talentMatrixResult: "Unspecified",
+  team: "Unspecified",
+  telephone: "Unspecified",
+  twitterUrl: "Unspecified",
+  yearsOfService: "Unspecified"
+};
+
 export default class ProfileLayoutController extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +88,7 @@ export default class ProfileLayoutController extends Component {
   }
 
   render() {
-    const { changeLanguage, keycloak } = this.props;
+    const { changeLanguage, keycloak, profileInfo } = this.props;
 
     return (
       <ProfileLayoutView
@@ -116,91 +186,9 @@ export default class ProfileLayoutController extends Component {
             { key: "2", text: "2", value: "2" }
           ]
         }}
+        profileInfo={this.patchProfileInfo(profileInfo)}
         editable={true}
         keycloak={keycloak}
-        profileInfo={{
-          acting: "EX 01",
-          actingPeriodStartDate: "01/10/20",
-          actingPeriodEndDate: "10/10/21",
-          branch: "Chief Information Office Branch",
-
-          building: "CD Howe, Room 368l",
-          careerMobility: "Ready for movement",
-          careerSummary: [
-            {
-              content: "this is content\nmore content",
-              endDate: "Present",
-              header: "Payments Canada",
-              startDate: "Aug 2017",
-              subheader: "Payment Analyst"
-            }
-          ],
-          city: "Ontario",
-
-          competencies: ["2"],
-          country: "Canada",
-          developmentalGoals: ["3"],
-
-          education: [
-            {
-              content: "this is content\ni am content",
-              subheader: "Telpher School of Buisness",
-              endDate: "Apr 2009",
-              header: "Masters of Business Administration",
-              startDate: "Sept 2007"
-            },
-            {
-              content: "this is content\ni am content",
-              subheader: "Carleton University",
-              endDate: "Apr 2005",
-              header: "Software Engineering",
-              startDate: "Sept 2000"
-            },
-            {
-              content: "this is content\ni am content",
-              subheader: "smart people shcool",
-              endDate: "Apr 2005",
-              header: "smart people class",
-              startDate: "Sept 2000"
-            }
-          ],
-          email: "mary.smith@canada.ca",
-          firstLanguage: "English",
-          firstName: "Massadry",
-          githubUrl: "https://www.google.com",
-          gradedOnSecondLanguage: true,
-          classification: "CS 04",
-          jobTitle: "Manager, Next Innovation",
-          lastName: "Smisdasth",
-          linkedinUrl: "https://www.bing.ca",
-          manager: "Chahine El Chaar",
-          mobile: "613-402-8224",
-          organizationList: [
-            "ABC Directorate",
-            "ABC Division",
-            "Chief Information Office Branch",
-            "Digital Transformation Service Sector",
-            "Innovation, Science and Economic Development Canada"
-          ],
-          PO: "K1A 0H5",
-          province: "Ottawa",
-          secondaryOralDate: "Nov 29 2018",
-          secondaryOralGrade: "C",
-          secondaryReadingDate: "Oct 17 2020",
-          secondaryReadingGrade: "C",
-          secondaryWritingDate: "Oct 17 2021",
-          secondaryWritingGrade: "B",
-          secondLanguage: null,
-          security: "Reliability",
-          skills: ["1"],
-          status: "Indeterminate",
-          street: "235 Queen Street",
-          talentMatrixResult: "Exceptional talent",
-          team: "ABC Team",
-          telephone: "343-291-1366",
-          twitterUrl: "https://www.baidu.com",
-          yearsOfService: 5.0
-        }}
         windowWidth={this.state.windowWidth}
       />
     );
@@ -208,5 +196,16 @@ export default class ProfileLayoutController extends Component {
 
   determineWidth() {
     this.setState({ windowWidth: window.innerWidth });
+  }
+
+  patchProfileInfo(profileInfo) {
+    let keys = Object.keys(unspecifiedValues);
+    for (let i = 0; i < keys.length; i++) {
+      let key = keys[i];
+      if (profileInfo[key] === undefined || profileInfo[key] === null) {
+        profileInfo[key] = unspecifiedValues[key];
+      }
+    }
+    return profileInfo;
   }
 }
