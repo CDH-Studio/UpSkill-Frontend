@@ -12,20 +12,20 @@ module.exports = {
         {
           description_en: "Reliability",
           description_fr: "Fiabilité",
-          createdAt: new Date(),
-          updatedAt: new Date()
+          created_at: new Date(),
+          updated_at: new Date()
         },
         {
           description_en: "Secret",
           description_fr: "Secret",
-          createdAt: new Date(),
-          updatedAt: new Date()
+          created_at: new Date(),
+          updated_at: new Date()
         },
         {
           description_en: "Top Secret",
           description_fr: "Top Secret",
-          createdAt: new Date(),
-          updatedAt: new Date()
+          created_at: new Date(),
+          updated_at: new Date()
         }
       ],
       {}
