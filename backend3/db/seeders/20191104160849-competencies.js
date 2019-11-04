@@ -7,7 +7,7 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
     */
     return queryInterface.bulkInsert(
-      "compentencies",
+      "competencies",
       [
         {
           description_en: "Thinking things through",
@@ -40,6 +40,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
-    return queryInterface.bulkDelete("compentencies", null, {});
+    return queryInterface.bulkDelete("competencies", null, {});
   }
 };
