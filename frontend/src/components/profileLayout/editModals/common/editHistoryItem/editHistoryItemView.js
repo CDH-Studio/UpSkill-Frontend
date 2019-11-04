@@ -36,14 +36,14 @@ export default class EditHistoryItemController extends Component {
               name="header"
               label="Name"
               onChange={this.updateField}
-              placeholder={item.header}
+              defaultValue={item.header}
             />
             <Form.Field
               name="subheader"
               control={Input}
               label="School"
               onChange={this.updateField}
-              placeholder={item.subheader}
+              defaultValue={item.subheader}
             />
           </Form.Group>
           <Form.Group widths="equal">
@@ -52,14 +52,14 @@ export default class EditHistoryItemController extends Component {
               control={Input}
               label="Start"
               onChange={this.updateField}
-              placeholder={item.startDate}
+              defaultValue={item.startDate}
             />
             <Form.Field
               control={Input}
               label="Stop"
               name="endDate"
               onChange={this.updateField}
-              placeholder={item.endDate}
+              defaultValue={item.endDate}
             />
           </Form.Group>
           <Form.Field>
@@ -67,7 +67,7 @@ export default class EditHistoryItemController extends Component {
             <TextArea
               name="content"
               onChange={this.updateField}
-              placeholder={item.content}
+              defaultValue={item.content}
             />
           </Form.Field>
         </Form>
