@@ -37,15 +37,15 @@ module.exports = {
           [
             {
               id: "82c3a9cc-ff44-11e9-aad5-362b9e155667",
-              description_en: "testTopSecret",
-              description_fr: "testTrèsCS1",
+              description_en: "testSecurityClearanceEn1",
+              description_fr: "testSecurityClearanceFr1",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "882ef330-ff44-11e9-8f0b-362b9e155667",
-              description_en: "testReliability",
-              description_fr: "testCoteDeFiabilité",
+              description_en: "testSecurityClearanceEn2",
+              description_fr: "testSecurityClearanceFr2",
               createdAt: new Date(),
               updatedAt: new Date()
             }

@@ -31,8 +31,7 @@ module.exports = {
           securityClearanceId: "82c3a9cc-ff44-11e9-aad5-362b9e155667",
           careerMobilityId: "e6ff04cc-ff44-11e9-aad5-362b9e155667",
           talentMatrixResultID: "ddc02520-ff45-11e9-8f0b-362b9e155667",
-          keyCompetencyId: "f2341c22-ff46-11e9-8f0b-362b9e155667",
-          secondLanguageProficiencyId: ""
+          keyCompetencyId: "f2341c22-ff46-11e9-8f0b-362b9e155667"
         },
         {
           firstName: "John",
@@ -56,8 +55,7 @@ module.exports = {
           securityClearanceId: "882ef330-ff44-11e9-8f0b-362b9e155667",
           careerMobilityId: "ed78c3ba-ff44-11e9-8f0b-362b9e155667",
           talentMatrixResultID: "e4f5d678-ff45-11e9-8f0b-362b9e155667",
-          keyCompetencyId: "ff60e5f6-ff46-11e9-8f0b-362b9e155667",
-          secondLanguageProficiencyId: ""
+          keyCompetencyId: "ff60e5f6-ff46-11e9-8f0b-362b9e155667"
         }
       ],
       {}
