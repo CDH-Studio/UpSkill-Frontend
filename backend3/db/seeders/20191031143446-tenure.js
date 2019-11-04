@@ -11,7 +11,7 @@ module.exports = {
       [
         {
           description_en: "Acting",
-          description_fr: "Interim",
+          description_fr: "Par intérim",
           created_at: new Date(),
           updated_at: new Date()
         },
@@ -23,37 +23,37 @@ module.exports = {
         },
         {
           description_en: "Deployment",
-          description_fr: "Deploiement",
+          description_fr: "Mutations",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           description_en: "Indeterminate",
-          description_fr: "Indeterminé",
+          description_fr: "Indeterminée",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           description_en: "Secondment",
-          description_fr: "Detachement",
+          description_fr: "Détachement",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           description_en: "Student",
-          description_fr: "Etudiant",
+          description_fr: "Étudiant",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           description_en: "Casual",
-          description_fr: "Occasionnel",
+          description_fr: "Travailleur occasionnel",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
           description_en: "Term",
-          description_fr: "Duree determinee",
+          description_fr: "terme",
           created_at: new Date(),
           updated_at: new Date()
         }
