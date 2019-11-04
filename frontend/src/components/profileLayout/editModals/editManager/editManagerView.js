@@ -1,19 +1,24 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
+import { Form, Input } from "semantic-ui-react";
 
-import GenericEditModalController from "../generic/genericEditModalController.js";
+import EditModalController, {
+  generateCommonProps
+} from "../common/editModal/editModalController.js";
 import "./editManager.css";
 
 class EditManagerView extends Component {
   render() {
-    const { intl } = this.props;
+    const { handleApply, intl } = this.props;
     return (
-      <GenericEditModalController
-        name={intl.formatMessage({ id: "profile.edit.primary.information" })}
+      <EditModalController
+        handleApply={handleApply}
+        name={intl.formatMessage({ id: "profile.edit.manager" })}
       >
-        <div>this is div2</div>
-        <div>more div2</div>
-      </GenericEditModalController>
+        <Form onSubmit={handleApply}>
+          <Form.Field {...generateCommonProps("manager", Input, this.props)} />
+        </Form>
+      </EditModalController>
     );
   }
 }

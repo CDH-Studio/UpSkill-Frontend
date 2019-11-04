@@ -3,7 +3,11 @@ import EditEducationView from "./editEducationView";
 
 export default class EditEducationController extends Component {
   render() {
-    return <EditEducationView {...this.props} />;
+    return (
+      <EditEducationView
+        items={this.props.profileInfo.education}
+        {...this.props}
+      />
+    );
   }
 }
-

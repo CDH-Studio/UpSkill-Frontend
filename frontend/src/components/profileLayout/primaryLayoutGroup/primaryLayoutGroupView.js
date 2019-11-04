@@ -1,79 +1,67 @@
 import React, { Component } from "react";
-import { Grid, List, Popup } from "semantic-ui-react";
+import { Card, Grid, Icon, Label, List, Menu, Popup } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
 
-import EditWrapperController from "../editWrapper/editWrapperController";
-import LabeledCardController from "../../labeledCard/labeledCardController";
-import ProfileCardController from "../profileCard/profileCardController";
-import "./primaryLayoutGroup.css";
-
-import EditNameController from "../editModals/editName/editNameController";
+import EditLabelCardsController from "../editModals/editLabelCards/editLabelCardsController";
 import EditPrimaryInformationController from "../editModals/editPrimaryInformation/editPrimaryInformationController";
 import EditProfilePictureController from "../editModals/editProfilePicture/editProfilePictureController";
-import EditLabelCardsController from "../editModals/editLabelCards/editLabelCardsController";
+import EditWrapperController from "../editWrapper/editWrapperController";
+
+import LabeledCardController from "../../labeledCard/labeledCardController";
+import ProfileCardController from "../profileCard/profileCardController";
+
+import "./primaryLayoutGroup.css";
 
 /**
  * This class generates the items at the start of the profile page that need to interact with eachother to responsively resize
  */
 class PrimaryLayoutGroupView extends Component {
   render() {
-    const { profileInfo, windowWidth } = this.props;
-    const { firstName, lastName } = profileInfo;
+    const { windowWidth } = this.props;
     const useWideLayout = windowWidth > 1250;
-
-    return (
-      <div>
-        <EditWrapperController
-          buttonPosition={"outerButton"}
-          button={<EditNameController />}
-          wrapperType={"compactWrapper"}
-        >
-          <h1
-            style={{
-              display: "inline-flex",
-              marginBottom: "6px",
-              marginTop: "0px"
-            }}
-          >
-            {firstName} {lastName}
-          </h1>
-        </EditWrapperController>
-        <Grid>
-          <Grid.Column
-            style={{ paddingBottom: "0px", paddingRight: "0px" }}
-            width={useWideLayout ? 3 : 5}
-          >
-            <EditWrapperController
-              button={<EditProfilePictureController />}
-              wrapperType="compactWrapper"
-            >
-              <img
-                alt="missing profile"
-                src={tempProfilePic}
-                style={{
-                  maxHeight: "200px",
-                  maxWidth: "100%"
-                }}
-              />
-            </EditWrapperController>
+    if (useWideLayout) {
+      return (
+        <Grid.Row>
+          <Grid.Column width={11}>{this.renderPrimaryCard()}</Grid.Column>
+          <Grid.Column width={5} className="noGapAbove">
+            {this.renderLabeledCards()}
           </Grid.Column>
-          <Grid.Column width={useWideLayout ? 8 : 11}>
-            {this.renderPrimaryCard()}
-          </Grid.Column>
-          {this.renderLabeledCards()}
-        </Grid>
-      </div>
-    );
+        </Grid.Row>
+      );
+    } else {
+      return (
+        <React.Fragment>
+          <Grid.Row>
+            <Grid.Column>{this.renderPrimaryCard()}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>{this.renderLabeledCards()}</Grid.Column>
+          </Grid.Row>
+        </React.Fragment>
+      );
+    }
   }
 
   renderLabeledCards() {
     const { intl, profileInfo, windowWidth } = this.props;
-    const { groupOrLevel, security, status, yearsOfService } = profileInfo;
+    const {
+      acting,
+      actingPeriodStartDate,
+      actingPeriodEndDate,
+      classification,
+      security,
+      status,
+      yearsOfService
+    } = profileInfo;
 
-    const groupOrLevelLabel = intl.formatMessage({
-      id: "profile.group.or.level"
+    const actingLabel = intl.formatMessage({ id: "profile.acting" });
+    const actingPeriodLabel = intl.formatMessage({
+      id: "profile.acting.period"
+    });
+    const classificationLabel = intl.formatMessage({
+      id: "profile.classification"
     });
     const securityLabel = intl.formatMessage({ id: "profile.security" });
     const statusLabel = intl.formatMessage({ id: "profile.status" });
@@ -84,55 +72,82 @@ class PrimaryLayoutGroupView extends Component {
     // When using the medium wideness view there are 2 columns of labeled cards
     if (windowWidth <= 1250 && windowWidth > 750) {
       return (
-        <React.Fragment>
-          <Grid.Column className="secondRow" width={8}>
-            <LabeledCardController
-              contentText={status}
-              labelText={statusLabel}
-            />
-            <LabeledCardController
-              contentText={groupOrLevel}
-              labelText={groupOrLevelLabel}
-            />
-          </Grid.Column>
-          <Grid.Column className="secondRow" width={8}>
-            <EditWrapperController button={<EditLabelCardsController />}>
-              <LabeledCardController
-                contentText={yearsOfService}
-                labelText={yearsOfServiceLabel}
-              />
-            </EditWrapperController>
-            <LabeledCardController
-              contentText={security}
-              labelText={securityLabel}
-            />
-          </Grid.Column>
-        </React.Fragment>
+        <ProfileCardController
+          button={EditLabelCardsController}
+          cardName="Info"
+          className="compactCard"
+        >
+          <Grid>
+            <Grid.Column width={8}>
+              <Grid>
+                {this.renderLabeledItem(statusLabel, status)}
+
+                {this.renderLabeledItem(securityLabel, security)}
+                {acting &&
+                  actingPeriodStartDate &&
+                  this.renderLabeledItem(actingLabel, acting)}
+              </Grid>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <Grid>
+                {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
+                {this.renderLabeledItem(classificationLabel, classification)}
+                {acting &&
+                  actingPeriodStartDate &&
+                  this.renderLabeledItem(
+                    actingPeriodLabel,
+                    actingPeriodStartDate + "-" + actingPeriodEndDate
+                  )}
+              </Grid>
+            </Grid.Column>
+          </Grid>
+        </ProfileCardController>
       );
     }
     //When using the most wide or most skinny view there is only one column of labeled cards
     return (
-      <Grid.Column
-        {...(windowWidth > 1250
-          ? { className: "firstRowLabelCard", width: 5 }
-          : { className: "secondRow", width: 16 })}
+      <ProfileCardController
+        button={EditLabelCardsController}
+        cardName="Info"
+        className="compactCard"
+        fullHeight={true}
       >
-        <EditWrapperController button={<EditLabelCardsController />}>
-          <LabeledCardController contentText={status} labelText={statusLabel} />
-        </EditWrapperController>
-        <LabeledCardController
-          contentText={groupOrLevel}
-          labelText={groupOrLevelLabel}
-        />
-        <LabeledCardController
-          contentText={yearsOfService}
-          labelText={yearsOfServiceLabel}
-        />
-        <LabeledCardController
-          contentText={security}
-          labelText={securityLabel}
-        />
-      </Grid.Column>
+        <Grid columns={2} style={{ paddingTop: "16px" }}>
+          {this.renderLabeledItem(statusLabel, status)}
+          {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
+          {this.renderLabeledItem(securityLabel, security)}
+          {this.renderLabeledItem(classificationLabel, classification)}
+
+          {acting && actingPeriodStartDate && (
+            <React.Fragment>
+              {this.renderLabeledItem(actingLabel, acting)}
+              {this.renderLabeledItem(
+                actingPeriodLabel,
+                actingPeriodStartDate + "-" + actingPeriodEndDate
+              )}
+            </React.Fragment>
+          )}
+        </Grid>
+      </ProfileCardController>
+    );
+  }
+
+  renderLabeledItem(labelText, contentText) {
+    return (
+      <Grid.Row columns={2} style={{ padding: "3px 0px" }}>
+        <Grid.Column
+          style={{ textAlign: "center", padding: "3px 0px 3px 3px" }}
+        >
+          <Label
+            color="blue"
+            fluid
+            style={{ fontSize: "12pt", fontWeight: "normal", width: "90%" }}
+          >
+            {labelText}
+          </Label>
+        </Grid.Column>
+        <Grid.Column style={{ padding: "0px" }}>{contentText}</Grid.Column>
+      </Grid.Row>
     );
   }
 
@@ -141,46 +156,122 @@ class PrimaryLayoutGroupView extends Component {
       branch,
       country,
       email,
+      firstName,
+      githubUrl,
       jobTitle,
+      lastName,
+      linkedinUrl,
       mobile,
       organizationList,
       province,
       street,
       team,
-      telephone
+      telephone,
+      twitterUrl
     } = this.props.profileInfo;
 
     return (
-      <ProfileCardController
+      <EditWrapperController
         id="primaryCard"
-        style={{ marginTop: "-20px" }}
-        button={<EditPrimaryInformationController />}
-        wrapperType="reducePaddingWrapper"
+        button={EditPrimaryInformationController}
       >
-        <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
+        <Card className="profileCard compactCard" fluid>
+          <Card.Content>
+            <Grid>
+              <Grid.Row>
+                <h1
+                  style={{
+                    display: "inline-flex",
+                    marginBottom: "6px",
+                    marginLeft: "25px",
+                    marginTop: "0px"
+                  }}
+                >
+                  {firstName} {lastName}
+                </h1>
+              </Grid.Row>
+              <Grid.Row className="noGapBelow">
+                <EditWrapperController
+                  button={EditProfilePictureController}
+                  wrapperType="compactWrapper"
+                >
+                  <img
+                    alt="missing profile"
+                    src={tempProfilePic}
+                    style={{
+                      maxHeight: "200px",
+                      maxWidth: "250px",
+                      width: "100%",
+                      paddingLeft: "50px"
+                    }}
+                  />
+                </EditWrapperController>
+                <div
+                  style={{
+                    display: "inline",
+                    overflow: "hidden",
+                    float: "right",
+                    paddingLeft: "50px",
+                    minWidth: "450px"
+                  }}
+                >
+                  <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
-        <Popup
-          flowing
-          on="click"
-          trigger={<h5 className="noGapAbove">{branch}</h5>}
-        >
-          <Popup.Content>
-            {this.renderOrganizationList([...organizationList, team])}
-          </Popup.Content>
-        </Popup>
+                  <Popup
+                    flowing
+                    on="click"
+                    trigger={<h5 className="noGapAbove">{branch}</h5>}
+                  >
+                    <Popup.Content>
+                      {this.renderOrganizationList([...organizationList, team])}
+                    </Popup.Content>
+                  </Popup>
 
-        <div className="phoneNumberArea">
-          <FormattedMessage id="profile.telephone" />: {telephone}
-        </div>
-        <div className="phoneNumberArea">
-          <FormattedMessage id="profile.cellphone" />: {mobile}
-        </div>
-        <div>{email}</div>
+                  <div className="phoneNumberArea">
+                    <FormattedMessage id="profile.telephone" />: {telephone}
+                  </div>
+                  <div className="phoneNumberArea">
+                    <FormattedMessage id="profile.cellphone" />: {mobile}
+                  </div>
+                  <div>{email}</div>
 
-        <div>
-          {street}, {province}, {country}
-        </div>
-      </ProfileCardController>
+                  <div>
+                    {street}, {province}, {country}
+                  </div>
+                </div>
+              </Grid.Row>
+            </Grid>
+          </Card.Content>
+
+          <Menu
+            color="blue"
+            inverted
+            widths={
+              [linkedinUrl, githubUrl, twitterUrl].filter(word => word).length
+            }
+          >
+            {linkedinUrl && (
+              <Menu.Item href={linkedinUrl} target="_blank">
+                <Icon name="linkedin" />
+                <FormattedMessage id="profile.linkedin" />
+              </Menu.Item>
+            )}
+
+            {githubUrl && (
+              <Menu.Item href={githubUrl} target="_blank">
+                <Icon name="github" />
+                <FormattedMessage id="profile.github" />
+              </Menu.Item>
+            )}
+            {twitterUrl && (
+              <Menu.Item href={twitterUrl} target="_blank">
+                <Icon name="twitter" />
+                <FormattedMessage id="profile.twitter" />
+              </Menu.Item>
+            )}
+          </Menu>
+        </Card>
+      </EditWrapperController>
     );
   }
 

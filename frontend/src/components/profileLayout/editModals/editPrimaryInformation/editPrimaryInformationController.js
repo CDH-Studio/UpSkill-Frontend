@@ -1,9 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
+import FieldManagingComponent from "../common/fieldManagingComponent";
 import EditPrimaryInformationView from "./editPrimaryInformationView";
 
-export default class EditPrimaryInformationController extends Component {
+export default class EditPrimaryInformationController extends FieldManagingComponent {
   render() {
-    return <EditPrimaryInformationView {...this.props} />;
+    console.log("handle apply", this.handleApply);
+    return (
+      <EditPrimaryInformationView
+        handleApply={this.handleApply}
+        updateField={this.updateField}
+        {...this.props}
+      />
+    );
   }
 }
-

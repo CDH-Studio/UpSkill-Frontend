@@ -6,4 +6,3 @@ export default class EditCompetenciesController extends Component {
     return <EditCompetenciesView {...this.props} />;
   }
 }
-
