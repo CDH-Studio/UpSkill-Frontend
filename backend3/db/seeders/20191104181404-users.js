@@ -25,14 +25,7 @@ module.exports = {
           linkedin: "linkedinUrl",
           github: "githubUrl",
           created_at: new Date(),
-          updated_at: new Date(),
-          tenure_id: "b9e8b816-ff21-11e9-a94e-c4b301c89a89",
-          group_level_id: "3d2c3866-ff21-11e9-804a-c4b301c89a89",
-          security_clearance_id: "3d23433c-ff21-11e9-804a-c4b301c89a89",
-          career_mobility_id: "3d23ff98-ff21-11e9-804a-c4b301c89a89",
-          talent_matrix_id: "3d257346-ff21-11e9-804a-c4b301c89a89",
-          key_competency_id: "3d26aa54-ff21-11e9-804a-c4b301c89a89",
-          second_language_profiency_id: null
+          updated_at: new Date()
         },
         {
           first_name: "John",
@@ -50,14 +43,7 @@ module.exports = {
           linkedin: "linkedinUrl",
           github: "githubUrl",
           created_at: new Date(),
-          updated_at: new Date(),
-          tenure_id: "b9e8b816-ff21-11e9-a94e-c4b301c89a89",
-          group_level_id: "3d2c3866-ff21-11e9-804a-c4b301c89a89",
-          security_clearance_id: "3d23433c-ff21-11e9-804a-c4b301c89a89",
-          career_mobility_id: "3d23ff98-ff21-11e9-804a-c4b301c89a89",
-          talent_matrix_id: "3d257346-ff21-11e9-804a-c4b301c89a89",
-          key_competency_id: "3d26aa54-ff21-11e9-804a-c4b301c89a89",
-          second_language_profiency_id: null
+          updated_at: new Date()
         }
       ],
       {}
