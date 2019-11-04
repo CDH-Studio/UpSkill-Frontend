@@ -1,19 +1,35 @@
 import React, { Component } from "react";
+import FieldManagingComponent from "../common/fieldManagingComponent";
+import { Form, Input, Select } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
-import GenericEditModalController from "../generic/genericEditModalController.js";
+import EditModalController, {
+  generateCommonProps
+} from "../common/editModal/editModalController.js";
 import "./editLabelCards.css";
 
 class EditLabelCardsView extends Component {
   render() {
-    const { intl } = this.props;
+    const { handleApply, intl } = this.props;
     return (
-      <GenericEditModalController
-        name={intl.formatMessage({ id: "profile.edit.labels.card" })}
+      <EditModalController
+        handleApply={handleApply}
+        name={intl.formatMessage({ id: "profile.edit.label.cards" })}
       >
-        <div>this is div2</div>
-        <div>more div2</div>
-      </GenericEditModalController>
+        <Form onSubmit={handleApply}>
+          <Form.Field {...generateCommonProps("status", Select, this.props)} />
+          <Form.Field
+            {...generateCommonProps("groupOrLevel", Select, this.props)}
+          />
+          <Form.Field
+            input="number"
+            {...generateCommonProps("yearsOfService", Input, this.props)}
+          />
+          <Form.Field
+            {...generateCommonProps("security", Select, this.props)}
+          />
+        </Form>
+      </EditModalController>
     );
   }
 }

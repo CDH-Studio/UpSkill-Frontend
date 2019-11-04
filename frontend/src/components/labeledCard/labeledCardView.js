@@ -1,8 +1,31 @@
 import React, { Component } from "react";
 import "./labeledCard.css";
 
-import { Card } from "semantic-ui-react";
+import { Card, Label, Grid } from "semantic-ui-react";
 
+export default class LabeledCardView extends Component {
+  render() {
+    const { labelText, contentText } = this.props;
+
+    return (
+      <Grid style={{ height: "3em", margin: "0px", padding: "0px" }}>
+        <Grid.Column width={7} style={{ textAlign: "center", padding: "0px" }}>
+          <Label
+            color="blue"
+            style={{ fontSize: "12pt", fontWeight: "normal" }}
+          >
+            {labelText}
+          </Label>
+        </Grid.Column>
+        <Grid.Column width={9} style={{ padding: "0px" }}>
+          {contentText}
+        </Grid.Column>
+      </Grid>
+    );
+  }
+}
+
+/*
 export default class LabeledCardView extends Component {
   render() {
     const { labelText, contentText } = this.props;
@@ -25,3 +48,4 @@ export default class LabeledCardView extends Component {
     );
   }
 }
+*/

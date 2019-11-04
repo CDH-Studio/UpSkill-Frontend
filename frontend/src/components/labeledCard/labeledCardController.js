@@ -8,7 +8,7 @@ export default class LabeledCardController extends Component {
     return (
       <LabeledCardView
         contentText={contentText}
-        labelColor={"#6435C9"}
+        labelColor={"#2b2d6e"}
         labelText={labelText}
         labelWidth={"50%"}
         minLabelSize={"30px"}
