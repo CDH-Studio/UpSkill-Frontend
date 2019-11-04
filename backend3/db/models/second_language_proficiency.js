@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   second_language_proficiency.associate = function(models) {
-    user.hasOne(models.user);
+    second_language_proficiency.hasOne(models.user);
   };
   return second_language_proficiency;
 };

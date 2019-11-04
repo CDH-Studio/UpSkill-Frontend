@@ -23,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {
     user.belongsToMany(models.skill, { through: "user_skills" });
     user.belongsToMany(models.competency, { through: "user_competencies" });
-    user.belongsToMany(models.organization, { through: "user_organizations" });
     user.belongsTo(models.tenure);
     user.belongsTo(models.group_level);
     user.belongsTo(models.security_clearance);

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   security_clearance.associate = function(models) {
-    user.hasOne(models.user);
+    security_clearance.hasOne(models.user);
   };
   return security_clearance;
 };

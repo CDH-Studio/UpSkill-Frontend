@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   key_competency.associate = function(models) {
-    user.hasOne(models.user);
+    key_competency.hasOne(models.user);
   };
   return key_competency;
 };

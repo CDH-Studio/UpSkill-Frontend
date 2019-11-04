@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   group_level.associate = function(models) {
-    user.hasOne(models.user);
+    group_level.hasOne(models.user);
   };
   return group_level;
 };

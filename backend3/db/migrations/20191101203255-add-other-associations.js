@@ -17,19 +17,35 @@ module.exports = {
         }
       )
       .then(() => {
-        return queryInterface.addColumn(
-          "experiences", // name of Source model
-          "user_id", // name of the key we're adding
-          {
-            type: Sequelize.UUID,
-            references: {
-              model: "users", // name of Target model
-              key: "id" // key in Target model that we're referencing
-            },
-            onUpdate: "CASCADE",
-            onDelete: "SET NULL"
-          }
-        );
+        return queryInterface
+          .addColumn(
+            "experiences", // name of Source model
+            "user_id", // name of the key we're adding
+            {
+              type: Sequelize.UUID,
+              references: {
+                model: "users", // name of Target model
+                key: "id" // key in Target model that we're referencing
+              },
+              onUpdate: "CASCADE",
+              onDelete: "SET NULL"
+            }
+          )
+          .then(() => {
+            return queryInterface.addColumn(
+              "organizations", // name of Source model
+              "user_id", // name of the key we're adding
+              {
+                type: Sequelize.UUID,
+                references: {
+                  model: "users", // name of Target model
+                  key: "id" // key in Target model that we're referencing
+                },
+                onUpdate: "CASCADE",
+                onDelete: "SET NULL"
+              }
+            );
+          });
       });
   },
 
@@ -40,10 +56,17 @@ module.exports = {
         "user_id" // key we want to remove
       )
       .then(() => {
-        return queryInterface.removeColumn(
-          "experiences", // name of Source model
-          "user_id" // key we want to remove
-        );
+        return queryInterface
+          .removeColumn(
+            "experiences", // name of Source model
+            "user_id" // key we want to remove
+          )
+          .then(() => {
+            return queryInterface.removeColumn(
+              "organizations", // name of Source model
+              "user_id" // key we want to remove
+            );
+          });
       });
   }
 };

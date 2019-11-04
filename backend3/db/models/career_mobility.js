@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   career_mobility.associate = function(models) {
-    user.hasOne(models.user);
+    career_mobility.hasOne(models.user);
   };
   return career_mobility;
 };

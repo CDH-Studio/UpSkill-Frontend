@@ -13,6 +13,8 @@ const sequelizedb = require("./config/database");
 
 const app = express(); // define our app using express
 
+const profile = require("./API/profile");
+
 dotenv.config(); // Config() function reads the .env file and sets the environment variables
 
 // Testing the Postgres Connection
@@ -81,6 +83,7 @@ router.get("/users/:id", keycloak.protect(), db.getUserById);
 router.post("/users", keycloak.protect(), db.createUser);
 router.put("/users/:id", keycloak.protect(), db.updateUser);
 router.delete("/users/:id", keycloak.protect(), db.deleteUser);
+router.get("/profile/:id", profile.getProfile);
 // more routes for our API will happen here
 
 // REGISTER OUR ROUTES ===============================================
