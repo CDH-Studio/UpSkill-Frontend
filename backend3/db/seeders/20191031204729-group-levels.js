@@ -11,37 +11,32 @@ module.exports = {
       "group_levels",
       [
         {
-          description: "AS   01",
+          description: "AS 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "AS   02",
+          description: "AS 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "AS   03",
+          description: "AS 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "AS   04",
+          description: "AS 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "AS   05",
+          description: "AS 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "AS   06",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description: "AS   07",
+          description: "AS 06",
           created_at: new Date(),
           updated_at: new Date()
         },
@@ -51,142 +46,147 @@ module.exports = {
           updated_at: new Date()
         },
         {
-          description: "AU   04",
+          description: "AS 07",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CA   01",
+          description: "AU 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CA   02",
+          description: "CA 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CA   02",
+          description: "CA 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CM   04",
+          description: "CA 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CM   05",
+          description: "CM 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CO   02",
+          description: "CM 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CO   03",
+          description: "CO 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CO   03",
+          description: "CO 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CO   04",
+          description: "CO 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CR   02",
+          description: "CO 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CR   03",
+          description: "CR 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CR   04",
+          description: "CR 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CR   05",
+          description: "CR 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CS   02",
+          description: "CR 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CS   03",
+          description: "CS 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CS   04",
+          description: "CS 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CS   04",
+          description: "CS 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "CS   05",
+          description: "CS 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC   01",
+          description: "CS 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC   02",
+          description: "EC 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC   03",
+          description: "EC 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC   04",
+          description: "EC 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC   05",
+          description: "EC 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC   06",
+          description: "EC 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC   08",
+          description: "EC 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC  07",
+          description: "EC 08",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EC  07",
+          description: "EC 07",
+          created_at: new Date(),
+          updated_at: new Date()
+        },
+        {
+          description: "EC 07",
           created_at: new Date(),
           updated_at: new Date()
         },
@@ -196,72 +196,72 @@ module.exports = {
           updated_at: new Date()
         },
         {
-          description: "EG   02",
+          description: "EG 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EG   03",
+          description: "EG 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EG   04",
+          description: "EG 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EG   05",
+          description: "EG 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EG   06",
+          description: "EG 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EG   07",
+          description: "EG 07",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EL   01",
+          description: "EL 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EL   02",
+          description: "EL 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EL   03",
+          description: "EL 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EL   04",
+          description: "EL 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EL   05",
+          description: "EL 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EL   06",
+          description: "EL 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EL   07",
+          description: "EL 07",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EL   08",
+          description: "EL 08",
           created_at: new Date(),
           updated_at: new Date()
         },
@@ -296,52 +296,52 @@ module.exports = {
           updated_at: new Date()
         },
         {
-          description: "EX   01",
+          description: "EX 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EX   02",
+          description: "EX 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EX   03",
+          description: "EX 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EX   04",
+          description: "EX 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "EX   05",
+          description: "EX 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "FI   01",
+          description: "FI 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "FI   02",
+          description: "FI 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "FI   03",
+          description: "FI 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "FI   04",
+          description: "FI 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "FI   04",
+          description: "FI 04",
           created_at: new Date(),
           updated_at: new Date()
         },
@@ -456,237 +456,237 @@ module.exports = {
           updated_at: new Date()
         },
         {
-          description: "GT   01",
+          description: "GT 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "GT   02",
+          description: "GT 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "GT   03",
+          description: "GT 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "GT   04",
+          description: "GT 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "GT   05",
+          description: "GT 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "GX   00",
+          description: "GX 00",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "HP   05",
+          description: "HP 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "HP   08",
+          description: "HP 08",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "IS   01",
+          description: "IS 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "IS   02",
+          description: "IS 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "IS   03",
+          description: "IS 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "IS   04",
+          description: "IS 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "IS   05",
+          description: "IS 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "IS   06",
+          description: "IS 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "IS   06",
+          description: "IS 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "LS   01",
+          description: "LS 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "LS   02",
+          description: "LS 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "LS   03",
+          description: "LS 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "LS   04",
+          description: "LS 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "MM   01",
+          description: "MM 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "MM   02",
+          description: "MM 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "MM   03",
+          description: "MM 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "OM   02",
+          description: "OM 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "OM   04",
+          description: "OM 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PC   02",
+          description: "PC 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PC   05",
+          description: "PC 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PE   01",
+          description: "PE 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PE   02",
+          description: "PE 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PE   03",
+          description: "PE 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PE   04",
+          description: "PE 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PE   05",
+          description: "PE 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PE   06",
+          description: "PE 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PE   06",
+          description: "PE 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PG   01",
+          description: "PG 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PG   02",
+          description: "PG 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PG   03",
+          description: "PG 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PG   04",
+          description: "PG 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PG   05",
+          description: "PG 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PG   06",
+          description: "PG 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PG   06",
+          description: "PG 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PM   01",
+          description: "PM 01",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PM   02",
+          description: "PM 02",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PM   03",
+          description: "PM 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PM   04",
+          description: "PM 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PM   05",
+          description: "PM 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PM   06",
+          description: "PM 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "PM   06",
+          description: "PM 06",
           created_at: new Date(),
           updated_at: new Date()
         },
@@ -696,7 +696,7 @@ module.exports = {
           updated_at: new Date()
         },
         {
-          description: "PY   05",
+          description: "PY 05",
           created_at: new Date(),
           updated_at: new Date()
         },
@@ -801,37 +801,37 @@ module.exports = {
           updated_at: new Date()
         },
         {
-          description: "TI   03",
+          description: "TI 03",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "TI   04",
+          description: "TI 04",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "TI   05",
+          description: "TI 05",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "TI   06",
+          description: "TI 06",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "TI   07",
+          description: "TI 07",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "TI   08",
+          description: "TI 08",
           created_at: new Date(),
           updated_at: new Date()
         },
         {
-          description: "TI   08",
+          description: "TI 08",
           created_at: new Date(),
           updated_at: new Date()
         }
