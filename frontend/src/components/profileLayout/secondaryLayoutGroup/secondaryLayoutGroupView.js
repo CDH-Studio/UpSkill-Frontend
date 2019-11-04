@@ -42,30 +42,31 @@ class SecondaryLayoutGroupView extends Component {
       );
     } else {
       return (
-        <Grid.Row
-          className="noGapBelow"
-          style={{
-            marginTop: "1em",
-            paddingTop: "0px"
-          }}
-        >
-          <Grid.Column className="noGapAbove noGapBelow" width={16}>
-            {this.renderManagerCard()}
-            {this.renderLanguageProficiencyCard()}
-            {this.renderTalentManagerCard()}
-          </Grid.Column>
-        </Grid.Row>
+        <React.Fragment>
+          <Grid.Row>
+            <Grid.Column>{this.renderManagerCard()}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>{this.renderLanguageProficiencyCard()}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>{this.renderTalentManagerCard()}</Grid.Column>
+          </Grid.Row>
+        </React.Fragment>
       );
     }
   }
 
   renderManagerCard() {
-    const { manager } = this.props.profileInfo;
+    const { profileInfo, windowWidth } = this.props;
+    const { manager } = profileInfo;
 
     return (
       <ProfileCardController
         button={EditManagerController}
-        className="belowGapCard  noGapAbove "
+        className={
+          windowWidth > 1250 ? "belowGapCard noGapAbove" : "noGapAbove"
+        }
       >
         <span className="colorLabel">
           <FormattedMessage id="profile.manager" />:
