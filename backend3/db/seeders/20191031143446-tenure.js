@@ -53,7 +53,7 @@ module.exports = {
         },
         {
           description_en: "Term",
-          description_fr: "Terme",
+          description_fr: "terme",
           created_at: new Date(),
           updated_at: new Date()
         }
