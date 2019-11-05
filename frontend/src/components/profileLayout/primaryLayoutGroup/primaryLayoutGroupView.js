@@ -9,7 +9,6 @@ import EditPrimaryInformationController from "../editModals/editPrimaryInformati
 import EditProfilePictureController from "../editModals/editProfilePicture/editProfilePictureController";
 import EditWrapperController from "../editWrapper/editWrapperController";
 
-import LabeledCardController from "../../labeledCard/labeledCardController";
 import ProfileCardController from "../profileCard/profileCardController";
 
 import "./primaryLayoutGroup.css";
@@ -48,8 +47,8 @@ class PrimaryLayoutGroupView extends Component {
     const { intl, profileInfo, windowWidth } = this.props;
     const {
       acting,
-      actingPeriodStartDate,
       actingPeriodEndDate,
+      actingPeriodStartDate,
       classification,
       security,
       status,
@@ -201,18 +200,18 @@ class PrimaryLayoutGroupView extends Component {
                     style={{
                       maxHeight: "200px",
                       maxWidth: "250px",
-                      width: "100%",
-                      paddingLeft: "50px"
+                      paddingLeft: "50px",
+                      width: "100%"
                     }}
                   />
                 </EditWrapperController>
                 <div
                   style={{
                     display: "inline",
-                    overflow: "hidden",
                     float: "right",
                     paddingLeft: "50px",
-                    minWidth: "450px"
+                    minWidth: "450px",
+                    overflow: "hidden"
                   }}
                 >
                   <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>

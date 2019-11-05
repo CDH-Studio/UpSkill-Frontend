@@ -18,7 +18,7 @@ class EditWrapperView extends Component {
     if (editable) {
       return (
         <div className={wrapperType} style={style}>
-          {React.createElement(button, { profileInfo, dropdownOptions })}
+          {React.createElement(button, { dropdownOptions, profileInfo })}
           {children}
         </div>
       );

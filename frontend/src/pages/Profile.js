@@ -33,7 +33,15 @@ class Profile extends Component {
           country: { en: "Canada" },
           developmentalGoals: ["3"],
 
-          education: null,
+          education: [
+            {
+              header: "header",
+              subheader: "subheader",
+              content: "content\ncontent2",
+              startDate: "stdat",
+              endDate: "end date"
+            }
+          ],
           email: "mary.smith@canada.ca",
           firstLanguage: { en: "English" },
           firstName: "Massadry",
