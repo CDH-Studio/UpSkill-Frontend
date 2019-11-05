@@ -2111,7 +2111,29 @@ module.exports = {
         }
       ],
       {}
-    );
+      )
+      .then(() => {
+        return queryInterface.bulkInsert(
+          "schools",
+          [
+            {
+              id: "482a25e6-ffe6-11e9-a69e-362b9e155667",
+              descriptionEn: "TestSchoolEn1",
+              descriptionFr: "TestSchoolFr1",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              id: "4d205016-ffe6-11e9-8d71-362b9e155667",
+              descriptionEn: "TestSchoolEn1",
+              descriptionFr: "TestSchoolFr1",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }
+          ],
+          {}
+        );
+      });
   },
 
   down: (queryInterface, Sequelize) => {

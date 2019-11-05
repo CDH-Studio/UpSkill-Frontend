@@ -1811,7 +1811,29 @@ module.exports = {
         }
       ],
       {}
-    );
+      )
+      .then(() => {
+        return queryInterface.bulkInsert(
+          "diplomas",
+          [
+            {
+              id: "bbd95b12-ffe4-11e9-8d71-362b9e155667",
+              descriptionEn: "TestDiplomaNameEn1",
+              descriptionFr: "TestDiplomaNameFr1",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              id: "06688220-ffe5-11e9-8d71-362b9e155667",
+              descriptionEn: "TestDiplomaNameEn2",
+              descriptionFr: "TestDiplomaNameFr2",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }
+          ],
+          {}
+        );
+      });
   },
 
   down: (queryInterface, Sequelize) => {
