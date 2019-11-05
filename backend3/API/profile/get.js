@@ -1,6 +1,11 @@
-const User = require("../../db/models").user;
-const Tenure = require("../../db/models").tenure;
-const Organization = require("../../db/models").organization;
+const Models = require("../../db/models");
+const User = Models.user;
+const Tenure = Models.tenure;
+const Organization = Models.organization;
+const CareerMobility = Models.careerMobility;
+const GroupLevel = Models.groupLevel;
+const SecurityClearance = Models.securityClearance;
+const SecondLanguageProficiency = Models.secondLanguageProficiency;
 
 const getProfile = async (request, response) => {
   response.status(200).json(await User.findAll());
@@ -9,6 +14,9 @@ const getProfile = async (request, response) => {
 const getProfileById = async (request, response) => {
   const id = request.params.id;
   let data = await User.findOne({ where: { id: id } }).then(res => {
+    if (res == null) {
+      response.status(404).send("Not found");
+    }
     return res.dataValues;
   });
 
@@ -20,12 +28,39 @@ const getProfileById = async (request, response) => {
     return res.dataValues;
   });
 
+  let careerMobility = await CareerMobility.findOne({
+    where: { id: data.careerMobilityId }
+  }).then(res => {
+    return res.dataValues;
+  });
+
+  let groupLevel = await GroupLevel.findOne({
+    where: { id: data.groupLevelId }
+  }).then(res => {
+    return res.dataValues;
+  });
+
+  let securityClearance = await SecurityClearance.findOne({
+    where: { id: data.securityClearanceId }
+  }).then(res => {
+    return res.dataValues;
+  });
+
+  let secondLanguageProficiency = await SecondLanguageProficiency.findOne({
+    where: { id: data.secondLanguageProficiencyId }
+  }).then(res => {
+    return res.dataValues;
+  });
+
   let resData = {
     acting: null,
     actingPeriodStartDate: null,
     actingPeriodEndDate: null,
     branch: "Chief Information Office Branch",
-    careerMobility: "Ready for movement",
+    careerMobility: {
+      en: careerMobility.descriptionEn,
+      fr: careerMobility.descriptionFr
+    },
     careerSummary: [
       {
         content: "this is content\nmore content",
@@ -36,15 +71,13 @@ const getProfileById = async (request, response) => {
       }
     ],
     city: "Ontario",
-
     competencies: ["2"],
     country: "Canada",
     developmentalGoals: ["3"],
-
     education: [
       {
         content: "this is content\ni am content",
-        subheader: "Telpher School of Buisness",
+        subheader: "Telfer School of Business",
         endDate: "Apr 2009",
         header: "Masters of Business Administration",
         startDate: "Sept 2007"
@@ -64,17 +97,17 @@ const getProfileById = async (request, response) => {
         startDate: "Sept 2000"
       }
     ],
-    email: "mary.smith@canada.ca",
+    email: data.email,
     firstLanguage: "English",
     firstName: data.firstName,
     githubUrl: "https://www.google.com",
     gradedOnSecondLanguage: true,
-    classification: "CS 04",
-    jobTitle: "Manager, Next Innovation",
+    classification: groupLevel.description,
+    jobTitle: data.jobTitle,
     lastName: data.lastName,
     linkedinUrl: "https://www.bing.ca",
-    manager: "Chahine El Chaar",
-    mobile: "613-402-8224",
+    manager: data.manager,
+    mobile: data.mobile,
     organizationList: [
       "ABC Directorate",
       "ABC Division",
@@ -91,7 +124,10 @@ const getProfileById = async (request, response) => {
     secondaryWritingDate: "Oct 17 2021",
     secondaryWritingGrade: "B",
     secondLanguage: null,
-    security: "Reliability",
+    security: {
+      en: securityClearance.descriptionEn,
+      fr: securityClearance.descriptionFr
+    },
     skills: ["1"],
     status: {
       en: tenure.descriptionEn,
@@ -99,10 +135,10 @@ const getProfileById = async (request, response) => {
     },
     street: "235 Queen Street",
     talentMatrixResult: "Exceptional talent",
-    team: "ABC Team",
-    telephone: "343-291-1366",
+    team: data.team,
+    telephone: data.phone,
     twitterUrl: "https://www.baidu.com",
-    yearsOfService: 5.0
+    yearsOfService: data.yearService
   };
 
   response.status(200).json(resData);
