@@ -8,7 +8,7 @@ module.exports = {
     */
     return queryInterface
       .bulkInsert(
-        "competencies",
+        "educations",
         [
           {
             startDate: new Date(),
