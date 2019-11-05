@@ -8,10 +8,16 @@ const getProfile = async (request, response) => {
 
 const getProfileById = async (request, response) => {
   const id = request.params.id;
-  let data = await User.findOne({ where: { id: id } });
+  let data = await User.findOne({ where: { id: id } }).then(res => {
+    return res.dataValues;
+  });
+
+  console.log(data);
 
   let tenure = await Tenure.findOne({
-    where: { id: data.dataValues.tenureId }
+    where: { id: data.tenureId }
+  }).then(res => {
+    return res.dataValues;
   });
 
   let resData = {
@@ -19,8 +25,6 @@ const getProfileById = async (request, response) => {
     actingPeriodStartDate: null,
     actingPeriodEndDate: null,
     branch: "Chief Information Office Branch",
-
-    building: "CD Howe, Room 368l",
     careerMobility: "Ready for movement",
     careerSummary: [
       {
@@ -62,12 +66,12 @@ const getProfileById = async (request, response) => {
     ],
     email: "mary.smith@canada.ca",
     firstLanguage: "English",
-    firstName: "Massadry",
+    firstName: data.firstName,
     githubUrl: "https://www.google.com",
     gradedOnSecondLanguage: true,
     classification: "CS 04",
     jobTitle: "Manager, Next Innovation",
-    lastName: "Smisdasth",
+    lastName: data.lastName,
     linkedinUrl: "https://www.bing.ca",
     manager: "Chahine El Chaar",
     mobile: "613-402-8224",
@@ -90,8 +94,8 @@ const getProfileById = async (request, response) => {
     security: "Reliability",
     skills: ["1"],
     status: {
-      en: tenure.dataValues.descriptionEn,
-      fr: tenure.dataValues.descriptionFr
+      en: tenure.descriptionEn,
+      fr: tenure.descriptionFr
     },
     street: "235 Queen Street",
     talentMatrixResult: "Exceptional talent",
