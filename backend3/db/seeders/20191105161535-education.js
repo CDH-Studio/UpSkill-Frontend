@@ -8,7 +8,7 @@ module.exports = {
     */
     return queryInterface
       .bulkInsert(
-        "educations",
+        "education",
         [
           {
             startDate: new Date(),
@@ -21,7 +21,7 @@ module.exports = {
       )
       .then(() => {
         return queryInterface.bulkInsert(
-          "educations",
+          "education",
           [
             {
               id: "9060e28e-ffe4-11e9-8d71-362b9e155667",
@@ -57,6 +57,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
-    return queryInterface.bulkDelete("competencies", null, {});
+    return queryInterface.bulkDelete("education", null, {});
   }
 };
