@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import EditGenericModalView from "./editModalView";
-import { Checkbox, Select } from "semantic-ui-react";
+import { Checkbox, Input, Select } from "semantic-ui-react";
 
 export default class EditGenericModalController extends Component {
   render() {
@@ -30,7 +30,10 @@ export const generateCommonProps = (name, control, props, dropdownControl) => {
   } else if (control === Checkbox) {
     commonProps.defaultChecked = profileInfo[name];
   } else if (control === Select) {
+    commonProps.defaultValue = profileInfo[name];
     commonProps.options = dropdownOptions[name];
+  } else if (control === Input) {
+    commonProps.defaultValue = profileInfo[name];
   }
 
   return commonProps;

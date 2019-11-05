@@ -22,11 +22,11 @@ export default class EditHistoryModalController extends Component {
     for (let i = 0; i < items.length; i++) {
       if (
         !(
+          items[i].content ||
+          items[i].endDate ||
           items[i].header ||
           items[i].subheader ||
-          items[i].content ||
-          items[i].startDate ||
-          items[i].endDate
+          items[i].startDate
         )
       ) {
         alert("There is already an empty item you can fill in.");

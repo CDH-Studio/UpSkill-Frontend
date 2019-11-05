@@ -13,10 +13,10 @@ export const renderEditButton = (
     return (
       <Icon
         className={buttonClass}
+        name="pencil alternate"
         style={{
           color: buttonColor
         }}
-        name="pencil alternate"
       />
     );
   }
@@ -31,10 +31,10 @@ export const renderEditButton = (
       }}
     >
       <Icon
+        name="pencil alternate"
         style={{
           color: buttonColor
         }}
-        name="pencil alternate"
       />
     </div>
   );
@@ -59,8 +59,8 @@ class editModalView extends Component {
     return (
       <Modal
         onClose={() => this.setState({ open: false })}
-        open={this.state.open}
         onOpen={() => this.setState({ open: true })}
+        open={this.state.open}
         trigger={renderEditButton(
           buttonBackgroundColor,
           buttonClass,
@@ -71,13 +71,13 @@ class editModalView extends Component {
         <Modal.Content>
           {children}
           <div className="modalButtonContainer">
-            <Button primary color="blue" onClick={handleApply}>
+            <Button color="blue" onClick={handleApply} primary>
               Apply
             </Button>
             <Button
+              basic
               color="blue"
               onClick={e => this.setState({ open: false })}
-              secondary
             >
               Cancel
             </Button>

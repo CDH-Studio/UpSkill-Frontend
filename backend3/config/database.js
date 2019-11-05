@@ -10,6 +10,5 @@ module.exports = new Sequelize("test4", "postgres", "postgres", {
     min: 0,
     acquire: 30000,
     idle: 10000
-  },
-  define: { underscore: true }
+  }
 });

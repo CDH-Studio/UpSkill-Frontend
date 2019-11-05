@@ -56,15 +56,15 @@ module.exports = {
           [
             {
               id: "f2341c22-ff46-11e9-8f0b-362b9e155667",
-              description_en: "testKeyCompetencyEn1",
-              description_fr: "testKeyCompetencyFr1",
+              descriptionEn: "testKeyCompetencyEn1",
+              descriptionFr: "testKeyCompetencyFr1",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "ff60e5f6-ff46-11e9-8f0b-362b9e155667",
-              description_en: "testKeyCompetencyEn2",
-              description_fr: "testKeyCompetencyFr2",
+              descriptionEn: "testKeyCompetencyEn2",
+              descriptionFr: "testKeyCompetencyFr2",
               createdAt: new Date(),
               updatedAt: new Date()
             }

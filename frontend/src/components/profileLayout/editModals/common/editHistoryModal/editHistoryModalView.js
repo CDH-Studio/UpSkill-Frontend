@@ -14,10 +14,10 @@ class EditHistoryModalView extends Component {
   render() {
     const {
       addItem,
-      handleApply,
       buttonBackgroundColor,
       buttonClass,
       buttonColor,
+      handleApply,
       items,
       name,
       removeItemByIndex,
@@ -33,11 +33,11 @@ class EditHistoryModalView extends Component {
       >
         <Modal.Header>{name}</Modal.Header>
         <Modal.Content>
-          <Grid style={{ paddingBottom: "1em" }} divided="vertically">
+          <Grid divided="vertically" style={{ paddingBottom: "1em" }}>
             {items.map((item, index) => (
               <EditHistoryItemController
-                item={item}
                 index={index}
+                item={item}
                 removeItemByIndex={removeItemByIndex}
                 updateListField={updateListField}
               />
@@ -56,13 +56,13 @@ class EditHistoryModalView extends Component {
           </Grid>
 
           <div className="historyModalButtonContainer">
-            <Button primary color="blue" onClick={handleApply}>
+            <Button color="blue" onClick={handleApply} primary>
               Apply
             </Button>
             <Button
+              basic
               color="blue"
               onClick={e => this.setState({ open: false })}
-              basic
             >
               Cancel
             </Button>

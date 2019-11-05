@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Icon, Grid, Input, TextArea } from "semantic-ui-react";
+import { Form, Grid, Icon, Input, TextArea } from "semantic-ui-react";
 import "./editHistoryItem.css";
 
 export default class EditHistoryItemController extends Component {
@@ -33,24 +33,24 @@ export default class EditHistoryItemController extends Component {
           <Form.Group widths="equal">
             <Form.Field
               control={Input}
-              name="header"
               label="Name"
               onChange={this.updateField}
+              name="header"
               placeholder={item.header}
             />
             <Form.Field
-              name="subheader"
               control={Input}
               label="School"
+              name="subheader"
               onChange={this.updateField}
               placeholder={item.subheader}
             />
           </Form.Group>
           <Form.Group widths="equal">
             <Form.Field
-              name="startDate"
               control={Input}
               label="Start"
+              name="startDate"
               onChange={this.updateField}
               placeholder={item.startDate}
             />

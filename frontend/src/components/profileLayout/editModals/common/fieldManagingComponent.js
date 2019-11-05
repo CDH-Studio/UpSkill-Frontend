@@ -15,7 +15,7 @@ export default class FieldManagingComponent extends Component {
   }
 
   updateField(e, o) {
-    const { name, checked, value } = o;
+    const { checked, name, value } = o;
     let newVal;
     if (checked !== undefined) {
       newVal = checked;
