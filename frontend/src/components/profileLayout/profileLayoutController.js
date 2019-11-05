@@ -138,7 +138,7 @@ class ProfileLayoutController extends Component {
   }
 
   setProfileInfo(info, language, specialUndefineds) {
-    if (specialUndefineds) {
+    if (specialUndefineds && typeof info == "object") {
       for (let key in specialUndefineds) {
         if (info[key] !== null) {
           delete specialUndefineds[key];

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import NavigationBar from "../navigationBar/navigationBarController";
-import { Grid, Label } from "semantic-ui-react";
+import { Dimmer, Grid, Label, Loader } from "semantic-ui-react";
 
 import { EditableProvider } from "./editableProvider/editableProvider";
 
@@ -30,6 +30,14 @@ class ProfileLayoutView extends Component {
       profileInfo,
       windowWidth
     } = this.props;
+
+    if (profileInfo === undefined) {
+      return (
+        <Dimmer active>
+          <Loader />
+        </Dimmer>
+      );
+    }
 
     return (
       <EditableProvider value={{ dropdownOptions, editable, profileInfo }}>
