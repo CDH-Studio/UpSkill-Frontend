@@ -33,29 +33,7 @@ class Profile extends Component {
           country: { en: "Canada" },
           developmentalGoals: ["3"],
 
-          education: [
-            {
-              content: "this is content\ni am content",
-              subheader: "Telpher School of Buisness",
-              endDate: "Apr 2009",
-              header: "Masters of Business Administration",
-              startDate: "Sept 2007"
-            },
-            {
-              content: "this is content\ni am content",
-              subheader: "Carleton University",
-              endDate: "Apr 2005",
-              header: "Software Engineering",
-              startDate: "Sept 2000"
-            },
-            {
-              content: "this is content\ni am content",
-              subheader: "smart people shcool",
-              endDate: "Apr 2005",
-              header: "smart people class",
-              startDate: "Sept 2000"
-            }
-          ],
+          education: null,
           email: "mary.smith@canada.ca",
           firstLanguage: { en: "English" },
           firstName: "Massadry",

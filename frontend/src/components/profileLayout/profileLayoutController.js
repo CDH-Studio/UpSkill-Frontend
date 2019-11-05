@@ -1,77 +1,11 @@
 import React, { Component } from "react";
 
-import ProfileLayoutView from "./profileLayoutView";
-import { object } from "prop-types";
+import ProfileLayoutView from "./profileLayoutView"
+import { injectIntl } from "react-intl";
+import { Profile } from "../../pages";
+//import { object } from "prop-types";
 
-const unspecifiedValues = {
-  acting: "Unspecified",
-  actingPeriodStartDate: "Unspecified",
-  actingPeriodEndDate: "Unspecified",
-  branch: "Unspecified",
-  careerMobility: "Unspecified",
-  careerSummary: [
-    {
-      content: "Unspecified",
-      endDate: "Unspecified",
-      header: "Unspecified",
-      startDate: "Unspecified",
-      subheader: "Unspecified"
-    }
-  ],
-  city: "Unspecified",
-
-  competencies: [],
-  country: "Unspecified",
-  developmentalGoals: [],
-
-  education: [
-    {
-      content: "Unspecified",
-      subheader: "Unspecified",
-      endDate: "Unspecified",
-      header: "Unspecified",
-      startDate: "Unspecified"
-    }
-  ],
-  email: "Unspecified",
-  firstLanguage: "Unspecified",
-  firstName: "Unspecified",
-  githubUrl: "Unspecified",
-  gradedOnSecondLanguage: false,
-  classification: "Unspecified",
-  jobTitle: "Unspecified",
-  lastName: "Unspecified",
-  linkedinUrl: "Unspecified",
-  manager: "Unspecified",
-  mobile: "Unspecified",
-  organizationList: [
-    "Unspecified",
-    "Unspecified",
-    "Unspecified",
-    "Unspecified",
-    "Unspecified"
-  ],
-  PO: "Unspecified",
-  province: "Unspecified",
-  secondaryOralDate: "Unspecified",
-  secondaryOralGrade: "Unspecified",
-  secondaryReadingDate: "Unspecified",
-  secondaryReadingGrade: "Unspecified",
-  secondaryWritingDate: "Unspecified",
-  secondaryWritingGrade: "Unspecified",
-  secondLanguage: null,
-  security: "Unspecified",
-  skills: [],
-  status: "Unspecified",
-  street: "Unspecified",
-  talentMatrixResult: "Unspecified",
-  team: "Unspecified",
-  telephone: "Unspecified",
-  twitterUrl: "Unspecified",
-  yearsOfService: "Unspecified"
-};
-
-export default class ProfileLayoutController extends Component {
+ class ProfileLayoutController extends Component {
   constructor(props) {
     super(props);
     this.state = { windowWidth: window.innerWidth };
@@ -185,7 +119,13 @@ export default class ProfileLayoutController extends Component {
             { key: "2", text: "2", value: "2" }
           ]
         }}
-        profileInfo={this.patchProfileInfo(profileInfo)}
+        profileInfo={this.setProfileInfo(profileInfo, 'en', {
+          careerSummary:[],
+          competencies:[],
+          education:[],
+          organizationList:[],
+          skills:[]})}
+
         editable={true}
         keycloak={keycloak}
         windowWidth={this.state.windowWidth}
@@ -197,34 +137,32 @@ export default class ProfileLayoutController extends Component {
     this.setState({ windowWidth: window.innerWidth });
   }
 
-  setLanguage(info, language) {
-    newInfo = {};
-    const keys = Object.keys(info);
-    for (let i = 0; i < keys.length; i++) {
-      const key = keys[i];
-      if typeof info[]
+  setProfileInfo(info, language, specialUndefineds) {
+    if (specialUndefineds){
+      info = Object.assign(info, specialUndefineds);
     }
-  }
-
-  patchProfileInfo(profileInfo) {
-    let keys = Object.keys(unspecifiedValues);
-    for (let i = 0; i < keys.length; i++) {
-      let key = keys[i];
-      console.log("checing key", key);
-      if (profileInfo[key] === undefined || profileInfo[key] === null) {
-        profileInfo[key] = unspecifiedValues[key];
-        console.log("set to fallback");
-      } else if (
-        typeof profileInfo[key] === "object" &&
-        profileInfo[key]["en"] !== undefined &&
-        profileInfo[key]["en"] !== null
-      ) {
-        profileInfo[key] = profileInfo[key]["en"];
-
-        console.log("set to en");
+    if (typeof info === "object"){
+      if (info === null) {
+        const {intl} = this.props;
+        return intl.formatMessage({id:'profile.undefined'})
+      } else if ( Array.isArray(info) ){
+        let returnArray = [];
+        info.forEach( (element) => returnArray.push( this.setProfileInfo(element, language) ) );
+        return returnArray;
+      } else if ( 'en' in info ){
+        return info[language];
+      }else{
+        let returnObject = {};
+        for (var key in info){
+          returnObject[key] = this.setProfileInfo(info[key], language);
+        }
+        return returnObject;
       }
     }
-    console.log("new profile info", profileInfo);
-    return profileInfo;
+    return info;
   }
 }
+
+
+
+export default injectIntl(ProfileLayoutController);
