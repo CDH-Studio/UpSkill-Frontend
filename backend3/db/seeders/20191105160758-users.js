@@ -85,7 +85,7 @@ module.exports = {
               github: "githubUrl",
               createdAt: new Date(),
               updatedAt: new Date(),
-              tenureId: "e79756f5-ad53-4bad-a03c-22e8f8bf05de",
+              tenureId: "725c6d40-ddc3-4a55-bdf5-f85155091acd",
               groupLevelId: "a3975faa-ff43-11e9-8f0b-362b9e155667",
               securityClearanceId: "882ef330-ff44-11e9-8f0b-362b9e155667",
               careerMobilityId: "ed78c3ba-ff44-11e9-8f0b-362b9e155667",
