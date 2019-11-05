@@ -17,13 +17,13 @@ export default class EditLabelCardsController extends FieldManagingComponent {
   render() {
     return (
       <EditLabelCardsView
+        handleApply={this.handleApply}
         profileInfo={{
           groupOrLevel: null,
           security: null,
           status: null,
           yearsOfService: null
         }}
-        handleApply={this.handleApply}
         updateField={this.updateField}
         {...this.props}
       />

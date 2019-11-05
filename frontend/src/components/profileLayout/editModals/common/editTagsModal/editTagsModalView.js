@@ -9,7 +9,7 @@ import "./editTagsModal.css";
 
 class EditTagsView extends Component {
   render() {
-    const { handleApply, name, dropdownName } = this.props;
+    const { dropdownName, handleApply, name } = this.props;
     return (
       <EditModalController handleApply={handleApply} name={name}>
         <Dropdown

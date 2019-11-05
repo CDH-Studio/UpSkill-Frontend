@@ -13,13 +13,11 @@ class Profile extends Component {
         changeLanguage={changeLanguage}
         keycloak={keycloak}
         profileInfo={{
-          acting: "EX 01",
+          acting: { en: "EX 01" },
           actingPeriodStartDate: "01/10/20",
           actingPeriodEndDate: "10/10/21",
-          branch: "Chief Information Office Branch",
-
-          building: "CD Howe, Room 368l",
-          careerMobility: "Ready for movement",
+          branch: { en: "Chief Information Office Branch" },
+          careerMobility: { en: "Ready for movement" },
           careerSummary: [
             {
               content: "this is content\nmore content",
@@ -29,10 +27,10 @@ class Profile extends Component {
               subheader: "Payment Analyst"
             }
           ],
-          city: "Ontario",
+          city: { en: "Ontario" },
 
           competencies: ["2"],
-          country: "Canada",
+          country: { en: "Canada" },
           developmentalGoals: ["3"],
 
           education: [
@@ -59,7 +57,7 @@ class Profile extends Component {
             }
           ],
           email: "mary.smith@canada.ca",
-          firstLanguage: "English",
+          firstLanguage: { en: "English" },
           firstName: "Massadry",
           githubUrl: "https://www.google.com",
           gradedOnSecondLanguage: true,
@@ -77,7 +75,7 @@ class Profile extends Component {
             "Innovation, Science and Economic Development Canada"
           ],
           PO: "K1A 0H5",
-          province: "Ottawa",
+          province: { en: "Ottawa" },
           secondaryOralDate: "Nov 29 2018",
           secondaryOralGrade: "C",
           secondaryReadingDate: "Oct 17 2020",
@@ -85,11 +83,11 @@ class Profile extends Component {
           secondaryWritingDate: "Oct 17 2021",
           secondaryWritingGrade: "B",
           secondLanguage: null,
-          security: "Reliability",
+          security: { en: "Reliability" },
           skills: ["1"],
-          status: "Indeterminate",
+          status: { en: "Indeterminate" },
           street: "235 Queen Street",
-          talentMatrixResult: "Exceptional talent",
+          talentMatrixResult: { en: "Exceptional talent" },
           team: "ABC Team",
           telephone: "343-291-1366",
           twitterUrl: "https://www.baidu.com",

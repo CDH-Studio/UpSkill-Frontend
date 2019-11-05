@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 
 import ProfileLayoutView from "./profileLayoutView";
+import { object } from "prop-types";
 
 const unspecifiedValues = {
   acting: "Unspecified",
   actingPeriodStartDate: "Unspecified",
   actingPeriodEndDate: "Unspecified",
   branch: "Unspecified",
-
-  building: "Unspecified",
   careerMobility: "Unspecified",
   careerSummary: [
     {
@@ -198,14 +197,34 @@ export default class ProfileLayoutController extends Component {
     this.setState({ windowWidth: window.innerWidth });
   }
 
+  setLanguage(info, language) {
+    newInfo = {};
+    const keys = Object.keys(info);
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      if typeof info[]
+    }
+  }
+
   patchProfileInfo(profileInfo) {
     let keys = Object.keys(unspecifiedValues);
     for (let i = 0; i < keys.length; i++) {
       let key = keys[i];
+      console.log("checing key", key);
       if (profileInfo[key] === undefined || profileInfo[key] === null) {
         profileInfo[key] = unspecifiedValues[key];
+        console.log("set to fallback");
+      } else if (
+        typeof profileInfo[key] === "object" &&
+        profileInfo[key]["en"] !== undefined &&
+        profileInfo[key]["en"] !== null
+      ) {
+        profileInfo[key] = profileInfo[key]["en"];
+
+        console.log("set to en");
       }
     }
+    console.log("new profile info", profileInfo);
     return profileInfo;
   }
 }
