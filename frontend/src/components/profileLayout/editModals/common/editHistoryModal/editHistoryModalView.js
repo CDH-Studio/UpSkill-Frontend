@@ -33,7 +33,7 @@ class EditHistoryModalView extends Component {
       >
         <Modal.Header>{name}</Modal.Header>
         <Modal.Content>
-          <Grid divided="vertically" style={{ paddingBottom: "1em" }}>
+          <Grid divided="vertically">
             {items.map((item, index) => (
               <EditHistoryItemController
                 index={index}
@@ -42,7 +42,7 @@ class EditHistoryModalView extends Component {
                 updateListField={updateListField}
               />
             ))}
-            <Grid.Row style={{ padding: "0px" }}>
+            <Grid.Row className="noGapBelow">
               <Button
                 color="green"
                 onClick={e => {

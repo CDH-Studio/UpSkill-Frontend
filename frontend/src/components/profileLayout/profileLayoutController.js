@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
-import ProfileLayoutView from "./profileLayoutView"
+import ProfileLayoutView from "./profileLayoutView";
 import { injectIntl } from "react-intl";
 import { Profile } from "../../pages";
 //import { object } from "prop-types";
 
- class ProfileLayoutController extends Component {
+class ProfileLayoutController extends Component {
   constructor(props) {
     super(props);
     this.state = { windowWidth: window.innerWidth };
@@ -119,13 +119,13 @@ import { Profile } from "../../pages";
             { key: "2", text: "2", value: "2" }
           ]
         }}
-        profileInfo={this.setProfileInfo(profileInfo, 'en', {
-          careerSummary:[],
-          competencies:[],
-          education:[],
-          organizationList:[],
-          skills:[]})}
-
+        profileInfo={this.setProfileInfo(profileInfo, "en", {
+          careerSummary: [],
+          competencies: [],
+          education: [],
+          organizationList: [],
+          skills: []
+        })}
         editable={true}
         keycloak={keycloak}
         windowWidth={this.state.windowWidth}
@@ -138,22 +138,29 @@ import { Profile } from "../../pages";
   }
 
   setProfileInfo(info, language, specialUndefineds) {
-    if (specialUndefineds){
+    if (specialUndefineds) {
+      for (let key in specialUndefineds) {
+        if (info[key] !== null) {
+          delete specialUndefineds[key];
+        }
+      }
       info = Object.assign(info, specialUndefineds);
     }
-    if (typeof info === "object"){
+    if (typeof info === "object") {
       if (info === null) {
-        const {intl} = this.props;
-        return intl.formatMessage({id:'profile.undefined'})
-      } else if ( Array.isArray(info) ){
+        const { intl } = this.props;
+        return intl.formatMessage({ id: "profile.undefined" });
+      } else if (Array.isArray(info)) {
         let returnArray = [];
-        info.forEach( (element) => returnArray.push( this.setProfileInfo(element, language) ) );
+        info.forEach(element =>
+          returnArray.push(this.setProfileInfo(element, language))
+        );
         return returnArray;
-      } else if ( 'en' in info ){
+      } else if ("en" in info) {
         return info[language];
-      }else{
+      } else {
         let returnObject = {};
-        for (var key in info){
+        for (let key in info) {
           returnObject[key] = this.setProfileInfo(info[key], language);
         }
         return returnObject;
@@ -162,7 +169,5 @@ import { Profile } from "../../pages";
     return info;
   }
 }
-
-
 
 export default injectIntl(ProfileLayoutController);

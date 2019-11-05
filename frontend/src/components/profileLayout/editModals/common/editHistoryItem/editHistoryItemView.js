@@ -14,14 +14,7 @@ export default class EditHistoryItemController extends Component {
 
     return (
       <Grid.Row style={{ position: "relative" }} width={16}>
-        <div
-          className="removeHistoryItemButton"
-          style={{
-            backgroundColor: "rgba(0,0,0,0.05)",
-            borderRadius: "12px",
-            padding: "0px 2px 2px 5px"
-          }}
-        >
+        <div className="removeHistoryItemButton">
           <Icon
             name="trash alternate"
             onClick={e => removeItemByIndex(index)}
@@ -29,7 +22,7 @@ export default class EditHistoryItemController extends Component {
           />
         </div>
 
-        <Form style={{ width: "100%" }}>
+        <Form style={{ width: "95%" }}>
           <Form.Group widths="equal">
             <Form.Field
               control={Input}

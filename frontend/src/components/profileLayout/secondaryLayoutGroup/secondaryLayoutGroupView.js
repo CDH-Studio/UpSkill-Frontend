@@ -25,12 +25,7 @@ class SecondaryLayoutGroupView extends Component {
 
     if (useWideLayout) {
       return (
-        <Grid.Row
-          className="noGapBelow"
-          style={{
-            paddingTop: "0px"
-          }}
-        >
+        <Grid.Row className="noGapBelow">
           <Grid.Column className="noGapAbove noGapBelow" width={11}>
             {this.renderManagerCard()}
             {this.renderTalentManagerCard()}

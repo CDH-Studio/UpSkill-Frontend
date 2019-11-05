@@ -32,7 +32,7 @@ class ProfileLayoutView extends Component {
     } = this.props;
 
     return (
-      <EditableProvider value={{ editable, profileInfo, dropdownOptions }}>
+      <EditableProvider value={{ dropdownOptions, editable, profileInfo }}>
         <NavigationBar
           changeLanguage={changeLanguage}
           keycloak={keycloak}
@@ -73,9 +73,8 @@ class ProfileLayoutView extends Component {
   }
 
   renderSkillsCard() {
-    const { intl, profileInfo, dropdownOptions } = this.props;
+    const { intl, profileInfo } = this.props;
     const currentSkills = profileInfo.skills;
-    const availableSkills = profileInfo.skills;
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.skills" }),
