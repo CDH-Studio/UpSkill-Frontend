@@ -42,13 +42,13 @@ class EditHistoryModalView extends Component {
                 updateListField={updateListField}
               />
             ))}
-            <Grid.Row className="noGapBelow">
+            <Grid.Row>
               <Button
+                className="addHistoryItemButton"
                 color="green"
                 onClick={e => {
                   addItem();
                 }}
-                className="addHistoryItemButton"
               >
                 Add Item
               </Button>

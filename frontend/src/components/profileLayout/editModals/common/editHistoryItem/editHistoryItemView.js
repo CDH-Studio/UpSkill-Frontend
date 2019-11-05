@@ -22,7 +22,7 @@ export default class EditHistoryItemController extends Component {
           />
         </div>
 
-        <Form style={{ width: "95%" }}>
+        <Form style={{ margin: "0px auto", width: "95%" }}>
           <Form.Group widths="equal">
             <Form.Field
               control={Input}
