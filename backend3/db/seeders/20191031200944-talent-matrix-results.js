@@ -73,15 +73,15 @@ module.exports = {
           [
             {
               id: "ddc02520-ff45-11e9-8f0b-362b9e155667",
-              description_en: "testTalentMatrixResultEn1",
-              description_fr: "testTalentMatrixResultFr1",
+              descriptionEn: "testTalentMatrixResultEn1",
+              descriptionFr: "testTalentMatrixResultFr1",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "e4f5d678-ff45-11e9-8f0b-362b9e155667",
-              description_en: "testTalentMatrixResultEn2",
-              description_fr: "testTalentMatrixResultFr2",
+              descriptionEn: "testTalentMatrixResultEn2",
+              descriptionFr: "testTalentMatrixResultFr2",
               createdAt: new Date(),
               updatedAt: new Date()
             }
