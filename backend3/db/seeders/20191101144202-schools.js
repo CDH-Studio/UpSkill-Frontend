@@ -2118,15 +2118,15 @@ module.exports = {
           [
             {
               id: "482a25e6-ffe6-11e9-a69e-362b9e155667",
-              descriptionEn: "TestSchoolEn1",
-              descriptionFr: "TestSchoolFr1",
+              country: "CAN",
+              state: "BC",
+              description: "TestSchool1",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "4d205016-ffe6-11e9-8d71-362b9e155667",
-              descriptionEn: "TestSchoolEn1",
-              descriptionFr: "TestSchoolFr1",
+              description: "TestSchool2",
               createdAt: new Date(),
               updatedAt: new Date()
             }
