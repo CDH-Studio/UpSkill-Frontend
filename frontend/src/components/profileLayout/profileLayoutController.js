@@ -119,13 +119,17 @@ class ProfileLayoutController extends Component {
             { key: "2", text: "2", value: "2" }
           ]
         }}
-        profileInfo={this.setProfileInfo(profileInfo, "en", {
-          careerSummary: [],
-          competencies: [],
-          education: [],
-          organizationList: [],
-          skills: []
-        })}
+        profileInfo={this.setProfileInfo(
+          profileInfo,
+          localStorage.getItem("lang"),
+          {
+            careerSummary: [],
+            competencies: [],
+            education: [],
+            organizationList: [],
+            skills: []
+          }
+        )}
         editable={true}
         keycloak={keycloak}
         windowWidth={this.state.windowWidth}
