@@ -127,7 +127,9 @@ class ProfileLayoutController extends Component {
             competencies: [],
             education: [],
             organizationList: [],
-            skills: []
+            skills: [],
+            acting: undefined,
+            actingPeriodStartDate: undefined
           }
         )}
         editable={true}

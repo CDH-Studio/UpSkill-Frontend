@@ -34,3 +34,7 @@
 .profileCard .label {
   background-image: linear-gradient(to right, #3548a5, #202870) !important;
 }
+
+.labeledItemCard > .content {
+  padding: 33px 25px !important;
+}

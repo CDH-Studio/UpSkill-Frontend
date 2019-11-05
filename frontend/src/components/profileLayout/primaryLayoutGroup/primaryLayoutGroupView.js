@@ -74,7 +74,7 @@ class PrimaryLayoutGroupView extends Component {
         <ProfileCardController
           button={EditLabelCardsController}
           cardName="Info"
-          className="compactCard"
+          className="labeledItemCard compactCard"
         >
           <Grid>
             <Grid.Column width={8}>
@@ -108,7 +108,7 @@ class PrimaryLayoutGroupView extends Component {
       <ProfileCardController
         button={EditLabelCardsController}
         cardName="Info"
-        className="compactCard"
+        className="labeledItemCard compactCard"
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>

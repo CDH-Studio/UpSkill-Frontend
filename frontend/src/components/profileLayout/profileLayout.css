@@ -54,13 +54,12 @@
 }
 
 .belowGapCard {
-
   margin-bottom: 2em !important;
 }
 
 .bodyGrid > .row {
-  padding-top:1.5em !important;
-  padding-bottom:1.5em !important;
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
 }
 
 .compactCard {

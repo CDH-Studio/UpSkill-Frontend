@@ -10,8 +10,8 @@
 .innerButton {
   font-size: 13pt;
   position: absolute;
-  right: 4pt;
-  top: 4pt;
+  right: 14pt;
+  top: 10pt;
   z-index: 10;
 }
 
