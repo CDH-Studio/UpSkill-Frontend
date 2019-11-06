@@ -6,6 +6,7 @@ const CareerMobility = Models.careerMobility;
 const GroupLevel = Models.groupLevel;
 const SecurityClearance = Models.securityClearance;
 const SecondLanguageProficiency = Models.secondLanguageProficiency;
+const
 
 const getProfile = async (request, response) => {
   response.status(200).json(await User.findAll());
@@ -105,7 +106,8 @@ const getProfileById = async (request, response) => {
     classification: groupLevel.description,
     jobTitle: data.jobTitle,
     lastName: data.lastName,
-    linkedinUrl: "https://www.bing.ca",
+    linkedinUrl: data.linkedin,
+    location:data.location,
     manager: data.manager,
     mobile: data.mobile,
     organizationList: [
