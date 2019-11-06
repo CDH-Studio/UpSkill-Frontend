@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
       .addColumn(
-        "userProjects", // name of Source model
+        "profileProjects", // name of Source model
         "profileId", // name of the key we're adding
         {
           type: Sequelize.UUID,
@@ -52,7 +52,7 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface
       .removeColumn(
-        "userProjects", // name of Source model
+        "profileProjects", // name of Source model
         "profileId" // key we want to remove
       )
       .then(() => {

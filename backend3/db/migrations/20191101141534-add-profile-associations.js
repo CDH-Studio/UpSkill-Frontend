@@ -118,50 +118,43 @@ module.exports = {
     return queryInterface
       .removeColumn(
         "profiles", // name of Source model
-        "id" // key we want to remove
+        "tenureId" // key we want to remove
       )
       .then(() => {
         return queryInterface
           .removeColumn(
             "profiles", // name of Source model
-            "tenureId" // key we want to remove
+            "groupLevelId" // key we want to remove
           )
           .then(() => {
             return queryInterface
               .removeColumn(
                 "profiles", // name of Source model
-                "groupLevelId" // key we want to remove
+                "securityClearanceId" // key we want to remove
               )
               .then(() => {
                 return queryInterface
                   .removeColumn(
                     "profiles", // name of Source model
-                    "securityClearanceId" // key we want to remove
+                    "careerMobilityId" // key we want to remove
                   )
                   .then(() => {
                     return queryInterface
                       .removeColumn(
                         "profiles", // name of Source model
-                        "careerMobilityId" // key we want to remove
+                        "talentMatrixResultId" // key we want to remove
                       )
                       .then(() => {
                         return queryInterface
                           .removeColumn(
                             "profiles", // name of Source model
-                            "talentMatrixResultId" // key we want to remove
+                            "keyCompetencyId" // key we want to remove
                           )
                           .then(() => {
-                            return queryInterface
-                              .removeColumn(
-                                "profiles", // name of Source model
-                                "keyCompetencyId" // key we want to remove
-                              )
-                              .then(() => {
-                                return queryInterface.removeColumn(
-                                  "profiles", // name of Source model
-                                  "secondLanguageProficiencyId" // key we want to remove
-                                );
-                              });
+                            return queryInterface.removeColumn(
+                              "profiles", // name of Source model
+                              "secondLanguageProficiencyId" // key we want to remove
+                            );
                           });
                       });
                   });

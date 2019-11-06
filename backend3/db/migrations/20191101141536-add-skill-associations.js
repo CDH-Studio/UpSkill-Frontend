@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("userSkills", {
+    return queryInterface.createTable("profileSkills", {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -32,6 +32,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     // remove table
-    return queryInterface.dropTable("userSkills");
+    return queryInterface.dropTable("profileSkills");
   }
 };
