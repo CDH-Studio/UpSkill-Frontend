@@ -4,7 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
       .addColumn(
-        "users", // name of Source model
+        "profiles", // name of Source model
         "tenureId", // name of the key we're adding
         {
           type: Sequelize.UUID,
@@ -19,7 +19,7 @@ module.exports = {
       .then(() => {
         return queryInterface
           .addColumn(
-            "users", // name of Source model
+            "profiles", // name of Source model
             "groupLevelId", // name of the key we're adding
             {
               type: Sequelize.UUID,
@@ -34,7 +34,7 @@ module.exports = {
           .then(() => {
             return queryInterface
               .addColumn(
-                "users", // name of Source model
+                "profiles", // name of Source model
                 "securityClearanceId", // name of the key we're adding
                 {
                   type: Sequelize.UUID,
@@ -50,7 +50,7 @@ module.exports = {
               .then(() => {
                 return queryInterface
                   .addColumn(
-                    "users", // name of Source model
+                    "profiles", // name of Source model
                     "careerMobilityId", // name of the key we're adding
                     {
                       type: Sequelize.UUID,
@@ -65,7 +65,7 @@ module.exports = {
                   .then(() => {
                     return queryInterface
                       .addColumn(
-                        "users", // name of Source model
+                        "profiles", // name of Source model
                         "talentMatrixResultId", // name of the key we're adding
                         {
                           type: Sequelize.UUID,
@@ -80,7 +80,7 @@ module.exports = {
                       .then(() => {
                         return queryInterface
                           .addColumn(
-                            "users", // name of Source model
+                            "profiles", // name of Source model
                             "keyCompetencyId", // name of the key we're adding
                             {
                               type: Sequelize.UUID,
@@ -94,7 +94,7 @@ module.exports = {
                           )
                           .then(() => {
                             return queryInterface.addColumn(
-                              "users", // name of Source model
+                              "profiles", // name of Source model
                               "secondLanguageProficiencyId", // name of the key we're adding
                               {
                                 type: Sequelize.UUID,
@@ -117,44 +117,51 @@ module.exports = {
   down: (queryInterface, Sequelize) => {
     return queryInterface
       .removeColumn(
-        "users", // name of Source model
-        "tenureId" // key we want to remove
+        "profiles", // name of Source model
+        "id" // key we want to remove
       )
       .then(() => {
         return queryInterface
           .removeColumn(
-            "users", // name of Source model
-            "groupLevelId" // key we want to remove
+            "profiles", // name of Source model
+            "tenureId" // key we want to remove
           )
           .then(() => {
             return queryInterface
               .removeColumn(
-                "users", // name of Source model
-                "securityClearanceId" // key we want to remove
+                "profiles", // name of Source model
+                "groupLevelId" // key we want to remove
               )
               .then(() => {
                 return queryInterface
                   .removeColumn(
-                    "users", // name of Source model
-                    "careerMobilityId" // key we want to remove
+                    "profiles", // name of Source model
+                    "securityClearanceId" // key we want to remove
                   )
                   .then(() => {
                     return queryInterface
                       .removeColumn(
-                        "users", // name of Source model
-                        "talentMatrixResultId" // key we want to remove
+                        "profiles", // name of Source model
+                        "careerMobilityId" // key we want to remove
                       )
                       .then(() => {
                         return queryInterface
                           .removeColumn(
-                            "users", // name of Source model
-                            "keyCompetencyId" // key we want to remove
+                            "profiles", // name of Source model
+                            "talentMatrixResultId" // key we want to remove
                           )
                           .then(() => {
-                            return queryInterface.removeColumn(
-                              "users", // name of Source model
-                              "secondLanguageProficiencyId" // key we want to remove
-                            );
+                            return queryInterface
+                              .removeColumn(
+                                "profiles", // name of Source model
+                                "keyCompetencyId" // key we want to remove
+                              )
+                              .then(() => {
+                                return queryInterface.removeColumn(
+                                  "profiles", // name of Source model
+                                  "secondLanguageProficiencyId" // key we want to remove
+                                );
+                              });
                           });
                       });
                   });
