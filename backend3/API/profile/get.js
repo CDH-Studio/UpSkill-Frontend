@@ -1,55 +1,45 @@
 const Models = require("../../db/models");
 const User = Models.user;
-const Tenure = Models.tenure;
-const Organization = Models.organization;
-const CareerMobility = Models.careerMobility;
-const GroupLevel = Models.groupLevel;
-const SecurityClearance = Models.securityClearance;
-const SecondLanguageProficiency = Models.secondLanguageProficiency;
-const
+const Profile = Models.profile;
+// const Tenure = Models.tenure;
+// const Organization = Models.organization;
+// const CareerMobility = Models.careerMobility;
+// const GroupLevel = Models.groupLevel;
+// const SecurityClearance = Models.securityClearance;
+// const SecondLanguageProficiency = Models.secondLanguageProficiency;
+
+const getUser = async (request, response) => {
+  response.status(200).json(await User.findAll());
+};
+const getUserById = async (request, response) => {
+  const id = request.params.id;
+  response.status(200).json(await User.findOne({ where: { id: id } }));
+};
 
 const getProfile = async (request, response) => {
-  response.status(200).json(await User.findAll());
+  response.status(200).json(await Profile.findAll());
 };
 
 const getProfileById = async (request, response) => {
   const id = request.params.id;
-  let data = await User.findOne({ where: { id: id } }).then(res => {
-    if (res == null) {
-      response.status(404).send("Not found");
-    }
+  let user = await User.findOne({ where: { id: id } });
+
+  let profile = await Profile.findOne({ where: { id: id } });
+  let data = { ...profile.dataValues, ...user.dataValues };
+
+  let tenure = await profile.getTenure().then(res => {
     return res.dataValues;
   });
 
-  console.log(data);
-
-  let tenure = await Tenure.findOne({
-    where: { id: data.tenureId }
-  }).then(res => {
+  let careerMobility = await profile.getCareerMobility().then(res => {
     return res.dataValues;
   });
 
-  let careerMobility = await CareerMobility.findOne({
-    where: { id: data.careerMobilityId }
-  }).then(res => {
+  let groupLevel = await profile.getGroupLevel().then(res => {
     return res.dataValues;
   });
 
-  let groupLevel = await GroupLevel.findOne({
-    where: { id: data.groupLevelId }
-  }).then(res => {
-    return res.dataValues;
-  });
-
-  let securityClearance = await SecurityClearance.findOne({
-    where: { id: data.securityClearanceId }
-  }).then(res => {
-    return res.dataValues;
-  });
-
-  let secondLanguageProficiency = await SecondLanguageProficiency.findOne({
-    where: { id: data.secondLanguageProficiencyId }
-  }).then(res => {
+  let securityClearance = await profile.getSecurityClearance().then(res => {
     return res.dataValues;
   });
 
@@ -107,7 +97,7 @@ const getProfileById = async (request, response) => {
     jobTitle: data.jobTitle,
     lastName: data.lastName,
     linkedinUrl: data.linkedin,
-    location:data.location,
+    location: data.location,
     manager: data.manager,
     mobile: data.mobile,
     organizationList: [
@@ -144,9 +134,12 @@ const getProfileById = async (request, response) => {
   };
 
   response.status(200).json(resData);
+  // response.status(200).send("In Development");
 };
 
 module.exports = {
+  getUser,
+  getUserById,
   getProfile,
   getProfileById
 };
