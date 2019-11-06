@@ -43,24 +43,52 @@ const getProfileById = async (request, response) => {
     return res.dataValues;
   });
 
+  let acting = await profile.getActing().then(res => {
+    return res.dataValues;
+  });
+
+  let experiences = await profile.getExperiences();
+
+  let careerSummary = experiences.map(experience => {
+    startDate = Date(experience.startDate);
+    endDate = Date(experience.endDate);
+
+    return {
+      header: { en: experience.organizationEn, fr: experience.organizationFr },
+      subheader: { en: experience.jobTitleEn, fr: experience.jobTitleFr },
+      content: { en: experience.descriptionEn, fr: experience.descriptionFr },
+      startDate: { en: startDate, fr: startDate },
+      endDate: { en: endDate, fr: endDate }
+    };
+  });
+
+  // let education = await profile.getEducation();
+
+  // let educations = education.map(educ => {
+  //   startDate = Date(educ.startDate);
+  //   endDate = Date(educ.endDate);
+
+  //   return {
+  //     header: { en: educ.organizationEn, fr: educ.organizationFr },
+  //     subheader: { en: educ.jobTitleEn, fr: educ.jobTitleFr },
+  //     content: { en: educ.descriptionEn, fr: educ.descriptionFr },
+  //     startDate: { en: startDate, fr: startDate },
+  //     endDate: { en: endDate, fr: endDate }
+  //   };
+  // });
+
+  console.log(experiences);
+
   let resData = {
-    acting: null,
-    actingPeriodStartDate: null,
-    actingPeriodEndDate: null,
+    acting: acting.description,
+    actingPeriodStartDate: data.actingStartDate,
+    actingPeriodEndDate: data.actingEndDate,
     branch: "Chief Information Office Branch",
     careerMobility: {
       en: careerMobility.descriptionEn,
       fr: careerMobility.descriptionFr
     },
-    careerSummary: [
-      {
-        content: "this is content\nmore content",
-        endDate: "Present",
-        header: "Payments Canada",
-        startDate: "Aug 2017",
-        subheader: "Payment Analyst"
-      }
-    ],
+    careerSummary,
     city: "Ontario",
     competencies: ["2"],
     country: "Canada",

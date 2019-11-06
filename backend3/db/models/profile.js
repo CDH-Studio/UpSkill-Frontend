@@ -24,11 +24,17 @@ module.exports = (sequelize, DataTypes) => {
     profile.belongsToMany(models.competency, { through: "userCompetencies" });
     profile.belongsTo(models.tenure);
     profile.belongsTo(models.groupLevel);
+    profile.belongsTo(models.groupLevel, {
+      foreignKey: { fieldName: "actingId" },
+      as: "acting"
+    });
     profile.belongsTo(models.securityClearance);
     profile.belongsTo(models.careerMobility);
     profile.belongsTo(models.talentMatrixResult);
     profile.belongsTo(models.keyCompetency);
     profile.belongsTo(models.secondLanguageProficiency);
+    profile.hasMany(models.experience);
+    profile.hasMany(models.education);
   };
   return profile;
 };
