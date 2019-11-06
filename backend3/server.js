@@ -86,11 +86,8 @@ router.get("/getEmployeeInfo/:searchValue", keycloak.protect(), async function(
   res.json(JSON.parse(data.body));
 });
 
-router.get("/users", keycloak.protect(), db.getUsers);
-router.get("/users/:id", keycloak.protect(), db.getUserById);
-router.post("/users", keycloak.protect(), db.createUser);
-router.put("/users/:id", keycloak.protect(), db.updateUser);
-router.delete("/users/:id", keycloak.protect(), db.deleteUser);
+router.get("/user/", profile.getUser);
+router.get("/user/:id", profile.getUserById);
 router.get("/profile/", profile.getProfile);
 router.get("/profile/:id", profile.getProfileById);
 // more routes for our API will happen here
