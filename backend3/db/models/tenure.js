@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   tenure.associate = function(models) {
-    tenure.hasOne(models.user);
+    tenure.hasOne(models.profile);
   };
   return tenure;
 };

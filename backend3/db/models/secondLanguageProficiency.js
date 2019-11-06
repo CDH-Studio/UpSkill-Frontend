@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   secondLanguageProficiency.associate = function(models) {
-    secondLanguageProficiency.hasOne(models.user);
+    secondLanguageProficiency.hasOne(models.profile);
   };
   return secondLanguageProficiency;
 };
