@@ -15,7 +15,7 @@ export default class EditLanguageProficiencyController extends FieldManagingComp
     }
     this.updateField = (e, o) => {
       oldUpdateField(e, o);
-      if (o.name === "gradedOnSecondLanguage") {
+      if (o.name === "gradedOnSecondLanguage" || o.name.includes("Date")) {
         this.forceUpdate();
       }
     };
@@ -27,6 +27,7 @@ export default class EditLanguageProficiencyController extends FieldManagingComp
         handleApply={this.handleApply}
         showSecondaryGrading={this.fields.gradedOnSecondLanguage}
         updateField={this.updateField}
+        fields={this.fields}
         {...this.props}
       />
     );

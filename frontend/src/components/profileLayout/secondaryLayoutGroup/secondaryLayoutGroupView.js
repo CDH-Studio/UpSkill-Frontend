@@ -104,6 +104,7 @@ class SecondaryLayoutGroupView extends Component {
           celled
           className="noGapAbove"
           collapsing
+          style={{ margin: "0px auto" }}
           unstackable
         >
           <Table.Body id="proficiencyTableBody">

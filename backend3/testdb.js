@@ -11,22 +11,22 @@ const uuid = require("uuid/v1");
 //     console.error("Unable to connect to the database:", err);
 //   });
 
-// models.user.destroy({ where: {} });
+// models.profile.destroy({ where: {} });
 // models.skill.destroy({ where: {} });
 
-// models.user.create({ first_name: "Trevor" });
-// models.user.create({ first_name: "Mamadou" });
+// models.profile.create({ first_name: "Trevor" });
+// models.profile.create({ first_name: "Mamadou" });
 
 // models.skill.create({ description_en: "javascript" });
 // models.skill.create({ description_en: "xml" });
 
 models.skill.findOne({ where: { description_en: "xml" } }).then(skill => {
-  models.user.findOne({ where: { first_name: "Mamadou" } }).then(user => {
+  models.profile.findOne({ where: { first_name: "Mamadou" } }).then(user => {
     user.addSkill(skill);
   });
 });
 
-// models.user.findAll().then(res => {
+// models.profile.findAll().then(res => {
 //   console.log(res);
 // });
 

@@ -5,14 +5,17 @@ import EditLabelCardsView from "./editLabelCardsView";
 export default class EditLabelCardsController extends FieldManagingComponent {
   constructor(props) {
     super(props);
+
+    this.oldUpdateField = this.updateField;
+    this.updateField = ((e, o) => {
+      this.oldUpdateField(3, o);
+      if (o.name == "isActing" || o.name.includes("Date")) {
+        this.forceUpdate();
+      }
+    }).bind(this);
   }
 
   onComponentMount() {}
-
-  updateField(e, { name, value }) {
-    console.log("field update", name, value);
-    this.fields[name] = value;
-  }
 
   render() {
     return (
@@ -25,6 +28,7 @@ export default class EditLabelCardsController extends FieldManagingComponent {
           yearsOfService: null
         }}
         updateField={this.updateField}
+        fields={this.fields}
         {...this.props}
       />
     );

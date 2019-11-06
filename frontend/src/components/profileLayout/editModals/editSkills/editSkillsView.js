@@ -7,11 +7,14 @@ import EditTagsController from "../common/editTagsModal/editTagsModalController"
 
 class EditSkillsView extends Component {
   render() {
-    const { intl } = this.props;
+    const { editProfileOptions, intl } = this.props;
+    const { maxSkillItems } = editProfileOptions;
+
     return (
       <EditTagsController
         dropdownName="skills"
         name={intl.formatMessage({ id: "profile.edit.skills" })}
+        maxItems={maxSkillItems}
         {...this.props}
       />
     );

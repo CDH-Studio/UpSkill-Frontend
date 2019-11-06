@@ -20,7 +20,7 @@ import EditWrapperController from "./editWrapper/editWrapperController";
 it("Editable profile view contains expected components", () => {
   const wrapper = wrapThenMount(
     <ProfileLayoutView
-      dropdownOptions={{
+      editProfileOptions={{
         oralGrade: [
           { key: "1", text: "1", value: "1" },
           { key: "2", text: "2", value: "2" }
@@ -249,7 +249,7 @@ it("Editable profile view contains expected components", () => {
 it("Non-editable profile view contains expected components", () => {
   const wrapper = wrapThenMount(
     <ProfileLayoutView
-      dropdownOptions={{
+      editProfileOptions={{
         oralGrade: [
           { key: "1", text: "1", value: "1" },
           { key: "2", text: "2", value: "2" }

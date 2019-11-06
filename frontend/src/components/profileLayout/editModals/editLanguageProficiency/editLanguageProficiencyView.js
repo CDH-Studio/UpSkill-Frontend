@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { Select, Form, Input, Grid, Checkbox } from "semantic-ui-react";
+import { DateInput, MonthInput } from "semantic-ui-calendar-react";
 
 import EditModalController, {
   generateCommonProps
@@ -57,18 +58,12 @@ class EditLanguageProficiencyView extends Component {
                 />
                 <Form.Field
                   disabled={!showSecondaryGrading}
-                  width={2}
-                  {...generateCommonProps(value + "Month", Select, this.props)}
-                />
-                <Form.Field
-                  disabled={!showSecondaryGrading}
-                  width={2}
-                  {...generateCommonProps(value + "Day", Input, this.props)}
-                />
-                <Form.Field
-                  disabled={!showSecondaryGrading}
-                  width={4}
-                  {...generateCommonProps(value + "Year", Input, this.props)}
+                  width={8}
+                  {...generateCommonProps(
+                    value + "Date",
+                    DateInput,
+                    this.props
+                  )}
                 />
               </Form.Group>
             ))}

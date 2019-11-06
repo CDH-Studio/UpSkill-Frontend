@@ -26,7 +26,8 @@ class ProfileLayoutController extends Component {
     return (
       <ProfileLayoutView
         changeLanguage={changeLanguage}
-        dropdownOptions={{
+        editProfileOptions={{
+          maxSkillItems: 1,
           oralGrade: [
             { key: "1", text: "1", value: "1" },
             { key: "2", text: "2", value: "2" }

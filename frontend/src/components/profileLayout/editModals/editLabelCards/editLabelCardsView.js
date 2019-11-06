@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FieldManagingComponent from "../common/fieldManagingComponent";
-import { Form, Input, Select } from "semantic-ui-react";
+import { Checkbox, Form, Input, Select } from "semantic-ui-react";
+import { DateInput } from "semantic-ui-calendar-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import EditModalController, {
@@ -10,7 +11,12 @@ import "./editLabelCards.css";
 
 class EditLabelCardsView extends Component {
   render() {
-    const { handleApply, intl } = this.props;
+    const { handleApply, intl, profileInfo, fields } = this.props;
+
+    const currentValues = { ...profileInfo, ...fields };
+    const allowActing = currentValues["isActing"];
+    const allowActingEndDate = allowActing && currentValues["hasActingEndDate"];
+
     return (
       <EditModalController
         handleApply={handleApply}
@@ -28,6 +34,30 @@ class EditLabelCardsView extends Component {
           <Form.Field
             {...generateCommonProps("security", Select, this.props)}
           />
+
+          <Form.Field
+            {...generateCommonProps("isActing", Checkbox, this.props)}
+          />
+          <Form.Field
+            disabled={!allowActing}
+            {...generateCommonProps("acting", Select, this.props)}
+          />
+          <Form.Group>
+            <Form.Field
+              disabled={!allowActing}
+              {...generateCommonProps("actingStartDate", DateInput, this.props)}
+            />
+
+            <Form.Field
+              disabled={!allowActing}
+              {...generateCommonProps("hasActingEndDate", Checkbox, this.props)}
+            />
+
+            <Form.Field
+              disabled={!allowActingEndDate}
+              {...generateCommonProps("actingEndDate", DateInput, this.props)}
+            />
+          </Form.Group>
         </Form>
       </EditModalController>
     );

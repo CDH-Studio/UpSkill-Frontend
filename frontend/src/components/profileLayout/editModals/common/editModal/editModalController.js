@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import EditGenericModalView from "./editModalView";
 import { Checkbox, Input, Select } from "semantic-ui-react";
+import { DateInput, MonthInput } from "semantic-ui-calendar-react";
 
 export default class EditGenericModalController extends Component {
   render() {
@@ -9,7 +10,7 @@ export default class EditGenericModalController extends Component {
 }
 
 export const generateCommonProps = (name, control, props, dropdownControl) => {
-  const { profileInfo, dropdownOptions, intl, updateField } = props;
+  const { profileInfo, editProfileOptions, intl, updateField, fields } = props;
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
   let intlId = "profile." + name.replace(/([A-Z])/g, ".$1").toLowerCase();
@@ -24,16 +25,21 @@ export const generateCommonProps = (name, control, props, dropdownControl) => {
   };
 
   if (dropdownControl) {
-    commonProps.options = dropdownOptions[name];
+    commonProps.options = editProfileOptions[name];
     commonProps.defaultValue = profileInfo[name];
     commonProps.placeholder = null;
   } else if (control === Checkbox) {
     commonProps.defaultChecked = profileInfo[name];
   } else if (control === Select) {
     commonProps.defaultValue = profileInfo[name];
-    commonProps.options = dropdownOptions[name];
+    commonProps.options = editProfileOptions[name];
   } else if (control === Input) {
     commonProps.defaultValue = profileInfo[name];
+  } else if (control == DateInput || control == MonthInput) {
+    commonProps.value = fields[name];
+    commonProps.iconPosition = "right";
+    commonProps.closable = true;
+    commonProps.dateFormat = "MMM DD YYYY";
   }
 
   return commonProps;

@@ -9,7 +9,7 @@ import "./editPrimaryInformation.css";
 
 /*
 const generateTempProps = (name, control, props, dropdownControl) => {
-  const { profileInfo, dropdownOptions, intl, updateField } = props;
+  const { profileInfo, editProfileOptions, intl, updateField } = props;
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
   let intlId = "profile." + name.replace(/([A-Z])/g, ".$1").toLowerCase();
@@ -24,13 +24,13 @@ const generateTempProps = (name, control, props, dropdownControl) => {
   };
 
   if (dropdownControl) {
-    commonProps.options = dropdownOptions[name];
+    commonProps.options = editProfileOptions[name];
     commonProps.defaultValue = profileInfo[name];
     commonProps.placeholder = null;
   } else if (control === Checkbox) {
     commonProps.defaultChecked = profileInfo[name];
   } else if (control === Select) {
-    commonProps.options = dropdownOptions[name];
+    commonProps.options = editProfileOptions[name];
   }
 
   return commonProps;
@@ -47,6 +47,7 @@ class EditPrimaryInformationView extends Component {
         <Form onSubmit={handleApply}>
           <Form.Group fluid widths="equal">
             <Form.Field
+              required
               {...generateCommonProps("firstName", Input, this.props)}
             />
             <Form.Field

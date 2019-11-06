@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("userSkills", {
+    return queryInterface.createTable("profileSkills", {
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -11,11 +11,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      userId: {
+      profileId: {
         type: Sequelize.UUID,
         primaryKey: true,
         references: {
-          model: "users", // name of Target model
+          model: "profiles", // name of Target model
           key: "id" // key in Target model that we're referencing
         }
       },
@@ -32,6 +32,6 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     // remove table
-    return queryInterface.dropTable("userSkills");
+    return queryInterface.dropTable("profileSkills");
   }
 };

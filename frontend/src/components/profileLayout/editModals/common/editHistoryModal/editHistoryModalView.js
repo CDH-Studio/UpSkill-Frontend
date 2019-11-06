@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
-import { Form, Grid, Dropdown, Select, Modal, Button } from "semantic-ui-react";
+import { Grid, Modal, Button } from "semantic-ui-react";
 
 import { renderEditButton } from "../editModal/editModalView";
 
