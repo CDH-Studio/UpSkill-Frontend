@@ -11,10 +11,19 @@ module.exports = {
         "experiences",
         [
           {
+            organizationEn: "Healt Canada",
+            organizationFr: "Santé Canada",
+            jobTitleEn: "Medical Officer",
+            jobTitleFr: "Médecin chef",
+            descriptionEn:
+              "Overseeing the medical care of patients and the functions performed by medical staff",
+            descriptionFr:
+              "Superviser les soins médicaux des patients et les fonctions du personnel médical",
             startDate: new Date(),
             endDate: new Date(),
             createdAt: new Date(),
-            updatedAt: new Date()
+            updatedAt: new Date(),
+            profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
           }
         ],
         {}

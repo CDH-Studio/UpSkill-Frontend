@@ -11,12 +11,6 @@ module.exports = {
         "users",
         [
           {
-            name: "Mary Doe",
-            email: "mary.doe@canada.ca",
-            createdAt: new Date(),
-            updatedAt: new Date()
-          },
-          {
             name: "John Doe",
             email: "john.doe@canada.ca",
             createdAt: new Date(),

@@ -14,7 +14,10 @@ module.exports = {
             startDate: new Date(),
             endDate: new Date(),
             createdAt: new Date(),
-            updatedAt: new Date()
+            updatedAt: new Date(),
+            profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667",
+            schoolId: "482a25e6-ffe6-11e9-a69e-362b9e155667",
+            diplomaId: "bbd95b12-ffe4-11e9-8d71-362b9e155667"
           }
         ],
         {}
