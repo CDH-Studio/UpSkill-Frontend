@@ -17,6 +17,11 @@ import {
   Profile
 } from "./pages/index";
 
+import moment from "moment";
+import "moment/min/moment-with-locales";
+import "moment/locale/en-ca";
+import "moment/locale/fr-ca";
+
 let localLang = (() => {
   if (localStorage.getItem("lang")) {
     return localStorage.getItem("lang");
@@ -170,7 +175,7 @@ class App extends Component {
 
   changeLanguage(lang) {
     localStorage.setItem("lang", lang);
-    switch (localStorage.getItem("lang")) {
+    switch (lang) {
       case "fr":
         i18nConfig.messages = messages_fr;
         break;
@@ -181,6 +186,8 @@ class App extends Component {
         i18nConfig.messages = messages_en;
         break;
     }
+
+    moment.locale(lang + "-ca");
 
     i18nConfig.locale = localStorage.getItem("lang");
     this.setState({ locale: localStorage.getItem("lang") });
