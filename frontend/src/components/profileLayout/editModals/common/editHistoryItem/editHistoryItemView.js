@@ -1,17 +1,13 @@
 import React, { Component } from "react";
 import { Form, Grid, Icon, Input, TextArea, Checkbox } from "semantic-ui-react";
-import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
+//import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
+import DateInputFieldGroup from "../dateInputFieldGroup/dateInputFieldGroupController";
+
 import "./editHistoryItem.css";
 
 export default class EditHistoryItemController extends Component {
-  constructor(props) {
-    super(props);
-
-    this.updateField = this.updateField.bind(this);
-  }
-
   render() {
-    const { item, index, removeItemByIndex } = this.props;
+    const { item, index, removeItemByIndex, updateField } = this.props;
 
     return (
       <Grid.Row style={{ position: "relative" }} width={16}>
@@ -28,51 +24,58 @@ export default class EditHistoryItemController extends Component {
             <Form.Field
               control={Input}
               label="Name"
-              onChange={this.updateField}
+              onChange={updateField}
               name="header"
-              placeholder={item.header}
+              value={item.header}
             />
             <Form.Field
               control={Input}
               label="School"
               name="subheader"
-              onChange={this.updateField}
-              placeholder={item.subheader}
+              onChange={updateField}
+              value={item.subheader}
             />
           </Form.Group>
-          <Form.Group>
-            <Form.Field width={8}>
-              <label>Date Range</label>
-              <MonthInput
-                closable
-                dateFormat="MM YYYY"
-                minDate="01 1990"
-                maxDate="03 1998"
-                name="monthRange"
-                iconPosition="right"
-                onChange={this.updateField}
-                value={item.monthRange}
-              />
-            </Form.Field>
+          <Form.Group className="noHorizontalGaps">
+            <Grid
+              style={{ width: "100%", marginLeft: "0px" }}
+              className="noHorizonalGaps"
+            >
+              <Grid.Column className="noHorizontalGaps" width={5}>
+                <DateInputFieldGroup
+                  name="startDate"
+                  updateField={updateField}
+                  groupLabelText="Start Date"
+                />
+              </Grid.Column>
+              <Grid.Column className="noHorizontalGaps" width={3}>
+                <Form.Field
+                  label="item is ongoing"
+                  name="isOngoing"
+                  onChange={updateField}
+                  control={Checkbox}
+                />
+              </Grid.Column>
+              <Grid.Column className="smallLeftPadding" width={8}>
+                <DateInputFieldGroup
+                  name="endDate"
+                  disabled={item.isOngoing}
+                  updateField={updateField}
+                  groupLabelText="End Date"
+                />
+              </Grid.Column>
+            </Grid>
           </Form.Group>
           <Form.Field>
             <label>Additional Details</label>
             <TextArea
               name="content"
-              onChange={this.updateField}
-              placeholder={item.content}
+              onChange={updateField}
+              value={item.content}
             />
           </Form.Field>
         </Form>
       </Grid.Row>
     );
-  }
-
-  updateField(e, { name, value }) {
-    const { index, updateListField } = this.props;
-    updateListField(index, name, value);
-    if (name == "monthRange") {
-      this.forceUpdate();
-    }
   }
 }

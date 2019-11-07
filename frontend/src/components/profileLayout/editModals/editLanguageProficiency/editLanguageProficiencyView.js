@@ -59,6 +59,7 @@ class EditLanguageProficiencyView extends Component {
                 <Form.Field
                   disabled={!showSecondaryGrading}
                   width={8}
+                  className="dateField"
                   {...generateCommonProps(
                     value + "Date",
                     DateInput,

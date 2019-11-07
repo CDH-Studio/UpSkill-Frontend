@@ -8,6 +8,14 @@ export default class EditHistoryModalController extends Component {
 
     const { items } = this.props;
 
+    items.forEach(element => {
+      if (element.endDate) {
+        element.isOngoing = false;
+      } else {
+        element.isOngoing = true;
+      }
+    });
+
     this.fields = items.slice(0);
 
     this.addItem = this.addItem.bind(this);
@@ -37,6 +45,7 @@ export default class EditHistoryModalController extends Component {
       content: null,
       endDate: null,
       header: null,
+      isOngoing: null,
       startDate: null,
       subheader: null
     });

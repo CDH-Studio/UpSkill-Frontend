@@ -15,7 +15,7 @@ class EditLabelCardsView extends Component {
 
     const currentValues = { ...profileInfo, ...fields };
     const allowActing = currentValues["isActing"];
-    const allowActingEndDate = allowActing && currentValues["hasActingEndDate"];
+    const allowActingEndDate = allowActing && currentValues["actingHasEndDate"];
 
     return (
       <EditModalController
@@ -50,7 +50,7 @@ class EditLabelCardsView extends Component {
 
             <Form.Field
               disabled={!allowActing}
-              {...generateCommonProps("hasActingEndDate", Checkbox, this.props)}
+              {...generateCommonProps("actingHasEndDate", Checkbox, this.props)}
             />
 
             <Form.Field
