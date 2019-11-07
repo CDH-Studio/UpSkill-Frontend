@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import { Grid } from "semantic-ui-react";
+import moment from "moment";
 
 import ProfileCardController from "../profileCard/profileCardController";
 import "./historyCard.css";
@@ -35,7 +36,9 @@ class HistoryCardView extends Component {
                       {value.header}
                     </Grid.Column>
                     <Grid.Column className="dateInfo" width={8}>
-                      {value.startDate} - {value.endDate}
+                      {moment(value.startDate).format("MMM YYYY") +
+                        " - " +
+                        moment(value.endDate).format("MMM YYYY")}
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>

@@ -1,12 +1,7 @@
+const moment = require("moment");
 const Models = require("../../db/models");
 const User = Models.user;
 const Profile = Models.profile;
-// const Tenure = Models.tenure;
-// const Organization = Models.organization;
-// const CareerMobility = Models.careerMobility;
-// const GroupLevel = Models.groupLevel;
-// const SecurityClearance = Models.securityClearance;
-// const SecondLanguageProficiency = Models.secondLanguageProficiency;
 
 const getUser = async (request, response) => {
   response.status(200).json(await User.findAll());
@@ -23,8 +18,9 @@ const getProfile = async (request, response) => {
 const getProfileById = async (request, response) => {
   const id = request.params.id;
   let user = await User.findOne({ where: { id: id } });
-
   let profile = await Profile.findOne({ where: { id: id } });
+
+  if (!profile) response.status(404).send("Profile Not Found");
   let data = { ...profile.dataValues, ...user.dataValues };
 
   let tenure = await profile.getTenure().then(res => {
@@ -49,8 +45,8 @@ const getProfileById = async (request, response) => {
 
   let experiences = await profile.getExperiences();
   let careerSummary = experiences.map(experience => {
-    startDate = Date(experience.startDate);
-    endDate = Date(experience.endDate);
+    let startDate = moment(experience.startDate);
+    let endDate = moment(experience.endDate);
 
     return {
       header: { en: experience.organizationEn, fr: experience.organizationFr },
@@ -65,8 +61,8 @@ const getProfileById = async (request, response) => {
   let educations = async () => {
     return Promise.all(
       education.map(async educ => {
-        let startDate = Date(educ.startDate);
-        let endDate = Date(educ.endDate);
+        let startDate = moment(educ.startDate);
+        let endDate = moment(educ.endDate);
         let school = await educ.getSchool().then(res => {
           if (res) return res.dataValues;
         });
@@ -87,7 +83,30 @@ const getProfileById = async (request, response) => {
   };
   let educArray = await educations();
 
-  // console.log(await profile.getSkills());
+  let skills = await profile.getSkills().map(skill => {
+    return {
+      en: skill.dataValues.descriptionEn,
+      fr: skill.dataValues.descriptionFr
+    };
+  });
+
+  let competencies = await profile.getCompetencies().map(skill => {
+    return {
+      en: skill.dataValues.descriptionEn,
+      fr: skill.dataValues.descriptionFr
+    };
+  });
+
+  let developmentalGoals = await profile.getDevelopmentGoals().map(skill => {
+    return {
+      en: skill.dataValues.descriptionEn,
+      fr: skill.dataValues.descriptionFr
+    };
+  });
+
+  let secLangProf = await profile.getSecondLanguageProficiency().then(res => {
+    return res.dataValues;
+  });
 
   //Response Object
   let resData = {
@@ -101,9 +120,9 @@ const getProfileById = async (request, response) => {
     },
     careerSummary,
     city: "Ontario",
-    competencies: ["2"],
+    competencies,
     country: "Canada",
-    developmentalGoals: ["3"],
+    developmentalGoals,
     education: educArray,
     email: data.email,
     firstLanguage: "English",
@@ -126,18 +145,18 @@ const getProfileById = async (request, response) => {
     ],
     PO: "K1A 0H5",
     province: "Ottawa",
-    secondaryOralDate: "Nov 29 2018",
-    secondaryOralGrade: "C",
-    secondaryReadingDate: "Oct 17 2020",
-    secondaryReadingGrade: "C",
-    secondaryWritingDate: "Oct 17 2021",
-    secondaryWritingGrade: "B",
+    secondaryOralDate: secLangProf.oralDate,
+    secondaryOralGrade: secLangProf.oralProficiency,
+    secondaryReadingDate: secLangProf.readingDate,
+    secondaryReadingGrade: secLangProf.readingProficiency,
+    secondaryWritingDate: secLangProf.writingDate,
+    secondaryWritingGrade: secLangProf.writingProficiency,
     secondLanguage: null,
     security: {
       en: securityClearance.descriptionEn,
       fr: securityClearance.descriptionFr
     },
-    skills: ["1"],
+    skills,
     status: {
       en: tenure.descriptionEn,
       fr: tenure.descriptionFr
