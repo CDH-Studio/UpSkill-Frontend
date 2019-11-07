@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
   );
   education.associate = function(models) {
     education.belongsTo(models.profile);
-    education.hasOne(models.school);
-    education.hasOne(models.diploma);
+    education.belongsTo(models.school);
+    education.belongsTo(models.diploma);
   };
   return education;
 };

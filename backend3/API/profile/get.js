@@ -44,11 +44,10 @@ const getProfileById = async (request, response) => {
   });
 
   let acting = await profile.getActing().then(res => {
-    return res.dataValues;
+    if (res) return res.dataValues;
   });
 
   let experiences = await profile.getExperiences();
-
   let careerSummary = experiences.map(experience => {
     startDate = Date(experience.startDate);
     endDate = Date(experience.endDate);
@@ -62,25 +61,37 @@ const getProfileById = async (request, response) => {
     };
   });
 
-  // let education = await profile.getEducation();
+  let education = await profile.getEducation();
+  let educations = async () => {
+    return Promise.all(
+      education.map(async educ => {
+        let startDate = Date(educ.startDate);
+        let endDate = Date(educ.endDate);
+        let school = await educ.getSchool().then(res => {
+          if (res) return res.dataValues;
+        });
+        let diploma = await educ.getDiploma().then(res => {
+          if (res) return res.dataValues;
+        });
+        educ = educ.dataValues;
 
-  // let educations = education.map(educ => {
-  //   startDate = Date(educ.startDate);
-  //   endDate = Date(educ.endDate);
+        return {
+          header: school.description,
+          subheader: { en: diploma.descriptionEn, fr: diploma.descriptionFr },
+          content: "",
+          startDate: { en: startDate, fr: startDate },
+          endDate: { en: endDate, fr: endDate }
+        };
+      })
+    );
+  };
+  let educArray = await educations();
 
-  //   return {
-  //     header: { en: educ.organizationEn, fr: educ.organizationFr },
-  //     subheader: { en: educ.jobTitleEn, fr: educ.jobTitleFr },
-  //     content: { en: educ.descriptionEn, fr: educ.descriptionFr },
-  //     startDate: { en: startDate, fr: startDate },
-  //     endDate: { en: endDate, fr: endDate }
-  //   };
-  // });
+  // console.log(await profile.getSkills());
 
-  console.log(experiences);
-
+  //Response Object
   let resData = {
-    acting: acting.description,
+    acting: acting ? acting.description : null,
     actingPeriodStartDate: data.actingStartDate,
     actingPeriodEndDate: data.actingEndDate,
     branch: "Chief Information Office Branch",
@@ -93,29 +104,7 @@ const getProfileById = async (request, response) => {
     competencies: ["2"],
     country: "Canada",
     developmentalGoals: ["3"],
-    education: [
-      {
-        content: "this is content\ni am content",
-        subheader: "Telfer School of Business",
-        endDate: "Apr 2009",
-        header: "Masters of Business Administration",
-        startDate: "Sept 2007"
-      },
-      {
-        content: "this is content\ni am content",
-        subheader: "Carleton University",
-        endDate: "Apr 2005",
-        header: "Software Engineering",
-        startDate: "Sept 2000"
-      },
-      {
-        content: "this is content\ni am content",
-        subheader: "smart people shcool",
-        endDate: "Apr 2005",
-        header: "smart people class",
-        startDate: "Sept 2000"
-      }
-    ],
+    education: educArray,
     email: data.email,
     firstLanguage: "English",
     firstName: data.firstName,
