@@ -1,5 +1,4 @@
 const Models = require("../../db/models");
-const User = Models.user;
 const Profile = Models.profile;
 // const Tenure = Models.tenure;
 // const Organization = Models.organization;
@@ -7,14 +6,6 @@ const Profile = Models.profile;
 // const GroupLevel = Models.groupLevel;
 // const SecurityClearance = Models.securityClearance;
 // const SecondLanguageProficiency = Models.secondLanguageProficiency;
-
-const getUser = async (request, response) => {
-  response.status(200).json(await User.findAll());
-};
-const getUserById = async (request, response) => {
-  const id = request.params.id;
-  response.status(200).json(await User.findOne({ where: { id: id } }));
-};
 
 const getProfile = async (request, response) => {
   response.status(200).json(await Profile.findAll());
@@ -155,8 +146,6 @@ const getProfileById = async (request, response) => {
 };
 
 module.exports = {
-  getUser,
-  getUserById,
   getProfile,
   getProfileById
 };
