@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Table } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
+import moment from "moment";
 
 import ProfileCardController from "../profileCard/profileCardController";
 import EditLanguageProficiencyController from "../editModals/editLanguageProficiency/editLanguageProficiencyController";
@@ -113,21 +114,25 @@ class SecondaryLayoutGroupView extends Component {
                 <FormattedMessage id="profile.reading" />
               </Table.Cell>
               <Table.Cell>{secondaryReadingGrade}</Table.Cell>
-              <Table.Cell>{secondaryReadingDate}</Table.Cell>
+              <Table.Cell>
+                {moment(secondaryReadingDate).format("ll")}
+              </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
                 <FormattedMessage id="profile.writing" />
               </Table.Cell>
               <Table.Cell>{secondaryWritingGrade}</Table.Cell>
-              <Table.Cell>{secondaryWritingDate}</Table.Cell>
+              <Table.Cell>
+                {moment(secondaryWritingDate).format("ll")}
+              </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
                 <FormattedMessage id="profile.oral" />
               </Table.Cell>
               <Table.Cell>{secondaryOralGrade}</Table.Cell>
-              <Table.Cell>{secondaryOralDate}</Table.Cell>
+              <Table.Cell>{moment(secondaryOralDate).format("ll")}</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>

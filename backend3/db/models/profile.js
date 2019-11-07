@@ -26,8 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     });
     profile.belongsToMany(models.competency, {
       through: "profileDevelopmentGoals",
-      foreignKey: { fieldName: "competencyId" },
-      as: "developmentGoal"
+      as: "developmentGoals"
     });
     profile.belongsTo(models.tenure);
     profile.belongsTo(models.groupLevel);

@@ -14,6 +14,7 @@ const sequelizedb = require("./config/database");
 const app = express(); // define our app using express
 
 const profile = require("./API/profile");
+const user = require("./API/user");
 
 dotenv.config(); // Config() function reads the .env file and sets the environment variables
 
@@ -86,8 +87,9 @@ router.get("/getEmployeeInfo/:searchValue", keycloak.protect(), async function(
   res.json(JSON.parse(data.body));
 });
 
-router.get("/user/", profile.getUser);
-router.get("/user/:id", profile.getUserById);
+router.get("/user/", user.getUser);
+router.get("/user/:id", user.getUserById);
+router.post("/user/", user.createUser);
 router.get("/profile/", profile.getProfile);
 router.get("/profile/:id", profile.getProfileById);
 // more routes for our API will happen here
