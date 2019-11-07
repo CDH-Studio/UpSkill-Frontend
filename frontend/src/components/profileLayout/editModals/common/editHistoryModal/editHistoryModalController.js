@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 import EditHistoryModalView from "./editHistoryModalView";
 
@@ -77,6 +78,38 @@ export default class EditHistoryModalController extends Component {
   }
 
   handleApply() {
+    this.fields.forEach(element => {
+      element["startDate"] = moment(
+        element.startDateYear + " " + element.startDateMonth,
+        "YY MM"
+      ).format();
+      delete element["startDateYear"];
+      delete element["startDateMonth"];
+
+      if (element["isOngoing"]) {
+        element["endDate"] = null;
+      } else {
+        element["endDate"] = moment(
+          element.endDateYear + " " + element.endDateMonth,
+          "YY MM"
+        ).format();
+      }
+      delete element["endDateYear"];
+      delete element["endDateMonth"];
+      /*
+        let myMoment = moment(
+        element.startDateYear + " " + element.startDateMonth,
+        "YY MM"
+      );
+      
+      console.log(
+        "this is my moment",
+        myMoment.format(),
+        "im in my element",
+        myMoment.format("MMM YYY")
+      );*/
+    });
+
     console.log("should perform update with", this.fields);
   }
 
