@@ -15,14 +15,14 @@ export default class EditLanguageProficiencyController extends FieldManagingComp
     if (gradedOnSecondLanguage) {
       this.fields.gradedOnSecondLanguage = true;
     }
-    this.updateField = ((e, o) => {
+    this.updateField = (e, o) => {
       oldUpdateField(e, o);
       if (o.name === "gradedOnSecondLanguage" || o.name.includes("Date")) {
         this.forceUpdate();
       }
-    }).bind(this);
+    };
 
-    this.handleApply = (() => {
+    this.handleApply = () => {
       ["reading", "writing", "oral"].forEach(element => {
         if (this.fields[element + "Date"]) {
           this.fields[element + "Date"] = moment(
@@ -32,7 +32,7 @@ export default class EditLanguageProficiencyController extends FieldManagingComp
         }
       });
       oldHandleApply();
-    }).bind(this);
+    };
   }
 
   render() {

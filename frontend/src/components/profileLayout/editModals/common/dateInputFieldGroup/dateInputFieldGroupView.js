@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Checkbox, Form, Input, Select, Grid } from "semantic-ui-react";
+import { Form, Input, Grid } from "semantic-ui-react";
 import "./dateInputFieldGroup.css";
 
 export default class DateInputFieldGroupView extends Component {

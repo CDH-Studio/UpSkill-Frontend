@@ -16,19 +16,19 @@ export default class EditLabelCardsController extends FieldManagingComponent {
 
     this.fields["isActing"] = Boolean(this.props.profileInfo["acting"]);
 
-    this.updateField = ((e, o) => {
+    this.updateField = (e, o) => {
       this.oldUpdateField(e, o);
 
       if (
-        o.name == "actingHasEndDate" ||
-        o.name == "isActing" ||
+        o.name === "actingHasEndDate" ||
+        o.name === "isActing" ||
         o.name.includes("Date")
       ) {
         this.forceUpdate();
       }
-    }).bind(this);
+    };
 
-    this.handleApply = (() => {
+    this.handleApply = () => {
       this.fields["actingEndDate"] = this.fields["actingHasEndDate"]
         ? moment(this.fields["actingEndDate"], "MMM DD YYYY").format()
         : null;
@@ -41,7 +41,7 @@ export default class EditLabelCardsController extends FieldManagingComponent {
       delete this.fields["isActing"];
       delete this.fields["actingHasEndDate"];
       this.oldHandleApply();
-    }).bind(this);
+    };
   }
 
   onComponentMount() {}

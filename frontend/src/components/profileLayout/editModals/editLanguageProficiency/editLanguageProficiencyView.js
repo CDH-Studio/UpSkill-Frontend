@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
-import { Select, Form, Input, Grid, Checkbox } from "semantic-ui-react";
-import { DateInput, MonthInput } from "semantic-ui-calendar-react";
+import { injectIntl } from "react-intl";
+import { Select, Form, Grid, Checkbox } from "semantic-ui-react";
+import { DateInput } from "semantic-ui-calendar-react";
 
 import EditModalController, {
   generateCommonProps

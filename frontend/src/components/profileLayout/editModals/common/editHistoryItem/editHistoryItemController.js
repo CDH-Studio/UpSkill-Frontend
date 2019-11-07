@@ -17,9 +17,9 @@ export default class EditHistoryItemController extends Component {
   updateField(e, o) {
     const { index, updateListField } = this.props;
     const name = o.name;
-    const value = typeof o.checked == "boolean" ? o.checked : o.value;
+    const value = typeof o.checked === "boolean" ? o.checked : o.value;
     updateListField(index, name, value);
-    if (name == "isOngoing") {
+    if (name === "isOngoing") {
       this.forceUpdate();
     }
   }

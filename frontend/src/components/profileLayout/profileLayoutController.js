@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 import ProfileLayoutView from "./profileLayoutView";
 import { injectIntl } from "react-intl";
-import { Profile } from "../../pages";
 //import { object } from "prop-types";
 
 class ProfileLayoutController extends Component {

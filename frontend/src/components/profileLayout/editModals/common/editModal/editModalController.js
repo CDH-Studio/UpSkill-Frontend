@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import EditGenericModalView from "./editModalView";
 import { Checkbox, Input, Select } from "semantic-ui-react";
-import {
-  DateInput,
-  MonthInput,
-  DatesRangeInput
-} from "semantic-ui-calendar-react";
+import { DateInput } from "semantic-ui-calendar-react";
 
 export default class EditGenericModalController extends Component {
   render() {
@@ -39,11 +35,7 @@ export const generateCommonProps = (name, control, props, dropdownControl) => {
     commonProps.options = editProfileOptions[name];
   } else if (control === Input) {
     commonProps.defaultValue = profileInfo[name];
-  } else if (
-    control == DateInput ||
-    control == MonthInput ||
-    control == DatesRangeInput
-  ) {
+  } else if (control === DateInput) {
     commonProps.value = fields[name];
     commonProps.iconPosition = "right";
     commonProps.closable = true;

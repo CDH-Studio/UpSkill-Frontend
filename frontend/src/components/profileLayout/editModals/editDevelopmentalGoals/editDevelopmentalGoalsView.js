@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { injectIntl } from "react-intl";
 
 import EditTagsController from "../common/editTagsModal/editTagsModalController";
 import "./editDevelopmentalGoals.css";

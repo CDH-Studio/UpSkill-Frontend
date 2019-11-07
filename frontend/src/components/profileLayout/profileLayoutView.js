@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { injectIntl } from "react-intl";
 
 import NavigationBar from "../navigationBar/navigationBarController";
 import { Dimmer, Grid, Label, Loader } from "semantic-ui-react";
