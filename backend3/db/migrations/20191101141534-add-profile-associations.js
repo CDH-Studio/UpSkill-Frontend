@@ -35,42 +35,42 @@ module.exports = {
             return queryInterface
               .addColumn(
                 "profiles", // name of Source model
-                "securityClearanceId", // name of the key we're adding
+                "actingId", // name of the key we're adding
                 {
                   type: Sequelize.UUID,
                   references: {
-                    model: "securityClearances", // name of Target model
+                    model: "groupLevels", // name of Target model
                     key: "id" // key in Target model that we're referencing
                   },
                   onUpdate: "CASCADE",
                   onDelete: "SET NULL"
                 }
               )
-
               .then(() => {
                 return queryInterface
                   .addColumn(
                     "profiles", // name of Source model
-                    "careerMobilityId", // name of the key we're adding
+                    "securityClearanceId", // name of the key we're adding
                     {
                       type: Sequelize.UUID,
                       references: {
-                        model: "careerMobilities", // name of Target model
+                        model: "securityClearances", // name of Target model
                         key: "id" // key in Target model that we're referencing
                       },
                       onUpdate: "CASCADE",
                       onDelete: "SET NULL"
                     }
                   )
+
                   .then(() => {
                     return queryInterface
                       .addColumn(
                         "profiles", // name of Source model
-                        "talentMatrixResultId", // name of the key we're adding
+                        "careerMobilityId", // name of the key we're adding
                         {
                           type: Sequelize.UUID,
                           references: {
-                            model: "talentMatrixResults", // name of Target model
+                            model: "careerMobilities", // name of Target model
                             key: "id" // key in Target model that we're referencing
                           },
                           onUpdate: "CASCADE",
@@ -81,11 +81,11 @@ module.exports = {
                         return queryInterface
                           .addColumn(
                             "profiles", // name of Source model
-                            "keyCompetencyId", // name of the key we're adding
+                            "talentMatrixResultId", // name of the key we're adding
                             {
                               type: Sequelize.UUID,
                               references: {
-                                model: "keyCompetencies", // name of Target model
+                                model: "talentMatrixResults", // name of Target model
                                 key: "id" // key in Target model that we're referencing
                               },
                               onUpdate: "CASCADE",
@@ -93,19 +93,35 @@ module.exports = {
                             }
                           )
                           .then(() => {
-                            return queryInterface.addColumn(
-                              "profiles", // name of Source model
-                              "secondLanguageProficiencyId", // name of the key we're adding
-                              {
-                                type: Sequelize.UUID,
-                                references: {
-                                  model: "secondLanguageProficiencies", // name of Target model
-                                  key: "id" // key in Target model that we're referencing
-                                },
-                                onUpdate: "CASCADE",
-                                onDelete: "SET NULL"
-                              }
-                            );
+                            return queryInterface
+                              .addColumn(
+                                "profiles", // name of Source model
+                                "keyCompetencyId", // name of the key we're adding
+                                {
+                                  type: Sequelize.UUID,
+                                  references: {
+                                    model: "keyCompetencies", // name of Target model
+                                    key: "id" // key in Target model that we're referencing
+                                  },
+                                  onUpdate: "CASCADE",
+                                  onDelete: "SET NULL"
+                                }
+                              )
+                              .then(() => {
+                                return queryInterface.addColumn(
+                                  "profiles", // name of Source model
+                                  "secondLanguageProficiencyId", // name of the key we're adding
+                                  {
+                                    type: Sequelize.UUID,
+                                    references: {
+                                      model: "secondLanguageProficiencies", // name of Target model
+                                      key: "id" // key in Target model that we're referencing
+                                    },
+                                    onUpdate: "CASCADE",
+                                    onDelete: "SET NULL"
+                                  }
+                                );
+                              });
                           });
                       });
                   });
@@ -130,31 +146,38 @@ module.exports = {
             return queryInterface
               .removeColumn(
                 "profiles", // name of Source model
-                "securityClearanceId" // key we want to remove
+                "actingId" // key we want to remove
               )
               .then(() => {
                 return queryInterface
                   .removeColumn(
                     "profiles", // name of Source model
-                    "careerMobilityId" // key we want to remove
+                    "securityClearanceId" // key we want to remove
                   )
                   .then(() => {
                     return queryInterface
                       .removeColumn(
                         "profiles", // name of Source model
-                        "talentMatrixResultId" // key we want to remove
+                        "careerMobilityId" // key we want to remove
                       )
                       .then(() => {
                         return queryInterface
                           .removeColumn(
                             "profiles", // name of Source model
-                            "keyCompetencyId" // key we want to remove
+                            "talentMatrixResultId" // key we want to remove
                           )
                           .then(() => {
-                            return queryInterface.removeColumn(
-                              "profiles", // name of Source model
-                              "secondLanguageProficiencyId" // key we want to remove
-                            );
+                            return queryInterface
+                              .removeColumn(
+                                "profiles", // name of Source model
+                                "keyCompetencyId" // key we want to remove
+                              )
+                              .then(() => {
+                                return queryInterface.removeColumn(
+                                  "profiles", // name of Source model
+                                  "secondLanguageProficiencyId" // key we want to remove
+                                );
+                              });
                           });
                       });
                   });

@@ -107,6 +107,7 @@ module.exports = {
           github: "githubUrl",
           createdAt: new Date(),
           updatedAt: new Date(),
+          actingId: "71b7b0a2-ff43-11e9-8f0b-362b9e155667",
           tenureId: "e79756f5-ad53-4bad-a03c-22e8f8bf05de",
           groupLevelId: "a3975faa-ff43-11e9-8f0b-362b9e155667",
           securityClearanceId: "882ef330-ff44-11e9-8f0b-362b9e155667",

@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
-      .createTable("userCompetencies", {
+      .createTable("profileCompetencies", {
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE
@@ -30,7 +30,7 @@ module.exports = {
         }
       })
       .then(() => {
-        return queryInterface.createTable("userDevelopmentGoals", {
+        return queryInterface.createTable("profileDevelopmentGoals", {
           createdAt: {
             allowNull: false,
             type: Sequelize.DATE
@@ -61,8 +61,8 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     // remove table
-    return queryInterface.dropTable("userCompetencies").then(() => {
-      return queryInterface.dropTable("userDevelopmentGoals");
+    return queryInterface.dropTable("profileCompetencies").then(() => {
+      return queryInterface.dropTable("profileDevelopmentGoals");
     });
   }
 };
