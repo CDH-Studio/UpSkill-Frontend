@@ -65,11 +65,11 @@ class App extends Component {
 
   componentDidMount() {
     const keycloak = Keycloak("/keycloak.json");
-    keycloak
+    /*keycloak
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
-      });
+      });*/
   }
 
   goto = link => history.push(link);
@@ -81,8 +81,10 @@ class App extends Component {
     }
 
     const keycloak = this.state.keycloak;
-    if (keycloak) {
-      if (this.state.authenticated) {
+    if (true) {
+      //keycloak) {
+      if (true) {
+        //this.state.authenticated) {
         console.log(keycloak);
         return (
           <IntlProvider
@@ -92,7 +94,7 @@ class App extends Component {
           >
             <Router>
               <div>
-                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 <div>
                   <form>
                     <textarea
@@ -107,7 +109,7 @@ class App extends Component {
                     </div>
                   )}
                 </div>
-                {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
 
                 <Route exact path="/" component={Landing} />
                 <Route exact path="/about" component={About} />

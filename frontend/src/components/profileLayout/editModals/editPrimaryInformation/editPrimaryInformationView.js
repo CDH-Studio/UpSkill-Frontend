@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { injectIntl } from "react-intl";
+import { FormattedMessage, injectIntl } from "react-intl";
 import { Form, Select, Input, Dropdown } from "semantic-ui-react";
 
 import EditModalController, {
@@ -65,7 +65,9 @@ class EditPrimaryInformationView extends Component {
               {...generateCommonProps("cellphone", Input, this.props)}
             />
             <Form.Field width={8}>
-              <label>Email</label>
+              <label>
+                <FormattedMessage id="profile.email" />
+              </label>
               <Input
                 defaultValue={this.props.profileInfo["email"].replace(
                   "@canada.ca",
@@ -92,17 +94,6 @@ class EditPrimaryInformationView extends Component {
           />
 
           <Form.Field {...generateCommonProps("team", Input, this.props)} />
-          <Form.Field
-            {...generateCommonProps("directorate", Select, this.props)}
-          />
-          <Form.Field
-            {...generateCommonProps("division", Select, this.props)}
-          />
-          <Form.Field {...generateCommonProps("branch", Select, this.props)} />
-          <Form.Field {...generateCommonProps("sector", Select, this.props)} />
-          <Form.Field
-            {...generateCommonProps("department", Select, this.props)}
-          />
         </Form>
       </EditModalController>
     );

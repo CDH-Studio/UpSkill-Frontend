@@ -8,7 +8,14 @@ class EditEducationView extends Component {
     const { intl } = this.props;
     return (
       <EditHistoryModal
+        contentName={intl.formatMessage({
+          id: "profile.education.content.name"
+        })}
+        headerName={intl.formatMessage({ id: "profile.education.header.name" })}
         name={intl.formatMessage({ id: "profile.edit.education" })}
+        subheaderName={intl.formatMessage({
+          id: "profile.education.subheader.name"
+        })}
         {...this.props}
       />
     );

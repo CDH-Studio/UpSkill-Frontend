@@ -153,17 +153,15 @@ class PrimaryLayoutGroupView extends Component {
   renderPrimaryCard() {
     const {
       branch,
-      country,
       email,
       firstName,
       githubUrl,
       jobTitle,
       lastName,
       linkedinUrl,
+      location,
       mobile,
       organizationList,
-      province,
-      street,
       team,
       telephone,
       twitterUrl
@@ -209,9 +207,9 @@ class PrimaryLayoutGroupView extends Component {
                   style={{
                     display: "inline",
                     float: "right",
-                    paddingLeft: "50px",
                     minWidth: "450px",
-                    overflow: "hidden"
+                    overflow: "hidden",
+                    paddingLeft: "50px"
                   }}
                 >
                   <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
@@ -233,9 +231,7 @@ class PrimaryLayoutGroupView extends Component {
                   </div>
                   <div>{email}</div>
 
-                  <div>
-                    {street}, {province}, {country}
-                  </div>
+                  <div>{location}</div>
                 </div>
               </Grid.Row>
             </Grid>

@@ -14,10 +14,13 @@ class EditHistoryModalView extends Component {
       buttonBackgroundColor,
       buttonClass,
       buttonColor,
+      contentName,
       handleApply,
+      headerName,
       items,
       name,
       removeItemByIndex,
+      subheaderName,
       updateListField
     } = this.props;
     return (
@@ -33,9 +36,12 @@ class EditHistoryModalView extends Component {
           <Grid divided="vertically">
             {items.map((item, index) => (
               <EditHistoryItemController
+                contentName={contentName}
+                headerName={headerName}
                 index={index}
                 item={item}
                 removeItemByIndex={removeItemByIndex}
+                subheaderName={subheaderName}
                 updateListField={updateListField}
               />
             ))}

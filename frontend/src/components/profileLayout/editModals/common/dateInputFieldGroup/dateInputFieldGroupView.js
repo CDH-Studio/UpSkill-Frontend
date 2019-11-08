@@ -6,10 +6,11 @@ export default class DateInputFieldGroupView extends Component {
   render() {
     const {
       disabled,
-      includeDay,
       groupLabelText,
-      updateField,
-      name
+      initialMonth,
+      initialYear,
+      name,
+      updateField
     } = this.props;
     return (
       <Grid className="dateNumberGroup">
@@ -17,7 +18,7 @@ export default class DateInputFieldGroupView extends Component {
           {groupLabelText && (
             <React.Fragment>
               <label
-                class={
+                className={
                   disabled
                     ? "looksLikeFieldLabel disabled"
                     : "looksLikeFieldLabel"
@@ -35,32 +36,24 @@ export default class DateInputFieldGroupView extends Component {
               <Input
                 className="dateNumberInput"
                 disabled={disabled}
-                placeholder="YY"
-                type="number"
                 name={name + "Year"}
                 onChange={updateField}
+                placeholder="YY"
+                value={initialYear}
+                type="number"
               />
             </Form.Field>
             <Form.Field>
               <Input
                 className="dateNumberInput"
                 disabled={disabled}
-                placeholder="MM"
                 name={name + "Month"}
-                type="number"
                 onChange={updateField}
+                placeholder="MM"
+                value={initialMonth}
+                type="number"
               />
             </Form.Field>
-            {includeDay && (
-              <Form.Field>
-                <Input
-                  className="dateNumberInput"
-                  disabled={disabled}
-                  placeholder="DD"
-                  onChange={updateField}
-                />
-              </Form.Field>
-            )}
           </Form.Group>
         </Grid.Row>
       </Grid>

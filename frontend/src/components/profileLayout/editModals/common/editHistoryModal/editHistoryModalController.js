@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 
 import EditHistoryModalView from "./editHistoryModalView";
+import { elementType } from "prop-types";
 
 export default class EditHistoryModalController extends Component {
   constructor(props) {
@@ -10,14 +11,21 @@ export default class EditHistoryModalController extends Component {
     const { items } = this.props;
 
     items.forEach(element => {
+      element.isOngoing = !Boolean(element.endDate);
+      const startMoment = moment(element.startDate);
+      element.startDateMonth = parseInt(startMoment.format("M"));
+      element.startDateYear = parseInt(startMoment.format("YY"));
       if (element.endDate) {
-        element.isOngoing = false;
+        const endMoment = moment(element.endDate);
+        element.endDateMonth = parseInt(endMoment.format("M"));
+        element.endDateYear = parseInt(endMoment.format("YY"));
       } else {
-        element.isOngoing = true;
+        element.endDateMonth = null;
+        element.endDateYear = null;
       }
     });
 
-    this.fields = items.slice(0);
+    this.fields = items.slice(0); //clone items
 
     this.addItem = this.addItem.bind(this);
     this.handleApply = this.handleApply.bind(this);
@@ -34,8 +42,8 @@ export default class EditHistoryModalController extends Component {
           items[i].content ||
           items[i].endDate ||
           items[i].header ||
-          items[i].subheader ||
-          items[i].startDate
+          items[i].startDate ||
+          items[i].subheader
         )
       ) {
         alert("There is already an empty item you can fill in.");
