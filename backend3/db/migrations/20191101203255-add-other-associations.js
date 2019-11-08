@@ -63,7 +63,7 @@ module.exports = {
           )
           .then(() => {
             return queryInterface.removeColumn(
-              "organizations", // name of Source model
+              "profileOrganizations", // name of Source model
               "profileId" // key we want to remove
             );
           });
