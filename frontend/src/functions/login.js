@@ -1,7 +1,15 @@
-const axios = require("axios");
+import { post } from "axios";
 
-const createUser = (email, name) => {
-  axios.post("http://localhost:8080/api/user/", { email, name });
-};
+async function createUser(email, name) {
+  let user = await post("http://localhost:8181/api/user/", {
+    email,
+    name
+  }).then(res => {
+    localStorage.setItem("userId", res.data.user.id);
+    return res;
+  });
+  console.log("useeeeeeeeer", user);
+  return user;
+}
 
-module.exports = { createUser };
+export { createUser };

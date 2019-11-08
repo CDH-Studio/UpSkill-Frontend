@@ -67,7 +67,7 @@ app.use(keycloak.middleware());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 8080; // set our port
+const port = process.env.PORT || 8181; // set our port
 
 // ROUTES FOR OUR API ===============================================
 const router = express.Router(); // get an instance of the express Router
@@ -103,5 +103,5 @@ app.use("/api", router);
 app.use(keycloak.middleware({ logout: "/" }));
 
 // START THE SERVER ==================================================
-app.listen(port);
+app.listen(8181);
 console.log("Magic happens on port " + port);
