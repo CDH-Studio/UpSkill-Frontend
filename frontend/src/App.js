@@ -14,8 +14,9 @@ import {
   Home,
   Landing,
   Results,
-  Profile
-} from "./pages/index";
+  Profile,
+  ProfileGeneration
+} from "./pages";
 
 import moment from "moment";
 import "moment/min/moment-with-locales";
@@ -109,7 +110,22 @@ class App extends Component {
                 </div>
                 {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
 
-                <Route exact path="/" component={Landing} />
+                <Route
+                  exact
+                  path="/"
+                  render={routeProps => (
+                    <Landing
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/profile-generation"
+                  component={ProfileGeneration}
+                />
                 <Route exact path="/about" component={About} />
                 <Route
                   exact
