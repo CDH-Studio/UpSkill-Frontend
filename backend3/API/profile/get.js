@@ -1,6 +1,7 @@
 const moment = require("moment");
 const Models = require("../../db/models");
 const Profile = Models.profile;
+const User = Models.user;
 
 const getProfile = async (request, response) => {
   response.status(200).json(await Profile.findAll());
