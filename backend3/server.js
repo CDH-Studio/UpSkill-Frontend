@@ -7,14 +7,13 @@ const session = require("express-session");
 const expressHbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
-const geds = require("./API/geds/index");
-const db = require("./API/dbTest/queries");
 const sequelizedb = require("./config/database");
 
 const app = express(); // define our app using express
 
 const profile = require("./API/profile");
 const user = require("./API/user");
+const geds = require("./API/geds");
 
 dotenv.config(); // Config() function reads the .env file and sets the environment variables
 
@@ -87,6 +86,7 @@ router.get("/getEmployeeInfo/:searchValue", keycloak.protect(), async function(
   res.json(JSON.parse(data.body));
 });
 
+router.get("/geds/:searchValue", geds.getEmployeeInfo);
 router.get("/user/", user.getUser);
 router.get("/user/:id", user.getUserById);
 router.post("/user/", user.createUser);

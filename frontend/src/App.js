@@ -52,6 +52,7 @@ class App extends Component {
 
     let language = localStorage.getItem("lang");
     i18nConfig.messages = language === "fr" ? messages_fr : messages_en;
+    moment.locale(language + "-ca");
 
     this.state = {
       authenticated: false,

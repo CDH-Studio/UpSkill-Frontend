@@ -1,71 +1,41 @@
 "use strict";
 const axios = require("axios");
 
-async function getEmployeeInfo(searchValue) {
+async function getEmployeeInfo(request, response) {
   // const searchValue = decodeURI(event.pathParameters.searchValue);
-
-  let info = await searchEmployee(searchValue).catch(err => {
-    return {
-      body: JSON.stringify({
-        message: err,
-        code: 500
-      }),
-      statusCode: 500
-    };
+  let searchValue = request.params.searchValue;
+  let info = await searchEmployee(searchValue, response).catch(err => {
+    response.status(500).send(err);
   });
-  if (info.statusCode == 429) {
-    return {
-      body: JSON.stringify({
-        message: "Limit Exceeded",
-        code: 429
-      }),
-      statusCode: 429
-    };
-  }
 
-  if (info.length == 0) {
-    return {
-      body: JSON.stringify({
-        message: "No results found",
-        code: 204
-      }),
-      statusCode: 204
-    };
-  }
-  const returnObject = {
-    body: JSON.stringify({
-      data: info,
-      code: 200
-    }),
-    headers: {
-      "access-control-allow-origin": "*"
-    },
-    statusCode: 200
-  };
+  if (info.length == 0) response.status(204).send("No results found");
 
-  return returnObject;
+  response.status(200).json(info);
 }
 
-async function searchEmployee(searchValue) {
+async function searchEmployee(searchValue, response) {
   const url =
-    "https://geds-sage-ssc-spc-apicast-staging.api.canada.ca/gapi/v2/employees?searchValue=" +
-    encodeURI(searchValue) +
+    "https://geds-sage-ssc-spc-apicast-production.api.canada.ca/gapi/v2/employees?searchValue=" +
+    encodeURI("Trevor Bivi") +
     "&searchField=9&searchCriterion=2&searchScope=sub&searchFilter=2&maxEntries=1000";
 
   let info = [];
+
+  console.log(url);
 
   await axios({
     methon: "get",
     url: url,
     headers: {
-      Accept: "application/json",
-      "user-key": "1d373575a287c2597f4525d0c26eae7d"
+      "user-key": "1d373575a287c2597f4525d0c26eae7d",
+      Accept: "application/json"
     }
   })
     .then(res => {
-      for (let i = 0; i < res.data.length; i++) {
-        const employee = res.data[i];
-
+      res.data.forEach(employee => {
+        // response.json(employee.organizationInformation);
+        console.log(employee);
+        console.log(employee.contactInformation);
         let currentBranch = employee;
         let organization = [];
         while (currentBranch.organizationInformation != null) {
@@ -95,12 +65,12 @@ async function searchEmployee(searchValue) {
           organization: organization
         };
         info.push(empInfo);
-      }
+      });
     })
     .catch(err => {
       console.error(err);
-      if (err.responce.status == 429) {
-        return Promise.reject("Limits exceeded");
+      if (err.response.status == 429) {
+        response.status(429).send("Limit Exceeded!");
       }
     });
 

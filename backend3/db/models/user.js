@@ -8,6 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  user.associate = function(models) {};
+  user.associate = function(models) {
+    user.belongsTo(models.profile, {
+      foreignKey: { fieldName: "id" }
+    });
+  };
   return user;
 };

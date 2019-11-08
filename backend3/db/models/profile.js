@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   profile.associate = function(models) {
+    profile.belongsTo(models.user, {
+      foreignKey: { fieldName: "id" }
+    });
     profile.belongsToMany(models.skill, { through: "profileSkills" });
     profile.belongsToMany(models.competency, {
       through: "profileCompetencies"
