@@ -33,7 +33,7 @@ module.exports = {
           )
           .then(() => {
             return queryInterface.addColumn(
-              "organizations", // name of Source model
+              "profileOrganizations", // name of Source model
               "profileId", // name of the key we're adding
               {
                 type: Sequelize.UUID,

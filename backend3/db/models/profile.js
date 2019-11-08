@@ -44,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     profile.belongsTo(models.secondLanguageProficiency);
     profile.hasMany(models.experience);
     profile.hasMany(models.education);
+    profile.hasMany(models.profileOrganization);
   };
   return profile;
 };

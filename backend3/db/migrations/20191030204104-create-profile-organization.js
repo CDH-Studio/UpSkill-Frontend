@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("organizations", {
+    return queryInterface.createTable("profileOrganizations", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -9,32 +9,11 @@ module.exports = {
         defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
 
-      department: {
+      organization: {
         type: Sequelize.STRING
       },
-      sector: {
-        type: Sequelize.STRING
-      },
-      branch: {
-        type: Sequelize.STRING
-      },
-      division: {
-        type: Sequelize.STRING
-      },
-      directorate: {
-        type: Sequelize.STRING
-      },
-      startDate: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      endDate: {
-        allowNull: true,
-        type: Sequelize.DATE
-      },
-      current: {
-        allowNull: true,
-        type: Sequelize.BOOLEAN
+      tier: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
