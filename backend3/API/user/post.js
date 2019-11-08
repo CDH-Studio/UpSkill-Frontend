@@ -11,7 +11,7 @@ const createUser = async (request, response) => {
         plain: true
       })
     );
-    console.log(created);
+    console.log("Is user created: " + created);
     resData = { user, created };
     response.status(200).json(resData);
   });

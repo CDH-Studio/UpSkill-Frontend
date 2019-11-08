@@ -165,7 +165,6 @@ class App extends Component {
     }
     return <div>Initializing Keycloak...</div>;
   }
-
   //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   copyToClipboard = e => {
     this.textArea.select();
