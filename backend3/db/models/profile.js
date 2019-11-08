@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       jobTitle: DataTypes.STRING,
       phone: DataTypes.STRING,
       mobile: DataTypes.STRING,
-      location: DataTypes.STRING,
       manager: DataTypes.STRING,
       team: DataTypes.STRING,
       firstLanguage: DataTypes.STRING,
@@ -38,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       as: "acting"
     });
     profile.belongsTo(models.securityClearance);
+    profile.belongsTo(models.location);
     profile.belongsTo(models.careerMobility);
     profile.belongsTo(models.talentMatrixResult);
     profile.belongsTo(models.keyCompetency);

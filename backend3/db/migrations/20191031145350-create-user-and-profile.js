@@ -51,9 +51,6 @@ module.exports = {
           mobile: {
             type: Sequelize.STRING
           },
-          location: {
-            type: Sequelize.STRING
-          },
           manager: {
             type: Sequelize.STRING
           },

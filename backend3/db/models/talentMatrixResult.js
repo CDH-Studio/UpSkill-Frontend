@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   talentMatrixResult.associate = function(models) {
-    talentMatrixResult.hasOne(models.profile);
+    talentMatrixResult.hasMany(models.profile);
   };
   return talentMatrixResult;
 };

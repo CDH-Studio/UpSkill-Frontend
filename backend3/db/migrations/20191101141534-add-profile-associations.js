@@ -61,7 +61,21 @@ module.exports = {
                       onDelete: "SET NULL"
                     }
                   )
-
+                  .then(() => {
+                    return queryInterface.addColumn(
+                      "profiles", // name of Source model
+                      "locationId", // name of the key we're adding
+                      {
+                        type: Sequelize.UUID,
+                        references: {
+                          model: "locations", // name of Target model
+                          key: "id" // key in Target model that we're referencing
+                        },
+                        onUpdate: "CASCADE",
+                        onDelete: "SET NULL"
+                      }
+                    );
+                  })
                   .then(() => {
                     return queryInterface
                       .addColumn(
@@ -158,25 +172,32 @@ module.exports = {
                     return queryInterface
                       .removeColumn(
                         "profiles", // name of Source model
-                        "careerMobilityId" // key we want to remove
+                        "locationId" // key we want to remove
                       )
                       .then(() => {
                         return queryInterface
                           .removeColumn(
                             "profiles", // name of Source model
-                            "talentMatrixResultId" // key we want to remove
+                            "careerMobilityId" // key we want to remove
                           )
                           .then(() => {
                             return queryInterface
                               .removeColumn(
                                 "profiles", // name of Source model
-                                "keyCompetencyId" // key we want to remove
+                                "talentMatrixResultId" // key we want to remove
                               )
                               .then(() => {
-                                return queryInterface.removeColumn(
-                                  "profiles", // name of Source model
-                                  "secondLanguageProficiencyId" // key we want to remove
-                                );
+                                return queryInterface
+                                  .removeColumn(
+                                    "profiles", // name of Source model
+                                    "keyCompetencyId" // key we want to remove
+                                  )
+                                  .then(() => {
+                                    return queryInterface.removeColumn(
+                                      "profiles", // name of Source model
+                                      "secondLanguageProficiencyId" // key we want to remove
+                                    );
+                                  });
                               });
                           });
                       });

@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   location.associate = function(models) {
-    // associations can be defined here
+    location.hasMany(models.profile);
   };
   return location;
 };
