@@ -21,7 +21,7 @@ class HomeLayoutController extends Component {
     this.props.keycloak.loadUserInfo().then(async userInfo => {
       console.log("Hello");
 
-      console.log(loginFunc.createUser(userInfo.email, userInfo.name));
+      console.log(await loginFunc.createUser(userInfo.email, userInfo.name));
       console.log("hiii");
       console.log(userInfo);
       console.log("idddddddddd", localStorage.getItem("userId"));
