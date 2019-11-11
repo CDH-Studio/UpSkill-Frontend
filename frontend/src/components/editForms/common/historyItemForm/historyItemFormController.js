@@ -8,45 +8,47 @@ export default class EditHistoryItemController extends FieldManagingComponent {
   constructor(props) {
     super(props);
 
+    const {onChangeFuncs, transformOnChangeValueFuncs, tempFields} = this.props;
+    this.onChangeFuncs = onChangeFuncs;
+    this.transformOnChangeValueFuncs = transformOnChangeValueFuncs;
+    this.tempFields = tempFields;
 
-
-    const profileInfo = this.props;
-
-    const isActing =
-      Boolean(profileInfo["actingStartDate"]) && Boolean(profileInfo["acting"]);
-
-    this.tempFields["isActing"] = isActing;
-    this.tempFields["actingHasEndDate"] =
-      isActing && Boolean(profileInfo["actingEndDate"]);
-
-    this.onChangeFuncs["isActing"] = () => this.forceUpdate();
-    this.onChangeFuncs["actingHasEndDate"] = () => this.forceUpdate();
-    this.onChangeFuncs["actingStartDate"] = () => this.forceUpdate();
-    this.onChangeFuncs["actingEndDate"] = () => this.forceUpdate();
-
-    this.transformOnChangeValueFuncs["actingStartDate"] = value =>
-      moment(value, "MMM DD YYYY");
-  }
-
-
-
-
-    this.updateField = this.updateField.bind(this);
   }
 
   render() {
+    const { item } = this.props;
+    const {      
+      contentName,
+      headerName,
+      index,
+      intl,
+      item,
+      removeItemByIndex,
+      subheaderName,
+      onFieldChange,
+      onTempFieldChange} = this.props;
+      
     return (
-      <EditHistoryItemView updateField={this.updateField} {...this.props} />
+      <EditHistoryItemView onChange={onChange} 
+      
+      contentName={contentName}
+      headerName={headerName}
+      index={index}
+      intl={intl}
+      item={item}
+      removeItemByIndex={removeItemByIndex}
+      subheaderName={subheaderName}
+      onFieldChange={onFieldChange}
+      onTempFieldChange={onTempFieldChange}
+      {...this.props} />
     );
   }
 
-  updateField(e, o) {
-    const { index, updateListField } = this.props;
-    const name = o.name;
-    const value = typeof o.checked === "boolean" ? o.checked : o.value;
-    updateListField(index, name, value);
-    if (name === "isOngoing") {
-      this.forceUpdate();
-    }
+
+  setField(name,value){
+    const {index, setContainerField} = this.props;
+    setContainerField(index,name,value); 
+    super.setField(name,value);
   }
+
 }

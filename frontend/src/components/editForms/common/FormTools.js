@@ -88,6 +88,10 @@ export default class FormManagingComponent extends Component {
     return o.value;
   }
 
+  setField(name,value){
+    fieldObj[name] = value;
+  }
+
   onChange(fieldObj, e, o) {
     const { name } = o;
 
@@ -95,7 +99,8 @@ export default class FormManagingComponent extends Component {
     if (name in this.transformOnChangeValueFuncs) {
       value = this.transformOnChangeValueFuncs[name](value);
     }
-    fieldObj[name] = value;
+    
+    this.setField(name,value);
 
     if (name in this.onChangeFuncs) {
       this.onChangeFuncs[name]();

@@ -19,7 +19,7 @@ class EditHistoryModalView extends Component {
       name,
       removeItemByIndex,
       subheaderName,
-      updateListField
+      setContainerField
     } = this.props;
     return (
       <Grid divided="vertically">
@@ -31,7 +31,7 @@ class EditHistoryModalView extends Component {
             item={item}
             removeItemByIndex={removeItemByIndex}
             subheaderName={subheaderName}
-            updateListField={updateListField}
+            setContainerField={setContainerField}
           />
         ))}
         <Grid.Row>
