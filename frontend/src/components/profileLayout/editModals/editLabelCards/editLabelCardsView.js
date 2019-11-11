@@ -8,7 +8,9 @@ import EditModalController, {
 } from "../common/editModal/editModalController.js";
 import "./editLabelCards.css";
 
-class EditLabelCardsView extends Component {
+import LabelCardFormController from "../../../editForms/labelCardForm/labelCardFormController";
+
+class EditLabelCardView extends Component {
   render() {
     const { handleApply, intl, profileInfo, fields } = this.props;
 
@@ -17,11 +19,17 @@ class EditLabelCardsView extends Component {
     const allowActingEndDate = allowActing && currentValues["actingHasEndDate"];
 
     return (
-      <EditModalController
-        handleApply={handleApply}
-        name={intl.formatMessage({ id: "profile.edit.label.cards" })}
-      >
-        <Form onSubmit={handleApply}>
+      <EditModalController handleApply={handleApply} name="wat">
+        <LabelCardFormController {...this.props} />
+      </EditModalController>
+    );
+  }
+}
+
+export default injectIntl(EditLabelCardView);
+
+/*
+<Form onSubmit={handleApply}>
           <Form.Field {...generateCommonProps("status", Select, this.props)} />
           <Form.Field
             {...generateCommonProps("groupOrLevel", Select, this.props)}
@@ -58,9 +66,4 @@ class EditLabelCardsView extends Component {
             />
           </Form.Group>
         </Form>
-      </EditModalController>
-    );
-  }
-}
-
-export default injectIntl(EditLabelCardsView);
+*/

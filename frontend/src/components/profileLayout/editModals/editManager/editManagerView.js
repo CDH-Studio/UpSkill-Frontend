@@ -7,6 +7,8 @@ import EditModalController, {
 } from "../common/editModal/editModalController.js";
 import "./editManager.css";
 
+import ManagerFormController from "../../../editForms/managerForm/managerFormController";
+
 class EditManagerView extends Component {
   render() {
     const { handleApply, intl } = this.props;
@@ -15,9 +17,7 @@ class EditManagerView extends Component {
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.manager" })}
       >
-        <Form onSubmit={handleApply}>
-          <Form.Field {...generateCommonProps("manager", Input, this.props)} />
-        </Form>
+        <ManagerFormController {...this.props} />
       </EditModalController>
     );
   }

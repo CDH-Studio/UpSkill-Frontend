@@ -7,6 +7,8 @@ import EditModalController, {
 } from "../common/editModal/editModalController.js";
 import "./editPrimaryInformation.css";
 
+import PrimaryInformationFormController from "../../../editForms/primaryInformationForm/primaryInformationFormController";
+
 /*
 const generateTempProps = (name, control, props, dropdownControl) => {
   const { profileInfo, editProfileOptions, intl, updateField } = props;
@@ -44,57 +46,7 @@ class EditPrimaryInformationView extends Component {
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.primary.information" })}
       >
-        <Form onSubmit={handleApply}>
-          <Form.Group fluid widths="equal">
-            <Form.Field
-              required
-              {...generateCommonProps("firstName", Input, this.props)}
-            />
-            <Form.Field
-              {...generateCommonProps("lastName", Input, this.props)}
-            />
-          </Form.Group>
-
-          <Form.Group fluid>
-            <Form.Field
-              width={4}
-              {...generateCommonProps("telephone", Input, this.props)}
-            />
-            <Form.Field
-              width={4}
-              {...generateCommonProps("cellphone", Input, this.props)}
-            />
-            <Form.Field width={8}>
-              <label>
-                <FormattedMessage id="profile.email" />
-              </label>
-              <Input
-                defaultValue={this.props.profileInfo["email"].replace(
-                  "@canada.ca",
-                  ""
-                )}
-                label={
-                  <Dropdown
-                    defaultValue="@canada.ca"
-                    options={[
-                      {
-                        key: "@canada.ca",
-                        text: "@canada.ca",
-                        value: "@canada.ca"
-                      }
-                    ]}
-                  />
-                }
-                labelPosition="right"
-              />
-            </Form.Field>
-          </Form.Group>
-          <Form.Field
-            {...generateCommonProps("location", Select, this.props)}
-          />
-
-          <Form.Field {...generateCommonProps("team", Input, this.props)} />
-        </Form>
+        <PrimaryInformationFormController {...this.props} />
       </EditModalController>
     );
   }
