@@ -5,26 +5,41 @@ const loginFunc = require("../../src/functions/login");
 export default class Landing extends Component {
   goto = link => this.props.history.push(link);
 
+  constructor(props) {
+    super(props);
+    this.state = { redirect: <div /> };
+    console.log("const redirect", this.state.redirect);
+    this.renderRedirect().then(redirect => {
+      console.log("State redirect", redirect);
+      this.setState({ redirect });
+    });
+  }
+
   profileExist = () => {
     return this.props.keycloak.loadUserInfo().then(async userInfo => {
-      const user = await loginFunc.createUser(userInfo.email, userInfo.name);
-      console.log("usssseeeerrrr", user);
-      alert(user);
+      return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
+        console.log("res", res);
+        return res.hasProfile;
+      });
     });
   };
 
   renderRedirect = () => {
-    if (this.profileExist()) {
-      return <Redirect to="/home"></Redirect>;
-    } else {
-      return <Redirect to="/profile-generation"></Redirect>;
-    }
+    return this.profileExist().then(profileExist => {
+      console.log("profile exist", profileExist);
+
+      if (profileExist) {
+        console.log(profileExist, "Redirecting to Home");
+
+        return <Redirect to="/home"></Redirect>;
+      } else {
+        console.log(profileExist, "Redirecting to Profile Generation");
+        return <Redirect to="/profile-generation"></Redirect>;
+      }
+    });
   };
 
   render() {
-    // this.goto("/home");
-    console.log(this.renderRedirect);
-
-    return <div>{this.renderRedirect()}</div>;
+    return <div>{this.state.redirect}</div>;
   }
 }
