@@ -3,8 +3,6 @@ import { FormattedMessage } from "react-intl";
 
 import HomeLayoutView from "./homeLayoutView";
 
-const loginFunc = require("../../functions/login");
-
 /**
  * A form for creating a search query
  *
@@ -18,15 +16,6 @@ class HomeLayoutController extends Component {
   constructor(props) {
     super(props);
     // To add a user into Users table
-    this.props.keycloak.loadUserInfo().then(async userInfo => {
-      console.log("Hello");
-
-      console.log(loginFunc.createUser(userInfo.email, userInfo.name));
-      console.log("hiii");
-      console.log(userInfo);
-      console.log("idddddddddd", localStorage.getItem("userId"));
-    });
-
     this.searchQuery = {};
     this.updateSearch = this.updateSearch.bind(this);
     this.performSearch = this.performSearch.bind(this);

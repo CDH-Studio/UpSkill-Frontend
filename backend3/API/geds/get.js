@@ -21,8 +21,6 @@ async function searchEmployee(searchValue, response) {
 
   let info = [];
 
-  console.log(url);
-
   await axios({
     methon: "get",
     url: url,
@@ -33,9 +31,6 @@ async function searchEmployee(searchValue, response) {
   })
     .then(res => {
       res.data.forEach(employee => {
-        // response.json(employee.organizationInformation);
-        console.log(employee);
-        console.log(employee.contactInformation);
         let currentBranch = employee;
         let organization = [];
         while (currentBranch.organizationInformation != null) {

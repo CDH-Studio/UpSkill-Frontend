@@ -103,5 +103,5 @@ app.use("/api", router);
 app.use(keycloak.middleware({ logout: "/" }));
 
 // START THE SERVER ==================================================
-app.listen(8181);
+app.listen(8080);
 console.log("Magic happens on port " + port);

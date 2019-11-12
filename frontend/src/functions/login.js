@@ -1,15 +1,17 @@
-import { post } from "axios";
+const post = require("axios").post;
 
-async function createUser(email, name) {
-  let user = await post("http://localhost:8181/api/user/", {
+const createUser = (email, name) => {
+  return post("http://localhost:8080/api/user/", {
     email,
     name
-  }).then(res => {
-    localStorage.setItem("userId", res.data.user.id);
-    return res;
-  });
-  console.log("useeeeeeeeer", user);
-  return user;
-}
+  })
+    .then(res => {
+      localStorage.setItem("userId", res.data.user.id);
+      return res;
+    })
+    .catch(err => {
+      throw err;
+    });
+};
 
-export { createUser };
+module.exports = { createUser };
