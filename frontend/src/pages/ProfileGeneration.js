@@ -9,7 +9,7 @@ export default class ProfileGeneration extends Component {
     return (
       <div>
         <NavigationBarController></NavigationBarController>
-        <h1>Create New Profile</h1>;
+        <h1>Create New Profile</h1>
       </div>
     );
   }
