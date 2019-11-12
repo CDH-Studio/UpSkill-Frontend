@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import Keycloak from "keycloak-js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { IntlProvider } from "react-intl";
+
+import { Dimmer, Loader } from "semantic-ui-react";
 
 import messages_en from "./i18n/en_CA.json";
 import messages_fr from "./i18n/fr_CA.json";
@@ -22,6 +24,8 @@ import moment from "moment";
 import "moment/min/moment-with-locales";
 import "moment/locale/en-ca";
 import "moment/locale/fr-ca";
+
+const loginFunc = require("../src/functions/login");
 
 let localLang = (() => {
   if (localStorage.getItem("lang")) {
@@ -58,7 +62,8 @@ class App extends Component {
     this.state = {
       authenticated: false,
       keycloak: null,
-      locale: language
+      locale: language,
+      redirect: null
     };
 
     this.changeLanguage = this.changeLanguage.bind(this);
@@ -70,6 +75,10 @@ class App extends Component {
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
+        this.renderRedirect().then(redirect => {
+          console.log("State redirect", redirect);
+          this.setState({ redirect: redirect });
+        });
       });
   }
 
@@ -92,6 +101,7 @@ class App extends Component {
             formats={i18nConfig.formats}
           >
             <Router>
+              {this.state.redirect}
               <div>
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
                 <div>
@@ -179,7 +189,11 @@ class App extends Component {
         return <div>Unable to authenticate!</div>;
       }
     }
-    return <div>Initializing Keycloak...</div>;
+    return (
+      <Dimmer active>
+        <Loader />
+      </Dimmer>
+    );
   }
   //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   copyToClipboard = e => {
@@ -209,6 +223,30 @@ class App extends Component {
     i18nConfig.locale = localStorage.getItem("lang");
     this.setState({ locale: localStorage.getItem("lang") });
   }
+
+  profileExist = () => {
+    return this.state.keycloak.loadUserInfo().then(async userInfo => {
+      return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
+        console.log("res", res);
+        return res.hasProfile;
+      });
+    });
+  };
+
+  renderRedirect = () => {
+    return this.profileExist().then(profileExist => {
+      console.log("profile exist", profileExist);
+
+      if (profileExist) {
+        console.log(profileExist, "Redirecting to Home");
+
+        return;
+      } else {
+        console.log(profileExist, "Redirecting to Profile Generation");
+        return <Redirect to="/profile-generation"></Redirect>;
+      }
+    });
+  };
 }
 
 export default App;
