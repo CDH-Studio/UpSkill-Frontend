@@ -90,9 +90,14 @@ router.get("/geds/:searchValue", geds.getEmployeeInfo);
 router.get("/user/", user.getUser);
 router.get("/user/:id", user.getUserById);
 router.post("/user/", user.createUser);
+
+// more routes for our API will happen here
+
+// Test added by Mamadou for creating profile -- TODO: remove this comment later
 router.get("/profile/", profile.getProfile);
 router.get("/profile/:id", profile.getProfileById);
-// more routes for our API will happen here
+router.post("/profile-generation", profile.createProfile);
+router.put("/profile/:id", profile.updateProfile);
 
 // REGISTER OUR ROUTES ===============================================
 // Note: All of our routes will be prefixed with /api

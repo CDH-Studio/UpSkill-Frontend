@@ -11,6 +11,7 @@ export default class Landing extends Component {
       console.log("usssseeeerrrr", user);
       alert(user);
     });
+    // return false;
   };
 
   renderRedirect = () => {
