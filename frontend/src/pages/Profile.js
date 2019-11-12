@@ -14,7 +14,6 @@ class Profile extends Component {
       this.setState({ profileInfo: response.data });
       console.log(response);
     };
-    console.log("profile", localStorage.getItem("userId"));
 
     axios
       .get(
