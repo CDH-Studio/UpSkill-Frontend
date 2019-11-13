@@ -10,9 +10,9 @@ export default class LanguageProficiencyFormController extends FormManagingCompo
     const profileInfo = this.props;
 
     this.tempFields["gradedOnSecondLanguage"] =
-      profileInfo["readingGrade"] ||
-      profileInfo["writingingGrade"] ||
-      profileInfo["oralGrade"];
+      profileInfo["readingProficiency"] ||
+      profileInfo["writingingProficiency"] ||
+      profileInfo["oralProficiency"];
 
     this.onChangeFuncs["gradedOnSecondLanguage"] = () => this.forceUpdate();
     this.onChangeFuncs["readingDate"] = () => this.forceUpdate();
