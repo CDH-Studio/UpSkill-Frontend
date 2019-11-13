@@ -1,4 +1,5 @@
 import { Component } from "react";
+import axios from "axios";
 
 export default class FieldManagingComponent extends Component {
   constructor(props) {
@@ -10,7 +11,6 @@ export default class FieldManagingComponent extends Component {
   }
 
   handleApply() {
-    console.log("should perform update with", this.fields);
     this.fields = {};
   }
 

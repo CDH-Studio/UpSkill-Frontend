@@ -1,4 +1,4 @@
-import React, { Component, Profiler } from "react";
+import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 const loginFunc = require("../../src/functions/login");
 

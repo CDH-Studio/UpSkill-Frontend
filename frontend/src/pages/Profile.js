@@ -12,7 +12,6 @@ class Profile extends Component {
 
     const handleSuccess = response => {
       this.setState({ profileInfo: response.data });
-      console.log(response);
     };
 
     axios

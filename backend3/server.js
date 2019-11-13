@@ -94,10 +94,10 @@ router.post("/user/", user.createUser);
 // more routes for our API will happen here
 
 // Test added by Mamadou for creating profile -- TODO: remove this comment later
+router.put("/profile/:id", profile.updateProfile);
 router.get("/profile/", profile.getProfile);
 router.get("/profile/:id", profile.getProfileById);
 router.post("/profile-generation", profile.createProfile);
-router.put("/profile/:id", profile.updateProfile);
 
 // REGISTER OUR ROUTES ===============================================
 // Note: All of our routes will be prefixed with /api
