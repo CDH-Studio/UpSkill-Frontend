@@ -89,12 +89,83 @@ class SetupLayoutController extends Component {
       />
     );
   }
+  /*
+    getCareerMobility,
+  getCompetency,
+  getDiploma,
+  getGroupLevel,
+  getKeyCompetency,
+  getLocation,
+  getSchool,
+  getSecurityClearance,
+  getSkill,
+  getTalentMatrixResult,
+  getTenure
+  */
 
   async getEditProfileOptions() {
+    const { intl } = this.props;
+    let skillOptions = formatOptions(
+      (await axios.get("http://localhost:8080/api/option/getSkill")).data
+    );
+    let competencyOptions = formatOptions(
+      (await axios.get("http://localhost:8080/api/option/getCompetency")).data
+    );
+
     this.setState({
       editProfileOptions: {
-        skills: formatOptions(
-          (await axios.get("http://localhost:8080/api/option/getSkill")).data
+        skills: skillOptions,
+        careerMobility: formatOptions(
+          (
+            await axios.get(
+              "http://localhost:8080/api/option/getCareerMobility"
+            )
+          ).data
+        ),
+        diploma: formatOptions(
+          (await axios.get("http://localhost:8080/api/option/getDiploma")).data
+        ),
+        groupOrLevel: formatOptions(
+          (await axios.get("http://localhost:8080/api/option/getGroupLevel"))
+            .data
+        ),
+        competencies: competencyOptions,
+        developmentalGoals: { ...competencyOptions, ...skillOptions },
+
+        location: formatOptions(
+          (await axios.get("http://localhost:8080/api/option/getLocation")).data
+        ),
+        school: formatOptions(
+          (await axios.get("http://localhost:8080/api/option/getSchool")).data
+        ),
+        security: formatOptions(
+          (
+            await axios.get(
+              "http://localhost:8080/api/option/getSecurityClearance"
+            )
+          ).data
+        ),
+        firstLanguage: [
+          {
+            key: "fr",
+            text: intl.formatMessage({ id: "language.french" }),
+            value: intl.formatMessage({ id: "language.french" })
+          },
+          {
+            key: "en",
+            text: intl.formatMessage({ id: "language.english" }),
+            value: intl.formatMessage({ id: "language.english" })
+          }
+        ],
+        talentMatrixResult: formatOptions(
+          (
+            await axios.get(
+              "http://localhost:8080/api/option/getTalentMatrixResult"
+            )
+          ).data
+        ),
+        status: formatOptions(
+          (await axios.get("http://localhost:8080/api/option/getTenure")).data
         )
       }
     });

@@ -17,7 +17,8 @@ class LabelCardFormView extends Component {
       handleCancle,
       handleNext,
       handleRegister,
-      handlePrevious
+      handlePrevious,
+      editProfileOptions
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
@@ -33,8 +34,9 @@ class LabelCardFormView extends Component {
 
         <Form.Field {...generateProps("isActing", Checkbox, true)} />
         <Form.Field
-          disabled={actingDisabled}
           {...generateProps("acting", Select)}
+          disabled={actingDisabled}
+          options={editProfileOptions["groupOrLevel"]}
         />
         <Form.Group>
           <Form.Field
