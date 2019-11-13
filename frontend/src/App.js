@@ -93,7 +93,7 @@ class App extends Component {
     const keycloak = this.state.keycloak;
     if (keycloak) {
       if (this.state.authenticated) {
-        console.log(keycloak);
+        // console.log(keycloak);
         return (
           <IntlProvider
             locale={i18nConfig.locale}
@@ -104,7 +104,7 @@ class App extends Component {
               {this.state.redirect}
               <div>
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-                <div>
+                {/* <div>
                   <form>
                     <textarea
                       ref={textarea => (this.textArea = textarea)}
@@ -117,7 +117,7 @@ class App extends Component {
                       {this.state.copySuccess}
                     </div>
                   )}
-                </div>
+                </div> */}
                 {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
 
                 <Route
