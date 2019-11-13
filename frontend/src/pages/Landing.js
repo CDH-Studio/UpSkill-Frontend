@@ -27,14 +27,14 @@ export default class Landing extends Component {
 
   renderRedirect = () => {
     return this.profileExist().then(profileExist => {
-      console.log("profile exist", profileExist);
+      // console.log("profile exist", profileExist);
 
       if (profileExist) {
-        console.log(profileExist, "Redirecting to Home");
+        // console.log(profileExist, "Redirecting to Home");
 
         return <Redirect to="/home"></Redirect>;
       } else {
-        console.log(profileExist, "Redirecting to Profile Generation");
+        // console.log(profileExist, "Redirecting to Profile Generation");
         return <Redirect to="/profile-generation"></Redirect>;
       }
     });

@@ -76,7 +76,7 @@ class App extends Component {
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
         this.renderRedirect().then(redirect => {
-          console.log("State redirect", redirect);
+          // console.log("State redirect", redirect);
           this.setState({ redirect: redirect });
         });
       });
@@ -227,7 +227,7 @@ class App extends Component {
   profileExist = () => {
     return this.state.keycloak.loadUserInfo().then(async userInfo => {
       return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
-        console.log("res", res);
+        // console.log("res", res);
         return res.hasProfile;
       });
     });
@@ -235,14 +235,14 @@ class App extends Component {
 
   renderRedirect = () => {
     return this.profileExist().then(profileExist => {
-      console.log("profile exist", profileExist);
+      // console.log("profile exist", profileExist);
 
       if (profileExist) {
-        console.log(profileExist, "Redirecting to Home");
+        // console.log(profileExist, "Redirecting to Home");
 
         return;
       } else {
-        console.log(profileExist, "Redirecting to Profile Generation");
+        // console.log(profileExist, "Redirecting to Profile Generation");
         return <Redirect to="/profile-generation"></Redirect>;
       }
     });
