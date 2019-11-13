@@ -29,13 +29,45 @@ class EditTagFormView extends Component {
       fields
     } = this.props;
     return (
-      <Form>
-        <Form.Field>
-          {tooManyItems && (
-            <Label pointing="below">
-              You have selected too many items from this dropdown.
-            </Label>
-          )}
+      <React.Fragment>
+        {tooManyItems && (
+          <Label pointing="below">
+            You have selected too many items from this dropdown.
+          </Label>
+        )}
+        <Dropdown
+          className="editTagFormDropdown"
+          fluid
+          multiple
+          search
+          label={intl.formatMessage({
+            id:
+              "profile." + dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
+          })}
+          name={dropdownName}
+          onChange={handleChange}
+          options={editProfileOptions[dropdownName]}
+          defaultValue={profileInfo[dropdownName] || []}
+        />
+
+        <FormButtonsController
+          handleRegister={handleRegister}
+          handleApply={onSubmit}
+          handleCancle={handleCancle}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+        />
+      </React.Fragment>
+    );
+  }
+}
+/*if (dropdownControl) { editProfileOptions[dropdownName]
+  commonProps.options = editProfileOptions[name];
+  commonProps.defaultValue = profileInfo[name];
+  commonProps.placeholder = null;
+} else 
+
+
           <Dropdown
             className="editTagFormDropdown"
             fluid
@@ -48,27 +80,16 @@ class EditTagFormView extends Component {
             })}
             name={dropdownName}
             onChange={handleChange}
-            placeholder={profileInfo[dropdownName]}
-            options={editProfileOptions[dropdownName]}
-            defaultValue={["1"]}
+            options={[
+              { key: "aa", description: "aa", text: "aa" },
+              { key: "bb", description: "bb", text: "bb" },
+              { key: "cc", description: "cc", text: "cc" }
+            ]}
+            defaultValue={["aa"]}
             placeholder={null}
           />
-        </Form.Field>
-        <FormButtonsController
-          handleRegister={handleRegister}
-          handleApply={onSubmit}
-          handleCancle={handleCancle}
-          handleNext={handleNext}
-          handlePrevious={handlePrevious}
-        />
-      </Form>
-    );
-  }
-}
-/*if (dropdownControl) {
-  commonProps.options = editProfileOptions[name];
-  commonProps.defaultValue = profileInfo[name];
-  commonProps.placeholder = null;
-} else */
+
+
+*/
 
 export default injectIntl(EditTagFormView);

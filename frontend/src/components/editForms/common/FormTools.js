@@ -53,6 +53,18 @@ export const generateCommonProps = (props, name, control, tempField) => {
   return commonProps;
 };
 
+export function formatOptions(options) {
+  let newOptions = [];
+  options.forEach(value =>
+    newOptions.push({
+      key: value["id"],
+      value: value["id"],
+      text: value["description"]["en"]
+    })
+  );
+  return newOptions;
+}
+
 export default class FormManagingComponent extends Component {
   constructor(props) {
     super(props);

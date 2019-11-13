@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
+import axios from "axios";
+
+import { formatOptions } from "../editForms/common/formTools";
 
 import SetupLayoutView from "./setupLayoutView";
 import PrimaryInformationFormController from "../editForms/primaryInformationForm/primaryInformationFormController";
@@ -53,7 +56,7 @@ class SetupLayoutController extends Component {
 
     const { intl } = this.props;
 
-    this.state = { formIndex: 0, maxEnabledIndex: 0 };
+    this.state = { formIndex: 0, maxEnabledIndex: 0, editProfileOptions: null };
     this.setFormIndex = this.setFormIndex.bind(this);
     this.changes = { email: "@canada" };
     this.handleRegister = this.handleRegister.bind(this);
@@ -64,11 +67,14 @@ class SetupLayoutController extends Component {
         name: intl.formatMessage({ id: element.name })
       })
     );
+
+    this.getEditProfileOptions();
   }
 
   render() {
     return (
       <SetupLayoutView
+        editProfileOptions={this.state.editProfileOptions}
         setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
         setFormIndex={this.setFormIndex}
         formIndex={this.state.formIndex}
@@ -82,6 +88,16 @@ class SetupLayoutController extends Component {
         }
       />
     );
+  }
+
+  async getEditProfileOptions() {
+    this.setState({
+      editProfileOptions: {
+        skills: formatOptions(
+          (await axios.get("http://localhost:8080/api/option/getSkill")).data
+        )
+      }
+    });
   }
 
   handleRegister() {

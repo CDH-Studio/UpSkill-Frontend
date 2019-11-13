@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Grid, Button, Card } from "semantic-ui-react";
+import { Grid, Button, Card, Dimmer, Loader } from "semantic-ui-react";
 
 export default class RegisterLayoutView extends Component {
   render() {
     const {
+      editProfileOptions,
       formList,
       handleRegister,
       setFormChanges,
@@ -11,6 +12,15 @@ export default class RegisterLayoutView extends Component {
       profileInfo,
       formIndex
     } = this.props;
+
+    if (editProfileOptions === null) {
+      return (
+        <Dimmer active>
+          <Loader />
+        </Dimmer>
+      );
+    }
+
     return (
       <Grid style={{ maxWidth: "1250px", margin: "0px auto" }}>
         <Grid.Column width={4}>{this.renderButtons()}</Grid.Column>
@@ -21,10 +31,9 @@ export default class RegisterLayoutView extends Component {
               {React.createElement(formList[formIndex].form, {
                 handleRegister: handleRegister,
                 setFormChanges: setFormChanges,
+                editProfileOptions: editProfileOptions,
 
                 profileInfo: profileInfo,
-
-                editProfileOptions: {},
                 handleNext: fieldsUpdate => {
                   formList[formIndex].changes = {
                     ...formList[formIndex].changes,
