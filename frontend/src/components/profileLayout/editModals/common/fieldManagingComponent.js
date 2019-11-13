@@ -18,7 +18,7 @@ export default class FieldManagingComponent extends Component {
       .then(function(response) {
         console.log(response);
         if (response.status != 200) {
-          console.log("Error: ", response.message);
+          console.log("Error: ", response.statusText);
         }
       })
       .catch(function(error) {

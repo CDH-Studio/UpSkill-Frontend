@@ -93,7 +93,7 @@ export default class FormManagingComponent extends Component {
       .put(url, this.fields)
       .then(function(response) {
         if (response.status != 200) {
-          console.log("Error: ", response.message);
+          console.log("Error: ", response.statusText);
         }
       })
       .catch(function(error) {

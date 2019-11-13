@@ -58,7 +58,7 @@ class SetupLayoutController extends Component {
 
     this.state = { formIndex: 0, maxEnabledIndex: 0, editProfileOptions: null };
     this.setFormIndex = this.setFormIndex.bind(this);
-    this.changes = { email: "@canada" };
+    this.changes = {};
     this.handleRegister = this.handleRegister.bind(this);
     this.formList = [];
     formList.forEach((element, index) =>
@@ -181,7 +181,7 @@ class SetupLayoutController extends Component {
       .then(function(response) {
         console.log(response);
         if (response.status != 200) {
-          console.log("Error: ", response.message);
+          console.log("Error: ", response.statusText);
         }
       })
       .catch(function(error) {
