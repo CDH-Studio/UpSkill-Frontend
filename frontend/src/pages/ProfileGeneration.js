@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Label } from "semantic-ui-react";
 import NavigationBarController from "../components/navigationBar/navigationBarController";
 
 export default class ProfileGeneration extends Component {

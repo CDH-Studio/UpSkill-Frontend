@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 
-//import EditModalController from "../common/editModal/editModalController.js";
 import "./editSkills.css";
 import SkillsFormController from "../../../editForms/skillsForm/skillsFormController";
 import EditModalController from "../common/editModal/editModalController.js";

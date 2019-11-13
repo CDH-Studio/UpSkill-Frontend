@@ -6,8 +6,6 @@ const createUser = (email, name) => {
     name
   })
     .then(res => {
-      // console.log(res);
-
       localStorage.setItem("userId", res.data.user.id);
       return { res, hasProfile: res.data.hasProfile };
     })
