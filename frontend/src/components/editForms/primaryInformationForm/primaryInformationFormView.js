@@ -36,7 +36,7 @@ class PrimaryInformationFormView extends Component {
               <FormattedMessage id="profile.email" />
             </label>
             <Input
-              defaultValue={this.props.profileInfo["email"].replace(
+              defaultValue={(this.props.profileInfo["email"] || "").replace(
                 "@canada.ca",
                 ""
               )}

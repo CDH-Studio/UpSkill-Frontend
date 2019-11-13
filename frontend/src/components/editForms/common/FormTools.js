@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Checkbox, Input, Select } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import moment from "moment";
+import axios from "axios";
 
 export const generateCommonProps = (props, name, control, tempField) => {
   const {
@@ -73,6 +74,21 @@ export default class FormManagingComponent extends Component {
 
   onSubmit() {
     console.log("FieldManagingComponent onSubmit with fields:", this.fields);
+
+    let url =
+      "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
+    axios
+      .put(url, this.fields)
+      .then(function(response) {
+        console.log(response);
+        if (!response.ok) {
+          console.log("Error: ", response.message);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    this.fields = {};
   }
 
   getCurrentValue(name) {

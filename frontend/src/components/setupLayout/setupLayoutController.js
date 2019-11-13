@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { injectIntl } from "react-intl";
 
 import SetupLayoutView from "./setupLayoutView";
 import PrimaryInformationFormController from "../editForms/primaryInformationForm/primaryInformationFormController";
@@ -46,15 +47,23 @@ const formList = [
   }
 ];
 
-export default class RegisterLayoutController extends Component {
+class SetupLayoutController extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { formIndex: 0 };
+    const { intl } = this.props;
+
+    this.state = { formIndex: 0, maxEnabledIndex: 0 };
     this.setFormIndex = this.setFormIndex.bind(this);
-    this.changes = new Array(formList.length).fill({});
-    this.changes[0] = { email: "@canada.ca" };
+    this.changes = { email: "@canada" };
     this.handleRegister = this.handleRegister.bind(this);
+    this.formList = [];
+    formList.forEach((element, index) =>
+      this.formList.push({
+        ...element,
+        name: intl.formatMessage({ id: element.name })
+      })
+    );
   }
 
   render() {
@@ -63,8 +72,9 @@ export default class RegisterLayoutController extends Component {
         setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
         setFormIndex={this.setFormIndex}
         formIndex={this.state.formIndex}
-        formList={formList}
-        profileInfo={this.changes[this.state.formIndex]}
+        maxEnabledIndex={this.state.maxEnabledIndex}
+        formList={this.formList}
+        profileInfo={this.changes}
         handleRegister={
           this.state.formIndex === formList.length - 1
             ? this.handleRegister
@@ -80,9 +90,14 @@ export default class RegisterLayoutController extends Component {
 
   setFormIndex(index) {
     this.setState({ formIndex: index });
+    if (index > this.state.maxEnabledIndex) {
+      this.setState({ maxEnabledIndex: index });
+    }
   }
 
   setFormChanges(index, changes) {
-    this.changes[index] = changes;
+    this.changes = { ...this.changes, ...changes }; //[index]
   }
 }
+
+export default injectIntl(SetupLayoutController);

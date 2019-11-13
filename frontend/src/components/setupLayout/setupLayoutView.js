@@ -16,6 +16,7 @@ export default class RegisterLayoutView extends Component {
         <Grid.Column width={4}>{this.renderButtons()}</Grid.Column>
         <Grid.Column width={12}>
           <Card fluid>
+            <Card.Header>{formList[formIndex].name}</Card.Header>
             <Card.Content>
               {React.createElement(formList[formIndex].form, {
                 handleRegister: handleRegister,

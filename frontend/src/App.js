@@ -17,13 +17,9 @@ import {
   Landing,
   Results,
   Profile,
-<<<<<<< HEAD
-  Setup
-} from "./pages/index";
-=======
+  Setup,
   ProfileGeneration
 } from "./pages";
->>>>>>> 9de93d829cc8c96aee838e2cb04186718ec5992f
 
 import moment from "moment";
 import "moment/min/moment-with-locales";
@@ -76,19 +72,14 @@ class App extends Component {
 
   componentDidMount() {
     const keycloak = Keycloak("/keycloak.json");
-    /*keycloak
+    keycloak
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
-<<<<<<< HEAD
-      });*/
-=======
         this.renderRedirect().then(redirect => {
-          // console.log("State redirect", redirect);
           this.setState({ redirect: redirect });
         });
       });
->>>>>>> 9de93d829cc8c96aee838e2cb04186718ec5992f
   }
 
   goto = link => history.push(link);
@@ -100,17 +91,9 @@ class App extends Component {
     }
 
     const keycloak = this.state.keycloak;
-<<<<<<< HEAD
-    if (true) {
-      //keycloak) {
-      if (true) {
-        //this.state.authenticated) {
-        console.log(keycloak);
-=======
     if (keycloak) {
       if (this.state.authenticated) {
-        // console.log(keycloak);
->>>>>>> 9de93d829cc8c96aee838e2cb04186718ec5992f
+        console.log(keycloak);
         return (
           <IntlProvider
             locale={i18nConfig.locale}
@@ -120,13 +103,10 @@ class App extends Component {
             <Router>
               {this.state.redirect}
               <div>
-<<<<<<< HEAD
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 <div>
-=======
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
                 {/* <div>
->>>>>>> 9de93d829cc8c96aee838e2cb04186718ec5992f
                   <form>
                     <textarea
                       ref={textarea => (this.textArea = textarea)}
@@ -139,13 +119,10 @@ class App extends Component {
                       {this.state.copySuccess}
                     </div>
                   )}
-<<<<<<< HEAD
                 </div>
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-=======
-                </div> */}
+
                 {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
->>>>>>> 9de93d829cc8c96aee838e2cb04186718ec5992f
 
                 <Route
                   exact
