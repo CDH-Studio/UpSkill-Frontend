@@ -51,7 +51,7 @@ class editModalView extends Component {
       buttonBackgroundColor,
       buttonClass,
       buttonColor,
-      children,
+      form,
       handleApply,
       name
     } = this.props;
@@ -69,19 +69,10 @@ class editModalView extends Component {
       >
         <Modal.Header>{name}</Modal.Header>
         <Modal.Content>
-          {children}
-          <div className="modalButtonContainer">
-            <Button color="blue" onClick={handleApply} primary>
-              Apply
-            </Button>
-            <Button
-              basic
-              color="blue"
-              onClick={e => this.setState({ open: false })}
-            >
-              Cancel
-            </Button>
-          </div>
+          {React.createElement(form, {
+            handleCancle: e => this.setState({ open: false }),
+            ...this.props
+          })}
         </Modal.Content>
       </Modal>
     );

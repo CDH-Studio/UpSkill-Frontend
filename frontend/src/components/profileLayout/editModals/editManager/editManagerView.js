@@ -14,11 +14,11 @@ class EditManagerView extends Component {
     const { handleApply, intl } = this.props;
     return (
       <EditModalController
+        {...this.props}
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.manager" })}
-      >
-        <ManagerFormController {...this.props} />
-      </EditModalController>
+        form={ManagerFormController}
+      />
     );
   }
 }

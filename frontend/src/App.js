@@ -14,7 +14,8 @@ import {
   Home,
   Landing,
   Results,
-  Profile
+  Profile,
+  Setup
 } from "./pages/index";
 
 import moment from "moment";
@@ -151,6 +152,17 @@ class App extends Component {
                   path="/profile"
                   render={routeProps => (
                     <Profile
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/setup"
+                  render={routeProps => (
+                    <Setup
                       keycloak={keycloak}
                       changeLanguage={this.changeLanguage}
                       {...routeProps}

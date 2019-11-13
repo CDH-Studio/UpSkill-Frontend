@@ -1,9 +1,9 @@
 import React from "react";
-import EditTalentManagerView from "./editTalentManagerView";
+import EditTalentManagementView from "./editTalentManagementView";
 import FieldManagingComponent from "../common/fieldManagingComponent";
 
-export default class EditTalentManagerController extends FieldManagingComponent {
+export default class EditTalentManagementController extends FieldManagingComponent {
   render() {
-    return <EditTalentManagerView {...this.props} />;
+    return <EditTalentManagementView {...this.props} />;
   }
 }

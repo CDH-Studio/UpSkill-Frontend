@@ -4,8 +4,12 @@ import { Grid, Modal, Button } from "semantic-ui-react";
 
 import { renderEditButton } from "../editModal/editModalView";
 
+import HistoryItemsContainerController from "../../../../editForms/common/historyItemsContainer/historyItemsContainerController";
+
 import EditHistoryItemController from "../editHistoryItem/editHistoryItemController";
 import "./editHistoryModal.css";
+
+import EditModalController from "../editModal/editModalController";
 
 class EditHistoryModalView extends Component {
   render() {
@@ -23,8 +27,8 @@ class EditHistoryModalView extends Component {
       subheaderName,
       updateListField
     } = this.props;
-    return (
-      <Modal
+    /*
+         <Modal
         trigger={renderEditButton(
           buttonBackgroundColor,
           buttonClass,
@@ -33,45 +37,16 @@ class EditHistoryModalView extends Component {
       >
         <Modal.Header>{name}</Modal.Header>
         <Modal.Content>
-          <Grid divided="vertically">
-            {items.map((item, index) => (
-              <EditHistoryItemController
-                contentName={contentName}
-                headerName={headerName}
-                index={index}
-                item={item}
-                removeItemByIndex={removeItemByIndex}
-                subheaderName={subheaderName}
-                updateListField={updateListField}
-              />
-            ))}
-            <Grid.Row>
-              <Button
-                className="addHistoryItemButton"
-                color="green"
-                onClick={e => {
-                  addItem();
-                }}
-              >
-                Add Item
-              </Button>
-            </Grid.Row>
-          </Grid>
-
-          <div className="historyModalButtonContainer">
-            <Button color="blue" onClick={handleApply} primary>
-              Apply
-            </Button>
-            <Button
-              basic
-              color="blue"
-              onClick={e => this.setState({ open: false })}
-            >
-              Cancel
-            </Button>
-          </div>
+          <HistoryItemsContainerController items={items} />
         </Modal.Content>
       </Modal>
+    */
+    return (
+      <EditModalController
+        name={name}
+        items={items}
+        form={HistoryItemsContainerController}
+      />
     );
   }
 }

@@ -12,16 +12,18 @@ import LabelCardFormController from "../../../editForms/labelCardForm/labelCardF
 
 class EditLabelCardView extends Component {
   render() {
-    const { handleApply, intl, profileInfo, fields } = this.props;
+    const { intl, profileInfo, fields } = this.props;
 
     const currentValues = { ...profileInfo, ...fields };
     const allowActing = currentValues["isActing"];
     const allowActingEndDate = allowActing && currentValues["actingHasEndDate"];
 
     return (
-      <EditModalController handleApply={handleApply} name="wat">
-        <LabelCardFormController {...this.props} />
-      </EditModalController>
+      <EditModalController
+        {...this.props}
+        name="wat"
+        form={LabelCardFormController}
+      />
     );
   }
 }

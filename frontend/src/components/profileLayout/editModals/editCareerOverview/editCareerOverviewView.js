@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 
-import EditHistoryModal from "../common/editHistoryModal/editHistoryModalController";
-
+import EditModal from "../common/editModal/editModalController";
+import CareerOverviewFormController from "../../../editForms/careerOverviewForm/careerOverviewFormController";
 class EditCareerOverviewView extends Component {
   render() {
     const { intl } = this.props;
     return (
-      <EditHistoryModal
-        contentName={intl.formatMessage({
-          id: "profile.career.content.name"
-        })}
-        headerName={intl.formatMessage({ id: "profile.career.header.name" })}
+      <EditModal
         name={intl.formatMessage({ id: "profile.edit.career.overview" })}
-        subheaderName={intl.formatMessage({
-          id: "profile.career.subheader.name"
-        })}
+        form={CareerOverviewFormController}
         {...this.props}
       />
     );

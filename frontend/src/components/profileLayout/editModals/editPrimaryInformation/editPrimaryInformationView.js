@@ -43,11 +43,11 @@ class EditPrimaryInformationView extends Component {
     const { handleApply, intl } = this.props;
     return (
       <EditModalController
+        {...this.props}
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.primary.information" })}
-      >
-        <PrimaryInformationFormController {...this.props} />
-      </EditModalController>
+        form={PrimaryInformationFormController}
+      />
     );
   }
 }

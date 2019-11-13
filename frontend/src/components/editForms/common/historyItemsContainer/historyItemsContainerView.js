@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import { Grid, Modal, Button } from "semantic-ui-react";
 
-import { renderEditButton } from "../editModal/editModalView";
-
-import EditHistoryItemController from "../editHistoryItem/editHistoryItemController";
-import "./editHistoryModal.css";
+//import { renderEditButton } from "../editModal/editModalView";
+import FormButtonsController from "../formButtons/formButtonsController";
+import HistoryItemFormController from "../historyItemForm/historyItemFormController";
+import "./historyItemsContainer.css";
 
 class EditHistoryModalView extends Component {
   render() {
@@ -15,21 +15,27 @@ class EditHistoryModalView extends Component {
       contentName,
       handleApply,
       headerName,
+      onSubmit,
       items,
       name,
-      removeItemByIndex,
+      handleRegister,
+      removeItem,
       subheaderName,
-      setContainerField
+      setContainerField,
+      handleCancle,
+      handleNext,
+      handlePrevious
     } = this.props;
     return (
       <Grid divided="vertically">
         {items.map((item, index) => (
-          <EditHistoryItemController
+          <HistoryItemFormController
             contentName={contentName}
             headerName={headerName}
             index={index}
             item={item}
-            removeItemByIndex={removeItemByIndex}
+            removeItem={removeItem}
+            addItem={addItem}
             subheaderName={subheaderName}
             setContainerField={setContainerField}
           />
@@ -45,7 +51,13 @@ class EditHistoryModalView extends Component {
             Add Item
           </Button>
         </Grid.Row>
-        <Grid.Row>{buttons}</Grid.Row>
+        <FormButtonsController
+          handleRegister={handleRegister}
+          handleApply={handleApply}
+          handleCancle={handleCancle}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+        />
       </Grid>
     );
   }

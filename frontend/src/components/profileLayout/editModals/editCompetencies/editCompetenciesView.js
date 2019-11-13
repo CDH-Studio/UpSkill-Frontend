@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 
-import EditTagsModalController from "../common/editTagsModal/editTagsModalController";
+import EditModalController from "../common/editModal/editModalController.js";
+import CompetenciesFormController from "../../../editForms/competenciesForm/competenciesFormController";
 import "./editCompetencies.css";
 
 class EditCompetenciesView extends Component {
   render() {
     const { intl } = this.props;
     return (
-      <EditTagsModalController
-        dropdownName="competencies"
+      <EditModalController
         name={intl.formatMessage({ id: "profile.edit.competencies" })}
+        form={CompetenciesFormController}
         {...this.props}
       />
     );

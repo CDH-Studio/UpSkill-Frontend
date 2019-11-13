@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/FormTools";
+import { generateCommonProps } from "../common/formTools";
 import { Form, Checkbox, Input, Select, Grid } from "semantic-ui-react";
+import { injectIntl } from "react-intl";
 import { DateInput } from "semantic-ui-calendar-react";
+import FormButtonsController from "../common/formButtons/formButtonsController";
 
-export default class LabelCardFormView extends Component {
+class LanguageProficiencyFormView extends Component {
   constructor(props) {
     super(props);
 
@@ -11,7 +13,17 @@ export default class LabelCardFormView extends Component {
   }
 
   render() {
-    const { actingEndDisabled, actingDisabled, buttons, onSubmit } = this.props;
+    const {
+      actingEndDisabled,
+      actingDisabled,
+      buttons,
+      fields,
+      onSubmit,
+      handleRegister,
+      handleCancle,
+      handleNext,
+      handlePrevious
+    } = this.props;
 
     return (
       <Form onSubmit={onSubmit}>
@@ -24,17 +36,19 @@ export default class LabelCardFormView extends Component {
           <Grid.Row>
             <Grid.Column>
               <Form.Field
-                {...this.generateProps(
-                  "gradedOnSecondLanguage",
-                  Checkbox,
-                  this.props
-                )}
+                {...this.generateProps("gradedOnSecondLanguage", Checkbox)}
               />
             </Grid.Column>
           </Grid.Row>
           {this.renderSecondaryGrading()}
         </Grid>
-        {buttons}
+        <FormButtonsController
+          handleRegister={handleRegister}
+          handleApply={onSubmit}
+          handleCancle={handleCancle}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+        />
       </Form>
     );
   }
@@ -66,3 +80,5 @@ export default class LabelCardFormView extends Component {
     );
   }
 }
+
+export default injectIntl(LanguageProficiencyFormView);

@@ -6,7 +6,7 @@ import moment from "moment";
 import ProfileCardController from "../profileCard/profileCardController";
 import EditLanguageProficiencyController from "../editModals/editLanguageProficiency/editLanguageProficiencyController";
 import EditManagerController from "../editModals/editManager/editManagerController";
-import EditTalentManagerController from "../editModals/editTalentManager/editTalentManagerController";
+import EditTalentManagementController from "../editModals/editTalentManagement/editTalentManagementController";
 import "./secondaryLayoutGroup.css";
 
 class SecondaryLayoutGroupView extends Component {
@@ -16,7 +16,9 @@ class SecondaryLayoutGroupView extends Component {
     this.renderLanguageProficiencyCard = this.renderLanguageProficiencyCard.bind(
       this
     );
-    this.renderTalentManagerCard = this.renderTalentManagerCard.bind(this);
+    this.renderTalentManagementCard = this.renderTalentManagementCard.bind(
+      this
+    );
   }
 
   render() {
@@ -29,7 +31,7 @@ class SecondaryLayoutGroupView extends Component {
         <Grid.Row className="noGapBelow">
           <Grid.Column className="noGapAbove noGapBelow" width={11}>
             {this.renderManagerCard()}
-            {this.renderTalentManagerCard()}
+            {this.renderTalentManagementCard()}
           </Grid.Column>
           <Grid.Column className="noGapAbove noGapBelow" width={5}>
             {this.renderLanguageProficiencyCard()}
@@ -46,7 +48,7 @@ class SecondaryLayoutGroupView extends Component {
             <Grid.Column>{this.renderLanguageProficiencyCard()}</Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column>{this.renderTalentManagerCard()}</Grid.Column>
+            <Grid.Column>{this.renderTalentManagementCard()}</Grid.Column>
           </Grid.Row>
         </React.Fragment>
       );
@@ -140,13 +142,13 @@ class SecondaryLayoutGroupView extends Component {
     );
   }
 
-  renderTalentManagerCard() {
+  renderTalentManagementCard() {
     const { intl, profileInfo } = this.props;
     const { careerMobility, talentMatrixResult } = profileInfo;
 
     return (
       <ProfileCardController
-        button={EditTalentManagerController}
+        button={EditTalentManagementController}
         cardName={intl.formatMessage({ id: "profile.talent.manager" })}
         className="noGapBelow"
       >

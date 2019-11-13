@@ -3,18 +3,16 @@ import { injectIntl } from "react-intl";
 
 //import EditModalController from "../common/editModal/editModalController.js";
 import "./editSkills.css";
-import EditTagsController from "../common/editTagsModal/editTagsModalController";
+import SkillsFormController from "../../../editForms/skillsForm/skillsFormController";
+import EditModalController from "../common/editModal/editModalController.js";
 
 class EditSkillsView extends Component {
   render() {
-    const { editProfileOptions, intl } = this.props;
-    const { maxSkillItems } = editProfileOptions;
-
+    const { intl } = this.props;
     return (
-      <EditTagsController
-        dropdownName="skills"
+      <EditModalController
         name={intl.formatMessage({ id: "profile.edit.skills" })}
-        maxItems={maxSkillItems}
+        form={SkillsFormController}
         {...this.props}
       />
     );

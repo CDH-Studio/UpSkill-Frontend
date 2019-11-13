@@ -1,6 +1,6 @@
 import React from "react";
 
-import FormManagingComponent from "../common/FormTools";
+import FormManagingComponent from "../common/formTools";
 import PrimaryInformationFormView from "./primaryInformationFormView";
 import moment from "moment";
 

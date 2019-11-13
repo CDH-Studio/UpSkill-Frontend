@@ -10,7 +10,7 @@ import EditSkillController from "./editModals/editSkills/editSkillsController";
 
 import EditLanguageProficiencyController from "./editModals/editLanguageProficiency/editLanguageProficiencyController";
 import EditManagerController from "./editModals/editManager/editManagerController";
-import EditTalentManagerController from "./editModals/editTalentManager/editTalentManagerController";
+import EditTalentManagementController from "./editModals/editTalentManagement/editTalentManagementController";
 
 import EditLabelCardsController from "./editModals/editLabelCards/editLabelCardsController";
 import EditPrimaryInformationController from "./editModals/editPrimaryInformation/editPrimaryInformationController";
@@ -210,7 +210,7 @@ it("Editable profile view contains expected components", () => {
 
     EditLanguageProficiencyController,
     EditManagerController,
-    EditTalentManagerController,
+    EditTalentManagementController,
 
     EditLabelCardsController,
     EditPrimaryInformationController,
@@ -439,7 +439,7 @@ it("Non-editable profile view contains expected components", () => {
 
     "EditLanguageProficiencyController",
     "EditManagerController",
-    "EditTalentManagerController",
+    "EditTalentManagementController",
 
     "EditLabelCardsController",
     "EditPrimaryInformationController",

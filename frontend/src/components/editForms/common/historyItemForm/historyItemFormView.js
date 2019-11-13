@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/FormTools";
+//import { generateCommonProps } from "../formTools";
 import { Checkbox, Form, Grid, Icon, Input, TextArea } from "semantic-ui-react";
 
 import { injectIntl } from "react-intl";
 
-//import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
-import DateInputFieldGroup from "../dateInputFieldGroup/dateInputFieldGroupController";
+import FormButtonsController from "../formButtons/formButtonsController";
 
-import "./editHistoryItem.css";
+//import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
+import DateInputFieldGroup from "../../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
+
+import "./historyItemForm.css";
 
 /*
 
@@ -21,23 +23,29 @@ export default class LabelCardFormView extends Component {
 */
 
 class EditHistoryItemView extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
-    const generateProps = generateCommonProps.bind(this, this.props);
+    //const generateProps = generateCommonProps.bind(this, this.props);
   }
 
   render() {
     const {
       contentName,
+      disableEndDate,
       headerName,
       index,
       intl,
       item,
-      removeItemByIndex,
+      removeItem,
       subheaderName,
       onFieldChange,
-      onTempFieldChange
+      onTempFieldChange,
+      startDateMonth,
+      startDateYear,
+      endDateMonth,
+      endDateYear,
+      isOngoing
     } = this.props;
 
     return (
@@ -46,7 +54,7 @@ class EditHistoryItemView extends Component {
           <Icon
             href={null}
             name="trash alternate"
-            onClick={e => removeItemByIndex(index)}
+            onClick={e => removeItem(index)}
           />
         </div>
 
@@ -77,10 +85,10 @@ class EditHistoryItemView extends Component {
             >
               <Grid.Column className="noHorizontalGaps" width={5}>
                 <DateInputFieldGroup
-                  initialMonth={item.startDateMonth}
-                  initialYear={item.startDateYear}
+                  initialMonth={startDateMonth}
+                  initialYear={startDateYear}
                   name="startDate"
-                  updateField={onFieldChange}
+                  updateField={onTempFieldChange}
                   groupLabelText={intl.formatMessage({
                     id: "profile.history.item.start.date"
                   })}
@@ -93,26 +101,31 @@ class EditHistoryItemView extends Component {
                     id: "profile.history.item.is.ongoing"
                   })}
                   name="isOngoing"
+                  defaultChecked={isOngoing}
                   onChange={onTempFieldChange}
                 />
               </Grid.Column>
               <Grid.Column className="smallLeftPadding" width={8}>
                 <DateInputFieldGroup
-                  disabled={item.isOngoing}
+                  disabled={isOngoing}
                   groupLabelText={intl.formatMessage({
                     id: "profile.history.item.end.date"
                   })}
-                  initialMonth={item.endDateMonth}
-                  initialYear={item.endDateYear}
+                  initialMonth={endDateMonth}
+                  initialYear={endDateYear}
                   name="endDate"
-                  updateField={onFieldChange}
+                  updateField={onTempFieldChange}
                 />
               </Grid.Column>
             </Grid>
           </Form.Group>
           <Form.Field>
             <label>{contentName}</label>
-            <TextArea onChange={onFieldChange} value={item.content} />
+            <TextArea
+              onChange={onFieldChange}
+              name="content"
+              value={item.content}
+            />
           </Form.Field>
         </Form>
       </Grid.Row>

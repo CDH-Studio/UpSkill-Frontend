@@ -1,23 +1,69 @@
 import React, { Component } from "react";
 
-import FieldManagingComponent from "../FormTools";
+import FieldManagingComponent from "../formTools";
 
-import EditHistoryItemView from "./editHistoryItemView";
+import HistoryItemFormView from "./historyItemFormView";
+import moment from "moment";
 
-export default class EditHistoryItemController extends FieldManagingComponent {
+export default class HistoryItemFormController extends FieldManagingComponent {
   constructor(props) {
     super(props);
 
-    const {onChangeFuncs, transformOnChangeValueFuncs, tempFields} = this.props;
-    this.onChangeFuncs = onChangeFuncs;
-    this.transformOnChangeValueFuncs = transformOnChangeValueFuncs;
-    this.tempFields = tempFields;
+    const { item } = this.props;
 
+    this.onChangeFuncs["isOngoing"] = () => this.forceUpdate();
+    this.tempFields["isOngoing"] = Boolean(
+      item.isOngoing || (!item.endDate && item.startDate)
+    );
+
+    if (item.startDate) {
+      const startMoment = moment(item.startDate);
+      this.tempFields["startDateMonth"] = parseInt(startMoment.format("M"));
+      this.tempFields["startDateYear"] = parseInt(startMoment.format("YY"));
+    } else {
+      this.tempFields["startDateMonth"] = null;
+      this.tempFields["startDateYear"] = null;
+    }
+
+    if (item.endDate) {
+      const endMoment = moment(item.endDate);
+      this.tempFields["endDateMonth"] = parseInt(endMoment.format("M"));
+      this.tempFields["endDateYear"] = parseInt(endMoment.format("YY"));
+    } else {
+      this.tempFields["endDateMonth"] = null;
+      this.tempFields["endDateYear"] = null;
+    }
+
+    let setMoment = startOrEnd => {
+      this.setField(
+        this.fields,
+        startOrEnd + "Date",
+        moment(
+          this.tempFields[startOrEnd + "DateMonth"] +
+            " " +
+            this.tempFields[startOrEnd + "DateYear"],
+          "M YY"
+        ).format()
+      );
+      //this.forceUpdate();
+    };
+
+    this.onChangeFuncs["isOngoing"] = () => {
+      if (this.tempFields["isOngoing"]) {
+        this.setField(this.fields, "endDate", null);
+      } else {
+        setMoment("end");
+      }
+    };
+
+    this.onChangeFuncs["endDateMonth"] = setMoment.bind(this, "end");
+    this.onChangeFuncs["endDateYear"] = setMoment.bind(this, "end");
+    this.onChangeFuncs["startDateMonth"] = setMoment.bind(this, "start");
+    this.onChangeFuncs["startDateYear"] = setMoment.bind(this, "start");
   }
 
   render() {
-    const { item } = this.props;
-    const {      
+    const {
       contentName,
       headerName,
       index,
@@ -26,29 +72,37 @@ export default class EditHistoryItemController extends FieldManagingComponent {
       removeItemByIndex,
       subheaderName,
       onFieldChange,
-      onTempFieldChange} = this.props;
-      
+      onTempFieldChange
+    } = this.props;
+
     return (
-      <EditHistoryItemView onChange={onChange} 
-      
-      contentName={contentName}
-      headerName={headerName}
-      index={index}
-      intl={intl}
-      item={item}
-      removeItemByIndex={removeItemByIndex}
-      subheaderName={subheaderName}
-      onFieldChange={onFieldChange}
-      onTempFieldChange={onTempFieldChange}
-      {...this.props} />
+      <HistoryItemFormView
+        contentName={contentName}
+        headerName={headerName}
+        index={index}
+        intl={intl}
+        item={item}
+        isOngoing={this.tempFields.isOngoing}
+        endDateMonth={this.tempFields.endDateMonth}
+        endDateYear={this.tempFields.endDateYear}
+        startDateMonth={this.tempFields.startDateMonth}
+        startDateYear={this.tempFields.startDateYear}
+        disableEndDate={this.tempFields["isOngoing"]}
+        removeItemByIndex={removeItemByIndex}
+        subheaderName={subheaderName}
+        onFieldChange={this.onFieldChange}
+        onTempFieldChange={this.onTempFieldChange}
+        {...this.props}
+      />
     );
   }
 
-
-  setField(name,value){
-    const {index, setContainerField} = this.props;
-    setContainerField(index,name,value); 
-    super.setField(name,value);
+  setField(fieldObj, name, value) {
+    const { index, item, addItem, removeItem } = this.props;
+    super.setField(fieldObj, name, value);
+    if (fieldObj === this.fields) {
+      removeItem(index);
+      addItem(index, Object.assign(item, fieldObj));
+    }
   }
-
 }
