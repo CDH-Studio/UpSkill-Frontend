@@ -59,7 +59,7 @@ export function formatOptions(options) {
     newOptions.push({
       key: value["id"],
       value: value["id"],
-      text: value["description"]["en"]
+      text: value["description"]["en"] || value["description"]
     })
   );
   return newOptions;
