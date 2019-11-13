@@ -10,7 +10,6 @@ class ChangeLanguage extends Component {
   render() {
     const { intl } = this.props;
     const languageCode = intl.formatMessage({ id: "lang.code" });
-    // const languageCode = "fr";
 
     return (
       <Menu.Item onClick={() => this.changeLanguage(languageCode)}>

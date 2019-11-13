@@ -5,8 +5,6 @@ const Profile = Models.profile;
 const updateProfile = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("iddddd", req.headers);
-
     const [updated] = await Profile.update(req.body, {
       where: { id: id }
     });

@@ -76,7 +76,6 @@ class App extends Component {
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
         this.renderRedirect().then(redirect => {
-          // console.log("State redirect", redirect);
           this.setState({ redirect: redirect });
         });
       });
