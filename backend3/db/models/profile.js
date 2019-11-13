@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       jobTitle: DataTypes.STRING,
       phone: DataTypes.STRING,
       mobile: DataTypes.STRING,
-      location: DataTypes.STRING,
       manager: DataTypes.STRING,
       team: DataTypes.STRING,
       firstLanguage: DataTypes.STRING,
@@ -20,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   profile.associate = function(models) {
+    profile.belongsTo(models.user, {
+      foreignKey: { fieldName: "id" }
+    });
     profile.belongsToMany(models.skill, { through: "profileSkills" });
     profile.belongsToMany(models.competency, {
       through: "profileCompetencies"
@@ -35,12 +37,14 @@ module.exports = (sequelize, DataTypes) => {
       as: "acting"
     });
     profile.belongsTo(models.securityClearance);
+    profile.belongsTo(models.location);
     profile.belongsTo(models.careerMobility);
     profile.belongsTo(models.talentMatrixResult);
     profile.belongsTo(models.keyCompetency);
     profile.belongsTo(models.secondLanguageProficiency);
     profile.hasMany(models.experience);
     profile.hasMany(models.education);
+    profile.hasMany(models.profileOrganization);
   };
   return profile;
 };

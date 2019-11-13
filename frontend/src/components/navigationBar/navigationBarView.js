@@ -11,11 +11,15 @@ export default class NavigationBarView extends Component {
 
     return (
       <Menu color="blue" fixed="top" fluid inverted>
-        <Menu.Item style={{ paddingBottom: "8px", paddingTop: "8px" }}>
+        <Menu.Item
+          style={{ paddingBottom: "8px", paddingTop: "8px" }}
+          href="/home"
+        >
           <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
         <Menu.Menu position="right">
           {/* <Menu.Item name="My Profile" /> */}
+          <Menu.Item href="/">/</Menu.Item>
           <Menu.Item href="/profile">
             <FormattedMessage id="my.profile" />
           </Menu.Item>

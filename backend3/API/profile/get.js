@@ -8,8 +8,8 @@ const getProfile = async (request, response) => {
 
 const getProfileById = async (request, response) => {
   const id = request.params.id;
-  let user = await User.findOne({ where: { id: id } });
   let profile = await Profile.findOne({ where: { id: id } });
+  let user = await profile.getUser();
 
   if (!profile) response.status(404).send("Profile Not Found");
   let data = { ...profile.dataValues, ...user.dataValues };

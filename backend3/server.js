@@ -7,14 +7,13 @@ const session = require("express-session");
 const expressHbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
-const geds = require("./API/geds/index");
-const db = require("./API/dbTest/queries");
 const sequelizedb = require("./config/database");
 
 const app = express(); // define our app using express
 
 const profile = require("./API/profile");
 const user = require("./API/user");
+const geds = require("./API/geds");
 
 dotenv.config(); // Config() function reads the .env file and sets the environment variables
 
@@ -58,6 +57,7 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
   next();
 });
 
@@ -68,7 +68,7 @@ app.use(keycloak.middleware());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 8080; // set our port
+const port = process.env.PORT || 8181; // set our port
 
 // ROUTES FOR OUR API ===============================================
 const router = express.Router(); // get an instance of the express Router
@@ -87,12 +87,18 @@ router.get("/getEmployeeInfo/:searchValue", keycloak.protect(), async function(
   res.json(JSON.parse(data.body));
 });
 
+router.get("/geds/:searchValue", geds.getEmployeeInfo);
 router.get("/user/", user.getUser);
 router.get("/user/:id", user.getUserById);
 router.post("/user/", user.createUser);
+
+// more routes for our API will happen here
+
+// Test added by Mamadou for creating profile -- TODO: remove this comment later
+router.put("/profile/:id", profile.updateProfile);
 router.get("/profile/", profile.getProfile);
 router.get("/profile/:id", profile.getProfileById);
-// more routes for our API will happen here
+router.post("/profile-generation", profile.createProfile);
 
 // REGISTER OUR ROUTES ===============================================
 // Note: All of our routes will be prefixed with /api
@@ -103,5 +109,5 @@ app.use("/api", router);
 app.use(keycloak.middleware({ logout: "/" }));
 
 // START THE SERVER ==================================================
-app.listen(port);
+app.listen(8080);
 console.log("Magic happens on port " + port);

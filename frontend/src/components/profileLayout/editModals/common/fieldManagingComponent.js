@@ -1,4 +1,5 @@
 import { Component } from "react";
+import axios from "axios";
 
 export default class FieldManagingComponent extends Component {
   constructor(props) {
@@ -10,7 +11,19 @@ export default class FieldManagingComponent extends Component {
   }
 
   handleApply() {
-    console.log("should perform update with", this.fields);
+    let url =
+      "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
+    axios
+      .put(url, this.fields)
+      .then(function(response) {
+        console.log(response);
+        if (!response.ok) {
+          console.log("Error: ", response.message);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     this.fields = {};
   }
 

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 export default class Landing extends Component {
-  goto = link => this.props.history.push(link);
-
   render() {
-    this.goto("/home");
-    return <div></div>;
+    return <Redirect to="/home" />;
   }
 }

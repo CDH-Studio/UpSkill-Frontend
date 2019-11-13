@@ -1,40 +1,30 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("organizations", {
+    return queryInterface.createTable("locations", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
-
-      department: {
+      addressEn: {
         type: Sequelize.STRING
       },
-      sector: {
+      addressFr: {
         type: Sequelize.STRING
       },
-      branch: {
+      city: {
         type: Sequelize.STRING
       },
-      division: {
+      provinceEn: {
         type: Sequelize.STRING
       },
-      directorate: {
+      provinceFr: {
         type: Sequelize.STRING
       },
-      startDate: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      endDate: {
-        allowNull: true,
-        type: Sequelize.DATE
-      },
-      current: {
-        allowNull: true,
-        type: Sequelize.BOOLEAN
+      country: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -47,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("organizations");
+    return queryInterface.dropTable("locations");
   }
 };
