@@ -13,7 +13,7 @@ module.exports = {
           descriptionEn:
             "Specification / Requirements Development (Request for proposal) ",
           descriptionFr:
-            " Élaboration de spécifications / d'exigences (demande de propositions)",
+            "Élaboration de spécifications / d'exigences (demande de propositions)",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -25,7 +25,7 @@ module.exports = {
         },
         {
           descriptionEn: "Professional Services Evaluation and Selection",
-          descriptionFr: " Évaluation et sélection de services professionnels",
+          descriptionFr: "Évaluation et sélection de services professionnels",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -458,7 +458,7 @@ module.exports = {
           descriptionEn:
             "Quality Assurance/Control: Concepts, Standards, Procedures and Operations",
           descriptionFr:
-            " Assurance/contrôle de la qualité : concepts, normes, procédures et opérations",
+            "Assurance/contrôle de la qualité : concepts, normes, procédures et opérations",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -592,7 +592,7 @@ module.exports = {
         },
         {
           descriptionEn: "Cross-Browser/Platform Compatibility ",
-          descriptionFr: " Compatibilité de multinavigateur/plateforme",
+          descriptionFr: "Compatibilité de multinavigateur/plateforme",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -628,7 +628,7 @@ module.exports = {
         },
         {
           descriptionEn: "Crystal Reports Designer",
-          descriptionFr: " Crystal Reports Designer",
+          descriptionFr: "Crystal Reports Designer",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -671,7 +671,7 @@ module.exports = {
         {
           descriptionEn: "Oracle Designer Web PL/SQL (Oracle DevSuite 10.1.2)",
           descriptionFr:
-            " Oracle Designer Web PL/SQL  (Oracle DevSuite 10.1.2) ",
+            "Oracle Designer Web PL/SQL  (Oracle DevSuite 10.1.2) ",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -774,7 +774,7 @@ module.exports = {
         },
         {
           descriptionEn: "PeopleSoft PeopleCode",
-          descriptionFr: " PeopleSoft  PeopleCode",
+          descriptionFr: "PeopleSoft  PeopleCode",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -817,7 +817,7 @@ module.exports = {
         {
           descriptionEn: "CICS/VS",
           descriptionFr:
-            " Système de communication des renseignements aux clients /Mémoire virtuelle (SCIC/MV) ",
+            "Système de communication des renseignements aux clients /Mémoire virtuelle (SCIC/MV) ",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -1599,7 +1599,7 @@ module.exports = {
         {
           descriptionEn: "Corporate Engineering of Desktop Productivity Tools",
           descriptionFr:
-            " Service d'ingénierie des outils de travail électronique de bureau",
+            "Service d'ingénierie des outils de travail électronique de bureau",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -1808,7 +1808,7 @@ module.exports = {
         {
           descriptionEn: "Organizational and environmental awareness of CIO",
           descriptionFr:
-            " Sensibilisation à l'organisation et à l'environnement du BI",
+            "Sensibilisation à l'organisation et à l'environnement du BI",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -2277,7 +2277,7 @@ module.exports = {
         },
         {
           descriptionEn: "JavaScript ",
-          descriptionFr: " JavaScript",
+          descriptionFr: "JavaScript",
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -2369,13 +2369,13 @@ module.exports = {
         {
           descriptionEn: "CICS API (IBM) ",
           descriptionFr:
-            " Interfaces de programmation d'applications SCIC (IBM)",
+            "Interfaces de programmation d'applications SCIC (IBM)",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           descriptionEn: "Clist ",
-          descriptionFr: " Listes de commandes",
+          descriptionFr: "Listes de commandes",
           createdAt: new Date(),
           updatedAt: new Date()
         },

@@ -14,6 +14,7 @@ const app = express(); // define our app using express
 const profile = require("./API/profile");
 const user = require("./API/user");
 const geds = require("./API/geds");
+const options = require("./API/options").optionRouter;
 
 dotenv.config(); // Config() function reads the .env file and sets the environment variables
 
@@ -95,10 +96,14 @@ router.post("/user/", user.createUser);
 // more routes for our API will happen here
 
 // Test added by Mamadou for creating profile -- TODO: remove this comment later
-router.put("/profile/:id", profile.updateProfile);
 router.get("/profile/", profile.getProfile);
-router.get("/profile/:id", profile.getProfileById);
+router
+  .route("/profile/:id")
+  .get(profile.getProfileById)
+  .put(profile.updateProfile);
 router.post("/profile-generation", profile.createProfile);
+
+router.use("/option", options);
 
 // REGISTER OUR ROUTES ===============================================
 // Note: All of our routes will be prefixed with /api
