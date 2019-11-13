@@ -19,8 +19,9 @@ const Profile = Models.profile;
 // };
 
 const createProfile = async (req, res) => {
+  let id = req.params.id;
   try {
-    const profile = await Profile.create(req.body);
+    const profile = await Profile.create({ id, ...req.body });
     return res.status(201).json({
       profile
     });

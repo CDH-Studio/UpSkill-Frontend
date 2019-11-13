@@ -102,6 +102,20 @@ class SetupLayoutController extends Component {
 
   handleRegister() {
     console.log("registering with data", this.changes);
+    axios
+      .post(
+        "http://localhost:8080/api/profile/" + localStorage.getItem("userId"),
+        this.changes
+      )
+      .then(function(response) {
+        console.log(response);
+        if (response.status != 200) {
+          console.log("Error: ", response.message);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   setFormIndex(index) {
