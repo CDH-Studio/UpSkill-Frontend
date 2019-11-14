@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { generateCommonProps } from "../common/formTools";
-import { Form, Checkbox, Input, Select, Grid } from "semantic-ui-react";
+import { Checkbox, Form, Grid, Select } from "semantic-ui-react";
 import { injectIntl } from "react-intl";
 import { DateInput } from "semantic-ui-calendar-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
@@ -14,15 +14,12 @@ class LanguageProficiencyFormView extends Component {
 
   render() {
     const {
-      actingEndDisabled,
-      actingDisabled,
-      buttons,
-      fields,
-      onSubmit,
-      handleRegister,
       handleCancle,
       handleNext,
-      handlePrevious
+      handlePrevious,
+      handleRegister,
+      onSubmit,
+      intl
     } = this.props;
 
     return (
@@ -30,31 +27,49 @@ class LanguageProficiencyFormView extends Component {
         <Grid columns="one" divided>
           <Grid.Row>
             <Grid.Column>
-              <Form.Field {...this.generateProps("firstLanguage", Select)} />
+              <Form.Field
+                {...this.generateProps("firstLanguage", Select)}
+                options={[
+                  {
+                    key: "en",
+                    value: "en",
+                    text: intl.formatMessage({ id: "language.english" })
+                  },
+                  {
+                    key: "fr",
+                    value: "fr",
+                    text: intl.formatMessage({ id: "language.french" })
+                  }
+                ]}
+              />
             </Grid.Column>
           </Grid.Row>
           <Grid.Row>
             <Grid.Column>
               <Form.Field
-                {...this.generateProps("gradedOnSecondLanguage", Checkbox)}
+                {...this.generateProps(
+                  "gradedOnSecondLanguage",
+                  Checkbox,
+                  true
+                )}
               />
             </Grid.Column>
           </Grid.Row>
           {this.renderSecondaryGrading()}
         </Grid>
         <FormButtonsController
-          handleRegister={handleRegister}
           handleApply={onSubmit}
           handleCancle={handleCancle}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
         />
       </Form>
     );
   }
 
   renderSecondaryGrading() {
-    const { showSecondaryGrading } = this.props;
+    const { secondaryGradingDisabled } = this.props;
     return (
       <React.Fragment>
         <Grid.Row>
@@ -62,12 +77,18 @@ class LanguageProficiencyFormView extends Component {
             {["reading", "writing", "oral"].map((value, index) => (
               <Form.Group>
                 <Form.Field
-                  disabled={!showSecondaryGrading}
+                  {...this.generateProps(value + "Proficiency", Select)}
+                  disabled={secondaryGradingDisabled}
                   width={8}
-                  {...this.generateProps(value + "Grade", Select)}
+                  options={[
+                    { key: "a", value: "a", text: "a" },
+                    { key: "b", value: "b", text: "b" },
+                    { key: "c", value: "c", text: "c" },
+                    { key: null, value: "ungraded", text: "ungraded" }
+                  ]}
                 />
                 <Form.Field
-                  disabled={!showSecondaryGrading}
+                  disabled={secondaryGradingDisabled}
                   width={8}
                   className="dateField"
                   {...this.generateProps(value + "Date", DateInput)}

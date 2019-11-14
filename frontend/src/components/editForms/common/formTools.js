@@ -4,16 +4,19 @@ import { DateInput } from "semantic-ui-calendar-react";
 import moment from "moment";
 import axios from "axios";
 
+import config from "../../../config";
+const { backendAddress } = config;
+
 export const generateCommonProps = (props, name, control, tempField) => {
   const {
-    profileInfo,
     editProfileOptions,
-    intl,
-    updateField,
     fields,
-    onTempFieldChange,
+    getCurrentValue,
+    intl,
     onFieldChange,
-    getCurrentValue
+    onTempFieldChange,
+    profileInfo,
+    updateField
   } = props;
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
@@ -78,17 +81,16 @@ export default class FormManagingComponent extends Component {
     //Function to call if other actions should happen when a field is changed
     this.onChangeFuncs = {};
 
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onFieldChange = this.onFieldChange.bind(this);
-    this.onTempFieldChange = this.onTempFieldChange.bind(this);
     this.getCurrentValue = this.getCurrentValue.bind(this);
+    this.onFieldChange = this.onFieldChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onTempFieldChange = this.onTempFieldChange.bind(this);
   }
 
   onSubmit() {
     console.log("FieldManagingComponent onSubmit with fields:", this.fields);
 
-    let url =
-      "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
+    let url = backendAddress + "api/profile/" + localStorage.getItem("userId");
     axios
       .put(url, this.fields)
       .then(function(response) {

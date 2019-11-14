@@ -6,11 +6,14 @@ import { Dimmer, Grid, Label, Loader } from "semantic-ui-react";
 
 import { EditableProvider } from "./editableProvider/editableProvider";
 
+import EditModalController from "./editModals/common/editModal/editModalController";
+
 import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";
 import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
 import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";
 import EditEducationController from "./editModals/editEducation/editEducationController";
 import EditSkillController from "./editModals/editSkills/editSkillsController";
+import EditProjectsController from "./editModals/editProjects/editProjectsController";
 
 import HistoryCardController from "./historyCard/historyCardController";
 import ProfileCardController from "./profileCard/profileCardController";
@@ -73,6 +76,9 @@ class ProfileLayoutView extends Component {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column>{this.renderCareerOverviewCard()}</Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>{this.renderProjectsCard()}</Grid.Column>
             </Grid.Row>
           </Grid>
         </div>
@@ -148,6 +154,17 @@ class ProfileLayoutView extends Component {
         cardEntries={careerSummary}
         cardName={intl.formatMessage({ id: "profile.career.overview" })}
       />
+    );
+  }
+
+  renderProjectsCard() {
+    const { intl, profileInfo } = this.props;
+    const currentProjects = profileInfo.projects || [];
+
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.projects" }),
+      currentProjects,
+      EditProjectsController
     );
   }
 }

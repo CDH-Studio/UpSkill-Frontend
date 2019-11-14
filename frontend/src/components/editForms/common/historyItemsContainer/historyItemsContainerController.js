@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import moment from "moment";
 
 import HistoryItemsContainerView from "./historyItemsContainerView";
-import { elementType } from "prop-types";
 
 export default class HistoryItemsContainerController extends Component {
   constructor(props) {
@@ -16,9 +15,9 @@ export default class HistoryItemsContainerController extends Component {
 
     this.addItem = this.addItem.bind(this);
     this.handleApply = this.handleApply.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.updateListField = this.updateListField.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   addItem(index, item) {

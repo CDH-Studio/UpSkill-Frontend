@@ -3,20 +3,19 @@ import { injectIntl } from "react-intl";
 
 import TagFormController from "../common/tagForm/tagFormController";
 
-class SkillsFormView extends Component {
+class ProjectsFormView extends Component {
   render() {
     const { editProfileOptions, intl } = this.props;
-    const { maxSkillItems } = editProfileOptions;
 
     return (
       <TagFormController
-        dropdownName="skills"
-        maxItems={maxSkillItems}
-        name={intl.formatMessage({ id: "profile.edit.skills" })}
+        dropdownName="projects"
+        allowAdditions={true}
+        name={intl.formatMessage({ id: "profile.edit.projects" })}
         {...this.props}
       />
     );
   }
 }
 
-export default injectIntl(SkillsFormView);
+export default injectIntl(ProjectsFormView);

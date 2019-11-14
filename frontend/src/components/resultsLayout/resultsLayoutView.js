@@ -38,10 +38,7 @@ export default class ResultsLayoutView extends Component {
     }
 
     let cards = [];
-    console.log("Data ", results.data);
 
-    // for (var i = 0; i < results.data.data.length; i++) {
-    //   let person = results.data.data[i];
     results.data.forEach(person => {
       console.log(person);
 

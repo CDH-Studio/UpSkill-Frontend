@@ -9,11 +9,11 @@ class EducationFormView extends Component {
     const { intl } = this.props;
     return (
       <HistoryItemsContainerController
-        infoName={"education"}
         contentName={intl.formatMessage({
           id: "profile.education.content.name"
         })}
         headerName={intl.formatMessage({ id: "profile.education.header.name" })}
+        infoName={"education"}
         name={intl.formatMessage({ id: "profile.edit.education" })}
         subheaderName={intl.formatMessage({
           id: "profile.education.subheader.name"

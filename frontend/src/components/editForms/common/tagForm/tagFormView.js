@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import { Dropdown, Form, Label } from "semantic-ui-react";
+
 import FormButtonsController from "../formButtons/formButtonsController";
 import { generateCommonProps } from "../formTools";
 //import "./editTagFormModal.css";
@@ -9,25 +10,49 @@ class EditTagFormView extends Component {
   constructor(props) {
     super(props);
 
+    this.state = { addedItems: [] };
+
     this.generateCommonProps = generateCommonProps.bind(this, this.props);
+    this.handleAddItem = this.handleAddItem.bind(this);
+  }
+
+  handleAddItem(e, { value }) {
+    const allowAdditions = this.props;
+    if (allowAdditions) {
+      this.setState({
+        addedItems: [{ text: value, value: value }, ...this.state.addedItems]
+      });
+    }
   }
 
   render() {
     const {
+      allowAdditions,
       dropdownName,
+      editProfileOptions,
+      fields,
       handleApply,
-      handleChange,
-      onSubmit,
       handleCancle,
+      handleChange,
       handleNext,
       handlePrevious,
-      tooManyItems,
-      profileInfo,
       handleRegister,
-      editProfileOptions,
       intl,
-      fields
+      onSubmit,
+      profileInfo,
+      tooManyItems
     } = this.props;
+
+    let valueProp = {};
+    if (allowAdditions) {
+      valueProp["value"] = {
+        ...(profileInfo[dropdownName] || []),
+        ...this.state.addedItems
+      };
+    } else {
+      valueProp["defaultValue"] = profileInfo[dropdownName];
+    }
+
     return (
       <React.Fragment>
         {tooManyItems && (
@@ -37,25 +62,27 @@ class EditTagFormView extends Component {
         )}
         <Dropdown
           className="editTagFormDropdown"
+          {...valueProp}
           fluid
-          multiple
-          search
           label={intl.formatMessage({
             id:
               "profile." + dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
           })}
+          multiple
           name={dropdownName}
           onChange={handleChange}
-          options={editProfileOptions[dropdownName]}
-          defaultValue={profileInfo[dropdownName] || []}
+          onAddItem={this.handleAddItem}
+          options={editProfileOptions[dropdownName] || []}
+          allowAdditions={Boolean(allowAdditions)}
+          search
         />
 
         <FormButtonsController
-          handleRegister={handleRegister}
           handleApply={onSubmit}
           handleCancle={handleCancle}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
         />
       </React.Fragment>
     );

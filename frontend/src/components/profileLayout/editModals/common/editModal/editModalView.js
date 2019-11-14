@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Button, Icon, Modal } from "semantic-ui-react";
+import { Button, Dimmer, Icon, Loader, Modal } from "semantic-ui-react";
 
 import "./editModal.css";
 
@@ -53,13 +53,17 @@ class editModalView extends Component {
       buttonColor,
       form,
       handleApply,
+      handleOpen,
       name
     } = this.props;
 
     return (
       <Modal
         onClose={() => this.setState({ open: false })}
-        onOpen={() => this.setState({ open: true })}
+        onOpen={() => {
+          this.setState({ open: true });
+          handleOpen();
+        }}
         open={this.state.open}
         trigger={renderEditButton(
           buttonBackgroundColor,
@@ -68,14 +72,25 @@ class editModalView extends Component {
         )}
       >
         <Modal.Header>{name}</Modal.Header>
-        <Modal.Content>
-          {React.createElement(form, {
-            handleCancle: e => this.setState({ open: false }),
-            ...this.props
-          })}
-        </Modal.Content>
+        <Modal.Content>{this.renderContents()}</Modal.Content>
       </Modal>
     );
+  }
+
+  renderContents() {
+    const { editProfileOptions, form } = this.props;
+    if (editProfileOptions === null) {
+      return (
+        <Dimmer active>
+          <Loader />
+        </Dimmer>
+      );
+    } else {
+      return React.createElement(form, {
+        handleCancle: e => this.setState({ open: false }),
+        ...this.props
+      });
+    }
   }
 }
 

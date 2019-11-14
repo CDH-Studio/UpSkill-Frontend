@@ -8,15 +8,15 @@ import { injectIntl } from "react-intl";
 class TalentManagementFormView extends Component {
   render() {
     const {
-      actingEndDisabled,
       actingDisabled,
+      actingEndDisabled,
       buttons,
-      onSubmit,
       fields,
       handleCancle,
       handleNext,
+      handlePrevious,
       handleRegister,
-      handlePrevious
+      onSubmit
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
@@ -26,11 +26,11 @@ class TalentManagementFormView extends Component {
         <Form.Field {...generateProps("talentMatrixResult", Select)} />
         <Form.Field {...generateProps("exFeeder", Checkbox)} />
         <FormButtonsController
-          handleRegister={handleRegister}
           handleApply={onSubmit}
           handleCancle={handleCancle}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
         />
       </Form>
     );

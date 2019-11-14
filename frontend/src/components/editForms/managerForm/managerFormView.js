@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
-import { Form, Checkbox, Input, Select } from "semantic-ui-react";
-import { DateInput } from "semantic-ui-calendar-react";
-import FormButtonsController from "../common/formButtons/formButtonsController";
 import { injectIntl } from "react-intl";
+import { Form, Checkbox, Input, Select } from "semantic-ui-react";
+
+import { generateCommonProps } from "../common/formTools";
+import FormButtonsController from "../common/formButtons/formButtonsController";
 
 class ManagerFormView extends Component {
   render() {
@@ -24,11 +24,11 @@ class ManagerFormView extends Component {
       <Form onSubmit={onSubmit}>
         <Form.Field {...generateProps("manager", Input)} />
         <FormButtonsController
-          handleRegister={handleRegister}
           handleApply={onSubmit}
           handleCancle={handleCancle}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
         />
       </Form>
     );

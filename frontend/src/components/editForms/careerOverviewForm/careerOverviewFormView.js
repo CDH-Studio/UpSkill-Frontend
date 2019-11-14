@@ -9,11 +9,11 @@ class CareerOverviewView extends Component {
     const { intl } = this.props;
     return (
       <HistoryItemsContainerController
-        infoName={"careerSummary"}
         contentName={intl.formatMessage({
           id: "profile.career.content.name"
         })}
         headerName={intl.formatMessage({ id: "profile.career.header.name" })}
+        infoName={"careerSummary"}
         name={intl.formatMessage({ id: "profile.edit.career.overview" })}
         subheaderName={intl.formatMessage({
           id: "profile.career.subheader.name"
