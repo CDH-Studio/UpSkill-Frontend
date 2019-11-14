@@ -15,19 +15,19 @@ const getProfileById = async (request, response) => {
   let data = { ...profile.dataValues, ...user.dataValues };
 
   let tenure = await profile.getTenure().then(res => {
-    return res.dataValues;
+    if (res) return res.dataValues;
   });
 
   let careerMobility = await profile.getCareerMobility().then(res => {
-    return res.dataValues;
+    if (res) return res.dataValues;
   });
 
   let groupLevel = await profile.getGroupLevel().then(res => {
-    return res.dataValues;
+    if (res) return res.dataValues;
   });
 
   let securityClearance = await profile.getSecurityClearance().then(res => {
-    return res.dataValues;
+    if (res) return res.dataValues;
   });
 
   let acting = await profile.getActing().then(res => {
@@ -75,28 +75,31 @@ const getProfileById = async (request, response) => {
   let educArray = await educations();
 
   let skills = await profile.getSkills().map(skill => {
-    return {
-      en: skill.dataValues.descriptionEn,
-      fr: skill.dataValues.descriptionFr
-    };
+    if (skill)
+      return {
+        en: skill.dataValues.descriptionEn,
+        fr: skill.dataValues.descriptionFr
+      };
   });
 
-  let competencies = await profile.getCompetencies().map(skill => {
-    return {
-      en: skill.dataValues.descriptionEn,
-      fr: skill.dataValues.descriptionFr
-    };
+  let competencies = await profile.getCompetencies().map(competencies => {
+    if (competencies)
+      return {
+        en: competencies.dataValues.descriptionEn,
+        fr: competencies.dataValues.descriptionFr
+      };
   });
 
-  let developmentalGoals = await profile.getDevelopmentGoals().map(skill => {
-    return {
-      en: skill.dataValues.descriptionEn,
-      fr: skill.dataValues.descriptionFr
-    };
+  let developmentalGoals = await profile.getDevelopmentGoals().map(goal => {
+    if (goal)
+      return {
+        en: goal.dataValues.descriptionEn,
+        fr: goal.dataValues.descriptionFr
+      };
   });
 
   let secLangProf = await profile.getSecondLanguageProficiency().then(res => {
-    return res.dataValues;
+    if (res) return res.dataValues;
   });
 
   //Response Object
@@ -106,8 +109,8 @@ const getProfileById = async (request, response) => {
     actingPeriodEndDate: data.actingEndDate,
     branch: "Chief Information Office Branch",
     careerMobility: {
-      en: careerMobility.descriptionEn,
-      fr: careerMobility.descriptionFr
+      en: careerMobility ? careerMobility.descriptionEn : null,
+      fr: careerMobility ? careerMobility.descriptionFr : null
     },
     careerSummary,
     city: "Ontario",
@@ -120,7 +123,7 @@ const getProfileById = async (request, response) => {
     firstName: data.firstName,
     githubUrl: "https://www.google.com",
     gradedOnSecondLanguage: true,
-    classification: groupLevel.description,
+    classification: groupLevel ? groupLevel.description : null,
     jobTitle: data.jobTitle,
     lastName: data.lastName,
     linkedinUrl: data.linkedin,
@@ -136,21 +139,25 @@ const getProfileById = async (request, response) => {
     ],
     PO: "K1A 0H5",
     province: "Ottawa",
-    secondaryOralDate: secLangProf.oralDate,
-    secondaryOralProficiency: secLangProf.oralProficiency,
-    secondaryReadingDate: secLangProf.readingDate,
-    secondaryReadingProficiency: secLangProf.readingProficiency,
-    secondaryWritingDate: secLangProf.writingDate,
-    secondaryWritingProficiency: secLangProf.writingProficiency,
+    secondaryOralDate: secLangProf ? secLangProf.oralDate : null,
+    secondaryOralProficiency: secLangProf ? secLangProf.oralProficiency : null,
+    secondaryReadingDate: secLangProf ? secLangProf.readingDate : null,
+    secondaryReadingProficiency: secLangProf
+      ? secLangProf.readingProficiency
+      : null,
+    secondaryWritingDate: secLangProf ? secLangProf.writingDate : null,
+    secondaryWritingProficiency: secLangProf
+      ? secLangProf.writingProficiency
+      : null,
     secondLanguage: null,
     security: {
-      en: securityClearance.descriptionEn,
-      fr: securityClearance.descriptionFr
+      en: securityClearance ? securityClearance.descriptionEn : null,
+      fr: securityClearance ? securityClearance.descriptionFr : null
     },
     skills,
     status: {
-      en: tenure.descriptionEn,
-      fr: tenure.descriptionFr
+      en: tenure ? tenure.descriptionEn : null,
+      fr: tenure ? tenure.descriptionFr : null
     },
     street: "235 Queen Street",
     talentMatrixResult: "Exceptional talent",
