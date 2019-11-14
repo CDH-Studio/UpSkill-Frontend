@@ -92,9 +92,7 @@ export default class FormManagingComponent extends Component {
     axios
       .put(url, this.fields)
       .then(function(response) {
-        if (response.status != 200) {
-          console.log("Error: ", response.statusText);
-        }
+        console.log(response);
       })
       .catch(function(error) {
         console.log(error);

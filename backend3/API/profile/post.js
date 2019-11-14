@@ -29,24 +29,16 @@ const createProfile = async (req, res) => {
     dbObject[mappedValues[key]] = value;
   }
 
-  console.log(dbObject);
-
-  try {
-    const profile = await Profile.create({ id, ...dbObject }).then(profile => {
+  await Profile.upsert({ id, ...dbObject }, { returning: true })
+    .then(([profile, created]) => {
       profile.addSkills(dbObject.skills);
       profile.addCompetencies(dbObject.competencies);
-
-      console.log("DevGoals");
-      profile.addDevelopmentGoal(dbObject.developmentGoals).then(() => {
-        console.log("DevGoals");
-      });
+      profile.addDevelopmentGoal(dbObject.developmentGoals);
+      res.status(201).send("Created: " + created);
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message });
     });
-    return res.status(201).json({
-      profile
-    });
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
 };
 
 module.exports = {
