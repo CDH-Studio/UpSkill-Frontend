@@ -15,6 +15,7 @@ class EditTagFormView extends Component {
 
   render() {
     const {
+      allowAdditions,
       dropdownName,
       editProfileOptions,
       fields,
@@ -44,7 +45,7 @@ class EditTagFormView extends Component {
             id:
               "profile." + dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
           })}
-          multiple
+          allowAdditions={Boolean(allowAdditions)}
           name={dropdownName}
           onChange={handleChange}
           options={editProfileOptions[dropdownName]}

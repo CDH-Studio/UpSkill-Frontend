@@ -83,7 +83,8 @@ class SecondaryLayoutGroupView extends Component {
       secondaryReadingDate,
       secondaryReadingProficiency,
       secondaryWritingDate,
-      secondaryWritingProficiency
+      secondaryWritingProficiency,
+      exFeeder
     } = profileInfo;
 
     return (
@@ -138,6 +139,7 @@ class SecondaryLayoutGroupView extends Component {
             </Table.Row>
           </Table.Body>
         </Table>
+        {exFeeder && intl.formatMessage("profile.is.ex.feeder")}
       </ProfileCardController>
     );
   }
