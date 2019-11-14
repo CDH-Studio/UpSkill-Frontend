@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       secondLanguage: DataTypes.STRING,
       yearService: DataTypes.INTEGER,
       linkedin: DataTypes.STRING,
-      github: DataTypes.STRING
+      github: DataTypes.STRING,
+      twitter: DataTypes.STRING
     },
     {}
   );
