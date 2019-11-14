@@ -76,7 +76,7 @@ it("Editable profile view contains expected components", () => {
         lastName: "Smisdasth",
         linkedinUrl: "https://www.bing.ca",
         manager: "Chahine El Chaar",
-        mobile: "613-402-8224",
+        cellphone: "613-402-8224",
         organizationList: [
           "ABC Directorate",
           "ABC Division",
@@ -212,7 +212,7 @@ it("Non-editable profile view contains expected components", () => {
         lastName: "Smisdasth",
         linkedinUrl: "https://www.bing.ca",
         manager: "Chahine El Chaar",
-        mobile: "613-402-8224",
+        cellphone: "613-402-8224",
         organizationList: [
           "ABC Directorate",
           "ABC Division",

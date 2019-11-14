@@ -1,8 +1,8 @@
 {
   "firstName": "firstName",
   "lastName": "lastName",
-  "telephone": "phone",
-  "cellphone": "mobile",
+  "telephone": "telephone",
+  "cellphone": "cellphone",
   "location": "locationId",
   "team": "team",
   "status": "tenureId",
@@ -19,7 +19,7 @@
   "exFeeder": "exFeeder",
   "skills": "skills",
   "competencies": "competencies",
-  "developmentalGoals": "developmentalGoals",
+  "developmentalGoals": "developmentGoals",
   "education": "education",
   "careerSummary": "experience"
 }
