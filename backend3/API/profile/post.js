@@ -2,6 +2,8 @@ const moment = require("moment");
 const Models = require("../../db/models");
 const Profile = Models.profile;
 
+const mappedValues = require("./mappedValues.json");
+
 // const createProfile = async (request, response) => {
 //   Profile.create({
 //     where: { email: request.body.email },
@@ -19,9 +21,26 @@ const Profile = Models.profile;
 // };
 
 const createProfile = async (req, res) => {
-  let id = req.params.id;
+  const id = req.params.id;
+  const body = req.body;
+  let dbObject = {};
+
+  for (let [key, value] of Object.entries(body)) {
+    dbObject[mappedValues[key]] = value;
+  }
+
+  console.log(dbObject);
+
   try {
-    const profile = await Profile.create({ id, ...req.body });
+    const profile = await Profile.create({ id, ...dbObject }).then(profile => {
+      profile.addSkills(dbObject.skills);
+      profile.addCompetencies(dbObject.competencies);
+
+      console.log("DevGoals");
+      profile.addDevelopmentGoal(dbObject.developmentGoals).then(() => {
+        console.log("DevGoals");
+      });
+    });
     return res.status(201).json({
       profile
     });

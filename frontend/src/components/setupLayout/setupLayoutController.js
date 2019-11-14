@@ -116,11 +116,9 @@ class SetupLayoutController extends Component {
       editProfileOptions: {
         skills: skillOptions,
         careerMobility: formatOptions(
-          (
-            await axios.get(
-              "http://localhost:8080/api/option/getCareerMobility"
-            )
-          ).data
+          (await axios.get(
+            "http://localhost:8080/api/option/getCareerMobility"
+          )).data
         ),
         diploma: formatOptions(
           (await axios.get("http://localhost:8080/api/option/getDiploma")).data
@@ -130,8 +128,11 @@ class SetupLayoutController extends Component {
             .data
         ),
         competencies: competencyOptions,
-        developmentalGoals: { ...competencyOptions, ...skillOptions },
-
+        developmentalGoals: formatOptions(
+          (await axios.get(
+            "http://localhost:8080/api/option/getDevelopmentalGoals"
+          )).data
+        ),
         location: formatOptions(
           (await axios.get("http://localhost:8080/api/option/getLocation")).data
         ),
@@ -139,11 +140,9 @@ class SetupLayoutController extends Component {
           (await axios.get("http://localhost:8080/api/option/getSchool")).data
         ),
         security: formatOptions(
-          (
-            await axios.get(
-              "http://localhost:8080/api/option/getSecurityClearance"
-            )
-          ).data
+          (await axios.get(
+            "http://localhost:8080/api/option/getSecurityClearance"
+          )).data
         ),
         firstLanguage: [
           {
@@ -158,11 +157,9 @@ class SetupLayoutController extends Component {
           }
         ],
         talentMatrixResult: formatOptions(
-          (
-            await axios.get(
-              "http://localhost:8080/api/option/getTalentMatrixResult"
-            )
-          ).data
+          (await axios.get(
+            "http://localhost:8080/api/option/getTalentMatrixResult"
+          )).data
         ),
         status: formatOptions(
           (await axios.get("http://localhost:8080/api/option/getTenure")).data

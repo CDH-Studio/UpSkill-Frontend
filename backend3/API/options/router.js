@@ -2,6 +2,7 @@ const { Router } = require("express");
 const {
   getCareerMobility,
   getCompetency,
+  getDevelopmentalGoals,
   getDiploma,
   getGroupLevel,
   getKeyCompetency,
@@ -16,6 +17,7 @@ const optionRouter = Router();
 
 optionRouter.get("/getCareerMobility", getCareerMobility);
 optionRouter.get("/getCompetency", getCompetency);
+optionRouter.get("/getDevelopmentalGoals", getDevelopmentalGoals);
 optionRouter.get("/getDiploma", getDiploma);
 optionRouter.get("/getGroupLevel", getGroupLevel);
 optionRouter.get("/getKeyCompetency", getKeyCompetency);
