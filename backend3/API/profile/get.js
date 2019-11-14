@@ -40,11 +40,11 @@ const getProfileById = async (request, response) => {
     let endDate = moment(experience.endDate);
 
     return {
-      header: { en: experience.organizationEn, fr: experience.organizationFr },
-      subheader: { en: experience.jobTitleEn, fr: experience.jobTitleFr },
-      content: { en: experience.descriptionEn, fr: experience.descriptionFr },
-      startDate: { en: startDate, fr: startDate },
-      endDate: { en: endDate, fr: endDate }
+      header: experience.organizationEn,
+      subheader: experience.jobTitleEn,
+      content: experience.descriptionEn,
+      startDate: startDate,
+      endDate: endDate
     };
   });
 
@@ -77,24 +77,21 @@ const getProfileById = async (request, response) => {
   let skills = await profile.getSkills().map(skill => {
     if (skill)
       return {
-        en: skill.dataValues.descriptionEn,
-        fr: skill.dataValues.descriptionFr
+        id: skill.dataValues.id
       };
   });
 
   let competencies = await profile.getCompetencies().map(competencies => {
     if (competencies)
       return {
-        en: competencies.dataValues.descriptionEn,
-        fr: competencies.dataValues.descriptionFr
+        id: competencies.dataValues.id
       };
   });
 
   let developmentalGoals = await profile.getDevelopmentGoals().map(goal => {
     if (goal)
       return {
-        en: goal.dataValues.descriptionEn,
-        fr: goal.dataValues.descriptionFr
+        id: goal.dataValues.id
       };
   });
 

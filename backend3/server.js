@@ -16,6 +16,7 @@ const user = require("./API/user");
 const geds = require("./API/geds");
 const profileGeneration = require("./API/profileGeneration");
 const options = require("./API/options").optionRouter;
+const search = require("./API/search/");
 
 dotenv.config(); // Config() function reads the .env file and sets the environment variables
 
@@ -107,6 +108,9 @@ router
 router.use("/option", options);
 
 router.get("/profGen/:id", profileGeneration.getGedsAssist);
+
+// Search routes
+router.get("/search/basicSearch/:searchValue", search.getProfileByName);
 
 // REGISTER OUR ROUTES ===============================================
 // Note: All of our routes will be prefixed with /api
