@@ -17,8 +17,8 @@ export default class FieldManagingComponent extends Component {
       .put(url, this.fields)
       .then(function(response) {
         console.log(response);
-        if (!response.ok) {
-          console.log("Error: ", response.message);
+        if (response.status != 200) {
+          console.log("Error: ", response.statusText);
         }
       })
       .catch(function(error) {

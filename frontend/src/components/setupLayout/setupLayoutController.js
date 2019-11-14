@@ -62,7 +62,7 @@ class SetupLayoutController extends Component {
 
     this.state = { formIndex: 0, maxEnabledIndex: 0, editProfileOptions: null };
     this.setFormIndex = this.setFormIndex.bind(this);
-    this.changes = { email: "@canada.ca" };
+    this.changes = {};
     this.handleRegister = this.handleRegister.bind(this);
     this.formList = [];
     formList.forEach((element, index) =>
@@ -130,8 +130,13 @@ class SetupLayoutController extends Component {
           (await axios.get(backendAddress + "api/option/getGroupLevel")).data
         ),
         competencies: competencyOptions,
-        developmentalGoals: { ...competencyOptions, ...skillOptions },
-
+        developmentalGoals: formatOptions(
+          (
+            await axios.get(
+              "http://localhost:8080/api/option/getDevelopmentalGoals"
+            )
+          ).data
+        ),
         location: formatOptions(
           (await axios.get(backendAddress + "api/option/getLocation")).data
         ),
@@ -155,6 +160,20 @@ class SetupLayoutController extends Component {
 
   handleRegister() {
     console.log("registering with data", this.changes);
+    axios
+      .post(
+        backendAddress + "api/profile/" + localStorage.getItem("userId"),
+        this.changes
+      )
+      .then(function(response) {
+        console.log(response);
+        if (response.status != 200) {
+          console.log("Error: ", response.statusText);
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   setFormIndex(index) {

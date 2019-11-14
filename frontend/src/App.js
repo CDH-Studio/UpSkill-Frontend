@@ -258,7 +258,7 @@ class App extends Component {
         return;
       } else {
         // console.log(profileExist, "Redirecting to Profile Generation");
-        return <Redirect to="/profile-generation"></Redirect>;
+        return <Redirect to="/setup"></Redirect>;
       }
     });
   };

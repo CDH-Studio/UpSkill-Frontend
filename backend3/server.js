@@ -14,6 +14,7 @@ const app = express(); // define our app using express
 const profile = require("./API/profile");
 const user = require("./API/user");
 const geds = require("./API/geds");
+const profileGeneration = require("./API/profileGeneration");
 const options = require("./API/options").optionRouter;
 
 dotenv.config(); // Config() function reads the .env file and sets the environment variables
@@ -89,21 +90,23 @@ router.get("/getEmployeeInfo/:searchValue", keycloak.protect(), async function(
 });
 
 router.get("/geds/:searchValue", geds.getEmployeeInfo);
+
+//User endpoints
 router.get("/user/", user.getUser);
 router.get("/user/:id", user.getUserById);
 router.post("/user/", user.createUser);
 
-// more routes for our API will happen here
-
-// Test added by Mamadou for creating profile -- TODO: remove this comment later
+//Profile endpoints
 router.get("/profile/", profile.getProfile);
 router
   .route("/profile/:id")
   .get(profile.getProfileById)
+  .post(profile.createProfile)
   .put(profile.updateProfile);
-router.post("/profile-generation", profile.createProfile);
 
 router.use("/option", options);
+
+router.get("/profGen/:id", profileGeneration.getGedsAssist);
 
 // REGISTER OUR ROUTES ===============================================
 // Note: All of our routes will be prefixed with /api

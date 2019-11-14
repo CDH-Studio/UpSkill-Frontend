@@ -35,6 +35,18 @@ const getCompetency = async (request, response) => {
   response.status(200).json(resBody);
 };
 
+const getDevelopmentalGoals = async (request, response) => {
+  let all = await Competency.findAll();
+  let resBody = all.map(one => {
+    one = one.dataValues;
+    return {
+      id: one.id,
+      description: { en: one.descriptionEn, fr: one.descriptionFr }
+    };
+  });
+  response.status(200).json(resBody);
+};
+
 const getDiploma = async (request, response) => {
   let all = await Diploma.findAll();
   let resBody = all.map(one => {
@@ -149,6 +161,7 @@ const getTenure = async (request, response) => {
 module.exports = {
   getCareerMobility,
   getCompetency,
+  getDevelopmentalGoals,
   getDiploma,
   getGroupLevel,
   getKeyCompetency,

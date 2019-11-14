@@ -22,7 +22,7 @@ export default class ModalButtonsView extends Component {
             </Button>
 
             <Button color="blue" onClick={handleCancle} secondary>
-              Cancle
+              Cancel
             </Button>
           </React.Fragment>
         )}
