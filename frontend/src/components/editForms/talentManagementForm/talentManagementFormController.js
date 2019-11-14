@@ -9,14 +9,14 @@ export default class ManagerFormController extends FormManagingComponent {
     const { afterSubmit, buttons } = this.props;
     return (
       <TalentManagementFormView
+        buttons={buttons}
+        fields={this.fields}
+        getCurrentValue={this.getCurrentValue}
+        onFieldChange={this.onFieldChange}
         onSubmit={() => {
           this.onSubmit();
         }}
-        buttons={buttons}
-        fields={this.fields}
-        onFieldChange={this.onFieldChange}
         onTempFieldChange={this.onTempFieldChange}
-        getCurrentValue={this.getCurrentValue}
         tempFields={this.tempFields}
         {...this.props}
       />

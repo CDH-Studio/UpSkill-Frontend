@@ -33,18 +33,18 @@ class EditHistoryItemView extends Component {
     const {
       contentName,
       disableEndDate,
+      endDateMonth,
+      endDateYear,
       headerName,
       index,
       intl,
       item,
-      removeItem,
-      subheaderName,
       onFieldChange,
       onTempFieldChange,
+      removeItem,
       startDateMonth,
       startDateYear,
-      endDateMonth,
-      endDateYear,
+      subheaderName,
       isOngoing
     } = this.props;
 
@@ -122,8 +122,8 @@ class EditHistoryItemView extends Component {
           <Form.Field>
             <label>{contentName}</label>
             <TextArea
-              onChange={onFieldChange}
               name="content"
+              onChange={onFieldChange}
               value={item.content}
             />
           </Form.Field>

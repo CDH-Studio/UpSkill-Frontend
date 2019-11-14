@@ -14,11 +14,11 @@ export default class TagFormController extends FieldManagingComponent {
   render() {
     return (
       <TagFormView
+        fields={this.fields}
         handleApply={this.onSubmit}
         handleChange={this.handleChange}
-        tooManyItems={this.state.tooManyItems}
         onSubmit={this.onSubmit}
-        fields={this.fields}
+        tooManyItems={this.state.tooManyItems}
         {...this.props}
       />
     );

@@ -25,7 +25,7 @@ export default class ResultsLayoutController extends Component {
     let url = "/search?";
     let validSearch = false;
 
-    for (var key in searchQuery) {
+    for (let key in searchQuery) {
       if (searchQuery[key]) {
         url += key + "=" + String(searchQuery[key]) + "&";
         validSearch = true;

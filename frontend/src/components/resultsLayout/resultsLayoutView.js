@@ -38,7 +38,7 @@ export default class ResultsLayoutView extends Component {
     }
 
     let cards = [];
-    for (var i = 0; i < results.data.data.length; i++) {
+    for (let i = 0; i < results.data.data.length; i++) {
       let person = results.data.data[i];
       cards.push(
         <Card>

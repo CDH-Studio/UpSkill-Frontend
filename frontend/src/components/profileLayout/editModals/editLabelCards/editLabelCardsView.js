@@ -22,6 +22,11 @@ class EditLabelCardView extends Component {
       <EditModalController
         {...this.props}
         name="wat"
+        editOptionPaths={{
+          tenure: "api/option/getTenure",
+          security: "api/option/getSecurityClearance",
+          groupOrLevel: "api/option/getGroupLevel"
+        }}
         form={LabelCardFormController}
       />
     );

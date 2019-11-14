@@ -9,15 +9,15 @@ import { FormattedMessage, injectIntl } from "react-intl";
 class PrimaryInformationFormView extends Component {
   render() {
     const {
-      actingEndDisabled,
       actingDisabled,
+      actingEndDisabled,
       buttons,
-      onSubmit,
       fields,
       handleCancle,
-      handleRegister,
       handleNext,
-      handlePrevious
+      handlePrevious,
+      handleRegister,
+      onSubmit
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
@@ -61,11 +61,11 @@ class PrimaryInformationFormView extends Component {
         <Form.Field {...generateProps("team", Input)} />
 
         <FormButtonsController
-          handleRegister={handleRegister}
           handleApply={onSubmit}
           handleCancle={handleCancle}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
         />
       </Form>
     );

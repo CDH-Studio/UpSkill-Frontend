@@ -51,7 +51,7 @@ class PrimaryLayoutGroupView extends Component {
       actingPeriodStartDate,
       classification,
       security,
-      status,
+      tenure,
       yearsOfService
     } = profileInfo;
 
@@ -63,7 +63,7 @@ class PrimaryLayoutGroupView extends Component {
       id: "profile.classification"
     });
     const securityLabel = intl.formatMessage({ id: "profile.security" });
-    const statusLabel = intl.formatMessage({ id: "profile.status" });
+    const tenureLabel = intl.formatMessage({ id: "profile.tenure" });
     const yearsOfServiceLabel = intl.formatMessage({
       id: "profile.years.of.service"
     });
@@ -79,7 +79,7 @@ class PrimaryLayoutGroupView extends Component {
           <Grid>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(statusLabel, status)}
+                {this.renderLabeledItem(tenureLabel, tenure)}
 
                 {this.renderLabeledItem(securityLabel, security)}
                 {acting &&
@@ -112,7 +112,7 @@ class PrimaryLayoutGroupView extends Component {
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
-          {this.renderLabeledItem(statusLabel, status)}
+          {this.renderLabeledItem(tenureLabel, tenure)}
           {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
           {this.renderLabeledItem(securityLabel, security)}
           {this.renderLabeledItem(classificationLabel, classification)}

@@ -52,7 +52,7 @@ export default class EditLabelCardsController extends FieldManagingComponent {
         profileInfo={{
           groupOrLevel: null,
           security: null,
-          status: null,
+          tenure: null,
           yearsOfService: null
         }}
         updateField={this.updateField}

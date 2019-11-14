@@ -79,11 +79,11 @@ class SecondaryLayoutGroupView extends Component {
     const {
       firstLanguage,
       secondaryOralDate,
-      secondaryOralGrade,
+      secondaryOralProficiency,
       secondaryReadingDate,
-      secondaryReadingGrade,
+      secondaryReadingProficiency,
       secondaryWritingDate,
-      secondaryWritingGrade
+      secondaryWritingProficiency
     } = profileInfo;
 
     return (
@@ -115,7 +115,7 @@ class SecondaryLayoutGroupView extends Component {
               <Table.Cell>
                 <FormattedMessage id="profile.reading" />
               </Table.Cell>
-              <Table.Cell>{secondaryReadingGrade}</Table.Cell>
+              <Table.Cell>{secondaryReadingProficiency}</Table.Cell>
               <Table.Cell>
                 {moment(secondaryReadingDate).format("ll")}
               </Table.Cell>
@@ -124,7 +124,7 @@ class SecondaryLayoutGroupView extends Component {
               <Table.Cell>
                 <FormattedMessage id="profile.writing" />
               </Table.Cell>
-              <Table.Cell>{secondaryWritingGrade}</Table.Cell>
+              <Table.Cell>{secondaryWritingProficiency}</Table.Cell>
               <Table.Cell>
                 {moment(secondaryWritingDate).format("ll")}
               </Table.Cell>
@@ -133,7 +133,7 @@ class SecondaryLayoutGroupView extends Component {
               <Table.Cell>
                 <FormattedMessage id="profile.oral" />
               </Table.Cell>
-              <Table.Cell>{secondaryOralGrade}</Table.Cell>
+              <Table.Cell>{secondaryOralProficiency}</Table.Cell>
               <Table.Cell>{moment(secondaryOralDate).format("ll")}</Table.Cell>
             </Table.Row>
           </Table.Body>

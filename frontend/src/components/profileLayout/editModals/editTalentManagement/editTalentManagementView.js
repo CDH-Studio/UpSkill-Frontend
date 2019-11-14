@@ -16,6 +16,10 @@ class EditTalentManagementView extends Component {
         {...this.props}
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.manager" })}
+        editOptionPaths={{
+          talentMatrixResult: "api/option/getTalentMatrixResult",
+          careerMobility: "api/option/getCareerMobility"
+        }}
         form={TalentManagementFormController}
       />
     );

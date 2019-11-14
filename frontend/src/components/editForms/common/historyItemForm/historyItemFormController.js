@@ -69,29 +69,29 @@ export default class HistoryItemFormController extends FieldManagingComponent {
       index,
       intl,
       item,
-      removeItemByIndex,
-      subheaderName,
       onFieldChange,
-      onTempFieldChange
+      onTempFieldChange,
+      removeItemByIndex,
+      subheaderName
     } = this.props;
 
     return (
       <HistoryItemFormView
         contentName={contentName}
+        disableEndDate={this.tempFields["isOngoing"]}
+        endDateMonth={this.tempFields.endDateMonth}
+        endDateYear={this.tempFields.endDateYear}
         headerName={headerName}
         index={index}
         intl={intl}
-        item={item}
         isOngoing={this.tempFields.isOngoing}
-        endDateMonth={this.tempFields.endDateMonth}
-        endDateYear={this.tempFields.endDateYear}
-        startDateMonth={this.tempFields.startDateMonth}
-        startDateYear={this.tempFields.startDateYear}
-        disableEndDate={this.tempFields["isOngoing"]}
-        removeItemByIndex={removeItemByIndex}
-        subheaderName={subheaderName}
+        item={item}
         onFieldChange={this.onFieldChange}
         onTempFieldChange={this.onTempFieldChange}
+        removeItemByIndex={removeItemByIndex}
+        startDateMonth={this.tempFields.startDateMonth}
+        startDateYear={this.tempFields.startDateYear}
+        subheaderName={subheaderName}
         {...this.props}
       />
     );

@@ -14,30 +14,30 @@ class EditHistoryModalView extends Component {
       buttons,
       contentName,
       handleApply,
-      headerName,
-      onSubmit,
-      items,
-      name,
-      handleRegister,
-      removeItem,
-      subheaderName,
-      setContainerField,
       handleCancle,
       handleNext,
-      handlePrevious
+      handlePrevious,
+      handleRegister,
+      headerName,
+      items,
+      name,
+      onSubmit,
+      removeItem,
+      setContainerField,
+      subheaderName
     } = this.props;
     return (
       <Grid divided="vertically">
         {items.map((item, index) => (
           <HistoryItemFormController
+            addItem={addItem}
             contentName={contentName}
             headerName={headerName}
             index={index}
             item={item}
             removeItem={removeItem}
-            addItem={addItem}
-            subheaderName={subheaderName}
             setContainerField={setContainerField}
+            subheaderName={subheaderName}
           />
         ))}
         <Grid.Row>
@@ -52,11 +52,11 @@ class EditHistoryModalView extends Component {
           </Button>
         </Grid.Row>
         <FormButtonsController
-          handleRegister={handleRegister}
           handleApply={handleApply}
           handleCancle={handleCancle}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
         />
       </Grid>
     );

@@ -1,11 +1,51 @@
 import React, { Component } from "react";
-import EditGenericModalView from "./editModalView";
+import axios from "axios";
 import { Checkbox, Input, Select } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 
+import { formatOptions } from "../../../../editForms/common/formTools";
+import EditGenericModalView from "./editModalView";
+import config from "../../../../../config";
+const { backendAddress } = config;
+
 export default class EditGenericModalController extends Component {
+  constructor(props) {
+    super(props);
+    const { editOptionPaths } = this.props;
+
+    this.state = { editProfileOptions: editOptionPaths ? null : {} };
+
+    this.handleOpen = this.handleOpen.bind(this);
+  }
+
+  handleOpen() {
+    if (this.state.editProfileOptions === null) {
+      this.getEditOptions();
+    }
+  }
+
+  async getEditOptions() {
+    const { editOptionPaths } = this.props;
+    let editProfileOptions = {};
+    for (let key in editOptionPaths) {
+      editProfileOptions[key] = formatOptions(
+        (await axios.get(backendAddress + editOptionPaths[key])).data
+      );
+    }
+
+    this.setState({
+      editProfileOptions: editProfileOptions
+    });
+  }
+
   render() {
-    return <EditGenericModalView {...this.props} />;
+    return (
+      <EditGenericModalView
+        {...this.props}
+        handleOpen={this.handleOpen}
+        editProfileOptions={this.state.editProfileOptions}
+      />
+    );
   }
 }
 

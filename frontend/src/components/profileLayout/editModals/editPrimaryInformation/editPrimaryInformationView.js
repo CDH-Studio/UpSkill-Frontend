@@ -46,6 +46,9 @@ class EditPrimaryInformationView extends Component {
         {...this.props}
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.primary.information" })}
+        editOptionPaths={{
+          location: "api/option/getLocation"
+        }}
         form={PrimaryInformationFormController}
       />
     );

@@ -3,18 +3,22 @@ import { injectIntl } from "react-intl";
 import axios from "axios";
 
 import { formatOptions } from "../editForms/common/formTools";
+import config from "../../config";
 
 import SetupLayoutView from "./setupLayoutView";
-import PrimaryInformationFormController from "../editForms/primaryInformationForm/primaryInformationFormController";
-import LabelCardFormController from "../editForms/labelCardForm/labelCardFormController";
-import ManagerFormController from "../editForms/managerForm/managerFormController";
-import TalentManagmentController from "../editForms/talentManagementForm/talentManagementFormController";
-import LanguageProficiencyFormController from "../editForms/languageProficiencyForm/languageProficiencyFormController";
-import SkillsFormController from "../editForms/skillsForm/skillsFormController";
+
+import CareerOverviewFormController from "../editForms/careerOverviewForm/careerOverviewFormController";
 import CompetenciesFormController from "../editForms/competenciesForm/competenciesFormController";
 import DevelopmentalGoalsFormController from "../editForms/developmentalGoalsForm/developmentalGoalsFormController";
 import EducationFormController from "../editForms/educationForm/educationFormController";
-import CareerOverviewFormController from "../editForms/careerOverviewForm/careerOverviewFormController";
+import LabelCardFormController from "../editForms/labelCardForm/labelCardFormController";
+import LanguageProficiencyFormController from "../editForms/languageProficiencyForm/languageProficiencyFormController";
+import ManagerFormController from "../editForms/managerForm/managerFormController";
+import PrimaryInformationFormController from "../editForms/primaryInformationForm/primaryInformationFormController";
+import SkillsFormController from "../editForms/skillsForm/skillsFormController";
+import TalentManagmentController from "../editForms/talentManagementForm/talentManagementFormController";
+
+const { backendAddress } = config;
 
 const formList = [
   {
@@ -58,7 +62,7 @@ class SetupLayoutController extends Component {
 
     this.state = { formIndex: 0, maxEnabledIndex: 0, editProfileOptions: null };
     this.setFormIndex = this.setFormIndex.bind(this);
-    this.changes = { email: "@canada" };
+    this.changes = { email: "@canada.ca" };
     this.handleRegister = this.handleRegister.bind(this);
     this.formList = [];
     formList.forEach((element, index) =>
@@ -75,17 +79,17 @@ class SetupLayoutController extends Component {
     return (
       <SetupLayoutView
         editProfileOptions={this.state.editProfileOptions}
-        setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
-        setFormIndex={this.setFormIndex}
         formIndex={this.state.formIndex}
-        maxEnabledIndex={this.state.maxEnabledIndex}
         formList={this.formList}
-        profileInfo={this.changes}
         handleRegister={
           this.state.formIndex === formList.length - 1
             ? this.handleRegister
             : null
         }
+        maxEnabledIndex={this.state.maxEnabledIndex}
+        profileInfo={this.changes}
+        setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
+        setFormIndex={this.setFormIndex}
       />
     );
   }
@@ -106,66 +110,44 @@ class SetupLayoutController extends Component {
   async getEditProfileOptions() {
     const { intl } = this.props;
     let skillOptions = formatOptions(
-      (await axios.get("http://localhost:8080/api/option/getSkill")).data
+      (await axios.get(backendAddress + "api/option/getSkill")).data
     );
     let competencyOptions = formatOptions(
-      (await axios.get("http://localhost:8080/api/option/getCompetency")).data
+      (await axios.get(backendAddress + "api/option/getCompetency")).data
     );
 
     this.setState({
       editProfileOptions: {
         skills: skillOptions,
         careerMobility: formatOptions(
-          (
-            await axios.get(
-              "http://localhost:8080/api/option/getCareerMobility"
-            )
-          ).data
+          (await axios.get(backendAddress + "api/option/getCareerMobility"))
+            .data
         ),
         diploma: formatOptions(
-          (await axios.get("http://localhost:8080/api/option/getDiploma")).data
+          (await axios.get(backendAddress + "api/option/getDiploma")).data
         ),
         groupOrLevel: formatOptions(
-          (await axios.get("http://localhost:8080/api/option/getGroupLevel"))
-            .data
+          (await axios.get(backendAddress + "api/option/getGroupLevel")).data
         ),
         competencies: competencyOptions,
         developmentalGoals: { ...competencyOptions, ...skillOptions },
 
         location: formatOptions(
-          (await axios.get("http://localhost:8080/api/option/getLocation")).data
+          (await axios.get(backendAddress + "api/option/getLocation")).data
         ),
         school: formatOptions(
-          (await axios.get("http://localhost:8080/api/option/getSchool")).data
+          (await axios.get(backendAddress + "api/option/getSchool")).data
         ),
         security: formatOptions(
-          (
-            await axios.get(
-              "http://localhost:8080/api/option/getSecurityClearance"
-            )
-          ).data
+          (await axios.get(backendAddress + "api/option/getSecurityClearance"))
+            .data
         ),
-        firstLanguage: [
-          {
-            key: "fr",
-            text: intl.formatMessage({ id: "language.french" }),
-            value: intl.formatMessage({ id: "language.french" })
-          },
-          {
-            key: "en",
-            text: intl.formatMessage({ id: "language.english" }),
-            value: intl.formatMessage({ id: "language.english" })
-          }
-        ],
         talentMatrixResult: formatOptions(
-          (
-            await axios.get(
-              "http://localhost:8080/api/option/getTalentMatrixResult"
-            )
-          ).data
+          (await axios.get(backendAddress + "api/option/getTalentMatrixResult"))
+            .data
         ),
-        status: formatOptions(
-          (await axios.get("http://localhost:8080/api/option/getTenure")).data
+        tenure: formatOptions(
+          (await axios.get(backendAddress + "api/option/getTenure")).data
         )
       }
     });

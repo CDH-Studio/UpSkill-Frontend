@@ -6,43 +6,43 @@ export default class ModalButtonsView extends Component {
   render() {
     const {
       fields,
-      handleRegister,
-      handleCancle,
       handleApply,
+      handleCancle,
       handleNext,
-      handlePrevious
+      handlePrevious,
+      handleRegister
     } = this.props;
 
     return (
       <div style={{ width: "100%", position: "relative" }}>
         {handleCancle && (
           <React.Fragment>
-            <Button onClick={handleApply} color="blue">
+            <Button color="blue" onClick={handleApply}>
               Apply
             </Button>
 
-            <Button onClick={handleCancle} color="blue" secondary>
+            <Button color="blue" onClick={handleCancle} secondary>
               Cancle
             </Button>
           </React.Fragment>
         )}
         {handlePrevious === false && (
-          <Button disabled color="blue" secondary>
+          <Button color="blue" disabled secondary>
             Back
           </Button>
         )}
         {handlePrevious && (
-          <Button onClick={e => handlePrevious(fields)} color="blue" secondary>
+          <Button color="blue" onClick={e => handlePrevious(fields)} secondary>
             Back
           </Button>
         )}
         {handleNext && !handleRegister && (
-          <Button onClick={e => handleNext(fields)} color="blue">
+          <Button color="blue" onClick={e => handleNext(fields)}>
             Next
           </Button>
         )}
         {handleRegister && (
-          <Button onClick={e => handleRegister()} color="blue">
+          <Button color="blue" onClick={e => handleRegister()}>
             Finish
           </Button>
         )}

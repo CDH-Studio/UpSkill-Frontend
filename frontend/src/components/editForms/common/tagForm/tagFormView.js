@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import { Dropdown, Form, Label } from "semantic-ui-react";
+
 import FormButtonsController from "../formButtons/formButtonsController";
 import { generateCommonProps } from "../formTools";
 //import "./editTagFormModal.css";
@@ -15,18 +16,18 @@ class EditTagFormView extends Component {
   render() {
     const {
       dropdownName,
+      editProfileOptions,
+      fields,
       handleApply,
-      handleChange,
-      onSubmit,
       handleCancle,
+      handleChange,
       handleNext,
       handlePrevious,
-      tooManyItems,
-      profileInfo,
       handleRegister,
-      editProfileOptions,
       intl,
-      fields
+      onSubmit,
+      profileInfo,
+      tooManyItems
     } = this.props;
     return (
       <React.Fragment>
@@ -37,25 +38,25 @@ class EditTagFormView extends Component {
         )}
         <Dropdown
           className="editTagFormDropdown"
+          defaultValue={profileInfo[dropdownName] || []}
           fluid
-          multiple
-          search
           label={intl.formatMessage({
             id:
               "profile." + dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
           })}
+          multiple
           name={dropdownName}
           onChange={handleChange}
           options={editProfileOptions[dropdownName]}
-          defaultValue={profileInfo[dropdownName] || []}
+          search
         />
 
         <FormButtonsController
-          handleRegister={handleRegister}
           handleApply={onSubmit}
           handleCancle={handleCancle}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
         />
       </React.Fragment>
     );
