@@ -11,6 +11,8 @@ class Profile extends Component {
     this.state = { profileInfo: undefined };
 
     const handleSuccess = response => {
+      console.log("Recieved", response);
+
       this.setState({ profileInfo: response.data });
     };
 

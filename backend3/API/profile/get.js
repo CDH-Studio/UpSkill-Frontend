@@ -129,7 +129,7 @@ const getProfileById = async (request, response) => {
     linkedinUrl: data.linkedin,
     location: data.location,
     manager: data.manager,
-    mobile: data.mobile,
+    cellphone: data.cellphone,
     organizationList: [
       "ABC Directorate",
       "ABC Division",
@@ -162,8 +162,8 @@ const getProfileById = async (request, response) => {
     street: "235 Queen Street",
     talentMatrixResult: "Exceptional talent",
     team: data.team,
-    telephone: data.phone,
-    twitterUrl: "https://www.baidu.com",
+    telephone: data.telephone,
+    twitterUrl: "https://twitter.com/?lang=en",
     yearsOfService: data.yearService
   };
 

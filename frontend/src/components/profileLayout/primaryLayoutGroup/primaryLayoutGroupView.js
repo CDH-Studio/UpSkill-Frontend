@@ -160,7 +160,7 @@ class PrimaryLayoutGroupView extends Component {
       lastName,
       linkedinUrl,
       location,
-      mobile,
+      cellphone,
       organizationList,
       team,
       telephone,
@@ -227,7 +227,7 @@ class PrimaryLayoutGroupView extends Component {
                     <FormattedMessage id="profile.telephone" />: {telephone}
                   </div>
                   <div className="phoneNumberArea">
-                    <FormattedMessage id="profile.cellphone" />: {mobile}
+                    <FormattedMessage id="profile.cellphone" />: {cellphone}
                   </div>
                   <div>{email}</div>
 

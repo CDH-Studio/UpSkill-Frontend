@@ -45,10 +45,10 @@ module.exports = {
           jobTitle: {
             type: Sequelize.STRING
           },
-          phone: {
+          telephone: {
             type: Sequelize.STRING
           },
-          mobile: {
+          cellphone: {
             type: Sequelize.STRING
           },
           manager: {

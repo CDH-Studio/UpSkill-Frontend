@@ -16,7 +16,7 @@ async function getEmployeeInfo(request, response) {
 async function searchEmployee(searchValue, response) {
   const url =
     "https://geds-sage-ssc-spc-apicast-production.api.canada.ca/gapi/v2/employees?searchValue=" +
-    encodeURI("Trevor Bivi") +
+    encodeURI(searchValue) +
     "&searchField=9&searchCriterion=2&searchScope=sub&searchFilter=2&maxEntries=1000";
 
   let info = [];

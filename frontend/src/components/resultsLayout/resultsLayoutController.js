@@ -40,7 +40,7 @@ export default class ResultsLayoutController extends Component {
       // Make a request for a user with a given ID
       axios
         .get(
-          "https://llk2ikcegh.execute-api.ca-central-1.amazonaws.com/dev/getEmployeeInfo/" +
+          "http://localhost:8080/api/geds/" +
             encodeURI(searchQuery.firstName + " " + searchQuery.lastName)
         )
         .then(this.handleResponse)
