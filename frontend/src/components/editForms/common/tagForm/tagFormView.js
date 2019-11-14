@@ -10,7 +10,19 @@ class EditTagFormView extends Component {
   constructor(props) {
     super(props);
 
+    this.state = { addedItems: [] };
+
     this.generateCommonProps = generateCommonProps.bind(this, this.props);
+    this.handleAddItem = this.handleAddItem.bind(this);
+  }
+
+  handleAddItem(e, { value }) {
+    const allowAdditions = this.props;
+    if (allowAdditions) {
+      this.setState({
+        addedItems: [{ text: value, value: value }, ...this.state.addedItems]
+      });
+    }
   }
 
   render() {
@@ -30,6 +42,17 @@ class EditTagFormView extends Component {
       profileInfo,
       tooManyItems
     } = this.props;
+
+    let valueProp = {};
+    if (allowAdditions) {
+      valueProp["value"] = {
+        ...(profileInfo[dropdownName] || []),
+        ...this.state.addedItems
+      };
+    } else {
+      valueProp["defaultValue"] = profileInfo[dropdownName];
+    }
+
     return (
       <React.Fragment>
         {tooManyItems && (
@@ -39,16 +62,18 @@ class EditTagFormView extends Component {
         )}
         <Dropdown
           className="editTagFormDropdown"
-          defaultValue={profileInfo[dropdownName] || []}
+          {...valueProp}
           fluid
           label={intl.formatMessage({
             id:
               "profile." + dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
           })}
-          allowAdditions={Boolean(allowAdditions)}
+          multiple
           name={dropdownName}
           onChange={handleChange}
-          options={editProfileOptions[dropdownName]}
+          onAddItem={this.handleAddItem}
+          options={editProfileOptions[dropdownName] || []}
+          allowAdditions={Boolean(allowAdditions)}
           search
         />
 
