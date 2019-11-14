@@ -77,21 +77,33 @@ const getProfileById = async (request, response) => {
   let skills = await profile.getSkills().map(skill => {
     if (skill)
       return {
-        id: skill.dataValues.id
+        id: skill.dataValues.id,
+        description: {
+          en: skill.dataValues.descriptionEn,
+          fr: skill.dataValues.descriptionFr
+        }
       };
   });
 
   let competencies = await profile.getCompetencies().map(competencies => {
     if (competencies)
       return {
-        id: competencies.dataValues.id
+        id: skill.dataValues.id,
+        description: {
+          en: competencies.dataValues.descriptionEn,
+          fr: competencies.dataValues.descriptionFr
+        }
       };
   });
 
   let developmentalGoals = await profile.getDevelopmentGoals().map(goal => {
     if (goal)
       return {
-        id: goal.dataValues.id
+        id: skill.dataValues.id,
+        description: {
+          en: goal.dataValues.descriptionEn,
+          fr: goal.dataValues.descriptionFr
+        }
       };
   });
 

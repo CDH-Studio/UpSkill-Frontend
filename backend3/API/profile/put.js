@@ -8,6 +8,7 @@ const updateProfile = async (req, res) => {
   const id = req.params.id;
   const body = req.body;
   let dbObject = {};
+  console.log(body);
 
   for (let [key, value] of Object.entries(body)) {
     dbObject[mappedValues[key]] = value;

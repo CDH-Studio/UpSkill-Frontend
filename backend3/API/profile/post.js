@@ -50,8 +50,8 @@ const createProfile = async (req, res) => {
         // descriptionEn: exp.content,
         startDate: exp.startDate,
         endDate: exp.endDate
-      }).then(experience => {
-        profile.addExperience(experience);
+      }).then(education => {
+        profile.addEducation(education);
       });
     });
 
