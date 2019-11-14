@@ -130,7 +130,7 @@ const getProfileById = async (request, response) => {
     email: data.email,
     firstLanguage: "English",
     firstName: data.firstName,
-    githubUrl: "https://www.google.com",
+    githubUrl: data.github,
     gradedOnSecondLanguage: true,
     classification: groupLevel ? groupLevel.description : null,
     jobTitle: data.jobTitle,
@@ -172,12 +172,11 @@ const getProfileById = async (request, response) => {
     talentMatrixResult: "Exceptional talent",
     team: data.team,
     telephone: data.telephone,
-    twitterUrl: "https://twitter.com/?lang=en",
+    twitterUrl: data.twitter,
     yearsOfService: data.yearService
   };
 
   response.status(200).json(resData);
-  // response.status(200).send("In Development");
 };
 
 module.exports = {
