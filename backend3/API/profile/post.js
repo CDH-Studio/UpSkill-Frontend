@@ -42,6 +42,19 @@ const createProfile = async (req, res) => {
     profile.addCompetencies(dbObject.competencies);
     profile.addDevelopmentGoal(dbObject.developmentGoals);
     res.status(201).send("Created: " + created);
+
+    dbObject.education.forEach(edu => {
+      Education.create({
+        // organizationEn: exp.subheader,
+        // jobTitleEn: exp.header,
+        // descriptionEn: exp.content,
+        startDate: exp.startDate,
+        endDate: exp.endDate
+      }).then(experience => {
+        profile.addExperience(experience);
+      });
+    });
+
     dbObject.experience.forEach(exp => {
       Experience.create({
         organizationEn: exp.subheader,
