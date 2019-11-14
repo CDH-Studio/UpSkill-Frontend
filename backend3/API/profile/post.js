@@ -1,6 +1,8 @@
 const moment = require("moment");
 const Models = require("../../db/models");
 const Profile = Models.profile;
+const Education = Models.education;
+const Experience = Models.experience;
 
 const mappedValues = require("./mappedValues.json");
 
@@ -29,16 +31,31 @@ const createProfile = async (req, res) => {
     dbObject[mappedValues[key]] = value;
   }
 
-  await Profile.upsert({ id, ...dbObject }, { returning: true })
-    .then(([profile, created]) => {
-      profile.addSkills(dbObject.skills);
-      profile.addCompetencies(dbObject.competencies);
-      profile.addDevelopmentGoal(dbObject.developmentGoals);
-      res.status(201).send("Created: " + created);
-    })
-    .catch(error => {
-      res.status(500).json({ error: error.message });
+  console.log(dbObject);
+  try {
+    const [profile, created] = await Profile.upsert(
+      { id, ...dbObject },
+      { returning: true }
+    );
+
+    profile.addSkills(dbObject.skills);
+    profile.addCompetencies(dbObject.competencies);
+    profile.addDevelopmentGoal(dbObject.developmentGoals);
+    res.status(201).send("Created: " + created);
+    dbObject.experience.forEach(exp => {
+      Experience.create({
+        organizationEn: exp.subheader,
+        jobTitleEn: exp.header,
+        descriptionEn: exp.content,
+        startDate: exp.startDate,
+        endDate: exp.endDate
+      }).then(experience => {
+        profile.addExperience(experience);
+      });
     });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 module.exports = {
