@@ -27,7 +27,7 @@ export default class RegisterLayoutView extends Component {
       gedsIndex
     } = this.props;
 
-    if (editProfileOptions === null) {
+    if (editProfileOptions === null || !gedsInfoList) {
       return (
         <Dimmer active>
           <Loader />

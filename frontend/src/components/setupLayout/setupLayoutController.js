@@ -85,7 +85,7 @@ class SetupLayoutController extends Component {
     return (
       <SetupLayoutView
         setGedsIndex={index => this.setState({ gedsIndex: index })}
-        gedsIndex={this.state.index}
+        gedsIndex={this.state.gedsIndex}
         gedsInfoList={this.state.gedsInfoList}
         editProfileOptions={this.state.editProfileOptions}
         formIndex={this.state.formIndex}
@@ -102,8 +102,7 @@ class SetupLayoutController extends Component {
       />
     );
   }
-  /*
-    getCareerMobility,
+  /*getCareerMobility,
   getCompetency,
   getDiploma,
   getGroupLevel,
