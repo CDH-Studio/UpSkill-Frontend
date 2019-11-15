@@ -183,12 +183,8 @@ const getProfileById = async (request, response) => {
     },
     street: "235 Queen Street",
     talentMatrixResult: {
-      // id: talentMatrixResult.id,
-      // description:
-      // {
       en: talentMatrixResult ? talentMatrixResult.descriptionEn : null,
       fr: talentMatrixResult ? talentMatrixResult.descriptionFr : null
-      // }
     },
     team: data.team,
     telephone: data.telephone,
