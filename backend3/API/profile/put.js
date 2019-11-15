@@ -15,7 +15,6 @@ const updateProfile = async (request, response) => {
   }
 
   try {
-
     let [updated, profile] = await Profile.update(dbObject, {
       where: { id: id },
       returning: true
@@ -27,8 +26,6 @@ const updateProfile = async (request, response) => {
         return res;
       });
     }
-
-    console.log("Profile:", profile);
 
     profile.addSkills(dbObject.skills);
     profile.addCompetencies(dbObject.competencies);

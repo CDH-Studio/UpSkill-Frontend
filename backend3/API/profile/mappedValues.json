@@ -5,7 +5,7 @@
   "cellphone": "cellphone",
   "location": "locationId",
   "team": "team",
-  "status": "tenureId",
+  "tenure": "tenureId",
   "groupOrLevel": "groupLevelId",
   "yearsOfService": "yearService",
   "security": "securityClearanceId",

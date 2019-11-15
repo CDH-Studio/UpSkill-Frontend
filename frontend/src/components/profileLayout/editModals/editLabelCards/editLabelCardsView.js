@@ -21,7 +21,7 @@ class EditLabelCardView extends Component {
     return (
       <EditModalController
         {...this.props}
-        name="wat"
+        name="Edit Info"
         editOptionPaths={{
           tenure: "api/option/getTenure",
           security: "api/option/getSecurityClearance",
