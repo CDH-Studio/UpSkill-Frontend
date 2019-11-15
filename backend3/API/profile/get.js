@@ -88,7 +88,7 @@ const getProfileById = async (request, response) => {
   let competencies = await profile.getCompetencies().map(competencies => {
     if (competencies)
       return {
-        id: skill.dataValues.id,
+        id: competencies.dataValues.id,
         description: {
           en: competencies.dataValues.descriptionEn,
           fr: competencies.dataValues.descriptionFr
@@ -99,7 +99,7 @@ const getProfileById = async (request, response) => {
   let developmentalGoals = await profile.getDevelopmentGoals().map(goal => {
     if (goal)
       return {
-        id: skill.dataValues.id,
+        id: goal.dataValues.id,
         description: {
           en: goal.dataValues.descriptionEn,
           fr: goal.dataValues.descriptionFr
