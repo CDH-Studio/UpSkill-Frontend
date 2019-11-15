@@ -44,7 +44,6 @@ class EducationItemFormView extends Component {
 
   render() {
     const {
-      contentName,
       disableEndDate,
       endDateMonth,
       endDateYear,

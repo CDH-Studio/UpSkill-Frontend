@@ -86,6 +86,15 @@ class EditTagFormView extends Component {
           icon={allowAdditions ? null : "dropdown"}
           selection={true}
           name={dropdownName}
+          noResultsMessage={
+            allowAdditions
+              ? intl.formatMessage({
+                  id: "profile.edit.dropdown.add.items"
+                })
+              : intl.formatMessage({
+                  id: "profile.edit.dropdown.no.results.found"
+                })
+          }
           onChange={this.handleChange}
           onAddItem={this.handleAddItem}
           options={[
