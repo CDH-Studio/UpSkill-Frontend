@@ -63,8 +63,17 @@ const getProfileById = async (request, response) => {
         educ = educ.dataValues;
 
         return {
-          header: school.description,
-          subheader: { en: diploma.descriptionEn, fr: diploma.descriptionFr },
+          school: {
+            id: school.id,
+            description: { en: school.description, fr: school.description }
+          },
+          subheader: {
+            id: diploma.id,
+            description: {
+              en: diploma.descriptionEn,
+              fr: diploma.descriptionFr
+            }
+          },
           content: "",
           startDate: { en: startDate, fr: startDate },
           endDate: { en: endDate, fr: endDate }
