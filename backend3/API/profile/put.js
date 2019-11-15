@@ -4,9 +4,11 @@ const Profile = Models.profile;
 
 const mappedValues = require("./mappedValues.json");
 
-const updateProfile = async (req, res) => {
-  const id = req.params.id;
-  const body = req.body;
+const updateProfile = async (request, response) => {
+  const id = request.params.id;
+  const body = request.body;
+  console.log("Body", body);
+
   let dbObject = {};
   console.log(body);
 
@@ -15,19 +17,31 @@ const updateProfile = async (req, res) => {
   }
 
   try {
-    const [updated, profile] = await Profile.update(dbObject, {
+    console.log("dbObject", dbObject);
+
+    let [updated, profile] = await Profile.update(dbObject, {
       where: { id: id },
       returning: true
     });
+
+    if (!profile) {
+      profile = await Profile.findOne({ where: { id: id } }).then(res => {
+        updated = true;
+        return res;
+      });
+    }
+
+    console.log("Profile:", profile);
+
     profile.addSkills(dbObject.skills);
     profile.addCompetencies(dbObject.competencies);
     profile.addDevelopmentGoal(dbObject.developmentGoals);
     if (updated) {
-      return res.status(200).json({ profile });
+      return response.status(200).json({ profile });
     }
     throw new Error("Profile not found");
   } catch (error) {
-    return res.status(500).send(error.message);
+    return response.status(500).send(error.message);
   }
 };
 

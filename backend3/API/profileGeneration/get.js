@@ -7,9 +7,17 @@ const getGedsAssist = async (request, response) => {
   id = request.params.id;
   user = await User.findOne({ where: { id } }).then(async user => {
     user = user.dataValues;
+
+    // let name = user.name;
+    let name = "Mamadou Moustapha Bah";
+
+    let lastSpaceIndex = name.lastIndexOf(" ");
+    name =
+      name.substring(lastSpaceIndex) + ", " + name.substring(0, lastSpaceIndex);
+
     try {
       let gedsData = await axios
-        .get("http://localhost:8080/api/geds/" + encodeURI(user.name))
+        .get("http://localhost:8080/api/geds/" + encodeURI(name))
         .then(res => {
           return res.data;
         });
