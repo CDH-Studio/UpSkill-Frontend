@@ -69,3 +69,6 @@
   margin-top: 0px !important;
   margin-bottom: 0px !important;
 }
+.profileCard .ui.basic.label {
+  border-radius: 15px;
+}

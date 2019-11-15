@@ -11,6 +11,9 @@ class EditDevelopmentalGoalsView extends Component {
     return (
       <EditModalController
         name={intl.formatMessage({ id: "profile.edit.developmental.goals" })}
+        editOptionPaths={{
+          developmentalGoals: "api/option/getDevelopmentalGoals"
+        }}
         form={DevelopmentalGoalsFormController}
         {...this.props}
       />
