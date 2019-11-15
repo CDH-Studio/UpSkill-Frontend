@@ -1,34 +1,12 @@
 import React, { Component } from "react";
 import { generateCommonProps } from "../common/formTools";
-import {
-  Checkbox,
-  Form,
-  Select,
-  Grid,
-  Icon,
-  Input,
-  TextArea
-} from "semantic-ui-react";
+import { Checkbox, Form, Select, Grid, Icon } from "semantic-ui-react";
 
 import { injectIntl } from "react-intl";
 
-//import FormButtonsController from "../../profileLayout/editModals/common/";
-
-//import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
 import DateInputFieldGroup from "../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
 
 import "./historyItemForm.css";
-
-/*
-
-import { Form, Checkbox, Input, Select } from "semantic-ui-react";
-import { DateInput } from "semantic-ui-calendar-react";
-
-export default class LabelCardFormView extends Component {
-  render() {
-    const { actingEndDisabled, actingDisabled, buttons, onSubmit } = this.props;
-    const generateProps = generateCommonProps.bind(this, this.props);
-*/
 
 class EducationItemFormView extends Component {
   constructor(props) {
@@ -44,19 +22,14 @@ class EducationItemFormView extends Component {
 
   render() {
     const {
-      disableEndDate,
       endDateMonth,
       endDateYear,
-      headerName,
       index,
       intl,
-      item,
-      onFieldChange,
       onTempFieldChange,
       removeItem,
       startDateMonth,
       startDateYear,
-      subheaderName,
       isOngoing
     } = this.props;
 
