@@ -1,12 +1,16 @@
 const moment = require("moment");
 const Models = require("../../db/models");
 const Profile = Models.profile;
+const Education = Models.education;
+const Experience = Models.experience;
 
 const mappedValues = require("./mappedValues.json");
 
 const updateProfile = async (request, response) => {
   const id = request.params.id;
   const body = request.body;
+
+  console.log(body);
 
   let dbObject = {};
 
@@ -15,7 +19,6 @@ const updateProfile = async (request, response) => {
   }
 
   try {
-
     let [updated, profile] = await Profile.update(dbObject, {
       where: { id: id },
       returning: true
@@ -28,13 +31,38 @@ const updateProfile = async (request, response) => {
       });
     }
 
-    console.log("Profile:", profile);
-
     profile.addSkills(dbObject.skills);
     profile.addCompetencies(dbObject.competencies);
     profile.addDevelopmentGoal(dbObject.developmentGoals);
+    console.log("Greeting");
+
+    if (dbObject.education)
+      dbObject.education.forEach(({ school, diploma, startDate, endDate }) => {
+        Education.create({
+          schoolId: school,
+          diplomaId: diploma,
+          startDate,
+          endDate
+        }).then(education => {
+          profile.addEducation(education);
+        });
+      });
+
+    if (dbObject.experience)
+      dbObject.experience.forEach(exp => {
+        Experience.create({
+          organizationEn: exp.subheader,
+          jobTitleEn: exp.header,
+          descriptionEn: exp.content,
+          startDate: exp.startDate,
+          endDate: exp.endDate
+        }).then(experience => {
+          profile.addExperience(experience);
+        });
+      });
+
     if (updated) {
-      return response.status(200).json({ profile });
+      return response.status(200).json(profile);
     }
     throw new Error("Profile not found");
   } catch (error) {
