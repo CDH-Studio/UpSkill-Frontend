@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import axios from "axios";
 
 import HistoryItemsContainerView from "./historyItemsContainerView";
 
@@ -35,6 +36,17 @@ export default class HistoryItemsContainerController extends Component {
   }
 
   onSubmit() {
+    let url =
+      "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
+    axios
+      .put(url, this.fields)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
     console.log("histroy form submit", this.fields);
   }
 
