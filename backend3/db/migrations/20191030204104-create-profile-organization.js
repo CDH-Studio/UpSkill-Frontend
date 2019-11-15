@@ -8,8 +8,10 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
-
-      organization: {
+      description_en: {
+        type: Sequelize.STRING
+      },
+      description_fr: {
         type: Sequelize.STRING
       },
       tier: {

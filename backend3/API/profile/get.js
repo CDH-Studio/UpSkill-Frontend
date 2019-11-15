@@ -63,8 +63,17 @@ const getProfileById = async (request, response) => {
         educ = educ.dataValues;
 
         return {
-          header: school.description,
-          subheader: { en: diploma.descriptionEn, fr: diploma.descriptionFr },
+          school: {
+            id: school.id,
+            description: { en: school.description, fr: school.description }
+          },
+          subheader: {
+            id: diploma.id,
+            description: {
+              en: diploma.descriptionEn,
+              fr: diploma.descriptionFr
+            }
+          },
           content: "",
           startDate: { en: startDate, fr: startDate },
           endDate: { en: endDate, fr: endDate }
@@ -88,7 +97,7 @@ const getProfileById = async (request, response) => {
   let competencies = await profile.getCompetencies().map(competencies => {
     if (competencies)
       return {
-        id: skill.dataValues.id,
+        id: competencies.dataValues.id,
         description: {
           en: competencies.dataValues.descriptionEn,
           fr: competencies.dataValues.descriptionFr
@@ -99,7 +108,7 @@ const getProfileById = async (request, response) => {
   let developmentalGoals = await profile.getDevelopmentGoals().map(goal => {
     if (goal)
       return {
-        id: skill.dataValues.id,
+        id: goal.dataValues.id,
         description: {
           en: goal.dataValues.descriptionEn,
           fr: goal.dataValues.descriptionFr
