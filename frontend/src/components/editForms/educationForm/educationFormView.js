@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import HistoryItemsContainerController from "../common/historyItemsContainer/historyItemsContainerController";
-
+import EducationItemForm from "../educationItemForm/educationItemFormController";
 import { injectIntl } from "react-intl";
 
 class EducationFormView extends Component {
@@ -9,6 +9,7 @@ class EducationFormView extends Component {
     const { intl } = this.props;
     return (
       <HistoryItemsContainerController
+        itemType={EducationItemForm}
         contentName={intl.formatMessage({
           id: "profile.education.content.name"
         })}

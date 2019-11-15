@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-import FieldManagingComponent from "../formTools";
+import FieldManagingComponent from "../common/formTools";
 
-import HistoryItemFormView from "./historyItemFormView";
+import EducationItemFormView from "./educationItemFormView";
 import moment from "moment";
 
-export default class HistoryItemFormController extends FieldManagingComponent {
+export default class EducationItemFormController extends FieldManagingComponent {
   static getFieldNames() {
-    return ["startDate", "endDate", "header", "subheader", "content"];
+    return ["startDate", "endDate", "school", "diploma"];
   }
 
   constructor(props) {
@@ -68,7 +68,6 @@ export default class HistoryItemFormController extends FieldManagingComponent {
 
   render() {
     const {
-      contentName,
       headerName,
       index,
       intl,
@@ -80,8 +79,7 @@ export default class HistoryItemFormController extends FieldManagingComponent {
     } = this.props;
 
     return (
-      <HistoryItemFormView
-        contentName={contentName}
+      <EducationItemFormView
         disableEndDate={this.tempFields["isOngoing"]}
         endDateMonth={this.tempFields.endDateMonth}
         endDateYear={this.tempFields.endDateYear}

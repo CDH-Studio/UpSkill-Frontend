@@ -10,7 +10,7 @@ class ProjectsFormView extends Component {
     return (
       <TagFormController
         dropdownName="projects"
-        allowAdditions={true}
+        useCustomTags={true}
         name={intl.formatMessage({ id: "profile.edit.projects" })}
         {...this.props}
       />

@@ -60,7 +60,13 @@ class SetupLayoutController extends Component {
 
     const { intl } = this.props;
 
-    this.state = { formIndex: 0, maxEnabledIndex: 0, editProfileOptions: null };
+    this.state = {
+      formIndex: 0,
+      maxEnabledIndex: 0,
+      editProfileOptions: null,
+      gedsInfoList: null,
+      gedsIndex: null
+    };
     this.setFormIndex = this.setFormIndex.bind(this);
     this.changes = {};
     this.handleRegister = this.handleRegister.bind(this);
@@ -72,12 +78,15 @@ class SetupLayoutController extends Component {
       })
     );
 
-    this.getEditProfileOptions();
+    this.getSetupData();
   }
 
   render() {
     return (
       <SetupLayoutView
+        setGedsIndex={index => this.setState({ gedsIndex: index })}
+        gedsIndex={this.state.index}
+        gedsInfoList={this.state.gedsInfoList}
         editProfileOptions={this.state.editProfileOptions}
         formIndex={this.state.formIndex}
         formList={this.formList}
@@ -107,7 +116,7 @@ class SetupLayoutController extends Component {
   getTenure
   */
 
-  async getEditProfileOptions() {
+  async getSetupData() {
     const { intl } = this.props;
     let skillOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getSkill")).data
@@ -154,7 +163,10 @@ class SetupLayoutController extends Component {
         tenure: formatOptions(
           (await axios.get(backendAddress + "api/option/getTenure")).data
         )
-      }
+      },
+      gedsInfoList: await axios.get(
+        backendAddress + "api/profGen/" + localStorage.getItem("userId")
+      ).data
     });
   }
 

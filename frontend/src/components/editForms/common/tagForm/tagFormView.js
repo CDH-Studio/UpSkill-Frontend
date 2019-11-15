@@ -10,24 +10,39 @@ class EditTagFormView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { addedItems: [] };
+    const { profileInfo, dropdownName } = this.props;
+
+    this.state = {
+      addedItems: [],
+      currentValue: profileInfo[dropdownName]
+        ? profileInfo[dropdownName].map(element => element.value)
+        : []
+    };
 
     this.generateCommonProps = generateCommonProps.bind(this, this.props);
     this.handleAddItem = this.handleAddItem.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleAddItem(e, { value }) {
-    const allowAdditions = this.props;
-    if (allowAdditions) {
-      this.setState({
-        addedItems: [{ text: value, value: value }, ...this.state.addedItems]
-      });
+    const { useCustomTags } = this.props;
+
+    if (useCustomTags) {
+      this.setState(prevState => ({
+        addedItems: [{ text: value, value: value }, ...prevState.addedItems]
+      }));
     }
+  }
+
+  handleChange(e, o) {
+    const { handleChange } = this.props;
+    this.setState({ currentValue: o.value });
+    handleChange && handleChange(e, o);
   }
 
   render() {
     const {
-      allowAdditions,
+      useCustomTags,
       dropdownName,
       editProfileOptions,
       fields,
@@ -44,13 +59,12 @@ class EditTagFormView extends Component {
     } = this.props;
 
     let valueProp = {};
-    if (allowAdditions) {
-      valueProp["value"] = {
-        ...(profileInfo[dropdownName] || []),
-        ...this.state.addedItems
-      };
+    if (useCustomTags) {
+      valueProp["value"] = this.state.currentValue;
     } else {
-      valueProp["defaultValue"] = profileInfo[dropdownName];
+      valueProp["defaultValue"] = profileInfo[dropdownName].map(
+        element => element.value
+      );
     }
 
     return (
@@ -69,11 +83,25 @@ class EditTagFormView extends Component {
               "profile." + dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
           })}
           multiple
+          icon={useCustomTags ? null : "dropdown"}
+          selection={true}
           name={dropdownName}
-          onChange={handleChange}
+          noResultsMessage={
+            useCustomTags
+              ? intl.formatMessage({
+                  id: "profile.edit.dropdown.add.items"
+                })
+              : intl.formatMessage({
+                  id: "profile.edit.dropdown.no.results.found"
+                })
+          }
+          onChange={this.handleChange}
           onAddItem={this.handleAddItem}
-          options={editProfileOptions[dropdownName] || []}
-          allowAdditions={Boolean(allowAdditions)}
+          options={[
+            ...(editProfileOptions[dropdownName] || []),
+            ...this.state.addedItems
+          ]}
+          allowAdditions={Boolean(useCustomTags)}
           search
         />
 

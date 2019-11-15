@@ -24,22 +24,26 @@ class EditHistoryModalView extends Component {
       onSubmit,
       removeItem,
       setContainerField,
-      subheaderName
+      subheaderName,
+      editProfileOptions,
+      itemType
     } = this.props;
     return (
       <Grid divided="vertically">
-        {items.map((item, index) => (
-          <HistoryItemFormController
-            addItem={addItem}
-            contentName={contentName}
-            headerName={headerName}
-            index={index}
-            item={item}
-            removeItem={removeItem}
-            setContainerField={setContainerField}
-            subheaderName={subheaderName}
-          />
-        ))}
+        {items.map((item, index) =>
+          React.createElement(itemType, {
+            addItem: addItem,
+            contentName: contentName,
+            headerName: headerName,
+            index: index,
+            item: item,
+            removeItem: removeItem,
+            setContainerField: setContainerField,
+            subheaderName: subheaderName,
+            editProfileOptions: editProfileOptions
+          })
+        )}
+
         <Grid.Row>
           <Button
             className="addHistoryItemButton"

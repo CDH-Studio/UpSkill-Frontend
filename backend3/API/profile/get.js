@@ -67,7 +67,7 @@ const getProfileById = async (request, response) => {
             id: school.id,
             description: { en: school.description, fr: school.description }
           },
-          subheader: {
+          diploma: {
             id: diploma.id,
             description: {
               en: diploma.descriptionEn,
