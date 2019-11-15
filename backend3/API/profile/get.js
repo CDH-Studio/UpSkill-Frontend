@@ -77,21 +77,33 @@ const getProfileById = async (request, response) => {
   let skills = await profile.getSkills().map(skill => {
     if (skill)
       return {
-        id: skill.dataValues.id
+        id: skill.dataValues.id,
+        description: {
+          en: skill.dataValues.descriptionEn,
+          fr: skill.dataValues.descriptionFr
+        }
       };
   });
 
   let competencies = await profile.getCompetencies().map(competencies => {
     if (competencies)
       return {
-        id: competencies.dataValues.id
+        id: skill.dataValues.id,
+        description: {
+          en: competencies.dataValues.descriptionEn,
+          fr: competencies.dataValues.descriptionFr
+        }
       };
   });
 
   let developmentalGoals = await profile.getDevelopmentGoals().map(goal => {
     if (goal)
       return {
-        id: goal.dataValues.id
+        id: skill.dataValues.id,
+        description: {
+          en: goal.dataValues.descriptionEn,
+          fr: goal.dataValues.descriptionFr
+        }
       };
   });
 
@@ -118,7 +130,7 @@ const getProfileById = async (request, response) => {
     email: data.email,
     firstLanguage: "English",
     firstName: data.firstName,
-    githubUrl: "https://www.google.com",
+    githubUrl: data.github,
     gradedOnSecondLanguage: true,
     classification: groupLevel ? groupLevel.description : null,
     jobTitle: data.jobTitle,
@@ -160,12 +172,11 @@ const getProfileById = async (request, response) => {
     talentMatrixResult: "Exceptional talent",
     team: data.team,
     telephone: data.telephone,
-    twitterUrl: "https://twitter.com/?lang=en",
+    twitterUrl: data.twitter,
     yearsOfService: data.yearService
   };
 
   response.status(200).json(resData);
-  // response.status(200).send("In Development");
 };
 
 module.exports = {

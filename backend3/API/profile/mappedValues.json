@@ -21,5 +21,8 @@
   "competencies": "competencies",
   "developmentalGoals": "developmentGoals",
   "education": "education",
-  "careerSummary": "experience"
+  "careerSummary": "experience",
+  "linkedinUrl": "linkedin",
+  "githubUrl": "github",
+  "twitterUrl": "twitter"
 }

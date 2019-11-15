@@ -72,6 +72,9 @@ module.exports = {
           github: {
             type: Sequelize.STRING
           },
+          twitter: {
+            type: Sequelize.STRING
+          },
           createdAt: {
             allowNull: false,
             type: Sequelize.DATE

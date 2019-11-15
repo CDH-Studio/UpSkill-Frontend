@@ -2,7 +2,6 @@
 const axios = require("axios");
 
 async function getEmployeeInfo(request, response) {
-  // const searchValue = decodeURI(event.pathParameters.searchValue);
   let searchValue = request.params.searchValue;
   let info = await searchEmployee(searchValue, response).catch(err => {
     response.status(500).send(err);

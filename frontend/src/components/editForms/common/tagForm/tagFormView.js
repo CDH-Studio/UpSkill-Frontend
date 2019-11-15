@@ -10,19 +10,34 @@ class EditTagFormView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { addedItems: [] };
+    const { profileInfo, dropdownName } = this.props;
+
+    this.state = {
+      addedItems: [],
+      currentValue: profileInfo[dropdownName]
+        ? profileInfo[dropdownName].map(element => element.value)
+        : []
+    };
 
     this.generateCommonProps = generateCommonProps.bind(this, this.props);
     this.handleAddItem = this.handleAddItem.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleAddItem(e, { value }) {
-    const allowAdditions = this.props;
+    const { allowAdditions } = this.props;
+
     if (allowAdditions) {
-      this.setState({
-        addedItems: [{ text: value, value: value }, ...this.state.addedItems]
-      });
+      this.setState(prevState => ({
+        addedItems: [{ text: value, value: value }, ...prevState.addedItems]
+      }));
     }
+  }
+
+  handleChange(e, o) {
+    const { handleChange } = this.props;
+    this.setState({ currentValue: o.value });
+    handleChange && handleChange(e, o);
   }
 
   render() {
@@ -45,12 +60,11 @@ class EditTagFormView extends Component {
 
     let valueProp = {};
     if (allowAdditions) {
-      valueProp["value"] = {
-        ...(profileInfo[dropdownName] || []),
-        ...this.state.addedItems
-      };
+      valueProp["value"] = this.state.currentValue;
     } else {
-      valueProp["defaultValue"] = profileInfo[dropdownName];
+      valueProp["defaultValue"] = profileInfo[dropdownName].map(
+        element => element.value
+      );
     }
 
     return (
@@ -69,10 +83,15 @@ class EditTagFormView extends Component {
               "profile." + dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
           })}
           multiple
+          icon={allowAdditions ? null : "dropdown"}
+          selection={true}
           name={dropdownName}
-          onChange={handleChange}
+          onChange={this.handleChange}
           onAddItem={this.handleAddItem}
-          options={editProfileOptions[dropdownName] || []}
+          options={[
+            ...(editProfileOptions[dropdownName] || []),
+            ...this.state.addedItems
+          ]}
           allowAdditions={Boolean(allowAdditions)}
           search
         />
