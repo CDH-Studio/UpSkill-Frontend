@@ -36,10 +36,11 @@ export default class HistoryItemsContainerController extends Component {
   }
 
   onSubmit() {
+    const { infoName } = this.props;
     let url =
       "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
     axios
-      .put(url, this.fields)
+      .put(url, { [infoName]: this.fields })
       .then(function(response) {
         console.log(response);
       })
@@ -47,7 +48,7 @@ export default class HistoryItemsContainerController extends Component {
         console.log(error);
       });
 
-    console.log("histroy form submit", this.fields);
+    console.log("histroy form submit", { [infoName]: this.fields });
   }
 
   removeItem(index) {
