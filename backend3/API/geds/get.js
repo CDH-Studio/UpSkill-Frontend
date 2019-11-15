@@ -3,16 +3,6 @@ const axios = require("axios");
 
 async function getEmployeeInfo(request, response) {
   let searchValue = request.params.searchValue;
-  let info = await searchEmployee(searchValue, response).catch(err => {
-    response.status(500).send(err);
-  });
-
-  if (info.length == 0) response.status(204).send("No results found");
-
-  response.status(200).json(info);
-}
-
-async function searchEmployee(searchValue, response) {
   const url =
     "https://geds-sage-ssc-spc-apicast-production.api.canada.ca/gapi/v2/employees?searchValue=" +
     encodeURI(searchValue) +
@@ -29,46 +19,57 @@ async function searchEmployee(searchValue, response) {
     }
   })
     .then(res => {
-      res.data.forEach(employee => {
-        let currentBranch = employee;
-        let organization = [];
-        while (currentBranch.organizationInformation != null) {
-          let branchInfo = {
-            organizationId:
-              currentBranch.organizationInformation.organization.id,
-            organization: {
-              addressInformation:
-                currentBranch.organizationInformation.organization
-                  .addressInformation,
-              description:
-                currentBranch.organizationInformation.organization.description
-            }
-          };
-          organization.push(branchInfo);
-          currentBranch = currentBranch.organizationInformation.organization;
-        }
-        organization = organization.reverse();
+      if (res.status == 200) {
+        res.data.forEach(employee => {
+          let currentBranch = employee;
+          let organizations = [];
+          while (currentBranch.organizationInformation != null) {
+            let branchInfo = {
+              organizationId:
+                currentBranch.organizationInformation.organization.id,
+              organization: {
+                addressInformation:
+                  currentBranch.organizationInformation.organization
+                    .addressInformation,
+                description:
+                  currentBranch.organizationInformation.organization.description
+              }
+            };
+            organizations.push(branchInfo);
+            currentBranch = currentBranch.organizationInformation.organization;
+          }
+          organizations = organizations.reverse();
 
-        let empInfo = {
-          id: employee.id,
-          givenName: employee.givenName,
-          surname: employee.surname,
-          title: employee.title,
-          phoneNumber: employee.contactInformation.phoneNumber,
-          email: employee.contactInformation.email,
-          organization: organization
-        };
-        info.push(empInfo);
-      });
+          let empInfo = {
+            id: employee.id,
+            givenName: employee.givenName,
+            surname: employee.surname,
+            title: employee.title,
+            phoneNumber: employee.contactInformation.phoneNumber,
+            altPhoneNumber: employee.contactInformation.altPhoneNumber,
+            email: employee.contactInformation.email,
+            organizations: organizations
+          };
+          info.push(empInfo);
+        });
+        if (info.length == 0) {
+          response.status(204).send("No results found");
+          return;
+        }
+
+        response.status(200).json(info);
+      } else {
+        response.status(res.status).send(res.statusText);
+        return;
+      }
     })
     .catch(err => {
       console.error(err);
       if (err.response.status == 429) {
         response.status(429).send("Limit Exceeded!");
+        return;
       }
     });
-
-  return info;
 }
 
 module.exports = {
