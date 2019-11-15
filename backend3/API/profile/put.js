@@ -7,17 +7,14 @@ const mappedValues = require("./mappedValues.json");
 const updateProfile = async (request, response) => {
   const id = request.params.id;
   const body = request.body;
-  console.log("Body", body);
 
   let dbObject = {};
-  console.log(body);
 
   for (let [key, value] of Object.entries(body)) {
     dbObject[mappedValues[key]] = value;
   }
 
   try {
-    console.log("dbObject", dbObject);
 
     let [updated, profile] = await Profile.update(dbObject, {
       where: { id: id },
