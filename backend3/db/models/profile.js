@@ -46,6 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     profile.hasMany(models.experience);
     profile.hasMany(models.education);
     profile.hasMany(models.profileOrganization);
+    profile.hasMany(models.profileProject);
   };
   return profile;
 };
