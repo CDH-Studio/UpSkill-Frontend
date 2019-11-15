@@ -3,6 +3,7 @@ const Models = require("../../db/models");
 const Profile = Models.profile;
 const Education = Models.education;
 const Experience = Models.experience;
+const Project = Models.profileProject;
 
 const mappedValues = require("./mappedValues.json");
 
@@ -58,6 +59,15 @@ const updateProfile = async (request, response) => {
           endDate: exp.endDate
         }).then(experience => {
           profile.addExperience(experience);
+        });
+      });
+
+    if (dbObject.projects)
+      dbObject.projects.forEach(project => {
+        Project.create({
+          description: project
+        }).then(project => {
+          profile.addProfileProject(project);
         });
       });
 

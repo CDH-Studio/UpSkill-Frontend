@@ -52,6 +52,13 @@ const getProfileById = async (request, response) => {
     };
   });
 
+  let dbProjects = await profile.getProfileProjects();
+  let projects = dbProjects.map(project => {
+    return { text: project.description };
+  });
+
+  console.log("PROJECTS: ", projects);
+
   let education = await profile.getEducation();
   let educations = async () => {
     return Promise.all(
@@ -85,6 +92,7 @@ const getProfileById = async (request, response) => {
       })
     );
   };
+
   let educArray = await educations();
 
   let skills = await profile.getSkills().map(skill => {
@@ -189,7 +197,8 @@ const getProfileById = async (request, response) => {
     team: data.team,
     telephone: data.telephone,
     twitterUrl: data.twitter,
-    yearsOfService: data.yearService
+    yearsOfService: data.yearService,
+    projects: projects
   };
 
   response.status(200).json(resData);
