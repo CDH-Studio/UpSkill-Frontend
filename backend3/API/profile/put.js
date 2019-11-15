@@ -48,22 +48,18 @@ const updateProfile = async (request, response) => {
         });
       });
 
-    console.log("Hiii");
-
-    dbObject.experience.forEach(exp => {
-      console.log("Heloooo");
-      console.log(exp);
-
-      Experience.create({
-        organizationEn: exp.subheader,
-        jobTitleEn: exp.header,
-        descriptionEn: exp.content,
-        startDate: exp.startDate,
-        endDate: exp.endDate
-      }).then(experience => {
-        profile.addExperience(experience);
+    if (dbObject.experience)
+      dbObject.experience.forEach(exp => {
+        Experience.create({
+          organizationEn: exp.subheader,
+          jobTitleEn: exp.header,
+          descriptionEn: exp.content,
+          startDate: exp.startDate,
+          endDate: exp.endDate
+        }).then(experience => {
+          profile.addExperience(experience);
+        });
       });
-    });
 
     if (updated) {
       return response.status(200).json(profile);
