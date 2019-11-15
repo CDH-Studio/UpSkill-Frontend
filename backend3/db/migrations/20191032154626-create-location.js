@@ -23,6 +23,9 @@ module.exports = {
       provinceFr: {
         type: Sequelize.STRING
       },
+      postalCode: {
+        type: Sequelize.STRING
+      },
       country: {
         type: Sequelize.STRING
       },

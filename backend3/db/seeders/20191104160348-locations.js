@@ -17,6 +17,7 @@ module.exports = {
             provinceEn: "Prince Edward Island",
             provinceFr: "Île-du-Prince-Édouard",
             country: "Canada",
+            postalCode: "C1A 4L2",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -27,6 +28,7 @@ module.exports = {
             provinceEn: "Nova Scotia",
             provinceFr: "Nouvelle-Écosse",
             country: "Canada",
+            postalCode: "B3B 1X8",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -37,6 +39,7 @@ module.exports = {
             provinceEn: "Nova Scotia",
             provinceFr: "Nouvelle-Écosse",
             country: "Canada",
+            postalCode: "B3H 0A8",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -47,6 +50,7 @@ module.exports = {
             provinceEn: "Nova Scotia",
             provinceFr: "Nouvelle-Écosse",
             country: "Canada",
+            postalCode: "B3J 3K5",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -57,6 +61,7 @@ module.exports = {
             provinceEn: "New Brunswick",
             provinceFr: "Nouveau-Brunswick",
             country: "Canada",
+            postalCode: "E1C 1H1",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -67,6 +72,7 @@ module.exports = {
             provinceEn: "New Brunswick",
             provinceFr: "Nouveau-Brunswick",
             country: "Canada",
+            postalCode: "E2L 2B9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -77,6 +83,7 @@ module.exports = {
             provinceEn: "Newfoundland and Labrador",
             provinceFr: "Terre-Neuve-et-Labrador",
             country: "Canada",
+            postalCode: "A1B 3R9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -87,6 +94,7 @@ module.exports = {
             provinceEn: "Nova Scotia",
             provinceFr: "Nouvelle-Écosse",
             country: "Canada",
+            postalCode: "B1P 6W4",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -97,6 +105,7 @@ module.exports = {
             provinceEn: "Québec",
             provinceFr: "Québec",
             country: "Canada",
+            postalCode: "K1A 0C9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -107,6 +116,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K1A 0C9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -117,6 +127,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K1Y 3B5",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -127,6 +138,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K2H 8S2",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -137,6 +149,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K1A 0C9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -147,6 +160,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K1A 0H5",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -157,6 +171,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K1A 0R1",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -167,6 +182,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K1P 0B6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -177,6 +193,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K1A 0C9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -187,6 +204,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L7J 2L8",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -197,6 +215,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L1S 2E9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -207,6 +226,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L4G 2N9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -217,6 +237,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K8P 3Z3",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -227,6 +248,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L7L 4X7",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -237,6 +259,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L8E 2L9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -247,6 +270,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L8R 3P7",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -257,6 +281,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "P9N 3W9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -267,6 +292,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "N2H 3W5",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -277,6 +303,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "N6E 3T6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -287,6 +314,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "N6A 5C9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -297,6 +325,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L6G 1A6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -307,6 +336,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L5T 2T3",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -317,6 +347,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "L3Y 8P6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -327,6 +358,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "P1B 7K8",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -337,6 +369,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K2P 2P7",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -347,6 +380,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "K9J 6X6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -357,6 +391,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "P6A 1Y3",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -367,6 +402,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "P3E 3L4",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -377,6 +413,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "P3A 2T2",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -387,6 +424,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "P7C 3P4",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -397,6 +435,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "P7B 6E6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -407,6 +446,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "P4N 2G8",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -417,6 +457,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "M5C 2W7",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -427,6 +468,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "N2L 5A6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -437,6 +479,7 @@ module.exports = {
             provinceEn: "Ontario",
             provinceFr: "Ontario",
             country: "Canada",
+            postalCode: "N8X 1K7",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -447,6 +490,7 @@ module.exports = {
             provinceEn: "British Columbia",
             provinceFr: "Columbie-Britannique",
             country: "Canada",
+            postalCode: "V1Y 9R9",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -457,6 +501,7 @@ module.exports = {
             provinceEn: "British Columbia",
             provinceFr: "Columbie-Britannique",
             country: "Canada",
+            postalCode: "V2A 5M2",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -467,6 +512,7 @@ module.exports = {
             provinceEn: "British Columbia",
             provinceFr: "Columbie-Britannique",
             country: "Canada",
+            postalCode: "V2L 4X3",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -477,6 +523,7 @@ module.exports = {
             provinceEn: "British Columbia",
             provinceFr: "Columbie-Britannique",
             country: "Canada",
+            postalCode: "V3T 5V6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -487,6 +534,7 @@ module.exports = {
             provinceEn: "British Columbia",
             provinceFr: "Columbie-Britannique",
             country: "Canada",
+            postalCode: "V6B 6E1",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -497,6 +545,7 @@ module.exports = {
             provinceEn: "British Columbia",
             provinceFr: "Columbie-Britannique",
             country: "Canada",
+            postalCode: "V5M 2A6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -507,6 +556,7 @@ module.exports = {
             provinceEn: "British Columbia",
             provinceFr: "Columbie-Britannique",
             country: "Canada",
+            postalCode: "V8W 3M4",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -517,6 +567,7 @@ module.exports = {
             provinceEn: "Yukon",
             provinceFr: "Yukon",
             country: "Canada",
+            postalCode: "Y1A 2B5",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -527,6 +578,7 @@ module.exports = {
             provinceEn: "Alberta",
             provinceFr: "Alberta",
             country: "Canada",
+            postalCode: "T2G 4X3",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -537,6 +589,7 @@ module.exports = {
             provinceEn: "Alberta",
             provinceFr: "Alberta",
             country: "Canada",
+            postalCode: "T6B 2L5",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -547,6 +600,7 @@ module.exports = {
             provinceEn: "Alberta",
             provinceFr: "Alberta",
             country: "Canada",
+            postalCode: "T5J 4C3",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -557,6 +611,7 @@ module.exports = {
             provinceEn: "Saskatchewan",
             provinceFr: "Saskatchewan",
             country: "Canada",
+            postalCode: "S4P 2C7",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -567,6 +622,7 @@ module.exports = {
             provinceEn: "Saskatchewan",
             provinceFr: "Saskatchewan",
             country: "Canada",
+            postalCode: "S7K 7E6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -577,6 +633,7 @@ module.exports = {
             provinceEn: "Manitoba",
             provinceFr: "Manitoba",
             country: "Canada",
+            postalCode: "R3C 4K5",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -587,6 +644,7 @@ module.exports = {
             provinceEn: "Northwest Territories",
             provinceFr: "Territoires du Nord-Ouest",
             country: "Canada",
+            postalCode: "X1A 2P3",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -597,6 +655,7 @@ module.exports = {
             provinceEn: "Québec",
             provinceFr: "Québec",
             country: "Canada",
+            postalCode: "H3B 2V6",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -607,6 +666,7 @@ module.exports = {
             provinceEn: "Québec",
             provinceFr: "Québec",
             country: "Canada",
+            postalCode: "G1J 0C4",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -617,6 +677,7 @@ module.exports = {
             provinceEn: "Québec",
             provinceFr: "Québec",
             country: "Canada",
+            postalCode: "J1L 2G5",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -627,6 +688,7 @@ module.exports = {
             provinceEn: "Québec",
             provinceFr: "Québec",
             country: "Canada",
+            postalCode: "H1P 3K9",
             createdAt: new Date(),
             updatedAt: new Date()
           }
@@ -639,45 +701,49 @@ module.exports = {
           [
             {
               id: "5888300c-0245-11ea-8d71-362b9e155667",
-              addressEn: "3625 Lougheed Hwy",
-              addressFr: "3625 Autoroute Lougheed",
-              city: "Vancouver",
-              provinceEn: "British Columbia",
-              provinceFr: "Columbie-Britannique",
-              country: "Canada",
-              createdAt: new Date(),
-              updatedAt: new Date()
-            },
-            {
-              id: "60fd7bc0-0245-11ea-8d71-362b9e155667",
-              addressEn: "1230 Government St",
-              addressFr: "1230 rue Government",
-              city: "Victoria",
-              provinceEn: "British Columbia",
-              provinceFr: "Columbie-Britannique",
-              country: "Canada",
-              createdAt: new Date(),
-              updatedAt: new Date()
-            },
-            {
-              id: "64f770aa-0245-11ea-8d71-362b9e155667",
-              addressEn: "2665 King St W",
-              addressFr: "2665 rue King O",
-              city: "Sherbrooke",
-              provinceEn: "Québec",
-              provinceFr: "Québec",
-              country: "Canada",
-              createdAt: new Date(),
-              updatedAt: new Date()
-            },
-            {
-              id: "6a91edec-0245-11ea-8d71-362b9e155667",
               addressEn: "9177 Langelier Blvd",
               addressFr: "9177 boul Langelier",
               city: "St-Léonard",
               provinceEn: "Québec",
               provinceFr: "Québec",
               country: "Canada",
+              postalCode: "H1P 3K9",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              id: "60fd7bc0-0245-11ea-8d71-362b9e155667",
+              addressEn: "5101 50 Ave",
+              addressFr: "5101 50 Av",
+              city: "Yellowknife",
+              provinceEn: "Northwest Territories",
+              provinceFr: "Territoires du Nord-Ouest",
+              country: "Canada",
+              postalCode: "X1A 2P3",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              id: "64f770aa-0245-11ea-8d71-362b9e155667",
+              addressEn: "1945 Hamilton St",
+              addressFr: "1945 rue Hamilton",
+              city: "Regina",
+              provinceEn: "Saskatchewan",
+              provinceFr: "Saskatchewan",
+              country: "Canada",
+              postalCode: "S4P 2C7",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            },
+            {
+              id: "6a91edec-0245-11ea-8d71-362b9e155667",
+              addressEn: "232 Yorktech Dr",
+              addressFr: "232 prom Yorktech",
+              city: "Markham",
+              provinceEn: "Ontario",
+              provinceFr: "Ontario",
+              country: "Canada",
+              postalCode: "L6G 1A6",
               createdAt: new Date(),
               updatedAt: new Date()
             }

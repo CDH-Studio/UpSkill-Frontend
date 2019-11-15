@@ -55,6 +55,8 @@ class PrimaryLayoutGroupView extends Component {
       yearsOfService
     } = profileInfo;
 
+    const actingDisabled = !(acting && actingPeriodStartDate);
+
     const actingLabel = intl.formatMessage({ id: "profile.acting" });
     const actingPeriodLabel = intl.formatMessage({
       id: "profile.acting.period"
@@ -80,23 +82,19 @@ class PrimaryLayoutGroupView extends Component {
             <Grid.Column width={8}>
               <Grid>
                 {this.renderLabeledItem(tenureLabel, tenure)}
-
                 {this.renderLabeledItem(securityLabel, security)}
-                {acting &&
-                  actingPeriodStartDate &&
-                  this.renderLabeledItem(actingLabel, acting)}
+                {this.renderLabeledItem(actingLabel, acting, actingDisabled)}
               </Grid>
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid>
                 {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
                 {this.renderLabeledItem(classificationLabel, classification)}
-                {acting &&
-                  actingPeriodStartDate &&
-                  this.renderLabeledItem(
-                    actingPeriodLabel,
-                    actingPeriodStartDate + "-" + actingPeriodEndDate
-                  )}
+                {this.renderLabeledItem(
+                  actingPeriodLabel,
+                  actingPeriodStartDate + "-" + actingPeriodEndDate,
+                  actingDisabled
+                )}
               </Grid>
             </Grid.Column>
           </Grid>
@@ -104,6 +102,7 @@ class PrimaryLayoutGroupView extends Component {
       );
     }
     //When using the most wide or most skinny view there is only one column of labeled cards
+
     return (
       <ProfileCardController
         button={EditLabelCardsController}
@@ -116,36 +115,35 @@ class PrimaryLayoutGroupView extends Component {
           {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
           {this.renderLabeledItem(securityLabel, security)}
           {this.renderLabeledItem(classificationLabel, classification)}
-
-          {acting && actingPeriodStartDate && (
-            <React.Fragment>
-              {this.renderLabeledItem(actingLabel, acting)}
-              {this.renderLabeledItem(
-                actingPeriodLabel,
-                actingPeriodStartDate + "-" + actingPeriodEndDate
-              )}
-            </React.Fragment>
+          {this.renderLabeledItem(actingLabel, acting, actingDisabled)}
+          {this.renderLabeledItem(
+            actingPeriodLabel,
+            actingPeriodStartDate + "-" + actingPeriodEndDate,
+            actingDisabled
           )}
         </Grid>
       </ProfileCardController>
     );
   }
 
-  renderLabeledItem(labelText, contentText) {
+  renderLabeledItem(labelText, contentText, disabled) {
+    const { intl } = this.props;
     return (
       <Grid.Row columns={2} style={{ padding: "3px 0px" }}>
         <Grid.Column
           style={{ textAlign: "center", padding: "3px 0px 3px 3px" }}
         >
           <Label
-            color="blue"
+            className={disabled ? "disabled" : null}
             fluid
             style={{ fontSize: "12pt", fontWeight: "normal", width: "90%" }}
           >
             {labelText}
           </Label>
         </Grid.Column>
-        <Grid.Column style={{ padding: "0px" }}>{contentText}</Grid.Column>
+        <Grid.Column style={{ padding: "0px" }}>
+          {disabled ? intl.formatMessage({ id: "profile.na" }) : contentText}
+        </Grid.Column>
       </Grid.Row>
     );
   }

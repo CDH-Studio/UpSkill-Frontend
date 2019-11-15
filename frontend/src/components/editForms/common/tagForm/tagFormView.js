@@ -25,9 +25,9 @@ class EditTagFormView extends Component {
   }
 
   handleAddItem(e, { value }) {
-    const { allowAdditions } = this.props;
+    const { useCustomTags } = this.props;
 
-    if (allowAdditions) {
+    if (useCustomTags) {
       this.setState(prevState => ({
         addedItems: [{ text: value, value: value }, ...prevState.addedItems]
       }));
@@ -42,7 +42,7 @@ class EditTagFormView extends Component {
 
   render() {
     const {
-      allowAdditions,
+      useCustomTags,
       dropdownName,
       editProfileOptions,
       fields,
@@ -59,7 +59,7 @@ class EditTagFormView extends Component {
     } = this.props;
 
     let valueProp = {};
-    if (allowAdditions) {
+    if (useCustomTags) {
       valueProp["value"] = this.state.currentValue;
     } else {
       valueProp["defaultValue"] = profileInfo[dropdownName].map(
@@ -83,11 +83,11 @@ class EditTagFormView extends Component {
               "profile." + dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
           })}
           multiple
-          icon={allowAdditions ? null : "dropdown"}
+          icon={useCustomTags ? null : "dropdown"}
           selection={true}
           name={dropdownName}
           noResultsMessage={
-            allowAdditions
+            useCustomTags
               ? intl.formatMessage({
                   id: "profile.edit.dropdown.add.items"
                 })
@@ -101,7 +101,7 @@ class EditTagFormView extends Component {
             ...(editProfileOptions[dropdownName] || []),
             ...this.state.addedItems
           ]}
-          allowAdditions={Boolean(allowAdditions)}
+          allowAdditions={Boolean(useCustomTags)}
           search
         />
 
