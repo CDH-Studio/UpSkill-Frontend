@@ -22,6 +22,10 @@ const getProfileById = async (request, response) => {
     if (res) return res.dataValues;
   });
 
+  let talentMatrixResult = await profile.getTalentMatrixResult().then(res => {
+    if (res) return res.dataValues;
+  });
+
   let groupLevel = await profile.getGroupLevel().then(res => {
     if (res) return res.dataValues;
   });
@@ -173,12 +177,15 @@ const getProfileById = async (request, response) => {
       fr: securityClearance ? securityClearance.descriptionFr : null
     },
     skills,
-    status: {
+    tenure: {
       en: tenure ? tenure.descriptionEn : null,
       fr: tenure ? tenure.descriptionFr : null
     },
     street: "235 Queen Street",
-    talentMatrixResult: "Exceptional talent",
+    talentMatrixResult: {
+      en: talentMatrixResult ? talentMatrixResult.descriptionEn : null,
+      fr: talentMatrixResult ? talentMatrixResult.descriptionFr : null
+    },
     team: data.team,
     telephone: data.telephone,
     twitterUrl: data.twitter,

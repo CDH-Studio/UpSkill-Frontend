@@ -18,8 +18,6 @@ const updateProfile = async (request, response) => {
     dbObject[mappedValues[key]] = value;
   }
 
-  console.log(dbObject);
-
   try {
     let [updated, profile] = await Profile.update(dbObject, {
       where: { id: id },
