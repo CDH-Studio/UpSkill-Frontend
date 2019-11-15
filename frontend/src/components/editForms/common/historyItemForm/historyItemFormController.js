@@ -6,6 +6,10 @@ import HistoryItemFormView from "./historyItemFormView";
 import moment from "moment";
 
 export default class HistoryItemFormController extends FieldManagingComponent {
+  static getFieldNames() {
+    return ["startDate", "endDate", "header", "subheader", "content"];
+  }
+
   constructor(props) {
     super(props);
 

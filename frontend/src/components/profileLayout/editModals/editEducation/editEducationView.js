@@ -11,6 +11,10 @@ class EditEducationView extends Component {
       <EditModalController
         name={intl.formatMessage({ id: "profile.edit.education" })}
         form={EducationFormController}
+        editOptionPaths={{
+          school: "api/option/getSchool",
+          diploma: "api/option/getDiploma"
+        }}
         {...this.props}
       />
     );

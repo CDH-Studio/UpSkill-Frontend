@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../formTools";
+import { generateCommonProps } from "../common/formTools";
 import {
   Checkbox,
   Form,
@@ -12,10 +12,10 @@ import {
 
 import { injectIntl } from "react-intl";
 
-import FormButtonsController from "../formButtons/formButtonsController";
+//import FormButtonsController from "../../profileLayout/editModals/common/";
 
 //import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
-import DateInputFieldGroup from "../../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
+import DateInputFieldGroup from "../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
 
 import "./historyItemForm.css";
 
@@ -34,7 +34,9 @@ class EducationItemFormView extends Component {
   constructor(props) {
     super(props);
 
-    const generateProps = generateCommonProps.bind(this, {
+    const { item } = this.props;
+
+    this.generateProps = generateCommonProps.bind(this, {
       ...this.props,
       profileInfo: item
     });
@@ -71,8 +73,8 @@ class EducationItemFormView extends Component {
 
         <Form style={{ margin: "0px auto", width: "95%" }}>
           <Form.Group widths="equal">
-            <Form.Field {...generateProps("diploma", Select)} />
-            <Form.Field {...generateProps("school", Select)} />
+            <Form.Field {...this.generateProps("diploma", Select)} />
+            <Form.Field {...this.generateProps("school", Select)} />
           </Form.Group>
           <Form.Group
             className="noHorizontalGaps"
@@ -94,7 +96,9 @@ class EducationItemFormView extends Component {
                 />
               </Grid.Column>
               <Grid.Column className="noHorizontalGaps" width={3}>
-                <Form.Field {...generateProps("isOngoing", Checkbox)} />
+                <Form.Field
+                  {...this.generateProps("isOngoing", Checkbox, true)}
+                />
               </Grid.Column>
               <Grid.Column className="smallLeftPadding" width={8}>
                 <DateInputFieldGroup
@@ -110,14 +114,6 @@ class EducationItemFormView extends Component {
               </Grid.Column>
             </Grid>
           </Form.Group>
-          <Form.Field>
-            <label>{contentName}</label>
-            <TextArea
-              name="content"
-              onChange={onFieldChange}
-              value={item.content}
-            />
-          </Form.Field>
         </Form>
       </Grid.Row>
     );

@@ -21,17 +21,14 @@ export default class HistoryItemsContainerController extends Component {
   }
 
   addItem(index, item) {
+    const { itemType } = this.props;
     if (typeof index === "number") {
       this.fields.splice(index, 0, item);
     } else {
-      this.fields.push({
-        content: null,
-        endDate: null,
-        header: null,
-        isOngoing: null,
-        startDate: null,
-        subheader: null
-      });
+      let newItem = {};
+      itemType.getFieldNames().forEach(element => (newItem[element] = null));
+
+      this.fields.push(newItem);
     }
     this.updateRegisterComponent();
     this.forceUpdate();
