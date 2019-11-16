@@ -43,8 +43,8 @@ class Profile extends Component {
       .get(
         // "http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
         //"http://localhost:8080/api/profile/faba08aa-ffe3-11e9-8d71-362b9e155667"
-        //"http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
-        backendAddress + "api/profile/" + localStorage.getItem("userId")
+        "http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
+        //backendAddress + "api/profile/" + localStorage.getItem("userId")
       )
       .then(handleSuccess)
       .catch(function(error) {

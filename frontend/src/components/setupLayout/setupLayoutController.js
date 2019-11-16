@@ -124,6 +124,12 @@ class SetupLayoutController extends Component {
       (await axios.get(backendAddress + "api/option/getCompetency")).data
     );
 
+    let gedsInfoList = await axios.get(
+      backendAddress + "api/profGen/" + localStorage.getItem("userId")
+    );
+
+    gedsInfoList = gedsInfoList.data;
+
     this.setState({
       editProfileOptions: {
         skills: skillOptions,
@@ -163,9 +169,7 @@ class SetupLayoutController extends Component {
           (await axios.get(backendAddress + "api/option/getTenure")).data
         )
       },
-      gedsInfoList: await axios.get(
-        backendAddress + "api/profGen/" + localStorage.getItem("userId")
-      ).data
+      gedsInfoList
     });
   }
 
