@@ -124,7 +124,8 @@ class SetupLayoutController extends Component {
     this.setState({ gedsIndex: index });
   }
 
-  /*getCareerMobility,
+  /*
+  getCareerMobility,
   getCompetency,
   getDiploma,
   getGroupLevel,
