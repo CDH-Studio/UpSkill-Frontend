@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, Grid, Icon, Label, List, Menu, Popup } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
+import moment from "moment";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
 
@@ -69,6 +70,11 @@ class PrimaryLayoutGroupView extends Component {
     const yearsOfServiceLabel = intl.formatMessage({
       id: "profile.years.of.service"
     });
+    const startDateString = moment(actingPeriodStartDate).format("MMM DD YYYY");
+    const endDateString =
+      actingPeriodEndDate !== "Undefined"
+        ? moment(actingPeriodEndDate).format("MMM DD YYYY")
+        : intl.formatMessage({ id: "profile.ongoing" });
 
     // When using the medium wideness view there are 2 columns of labeled cards
     if (windowWidth <= 1250 && windowWidth > 750) {
@@ -99,7 +105,7 @@ class PrimaryLayoutGroupView extends Component {
                 )}
                 {this.renderLabeledItem(
                   actingPeriodLabel,
-                  actingPeriodStartDate + "-" + actingPeriodEndDate,
+                  startDateString + "-" + endDateString,
                   actingDisabled
                 )}
               </Grid>
@@ -132,7 +138,7 @@ class PrimaryLayoutGroupView extends Component {
           )}
           {this.renderLabeledItem(
             actingPeriodLabel,
-            actingPeriodStartDate + "-" + actingPeriodEndDate,
+            startDateString + "-" + endDateString,
             actingDisabled
           )}
         </Grid>

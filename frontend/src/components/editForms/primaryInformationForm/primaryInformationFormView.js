@@ -56,10 +56,13 @@ class PrimaryInformationFormView extends Component {
           <Form.Field width={8} {...emailProps} />
         </Form.Group>
         <Form.Field {...generateProps("location", Select)} />
+        <Form.Field {...generateProps("team", Input)} />
 
-        <Form.Field {...generateProps("linkedinUrl", Input)} />
-        <Form.Field {...generateProps("githubUrl", Input)} />
-        <Form.Field {...generateProps("twitterUrl", Input)} />
+        <Form.Group fluid widths="equal">
+          <Form.Field {...generateProps("linkedinUrl", Input)} />
+          <Form.Field {...generateProps("githubUrl", Input)} />
+          <Form.Field {...generateProps("twitterUrl", Input)} />
+        </Form.Group>
 
         <FormButtonsController
           handleApply={onSubmit}
