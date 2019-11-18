@@ -32,12 +32,13 @@ const updateProfile = async (request, response) => {
       });
     }
 
-    profile.addSkills(dbObject.skills);
-    profile.addCompetencies(dbObject.competencies);
-    profile.addDevelopmentGoal(dbObject.developmentGoals);
-    console.log("Greeting");
+    if (dbObject.skills) profile.setSkills(dbObject.skills);
+    if (dbObject.competencies) profile.setCompetencies(dbObject.competencies);
+    if (dbObject.developmentGoals)
+      profile.setDevelopmentGoal(dbObject.developmentGoals);
 
-    if (dbObject.education)
+    if (dbObject.education) {
+      Education.destroy({ where: { profileId: profile.id } });
       dbObject.education.forEach(({ school, diploma, startDate, endDate }) => {
         Education.create({
           schoolId: school,
@@ -48,8 +49,10 @@ const updateProfile = async (request, response) => {
           profile.addEducation(education);
         });
       });
+    }
 
-    if (dbObject.experience)
+    if (dbObject.experience) {
+      Experience.destroy({ where: { profileId: profile.id } });
       dbObject.experience.forEach(exp => {
         Experience.create({
           organization: exp.subheader,
@@ -61,8 +64,10 @@ const updateProfile = async (request, response) => {
           profile.addExperience(experience);
         });
       });
+    }
 
-    if (dbObject.projects)
+    if (dbObject.projects) {
+      Project.destroy({ where: { profileId: profile.id } });
       dbObject.projects.forEach(project => {
         Project.create({
           description: project
@@ -70,6 +75,21 @@ const updateProfile = async (request, response) => {
           profile.addProfileProject(project);
         });
       });
+    }
+
+    if (dbObject.organizations) {
+      ProfileOrganization.destroy({ where: { profileId: profile.id } });
+      dbObject.organizations.forEach(({ description: { en, fr }, tier }) => {
+        ProfileOrganization.create({
+          descriptionEn: en,
+          descriptionFr: fr,
+          tier
+        }).then(organization => {
+          profile.addProfileOrganization(organization);
+        });
+      });
+    }
+
     console.log("dbOject", dbObject);
 
     if (updated) {

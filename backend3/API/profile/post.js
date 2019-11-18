@@ -16,8 +16,6 @@ const createProfile = async (request, response) => {
     dbObject[mappedValues[key] ? mappedValues[key] : key] = value;
   }
 
-  console.log("dbOject", dbObject);
-
   dbObject.jobTitleEn = dbObject.jobTitle.en;
   dbObject.jobTitleFr = dbObject.jobTitle.fr;
 
@@ -27,11 +25,13 @@ const createProfile = async (request, response) => {
       { returning: true }
     );
 
-    profile.addSkills(dbObject.skills);
-    profile.addCompetencies(dbObject.competencies);
-    profile.addDevelopmentGoal(dbObject.developmentGoals);
+    if (dbObject.skills) profile.setSkills(dbObject.skills);
+    if (dbObject.competencies) profile.setCompetencies(dbObject.competencies);
+    if (dbObject.developmentGoals)
+      profile.setDevelopmentGoal(dbObject.developmentGoals);
 
-    if (dbObject.education)
+    if (dbObject.education) {
+      Education.destroy({ where: { profileId: profile.id } });
       dbObject.education.forEach(({ school, diploma, startDate, endDate }) => {
         Education.create({
           schoolId: school,
@@ -42,8 +42,10 @@ const createProfile = async (request, response) => {
           profile.addEducation(education);
         });
       });
+    }
 
-    if (dbObject.experience)
+    if (dbObject.experience) {
+      Experience.destroy({ where: { profileId: profile.id } });
       dbObject.experience.forEach(exp => {
         Experience.create({
           organization: exp.subheader,
@@ -55,8 +57,10 @@ const createProfile = async (request, response) => {
           profile.addExperience(experience);
         });
       });
+    }
 
-    if (dbObject.projects)
+    if (dbObject.projects) {
+      Project.destroy({ where: { profileId: profile.id } });
       dbObject.projects.forEach(project => {
         Project.create({
           description: project
@@ -64,15 +68,17 @@ const createProfile = async (request, response) => {
           profile.addProfileProject(project);
         });
       });
+    }
 
     if (dbObject.organizations) {
+      ProfileOrganization.destroy({ where: { profileId: profile.id } });
       dbObject.organizations.forEach(({ description: { en, fr }, tier }) => {
         ProfileOrganization.create({
           descriptionEn: en,
           descriptionFr: fr,
           tier
-        }).then(organiztion => {
-          profile.addProfileOrganization(organiztion);
+        }).then(organization => {
+          profile.addProfileOrganization(organization);
         });
       });
     }

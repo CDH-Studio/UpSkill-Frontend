@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   profileOrganization.associate = function(models) {
-    profileOrganization.belongsTo(models.profile);
+    profileOrganization.belongsTo(models.profile, {
+      onDelete: "CASCADE"
+    });
   };
   return profileOrganization;
 };
