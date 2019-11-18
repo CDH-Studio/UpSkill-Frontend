@@ -32,7 +32,6 @@ export const generateCommonProps = (props, name, control, tempField) => {
     label: intl.formatMessage({ id: intlId }),
     name: name,
     onChange: tempField ? onTempFieldChange : onFieldChange,
-    placeholder: profileInfo[name],
     disabled: hasGedsValue,
     className: hasGedsValue ? "gedsField" : ""
   };
@@ -49,6 +48,7 @@ export const generateCommonProps = (props, name, control, tempField) => {
       profileInfo[name] && (profileInfo[name].id || profileInfo[name]);
     commonProps.options = editProfileOptions[name];
   } else if (control === Input) {
+    commonProps.placeholder = profileInfo[name];
     commonProps.defaultValue = hasGedsValue
       ? gedsInfo[name]
       : profileInfo[name];
