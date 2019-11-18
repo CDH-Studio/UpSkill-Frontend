@@ -72,14 +72,14 @@ class App extends Component {
 
   componentDidMount() {
     const keycloak = Keycloak("/keycloak.json");
-    /*keycloak
+    keycloak
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
         this.renderRedirect().then(redirect => {
           this.setState({ redirect: redirect });
         });
-      });*/
+      });
   }
 
   goto = link => history.push(link);
@@ -91,10 +91,8 @@ class App extends Component {
     }
 
     const keycloak = this.state.keycloak;
-    if (true) {
-      //keycloak) {
-      if (true) {
-        //this.state.authenticated) {
+    if (keycloak) {
+      if (this.state.authenticated) {
         console.log(keycloak);
         return (
           <IntlProvider
