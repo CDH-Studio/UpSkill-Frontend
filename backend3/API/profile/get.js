@@ -217,8 +217,11 @@ const getProfileById = async (request, response) => {
     },
     skills,
     tenure: {
-      en: tenure ? tenure.descriptionEn : null,
-      fr: tenure ? tenure.descriptionFr : null
+      id: tenure ? tenure.id : null,
+      description: {
+        en: tenure ? tenure.descriptionEn : null,
+        fr: tenure ? tenure.descriptionFr : null
+      }
     },
     talentMatrixResult: {
       id: talentMatrixResult ? talentMatrixResult.id : null,

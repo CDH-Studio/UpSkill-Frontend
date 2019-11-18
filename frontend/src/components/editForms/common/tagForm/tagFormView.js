@@ -72,11 +72,14 @@ class EditTagFormView extends Component {
     }
 
     const dropdownOptions = useCustomTags
-      ? profileInfo[dropdownName].map(projectName => ({
-          value: projectName.text,
-          key: projectName.text,
-          text: projectName.text
-        }))
+      ? [
+          ...(profileInfo[dropdownName] || []).map(projectName => ({
+            value: projectName.text,
+            key: projectName.text,
+            text: projectName.text
+          })),
+          ...this.state.addedItems
+        ]
       : editProfileOptions[dropdownName] || [];
 
     return (

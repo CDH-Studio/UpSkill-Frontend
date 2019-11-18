@@ -51,10 +51,9 @@ class PrimaryLayoutGroupView extends Component {
       actingPeriodStartDate,
       classification,
       security,
-      //tenure,
+      tenure,
       yearsOfService
     } = profileInfo;
-    let tenure = { description: "imbroken", id: "aaaa-ssss-ssssssss-aaaa" };
 
     const actingDisabled = !(acting && actingPeriodStartDate);
 
