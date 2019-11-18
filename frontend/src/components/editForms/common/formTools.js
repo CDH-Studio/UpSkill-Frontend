@@ -106,8 +106,8 @@ export default class FormManagingComponent extends Component {
       })
       .catch(function(error) {
         console.log(error);
-      })
-      .then(window.location.reload());
+      });
+    // .then(window.location.reload());
   }
 
   getCurrentValue(name) {
