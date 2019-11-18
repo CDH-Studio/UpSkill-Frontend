@@ -42,7 +42,10 @@ module.exports = {
           lastName: {
             type: Sequelize.STRING
           },
-          jobTitle: {
+          jobTitleEn: {
+            type: Sequelize.STRING
+          },
+          jobTitleFr: {
             type: Sequelize.STRING
           },
           telephone: {
@@ -65,6 +68,12 @@ module.exports = {
           },
           yearService: {
             type: Sequelize.INTEGER
+          },
+          actingStartDate: {
+            type: Sequelize.DATE
+          },
+          actingEndDate: {
+            type: Sequelize.DATE
           },
           linkedin: {
             type: Sequelize.STRING

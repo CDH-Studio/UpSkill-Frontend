@@ -36,8 +36,6 @@ const getGedsAssist = async (request, response) => {
         profile.telephone = gedsProfile.phoneNumber;
         profile.cellphone = gedsProfile.altPhoneNumber;
 
-        console.log(gedsProfile);
-
         let organizations = gedsProfile.organizations.map(
           ({ organization }, i) => {
             return { description: organization.description, tier: i };

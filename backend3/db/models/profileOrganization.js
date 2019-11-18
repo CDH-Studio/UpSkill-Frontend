@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const profileOrganization = sequelize.define(
     "profileOrganization",
     {
-      description_en: DataTypes.STRING,
-      description_fr: DataTypes.STRING,
+      descriptionEn: DataTypes.STRING,
+      descriptionFr: DataTypes.STRING,
       tier: DataTypes.INTEGER
     },
     {}

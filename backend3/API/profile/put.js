@@ -70,6 +70,7 @@ const updateProfile = async (request, response) => {
           profile.addProfileProject(project);
         });
       });
+    console.log("dbOject", dbObject);
 
     if (updated) {
       return response.status(200).json(profile);

@@ -204,7 +204,7 @@ class App extends Component {
         return <div>Unable to authenticate!</div>;
       }
     }
-    return <div>APP FAIL</div>;
+    return <div>Loading ...</div>;
   }
   //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   copyToClipboard = e => {
