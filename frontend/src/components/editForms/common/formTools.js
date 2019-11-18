@@ -106,9 +106,9 @@ export default class FormManagingComponent extends Component {
       })
       .catch(function(error) {
         console.log(error);
-      });
+      })
+      .then(window.location.reload());
     this.fields = {};
-    window.location.reload();
   }
 
   getCurrentValue(name) {

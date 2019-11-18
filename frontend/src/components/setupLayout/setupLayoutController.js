@@ -86,7 +86,7 @@ class SetupLayoutController extends Component {
       })
     );
 
-    //this.getSetupData();
+    this.getSetupData();
   }
 
   render() {
@@ -182,9 +182,11 @@ class SetupLayoutController extends Component {
       (await axios.get(backendAddress + "api/option/getCompetency")).data
     );
 
-    let gedsInfoList = await axios.get(
+    let owo = await axios.get(
       backendAddress + "api/profGen/" + localStorage.getItem("userId")
-    ).data;
+    );
+    console.log("ow", owo);
+    let gedsInfoList = owo.data;
 
     let epo = {
       skills: skillOptions,
@@ -230,7 +232,6 @@ class SetupLayoutController extends Component {
       editProfileOptions: epo,
       gedsInfoList
     });
-    this.forceUpdate();
   }
 
   handleRegister() {

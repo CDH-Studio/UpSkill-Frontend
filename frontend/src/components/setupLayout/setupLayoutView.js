@@ -71,7 +71,9 @@ export default class RegisterLayoutView extends Component {
                           paddingBottom: "8pt"
                         }}
                       >
-                        {element.organization[0].description}
+                        {element.organization &&
+                          element.organization.length &&
+                          element.organization[0].description}
                       </div>
                       <div style={{ fontSize: "13pt", color: "#000000" }}>
                         {element.email}
