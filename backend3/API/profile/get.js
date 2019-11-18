@@ -64,7 +64,7 @@ const getProfileById = async (request, response) => {
   console.log("PROJECTS: ", projects);
 
   let education = await profile.getEducation();
-  let educations = async () => {
+  let educations = () => {
     return Promise.all(
       education.map(async educ => {
         let startDate = moment(educ.startDate);
@@ -98,6 +98,26 @@ const getProfileById = async (request, response) => {
   };
 
   let educArray = await educations();
+
+  let branch;
+
+  let organizationList = await profile
+    .getProfileOrganizations({ order: [["tier", "DESC"]] })
+    .then(organizations => {
+      let branchOrg = organizations[Math.min(2, organizations.length - 1)];
+      branch = {
+        en: branchOrg.descriptionEn,
+        fr: branchOrg.descriptionFr
+      };
+
+      let orgList = organizations.map(organization => {
+        return {
+          en: organization.descriptionEn,
+          fr: organization.descriptionFr
+        };
+      });
+      return orgList;
+    });
 
   let skills = await profile.getSkills().map(skill => {
     if (skill)
@@ -144,7 +164,7 @@ const getProfileById = async (request, response) => {
     },
     actingPeriodStartDate: data.actingStartDate,
     actingPeriodEndDate: data.actingEndDate,
-    branch: "Chief Information Office Branch",
+    branch,
     careerMobility: {
       id: careerMobility ? careerMobility.id : null,
       description: {
@@ -157,7 +177,10 @@ const getProfileById = async (request, response) => {
     developmentalGoals,
     education: educArray,
     email: data.email,
-    firstLanguage: "English",
+    firstLanguage:
+      data.firstLanguage == "fr"
+        ? { en: "French", fr: "Français" }
+        : { en: "English", fr: "Anglais" },
     firstName: data.firstName,
     githubUrl: data.github,
     gradedOnSecondLanguage: true,
@@ -165,7 +188,7 @@ const getProfileById = async (request, response) => {
       id: groupLevel ? groupLevel.id : null,
       description: groupLevel ? groupLevel.description : null
     },
-    jobTitle: data.jobTitle,
+    jobTitle: { en: data.jobTitleEn, fr: data.jobTitleFr },
     lastName: data.lastName,
     linkedinUrl: data.linkedin,
     location: {
@@ -189,13 +212,7 @@ const getProfileById = async (request, response) => {
     },
     manager: data.manager,
     cellphone: data.cellphone,
-    organizationList: [
-      "ABC Directorate",
-      "ABC Division",
-      "Chief Information Office Branch",
-      "Digital Transformation Service Sector",
-      "Innovation, Science and Economic Development Canada"
-    ],
+    organizationList,
     PO: "K1A 0H5",
     secondaryOralDate: secLangProf ? secLangProf.oralDate : null,
     secondaryOralProficiency: secLangProf ? secLangProf.oralProficiency : null,

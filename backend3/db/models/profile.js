@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
-      jobTitle: DataTypes.STRING,
+      jobTitleEn: DataTypes.STRING,
+      jobTitleFr: DataTypes.STRING,
       telephone: DataTypes.STRING,
       cellphone: DataTypes.STRING,
       manager: DataTypes.STRING,
@@ -13,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       firstLanguage: DataTypes.STRING,
       secondLanguage: DataTypes.STRING,
       yearService: DataTypes.INTEGER,
+      actingStartDate: DataTypes.DATE,
+      actingEndDate: DataTypes.DATE,
       linkedin: DataTypes.STRING,
       github: DataTypes.STRING,
       twitter: DataTypes.STRING

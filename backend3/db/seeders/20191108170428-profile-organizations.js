@@ -10,8 +10,8 @@ module.exports = {
       "profileOrganizations",
       [
         {
-          description_en: "Innovation, Science and Economic Development Canada",
-          description_fr:
+          descriptionEn: "Innovation, Science and Economic Development Canada",
+          descriptionFr:
             "Innovation, Sciences et Développement économique Canada",
           tier: "0",
           createdAt: new Date(),
@@ -19,40 +19,40 @@ module.exports = {
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "DIGITAL TRANSFORMATION SERVICE SECTOR",
-          description_fr: "SECTEUR DES SERVICES DE TRANSFORMATION NUMERIQUE",
+          descriptionEn: "DIGITAL TRANSFORMATION SERVICE SECTOR",
+          descriptionFr: "SECTEUR DES SERVICES DE TRANSFORMATION NUMERIQUE",
           tier: "1",
           createdAt: new Date(),
           updatedAt: new Date(),
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "Chief Information Office",
-          description_fr: "Bureau de l'information en chef",
+          descriptionEn: "Chief Information Office",
+          descriptionFr: "Bureau de l'information en chef",
           tier: "2",
           createdAt: new Date(),
           updatedAt: new Date(),
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "Digital Services Division",
-          description_fr: "Division des services numériques",
+          descriptionEn: "Digital Services Division",
+          descriptionFr: "Division des services numériques",
           tier: "3",
           createdAt: new Date(),
           updatedAt: new Date(),
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "Business Line Solutions Directorate",
-          description_fr: "Direction des solutions métiers",
+          descriptionEn: "Business Line Solutions Directorate",
+          descriptionFr: "Direction des solutions métiers",
           tier: "4",
           createdAt: new Date(),
           updatedAt: new Date(),
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "Innovation, Science and Economic Development Canada",
-          description_fr:
+          descriptionEn: "Innovation, Science and Economic Development Canada",
+          descriptionFr:
             "Innovation, Sciences et Développement économique Canada",
           tier: "0",
           createdAt: new Date(),
@@ -60,32 +60,32 @@ module.exports = {
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "DIGITAL TRANSFORMATION SERVICE SECTOR",
-          description_fr: "SECTEUR DES SERVICES DE TRANSFORMATION NUMERIQUE",
+          descriptionEn: "DIGITAL TRANSFORMATION SERVICE SECTOR",
+          descriptionFr: "SECTEUR DES SERVICES DE TRANSFORMATION NUMERIQUE",
           tier: "1",
           createdAt: new Date(),
           updatedAt: new Date(),
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "Chief Information Office",
-          description_fr: "Bureau de l'information en chef",
+          descriptionEn: "Chief Information Office",
+          descriptionFr: "Bureau de l'information en chef",
           tier: "2",
           createdAt: new Date(),
           updatedAt: new Date(),
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "Digital Services Division",
-          description_fr: "Division des services numériques",
+          descriptionEn: "Digital Services Division",
+          descriptionFr: "Division des services numériques",
           tier: "3",
           createdAt: new Date(),
           updatedAt: new Date(),
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         },
         {
-          description_en: "Director General's Office",
-          description_fr: "Bureau du directeur général",
+          descriptionEn: "Director General's Office",
+          descriptionFr: "Bureau du directeur général",
           tier: "4",
           createdAt: new Date(),
           updatedAt: new Date(),

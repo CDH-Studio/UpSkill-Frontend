@@ -22,8 +22,10 @@
   "developmentalGoals": "developmentGoals",
   "education": "education",
   "careerSummary": "experience",
+  "organizations": "organizations",
   "linkedinUrl": "linkedin",
   "githubUrl": "github",
   "twitterUrl": "twitter",
-  "projects": "projects"
+  "projects": "projects",
+  "jobTitle": "jobTitle"
 }
