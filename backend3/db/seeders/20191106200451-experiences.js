@@ -11,14 +11,10 @@ module.exports = {
         "experiences",
         [
           {
-            organizationEn: "Healt Canada",
-            organizationFr: "Santé Canada",
-            jobTitleEn: "Medical Officer",
-            jobTitleFr: "Médecin chef",
-            descriptionEn:
+            organization: "Healt Canada",
+            jobTitle: "Medical Officer",
+            description:
               "Overseeing the medical care of patients and the functions performed by medical staff",
-            descriptionFr:
-              "Superviser les soins médicaux des patients et les fonctions du personnel médical",
             startDate: new Date(),
             endDate: new Date(),
             createdAt: new Date(),
@@ -34,14 +30,10 @@ module.exports = {
           [
             {
               id: "9060e28e-ffe4-11e9-8d71-362b9e155667",
-              organizationEn: "Canada Revenue Agency",
-              organizationFr: "Agence du revenu du Canada",
-              jobTitleEn: "Financial Analyst",
-              jobTitleFr: "Analyste Financier",
-              descriptionEn:
+              organization: "Canada Revenue Agency",
+              jobTitle: "Financial Analyst",
+              description:
                 "Cancelled payments and monitored unauthorized purchases",
-              descriptionFr:
-                "Annuler des paiements et surveillés les achats non autorisés",
               startDate: new Date(),
               endDate: new Date(),
               createdAt: new Date(),
@@ -50,19 +42,15 @@ module.exports = {
             },
             {
               id: "2b7433a2-ffe5-11e9-8d71-362b9e155667",
-              organizationEn: "Bank Of Canada",
-              organizationFr: "Banque du Canada",
-              jobTitleEn: "IT Project Manager",
-              jobTitleFr: "Gestionnaire de projet TI",
-              descriptionEn:
-                "Delivered projects on time and communicated with clients",
-              descriptionFr:
+              organization: "Banque du Canada",
+              jobTitle: "Gestionnaire de projet TI",
+              description:
                 "Livrer les project à temps et maintenir le contact avec les clients",
               startDate: new Date(),
               endDate: new Date(),
               createdAt: new Date(),
               updatedAt: new Date(),
-              profileId: "6becd47a-ffe5-11e9-8d71-362b9e155667"
+              profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
             }
           ],
           {}

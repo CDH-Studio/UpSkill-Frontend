@@ -8,23 +8,14 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
-      organizationEn: {
+      organization: {
         type: Sequelize.STRING
       },
-      organizationFr: {
+      jobTitle: {
         type: Sequelize.STRING
       },
-      jobTitleEn: {
-        type: Sequelize.STRING
-      },
-      jobTitleFr: {
-        type: Sequelize.STRING
-      },
-      descriptionEn: {
-        type: Sequelize.STRING
-      },
-      descriptionFr: {
-        type: Sequelize.STRING
+      description: {
+        type: Sequelize.TEXT
       },
       startDate: {
         type: Sequelize.DATE
