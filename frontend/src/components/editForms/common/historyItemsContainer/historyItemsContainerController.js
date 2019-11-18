@@ -46,10 +46,10 @@ export default class HistoryItemsContainerController extends Component {
       })
       .catch(function(error) {
         console.log(error);
-      });
+      })
+      .then(window.location.reload());
 
     console.log("histroy form submit", { [infoName]: this.fields });
-    window.location.reload();
   }
 
   removeItem(index) {

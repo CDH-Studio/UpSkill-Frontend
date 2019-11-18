@@ -64,7 +64,7 @@ async function getEmployeeInfo(request, response) {
       }
     })
     .catch(err => {
-      console.error(err);
+      console.log(err);
       if (err.response.status == 429) {
         response.status(429).send("Limit Exceeded!");
         return;
