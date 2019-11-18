@@ -117,12 +117,7 @@ class SetupLayoutController extends Component {
     const gedsInfo = this.state.gedsInfoList[index];
     this.changes = {
       ...this.changes,
-      firstName: gedsInfo.firstName,
-      lastName: gedsInfo.lastName,
-      email: gedsInfo.email,
-      jobTitle: gedsInfo.jobTitle,
-      telephone: gedsInfo.telephone,
-      cellphone: gedsInfo.cellphone
+      ...gedsInfo
     };
 
     this.setState({ gedsIndex: index });

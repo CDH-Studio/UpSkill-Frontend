@@ -99,10 +99,14 @@ class EditTagFormView extends Component {
           }
           onChange={this.handleChange}
           onAddItem={this.handleAddItem}
-          options={[
-            ...(editProfileOptions[dropdownName] || []),
-            ...this.state.addedItems
-          ]}
+          options={
+            this.useCustomTags
+              ? profileInfo[dropdownName].map(projectName => ({
+                  value: projectName.text,
+                  text: projectName.text
+                }))
+              : [editProfileOptions[dropdownName] || []]
+          }
           allowAdditions={Boolean(useCustomTags)}
           search
         />
