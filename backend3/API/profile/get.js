@@ -44,9 +44,9 @@ const getProfileById = async (request, response) => {
     let endDate = moment(experience.endDate);
 
     return {
-      header: experience.organizationEn,
-      subheader: experience.jobTitleEn,
-      content: experience.descriptionEn,
+      header: experience.organization,
+      subheader: experience.jobTitle,
+      content: experience.description,
       startDate: startDate,
       endDate: endDate
     };

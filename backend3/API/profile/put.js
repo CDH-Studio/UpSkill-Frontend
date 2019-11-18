@@ -52,9 +52,9 @@ const updateProfile = async (request, response) => {
     if (dbObject.experience)
       dbObject.experience.forEach(exp => {
         Experience.create({
-          organizationEn: exp.subheader,
-          jobTitleEn: exp.header,
-          descriptionEn: exp.content,
+          organization: exp.subheader,
+          jobTitle: exp.header,
+          description: exp.content,
           startDate: exp.startDate,
           endDate: exp.endDate
         }).then(experience => {
