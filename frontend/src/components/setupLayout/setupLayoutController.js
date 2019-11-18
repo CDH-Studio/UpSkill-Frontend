@@ -118,7 +118,7 @@ class SetupLayoutController extends Component {
     this.changes = {
       ...this.changes,
       ...gedsInfo,
-      location: gedsInfo.location
+      location: gedsInfo.location.id
     };
 
     this.setState({ gedsIndex: index });
@@ -243,9 +243,8 @@ class SetupLayoutController extends Component {
       })
       .catch(function(error) {
         console.log(error);
-      });
-
-    redirectFunction("/");
+      })
+      .then(redirectFunction("/"));
   }
 
   setFormIndex(index) {
