@@ -158,13 +158,13 @@ class SecondaryLayoutGroupView extends Component {
           <span className="boldLabel">
             <FormattedMessage id="profile.career.mobility" />
           </span>
-          <span>{careerMobility}</span>
+          <span>{careerMobility.description}</span>
         </div>
         <div>
           <span className="boldLabel">
             <FormattedMessage id="profile.talent.matrix.result" />
           </span>
-          <span>{talentMatrixResult}</span>
+          <span>{talentMatrixResult.description}</span>
         </div>
       </ProfileCardController>
     );

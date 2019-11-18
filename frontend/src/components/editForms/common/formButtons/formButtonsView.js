@@ -10,7 +10,8 @@ export default class ModalButtonsView extends Component {
       handleCancle,
       handleNext,
       handlePrevious,
-      handleRegister
+      handleRegister,
+      isEarlyRegister
     } = this.props;
 
     return (
@@ -36,14 +37,14 @@ export default class ModalButtonsView extends Component {
             Back
           </Button>
         )}
-        {handleNext && !handleRegister && (
+        {handleNext && isEarlyRegister && (
           <Button color="blue" onClick={e => handleNext(fields)}>
             Next
           </Button>
         )}
         {handleRegister && (
           <Button color="blue" onClick={e => handleRegister()}>
-            Finish
+            {isEarlyRegister ? "Finish early" : "Finish"}
           </Button>
         )}
       </div>

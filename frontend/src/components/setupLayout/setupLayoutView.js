@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage, injectIntl } from "react-intl";
 import {
   Grid,
   Button,
@@ -22,12 +23,13 @@ export default class RegisterLayoutView extends Component {
       setFormIndex,
       profileInfo,
       gedsInfoList,
+      isEarlyRegister,
       setGedsIndex,
       formIndex,
       gedsIndex
     } = this.props;
 
-    if (editProfileOptions === null) {
+    if (editProfileOptions === null || !gedsInfoList) {
       return (
         <Dimmer active>
           <Loader />
@@ -43,14 +45,41 @@ export default class RegisterLayoutView extends Component {
           closeOnEscape={false}
         >
           <Modal.Content>
-            <Card.Group itemsPerRow={3}>
+            <h1 style={{ textAlign: "center" }}>
+              <FormattedMessage id="setup.select.geds.card" />
+            </h1>
+            <Card.Group stackable itemsPerRow={3}>
               {gedsInfoList.map((element, index) => {
                 return (
                   <Card onClick={(e, o) => setGedsIndex(index)}>
-                    <h2>{element.givenName + " " + element.surname}</h2>
-                    <h3>{element.title}</h3>
-                    <h4>{element.email}</h4>
-                    <h4>{element.phoneNumber}</h4>
+                    <Card.Content>
+                      <div style={{ fontSize: "18pt", color: "#27348b" }}>
+                        {element.firstName + " " + element.lastName}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "16pt",
+                          color: "#444444"
+                        }}
+                      >
+                        {element.jobTitle}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "13pt",
+                          color: "#000000",
+                          paddingBottom: "8pt"
+                        }}
+                      >
+                        {element.organization[0].description}
+                      </div>
+                      <div style={{ fontSize: "13pt", color: "#000000" }}>
+                        {element.email}
+                      </div>
+                      <div style={{ fontSize: "13pt", color: "#000000" }}>
+                        {element.telephone}
+                      </div>
+                    </Card.Content>
                   </Card>
                 );
               })}
@@ -67,7 +96,8 @@ export default class RegisterLayoutView extends Component {
                   handleRegister: handleRegister,
                   setFormChanges: setFormChanges,
                   editProfileOptions: editProfileOptions,
-
+                  gedsInfo: gedsInfoList[gedsIndex],
+                  isEarlyRegister: isEarlyRegister,
                   profileInfo: profileInfo,
                   handleNext: fieldsUpdate => {
                     formList[formIndex].changes = {

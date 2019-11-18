@@ -5,6 +5,8 @@ import { Form, Checkbox, Input, Select } from "semantic-ui-react";
 import { generateCommonProps } from "../common/formTools";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 
+import "../common/form.css";
+
 class ManagerFormView extends Component {
   render() {
     const {
@@ -13,6 +15,7 @@ class ManagerFormView extends Component {
       buttons,
       fields,
       onSubmit,
+      isEarlyRegister,
       handleCancle,
       handleRegister,
       handleNext,
@@ -29,6 +32,7 @@ class ManagerFormView extends Component {
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
         />
       </Form>
     );

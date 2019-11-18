@@ -6,6 +6,7 @@ import { Grid, Modal, Button } from "semantic-ui-react";
 import FormButtonsController from "../formButtons/formButtonsController";
 import HistoryItemFormController from "../historyItemForm/historyItemFormController";
 import "./historyItemsContainer.css";
+import "../form.css";
 
 class EditHistoryModalView extends Component {
   render() {
@@ -25,6 +26,7 @@ class EditHistoryModalView extends Component {
       removeItem,
       setContainerField,
       subheaderName,
+      isEarlyRegister,
       editProfileOptions,
       itemType
     } = this.props;
@@ -61,6 +63,7 @@ class EditHistoryModalView extends Component {
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
         />
       </Grid>
     );

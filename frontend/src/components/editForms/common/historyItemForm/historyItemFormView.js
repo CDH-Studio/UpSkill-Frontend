@@ -10,6 +10,7 @@ import FormButtonsController from "../formButtons/formButtonsController";
 import DateInputFieldGroup from "../../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
 
 import "./historyItemForm.css";
+import "../form.css";
 
 /*
 

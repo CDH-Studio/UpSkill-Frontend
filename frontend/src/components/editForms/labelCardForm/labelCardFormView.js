@@ -5,6 +5,7 @@ import { DateInput } from "semantic-ui-calendar-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 
 import { injectIntl } from "react-intl";
+import "../common/form.css";
 
 class LabelCardFormView extends Component {
   render() {
@@ -17,6 +18,7 @@ class LabelCardFormView extends Component {
       handleCancle,
       handleNext,
       handleRegister,
+      isEarlyRegister,
       handlePrevious,
       editProfileOptions
     } = this.props;
@@ -40,25 +42,26 @@ class LabelCardFormView extends Component {
         />
         <Form.Group>
           <Form.Field
+            {...generateProps("actingStartDate", DateInput)}
             width={6}
             disabled={actingDisabled}
-            {...generateProps("actingStartDate", DateInput)}
           />
 
           <Form.Field
+            {...generateProps("actingHasEndDate", Checkbox, true)}
             width={4}
             disabled={actingDisabled}
-            {...generateProps("actingHasEndDate", Checkbox, true)}
           />
 
           <Form.Field
+            {...generateProps("actingEndDate", DateInput)}
             width={6}
             disabled={actingEndDisabled}
-            {...generateProps("actingEndDate", DateInput)}
           />
         </Form.Group>
         <FormButtonsController
           handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
           handleApply={onSubmit}
           handleCancle={handleCancle}
           handleNext={handleNext}

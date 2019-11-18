@@ -6,6 +6,8 @@ import FormButtonsController from "../common/formButtons/formButtonsController";
 
 import { FormattedMessage, injectIntl } from "react-intl";
 
+import "../common/form.css";
+
 class PrimaryInformationFormView extends Component {
   render() {
     const {
@@ -16,10 +18,30 @@ class PrimaryInformationFormView extends Component {
       handleCancle,
       handleNext,
       handlePrevious,
+      isEarlyRegister,
       handleRegister,
       onSubmit
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
+
+    let emailProps = generateProps("email", Input);
+    emailProps.defaultValue &&
+      emailProps.defaultValue.replace("@canada.ca", "");
+    emailProps.labelPosition = "right";
+    emailProps.type = {
+      label: (
+        <Dropdown
+          defaultValue="@canada.ca"
+          options={[
+            {
+              key: "@canada.ca",
+              text: "@canada.ca",
+              value: "@canada.ca"
+            }
+          ]}
+        />
+      )
+    };
 
     return (
       <Form onSubmit={onSubmit}>
@@ -31,30 +53,7 @@ class PrimaryInformationFormView extends Component {
         <Form.Group fluid>
           <Form.Field width={4} {...generateProps("telephone", Input)} />
           <Form.Field width={4} {...generateProps("cellphone", Input)} />
-          <Form.Field width={8}>
-            <label>
-              <FormattedMessage id="profile.email" />
-            </label>
-            <Input
-              defaultValue={(this.props.profileInfo["email"] || "").replace(
-                "@canada.ca",
-                ""
-              )}
-              label={
-                <Dropdown
-                  defaultValue="@canada.ca"
-                  options={[
-                    {
-                      key: "@canada.ca",
-                      text: "@canada.ca",
-                      value: "@canada.ca"
-                    }
-                  ]}
-                />
-              }
-              labelPosition="right"
-            />
-          </Form.Field>
+          <Form.Field width={8} {...emailProps} />
         </Form.Group>
         <Form.Field {...generateProps("location", Select)} />
 
@@ -68,6 +67,7 @@ class PrimaryInformationFormView extends Component {
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
         />
       </Form>
     );

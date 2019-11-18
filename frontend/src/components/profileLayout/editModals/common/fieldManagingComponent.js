@@ -22,6 +22,7 @@ export default class FieldManagingComponent extends Component {
         console.log(error);
       });
     this.fields = {};
+    Location.reload();
   }
 
   updateField(e, o) {

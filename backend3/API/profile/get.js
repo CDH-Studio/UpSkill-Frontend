@@ -38,6 +38,10 @@ const getProfileById = async (request, response) => {
     if (res) return res.dataValues;
   });
 
+  let location = await profile.getLocation().then(res => {
+    if (res) return res.dataValues;
+  });
+
   let experiences = await profile.getExperiences();
   let careerSummary = experiences.map(experience => {
     let startDate = moment(experience.startDate);
@@ -134,18 +138,22 @@ const getProfileById = async (request, response) => {
 
   //Response Object
   let resData = {
-    acting: acting ? acting.description : null,
+    acting: {
+      id: acting ? acting.id : null,
+      description: acting ? acting.description : null
+    },
     actingPeriodStartDate: data.actingStartDate,
     actingPeriodEndDate: data.actingEndDate,
     branch: "Chief Information Office Branch",
     careerMobility: {
-      en: careerMobility ? careerMobility.descriptionEn : null,
-      fr: careerMobility ? careerMobility.descriptionFr : null
+      id: careerMobility ? careerMobility.id : null,
+      description: {
+        en: careerMobility ? careerMobility.descriptionEn : null,
+        fr: careerMobility ? careerMobility.descriptionFr : null
+      }
     },
     careerSummary,
-    city: "Ontario",
     competencies,
-    country: "Canada",
     developmentalGoals,
     education: educArray,
     email: data.email,
@@ -153,11 +161,32 @@ const getProfileById = async (request, response) => {
     firstName: data.firstName,
     githubUrl: data.github,
     gradedOnSecondLanguage: true,
-    classification: groupLevel ? groupLevel.description : null,
+    classification: {
+      id: groupLevel ? groupLevel.id : null,
+      description: groupLevel ? groupLevel.description : null
+    },
     jobTitle: data.jobTitle,
     lastName: data.lastName,
     linkedinUrl: data.linkedin,
-    location: data.location,
+    location: {
+      id: location ? location.id : null,
+      description: {
+        en: location
+          ? location.addressEn +
+            ", " +
+            location.city +
+            ", " +
+            location.provinceEn
+          : null,
+        fr: location
+          ? location.addressFr +
+            ", " +
+            location.city +
+            ", " +
+            location.provinceFr
+          : null
+      }
+    },
     manager: data.manager,
     cellphone: data.cellphone,
     organizationList: [
@@ -168,7 +197,6 @@ const getProfileById = async (request, response) => {
       "Innovation, Science and Economic Development Canada"
     ],
     PO: "K1A 0H5",
-    province: "Ottawa",
     secondaryOralDate: secLangProf ? secLangProf.oralDate : null,
     secondaryOralProficiency: secLangProf ? secLangProf.oralProficiency : null,
     secondaryReadingDate: secLangProf ? secLangProf.readingDate : null,
@@ -181,18 +209,23 @@ const getProfileById = async (request, response) => {
       : null,
     secondLanguage: null,
     security: {
-      en: securityClearance ? securityClearance.descriptionEn : null,
-      fr: securityClearance ? securityClearance.descriptionFr : null
+      id: securityClearance ? securityClearance.id : null,
+      description: {
+        en: securityClearance ? securityClearance.descriptionEn : null,
+        fr: securityClearance ? securityClearance.descriptionFr : null
+      }
     },
     skills,
     tenure: {
       en: tenure ? tenure.descriptionEn : null,
       fr: tenure ? tenure.descriptionFr : null
     },
-    street: "235 Queen Street",
     talentMatrixResult: {
-      en: talentMatrixResult ? talentMatrixResult.descriptionEn : null,
-      fr: talentMatrixResult ? talentMatrixResult.descriptionFr : null
+      id: talentMatrixResult ? talentMatrixResult.id : null,
+      description: {
+        en: talentMatrixResult ? talentMatrixResult.descriptionEn : null,
+        fr: talentMatrixResult ? talentMatrixResult.descriptionFr : null
+      }
     },
     team: data.team,
     telephone: data.telephone,

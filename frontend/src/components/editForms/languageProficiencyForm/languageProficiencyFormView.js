@@ -4,6 +4,7 @@ import { Checkbox, Form, Grid, Select } from "semantic-ui-react";
 import { injectIntl } from "react-intl";
 import { DateInput } from "semantic-ui-calendar-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
+import "../common/form.css";
 
 class LanguageProficiencyFormView extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class LanguageProficiencyFormView extends Component {
       handleNext,
       handlePrevious,
       handleRegister,
+      isEarlyRegister,
       onSubmit,
       intl
     } = this.props;
@@ -63,6 +65,7 @@ class LanguageProficiencyFormView extends Component {
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
         />
       </Form>
     );
