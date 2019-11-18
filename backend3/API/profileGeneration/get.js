@@ -407,9 +407,7 @@ const getGedsAssist = async (request, response) => {
         profile.telephone = gedsProfile.phoneNumber;
         profile.cellphone = gedsProfile.altPhoneNumber;
 
-        console.log(gedsProfile);
-
-        let organizations = gedsProfile.organization.map(
+        let organizations = gedsProfile.organizations.map(
           ({ organization }, i) => {
             return { description: organization.description, tier: i };
           }
@@ -420,7 +418,7 @@ const getGedsAssist = async (request, response) => {
         let location = await Location.findOne({
           where: {
             postalCode:
-              gedsProfile.organization[gedsProfile.organization.length - 1]
+              gedsProfile.organizations[gedsProfile.organizations.length - 1]
                 .organization.addressInformation.pc
           }
         }).then(res => {

@@ -15,7 +15,7 @@ const createProfile = async (req, res) => {
     dbObject[mappedValues[key]] = value;
   }
 
-  console.log(dbObject);
+  console.log("dbOject", dbObject);
   try {
     const [profile, created] = await Profile.upsert(
       { id, ...dbObject },
