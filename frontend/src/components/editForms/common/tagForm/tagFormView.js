@@ -17,7 +17,7 @@ class EditTagFormView extends Component {
       addedItems: [],
       currentValue: profileInfo[dropdownName]
         ? profileInfo[dropdownName].map(
-            element => element.value || element.text
+            element => element.value || element.text || element
           ) //if useCustomTags needs to use text as value, otherwise use the value property
         : []
     };
@@ -68,16 +68,19 @@ class EditTagFormView extends Component {
     } else {
       valueProp["defaultValue"] =
         profileInfo[dropdownName] &&
-        profileInfo[dropdownName].map(element => element.value); //if a dropdown uses custom tags it profile info contains an array of objects with .text, otherwise we use .value
+        profileInfo[dropdownName].map(element => element.value || element); //if a dropdown uses custom tags it profile info contains an array of objects with .text, otherwise we use .value
     }
 
     const dropdownOptions = useCustomTags
       ? [
-          ...(profileInfo[dropdownName] || []).map(projectName => ({
-            value: projectName.text,
-            key: projectName.text,
-            text: projectName.text
-          })),
+          ...(profileInfo[dropdownName] || []).map(projectName => {
+            let projectValue = projectName.text || projectName;
+            return {
+              value: projectValue,
+              key: projectValue,
+              text: projectValue
+            };
+          }),
           ...this.state.addedItems
         ]
       : editProfileOptions[dropdownName] || [];
