@@ -51,9 +51,10 @@ class PrimaryLayoutGroupView extends Component {
       actingPeriodStartDate,
       classification,
       security,
-      tenure,
+      //tenure,
       yearsOfService
     } = profileInfo;
+    let tenure = { description: "imbroken", id: "aaaa-ssss-ssssssss-aaaa" };
 
     const actingDisabled = !(acting && actingPeriodStartDate);
 
@@ -81,15 +82,22 @@ class PrimaryLayoutGroupView extends Component {
           <Grid>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(tenureLabel, tenure)}
-                {this.renderLabeledItem(securityLabel, security)}
-                {this.renderLabeledItem(actingLabel, acting, actingDisabled)}
+                {this.renderLabeledItem(tenureLabel, tenure.description)}
+                {this.renderLabeledItem(securityLabel, security.description)}
+                {this.renderLabeledItem(
+                  actingLabel,
+                  acting.description,
+                  actingDisabled
+                )}
               </Grid>
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid>
                 {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
-                {this.renderLabeledItem(classificationLabel, classification)}
+                {this.renderLabeledItem(
+                  classificationLabel,
+                  classification.description
+                )}
                 {this.renderLabeledItem(
                   actingPeriodLabel,
                   actingPeriodStartDate + "-" + actingPeriodEndDate,
@@ -111,11 +119,18 @@ class PrimaryLayoutGroupView extends Component {
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
-          {this.renderLabeledItem(tenureLabel, tenure)}
+          {this.renderLabeledItem(tenureLabel, tenure.description)}
           {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
-          {this.renderLabeledItem(securityLabel, security)}
-          {this.renderLabeledItem(classificationLabel, classification)}
-          {this.renderLabeledItem(actingLabel, acting, actingDisabled)}
+          {this.renderLabeledItem(securityLabel, security.description)}
+          {this.renderLabeledItem(
+            classificationLabel,
+            classification.description
+          )}
+          {this.renderLabeledItem(
+            actingLabel,
+            acting.description,
+            actingDisabled
+          )}
           {this.renderLabeledItem(
             actingPeriodLabel,
             actingPeriodStartDate + "-" + actingPeriodEndDate,
@@ -229,7 +244,7 @@ class PrimaryLayoutGroupView extends Component {
                   </div>
                   <div>{email}</div>
 
-                  <div>{location}</div>
+                  <div>{location.description}</div>
                 </div>
               </Grid.Row>
             </Grid>

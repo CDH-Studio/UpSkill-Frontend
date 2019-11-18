@@ -5,6 +5,7 @@ import { Dropdown, Form, Label } from "semantic-ui-react";
 import FormButtonsController from "../formButtons/formButtonsController";
 import { generateCommonProps } from "../formTools";
 //import "./editTagFormModal.css";
+import "../form.css";
 
 class EditTagFormView extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class EditTagFormView extends Component {
       handleNext,
       handlePrevious,
       handleRegister,
+      isEarlyRegister,
       intl,
       onSubmit,
       profileInfo,
@@ -62,9 +64,9 @@ class EditTagFormView extends Component {
     if (useCustomTags) {
       valueProp["value"] = this.state.currentValue;
     } else {
-      valueProp["defaultValue"] = profileInfo[dropdownName].map(
-        element => element.value
-      );
+      valueProp["defaultValue"] =
+        profileInfo[dropdownName] &&
+        profileInfo[dropdownName].map(element => element.value);
     }
 
     return (
@@ -111,6 +113,7 @@ class EditTagFormView extends Component {
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
         />
       </React.Fragment>
     );

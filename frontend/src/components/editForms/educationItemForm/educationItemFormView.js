@@ -7,6 +7,7 @@ import { injectIntl } from "react-intl";
 import DateInputFieldGroup from "../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
 
 import "./historyItemForm.css";
+import "../common/form.css";
 
 class EducationItemFormView extends Component {
   constructor(props) {

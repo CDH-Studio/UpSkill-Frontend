@@ -3,6 +3,10 @@ import SetupLayoutController from "../components/setupLayout/setupLayoutControll
 
 export default class Setup extends Component {
   render() {
-    return <SetupLayoutController />;
+    return (
+      <SetupLayoutController
+        redirectFunction={link => this.props.history.push(link)}
+      />
+    );
   }
 }

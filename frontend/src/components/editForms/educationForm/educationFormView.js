@@ -4,6 +4,8 @@ import HistoryItemsContainerController from "../common/historyItemsContainer/his
 import EducationItemForm from "../educationItemForm/educationItemFormController";
 import { injectIntl } from "react-intl";
 
+import "../common/form.css";
+
 class EducationFormView extends Component {
   render() {
     const { intl } = this.props;

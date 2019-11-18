@@ -5,6 +5,7 @@ import { DateInput } from "semantic-ui-calendar-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 import { injectIntl } from "react-intl";
 
+import "../common/form.css";
 class TalentManagementFormView extends Component {
   render() {
     const {
@@ -13,6 +14,7 @@ class TalentManagementFormView extends Component {
       buttons,
       fields,
       handleCancle,
+      isEarlyRegister,
       handleNext,
       handlePrevious,
       handleRegister,
@@ -31,6 +33,7 @@ class TalentManagementFormView extends Component {
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
         />
       </Form>
     );

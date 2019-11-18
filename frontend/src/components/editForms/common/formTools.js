@@ -14,6 +14,7 @@ export const generateCommonProps = (props, name, control, tempField) => {
     getCurrentValue,
     intl,
     onFieldChange,
+    gedsInfo,
     onTempFieldChange,
     profileInfo,
     updateField
@@ -21,6 +22,9 @@ export const generateCommonProps = (props, name, control, tempField) => {
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
   let intlId = "profile." + name.replace(/([A-Z])/g, ".$1").toLowerCase();
+  const hasGedsValue =
+    gedsInfo &&
+    ((name == "email" && gedsInfo["email"] !== "") || Boolean(gedsInfo[name]));
 
   let commonProps = {
     control: control,
@@ -28,7 +32,9 @@ export const generateCommonProps = (props, name, control, tempField) => {
     label: intl.formatMessage({ id: intlId }),
     name: name,
     onChange: tempField ? onTempFieldChange : onFieldChange,
-    placeholder: profileInfo[name]
+    placeholder: profileInfo[name],
+    disabled: hasGedsValue,
+    className: hasGedsValue ? "gedsField" : ""
   };
 
   /*if (dropdownControl) {
@@ -43,15 +49,16 @@ export const generateCommonProps = (props, name, control, tempField) => {
       profileInfo[name] && (profileInfo[name].id || profileInfo[name]);
     commonProps.options = editProfileOptions[name];
   } else if (control === Input) {
-    commonProps.defaultValue = profileInfo[name];
+    commonProps.defaultValue = hasGedsValue
+      ? gedsInfo[name]
+      : profileInfo[name];
   } else if (control === DateInput) {
     let currentValue = getCurrentValue(name);
     commonProps.value = currentValue
       ? moment(currentValue).format("MMM DD YYYY")
       : null;
     commonProps.iconPosition = "right";
-    commonProps.closable = true;
-    commonProps.dateFormat = "MMM DD YYYY";
+    commonProps.closable = commonProps.dateFormat = "MMM DD YYYY";
   }
 
   return commonProps;
@@ -101,6 +108,7 @@ export default class FormManagingComponent extends Component {
         console.log(error);
       });
     this.fields = {};
+    window.location.reload();
   }
 
   getCurrentValue(name) {
