@@ -37,10 +37,6 @@ export default class RegisterLayoutView extends Component {
       );
     }
 
-    if (!gedsInfoList) {
-      let err = gedsInfoList["fuck"]["my"]["shit"]["up"];
-    }
-
     return (
       <React.Fragment>
         <Modal
