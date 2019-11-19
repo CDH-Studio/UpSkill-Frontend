@@ -63,7 +63,11 @@ class SetupLayoutController extends Component {
   constructor(props) {
     super(props);
 
-    const { intl } = this.props;
+    const { intl, keycloak } = this.props;
+
+    keycloak
+      .loadUserInfo()
+      .then(async userInfo => this.setState({ email: userInfo.email }));
 
     this.state = {
       formIndex: 0,
@@ -118,7 +122,8 @@ class SetupLayoutController extends Component {
     this.changes = {
       ...this.changes,
       ...gedsInfo,
-      location: gedsInfo.location.id
+      location: gedsInfo.location.id,
+      email: this.state.email
     };
 
     this.setState({ gedsIndex: index });
@@ -242,10 +247,10 @@ class SetupLayoutController extends Component {
       .then(function(response) {
         console.log(response);
       })
+      .then(response => redirectFunction("/"))
       .catch(function(error) {
         console.log(error);
       });
-    //.then(redirectFunction("/"));
   }
 
   setFormIndex(index) {

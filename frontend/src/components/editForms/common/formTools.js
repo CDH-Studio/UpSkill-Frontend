@@ -44,9 +44,11 @@ export const generateCommonProps = (props, name, control, tempField) => {
   if (control === Checkbox) {
     commonProps.defaultChecked = profileInfo[name];
   } else if (control === Select) {
-    commonProps.defaultValue =
+    commonProps.search = true;
+    commonProps.value =
       profileInfo[name] && (profileInfo[name].id || profileInfo[name]);
     commonProps.options = editProfileOptions[name];
+    //commonProps.disabled = false;
   } else if (control === Input) {
     commonProps.placeholder = profileInfo[name];
     commonProps.defaultValue = hasGedsValue

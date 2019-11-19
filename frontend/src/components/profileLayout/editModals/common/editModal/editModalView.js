@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Button, Dimmer, Icon, Loader, Modal } from "semantic-ui-react";
+import { Button, Dimmer, Icon, Loader, Modal, Grid } from "semantic-ui-react";
 
 import "./editModal.css";
 
@@ -82,8 +82,13 @@ class editModalView extends Component {
     if (editProfileOptions === null) {
       return (
         <Dimmer active>
-          <Loader />
-          Gathering edit options...
+          <Grid>
+            <Grid.Row>
+              <Loader />
+            </Grid.Row>
+
+            <Grid.Row>Gathering edit options...</Grid.Row>
+          </Grid>
         </Dimmer>
       );
     } else {
