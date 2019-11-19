@@ -46,7 +46,7 @@
 }
 
 .blueColoredText {
-  color: #27348b;
+  color: #27348b !important;
 }
 
 .profileCard {

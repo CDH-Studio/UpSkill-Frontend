@@ -37,8 +37,13 @@ class ProfileLayoutView extends Component {
     if (profileInfo === undefined) {
       return (
         <Dimmer active>
-          <Loader />
-          Gathering profile info...
+          <Grid>
+            <Grid.Row>
+              <Loader />
+            </Grid.Row>
+
+            <Grid.Row>Gathering profile info...</Grid.Row>
+          </Grid>
         </Dimmer>
       );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Table } from "semantic-ui-react";
+import { Grid, Table, Icon } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import moment from "moment";
 
@@ -152,6 +152,11 @@ class SecondaryLayoutGroupView extends Component {
       <ProfileCardController
         button={EditTalentManagementController}
         cardName={intl.formatMessage({ id: "profile.talent.manager" })}
+        cardIcon={
+          <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
+            <Icon name="external alternate" />
+          </a>
+        }
         className="noGapBelow"
       >
         <div>

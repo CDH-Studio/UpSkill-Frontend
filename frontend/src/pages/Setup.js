@@ -6,6 +6,7 @@ export default class Setup extends Component {
     return (
       <SetupLayoutController
         redirectFunction={link => this.props.history.push(link)}
+        keycloak={this.props.keycloak}
       />
     );
   }

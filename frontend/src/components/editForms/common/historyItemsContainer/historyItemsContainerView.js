@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Grid, Modal, Button } from "semantic-ui-react";
+import { Grid, Modal, Button, Icon } from "semantic-ui-react";
 
 //import { renderEditButton } from "../editModal/editModalView";
 import FormButtonsController from "../formButtons/formButtonsController";
@@ -54,6 +54,7 @@ class EditHistoryModalView extends Component {
               addItem();
             }}
           >
+            <Icon name="add" />
             Add Item
           </Button>
         </Grid.Row>
