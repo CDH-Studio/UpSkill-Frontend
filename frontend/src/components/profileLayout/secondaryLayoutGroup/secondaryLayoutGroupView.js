@@ -83,8 +83,7 @@ class SecondaryLayoutGroupView extends Component {
       secondaryReadingDate,
       secondaryReadingProficiency,
       secondaryWritingDate,
-      secondaryWritingProficiency,
-      exFeeder
+      secondaryWritingProficiency
     } = profileInfo;
 
     return (
@@ -139,14 +138,13 @@ class SecondaryLayoutGroupView extends Component {
             </Table.Row>
           </Table.Body>
         </Table>
-        {exFeeder && intl.formatMessage("profile.is.ex.feeder")}
       </ProfileCardController>
     );
   }
 
   renderTalentManagementCard() {
     const { intl, profileInfo } = this.props;
-    const { careerMobility, talentMatrixResult } = profileInfo;
+    const { careerMobility, talentMatrixResult, exFeeder } = profileInfo;
 
     return (
       <ProfileCardController
@@ -171,6 +169,7 @@ class SecondaryLayoutGroupView extends Component {
           </span>
           <span>{talentMatrixResult.description}</span>
         </div>
+        {exFeeder && intl.formatMessage({ id: "profile.is.ex.feeder" })}
       </ProfileCardController>
     );
   }
