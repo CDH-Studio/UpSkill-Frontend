@@ -25,28 +25,11 @@ class PrimaryInformationFormView extends Component {
     const generateProps = generateCommonProps.bind(this, this.props);
 
     let emailProps = generateProps("email", Input);
-    emailProps.defaultValue &&
-      emailProps.defaultValue.replace("@canada.ca", "");
-    emailProps.labelPosition = "right";
-    emailProps.type = {
-      label: (
-        <Dropdown
-          defaultValue="@canada.ca"
-          options={[
-            {
-              key: "@canada.ca",
-              text: "@canada.ca",
-              value: "@canada.ca"
-            }
-          ]}
-        />
-      )
-    };
 
     return (
       <Form onSubmit={onSubmit}>
         <Form.Group fluid widths="equal">
-          <Form.Field required {...generateProps("firstName", Input)} />
+          <Form.Field {...generateProps("firstName", Input)} />
           <Form.Field {...generateProps("lastName", Input)} />
         </Form.Group>
 

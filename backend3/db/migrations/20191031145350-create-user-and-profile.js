@@ -84,6 +84,9 @@ module.exports = {
           twitter: {
             type: Sequelize.STRING
           },
+          exFeeder: {
+            type: Sequelize.BOOLEAN
+          },
           createdAt: {
             allowNull: false,
             type: Sequelize.DATE

@@ -27,13 +27,13 @@ export default class LabelCardFormController extends FormManagingComponent {
 
   render() {
     const { afterSubmit, buttons } = this.props;
-    const actingDisabled = Boolean(this.getCurrentValue("isActing"));
+    const actingDisabled = !Boolean(this.getCurrentValue("isActing"));
     return (
       <LabelCardFormView
         actingDisabled={actingDisabled}
         actingEndDate={this.getCurrentValue("actingEndDate")}
         actingEndDisabled={
-          !Boolean(this.getCurrentValue("actingHasEndDate") || actingDisabled)
+          !Boolean(this.getCurrentValue("actingHasEndDate")) || actingDisabled
         }
         actingStartDate={this.getCurrentValue("actingStartDate")}
         buttons={buttons}

@@ -175,6 +175,7 @@ const getProfileById = async (request, response) => {
     developmentalGoals,
     education: educArray,
     email: data.email,
+    exFeeder: data.exFeeder,
     firstLanguage:
       data.firstLanguage == "fr"
         ? { en: "French", fr: "Français" }
