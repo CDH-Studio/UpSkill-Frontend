@@ -1,4 +1,3 @@
-const moment = require("moment");
 const Models = require("../../db/models");
 const Profile = Models.profile;
 const Education = Models.education;
@@ -11,13 +10,15 @@ const mappedValues = require("./mappedValues.json");
 const updateProfile = async (request, response) => {
   const id = request.params.id;
   const body = request.body;
-
-  console.log("BODYYYYYYYYYYYY:", body);
-
   let dbObject = {};
 
   for (let [key, value] of Object.entries(body)) {
     dbObject[mappedValues[key] ? mappedValues[key] : key] = value;
+  }
+
+  if (dbObject.jobTitleEn) {
+    dbObject.jobTitleEn = dbObject.jobTitle.en;
+    dbObject.jobTitleFr = dbObject.jobTitle.fr;
   }
 
   try {
@@ -37,8 +38,6 @@ const updateProfile = async (request, response) => {
     if (dbObject.competencies) profile.setCompetencies(dbObject.competencies);
     if (dbObject.developmentGoals)
       profile.setDevelopmentGoals(dbObject.developmentGoals);
-
-    console.log(dbObject.education);
 
     if (dbObject.education) {
       Education.destroy({ where: { profileId: profile.id } }).then(() => {
@@ -103,7 +102,14 @@ const updateProfile = async (request, response) => {
       );
     }
 
-    if (dbObject.readingProficiency) {
+    if (
+      dbObject.readingProficiency ||
+      dbObject.writingProficiency ||
+      dbObject.oralProficiency ||
+      dbObject.readingDate ||
+      dbObject.writingDate ||
+      dbObject.oralDate
+    ) {
       let secLangProf;
       secLangProf = await profile.getSecondLanguageProficiency();
       if (!secLangProf) {
@@ -132,18 +138,20 @@ const updateProfile = async (request, response) => {
           { returning: true }
         )
         .then(secLangProf => {
-          console.log("SECLANGPROF:", secLangProf);
-
           profile.setSecondLanguageProficiency(secLangProf);
         });
-    }
 
-    console.log("dbOject", dbObject);
+      if (!dbObject.gradedOnSecondLanguage) {
+        SecLang.destroy({
+          where: { id: profile.dataValues.secondLanguageProficiencyId }
+        });
+      }
 
-    if (updated) {
-      return response.status(200).json(profile);
+      if (updated) {
+        return response.status(200).json(profile);
+      }
+      throw new Error("Profile not found");
     }
-    throw new Error("Profile not found");
   } catch (error) {
     return response.status(500).send(error.message);
   }
