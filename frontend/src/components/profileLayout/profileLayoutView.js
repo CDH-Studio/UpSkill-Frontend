@@ -38,6 +38,7 @@ class ProfileLayoutView extends Component {
       return (
         <Dimmer active>
           <Loader />
+          Gathering profile info...
         </Dimmer>
       );
     }

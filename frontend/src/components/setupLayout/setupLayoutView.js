@@ -33,6 +33,7 @@ export default class RegisterLayoutView extends Component {
       return (
         <Dimmer active>
           <Loader />
+          Gathering profile options and geds info...
         </Dimmer>
       );
     }

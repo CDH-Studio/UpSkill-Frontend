@@ -83,6 +83,7 @@ class editModalView extends Component {
       return (
         <Dimmer active>
           <Loader />
+          Gathering edit options...
         </Dimmer>
       );
     } else {

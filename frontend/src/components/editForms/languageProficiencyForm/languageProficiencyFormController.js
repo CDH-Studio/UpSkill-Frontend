@@ -7,23 +7,24 @@ import LanguageProficiencyFormView from "./languageProficiencyFormView";
 export default class LanguageProficiencyFormController extends FormManagingComponent {
   constructor(props) {
     super(props);
-    const profileInfo = this.props;
+    const { profileInfo } = this.props;
 
-    this.tempFields["gradedOnSecondLanguage"] =
-      profileInfo["oralProficiency"] ||
-      profileInfo["readingProficiency"] ||
-      profileInfo["writingingProficiency"];
+    this.tempFields["gradedOnSecondLanguage"] = Boolean(
+      profileInfo["secondaryOralProficiency"] ||
+        profileInfo["secondaryReadingProficiency"] ||
+        profileInfo["secondaryWritingingProficiency"]
+    );
 
     this.onChangeFuncs["gradedOnSecondLanguage"] = () => this.forceUpdate();
-    this.onChangeFuncs["oralDate"] = () => this.forceUpdate();
-    this.onChangeFuncs["readingDate"] = () => this.forceUpdate();
-    this.onChangeFuncs["writingDate"] = () => this.forceUpdate();
+    this.onChangeFuncs["secondaryOralDate"] = () => this.forceUpdate();
+    this.onChangeFuncs["secondaryReadingDate"] = () => this.forceUpdate();
+    this.onChangeFuncs["secondaryWritingDate"] = () => this.forceUpdate();
 
-    this.transformOnChangeValueFuncs["oralDate"] = value =>
+    this.transformOnChangeValueFuncs["secondaryOralDate"] = value =>
       moment(value, "MMM DD YYYY");
-    this.transformOnChangeValueFuncs["readingDate"] = value =>
+    this.transformOnChangeValueFuncs["secondaryReadingDate"] = value =>
       moment(value, "MMM DD YYYY");
-    this.transformOnChangeValueFuncs["writingDate"] = value =>
+    this.transformOnChangeValueFuncs["secondaryWritingDate"] = value =>
       moment(value, "MMM DD YYYY");
   }
 

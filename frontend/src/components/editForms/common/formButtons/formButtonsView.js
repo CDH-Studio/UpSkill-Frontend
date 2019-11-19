@@ -15,38 +15,61 @@ export default class ModalButtonsView extends Component {
     } = this.props;
 
     return (
-      <div style={{ width: "100%", position: "relative" }}>
+      <div style={{ width: "100%", paddingTop: "20px" }}>
         {handleCancle && (
-          <React.Fragment>
-            <Button color="blue" onClick={handleApply}>
-              Apply
-            </Button>
+          <div
+            style={{
+              float: "right",
+              marginBottom: "15px"
+            }}
+          >
+            <React.Fragment>
+              <Button color="blue" onClick={handleApply}>
+                Apply
+              </Button>
 
-            <Button color="blue" onClick={handleCancle} secondary>
-              Cancel
-            </Button>
-          </React.Fragment>
+              <Button color="blue" onClick={handleCancle} secondary>
+                Cancel
+              </Button>
+            </React.Fragment>
+          </div>
         )}
-        {handlePrevious === false && (
-          <Button color="blue" disabled secondary>
-            Back
-          </Button>
-        )}
-        {handlePrevious && (
-          <Button color="blue" onClick={e => handlePrevious(fields)} secondary>
-            Back
-          </Button>
-        )}
-        {handleNext && isEarlyRegister && (
-          <Button color="blue" onClick={e => handleNext(fields)}>
-            Next
-          </Button>
-        )}
-        {handleRegister && (
+
+        {handleRegister && isEarlyRegister && (
           <Button color="blue" onClick={e => handleRegister()}>
-            {isEarlyRegister ? "Finish early" : "Finish"}
+            Finish now
           </Button>
         )}
+
+        <div
+          style={{
+            float: "right",
+            marginBottom: "15px"
+          }}
+        >
+          {handleRegister && (
+            <Button
+              color="blue"
+              disabled={!Boolean(handlePrevious)}
+              onClick={e => handlePrevious(fields)}
+              secondary
+            >
+              Back
+            </Button>
+          )}
+
+          {handleNext && isEarlyRegister && (
+            <Button color="blue" onClick={e => handleNext(fields)}>
+              Next
+            </Button>
+          )}
+
+          {handleRegister && !isEarlyRegister && (
+            <Button color="blue" onClick={handleRegister}>
+              Finish
+            </Button>
+          )}
+        </div>
       </div>
     );
   }

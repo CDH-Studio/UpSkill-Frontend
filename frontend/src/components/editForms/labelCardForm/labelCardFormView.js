@@ -27,12 +27,12 @@ class LabelCardFormView extends Component {
     return (
       <Form onSubmit={onSubmit}>
         <Form.Field {...generateProps("tenure", Select)} />
-        <Form.Field {...generateProps("groupOrLevel", Select)} />
+        <Form.Field {...generateProps("security", Select)} />
         <Form.Field
           input="number"
           {...generateProps("yearsOfService", Input)}
         />
-        <Form.Field {...generateProps("security", Select)} />
+        <Form.Field {...generateProps("groupOrLevel", Select)} />
 
         <Form.Field {...generateProps("isActing", Checkbox, true)} />
         <Form.Field

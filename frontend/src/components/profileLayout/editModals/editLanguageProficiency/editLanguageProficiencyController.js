@@ -23,12 +23,10 @@ export default class EditLanguageProficiencyController extends FieldManagingComp
     };
 
     this.handleApply = () => {
-      ["reading", "writing", "oral"].forEach(element => {
-        if (this.fields[element + "Date"]) {
-          this.fields[element + "Date"] = moment(
-            this.fields[element + "Date"],
-            "MMM DD YYYY"
-          ).format();
+      ["Reading", "Writing", "Oral"].forEach(element => {
+        const name = "secondary" + element + "Date";
+        if (this.fields[name]) {
+          this.fields[name] = moment(this.fields[name], "MMM DD YYYY").format();
         }
       });
       oldHandleApply();

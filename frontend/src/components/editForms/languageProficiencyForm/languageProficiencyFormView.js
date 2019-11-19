@@ -77,10 +77,13 @@ class LanguageProficiencyFormView extends Component {
       <React.Fragment>
         <Grid.Row>
           <Grid.Column>
-            {["reading", "writing", "oral"].map((value, index) => (
+            {["Reading", "Writing", "Oral"].map((value, index) => (
               <Form.Group>
                 <Form.Field
-                  {...this.generateProps(value + "Proficiency", Select)}
+                  {...this.generateProps(
+                    "secondary" + value + "Proficiency",
+                    Select
+                  )}
                   disabled={secondaryGradingDisabled}
                   width={8}
                   options={[
@@ -94,7 +97,10 @@ class LanguageProficiencyFormView extends Component {
                   disabled={secondaryGradingDisabled}
                   width={8}
                   className="dateField"
-                  {...this.generateProps(value + "Date", DateInput)}
+                  {...this.generateProps(
+                    "secondary" + value + "Date",
+                    DateInput
+                  )}
                 />
               </Form.Group>
             ))}

@@ -244,8 +244,8 @@ class SetupLayoutController extends Component {
       })
       .catch(function(error) {
         console.log(error);
-      })
-      .then(redirectFunction("/"));
+      });
+    //.then(redirectFunction("/"));
   }
 
   setFormIndex(index) {

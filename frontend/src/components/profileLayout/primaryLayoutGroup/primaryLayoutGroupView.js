@@ -88,7 +88,7 @@ class PrimaryLayoutGroupView extends Component {
             <Grid.Column width={8}>
               <Grid>
                 {this.renderLabeledItem(tenureLabel, tenure.description)}
-                {this.renderLabeledItem(securityLabel, security.description)}
+                {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
                 {this.renderLabeledItem(
                   actingLabel,
                   acting.description,
@@ -98,7 +98,8 @@ class PrimaryLayoutGroupView extends Component {
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
+                {this.renderLabeledItem(securityLabel, security.description)}
+
                 {this.renderLabeledItem(
                   classificationLabel,
                   classification.description
@@ -125,8 +126,9 @@ class PrimaryLayoutGroupView extends Component {
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
           {this.renderLabeledItem(tenureLabel, tenure.description)}
-          {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
           {this.renderLabeledItem(securityLabel, security.description)}
+          {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
+
           {this.renderLabeledItem(
             classificationLabel,
             classification.description
