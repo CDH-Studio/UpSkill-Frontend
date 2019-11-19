@@ -19,7 +19,12 @@ class ProfileLayoutController extends Component {
   }
 
   render() {
-    const { changeLanguage, keycloak, profileInfo } = this.props;
+    const {
+      changeLanguage,
+      keycloak,
+      profileInfo,
+      updateProfileInfo
+    } = this.props;
 
     return (
       <ProfileLayoutView
@@ -37,6 +42,7 @@ class ProfileLayoutController extends Component {
             actingPeriodStartDate: undefined
           }
         )}
+        updateProfileInfo={updateProfileInfo}
         editable={true}
         keycloak={keycloak}
         windowWidth={this.state.windowWidth}
