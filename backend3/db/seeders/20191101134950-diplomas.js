@@ -1819,15 +1819,15 @@ module.exports = {
           [
             {
               id: "bbd95b12-ffe4-11e9-8d71-362b9e155667",
-              descriptionEn: "TestDiplomaNameEn1",
-              descriptionFr: "TestDiplomaNameFr1",
+              descriptionEn: "Master of Counselling",
+              descriptionFr: "Maîtrise en counseling",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "06688220-ffe5-11e9-8d71-362b9e155667",
-              descriptionEn: "TestDiplomaNameEn2",
-              descriptionFr: "TestDiplomaNameFr2",
+              descriptionEn: "Master of Arts War Studies",
+              descriptionFr: "MA-Ét. conduite de la guerre",
               createdAt: new Date(),
               updatedAt: new Date()
             }

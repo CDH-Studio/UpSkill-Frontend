@@ -37,15 +37,15 @@ module.exports = {
           [
             {
               id: "82c3a9cc-ff44-11e9-aad5-362b9e155667",
-              descriptionEn: "testSecClearEn1",
-              descriptionFr: "testSecClearFr1",
+              descriptionEn: "Secret",
+              descriptionFr: "Secret",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "882ef330-ff44-11e9-8f0b-362b9e155667",
-              descriptionEn: "testSecClearEn2",
-              descriptionFr: "testSecClearFr2",
+              descriptionEn: "Top Secret",
+              descriptionFr: "Très Secret",
               createdAt: new Date(),
               updatedAt: new Date()
             }
