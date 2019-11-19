@@ -7,7 +7,9 @@
   "advanced.search.form.last.name": "Last name",
   "advanced.search.form.location": "Location",
   "advanced.search.form.security.clearance": "Security clearence",
+
   "basic.search.button.text": "Basic search",
+
   "setup.primary.information": "Primary information",
   "setup.labeled": "Employment data",
   "setup.manager": "Manager",
@@ -18,12 +20,14 @@
   "setup.developmental.goals": "Developmental goals",
   "setup.education": "Education",
   "setup.career.overview": "Career summary",
+  "setup.select.geds.card": "Select your Goverment Employee Database information",
+  "setup.projects": "Projects",
+
   "lang": "Francais",
   "lang.code": "fr",
-  "setup.select.geds.card": "Select your Goverment Employee Database information",
   "language.english": "English",
   "language.french": "French",
-  "setup.projects": "Projects",
+
   "my.profile": "My profile",
   "profile.edit.primary.information": "Edit primary information",
   "profile.edit.dropdown.no.results.found": "No results found.",
@@ -104,9 +108,10 @@
   "profile.edit.competencies": "Edit competencies",
   "profile.edit.developmental.goals": "Edit developmental goals",
   "profile.edit.education": "Edit education",
-  "profile.edit.career.overview": "Experience",
+  "profile.edit.career.overview": "Edit experience",
   "profile.edit.profile.picture": "Edit profile picture",
   "profile.edit.manager": "Edit manager",
+  "profile.edit.projects": "Edit projects",
   "profile.undefined": "Undefined",
 
   "search.field.primary.dropdown.axios": "Axios",
