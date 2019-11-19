@@ -37,13 +37,15 @@ const updateProfile = async (request, response) => {
     if (dbObject.developmentGoals)
       profile.setDevelopmentGoals(dbObject.developmentGoals);
 
+    console.log(dbObject.education);
+
     if (dbObject.education) {
       Education.destroy({ where: { profileId: profile.id } }).then(() => {
         dbObject.education.forEach(
           ({ school, diploma, startDate, endDate }) => {
             Education.create({
-              schoolId: school,
-              diplomaId: diploma,
+              schoolId: school.id ? school.id : school,
+              diplomaId: diploma.id ? diploma.id : diploma,
               startDate,
               endDate
             }).then(education => {
