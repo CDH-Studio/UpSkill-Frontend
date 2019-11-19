@@ -9,11 +9,11 @@ export default class LanguageProficiencyFormController extends FormManagingCompo
     super(props);
     const { profileInfo } = this.props;
 
-    this.tempFields["gradedOnSecondLanguage"] = Boolean(
+    /*this.tempFields["gradedOnSecondLanguage"] = Boolean(
       profileInfo["secondaryOralProficiency"] ||
         profileInfo["secondaryReadingProficiency"] ||
         profileInfo["secondaryWritingingProficiency"]
-    );
+    );*/
 
     this.onChangeFuncs["gradedOnSecondLanguage"] = () => this.forceUpdate();
     this.onChangeFuncs["secondaryOralDate"] = () => this.forceUpdate();
@@ -29,7 +29,7 @@ export default class LanguageProficiencyFormController extends FormManagingCompo
   }
 
   render() {
-    const { afterSubmit, buttons } = this.props;
+    const { afterSubmit, buttons, profileInfo } = this.props;
     return (
       <LanguageProficiencyFormView
         buttons={buttons}
@@ -40,7 +40,12 @@ export default class LanguageProficiencyFormController extends FormManagingCompo
           this.onSubmit();
         }}
         onTempFieldChange={this.onTempFieldChange}
-        secondaryGradingDisabled={!this.tempFields["gradedOnSecondLanguage"]}
+        secondaryGradingDisabled={
+          !(
+            this.fields["gradedOnSecondLanguage"] ||
+            profileInfo["gradedOnSecondLanguage"]
+          )
+        }
         tempFields={this.tempFields}
         {...this.props}
       />
