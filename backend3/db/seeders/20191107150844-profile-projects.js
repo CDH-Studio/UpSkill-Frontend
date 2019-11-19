@@ -28,7 +28,7 @@ module.exports = {
           description: "O-Train",
           createdAt: new Date(),
           updatedAt: new Date(),
-          profileId: "6becd47a-ffe5-11e9-8d71-362b9e155667"
+          profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667"
         }
       ],
       {}
