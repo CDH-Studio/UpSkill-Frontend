@@ -27,5 +27,11 @@
   "githubUrl": "github",
   "twitterUrl": "twitter",
   "projects": "projects",
-  "jobTitle": "jobTitle"
+  "jobTitle": "jobTitle",
+  "secondaryReadingProficiency": "readingProficiency",
+  "secondaryWritingProficiency": "writingProficiency",
+  "secondaryOralProficiency": "oralProficiency",
+  "secondaryReadingDate": "readingDate",
+  "secondaryWritingDate": "writingDate",
+  "secondaryOralDate": "oralDate"
 }

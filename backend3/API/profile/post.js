@@ -1,9 +1,9 @@
-const moment = require("moment");
 const Models = require("../../db/models");
 const Profile = Models.profile;
 const Education = Models.education;
 const Experience = Models.experience;
 const ProfileOrganization = Models.profileOrganization;
+const SecLang = Models.secondLanguageProficiency;
 
 const mappedValues = require("./mappedValues.json");
 
@@ -16,8 +16,10 @@ const createProfile = async (request, response) => {
     dbObject[mappedValues[key] ? mappedValues[key] : key] = value;
   }
 
-  dbObject.jobTitleEn = dbObject.jobTitle.en;
-  dbObject.jobTitleFr = dbObject.jobTitle.fr;
+  if (dbObject.jobTitleEn) {
+    dbObject.jobTitleEn = dbObject.jobTitle.en;
+    dbObject.jobTitleFr = dbObject.jobTitle.fr;
+  }
 
   try {
     const [profile, created] = await Profile.upsert(
@@ -31,56 +33,112 @@ const createProfile = async (request, response) => {
       profile.setDevelopmentGoals(dbObject.developmentGoals);
 
     if (dbObject.education) {
-      Education.destroy({ where: { profileId: profile.id } });
-      dbObject.education.forEach(({ school, diploma, startDate, endDate }) => {
-        Education.create({
-          schoolId: school,
-          diplomaId: diploma,
-          startDate,
-          endDate
-        }).then(education => {
-          profile.addEducation(education);
-        });
+      Education.destroy({ where: { profileId: profile.id } }).then(() => {
+        dbObject.education.forEach(
+          ({ school, diploma, startDate, endDate }) => {
+            Education.create({
+              schoolId: school.id ? school.id : school,
+              diplomaId: diploma.id ? diploma.id : diploma,
+              startDate,
+              endDate
+            }).then(education => {
+              profile.addEducation(education);
+            });
+          }
+        );
       });
     }
 
     if (dbObject.experience) {
-      Experience.destroy({ where: { profileId: profile.id } });
-      dbObject.experience.forEach(exp => {
-        Experience.create({
-          organization: exp.subheader,
-          jobTitle: exp.header,
-          description: exp.content,
-          startDate: exp.startDate,
-          endDate: exp.endDate
-        }).then(experience => {
-          profile.addExperience(experience);
+      Experience.destroy({ where: { profileId: profile.id } }).then(() => {
+        dbObject.experience.forEach(exp => {
+          Experience.create({
+            organization: exp.subheader,
+            jobTitle: exp.header,
+            description: exp.content,
+            startDate: exp.startDate,
+            endDate: exp.endDate
+          }).then(experience => {
+            profile.addExperience(experience);
+          });
         });
       });
     }
 
     if (dbObject.projects) {
-      Project.destroy({ where: { profileId: profile.id } });
-      dbObject.projects.forEach(project => {
-        Project.create({
-          description: project
-        }).then(project => {
-          profile.addProfileProject(project);
+      Project.destroy({ where: { profileId: profile.id } }).then(() => {
+        dbObject.projects.forEach(project => {
+          Project.create({
+            description: project
+          }).then(project => {
+            profile.addProfileProject(project);
+          });
         });
       });
     }
 
     if (dbObject.organizations) {
-      ProfileOrganization.destroy({ where: { profileId: profile.id } });
-      dbObject.organizations.forEach(({ description: { en, fr }, tier }) => {
-        ProfileOrganization.create({
-          descriptionEn: en,
-          descriptionFr: fr,
-          tier
-        }).then(organization => {
-          profile.addProfileOrganization(organization);
+      ProfileOrganization.destroy({ where: { profileId: profile.id } }).then(
+        () => {
+          dbObject.organizations.forEach(
+            ({ description: { en, fr }, tier }) => {
+              ProfileOrganization.create({
+                descriptionEn: en,
+                descriptionFr: fr,
+                tier
+              }).then(organization => {
+                profile.addProfileOrganization(organization);
+              });
+            }
+          );
+        }
+      );
+    }
+
+    if (
+      dbObject.readingProficiency ||
+      dbObject.writingProficiency ||
+      dbObject.oralProficiency ||
+      dbObject.readingDate ||
+      dbObject.writingDate ||
+      dbObject.oralDate
+    ) {
+      let secLangProf;
+      secLangProf = await profile.getSecondLanguageProficiency();
+      if (!secLangProf) {
+        secLangProf = await SecLang.create();
+      }
+
+      const {
+        writingProficiency,
+        oralProficiency,
+        writingDate,
+        readingDate,
+        oralDate,
+        readingProficiency
+      } = dbObject;
+
+      secLangProf
+        .update(
+          {
+            writingProficiency,
+            oralProficiency,
+            writingDate,
+            readingDate,
+            oralDate,
+            readingProficiency
+          },
+          { returning: true }
+        )
+        .then(secLangProf => {
+          profile.setSecondLanguageProficiency(secLangProf);
         });
-      });
+
+      if (!dbObject.gradedOnSecondLanguage) {
+        SecLang.destroy({
+          where: { id: profile.dataValues.secondLanguageProficiencyId }
+        });
+      }
     }
   } catch (error) {
     response.status(500).json({ error: error.message });

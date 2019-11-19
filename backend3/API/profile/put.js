@@ -1,22 +1,24 @@
-const moment = require("moment");
 const Models = require("../../db/models");
 const Profile = Models.profile;
 const Education = Models.education;
 const Experience = Models.experience;
 const Project = Models.profileProject;
+const SecLang = Models.secondLanguageProficiency;
 
 const mappedValues = require("./mappedValues.json");
 
 const updateProfile = async (request, response) => {
   const id = request.params.id;
   const body = request.body;
-
-  console.log(body);
-
   let dbObject = {};
 
   for (let [key, value] of Object.entries(body)) {
-    dbObject[mappedValues[key]] = value;
+    dbObject[mappedValues[key] ? mappedValues[key] : key] = value;
+  }
+
+  if (dbObject.jobTitleEn) {
+    dbObject.jobTitleEn = dbObject.jobTitle.en;
+    dbObject.jobTitleFr = dbObject.jobTitle.fr;
   }
 
   try {
@@ -36,8 +38,6 @@ const updateProfile = async (request, response) => {
     if (dbObject.competencies) profile.setCompetencies(dbObject.competencies);
     if (dbObject.developmentGoals)
       profile.setDevelopmentGoals(dbObject.developmentGoals);
-
-    console.log(dbObject.education);
 
     if (dbObject.education) {
       Education.destroy({ where: { profileId: profile.id } }).then(() => {
@@ -102,12 +102,56 @@ const updateProfile = async (request, response) => {
       );
     }
 
-    console.log("dbOject", dbObject);
+    if (
+      dbObject.readingProficiency ||
+      dbObject.writingProficiency ||
+      dbObject.oralProficiency ||
+      dbObject.readingDate ||
+      dbObject.writingDate ||
+      dbObject.oralDate
+    ) {
+      let secLangProf;
+      secLangProf = await profile.getSecondLanguageProficiency();
+      if (!secLangProf) {
+        secLangProf = await SecLang.create();
+      }
 
-    if (updated) {
-      return response.status(200).json(profile);
+      const {
+        writingProficiency,
+        oralProficiency,
+        writingDate,
+        readingDate,
+        oralDate,
+        readingProficiency
+      } = dbObject;
+
+      secLangProf
+        .update(
+          {
+            writingProficiency,
+            oralProficiency,
+            writingDate,
+            readingDate,
+            oralDate,
+            readingProficiency
+          },
+          { returning: true }
+        )
+        .then(secLangProf => {
+          profile.setSecondLanguageProficiency(secLangProf);
+        });
+
+      if (!dbObject.gradedOnSecondLanguage) {
+        SecLang.destroy({
+          where: { id: profile.dataValues.secondLanguageProficiencyId }
+        });
+      }
+
+      if (updated) {
+        return response.status(200).json(profile);
+      }
+      throw new Error("Profile not found");
     }
-    throw new Error("Profile not found");
   } catch (error) {
     return response.status(500).send(error.message);
   }

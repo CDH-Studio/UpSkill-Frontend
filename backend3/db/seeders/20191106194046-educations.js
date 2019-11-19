@@ -39,7 +39,7 @@ module.exports = {
               endDate: new Date(),
               createdAt: new Date(),
               updatedAt: new Date(),
-              profileId: "6becd47a-ffe5-11e9-8d71-362b9e155667",
+              profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667",
               schoolId: "4d205016-ffe6-11e9-8d71-362b9e155667",
               diplomaId: "06688220-ffe5-11e9-8d71-362b9e155667"
             }
