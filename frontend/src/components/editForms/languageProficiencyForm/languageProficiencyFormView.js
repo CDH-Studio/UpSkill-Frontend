@@ -49,11 +49,7 @@ class LanguageProficiencyFormView extends Component {
           <Grid.Row>
             <Grid.Column>
               <Form.Field
-                {...this.generateProps(
-                  "gradedOnSecondLanguage",
-                  Checkbox,
-                  true
-                )}
+                {...this.generateProps("gradedOnSecondLanguage", Checkbox)}
               />
             </Grid.Column>
           </Grid.Row>
