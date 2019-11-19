@@ -36,8 +36,8 @@ export default class ModalButtonsView extends Component {
         )}
 
         {handleRegister && isEarlyRegister && (
-          <Button color="blue" onClick={e => handleRegister()}>
-            Finish now
+          <Button color="blue" onClick={handleRegister}>
+            Save and finish
           </Button>
         )}
 

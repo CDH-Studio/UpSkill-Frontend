@@ -247,7 +247,7 @@ class SetupLayoutController extends Component {
       .then(function(response) {
         console.log(response);
       })
-      .then(response => redirectFunction("/"))
+      .then(response => redirectFunction("/home"))
       .catch(function(error) {
         console.log(error);
       });
