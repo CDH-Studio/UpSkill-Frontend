@@ -14,12 +14,6 @@ module.exports = {
           updatedAt: new Date(),
           profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667",
           competencyId: "3a57095e-0174-11ea-8d71-362b9e155667"
-        },
-        {
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          profileId: "faba08aa-ffe3-11e9-8d71-362b9e155667",
-          competencyId: "b692c888-0173-11ea-8d71-362b9e155667"
         }
       ],
       {}
