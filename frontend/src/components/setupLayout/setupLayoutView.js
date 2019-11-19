@@ -32,8 +32,13 @@ export default class RegisterLayoutView extends Component {
     if (editProfileOptions === null || !gedsInfoList) {
       return (
         <Dimmer active>
-          <Loader />
-          Gathering profile options and geds info...
+          <Grid>
+            <Grid.Row>
+              <Loader />
+            </Grid.Row>
+
+            <Grid.Row>Gathering profile options and geds info...</Grid.Row>
+          </Grid>
         </Dimmer>
       );
     }

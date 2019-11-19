@@ -9,6 +9,7 @@ export default class profileCardView extends Component {
     const {
       button,
       cardName,
+      cardIcon,
       children,
       className,
       fullHeight,
@@ -31,7 +32,11 @@ export default class profileCardView extends Component {
           style={heightStyle}
         >
           <Card.Content>
-            {cardName && <h5 className="blueColoredText">{cardName}</h5>}
+            {cardName && (
+              <h5 className="blueColoredText">
+                {cardName} {cardIcon}
+              </h5>
+            )}
             {children}
           </Card.Content>
         </Card>

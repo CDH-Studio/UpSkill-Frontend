@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Table } from "semantic-ui-react";
+import { Grid, Table, Icon } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
 import moment from "moment";
 
@@ -83,8 +83,7 @@ class SecondaryLayoutGroupView extends Component {
       secondaryReadingDate,
       secondaryReadingProficiency,
       secondaryWritingDate,
-      secondaryWritingProficiency,
-      exFeeder
+      secondaryWritingProficiency
     } = profileInfo;
 
     return (
@@ -139,19 +138,23 @@ class SecondaryLayoutGroupView extends Component {
             </Table.Row>
           </Table.Body>
         </Table>
-        {exFeeder && intl.formatMessage("profile.is.ex.feeder")}
       </ProfileCardController>
     );
   }
 
   renderTalentManagementCard() {
     const { intl, profileInfo } = this.props;
-    const { careerMobility, talentMatrixResult } = profileInfo;
+    const { careerMobility, talentMatrixResult, exFeeder } = profileInfo;
 
     return (
       <ProfileCardController
         button={EditTalentManagementController}
         cardName={intl.formatMessage({ id: "profile.talent.manager" })}
+        cardIcon={
+          <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
+            <Icon name="external alternate" />
+          </a>
+        }
         className="noGapBelow"
       >
         <div>
@@ -166,6 +169,7 @@ class SecondaryLayoutGroupView extends Component {
           </span>
           <span>{talentMatrixResult.description}</span>
         </div>
+        {exFeeder && intl.formatMessage({ id: "profile.is.ex.feeder" })}
       </ProfileCardController>
     );
   }

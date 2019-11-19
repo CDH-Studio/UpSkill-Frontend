@@ -101,7 +101,6 @@ const updateProfile = async (request, response) => {
         }
       );
     }
-    console.log("DDDDDDOOOOOONNNNNNEEEE");
 
     if (
       dbObject.readingProficiency ||
@@ -142,11 +141,14 @@ const updateProfile = async (request, response) => {
           profile.setSecondLanguageProficiency(secLangProf);
         });
     }
-    if (!dbObject.gradedOnSecondLanguage) {
+    if (dbObject.gradedOnSecondLanguage === false) {
       SecLang.destroy({
         where: { id: profile.dataValues.secondLanguageProficiencyId }
       });
     }
+    console.log("DONE");
+
+    //End of logic~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     if (updated) {
       return response.status(200).json(profile);

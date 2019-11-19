@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
       actingEndDate: DataTypes.DATE,
       linkedin: DataTypes.STRING,
       github: DataTypes.STRING,
-      twitter: DataTypes.STRING
+      twitter: DataTypes.STRING,
+      exFeeder: DataTypes.BOOLEAN
     },
     {}
   );
