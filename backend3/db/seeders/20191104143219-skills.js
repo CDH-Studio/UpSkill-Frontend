@@ -2768,15 +2768,15 @@ module.exports = {
           [
             {
               id: "ef60f9fe-016f-11ea-9a9f-362b9e155667",
-              descriptionEn: "Test .Net Framework",
-              descriptionFr: "Test .NET Framework",
+              descriptionEn: ".Net Framework",
+              descriptionFr: ".NET Framework",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "f6f51402-016f-11ea-9a9f-362b9e155667",
-              descriptionEn: "Test jQuery",
-              descriptionFr: "Test jQuery",
+              descriptionEn: "jQuery",
+              descriptionFr: "jQuery",
               createdAt: new Date(),
               updatedAt: new Date()
             }

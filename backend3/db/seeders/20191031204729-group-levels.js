@@ -845,13 +845,13 @@ module.exports = {
           [
             {
               id: "71b7b0a2-ff43-11e9-8f0b-362b9e155667",
-              description: "testCS1",
+              description: "CS1",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "a3975faa-ff43-11e9-8f0b-362b9e155667",
-              description: "testCS4",
+              description: "CS4",
               createdAt: new Date(),
               updatedAt: new Date()
             }

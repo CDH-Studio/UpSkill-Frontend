@@ -11,14 +11,14 @@ module.exports = {
         "talentMatrixResults",
         [
           {
-            descriptionEn: "Early Promise",
-            descriptionFr: "Employé(e) Prometteur",
+            descriptionEn: "Early promise",
+            descriptionFr: "Employé(e) prometteur",
             createdAt: new Date(),
             updatedAt: new Date()
           },
           {
-            descriptionEn: "Exceptional Talent",
-            descriptionFr: "Futur Dirigeant",
+            descriptionEn: "Exceptional talent",
+            descriptionFr: "Futur dirigeant",
             createdAt: new Date(),
             updatedAt: new Date()
           },
@@ -73,15 +73,15 @@ module.exports = {
           [
             {
               id: "ddc02520-ff45-11e9-8f0b-362b9e155667",
-              descriptionEn: "testTalentMatrixResultEn1",
-              descriptionFr: "testTalentMatrixResultFr1",
+              descriptionEn: "Trusted Professional",
+              descriptionFr: "Professionnel de confiance",
               createdAt: new Date(),
               updatedAt: new Date()
             },
             {
               id: "e4f5d678-ff45-11e9-8f0b-362b9e155667",
-              descriptionEn: "testTalentMatrixResultEn2",
-              descriptionFr: "testTalentMatrixResultFr2",
+              descriptionEn: "Exceptional talent",
+              descriptionFr: "Futur dirigeant",
               createdAt: new Date(),
               updatedAt: new Date()
             }

@@ -2105,7 +2105,7 @@ module.exports = {
         {
           country: "CAN",
           state: "BC",
-          description: "Okanagan University College",
+          description: "New Caledonia, College of",
           createdAt: new Date(),
           updatedAt: new Date()
         }
@@ -2126,7 +2126,9 @@ module.exports = {
             },
             {
               id: "4d205016-ffe6-11e9-8d71-362b9e155667",
-              description: "TestSchool2",
+              country: "CAN",
+              state: "BC",
+              description: "Columbia College",
               createdAt: new Date(),
               updatedAt: new Date()
             }
