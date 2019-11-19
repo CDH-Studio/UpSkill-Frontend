@@ -4,6 +4,7 @@ const Profile = Models.profile;
 const Education = Models.education;
 const Experience = Models.experience;
 const Project = Models.profileProject;
+const SecLang = Models.secondLanguageProficiency;
 
 const mappedValues = require("./mappedValues.json");
 
@@ -11,12 +12,12 @@ const updateProfile = async (request, response) => {
   const id = request.params.id;
   const body = request.body;
 
-  console.log(body);
+  console.log("BODYYYYYYYYYYYY:", body);
 
   let dbObject = {};
 
   for (let [key, value] of Object.entries(body)) {
-    dbObject[mappedValues[key]] = value;
+    dbObject[mappedValues[key] ? mappedValues[key] : key] = value;
   }
 
   try {
@@ -98,6 +99,41 @@ const updateProfile = async (request, response) => {
           );
         }
       );
+    }
+
+    if (dbObject.readingProficiency) {
+      let secLangProf;
+      secLangProf = await profile.getSecondLanguageProficiency();
+      if (!secLangProf) {
+        secLangProf = await SecLang.create();
+      }
+
+      const {
+        writingProficiency,
+        oralProficiency,
+        writingDate,
+        readingDate,
+        oralDate,
+        readingProficiency
+      } = dbObject;
+
+      secLangProf
+        .update(
+          {
+            writingProficiency,
+            oralProficiency,
+            writingDate,
+            readingDate,
+            oralDate,
+            readingProficiency
+          },
+          { returning: true }
+        )
+        .then(secLangProf => {
+          console.log("SECLANGPROF:", secLangProf);
+
+          profile.setSecondLanguageProficiency(secLangProf);
+        });
     }
 
     console.log("dbOject", dbObject);

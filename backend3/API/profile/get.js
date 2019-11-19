@@ -61,8 +61,6 @@ const getProfileById = async (request, response) => {
     return { text: project.description };
   });
 
-  console.log("PROJECTS: ", projects);
-
   let education = await profile.getEducation();
   let educations = () => {
     return Promise.all(

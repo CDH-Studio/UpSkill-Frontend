@@ -27,8 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: { fieldName: "id" }
     });
     profile.belongsToMany(models.skill, {
-      through: "profileSkills",
-      onDelete: "CASCADE"
+      through: "profileSkills"
     });
     profile.belongsToMany(models.competency, {
       through: "profileCompetencies"
@@ -48,7 +47,9 @@ module.exports = (sequelize, DataTypes) => {
     profile.belongsTo(models.careerMobility);
     profile.belongsTo(models.talentMatrixResult);
     profile.belongsTo(models.keyCompetency);
-    profile.belongsTo(models.secondLanguageProficiency);
+    profile.belongsTo(models.secondLanguageProficiency, {
+      onDelete: "CASCADE"
+    });
     profile.hasMany(models.experience);
     profile.hasMany(models.education);
     profile.hasMany(models.profileOrganization, {
