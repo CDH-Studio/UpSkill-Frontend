@@ -73,6 +73,8 @@ const getGedsAssist = async (request, response) => {
           }
         };
 
+        profile.email = user.email;
+
         return profile;
       });
       let profiles = await Promise.all(promise);

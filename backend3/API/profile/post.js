@@ -133,13 +133,14 @@ const createProfile = async (request, response) => {
         .then(secLangProf => {
           profile.setSecondLanguageProficiency(secLangProf);
         });
-
-      if (!dbObject.gradedOnSecondLanguage) {
-        SecLang.destroy({
-          where: { id: profile.dataValues.secondLanguageProficiencyId }
-        });
-      }
     }
+    if (!dbObject.gradedOnSecondLanguage) {
+      SecLang.destroy({
+        where: { id: profile.dataValues.secondLanguageProficiencyId }
+      });
+    }
+
+    response.status(200).send("OK");
   } catch (error) {
     response.status(500).json({ error: error.message });
   }

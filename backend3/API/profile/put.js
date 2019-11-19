@@ -101,6 +101,7 @@ const updateProfile = async (request, response) => {
         }
       );
     }
+    console.log("DDDDDDOOOOOONNNNNNEEEE");
 
     if (
       dbObject.readingProficiency ||
@@ -140,18 +141,18 @@ const updateProfile = async (request, response) => {
         .then(secLangProf => {
           profile.setSecondLanguageProficiency(secLangProf);
         });
-
-      if (!dbObject.gradedOnSecondLanguage) {
-        SecLang.destroy({
-          where: { id: profile.dataValues.secondLanguageProficiencyId }
-        });
-      }
-
-      if (updated) {
-        return response.status(200).json(profile);
-      }
-      throw new Error("Profile not found");
     }
+    if (!dbObject.gradedOnSecondLanguage) {
+      SecLang.destroy({
+        where: { id: profile.dataValues.secondLanguageProficiencyId }
+      });
+    }
+
+    if (updated) {
+      return response.status(200).json(profile);
+    }
+    response.status(404).send("Profile not found");
+    throw new Error("Profile not found");
   } catch (error) {
     return response.status(500).send(error.message);
   }

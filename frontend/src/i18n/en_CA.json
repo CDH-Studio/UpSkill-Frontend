@@ -19,7 +19,7 @@
   "setup.competencies": "Competencies",
   "setup.developmental.goals": "Developmental goals",
   "setup.education": "Education",
-  "setup.career.overview": "Career summary",
+  "setup.career.overview": "Experience",
   "setup.select.geds.card": "Select your Goverment Employee Database information",
   "setup.projects": "Projects",
 
@@ -120,5 +120,6 @@
   "search.field.primary.dropdown.html": "HTML",
   "search.field.primary.dropdown.javascript": "Javascript",
   "search.field.primary.dropdown.jest": "Jest",
+
   "sign.out": "Logout"
 }
