@@ -41,10 +41,9 @@ export default class LanguageProficiencyFormController extends FormManagingCompo
         }}
         onTempFieldChange={this.onTempFieldChange}
         secondaryGradingDisabled={
-          !(
-            this.fields["gradedOnSecondLanguage"] ||
-            profileInfo["gradedOnSecondLanguage"]
-          )
+          "gradedOnSecondLanguage" in this.fields
+            ? !this.fields["gradedOnSecondLanguage"]
+            : !profileInfo["gradedOnSecondLanguage"]
         }
         tempFields={this.tempFields}
         {...this.props}
