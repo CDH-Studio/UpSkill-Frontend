@@ -44,6 +44,8 @@ export default class RegisterLayoutView extends Component {
       );
     }
 
+    const gedsInfo = gedsInfoList[gedsIndex];
+
     return (
       <React.Fragment>
         <NavigationBar logoRedirectHome={true} />
@@ -84,9 +86,6 @@ export default class RegisterLayoutView extends Component {
                           element.organization[0].description}
                       </div>
                       <div style={{ fontSize: "13pt", color: "#000000" }}>
-                        {element.email}
-                      </div>
-                      <div style={{ fontSize: "13pt", color: "#000000" }}>
                         {element.telephone}
                       </div>
                     </Card.Content>
@@ -106,7 +105,10 @@ export default class RegisterLayoutView extends Component {
                   handleRegister: handleRegister,
                   setFormChanges: setFormChanges,
                   editProfileOptions: editProfileOptions,
-                  gedsInfo: gedsInfoList[gedsIndex],
+                  unchangeableInfo: gedsInfo && {
+                    firstName: gedsInfo.firstName,
+                    lastName: gedsInfo.lastName
+                  },
                   isEarlyRegister: isEarlyRegister,
                   profileInfo: profileInfo,
                   handleNext: fieldsUpdate => {

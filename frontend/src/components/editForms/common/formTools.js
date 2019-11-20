@@ -14,7 +14,7 @@ export const generateCommonProps = (props, name, control, tempField) => {
     getCurrentValue,
     intl,
     onFieldChange,
-    gedsInfo,
+    unchangeableInfo,
     onTempFieldChange,
     profileInfo,
     updateField
@@ -22,9 +22,7 @@ export const generateCommonProps = (props, name, control, tempField) => {
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
   let intlId = "profile." + name.replace(/([A-Z])/g, ".$1").toLowerCase();
-  const hasGedsValue =
-    gedsInfo &&
-    ((name == "email" && gedsInfo["email"] !== "") || Boolean(gedsInfo[name]));
+  const hasUnchangableValue = unchangeableInfo && unchangeableInfo[name]; // && unchangeableInfo !== "";
 
   let commonProps = {
     control: control,
@@ -32,8 +30,8 @@ export const generateCommonProps = (props, name, control, tempField) => {
     label: intl.formatMessage({ id: intlId }),
     name: name,
     onChange: tempField ? onTempFieldChange : onFieldChange,
-    disabled: hasGedsValue,
-    className: hasGedsValue ? "gedsField" : ""
+    disabled: hasUnchangableValue,
+    className: hasUnchangableValue ? "unchangeableField" : ""
   };
 
   /*if (dropdownControl) {
@@ -52,8 +50,8 @@ export const generateCommonProps = (props, name, control, tempField) => {
     //commonProps.disabled = false;
   } else if (control === Input) {
     commonProps.placeholder = profileInfo[name];
-    commonProps.defaultValue = hasGedsValue
-      ? gedsInfo[name]
+    commonProps.defaultValue = hasUnchangableValue
+      ? unchangeableInfo[name]
       : profileInfo[name];
   } else if (control === DateInput) {
     let currentValue = getCurrentValue(name);
