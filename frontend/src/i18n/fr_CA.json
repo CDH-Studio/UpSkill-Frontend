@@ -115,6 +115,8 @@
   "profile.edit.projects": "Modifier projets",
   "profile.undefined": "Indéfinie",
 
+  "profile.is.ongoing": "Courant",
+
   "search.field.primary.dropdown.axios": "Axios",
   "search.field.primary.dropdown.css": "CSS",
   "search.field.primary.dropdown.enzyme": "Enzyme",

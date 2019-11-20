@@ -22,18 +22,17 @@ const updateProfile = async (request, response) => {
     dbObject.jobTitleFr = dbObject.jobTitle.fr;
   }
 
+  console.log(dbObject);
+
   try {
-    let [updated, profile] = await Profile.update(dbObject, {
-      where: { id: id },
-      returning: true
+    let [updated] = await Profile.update(dbObject, {
+      where: { id: id }
     });
 
-    if (!profile) {
-      profile = await Profile.findOne({ where: { id: id } }).then(res => {
-        updated = true;
-        return res;
-      });
-    }
+    const profile = await Profile.findOne({ where: { id: id } }).then(res => {
+      updated = true;
+      return res;
+    });
 
     if (dbObject.skills) profile.setSkills(dbObject.skills);
     if (dbObject.competencies) profile.setCompetencies(dbObject.competencies);
@@ -147,7 +146,6 @@ const updateProfile = async (request, response) => {
         where: { id: profile.dataValues.secondLanguageProficiencyId }
       });
     }
-    console.log("DONE");
 
     //End of logic~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -157,6 +155,7 @@ const updateProfile = async (request, response) => {
     response.status(404).send("Profile not found");
     throw new Error("Profile not found");
   } catch (error) {
+    console.error(error);
     return response.status(500).send(error.message);
   }
 };

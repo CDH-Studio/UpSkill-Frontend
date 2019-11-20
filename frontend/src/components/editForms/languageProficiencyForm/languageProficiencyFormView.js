@@ -85,9 +85,9 @@ class LanguageProficiencyFormView extends Component {
                   options={[
                     { key: "A", value: "A", text: "A" },
                     { key: "B", value: "B", text: "B" },
-                    { key: "D", value: "D", text: "D" },
+                    { key: "C", value: "C", text: "C" },
                     { key: "E", value: "E", text: "E" },
-                    { key: "X", value: "X", text: "X (ungraded)" }
+                    { key: "X", value: "X", text: "X" }
                   ]}
                 />
                 <Form.Field
