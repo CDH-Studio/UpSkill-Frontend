@@ -36,9 +36,13 @@ class HistoryCardView extends Component {
                       {value.header || value.diploma.description}
                     </Grid.Column>
                     <Grid.Column className="dateInfo" width={8}>
-                      {moment(value.startDate).format("MMM YYYY") +
-                        " - " +
-                        moment(value.endDate).format("MMM YYYY")}
+                      {moment(value.startDate).isValid()
+                        ? moment(value.startDate).format("MMM YYYY") +
+                          " - " +
+                          (moment(value.endDate).isValid()
+                            ? moment(value.endDate).format("MMM YYYY")
+                            : "Present")
+                        : ""}
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
