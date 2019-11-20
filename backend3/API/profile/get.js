@@ -212,7 +212,6 @@ const getProfileById = async (request, response) => {
     manager: data.manager,
     cellphone: data.cellphone,
     organizationList,
-    PO: "K1A 0H5",
     secondaryOralDate: secLangProf ? secLangProf.oralDate : null,
     secondaryOralProficiency: secLangProf ? secLangProf.oralProficiency : null,
     secondaryReadingDate: secLangProf ? secLangProf.readingDate : null,
