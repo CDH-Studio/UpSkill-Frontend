@@ -24,9 +24,7 @@ export default class PrimaryInformationFormController extends FormManagingCompon
         fields={this.fields}
         getCurrentValue={this.getCurrentValue}
         onFieldChange={this.onFieldChange}
-        onSubmit={() => {
-          this.onSubmit();
-        }}
+        onSubmit={this.onSubmit}
         onTempFieldChange={this.onTempFieldChange}
         tempFields={this.tempFields}
         {...this.props}

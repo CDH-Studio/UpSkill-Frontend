@@ -94,7 +94,7 @@ class SetupLayoutController extends Component {
   }
 
   render() {
-    const gedsInfoList = this.setGedsInfo(
+    const gedsInfoList = this.setunchangeableInfo(
       this.state.gedsInfoList,
       localStorage.getItem("lang")
     );
@@ -110,6 +110,7 @@ class SetupLayoutController extends Component {
         handleRegister={this.handleRegister}
         isEarlyRegister={this.state.formIndex !== formList.length - 1}
         maxEnabledIndex={this.state.maxEnabledIndex}
+        keycloakEmail={this.state.email}
         profileInfo={this.changes}
         setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
         setFormIndex={this.setFormIndex}
@@ -121,9 +122,7 @@ class SetupLayoutController extends Component {
     const gedsInfo = this.state.gedsInfoList[index];
     this.changes = {
       ...this.changes,
-      ...gedsInfo,
-      location: gedsInfo.location.id,
-      email: this.state.email
+      ...gedsInfo
     };
 
     this.setState({ gedsIndex: index });
@@ -143,7 +142,7 @@ class SetupLayoutController extends Component {
   getTenure
   */
 
-  setGedsInfo(info, language, specialUndefineds) {
+  setunchangeableInfo(info, language, specialUndefineds) {
     if (specialUndefineds && typeof info == "object") {
       for (let key in specialUndefineds) {
         if (info[key] !== null) {
@@ -159,7 +158,7 @@ class SetupLayoutController extends Component {
       } else if (Array.isArray(info)) {
         let returnArray = [];
         info.forEach(element =>
-          returnArray.push(this.setGedsInfo(element, language))
+          returnArray.push(this.setunchangeableInfo(element, language))
         );
         return returnArray;
       } else if ("en" in info) {
@@ -167,7 +166,7 @@ class SetupLayoutController extends Component {
       } else {
         let returnObject = {};
         for (let key in info) {
-          returnObject[key] = this.setGedsInfo(info[key], language);
+          returnObject[key] = this.setunchangeableInfo(info[key], language);
         }
         return returnObject;
       }

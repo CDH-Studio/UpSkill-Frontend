@@ -83,20 +83,21 @@ class LanguageProficiencyFormView extends Component {
                   disabled={secondaryGradingDisabled}
                   width={8}
                   options={[
-                    { key: "a", value: "a", text: "a" },
-                    { key: "b", value: "b", text: "b" },
-                    { key: "c", value: "c", text: "c" },
-                    { key: null, value: "ungraded", text: "ungraded" }
+                    { key: "A", value: "A", text: "A" },
+                    { key: "B", value: "B", text: "B" },
+                    { key: "D", value: "D", text: "D" },
+                    { key: "E", value: "E", text: "E" },
+                    { key: "X", value: "X", text: "X (ungraded)" }
                   ]}
                 />
                 <Form.Field
-                  disabled={secondaryGradingDisabled}
                   width={8}
                   className="dateField"
                   {...this.generateProps(
                     "secondary" + value + "Date",
                     DateInput
                   )}
+                  disabled={secondaryGradingDisabled}
                 />
               </Form.Group>
             ))}

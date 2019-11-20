@@ -23,6 +23,7 @@ export default class RegisterLayoutView extends Component {
       setFormChanges,
       setFormIndex,
       profileInfo,
+      keycloakEmail,
       gedsInfoList,
       isEarlyRegister,
       setGedsIndex,
@@ -30,7 +31,7 @@ export default class RegisterLayoutView extends Component {
       gedsIndex
     } = this.props;
 
-    if (editProfileOptions === null || !gedsInfoList) {
+    if (editProfileOptions === null || !gedsInfoList || !keycloakEmail) {
       return (
         <Dimmer active>
           <Grid>
@@ -43,6 +44,8 @@ export default class RegisterLayoutView extends Component {
         </Dimmer>
       );
     }
+
+    const gedsInfo = gedsInfoList[gedsIndex];
 
     return (
       <React.Fragment>
@@ -84,9 +87,6 @@ export default class RegisterLayoutView extends Component {
                           element.organization[0].description}
                       </div>
                       <div style={{ fontSize: "13pt", color: "#000000" }}>
-                        {element.email}
-                      </div>
-                      <div style={{ fontSize: "13pt", color: "#000000" }}>
                         {element.telephone}
                       </div>
                     </Card.Content>
@@ -106,7 +106,13 @@ export default class RegisterLayoutView extends Component {
                   handleRegister: handleRegister,
                   setFormChanges: setFormChanges,
                   editProfileOptions: editProfileOptions,
-                  gedsInfo: gedsInfoList[gedsIndex],
+                  unchangeableInfo: gedsInfo && {
+                    firstName: gedsInfo.firstName,
+                    lastName: gedsInfo.lastName,
+                    organizations: gedsInfo.organizations,
+                    jobTitle: gedsInfo.jobTitle,
+                    email: keycloakEmail
+                  },
                   isEarlyRegister: isEarlyRegister,
                   profileInfo: profileInfo,
                   handleNext: fieldsUpdate => {
