@@ -104,7 +104,7 @@ export default class FormManagingComponent extends Component {
     let url = backendAddress + "api/profile/" + localStorage.getItem("userId");
     axios
       .put(url, this.fields)
-      .then(response => window.location.reload())
+      // .then(response => window.location.reload())
       .catch(function(error) {
         console.log(error);
       });

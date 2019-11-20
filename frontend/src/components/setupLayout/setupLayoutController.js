@@ -244,10 +244,10 @@ class SetupLayoutController extends Component {
         backendAddress + "api/profile/" + localStorage.getItem("userId"),
         this.changes
       )
-      .then(function(response) {
+      .then(response => {
         console.log(response);
+        redirectFunction("/home");
       })
-      .then(response => redirectFunction("/home"))
       .catch(function(error) {
         console.log(error);
       });

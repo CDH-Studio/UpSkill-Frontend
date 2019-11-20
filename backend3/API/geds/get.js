@@ -14,8 +14,8 @@ async function getEmployeeInfo(request, response) {
     methon: "get",
     url: url,
     headers: {
-      // "user-key": "1d373575a287c2597f4525d0c26eae7d",
-      "user-key": "a4b8d0891e09354b46bbe061c72a7085",
+      "user-key": "1d373575a287c2597f4525d0c26eae7d",
+      // "user-key": "a4b8d0891e09354b46bbe061c72a7085",
       Accept: "application/json"
     }
   })
@@ -41,17 +41,27 @@ async function getEmployeeInfo(request, response) {
           }
           organizations = organizations.reverse();
 
+          let contactInfo = {};
+
+          if (employee.contactInformation.email != "")
+            contactInfo.email = employee.contactInformation.email;
+          if (employee.contactInformation.phoneNumber != "")
+            contactInfo.phoneNumber = employee.contactInformation.phoneNumber;
+          if (employee.contactInformation.altPhoneNumber != "")
+            contactInfo.altPhoneNumber =
+              employee.contactInformation.altPhoneNumber;
+
           let empInfo = {
             id: employee.id,
             givenName: employee.givenName,
             surname: employee.surname,
             title: employee.title,
-            phoneNumber: employee.contactInformation.phoneNumber,
-            altPhoneNumber: employee.contactInformation.altPhoneNumber,
-            email: employee.contactInformation.email,
-            organizations: organizations
+
+            organizations: organizations,
+            ...contactInfo
           };
           info.push(empInfo);
+          console.log(empInfo);
         });
         if (info.length == 0) {
           response.status(204).send("No results found");
