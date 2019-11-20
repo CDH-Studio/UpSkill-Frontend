@@ -22,6 +22,8 @@ const createProfile = async (request, response) => {
     dbObject.jobTitleFr = dbObject.jobTitle.fr;
   }
 
+  dbObject.locationId = dbObject.locationId.id;
+
   try {
     const [profile, created] = await Profile.upsert(
       { id, ...dbObject },
