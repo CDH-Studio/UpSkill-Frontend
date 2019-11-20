@@ -143,8 +143,11 @@ const createProfile = async (request, response) => {
       });
     }
 
+    //End of logic~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     response.status(200).send("OK");
   } catch (error) {
+    console.error(error);
     response.status(500).json({ error: error.message });
   }
 };
