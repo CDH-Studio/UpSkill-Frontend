@@ -122,7 +122,11 @@ class SetupLayoutController extends Component {
     const gedsInfo = this.state.gedsInfoList[index];
     this.changes = {
       ...this.changes,
-      ...gedsInfo
+      ...gedsInfo,
+      location: {
+        ...gedsInfo.location,
+        description: gedsInfo.location.description[localStorage.getItem("lang")]
+      }
     };
 
     this.setState({ gedsIndex: index });

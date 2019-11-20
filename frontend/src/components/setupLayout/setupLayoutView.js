@@ -18,6 +18,7 @@ export default class RegisterLayoutView extends Component {
   render() {
     const {
       editProfileOptions,
+      changeLanguage,
       formList,
       handleRegister,
       setFormChanges,
@@ -49,7 +50,10 @@ export default class RegisterLayoutView extends Component {
 
     return (
       <React.Fragment>
-        <NavigationBar logoRedirectHome={true} />
+        <NavigationBar
+          logoRedirectHome={true}
+          changeLanguage={changeLanguage}
+        />
         <Modal
           open={gedsIndex === null}
           closeOnDimmerClick={false}
