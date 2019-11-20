@@ -19,7 +19,6 @@ export default class NavigationBarView extends Component {
         </Menu.Item>
         <Menu.Menu position="right">
           {/* <Menu.Item name="My Profile" /> */}
-          <Menu.Item href="/">/</Menu.Item>
           <Menu.Item href="/profile">
             <FormattedMessage id="my.profile" />
           </Menu.Item>
