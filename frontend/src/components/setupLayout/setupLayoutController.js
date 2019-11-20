@@ -110,6 +110,7 @@ class SetupLayoutController extends Component {
         handleRegister={this.handleRegister}
         isEarlyRegister={this.state.formIndex !== formList.length - 1}
         maxEnabledIndex={this.state.maxEnabledIndex}
+        keycloakEmail={this.state.email}
         profileInfo={this.changes}
         setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
         setFormIndex={this.setFormIndex}
@@ -118,12 +119,10 @@ class SetupLayoutController extends Component {
   }
 
   setGedsIndex(index) {
-    const unchangeableInfo = this.state.gedsInfoList[index];
+    const gedsInfo = this.state.gedsInfoList[index];
     this.changes = {
       ...this.changes,
-      ...unchangeableInfo,
-      location: unchangeableInfo.location.id,
-      email: this.state.email
+      ...gedsInfo
     };
 
     this.setState({ gedsIndex: index });

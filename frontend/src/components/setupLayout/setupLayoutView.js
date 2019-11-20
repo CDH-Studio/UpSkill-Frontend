@@ -23,6 +23,7 @@ export default class RegisterLayoutView extends Component {
       setFormChanges,
       setFormIndex,
       profileInfo,
+      keycloakEmail,
       gedsInfoList,
       isEarlyRegister,
       setGedsIndex,
@@ -30,7 +31,7 @@ export default class RegisterLayoutView extends Component {
       gedsIndex
     } = this.props;
 
-    if (editProfileOptions === null || !gedsInfoList) {
+    if (editProfileOptions === null || !gedsInfoList || !keycloakEmail) {
       return (
         <Dimmer active>
           <Grid>
@@ -107,7 +108,10 @@ export default class RegisterLayoutView extends Component {
                   editProfileOptions: editProfileOptions,
                   unchangeableInfo: gedsInfo && {
                     firstName: gedsInfo.firstName,
-                    lastName: gedsInfo.lastName
+                    lastName: gedsInfo.lastName,
+                    organizations: gedsInfo.organizations,
+                    jobTitle: gedsInfo.jobTitle,
+                    email: keycloakEmail
                   },
                   isEarlyRegister: isEarlyRegister,
                   profileInfo: profileInfo,

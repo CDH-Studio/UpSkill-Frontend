@@ -38,6 +38,7 @@ class PrimaryInformationFormView extends Component {
           <Form.Field width={4} {...generateProps("cellphone", Input)} />
           <Form.Field width={8} {...emailProps} />
         </Form.Group>
+
         <Form.Field {...generateProps("location", Select)} />
         <Form.Field {...generateProps("team", Input)} />
 

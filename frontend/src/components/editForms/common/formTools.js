@@ -97,15 +97,18 @@ export default class FormManagingComponent extends Component {
   }
 
   onSubmit() {
-    console.log("FieldManagingComponent onSubmit with fields:", this.fields);
+    if (!this.props.handleRegister) {
+      console.log("FieldManagingComponent onSubmit with fields:", this.fields);
 
-    let url = backendAddress + "api/profile/" + localStorage.getItem("userId");
-    axios
-      .put(url, this.fields)
-      .then(response => window.location.reload())
-      .catch(function(error) {
-        console.log(error);
-      });
+      let url =
+        backendAddress + "api/profile/" + localStorage.getItem("userId");
+      axios
+        .put(url, this.fields)
+        .then(response => window.location.reload())
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
   }
 
   getCurrentValue(name) {
