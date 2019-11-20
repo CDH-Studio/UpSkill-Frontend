@@ -65,8 +65,8 @@ class App extends Component {
     this.state = {
       authenticated: false,
       keycloak: null,
-      locale: language,
-      redirect: null
+      locale: language
+      // redirect: <div />
     };
 
     this.changeLanguage = this.changeLanguage.bind(this);
@@ -78,9 +78,9 @@ class App extends Component {
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
-        this.renderRedirect().then(redirect => {
-          this.setState({ redirect: redirect });
-        });
+        // this.renderRedirect().then(redirect => {
+        //   this.setState({ redirect: redirect });
+        // });
       });
   }
 
@@ -103,7 +103,7 @@ class App extends Component {
             formats={i18nConfig.formats}
           >
             <Router>
-              {this.state.redirect}
+              {/* {this.state.redirect} */}
               <div>
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 <div>
@@ -256,13 +256,15 @@ class App extends Component {
     return this.profileExist().then(profileExist => {
       // console.log("profile exist", profileExist);
 
-      if (profileExist) {
+      if (!profileExist) {
         // console.log(profileExist, "Redirecting to Home");
-
-        return;
+        return <Redirect to="/setup"></Redirect>;
+        // return <Redirect to="/home"></Redirect>;
+        return <div />;
       } else {
         // console.log(profileExist, "Redirecting to Profile Generation");
-        return <Redirect to="/setup"></Redirect>;
+        // return <Redirect to="/setup"></Redirect>;
+        return <h1>Heeeyayyaya</h1>;
       }
     });
   };

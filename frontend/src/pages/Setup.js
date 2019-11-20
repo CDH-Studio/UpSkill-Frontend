@@ -5,7 +5,7 @@ export default class Setup extends Component {
   render() {
     return (
       <SetupLayoutController
-        redirectFunction={link => this.props.history.push(link)}
+        redirectFunction={link => this.props.history.push("/home")}
         keycloak={this.props.keycloak}
       />
     );

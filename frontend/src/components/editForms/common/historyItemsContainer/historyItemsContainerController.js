@@ -41,7 +41,7 @@ export default class HistoryItemsContainerController extends Component {
       "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
     axios
       .put(url, { [infoName]: this.fields })
-      .then(response => window.location.reload())
+      // .then(response => window.location.reload())
       .catch(function(error) {
         console.log(error);
       });
