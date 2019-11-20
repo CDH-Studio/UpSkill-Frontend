@@ -4,11 +4,13 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { IntlProvider } from "react-intl";
 
-import { Dimmer, Loader } from "semantic-ui-react";
+import { Dimmer, Loader, Image } from "semantic-ui-react";
 
 import messages_en from "./i18n/en_CA.json";
 import messages_fr from "./i18n/fr_CA.json";
 import "./App.css";
+
+import animatedLogo from "./assets/animatedLogo.gif";
 
 import {
   About,
@@ -204,7 +206,13 @@ class App extends Component {
         return <div>Unable to authenticate!</div>;
       }
     }
-    return <div>Loading ...</div>;
+    return (
+      <div>
+        <Dimmer active>
+          <Image src={animatedLogo} size="tiny"></Image>
+        </Dimmer>
+      </div>
+    );
   }
   //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   copyToClipboard = e => {

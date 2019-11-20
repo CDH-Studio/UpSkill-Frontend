@@ -2,6 +2,7 @@ const Models = require("../../db/models");
 const Profile = Models.profile;
 const Education = Models.education;
 const Experience = Models.experience;
+const ProfileOrganization = Models.profileOrganization;
 const Project = Models.profileProject;
 const SecLang = Models.secondLanguageProficiency;
 
