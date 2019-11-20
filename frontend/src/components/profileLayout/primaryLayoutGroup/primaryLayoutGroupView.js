@@ -279,7 +279,7 @@ class PrimaryLayoutGroupView extends Component {
             )}
             {twitterUrl && (
               <Menu.Item href={twitterUrl} target="_blank">
-                <Icon name="twitter" />
+                <Icon name="linkify" />
                 <FormattedMessage id="profile.twitter" />
               </Menu.Item>
             )}
