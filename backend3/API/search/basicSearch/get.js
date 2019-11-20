@@ -3,12 +3,6 @@ const Profile = Models.profile;
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
-// Profile.findAll({
-//   where: { firstLanguage: { [Op.like]: "%" + searchValue + "%" } }
-// })
-//   .then(profiles => res.render("gigs", { profiles }))
-//   .catch(err => console.log(err));
-
 const getProfileByName = async (request, response) => {
   let { searchValue } = request.params;
   //Make lowercase
