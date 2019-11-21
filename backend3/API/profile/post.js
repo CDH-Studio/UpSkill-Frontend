@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 const Models = require("../../db/models");
 const Profile = Models.profile;
 const Education = Models.education;
@@ -53,14 +55,24 @@ const createProfile = async (request, response) => {
     }
 
     if (dbObject.experience) {
+      console.log(dbObject.experience);
+
       Experience.destroy({ where: { profileId: profile.id } }).then(() => {
         dbObject.experience.forEach(exp => {
+          let startDate = moment(exp.startDate);
+          let endDate = moment(exp.endDate);
+          let content;
+          if (!startDate.isValid()) startDate = null;
+          else startDate = startDate.format();
+          if (!endDate.isValid()) endDate = null;
+          else endDate = endDate.format();
+          if (!exp.content) content = "";
           Experience.create({
             organization: exp.subheader,
             jobTitle: exp.header,
-            description: exp.content,
-            startDate: exp.startDate,
-            endDate: exp.endDate
+            description: content,
+            startDate: startDate,
+            endDate: endDate
           }).then(experience => {
             profile.addExperience(experience);
           });
