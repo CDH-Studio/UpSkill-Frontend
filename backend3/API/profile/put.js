@@ -24,8 +24,6 @@ const updateProfile = async (request, response) => {
     dbObject.jobTitleFr = dbObject.jobTitle.fr;
   }
 
-  console.log(dbObject);
-
   try {
     let [updated] = await Profile.update(dbObject, {
       where: { id: id }
@@ -59,8 +57,6 @@ const updateProfile = async (request, response) => {
     }
 
     if (dbObject.experience) {
-      console.log(dbObject.experience);
-
       Experience.destroy({ where: { profileId: profile.id } }).then(() => {
         dbObject.experience.forEach(exp => {
           let startDate = moment(exp.startDate);
