@@ -7,7 +7,7 @@ import moment from "moment";
 
 export default class EducationItemFormController extends FieldManagingComponent {
   static getFieldNames() {
-    return ["startDate", "endDate", "school", "diploma"];
+    return ["diploma", "endDate", "school", "startDate"];
   }
 
   constructor(props) {

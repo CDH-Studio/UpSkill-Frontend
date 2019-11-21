@@ -11,19 +11,19 @@ class EditHistoryModalView extends Component {
     const {
       addItem,
       contentName,
+      editProfileOptions,
       handleApply,
       handleCancle,
       handleNext,
       handlePrevious,
       handleRegister,
       headerName,
+      isEarlyRegister,
+      itemType,
       items,
       removeItem,
       setContainerField,
-      subheaderName,
-      isEarlyRegister,
-      editProfileOptions,
-      itemType
+      subheaderName
     } = this.props;
     return (
       <Grid divided="vertically">
@@ -31,13 +31,13 @@ class EditHistoryModalView extends Component {
           React.createElement(itemType, {
             addItem: addItem,
             contentName: contentName,
+            editProfileOptions: editProfileOptions,
             headerName: headerName,
             index: index,
             item: item,
             removeItem: removeItem,
             setContainerField: setContainerField,
-            subheaderName: subheaderName,
-            editProfileOptions: editProfileOptions
+            subheaderName: subheaderName
           })
         )}
 

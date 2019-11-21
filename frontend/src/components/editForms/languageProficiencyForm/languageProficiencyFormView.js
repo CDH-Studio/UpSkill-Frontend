@@ -81,14 +81,14 @@ class LanguageProficiencyFormView extends Component {
                     Select
                   )}
                   disabled={secondaryGradingDisabled}
-                  width={8}
                   options={[
                     { key: "A", value: "A", text: "A" },
                     { key: "B", value: "B", text: "B" },
                     { key: "C", value: "C", text: "C" },
-                    { key: "E", value: "E", text: "E" },
+                    { key: "E", value: "E", text: "E (Ungraded)" },
                     { key: "X", value: "X", text: "X" }
                   ]}
+                  width={8}
                 />
                 <Form.Field
                   width={8}

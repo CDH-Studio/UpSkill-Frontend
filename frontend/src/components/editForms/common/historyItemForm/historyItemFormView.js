@@ -30,14 +30,14 @@ class EditHistoryItemView extends Component {
       headerName,
       index,
       intl,
+      isOngoing,
       item,
       onFieldChange,
       onTempFieldChange,
       removeItem,
       startDateMonth,
       startDateYear,
-      subheaderName,
-      isOngoing
+      subheaderName
     } = this.props;
 
     return (

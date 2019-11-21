@@ -10,11 +10,11 @@ class EditDevelopmentalGoalsView extends Component {
     const { intl } = this.props;
     return (
       <EditModalController
-        name={intl.formatMessage({ id: "profile.edit.developmental.goals" })}
         editOptionPaths={{
           developmentalGoals: "api/option/getDevelopmentalGoals"
         }}
         form={DevelopmentalGoalsFormController}
+        name={intl.formatMessage({ id: "profile.edit.developmental.goals" })}
         {...this.props}
       />
     );

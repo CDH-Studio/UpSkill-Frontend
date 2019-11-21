@@ -9,9 +9,9 @@ class EditProjectsView extends Component {
     const { intl } = this.props;
     return (
       <EditModalController
-        name={intl.formatMessage({ id: "profile.edit.projects" })}
-        form={ProjectsFormController}
         editOptionPaths={null}
+        form={ProjectsFormController}
+        name={intl.formatMessage({ id: "profile.edit.projects" })}
         {...this.props}
       />
     );

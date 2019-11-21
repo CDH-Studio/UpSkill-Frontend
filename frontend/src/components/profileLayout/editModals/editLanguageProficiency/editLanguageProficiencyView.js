@@ -13,9 +13,9 @@ class EditLanguageProficiencyView extends Component {
     return (
       <EditModalController
         {...this.props}
+        form={LanguageProficiencyFormView}
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.language.proficiency" })}
-        form={LanguageProficiencyFormView}
       />
     );
   }

@@ -77,9 +77,9 @@ class SetupLayoutController extends Component {
       gedsIndex: null
     };
 
-    this.getSetupData.bind(this);
-    this.setFormIndex = this.setFormIndex.bind(this);
     this.changes = {};
+    this.getSetupData = this.getSetupData.bind(this);
+    this.setFormIndex = this.setFormIndex.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.setGedsIndex = this.setGedsIndex.bind(this);
     this.formList = [];
@@ -101,19 +101,19 @@ class SetupLayoutController extends Component {
 
     return (
       <SetupLayoutView
-        setGedsIndex={this.setGedsIndex}
-        gedsIndex={this.state.gedsIndex}
-        gedsInfoList={gedsInfoList}
         editProfileOptions={this.state.editProfileOptions}
         formIndex={this.state.formIndex}
         formList={this.formList}
+        gedsIndex={this.state.gedsIndex}
+        gedsInfoList={gedsInfoList}
         handleRegister={this.handleRegister}
         isEarlyRegister={this.state.formIndex !== formList.length - 1}
-        maxEnabledIndex={this.state.maxEnabledIndex}
         keycloakEmail={this.state.email}
+        maxEnabledIndex={this.state.maxEnabledIndex}
         profileInfo={this.changes}
         setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
         setFormIndex={this.setFormIndex}
+        setGedsIndex={this.setGedsIndex}
       />
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { generateCommonProps } from "../common/formTools";
-import { Checkbox, Form, Select, Grid, Icon } from "semantic-ui-react";
+import { Checkbox, Form, Grid, Icon, Select } from "semantic-ui-react";
 
 import { injectIntl } from "react-intl";
 
@@ -27,11 +27,11 @@ class EducationItemFormView extends Component {
       endDateYear,
       index,
       intl,
+      isOngoing,
       onTempFieldChange,
       removeItem,
       startDateMonth,
-      startDateYear,
-      isOngoing
+      startDateYear
     } = this.props;
 
     return (
@@ -59,13 +59,13 @@ class EducationItemFormView extends Component {
             >
               <Grid.Column className="noHorizontalGaps" width={5}>
                 <DateInputFieldGroup
+                  groupLabelText={intl.formatMessage({
+                    id: "profile.history.item.start.date"
+                  })}
                   initialMonth={startDateMonth}
                   initialYear={startDateYear}
                   name="startDate"
                   updateField={onTempFieldChange}
-                  groupLabelText={intl.formatMessage({
-                    id: "profile.history.item.start.date"
-                  })}
                 />
               </Grid.Column>
               <Grid.Column className="noHorizontalGaps" width={3}>

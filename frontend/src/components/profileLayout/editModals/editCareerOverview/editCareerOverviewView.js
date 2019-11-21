@@ -8,8 +8,8 @@ class EditCareerOverviewView extends Component {
     const { intl } = this.props;
     return (
       <EditModal
-        name={intl.formatMessage({ id: "profile.edit.career.overview" })}
         form={CareerOverviewFormController}
+        name={intl.formatMessage({ id: "profile.edit.career.overview" })}
         {...this.props}
       />
     );

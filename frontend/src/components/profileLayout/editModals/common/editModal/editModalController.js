@@ -50,7 +50,7 @@ export default class EditGenericModalController extends Component {
 }
 
 export const generateCommonProps = (name, control, props, dropdownControl) => {
-  const { profileInfo, editProfileOptions, intl, updateField, fields } = props;
+  const { editProfileOptions, fields, intl, profileInfo, updateField } = props;
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
   let intlId = "profile." + name.replace(/([A-Z])/g, ".$1").toLowerCase();

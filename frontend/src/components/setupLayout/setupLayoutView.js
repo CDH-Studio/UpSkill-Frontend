@@ -6,19 +6,19 @@ import { Grid, Button, Card, Dimmer, Loader, Modal } from "semantic-ui-react";
 export default class RegisterLayoutView extends Component {
   render() {
     const {
-      editProfileOptions,
       changeLanguage,
+      editProfileOptions,
+      formIndex,
       formList,
+      gedsIndex,
+      gedsInfoList,
       handleRegister,
+      isEarlyRegister,
+      keycloakEmail,
+      profileInfo,
       setFormChanges,
       setFormIndex,
-      profileInfo,
-      keycloakEmail,
-      gedsInfoList,
-      isEarlyRegister,
-      setGedsIndex,
-      formIndex,
-      gedsIndex
+      setGedsIndex
     } = this.props;
 
     if (editProfileOptions === null || !gedsInfoList || !keycloakEmail) {

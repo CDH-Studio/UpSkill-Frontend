@@ -58,13 +58,13 @@ class EditHistoryItemView extends Component {
             >
               <Grid.Column className="noHorizontalGaps" width={5}>
                 <DateInputFieldGroup
+                  groupLabelText={intl.formatMessage({
+                    id: "profile.history.item.start.date"
+                  })}
                   initialMonth={item.startDateMonth}
                   initialYear={item.startDateYear}
                   name="startDate"
                   updateField={updateField}
-                  groupLabelText={intl.formatMessage({
-                    id: "profile.history.item.start.date"
-                  })}
                 />
               </Grid.Column>
               <Grid.Column className="noHorizontalGaps" width={3}>

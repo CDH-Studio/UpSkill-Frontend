@@ -29,22 +29,23 @@ class ProfileLayoutController extends Component {
     return (
       <ProfileLayoutView
         changeLanguage={changeLanguage}
+        editable={true}
+        keycloak={keycloak}
         profileInfo={this.setProfileInfo(
           profileInfo,
           localStorage.getItem("lang"),
           {
+            acting: undefined,
+            actingPeriodStartDate: undefined,
             careerSummary: [],
             competencies: [],
             education: [],
             organizationList: [],
-            skills: [],
-            acting: undefined,
-            actingPeriodStartDate: undefined
+            projects: [],
+            skills: []
           }
         )}
         updateProfileInfo={updateProfileInfo}
-        editable={true}
-        keycloak={keycloak}
         windowWidth={this.state.windowWidth}
       />
     );

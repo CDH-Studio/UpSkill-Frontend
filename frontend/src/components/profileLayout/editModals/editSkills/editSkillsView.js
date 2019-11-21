@@ -10,11 +10,11 @@ class EditSkillsView extends Component {
     const { intl } = this.props;
     return (
       <EditModalController
-        name={intl.formatMessage({ id: "profile.edit.skills" })}
-        form={SkillsFormController}
         editOptionPaths={{
           skills: "api/option/getSkill"
         }}
+        name={intl.formatMessage({ id: "profile.edit.skills" })}
+        form={SkillsFormController}
         {...this.props}
       />
     );

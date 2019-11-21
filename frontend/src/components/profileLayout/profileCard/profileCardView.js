@@ -8,8 +8,8 @@ export default class profileCardView extends Component {
   render() {
     const {
       button,
-      cardName,
       cardIcon,
+      cardName,
       children,
       className,
       fullHeight,

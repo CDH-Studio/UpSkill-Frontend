@@ -9,10 +9,10 @@ class TalentManagementFormView extends Component {
   render() {
     const {
       handleCancle,
-      isEarlyRegister,
       handleNext,
       handlePrevious,
       handleRegister,
+      isEarlyRegister,
       onSubmit
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);

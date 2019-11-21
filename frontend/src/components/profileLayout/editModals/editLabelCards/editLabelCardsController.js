@@ -49,6 +49,7 @@ export default class EditLabelCardsController extends FieldManagingComponent {
   render() {
     return (
       <EditLabelCardsView
+        fields={this.fields}
         profileInfo={{
           groupOrLevel: null,
           security: null,
@@ -56,7 +57,6 @@ export default class EditLabelCardsController extends FieldManagingComponent {
           yearsOfService: null
         }}
         updateField={this.updateField}
-        fields={this.fields}
         {...this.props}
       />
     );

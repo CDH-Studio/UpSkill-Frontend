@@ -36,10 +36,10 @@ export default class EditLanguageProficiencyController extends FieldManagingComp
   render() {
     return (
       <EditLanguageProficiencyView
+        fields={this.fields}
         handleApply={this.handleApply}
         showSecondaryGrading={this.fields.gradedOnSecondLanguage}
         updateField={this.updateField}
-        fields={this.fields}
         {...this.props}
       />
     );

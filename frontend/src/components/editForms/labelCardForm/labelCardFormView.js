@@ -10,15 +10,15 @@ import "../common/form.css";
 class LabelCardFormView extends Component {
   render() {
     const {
-      actingEndDisabled,
       actingDisabled,
-      onSubmit,
+      actingEndDisabled,
+      editProfileOptions,
       handleCancle,
       handleNext,
+      handlePrevious,
       handleRegister,
       isEarlyRegister,
-      handlePrevious,
-      editProfileOptions
+      onSubmit
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
@@ -41,20 +41,20 @@ class LabelCardFormView extends Component {
         <Form.Group>
           <Form.Field
             {...generateProps("actingStartDate", DateInput)}
-            width={6}
             disabled={actingDisabled}
+            width={6}
           />
 
           <Form.Field
             {...generateProps("actingHasEndDate", Checkbox, true)}
-            width={4}
             disabled={actingDisabled}
+            width={4}
           />
 
           <Form.Field
             {...generateProps("actingEndDate", DateInput)}
-            width={6}
             disabled={actingEndDisabled}
+            width={6}
           />
         </Form.Group>
         <FormButtonsController

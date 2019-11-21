@@ -39,8 +39,8 @@ export default class DateInputFieldGroupView extends Component {
                 name={name + "Year"}
                 onChange={updateField}
                 placeholder="YY"
-                value={initialYear}
                 type="number"
+                value={initialYear}
               />
             </Form.Field>
             <Form.Field>
@@ -50,8 +50,8 @@ export default class DateInputFieldGroupView extends Component {
                 name={name + "Month"}
                 onChange={updateField}
                 placeholder="MM"
-                value={initialMonth}
                 type="number"
+                value={initialMonth}
               />
             </Form.Field>
           </Form.Group>

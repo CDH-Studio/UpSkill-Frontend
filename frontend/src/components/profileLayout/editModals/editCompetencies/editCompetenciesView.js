@@ -10,11 +10,11 @@ class EditCompetenciesView extends Component {
     const { intl } = this.props;
     return (
       <EditModalController
-        name={intl.formatMessage({ id: "profile.edit.competencies" })}
-        form={CompetenciesFormController}
         editOptionPaths={{
           competencies: "api/option/getCompetency"
         }}
+        form={CompetenciesFormController}
+        name={intl.formatMessage({ id: "profile.edit.competencies" })}
         {...this.props}
       />
     );

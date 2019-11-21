@@ -13,8 +13,8 @@ class PrimaryInformationFormView extends Component {
       handleCancle,
       handleNext,
       handlePrevious,
-      isEarlyRegister,
       handleRegister,
+      isEarlyRegister,
       onSubmit
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);

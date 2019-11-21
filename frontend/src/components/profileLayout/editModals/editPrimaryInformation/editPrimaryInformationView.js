@@ -12,12 +12,12 @@ class EditPrimaryInformationView extends Component {
     return (
       <EditModalController
         {...this.props}
-        handleApply={handleApply}
-        name={intl.formatMessage({ id: "profile.edit.primary.information" })}
         editOptionPaths={{
           location: "api/option/getLocation"
         }}
         form={PrimaryInformationFormController}
+        handleApply={handleApply}
+        name={intl.formatMessage({ id: "profile.edit.primary.information" })}
       />
     );
   }

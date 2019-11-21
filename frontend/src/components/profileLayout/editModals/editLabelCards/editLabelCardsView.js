@@ -11,13 +11,13 @@ class EditLabelCardView extends Component {
     return (
       <EditModalController
         {...this.props}
-        name="Edit Info"
         editOptionPaths={{
-          tenure: "api/option/getTenure",
+          groupOrLevel: "api/option/getGroupLevel",
           security: "api/option/getSecurityClearance",
-          groupOrLevel: "api/option/getGroupLevel"
+          tenure: "api/option/getTenure"
         }}
         form={LabelCardFormController}
+        name="Edit Info"
       />
     );
   }

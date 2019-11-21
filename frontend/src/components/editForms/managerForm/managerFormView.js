@@ -10,12 +10,12 @@ import "../common/form.css";
 class ManagerFormView extends Component {
   render() {
     const {
-      onSubmit,
-      isEarlyRegister,
       handleCancle,
-      handleRegister,
       handleNext,
-      handlePrevious
+      handlePrevious,
+      handleRegister,
+      isEarlyRegister,
+      onSubmit
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
