@@ -186,9 +186,9 @@ class SetupLayoutController extends Component {
       (await axios.get(backendAddress + "api/option/getCompetency")).data
     );
 
-    let gedsInfoList = await axios.get(
-      backendAddress + "api/profGen/" + localStorage.getItem("userId")
-    ).data;
+    let gedsInfoList = await axios
+      .get(backendAddress + "api/profGen/" + localStorage.getItem("userId"))
+      .then(response => response.data);
 
     let epo = {
       skills: skillOptions,
