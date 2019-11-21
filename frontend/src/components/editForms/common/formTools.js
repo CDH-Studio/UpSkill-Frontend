@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Checkbox, Input, Select } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import moment from "moment";
@@ -10,14 +10,12 @@ const { backendAddress } = config;
 export const generateCommonProps = (props, name, control, tempField) => {
   const {
     editProfileOptions,
-    fields,
     getCurrentValue,
     intl,
     onFieldChange,
     unchangeableInfo,
     onTempFieldChange,
-    profileInfo,
-    updateField
+    profileInfo
   } = props;
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
@@ -34,11 +32,6 @@ export const generateCommonProps = (props, name, control, tempField) => {
     className: hasUnchangableValue ? "unchangeableField" : ""
   };
 
-  /*if (dropdownControl) {
-    commonProps.options = editProfileOptions[name];
-    commonProps.defaultValue = profileInfo[name];
-    commonProps.placeholder = null;
-  } else */
   if (control === Checkbox) {
     commonProps.defaultChecked = profileInfo[name];
   } else if (control === Select) {

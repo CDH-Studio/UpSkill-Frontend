@@ -6,8 +6,6 @@ import { Dimmer, Grid, Label, Loader } from "semantic-ui-react";
 
 import { EditableProvider } from "./editableProvider/editableProvider";
 
-import EditModalController from "./editModals/common/editModal/editModalController";
-
 import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";
 import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
 import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";

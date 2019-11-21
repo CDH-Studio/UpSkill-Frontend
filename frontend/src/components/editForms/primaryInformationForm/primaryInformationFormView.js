@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import { generateCommonProps } from "../common/formTools";
-import { Form, Dropdown, Input, Select } from "semantic-ui-react";
-import { DateInput } from "semantic-ui-calendar-react";
+import { Form, Input, Select } from "semantic-ui-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 
-import { FormattedMessage, injectIntl } from "react-intl";
+import { injectIntl } from "react-intl";
 
 import "../common/form.css";
 
 class PrimaryInformationFormView extends Component {
   render() {
     const {
-      actingDisabled,
-      actingEndDisabled,
-      buttons,
-      fields,
       handleCancle,
       handleNext,
       handlePrevious,

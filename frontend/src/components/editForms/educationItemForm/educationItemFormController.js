@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import FieldManagingComponent from "../common/formTools";
 
@@ -72,8 +72,6 @@ export default class EducationItemFormController extends FieldManagingComponent 
       index,
       intl,
       item,
-      onFieldChange,
-      onTempFieldChange,
       removeItemByIndex,
       subheaderName
     } = this.props;

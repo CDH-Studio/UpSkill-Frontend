@@ -179,7 +179,6 @@ class SetupLayoutController extends Component {
   }
 
   async getSetupData() {
-    const { intl } = this.props;
     let skillOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getSkill")).data
     );
@@ -187,11 +186,9 @@ class SetupLayoutController extends Component {
       (await axios.get(backendAddress + "api/option/getCompetency")).data
     );
 
-    let owo = await axios.get(
+    let gedsInfoList = await axios.get(
       backendAddress + "api/profGen/" + localStorage.getItem("userId")
-    );
-    console.log("ow", owo);
-    let gedsInfoList = owo.data;
+    ).data;
 
     let epo = {
       skills: skillOptions,

@@ -4,8 +4,6 @@ import { Checkbox, Form, Grid, Icon, Input, TextArea } from "semantic-ui-react";
 
 import { injectIntl } from "react-intl";
 
-import FormButtonsController from "../formButtons/formButtonsController";
-
 //import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
 import DateInputFieldGroup from "../../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
 
@@ -24,16 +22,9 @@ export default class LabelCardFormView extends Component {
 */
 
 class EditHistoryItemView extends Component {
-  constructor(props) {
-    super(props);
-
-    //const generateProps = generateCommonProps.bind(this, this.props);
-  }
-
   render() {
     const {
       contentName,
-      disableEndDate,
       endDateMonth,
       endDateYear,
       headerName,

@@ -7,7 +7,6 @@ import LanguageProficiencyFormView from "./languageProficiencyFormView";
 export default class LanguageProficiencyFormController extends FormManagingComponent {
   constructor(props) {
     super(props);
-    const { profileInfo } = this.props;
 
     /*this.tempFields["gradedOnSecondLanguage"] = Boolean(
       profileInfo["secondaryOralProficiency"] ||
@@ -29,16 +28,14 @@ export default class LanguageProficiencyFormController extends FormManagingCompo
   }
 
   render() {
-    const { afterSubmit, buttons, profileInfo } = this.props;
+    const { buttons, profileInfo } = this.props;
     return (
       <LanguageProficiencyFormView
         buttons={buttons}
         fields={this.fields}
         getCurrentValue={this.getCurrentValue}
         onFieldChange={this.onFieldChange}
-        onSubmit={() => {
-          this.onSubmit();
-        }}
+        onSubmit={this.onSubmit}
         onTempFieldChange={this.onTempFieldChange}
         secondaryGradingDisabled={
           "gradedOnSecondLanguage" in this.fields

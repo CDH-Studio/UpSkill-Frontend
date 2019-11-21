@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Grid, Modal, Button, Icon } from "semantic-ui-react";
+import { Grid, Button, Icon } from "semantic-ui-react";
 
-//import { renderEditButton } from "../editModal/editModalView";
 import FormButtonsController from "../formButtons/formButtonsController";
-import HistoryItemFormController from "../historyItemForm/historyItemFormController";
 import "./historyItemsContainer.css";
 import "../form.css";
 
@@ -12,7 +10,6 @@ class EditHistoryModalView extends Component {
   render() {
     const {
       addItem,
-      buttons,
       contentName,
       handleApply,
       handleCancle,
@@ -21,8 +18,6 @@ class EditHistoryModalView extends Component {
       handleRegister,
       headerName,
       items,
-      name,
-      onSubmit,
       removeItem,
       setContainerField,
       subheaderName,

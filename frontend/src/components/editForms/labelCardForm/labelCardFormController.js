@@ -26,7 +26,7 @@ export default class LabelCardFormController extends FormManagingComponent {
   }
 
   render() {
-    const { afterSubmit, buttons } = this.props;
+    const { buttons } = this.props;
     const actingDisabled = !Boolean(this.getCurrentValue("isActing"));
     return (
       <LabelCardFormView

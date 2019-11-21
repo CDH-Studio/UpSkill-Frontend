@@ -4,7 +4,7 @@ import { injectIntl } from "react-intl";
 
 class DevelopmentalGoalsFormView extends Component {
   render() {
-    const { editProfileOptions, intl } = this.props;
+    const { intl } = this.props;
 
     return (
       <TagFormController

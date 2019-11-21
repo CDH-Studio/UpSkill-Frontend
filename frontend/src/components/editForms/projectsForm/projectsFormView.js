@@ -5,7 +5,7 @@ import TagFormController from "../common/tagForm/tagFormController";
 
 class ProjectsFormView extends Component {
   render() {
-    const { editProfileOptions, intl } = this.props;
+    const { intl } = this.props;
 
     return (
       <TagFormController

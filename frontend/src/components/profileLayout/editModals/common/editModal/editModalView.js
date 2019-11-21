@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Button, Dimmer, Icon, Loader, Modal, Grid } from "semantic-ui-react";
+import { Dimmer, Icon, Loader, Modal, Grid } from "semantic-ui-react";
 
 import "./editModal.css";
 
@@ -51,8 +51,6 @@ class editModalView extends Component {
       buttonBackgroundColor,
       buttonClass,
       buttonColor,
-      form,
-      handleApply,
       handleOpen,
       name
     } = this.props;

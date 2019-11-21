@@ -12,8 +12,6 @@ class LabelCardFormView extends Component {
     const {
       actingEndDisabled,
       actingDisabled,
-      buttons,
-      fields,
       onSubmit,
       handleCancle,
       handleNext,

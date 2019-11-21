@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import moment from "moment";
 import axios from "axios";
 
 import HistoryItemsContainerView from "./historyItemsContainerView";

@@ -1,20 +1,9 @@
 import React, { Component } from "react";
 import NavigationBar from "../navigationBar/navigationBarController";
-import { FormattedMessage, injectIntl } from "react-intl";
-import {
-  Grid,
-  Button,
-  Card,
-  Dimmer,
-  Loader,
-  Modal,
-  CardHeader
-} from "semantic-ui-react";
+import { FormattedMessage } from "react-intl";
+import { Grid, Button, Card, Dimmer, Loader, Modal } from "semantic-ui-react";
 
 export default class RegisterLayoutView extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const {
       editProfileOptions,

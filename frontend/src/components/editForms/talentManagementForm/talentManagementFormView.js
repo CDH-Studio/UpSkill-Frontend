@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { generateCommonProps } from "../common/formTools";
-import { Form, Checkbox, Input, Select } from "semantic-ui-react";
-import { DateInput } from "semantic-ui-calendar-react";
+import { Form, Checkbox, Select } from "semantic-ui-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 import { injectIntl } from "react-intl";
 
@@ -9,10 +8,6 @@ import "../common/form.css";
 class TalentManagementFormView extends Component {
   render() {
     const {
-      actingDisabled,
-      actingEndDisabled,
-      buttons,
-      fields,
       handleCancle,
       isEarlyRegister,
       handleNext,

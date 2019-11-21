@@ -2,11 +2,10 @@ import React from "react";
 
 import FormManagingComponent from "../common/formTools";
 import ManagerFormView from "./managerFormView";
-import moment from "moment";
 
 export default class ManagerFormController extends FormManagingComponent {
   render() {
-    const { afterSubmit, buttons } = this.props;
+    const { buttons } = this.props;
     return (
       <ManagerFormView
         buttons={buttons}

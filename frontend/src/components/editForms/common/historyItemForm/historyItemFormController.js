@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import FieldManagingComponent from "../formTools";
 
@@ -73,8 +73,6 @@ export default class HistoryItemFormController extends FieldManagingComponent {
       index,
       intl,
       item,
-      onFieldChange,
-      onTempFieldChange,
       removeItemByIndex,
       subheaderName
     } = this.props;

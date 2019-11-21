@@ -2,12 +2,10 @@ import React from "react";
 
 import FormManagingComponent from "../common/formTools";
 import PrimaryInformationFormView from "./primaryInformationFormView";
-import moment from "moment";
 
 export default class PrimaryInformationFormController extends FormManagingComponent {
   constructor(props) {
     super(props);
-    const profileInfo = this.props;
 
     const fixUrl = value =>
       value.toLowerCase().startsWith("http") ? value : "https://" + value;
@@ -17,7 +15,7 @@ export default class PrimaryInformationFormController extends FormManagingCompon
   }
 
   render() {
-    const { afterSubmit, buttons } = this.props;
+    const { buttons } = this.props;
     return (
       <PrimaryInformationFormView
         buttons={buttons}

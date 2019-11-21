@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Select, Form, Grid, Checkbox } from "semantic-ui-react";
-import { DateInput } from "semantic-ui-calendar-react";
 
-import EditModalController, {
-  generateCommonProps
-} from "../common/editModal/editModalController.js";
+import EditModalController from "../common/editModal/editModalController.js";
 
 import LanguageProficiencyFormView from "../../../editForms/languageProficiencyForm/languageProficiencyFormController";
 
