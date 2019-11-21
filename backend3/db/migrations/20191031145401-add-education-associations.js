@@ -5,11 +5,11 @@ module.exports = {
     return queryInterface
       .addColumn(
         "education", // name of Source model
-        "user_id", // name of the key we're adding
+        "profileId", // name of the key we're adding
         {
           type: Sequelize.UUID,
           references: {
-            model: "users", // name of Target model
+            model: "profiles", // name of Target model
             key: "id" // key in Target model that we're referencing
           },
           onUpdate: "CASCADE",
@@ -20,7 +20,7 @@ module.exports = {
         return queryInterface
           .addColumn(
             "education", // name of Source model
-            "school_id", // name of the key we're adding
+            "schoolId", // name of the key we're adding
             {
               type: Sequelize.UUID,
               references: {
@@ -34,7 +34,7 @@ module.exports = {
           .then(() => {
             return queryInterface.addColumn(
               "education", // name of Source model
-              "diploma_id", // name of the key we're adding
+              "diplomaId", // name of the key we're adding
               {
                 type: Sequelize.UUID,
                 references: {
@@ -53,18 +53,18 @@ module.exports = {
     return queryInterface
       .removeColumn(
         "education", // name of Source model
-        "user_id" // key we want to remove
+        "profileId" // key we want to remove
       )
       .then(() => {
         return queryInterface
           .removeColumn(
             "education", // name of Source model
-            "school_id" // key we want to remove
+            "schoolId" // key we want to remove
           )
           .then(() => {
             return queryInterface.removeColumn(
               "education", // name of Source model
-              "diploma_id" // key we want to remove
+              "diplomaId" // key we want to remove
             );
           });
       });

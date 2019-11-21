@@ -2,7 +2,7 @@
 const Sequelize = require("sequelize");
 
 // Option 1: Passing parameters separately
-module.exports = new Sequelize("dev_database", "api", "api", {
+module.exports = new Sequelize("test", "postgres", "poiuytrewq", {
   host: "localhost",
   dialect: "postgres",
   pool: {
@@ -10,6 +10,5 @@ module.exports = new Sequelize("dev_database", "api", "api", {
     min: 0,
     acquire: 30000,
     idle: 10000
-  },
-  define: { underscore: true }
+  }
 });

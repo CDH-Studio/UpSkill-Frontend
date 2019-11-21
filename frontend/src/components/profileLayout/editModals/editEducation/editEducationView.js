@@ -1,13 +1,19 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { injectIntl } from "react-intl";
 
-import EditHistoryModal from "../common/editHistoryModal/editHistoryModalController";
+import EditModalController from "../common/editModal/editModalController";
+import EducationFormController from "../../../editForms/educationForm/educationFormController";
 
 class EditEducationView extends Component {
   render() {
     const { intl } = this.props;
     return (
-      <EditHistoryModal
+      <EditModalController
+        editOptionPaths={{
+          diploma: "api/option/getDiploma",
+          school: "api/option/getSchool"
+        }}
+        form={EducationFormController}
         name={intl.formatMessage({ id: "profile.edit.education" })}
         {...this.props}
       />

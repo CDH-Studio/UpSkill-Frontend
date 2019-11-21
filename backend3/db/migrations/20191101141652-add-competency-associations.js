@@ -3,24 +3,26 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
-      .createTable("user_competencies", {
-        created_at: {
+      .createTable("profileCompetencies", {
+        createdAt: {
           allowNull: false,
           type: Sequelize.DATE
         },
-        updated_at: {
+        updatedAt: {
           allowNull: false,
           type: Sequelize.DATE
         },
-        user_id: {
+        profileId: {
           type: Sequelize.UUID,
           primaryKey: true,
           references: {
-            model: "users", // name of Target model
+            model: "profiles", // name of Target model
             key: "id" // key in Target model that we're referencing
-          }
+          },
+          onUpdate: "CASCADE",
+          onDelete: "CASCADE"
         },
-        competency_id: {
+        competencyId: {
           type: Sequelize.UUID,
           primaryKey: true,
           references: {
@@ -30,24 +32,26 @@ module.exports = {
         }
       })
       .then(() => {
-        return queryInterface.createTable("user_development_goals", {
-          created_at: {
+        return queryInterface.createTable("profileDevelopmentGoals", {
+          createdAt: {
             allowNull: false,
             type: Sequelize.DATE
           },
-          updated_at: {
+          updatedAt: {
             allowNull: false,
             type: Sequelize.DATE
           },
-          user_id: {
+          profileId: {
             type: Sequelize.UUID,
             primaryKey: true,
             references: {
-              model: "users", // name of Target model
+              model: "profiles", // name of Target model
               key: "id" // key in Target model that we're referencing
-            }
+            },
+            onUpdate: "CASCADE",
+            onDelete: "CASCADE"
           },
-          competency_id: {
+          competencyId: {
             type: Sequelize.UUID,
             primaryKey: true,
             references: {
@@ -61,8 +65,8 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     // remove table
-    return queryInterface.dropTable("user_competencies").then(() => {
-      return queryInterface.dropTable("user_development_goals");
+    return queryInterface.dropTable("profileCompetencies").then(() => {
+      return queryInterface.dropTable("profileDevelopmentGoals");
     });
   }
 };

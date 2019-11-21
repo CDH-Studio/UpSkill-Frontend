@@ -338,7 +338,7 @@ CREATE TABLE public."user" (
     email character varying NOT NULL,
     job_title character varying NOT NULL,
     phone character varying,
-    mobile character varying,
+    cellphone character varying,
     location character varying,
     manager character varying,
     team character varying,
@@ -1097,7 +1097,7 @@ d9aa34c2-f760-11e9-abfa-3af9d3903da4	Trusted Professional	\N
 -- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."user" (id, first_name, last_name, email, job_title, phone, mobile, location, manager, team, first_language, second_language, second_language_proficiency_id, employment_status_id, group_level_id, year_service, security_clearance_id, department_id, sector_id, branch_id, directorate_id, linkedin, github, career_mobility_id, talent_matrix_result_id, key_competency_id, division_id) FROM stdin;
+COPY public."user" (id, first_name, last_name, email, job_title, phone, cellphone, location, manager, team, first_language, second_language, second_language_proficiency_id, employment_status_id, group_level_id, year_service, security_clearance_id, department_id, sector_id, branch_id, directorate_id, linkedin, github, career_mobility_id, talent_matrix_result_id, key_competency_id, division_id) FROM stdin;
 240e4b78-f768-11e9-abfa-3af9d3903da4	Trevor	Bivi	trevor.bivi@canada.ca	Developer	\N	\N	\N	\N	\N	EN	\N	\N	647f9072-f75e-11e9-abfa-3af9d3903da4	198f30f2-f760-11e9-abfa-3af9d3903da4	1	6520ce9a-f760-11e9-abfa-3af9d3903da4	c04da846-f766-11e9-abfa-3af9d3903da4	\N	\N	\N	\N	\N	\N	\N	\N	\N
 240e4cfe-f768-11e9-abfa-3af9d3903da4	Mamadou	Bah	mamadoumoustapha.bah@canada.ca	Developer	\N	\N	\N	\N	\N	EN	\N	\N	647f9072-f75e-11e9-abfa-3af9d3903da4	198f30f2-f760-11e9-abfa-3af9d3903da4	1	6520ce9a-f760-11e9-abfa-3af9d3903da4	c04da846-f766-11e9-abfa-3af9d3903da4	\N	\N	\N	\N	\N	\N	\N	\N	\N
 240e4e20-f768-11e9-abfa-3af9d3903da4	Rizvi	Rab	rizvi.rab@canada.ca	Developer	\N	\N	\N	\N	\N	EN	\N	\N	647f9072-f75e-11e9-abfa-3af9d3903da4	198f30f2-f760-11e9-abfa-3af9d3903da4	1	6520ce9a-f760-11e9-abfa-3af9d3903da4	c04da846-f766-11e9-abfa-3af9d3903da4	\N	\N	\N	\N	\N	\N	\N	\N	\N

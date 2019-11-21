@@ -38,8 +38,10 @@ export default class ResultsLayoutView extends Component {
     }
 
     let cards = [];
-    for (var i = 0; i < results.data.data.length; i++) {
-      let person = results.data.data[i];
+
+    results.data.forEach(person => {
+      console.log(person);
+
       cards.push(
         <Card>
           <Card.Content>
@@ -87,7 +89,7 @@ export default class ResultsLayoutView extends Component {
           </Card.Content>
         </Card>
       );
-    }
+    });
     return <Card.Group fluid>{cards}</Card.Group>;
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { injectIntl } from "react-intl";
 import { Grid } from "semantic-ui-react";
+import moment from "moment";
 
 import ProfileCardController from "../profileCard/profileCardController";
 import "./historyCard.css";
@@ -32,10 +33,16 @@ class HistoryCardView extends Component {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column className="entryName" width={8}>
-                      {value.header}
+                      {value.header || value.diploma.description}
                     </Grid.Column>
                     <Grid.Column className="dateInfo" width={8}>
-                      {value.startDate} - {value.endDate}
+                      {moment(value.startDate).isValid()
+                        ? moment(value.startDate).format("MMM YYYY") +
+                          " - " +
+                          (moment(value.endDate).isValid()
+                            ? moment(value.endDate).format("MMM YYYY")
+                            : "Present")
+                        : ""}
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
@@ -47,16 +54,18 @@ class HistoryCardView extends Component {
                       }}
                       width={16}
                     >
-                      {value.subheader}
+                      {value.subheader || value.school.description}
                     </Grid.Column>
                   </Grid.Row>
-                  <Grid.Row>
-                    <Grid.Column width={16}>
-                      {value.content.split("\n").map((text, index) => (
-                        <p style={{ marginBottom: "0px" }}>{text}</p>
-                      ))}
-                    </Grid.Column>
-                  </Grid.Row>
+                  {value.content && (
+                    <Grid.Row>
+                      <Grid.Column width={16}>
+                        {value.content.split("\n").map((text, index) => (
+                          <p style={{ marginBottom: "0px" }}>{text}</p>
+                        ))}
+                      </Grid.Column>
+                    </Grid.Row>
+                  )}
                 </Grid>
               </Grid.Column>
             </Grid.Row>

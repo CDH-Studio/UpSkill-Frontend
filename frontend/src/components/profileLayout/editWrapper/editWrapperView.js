@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { injectIntl } from "react-intl";
 
 import "./editWrapper.css";
 
@@ -8,7 +8,7 @@ class EditWrapperView extends Component {
     const {
       button,
       children,
-      dropdownOptions,
+      editProfileOptions,
       editable,
       profileInfo,
       style,
@@ -18,7 +18,7 @@ class EditWrapperView extends Component {
     if (editable) {
       return (
         <div className={wrapperType} style={style}>
-          {React.createElement(button, { profileInfo, dropdownOptions })}
+          {React.createElement(button, { editProfileOptions, profileInfo })}
           {children}
         </div>
       );

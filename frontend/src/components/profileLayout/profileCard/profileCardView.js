@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
 
 import EditWrapperController from "../editWrapper/editWrapperController";
-import './profileCard.css';
+import "./profileCard.css";
 
 export default class profileCardView extends Component {
   render() {
     const {
       button,
+      cardIcon,
       cardName,
       children,
       className,
@@ -24,9 +25,18 @@ export default class profileCardView extends Component {
         style={heightStyle}
         wrapperType={wrapperType}
       >
-        <Card fluid className={className ? className + " profileCard": 'profileCard'} id={id} style={heightStyle}>
+        <Card
+          className={className ? className + " profileCard" : "profileCard"}
+          fluid
+          id={id}
+          style={heightStyle}
+        >
           <Card.Content>
-            {cardName && <h5 className="blueColoredText">{cardName}</h5>}
+            {cardName && (
+              <h5 className="blueColoredText">
+                {cardName} {cardIcon}
+              </h5>
+            )}
             {children}
           </Card.Content>
         </Card>

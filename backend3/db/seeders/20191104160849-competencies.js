@@ -6,30 +6,40 @@ module.exports = {
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
     */
-    return queryInterface.bulkInsert(
-      "competencies",
-      [
-        {
-          description_en: "Thinking things through",
-          description_fr: "Réflexion approfondie",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Achieve results",
-          description_fr: "Obtenir des résultats",
-          created_at: new Date(),
-          updated_at: new Date()
-        },
-        {
-          description_en: "Humor",
-          description_fr: "Sens de l'humour",
-          created_at: new Date(),
-          updated_at: new Date()
-        }
-      ],
-      {}
-    );
+    return queryInterface
+      .bulkInsert(
+        "competencies",
+        [
+          {
+            descriptionEn: "Thinking things through",
+            descriptionFr: "Réflexion approfondie",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          },
+          {
+            descriptionEn: "Achieve results",
+            descriptionFr: "Obtenir des résultats",
+            createdAt: new Date(),
+            updatedAt: new Date()
+          }
+        ],
+        {}
+      )
+      .then(() => {
+        return queryInterface.bulkInsert(
+          "competencies",
+          [
+            {
+              id: "3a57095e-0174-11ea-8d71-362b9e155667",
+              descriptionEn: "Humor",
+              descriptionFr: "Sens de l'humour",
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }
+          ],
+          {}
+        );
+      });
   },
 
   down: (queryInterface, Sequelize) => {

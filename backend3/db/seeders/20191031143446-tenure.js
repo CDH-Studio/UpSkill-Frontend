@@ -10,52 +10,52 @@ module.exports = {
       "tenures",
       [
         {
-          description_en: "Acting",
-          description_fr: "Par intérim",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Acting",
+          descriptionFr: "Par intérim",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Assignment",
-          description_fr: "Affectation",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Assignment",
+          descriptionFr: "Affectation",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Deployment",
-          description_fr: "Mutations",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Deployment",
+          descriptionFr: "Mutations",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Indeterminate",
-          description_fr: "Indeterminée",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Indeterminate",
+          descriptionFr: "Indeterminée",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Secondment",
-          description_fr: "Détachement",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Secondment",
+          descriptionFr: "Détachement",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Student",
-          description_fr: "Étudiant",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Student",
+          descriptionFr: "Étudiant",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Casual",
-          description_fr: "Travailleur occasionnel",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Casual",
+          descriptionFr: "Travailleur occasionnel",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Term",
-          description_fr: "Terme",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Term",
+          descriptionFr: "Terme",
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ],
       {}

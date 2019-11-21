@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import Keycloak from "keycloak-js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { IntlProvider } from "react-intl";
+
+import { Dimmer, Loader, Image } from "semantic-ui-react";
 
 import messages_en from "./i18n/en_CA.json";
 import messages_fr from "./i18n/fr_CA.json";
 import "./App.css";
+
+import animatedLogo from "./assets/animatedLogo.gif";
 
 import {
   About,
@@ -14,8 +18,17 @@ import {
   Home,
   Landing,
   Results,
-  Profile
-} from "./pages/index";
+  Profile,
+  Setup,
+  ProfileGeneration
+} from "./pages";
+
+import moment from "moment";
+import "moment/min/moment-with-locales";
+import "moment/locale/en-ca";
+import "moment/locale/fr-ca";
+
+const loginFunc = require("../src/functions/login");
 
 let localLang = (() => {
   if (localStorage.getItem("lang")) {
@@ -41,17 +54,27 @@ let i18nConfig = {
 
 const history = createBrowserHistory();
 
+const dimmer = () => {
+  return (
+    <Dimmer active>
+      <Image src={animatedLogo} size="tiny"></Image>
+    </Dimmer>
+  );
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     let language = localStorage.getItem("lang");
     i18nConfig.messages = language === "fr" ? messages_fr : messages_en;
+    moment.locale(language + "-ca");
 
     this.state = {
       authenticated: false,
       keycloak: null,
-      locale: language
+      locale: language,
+      redirect: dimmer()
     };
 
     this.changeLanguage = this.changeLanguage.bind(this);
@@ -63,6 +86,9 @@ class App extends Component {
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
+        this.renderRedirect().then(redirect => {
+          this.setState({ redirect: redirect });
+        });
       });
   }
 
@@ -85,9 +111,12 @@ class App extends Component {
             formats={i18nConfig.formats}
           >
             <Router>
+              {this.state.redirect}
               <div>
-                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 <div>
+                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+                {/* <div>
                   <form>
                     <textarea
                       ref={textarea => (this.textArea = textarea)}
@@ -101,9 +130,26 @@ class App extends Component {
                     </div>
                   )}
                 </div>
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+
                 {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
 
-                <Route exact path="/" component={Landing} />
+                <Route
+                  exact
+                  path="/"
+                  render={routeProps => (
+                    <Landing
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/profile-generation"
+                  component={ProfileGeneration}
+                />
                 <Route exact path="/about" component={About} />
                 <Route
                   exact
@@ -149,6 +195,17 @@ class App extends Component {
                     />
                   )}
                 />
+                <Route
+                  exact
+                  path="/setup"
+                  render={routeProps => (
+                    <Setup
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
               </div>
             </Router>
           </IntlProvider>
@@ -157,9 +214,8 @@ class App extends Component {
         return <div>Unable to authenticate!</div>;
       }
     }
-    return <div>Initializing Keycloak...</div>;
+    return <div>{dimmer()}</div>;
   }
-
   //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   copyToClipboard = e => {
     this.textArea.select();
@@ -171,7 +227,7 @@ class App extends Component {
 
   changeLanguage(lang) {
     localStorage.setItem("lang", lang);
-    switch (localStorage.getItem("lang")) {
+    switch (lang) {
       case "fr":
         i18nConfig.messages = messages_fr;
         break;
@@ -183,9 +239,27 @@ class App extends Component {
         break;
     }
 
+    moment.locale(lang + "-ca");
+
     i18nConfig.locale = localStorage.getItem("lang");
     this.setState({ locale: localStorage.getItem("lang") });
   }
+
+  profileExist = () => {
+    return this.state.keycloak.loadUserInfo().then(async userInfo => {
+      return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
+        // console.log("res", res);
+        return res.hasProfile;
+      });
+    });
+  };
+
+  renderRedirect = () => {
+    return this.profileExist().then(profileExist => {
+      if (!profileExist) return <Redirect to="/setup"></Redirect>;
+      else return <div />;
+    });
+  };
 }
 
 export default App;

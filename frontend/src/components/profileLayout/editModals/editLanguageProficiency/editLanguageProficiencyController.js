@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 
 import FieldManagingComponent from "../common/fieldManagingComponent";
 import EditLanguageProficiencyView from "./editLanguageProficiencyView";
@@ -7,6 +8,7 @@ export default class EditLanguageProficiencyController extends FieldManagingComp
   constructor(props) {
     super(props);
     const oldUpdateField = this.updateField;
+    const oldHandleApply = this.handleApply;
 
     const { gradedOnSecondLanguage } = this.props.profileInfo;
 
@@ -15,15 +17,26 @@ export default class EditLanguageProficiencyController extends FieldManagingComp
     }
     this.updateField = (e, o) => {
       oldUpdateField(e, o);
-      if (o.name === "gradedOnSecondLanguage") {
+      if (o.name === "gradedOnSecondLanguage" || o.name.includes("Date")) {
         this.forceUpdate();
       }
+    };
+
+    this.handleApply = () => {
+      ["Reading", "Writing", "Oral"].forEach(element => {
+        const name = "secondary" + element + "Date";
+        if (this.fields[name]) {
+          this.fields[name] = moment(this.fields[name], "MMM DD YYYY").format();
+        }
+      });
+      oldHandleApply();
     };
   }
 
   render() {
     return (
       <EditLanguageProficiencyView
+        fields={this.fields}
         handleApply={this.handleApply}
         showSecondaryGrading={this.fields.gradedOnSecondLanguage}
         updateField={this.updateField}

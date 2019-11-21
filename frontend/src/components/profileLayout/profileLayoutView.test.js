@@ -10,7 +10,7 @@ import EditSkillController from "./editModals/editSkills/editSkillsController";
 
 import EditLanguageProficiencyController from "./editModals/editLanguageProficiency/editLanguageProficiencyController";
 import EditManagerController from "./editModals/editManager/editManagerController";
-import EditTalentManagerController from "./editModals/editTalentManager/editTalentManagerController";
+import EditTalentManagementController from "./editModals/editTalentManagement/editTalentManagementController";
 
 import EditLabelCardsController from "./editModals/editLabelCards/editLabelCardsController";
 import EditPrimaryInformationController from "./editModals/editPrimaryInformation/editPrimaryInformationController";
@@ -20,99 +20,6 @@ import EditWrapperController from "./editWrapper/editWrapperController";
 it("Editable profile view contains expected components", () => {
   const wrapper = wrapThenMount(
     <ProfileLayoutView
-      dropdownOptions={{
-        oralGrade: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        writingGrade: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        readingGrade: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        firstLanguage: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        readingMonth: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        writingMonth: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        oralMonth: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        competencies: [
-          { name: "1", value: "1", text: "1", key: "1" },
-          { name: "2", value: "2", text: "2", key: "2" },
-          { name: "3", value: "3", text: "3", key: "3" }
-        ],
-        developmentalGoals: [
-          { name: "1", value: "1", text: "1", key: "1" },
-          { name: "2", value: "2", text: "2", key: "2" },
-          { name: "3", value: "3", text: "3", key: "3" }
-        ],
-        skills: [
-          { name: "1", value: "1", text: "1", key: "1" },
-          { name: "2", value: "2", text: "2", key: "2" },
-          { name: "3", value: "3", text: "3", key: "3" }
-        ],
-        firstName: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        lastName: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        directorate: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        division: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        branch: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        sector: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        department: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        team: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        telephone: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        cellphone: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        email: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        location: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ]
-      }}
       profileInfo={{
         acting: "EX 01",
         actingPeriodStartDate: "01/10/20",
@@ -169,7 +76,7 @@ it("Editable profile view contains expected components", () => {
         lastName: "Smisdasth",
         linkedinUrl: "https://www.bing.ca",
         manager: "Chahine El Chaar",
-        mobile: "613-402-8224",
+        cellphone: "613-402-8224",
         organizationList: [
           "ABC Directorate",
           "ABC Division",
@@ -180,11 +87,11 @@ it("Editable profile view contains expected components", () => {
         PO: "K1A 0H5",
         province: "Ottawa",
         secondaryOralDate: "Nov 29 2018",
-        secondaryOralGrade: "C",
+        secondaryOralProficiency: "C",
         secondaryReadingDate: "Oct 17 2020",
-        secondaryReadingGrade: "C",
+        secondaryReadingProficiency: "C",
         secondaryWritingDate: "Oct 17 2021",
-        secondaryWritingGrade: "B",
+        secondaryWritingProficiency: "B",
         secondLanguage: null,
         security: "Reliability",
         skills: ["1"],
@@ -210,7 +117,7 @@ it("Editable profile view contains expected components", () => {
 
     EditLanguageProficiencyController,
     EditManagerController,
-    EditTalentManagerController,
+    EditTalentManagementController,
 
     EditLabelCardsController,
     EditPrimaryInformationController,
@@ -249,99 +156,6 @@ it("Editable profile view contains expected components", () => {
 it("Non-editable profile view contains expected components", () => {
   const wrapper = wrapThenMount(
     <ProfileLayoutView
-      dropdownOptions={{
-        oralGrade: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        writingGrade: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        readingGrade: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        firstLanguage: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        readingMonth: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        writingMonth: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        oralMonth: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        competencies: [
-          { name: "1", value: "1", text: "1", key: "1" },
-          { name: "2", value: "2", text: "2", key: "2" },
-          { name: "3", value: "3", text: "3", key: "3" }
-        ],
-        developmentalGoals: [
-          { name: "1", value: "1", text: "1", key: "1" },
-          { name: "2", value: "2", text: "2", key: "2" },
-          { name: "3", value: "3", text: "3", key: "3" }
-        ],
-        skills: [
-          { name: "1", value: "1", text: "1", key: "1" },
-          { name: "2", value: "2", text: "2", key: "2" },
-          { name: "3", value: "3", text: "3", key: "3" }
-        ],
-        firstName: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        lastName: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        directorate: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        division: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        branch: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        sector: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        department: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        team: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        telephone: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        cellphone: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        email: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ],
-        location: [
-          { key: "1", text: "1", value: "1" },
-          { key: "2", text: "2", value: "2" }
-        ]
-      }}
       profileInfo={{
         acting: "EX 01",
         actingPeriodStartDate: "01/10/20",
@@ -398,7 +212,7 @@ it("Non-editable profile view contains expected components", () => {
         lastName: "Smisdasth",
         linkedinUrl: "https://www.bing.ca",
         manager: "Chahine El Chaar",
-        mobile: "613-402-8224",
+        cellphone: "613-402-8224",
         organizationList: [
           "ABC Directorate",
           "ABC Division",
@@ -409,11 +223,11 @@ it("Non-editable profile view contains expected components", () => {
         PO: "K1A 0H5",
         province: "Ottawa",
         secondaryOralDate: "Nov 29 2018",
-        secondaryOralGrade: "C",
+        secondaryOralProficiency: "C",
         secondaryReadingDate: "Oct 17 2020",
-        secondaryReadingGrade: "C",
+        secondaryReadingProficiency: "C",
         secondaryWritingDate: "Oct 17 2021",
-        secondaryWritingGrade: "B",
+        secondaryWritingProficiency: "B",
         secondLanguage: null,
         security: "Reliability",
         skills: ["1"],
@@ -439,7 +253,7 @@ it("Non-editable profile view contains expected components", () => {
 
     "EditLanguageProficiencyController",
     "EditManagerController",
-    "EditTalentManagerController",
+    "EditTalentManagementController",
 
     "EditLabelCardsController",
     "EditPrimaryInformationController",

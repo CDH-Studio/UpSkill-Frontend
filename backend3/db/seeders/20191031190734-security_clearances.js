@@ -7,25 +7,25 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
     */
     return queryInterface.bulkInsert(
-      "security_clearances",
+      "securityClearances",
       [
         {
-          description_en: "Reliability",
-          description_fr: "Cote de fiabilité",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Reliability",
+          descriptionFr: "Cote de fiabilité",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Secret",
-          description_fr: "Secret",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Secret",
+          descriptionFr: "Secret",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Top Secret",
-          description_fr: "Très Secret",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Top Secret",
+          descriptionFr: "Très Secret",
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ],
       {}
@@ -40,6 +40,6 @@ module.exports = {
       Example:
       return queryInterface.bulkDelete('People', null, {});
     */
-    return queryInterface.bulkDelete("security_clearances", null, {});
+    return queryInterface.bulkDelete("securityClearances", null, {});
   }
 };

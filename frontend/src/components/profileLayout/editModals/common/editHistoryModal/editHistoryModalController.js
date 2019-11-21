@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 import EditHistoryModalView from "./editHistoryModalView";
+import { elementType } from "prop-types";
 
 export default class EditHistoryModalController extends Component {
   constructor(props) {
@@ -8,7 +10,22 @@ export default class EditHistoryModalController extends Component {
 
     const { items } = this.props;
 
-    this.fields = items.slice(0);
+    items.forEach(element => {
+      element.isOngoing = !Boolean(element.endDate);
+      const startMoment = moment(element.startDate);
+      element.startDateMonth = parseInt(startMoment.format("M"));
+      element.startDateYear = parseInt(startMoment.format("YY"));
+      if (element.endDate) {
+        const endMoment = moment(element.endDate);
+        element.endDateMonth = parseInt(endMoment.format("M"));
+        element.endDateYear = parseInt(endMoment.format("YY"));
+      } else {
+        element.endDateMonth = null;
+        element.endDateYear = null;
+      }
+    });
+
+    this.fields = items.slice(0); //clone items
 
     this.addItem = this.addItem.bind(this);
     this.handleApply = this.handleApply.bind(this);
@@ -22,11 +39,11 @@ export default class EditHistoryModalController extends Component {
     for (let i = 0; i < items.length; i++) {
       if (
         !(
-          items[i].header ||
-          items[i].subheader ||
           items[i].content ||
+          items[i].endDate ||
+          items[i].header ||
           items[i].startDate ||
-          items[i].endDate
+          items[i].subheader
         )
       ) {
         alert("There is already an empty item you can fill in.");
@@ -37,6 +54,7 @@ export default class EditHistoryModalController extends Component {
       content: null,
       endDate: null,
       header: null,
+      isOngoing: null,
       startDate: null,
       subheader: null
     });
@@ -68,6 +86,38 @@ export default class EditHistoryModalController extends Component {
   }
 
   handleApply() {
+    this.fields.forEach(element => {
+      element["startDate"] = moment(
+        element.startDateYear + " " + element.startDateMonth,
+        "YY MM"
+      ).format();
+      delete element["startDateYear"];
+      delete element["startDateMonth"];
+
+      if (element["isOngoing"]) {
+        element["endDate"] = null;
+      } else {
+        element["endDate"] = moment(
+          element.endDateYear + " " + element.endDateMonth,
+          "YY MM"
+        ).format();
+      }
+      delete element["endDateYear"];
+      delete element["endDateMonth"];
+      /*
+        let myMoment = moment(
+        element.startDateYear + " " + element.startDateMonth,
+        "YY MM"
+      );
+      
+      console.log(
+        "this is my moment",
+        myMoment.format(),
+        "im in my element",
+        myMoment.format("MMM YYY")
+      );*/
+    });
+
     console.log("should perform update with", this.fields);
   }
 

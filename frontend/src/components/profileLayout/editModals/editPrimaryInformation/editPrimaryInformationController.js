@@ -4,7 +4,6 @@ import EditPrimaryInformationView from "./editPrimaryInformationView";
 
 export default class EditPrimaryInformationController extends FieldManagingComponent {
   render() {
-    console.log("handle apply", this.handleApply);
     return (
       <EditPrimaryInformationView
         handleApply={this.handleApply}

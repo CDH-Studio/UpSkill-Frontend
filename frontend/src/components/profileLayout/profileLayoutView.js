@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { injectIntl } from "react-intl";
 
 import NavigationBar from "../navigationBar/navigationBarController";
-import { Grid, Label } from "semantic-ui-react";
+import { Dimmer, Grid, Label, Loader } from "semantic-ui-react";
 
 import { EditableProvider } from "./editableProvider/editableProvider";
 
@@ -11,6 +11,7 @@ import EditCompetenciesController from "./editModals/editCompetencies/editCompet
 import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";
 import EditEducationController from "./editModals/editEducation/editEducationController";
 import EditSkillController from "./editModals/editSkills/editSkillsController";
+import EditProjectsController from "./editModals/editProjects/editProjectsController";
 
 import HistoryCardController from "./historyCard/historyCardController";
 import ProfileCardController from "./profileCard/profileCardController";
@@ -24,15 +25,29 @@ class ProfileLayoutView extends Component {
   render() {
     const {
       changeLanguage,
-      dropdownOptions,
+      editProfileOptions,
       editable,
       keycloak,
       profileInfo,
       windowWidth
     } = this.props;
 
+    if (profileInfo === undefined) {
+      return (
+        <Dimmer active>
+          <Grid>
+            <Grid.Row>
+              <Loader />
+            </Grid.Row>
+
+            <Grid.Row>Gathering profile info...</Grid.Row>
+          </Grid>
+        </Dimmer>
+      );
+    }
+
     return (
-      <EditableProvider value={{ editable, profileInfo, dropdownOptions }}>
+      <EditableProvider value={{ editProfileOptions, editable, profileInfo }}>
         <NavigationBar
           changeLanguage={changeLanguage}
           keycloak={keycloak}
@@ -66,6 +81,9 @@ class ProfileLayoutView extends Component {
             <Grid.Row>
               <Grid.Column>{this.renderCareerOverviewCard()}</Grid.Column>
             </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>{this.renderProjectsCard()}</Grid.Column>
+            </Grid.Row>
           </Grid>
         </div>
       </EditableProvider>
@@ -73,9 +91,8 @@ class ProfileLayoutView extends Component {
   }
 
   renderSkillsCard() {
-    const { intl, profileInfo, dropdownOptions } = this.props;
+    const { intl, profileInfo } = this.props;
     const currentSkills = profileInfo.skills;
-    const availableSkills = profileInfo.skills;
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.skills" }),
@@ -111,7 +128,7 @@ class ProfileLayoutView extends Component {
       <ProfileCardController button={button} cardName={cardName}>
         {cardTags.map((value, index) => (
           <Label color="purple" basic>
-            <p style={{ color: "black" }}>{value}</p>
+            <p style={{ color: "black" }}>{value.text}</p>
           </Label>
         ))}
       </ProfileCardController>
@@ -141,6 +158,17 @@ class ProfileLayoutView extends Component {
         cardEntries={careerSummary}
         cardName={intl.formatMessage({ id: "profile.career.overview" })}
       />
+    );
+  }
+
+  renderProjectsCard() {
+    const { intl, profileInfo } = this.props;
+    const currentProjects = profileInfo.projects || [];
+
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.projects" }),
+      currentProjects,
+      EditProjectsController
     );
   }
 }

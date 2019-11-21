@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Grid, Table } from "semantic-ui-react";
+import { Grid, Table, Icon } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
+import moment from "moment";
 
 import ProfileCardController from "../profileCard/profileCardController";
 import EditLanguageProficiencyController from "../editModals/editLanguageProficiency/editLanguageProficiencyController";
 import EditManagerController from "../editModals/editManager/editManagerController";
-import EditTalentManagerController from "../editModals/editTalentManager/editTalentManagerController";
+import EditTalentManagementController from "../editModals/editTalentManagement/editTalentManagementController";
 import "./secondaryLayoutGroup.css";
 
 class SecondaryLayoutGroupView extends Component {
@@ -15,7 +16,9 @@ class SecondaryLayoutGroupView extends Component {
     this.renderLanguageProficiencyCard = this.renderLanguageProficiencyCard.bind(
       this
     );
-    this.renderTalentManagerCard = this.renderTalentManagerCard.bind(this);
+    this.renderTalentManagementCard = this.renderTalentManagementCard.bind(
+      this
+    );
   }
 
   render() {
@@ -25,15 +28,10 @@ class SecondaryLayoutGroupView extends Component {
 
     if (useWideLayout) {
       return (
-        <Grid.Row
-          className="noGapBelow"
-          style={{
-            paddingTop: "0px"
-          }}
-        >
+        <Grid.Row className="noGapBelow">
           <Grid.Column className="noGapAbove noGapBelow" width={11}>
             {this.renderManagerCard()}
-            {this.renderTalentManagerCard()}
+            {this.renderTalentManagementCard()}
           </Grid.Column>
           <Grid.Column className="noGapAbove noGapBelow" width={5}>
             {this.renderLanguageProficiencyCard()}
@@ -42,30 +40,31 @@ class SecondaryLayoutGroupView extends Component {
       );
     } else {
       return (
-        <Grid.Row
-          className="noGapBelow"
-          style={{
-            marginTop: "1em",
-            paddingTop: "0px"
-          }}
-        >
-          <Grid.Column className="noGapAbove noGapBelow" width={16}>
-            {this.renderManagerCard()}
-            {this.renderLanguageProficiencyCard()}
-            {this.renderTalentManagerCard()}
-          </Grid.Column>
-        </Grid.Row>
+        <React.Fragment>
+          <Grid.Row>
+            <Grid.Column>{this.renderManagerCard()}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>{this.renderLanguageProficiencyCard()}</Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column>{this.renderTalentManagementCard()}</Grid.Column>
+          </Grid.Row>
+        </React.Fragment>
       );
     }
   }
 
   renderManagerCard() {
-    const { manager } = this.props.profileInfo;
+    const { profileInfo, windowWidth } = this.props;
+    const { manager } = profileInfo;
 
     return (
       <ProfileCardController
         button={EditManagerController}
-        className="belowGapCard  noGapAbove "
+        className={
+          windowWidth > 1250 ? "belowGapCard noGapAbove" : "noGapAbove"
+        }
       >
         <span className="colorLabel">
           <FormattedMessage id="profile.manager" />:
@@ -80,11 +79,11 @@ class SecondaryLayoutGroupView extends Component {
     const {
       firstLanguage,
       secondaryOralDate,
-      secondaryOralGrade,
+      secondaryOralProficiency,
       secondaryReadingDate,
-      secondaryReadingGrade,
+      secondaryReadingProficiency,
       secondaryWritingDate,
-      secondaryWritingGrade
+      secondaryWritingProficiency
     } = profileInfo;
 
     return (
@@ -108,6 +107,7 @@ class SecondaryLayoutGroupView extends Component {
           celled
           className="noGapAbove"
           collapsing
+          style={{ margin: "0px auto" }}
           unstackable
         >
           <Table.Body id="proficiencyTableBody">
@@ -115,22 +115,46 @@ class SecondaryLayoutGroupView extends Component {
               <Table.Cell>
                 <FormattedMessage id="profile.reading" />
               </Table.Cell>
-              <Table.Cell>{secondaryReadingGrade}</Table.Cell>
-              <Table.Cell>{secondaryReadingDate}</Table.Cell>
+              <Table.Cell>
+                {secondaryReadingProficiency != "Undefined"
+                  ? secondaryReadingProficiency
+                  : ""}
+              </Table.Cell>
+              <Table.Cell>
+                {moment(secondaryReadingDate).isValid()
+                  ? moment(secondaryReadingDate).format("ll")
+                  : ""}
+              </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
                 <FormattedMessage id="profile.writing" />
               </Table.Cell>
-              <Table.Cell>{secondaryWritingGrade}</Table.Cell>
-              <Table.Cell>{secondaryWritingDate}</Table.Cell>
+              <Table.Cell>
+                {secondaryWritingProficiency != "Undefined"
+                  ? secondaryWritingProficiency
+                  : ""}
+              </Table.Cell>
+              <Table.Cell>
+                {moment(secondaryWritingDate).isValid()
+                  ? moment(secondaryWritingDate).format("ll")
+                  : ""}
+              </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
                 <FormattedMessage id="profile.oral" />
               </Table.Cell>
-              <Table.Cell>{secondaryOralGrade}</Table.Cell>
-              <Table.Cell>{secondaryOralDate}</Table.Cell>
+              <Table.Cell>
+                {secondaryOralProficiency != "Undefined"
+                  ? secondaryOralProficiency
+                  : ""}
+              </Table.Cell>
+              <Table.Cell>
+                {moment(secondaryOralDate).isValid()
+                  ? moment(secondaryOralDate).format("ll")
+                  : ""}
+              </Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table>
@@ -138,28 +162,34 @@ class SecondaryLayoutGroupView extends Component {
     );
   }
 
-  renderTalentManagerCard() {
+  renderTalentManagementCard() {
     const { intl, profileInfo } = this.props;
-    const { careerMobility, talentMatrixResult } = profileInfo;
+    const { careerMobility, talentMatrixResult, exFeeder } = profileInfo;
 
     return (
       <ProfileCardController
-        button={EditTalentManagerController}
+        button={EditTalentManagementController}
         cardName={intl.formatMessage({ id: "profile.talent.manager" })}
+        cardIcon={
+          <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
+            <Icon name="external alternate" />
+          </a>
+        }
         className="noGapBelow"
       >
         <div>
           <span className="boldLabel">
             <FormattedMessage id="profile.career.mobility" />
           </span>
-          <span>{careerMobility}</span>
+          <span>{careerMobility.description}</span>
         </div>
         <div>
           <span className="boldLabel">
             <FormattedMessage id="profile.talent.matrix.result" />
           </span>
-          <span>{talentMatrixResult}</span>
+          <span>{talentMatrixResult.description}</span>
         </div>
+        {exFeeder && intl.formatMessage({ id: "profile.is.ex.feeder" })}
       </ProfileCardController>
     );
   }

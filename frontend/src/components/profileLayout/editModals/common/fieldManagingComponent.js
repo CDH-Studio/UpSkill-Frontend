@@ -1,4 +1,5 @@
 import { Component } from "react";
+import axios from "axios";
 
 export default class FieldManagingComponent extends Component {
   constructor(props) {
@@ -10,12 +11,21 @@ export default class FieldManagingComponent extends Component {
   }
 
   handleApply() {
-    console.log("should perform update with", this.fields);
+    let url =
+      "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
+    axios
+      .put(url, this.fields)
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
     this.fields = {};
   }
 
   updateField(e, o) {
-    const { name, checked, value } = o;
+    const { checked, name, value } = o;
     let newVal;
     if (checked !== undefined) {
       newVal = checked;

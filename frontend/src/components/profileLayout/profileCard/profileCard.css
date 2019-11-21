@@ -1,3 +1,7 @@
 .profileCard {
-    box-shadow: 6px 10px 15px 5px RGBA(0,0,0,0.25) !important;
+  box-shadow: 0rem 0.5rem 1rem 0rem RGBA(0, 0, 0, 0.15) !important;
+}
+
+.profileCard > .content {
+  padding: 33px !important;
 }

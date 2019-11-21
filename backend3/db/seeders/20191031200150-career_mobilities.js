@@ -7,43 +7,43 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
     */
     return queryInterface.bulkInsert(
-      "career_mobilities",
+      "careerMobilities",
       [
         {
-          description_en: "Fit",
-          description_fr: "Bien placé dans son poste",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Fit",
+          descriptionFr: "Bien placé dans son poste",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Move to more suitable role",
-          description_fr: "Transfert vers un rôle plus approprié",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Move to more suitable role",
+          descriptionFr: "Transfert vers un rôle plus approprié",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Develop in role",
-          description_fr: "Se perfectionner dans son rôle",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Develop in role",
+          descriptionFr: "Se perfectionner dans son rôle",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Well-placed in role",
-          description_fr: "Bien placé dans le rôle",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Well-placed in role",
+          descriptionFr: "Bien placé dans le rôle",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Ready for lateral movement",
-          description_fr: "Prêt pour un mouvement latéral",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Ready for lateral movement",
+          descriptionFr: "Prêt pour un mouvement latéral",
+          createdAt: new Date(),
+          updatedAt: new Date()
         },
         {
-          description_en: "Ready for advancement",
-          description_fr: "Prêt à être promu",
-          created_at: new Date(),
-          updated_at: new Date()
+          descriptionEn: "Ready for advancement",
+          descriptionFr: "Prêt à être promu",
+          createdAt: new Date(),
+          updatedAt: new Date()
         }
       ],
       {}
@@ -55,6 +55,6 @@ module.exports = {
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
     */
-    return queryInterface.bulkDelete("career_mobilities", null, {});
+    return queryInterface.bulkDelete("careerMobilities", null, {});
   }
 };

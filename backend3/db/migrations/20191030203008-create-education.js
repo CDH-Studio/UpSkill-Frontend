@@ -8,17 +8,17 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.literal("uuid_generate_v1()")
       },
-      start_date: {
+      startDate: {
         type: Sequelize.DATE
       },
-      end_date: {
+      endDate: {
         type: Sequelize.DATE
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
       }

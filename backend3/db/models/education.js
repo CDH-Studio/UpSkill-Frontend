@@ -3,15 +3,15 @@ module.exports = (sequelize, DataTypes) => {
   const education = sequelize.define(
     "education",
     {
-      start_date: DataTypes.DATE,
-      end_date: DataTypes.DATE
+      startDate: DataTypes.DATE,
+      endDate: DataTypes.DATE
     },
     {}
   );
   education.associate = function(models) {
-    education.belongsTo(models.user);
-    education.hasOne(models.school);
-    education.hasOne(models.diploma);
+    education.belongsTo(models.profile);
+    education.belongsTo(models.school);
+    education.belongsTo(models.diploma);
   };
   return education;
 };

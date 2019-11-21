@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
-import { Button, Icon, Modal } from "semantic-ui-react";
+import { injectIntl } from "react-intl";
+import { Dimmer, Icon, Loader, Modal, Grid } from "semantic-ui-react";
 
 import "./editModal.css";
 
@@ -13,10 +13,10 @@ export const renderEditButton = (
     return (
       <Icon
         className={buttonClass}
+        name="pencil alternate"
         style={{
           color: buttonColor
         }}
-        name="pencil alternate"
       />
     );
   }
@@ -31,10 +31,10 @@ export const renderEditButton = (
       }}
     >
       <Icon
+        name="pencil alternate"
         style={{
           color: buttonColor
         }}
-        name="pencil alternate"
       />
     </div>
   );
@@ -51,16 +51,18 @@ class editModalView extends Component {
       buttonBackgroundColor,
       buttonClass,
       buttonColor,
-      children,
-      handleApply,
+      handleOpen,
       name
     } = this.props;
 
     return (
       <Modal
         onClose={() => this.setState({ open: false })}
+        onOpen={() => {
+          this.setState({ open: true });
+          handleOpen();
+        }}
         open={this.state.open}
-        onOpen={() => this.setState({ open: true })}
         trigger={renderEditButton(
           buttonBackgroundColor,
           buttonClass,
@@ -68,23 +70,31 @@ class editModalView extends Component {
         )}
       >
         <Modal.Header>{name}</Modal.Header>
-        <Modal.Content>
-          {children}
-          <div className="modalButtonContainer">
-            <Button primary color="blue" onClick={handleApply}>
-              Apply
-            </Button>
-            <Button
-              color="blue"
-              onClick={e => this.setState({ open: false })}
-              secondary
-            >
-              Cancel
-            </Button>
-          </div>
-        </Modal.Content>
+        <Modal.Content>{this.renderContents()}</Modal.Content>
       </Modal>
     );
+  }
+
+  renderContents() {
+    const { editProfileOptions, form } = this.props;
+    if (editProfileOptions === null) {
+      return (
+        <Dimmer active>
+          <Grid>
+            <Grid.Row>
+              <Loader />
+            </Grid.Row>
+
+            <Grid.Row>Gathering edit options...</Grid.Row>
+          </Grid>
+        </Dimmer>
+      );
+    } else {
+      return React.createElement(form, {
+        handleCancle: e => this.setState({ open: false }),
+        ...this.props
+      });
+    }
   }
 }
 

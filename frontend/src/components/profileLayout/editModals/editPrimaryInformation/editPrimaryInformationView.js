@@ -1,54 +1,24 @@
 import React, { Component } from "react";
-import { FormattedMessage, injectIntl } from "react-intl";
-import { Form, Select, Input } from "semantic-ui-react";
+import { injectIntl } from "react-intl";
 
-import EditModalController, {
-  generateCommonProps
-} from "../common/editModal/editModalController.js";
+import EditModalController from "../common/editModal/editModalController.js";
 import "./editPrimaryInformation.css";
+
+import PrimaryInformationFormController from "../../../editForms/primaryInformationForm/primaryInformationFormController";
 
 class EditPrimaryInformationView extends Component {
   render() {
     const { handleApply, intl } = this.props;
     return (
       <EditModalController
+        {...this.props}
+        editOptionPaths={{
+          location: "api/option/getLocation"
+        }}
+        form={PrimaryInformationFormController}
         handleApply={handleApply}
         name={intl.formatMessage({ id: "profile.edit.primary.information" })}
-      >
-        <Form onSubmit={handleApply}>
-          <Form.Group fluid widths="equal">
-            <Form.Field
-              {...generateCommonProps("firstName", Input, this.props)}
-            />
-            <Form.Field
-              {...generateCommonProps("lastName", Input, this.props)}
-            />
-          </Form.Group>
-
-          <Form.Field {...generateCommonProps("team", Input, this.props)} />
-          <Form.Field
-            {...generateCommonProps("directorate", Select, this.props)}
-          />
-          <Form.Field
-            {...generateCommonProps("division", Select, this.props)}
-          />
-          <Form.Field {...generateCommonProps("branch", Select, this.props)} />
-          <Form.Field {...generateCommonProps("sector", Select, this.props)} />
-          <Form.Field
-            {...generateCommonProps("department", Select, this.props)}
-          />
-          <Form.Field
-            {...generateCommonProps("telephone", Input, this.props)}
-          />
-          <Form.Field
-            {...generateCommonProps("cellphone", Input, this.props)}
-          />
-          <Form.Field {...generateCommonProps("email", Input, this.props)} />
-          <Form.Field
-            {...generateCommonProps("location", Select, this.props)}
-          />
-        </Form>
-      </EditModalController>
+      />
     );
   }
 }

@@ -8,6 +8,7 @@
 .boldLabel {
   font-weight: bold;
   padding-right: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .colorLabel {
@@ -45,7 +46,7 @@
 }
 
 .blueColoredText {
-  color: #27348b;
+  color: #27348b !important;
 }
 
 .profileCard {
@@ -54,13 +55,12 @@
 }
 
 .belowGapCard {
-
   margin-bottom: 2em !important;
 }
 
 .bodyGrid > .row {
-  padding-top:1.5em !important;
-  padding-bottom:1.5em !important;
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
 }
 
 .compactCard {
@@ -68,4 +68,7 @@
   padding-bottom: 0px !important;
   margin-top: 0px !important;
   margin-bottom: 0px !important;
+}
+.profileCard .ui.basic.label {
+  border-radius: 15px;
 }

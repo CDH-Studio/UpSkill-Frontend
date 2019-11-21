@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, Grid, Icon, Label, List, Menu, Popup } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
+import moment from "moment";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
 
@@ -9,7 +10,6 @@ import EditPrimaryInformationController from "../editModals/editPrimaryInformati
 import EditProfilePictureController from "../editModals/editProfilePicture/editProfilePictureController";
 import EditWrapperController from "../editWrapper/editWrapperController";
 
-import LabeledCardController from "../../labeledCard/labeledCardController";
 import ProfileCardController from "../profileCard/profileCardController";
 
 import "./primaryLayoutGroup.css";
@@ -48,13 +48,15 @@ class PrimaryLayoutGroupView extends Component {
     const { intl, profileInfo, windowWidth } = this.props;
     const {
       acting,
-      actingPeriodStartDate,
       actingPeriodEndDate,
+      actingPeriodStartDate,
       classification,
       security,
-      status,
+      tenure,
       yearsOfService
     } = profileInfo;
+
+    const actingDisabled = !(acting && actingPeriodStartDate);
 
     const actingLabel = intl.formatMessage({ id: "profile.acting" });
     const actingPeriodLabel = intl.formatMessage({
@@ -64,10 +66,15 @@ class PrimaryLayoutGroupView extends Component {
       id: "profile.classification"
     });
     const securityLabel = intl.formatMessage({ id: "profile.security" });
-    const statusLabel = intl.formatMessage({ id: "profile.status" });
+    const tenureLabel = intl.formatMessage({ id: "profile.tenure" });
     const yearsOfServiceLabel = intl.formatMessage({
       id: "profile.years.of.service"
     });
+    const startDateString = moment(actingPeriodStartDate).format("MMM DD YYYY");
+    const endDateString =
+      actingPeriodEndDate !== "Undefined"
+        ? moment(actingPeriodEndDate).format("MMM DD YYYY")
+        : intl.formatMessage({ id: "profile.ongoing" });
 
     // When using the medium wideness view there are 2 columns of labeled cards
     if (windowWidth <= 1250 && windowWidth > 750) {
@@ -75,29 +82,33 @@ class PrimaryLayoutGroupView extends Component {
         <ProfileCardController
           button={EditLabelCardsController}
           cardName="Info"
-          className="compactCard"
+          className="labeledItemCard compactCard"
         >
           <Grid>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(statusLabel, status)}
-
-                {this.renderLabeledItem(securityLabel, security)}
-                {acting &&
-                  actingPeriodStartDate &&
-                  this.renderLabeledItem(actingLabel, acting)}
+                {this.renderLabeledItem(tenureLabel, tenure.description)}
+                {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
+                {this.renderLabeledItem(
+                  actingLabel,
+                  acting.description,
+                  actingDisabled
+                )}
               </Grid>
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
-                {this.renderLabeledItem(classificationLabel, classification)}
-                {acting &&
-                  actingPeriodStartDate &&
-                  this.renderLabeledItem(
-                    actingPeriodLabel,
-                    actingPeriodStartDate + "-" + actingPeriodEndDate
-                  )}
+                {this.renderLabeledItem(securityLabel, security.description)}
+
+                {this.renderLabeledItem(
+                  classificationLabel,
+                  classification.description
+                )}
+                {this.renderLabeledItem(
+                  actingPeriodLabel,
+                  startDateString + "-" + endDateString,
+                  actingDisabled
+                )}
               </Grid>
             </Grid.Column>
           </Grid>
@@ -105,48 +116,56 @@ class PrimaryLayoutGroupView extends Component {
       );
     }
     //When using the most wide or most skinny view there is only one column of labeled cards
+
     return (
       <ProfileCardController
         button={EditLabelCardsController}
         cardName="Info"
-        className="compactCard"
+        className="labeledItemCard compactCard"
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
-          {this.renderLabeledItem(statusLabel, status)}
+          {this.renderLabeledItem(tenureLabel, tenure.description)}
+          {this.renderLabeledItem(securityLabel, security.description)}
           {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
-          {this.renderLabeledItem(securityLabel, security)}
-          {this.renderLabeledItem(classificationLabel, classification)}
 
-          {acting && actingPeriodStartDate && (
-            <React.Fragment>
-              {this.renderLabeledItem(actingLabel, acting)}
-              {this.renderLabeledItem(
-                actingPeriodLabel,
-                actingPeriodStartDate + "-" + actingPeriodEndDate
-              )}
-            </React.Fragment>
+          {this.renderLabeledItem(
+            classificationLabel,
+            classification.description
+          )}
+          {this.renderLabeledItem(
+            actingLabel,
+            acting.description,
+            actingDisabled
+          )}
+          {this.renderLabeledItem(
+            actingPeriodLabel,
+            startDateString + "-" + endDateString,
+            actingDisabled
           )}
         </Grid>
       </ProfileCardController>
     );
   }
 
-  renderLabeledItem(labelText, contentText) {
+  renderLabeledItem(labelText, contentText, disabled) {
+    const { intl } = this.props;
     return (
       <Grid.Row columns={2} style={{ padding: "3px 0px" }}>
         <Grid.Column
           style={{ textAlign: "center", padding: "3px 0px 3px 3px" }}
         >
           <Label
-            color="blue"
+            className={disabled ? "disabled" : null}
             fluid
             style={{ fontSize: "12pt", fontWeight: "normal", width: "90%" }}
           >
             {labelText}
           </Label>
         </Grid.Column>
-        <Grid.Column style={{ padding: "0px" }}>{contentText}</Grid.Column>
+        <Grid.Column style={{ padding: "0px" }}>
+          {disabled ? intl.formatMessage({ id: "profile.na" }) : contentText}
+        </Grid.Column>
       </Grid.Row>
     );
   }
@@ -154,17 +173,15 @@ class PrimaryLayoutGroupView extends Component {
   renderPrimaryCard() {
     const {
       branch,
-      country,
       email,
       firstName,
       githubUrl,
       jobTitle,
       lastName,
       linkedinUrl,
-      mobile,
+      location,
+      cellphone,
       organizationList,
-      province,
-      street,
       team,
       telephone,
       twitterUrl
@@ -201,24 +218,23 @@ class PrimaryLayoutGroupView extends Component {
                     style={{
                       maxHeight: "200px",
                       maxWidth: "250px",
-                      width: "100%",
-                      paddingLeft: "50px"
+                      paddingLeft: "50px",
+                      width: "100%"
                     }}
                   />
                 </EditWrapperController>
                 <div
                   style={{
                     display: "inline",
-                    overflow: "hidden",
                     float: "right",
-                    paddingLeft: "50px",
-                    minWidth: "450px"
+                    minWidth: "450px",
+                    overflow: "hidden",
+                    paddingLeft: "50px"
                   }}
                 >
                   <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
                   <Popup
-                    flowing
                     on="click"
                     trigger={<h5 className="noGapAbove">{branch}</h5>}
                   >
@@ -231,13 +247,11 @@ class PrimaryLayoutGroupView extends Component {
                     <FormattedMessage id="profile.telephone" />: {telephone}
                   </div>
                   <div className="phoneNumberArea">
-                    <FormattedMessage id="profile.cellphone" />: {mobile}
+                    <FormattedMessage id="profile.cellphone" />: {cellphone}
                   </div>
                   <div>{email}</div>
 
-                  <div>
-                    {street}, {province}, {country}
-                  </div>
+                  <div>{location.description}</div>
                 </div>
               </Grid.Row>
             </Grid>
@@ -265,7 +279,7 @@ class PrimaryLayoutGroupView extends Component {
             )}
             {twitterUrl && (
               <Menu.Item href={twitterUrl} target="_blank">
-                <Icon name="twitter" />
+                <Icon name="linkify" />
                 <FormattedMessage id="profile.twitter" />
               </Menu.Item>
             )}
