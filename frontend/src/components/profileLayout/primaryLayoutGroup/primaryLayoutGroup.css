@@ -1,0 +1,41 @@
+.organizationList .icon {
+  left: 0px;
+  position: relative;
+  top: -5px;
+}
+
+.organizationList .list {
+  padding-bottom: 0px !important;
+}
+
+.phoneNumberArea {
+  display: inline-block !important;
+  width: 200px;
+}
+
+.firstRowLabelCardColumn {
+  padding-bottom: 2em !important;
+}
+
+.basdasd3332423s {
+  padding-bottom: 35px !important;
+}
+
+.secondRow {
+  padding-top: 0px !important;
+  padding-bottom: 0.5em !important;
+  margin-bottom: 1.5em !important;
+}
+
+.profileCard .menu {
+  background-image: linear-gradient(to right, #3548af, #202870) !important;
+}
+
+.profileCard .label {
+  background-image: linear-gradient(to right, #3548a5, #202870) !important;
+  color: #ffffff;
+}
+
+.labeledItemCard > .content {
+  padding: 33px 25px !important;
+}

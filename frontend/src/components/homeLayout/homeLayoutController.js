@@ -15,10 +15,11 @@ import HomeLayoutView from "./homeLayoutView";
 class HomeLayoutController extends Component {
   constructor(props) {
     super(props);
-
+    // To add a user into Users table
     this.searchQuery = {};
-    this.updateSearch = this.updateSearch.bind(this);
+
     this.performSearch = this.performSearch.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   updateSearch(e, { name, value }) {

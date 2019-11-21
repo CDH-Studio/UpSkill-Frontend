@@ -1,13 +1,34 @@
 import React, { Component } from "react";
 import Keycloak from "keycloak-js";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { IntlProvider } from "react-intl";
+
+import { Dimmer, Loader, Image } from "semantic-ui-react";
 
 import messages_en from "./i18n/en_CA.json";
 import messages_fr from "./i18n/fr_CA.json";
 import "./App.css";
-import { About, Advanced, Home, Landing, Results } from "./pages/index";
+
+import animatedLogo from "./assets/animatedLogo.gif";
+
+import {
+  About,
+  Advanced,
+  Home,
+  Landing,
+  Results,
+  Profile,
+  Setup,
+  ProfileGeneration
+} from "./pages";
+
+import moment from "moment";
+import "moment/min/moment-with-locales";
+import "moment/locale/en-ca";
+import "moment/locale/fr-ca";
+
+const loginFunc = require("../src/functions/login");
 
 let localLang = (() => {
   if (localStorage.getItem("lang")) {
@@ -33,17 +54,27 @@ let i18nConfig = {
 
 const history = createBrowserHistory();
 
+const dimmer = () => {
+  return (
+    <Dimmer active>
+      <Image src={animatedLogo} size="tiny"></Image>
+    </Dimmer>
+  );
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     let language = localStorage.getItem("lang");
     i18nConfig.messages = language === "fr" ? messages_fr : messages_en;
+    moment.locale(language + "-ca");
 
     this.state = {
       authenticated: false,
       keycloak: null,
-      locale: language
+      locale: language,
+      redirect: dimmer()
     };
 
     this.changeLanguage = this.changeLanguage.bind(this);
@@ -55,6 +86,9 @@ class App extends Component {
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
+        this.renderRedirect().then(redirect => {
+          this.setState({ redirect: redirect });
+        });
       });
   }
 
@@ -63,20 +97,13 @@ class App extends Component {
   render() {
     //If NOT using some version of Internet Explorer
     if (!/MSIE|Trident/.test(window.navigator.userAgent)) {
-      document.body.style =
-        "background: linear-gradient(22.5deg, rgba(67, 67, 67, 0.02) 0%, rgba(67, 67, 67, 0.02) 29%,rgba(47, 47, 47, 0.02) 29%, rgba(47, 47, 47, 0.02) 37%,rgba(23, 23, 23, 0.02) 37%, rgba(23, 23, 23, 0.02) 55%,rgba(182, 182, 182, 0.02) 55%, rgba(182, 182, 182, 0.02) 69%,rgba(27, 27, 27, 0.02) 69%, rgba(27, 27, 27, 0.02) 71%,rgba(250, 250, 250, 0.02) 71%, rgba(250, 250, 250, 0.02) 100%),linear-gradient(67.5deg, rgba(117, 117, 117, 0.02) 0%, rgba(117, 117, 117, 0.02) 14%,rgba(199, 199, 199, 0.02) 14%, rgba(199, 199, 199, 0.02) 40%,rgba(33, 33, 33, 0.02) 40%, rgba(33, 33, 33, 0.02) 48%,rgba(135, 135, 135, 0.02) 48%, rgba(135, 135, 135, 0.02) 60%,rgba(148, 148, 148, 0.02) 60%, rgba(148, 148, 148, 0.02) 95%,rgba(53, 53, 53, 0.02) 95%, rgba(53, 53, 53, 0.02) 100%),linear-gradient(135deg, rgba(190, 190, 190, 0.02) 0%, rgba(190, 190, 190, 0.02) 6%,rgba(251, 251, 251, 0.02) 6%, rgba(251, 251, 251, 0.02) 18%,rgba(2, 2, 2, 0.02) 18%, rgba(2, 2, 2, 0.02) 27%,rgba(253, 253, 253, 0.02) 27%, rgba(253, 253, 253, 0.02) 49%,rgba(128, 128, 128, 0.02) 49%, rgba(128, 128, 128, 0.02) 76%,rgba(150, 150, 150, 0.02) 76%, rgba(150, 150, 150, 0.02) 100%),linear-gradient(90deg, #FFF,#FFF);";
+      document.body.style = "background-color: #eeeeee";
     }
 
     const keycloak = this.state.keycloak;
     if (keycloak) {
-      console.log(
-        "Render: ",
-        localStorage.getItem("lang"),
-        localLang,
-        i18nConfig.locale
-      );
-
-      if (this.state.authenticated)
+      if (this.state.authenticated) {
+        console.log(keycloak);
         return (
           <IntlProvider
             locale={i18nConfig.locale}
@@ -84,8 +111,45 @@ class App extends Component {
             formats={i18nConfig.formats}
           >
             <Router>
+              {this.state.redirect}
               <div>
-                <Route exact path="/" component={Landing} />
+                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                <div>
+                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+                {/* <div>
+                  <form>
+                    <textarea
+                      ref={textarea => (this.textArea = textarea)}
+                      value={keycloak.token}
+                    />
+                  </form>
+                  {document.queryCommandSupported("copy") && (
+                    <div>
+                      <button onClick={this.copyToClipboard}>Copy</button>
+                      {this.state.copySuccess}
+                    </div>
+                  )}
+                </div>
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+
+                {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+
+                <Route
+                  exact
+                  path="/"
+                  render={routeProps => (
+                    <Landing
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/profile-generation"
+                  component={ProfileGeneration}
+                />
                 <Route exact path="/about" component={About} />
                 <Route
                   exact
@@ -120,18 +184,50 @@ class App extends Component {
                     />
                   )}
                 />
+                <Route
+                  exact
+                  path="/profile"
+                  render={routeProps => (
+                    <Profile
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/setup"
+                  render={routeProps => (
+                    <Setup
+                      keycloak={keycloak}
+                      changeLanguage={this.changeLanguage}
+                      {...routeProps}
+                    />
+                  )}
+                />
               </div>
             </Router>
           </IntlProvider>
         );
-      else return <div>Unable to authenticate!</div>;
+      } else {
+        return <div>Unable to authenticate!</div>;
+      }
     }
-    return <div>Initializing Keycloak...</div>;
+    return <div>{dimmer()}</div>;
   }
+  //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  copyToClipboard = e => {
+    this.textArea.select();
+    document.execCommand("copy");
+    e.target.focus();
+    this.setState({ copySuccess: "Copied!" });
+  };
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   changeLanguage(lang) {
     localStorage.setItem("lang", lang);
-    switch (localStorage.getItem("lang")) {
+    switch (lang) {
       case "fr":
         i18nConfig.messages = messages_fr;
         break;
@@ -143,9 +239,27 @@ class App extends Component {
         break;
     }
 
+    moment.locale(lang + "-ca");
+
     i18nConfig.locale = localStorage.getItem("lang");
     this.setState({ locale: localStorage.getItem("lang") });
   }
+
+  profileExist = () => {
+    return this.state.keycloak.loadUserInfo().then(async userInfo => {
+      return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
+        // console.log("res", res);
+        return res.hasProfile;
+      });
+    });
+  };
+
+  renderRedirect = () => {
+    return this.profileExist().then(profileExist => {
+      if (!profileExist) return <Redirect to="/setup"></Redirect>;
+      else return <div />;
+    });
+  };
 }
 
 export default App;

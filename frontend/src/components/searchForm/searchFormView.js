@@ -190,7 +190,6 @@ const styles = {
 
   formRow: {
     padding: "3px",
-    height: "55px",
     textAlign: "left"
   },
 

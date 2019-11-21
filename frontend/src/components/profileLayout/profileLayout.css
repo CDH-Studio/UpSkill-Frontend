@@ -1,0 +1,74 @@
+.body {
+  margin: 50px auto;
+  max-width: 1200px;
+  min-width: 500px;
+  padding: 25px;
+}
+
+.boldLabel {
+  font-weight: bold;
+  padding-right: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.colorLabel {
+  color: #27348b;
+  padding-right: 0.5em;
+}
+
+.historyList {
+  padding-top: 10pt !important;
+}
+
+.historyList .dateInfo {
+  text-align: right;
+}
+
+.historyList .entryName {
+  font-weight: bold;
+  font-size: 14pt;
+}
+
+.historyList div .row {
+  line-height: 14pt;
+  padding-bottom: 0px !important;
+  padding-top: 0px !important;
+}
+
+.noGapAbove {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+
+.noGapBelow {
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.blueColoredText {
+  color: #27348b !important;
+}
+
+.profileCard {
+  margin-top: 0em !important;
+  margin-bottom: 0em !important;
+}
+
+.belowGapCard {
+  margin-bottom: 2em !important;
+}
+
+.bodyGrid > .row {
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
+}
+
+.compactCard {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.profileCard .ui.basic.label {
+  border-radius: 15px;
+}

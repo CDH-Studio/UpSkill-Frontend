@@ -1,22 +1,29 @@
 {
-  "name": "upskillbackend",
+  "name": "backend3",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Upskill backend",
+  "main": "app.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Upskill team",
+  "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
+    "keycloak-connect": "^7.0.1",
+    "npm-install-all": "^1.1.21",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^5.21.2",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "aws-sdk": "^2.543.0",
-    "frisby": "^2.1.2",
-    "jest": "^24.9.0",
-    "serverless": "^1.54.0",
-    "serverless-offline": "^5.11.0"
-  },
-  "scripts": {
-    "test": "jest",
-    "serve": "serverless offline start"
-  },
-  "author": "Rizvi Rab",
-  "license": "ISC"
+    "nodemon": "^1.19.4"
+  }
 }

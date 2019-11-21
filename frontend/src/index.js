@@ -1,12 +1,12 @@
 import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
+import "semantic-ui-less/semantic.less";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-import "semantic-ui/dist/semantic.min.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

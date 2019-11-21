@@ -49,16 +49,16 @@ class HomeLayoutView extends Component {
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <Button
-              color="violet"
+              color="blue"
               id="searchButton"
-              style={styles.button}
               onClick={performSearch}
+              style={styles.button}
             >
               <FormattedMessage id="search.button.text" />
             </Button>
             <Button
               basic
-              color="violet"
+              color="blue"
               id="toggleAdvancedButton"
               onClick={() => redirectFunction(typeButtonURL)}
               style={styles.button}
@@ -74,7 +74,6 @@ class HomeLayoutView extends Component {
 
 const styles = {
   button: {
-    fontSize: "110%",
     marginLeft: "30px",
     marginRight: "30px",
     marginTop: "20px",
