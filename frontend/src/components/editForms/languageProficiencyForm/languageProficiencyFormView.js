@@ -85,7 +85,7 @@ class LanguageProficiencyFormView extends Component {
                     { key: "A", value: "A", text: "A" },
                     { key: "B", value: "B", text: "B" },
                     { key: "C", value: "C", text: "C" },
-                    { key: "E", value: "E", text: "E (Ungraded)" },
+                    { key: "E", value: "E", text: "E" },
                     { key: "X", value: "X", text: "X" }
                   ]}
                   width={8}

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Card, Grid, Icon, Label, List, Menu, Popup } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
+
+import { renderValue } from "../common/profileTools";
+
 import moment from "moment";
 
 import tempProfilePic from "../../../assets/tempProfilePicture.png";
@@ -13,11 +16,18 @@ import EditWrapperController from "../editWrapper/editWrapperController";
 import ProfileCardController from "../profileCard/profileCardController";
 
 import "./primaryLayoutGroup.css";
+import "../common/common.css";
 
 /**
  * This class generates the items at the start of the profile page that need to interact with eachother to responsively resize
  */
 class PrimaryLayoutGroupView extends Component {
+  constructor(props) {
+    super(props);
+    const { intl } = props;
+    this.renderValue = renderValue.bind(this, intl);
+  }
+
   render() {
     const { windowWidth } = this.props;
     const useWideLayout = windowWidth > 1250;
@@ -76,6 +86,14 @@ class PrimaryLayoutGroupView extends Component {
         ? moment(actingPeriodEndDate).format("MMM DD YYYY")
         : intl.formatMessage({ id: "profile.ongoing" });
 
+    const actingDateText = actingDisabled ? (
+      <span className="greyedOut">
+        {intl.formatMessage({ id: "profile.na" })}
+      </span>
+    ) : (
+      startDateString + "-" + endDateString
+    );
+
     // When using the medium wideness view there are 2 columns of labeled cards
     if (windowWidth <= 1250 && windowWidth > 750) {
       return (
@@ -87,28 +105,39 @@ class PrimaryLayoutGroupView extends Component {
           <Grid>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(tenureLabel, tenure.description)}
-                {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
+                {this.renderLabeledItem(
+                  tenureLabel,
+                  this.renderValue(tenure.description, "profile.undefined")
+                )}
+                {this.renderLabeledItem(
+                  yearsOfServiceLabel,
+                  this.renderValue(yearsOfService, "profile.undefined")
+                )}
                 {this.renderLabeledItem(
                   actingLabel,
-                  acting.description,
-                  actingDisabled
+                  this.renderValue(
+                    acting.description,
+                    "profile.na",
+                    actingDisabled
+                  )
                 )}
               </Grid>
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(securityLabel, security.description)}
+                {this.renderLabeledItem(
+                  securityLabel,
+                  this.renderValue(security.description, "profile.undefined")
+                )}
 
                 {this.renderLabeledItem(
                   classificationLabel,
-                  classification.description
+                  this.renderValue(
+                    classification.description,
+                    "profile.undefined"
+                  )
                 )}
-                {this.renderLabeledItem(
-                  actingPeriodLabel,
-                  startDateString + "-" + endDateString,
-                  actingDisabled
-                )}
+                {this.renderLabeledItem(actingPeriodLabel, actingDateText)}
               </Grid>
             </Grid.Column>
           </Grid>
@@ -125,24 +154,28 @@ class PrimaryLayoutGroupView extends Component {
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
-          {this.renderLabeledItem(tenureLabel, tenure.description)}
-          {this.renderLabeledItem(securityLabel, security.description)}
-          {this.renderLabeledItem(yearsOfServiceLabel, yearsOfService)}
+          {this.renderLabeledItem(
+            tenureLabel,
+            this.renderValue(tenure.description, "profile.undefined")
+          )}
+          {this.renderLabeledItem(
+            securityLabel,
+            this.renderValue(security.description, "profile.undefined")
+          )}
+          {this.renderLabeledItem(
+            yearsOfServiceLabel,
+            this.renderValue(yearsOfService, "profile.undefined")
+          )}
 
           {this.renderLabeledItem(
             classificationLabel,
-            classification.description
+            this.renderValue(classification.description, "profile.undefined")
           )}
           {this.renderLabeledItem(
             actingLabel,
-            acting.description,
-            actingDisabled
+            this.renderValue(acting.description, "profile.na", actingDisabled)
           )}
-          {this.renderLabeledItem(
-            actingPeriodLabel,
-            startDateString + "-" + endDateString,
-            actingDisabled
-          )}
+          {this.renderLabeledItem(actingPeriodLabel, actingDateText)}
         </Grid>
       </ProfileCardController>
     );
@@ -244,14 +277,21 @@ class PrimaryLayoutGroupView extends Component {
                   </Popup>
 
                   <div className="phoneNumberArea">
-                    <FormattedMessage id="profile.telephone" />: {telephone}
+                    <FormattedMessage id="profile.telephone" />:
+                    {this.renderValue(telephone, "profile.undefined")}
                   </div>
                   <div className="phoneNumberArea">
-                    <FormattedMessage id="profile.cellphone" />: {cellphone}
+                    <FormattedMessage id="profile.cellphone" />:
+                    {this.renderValue(cellphone, "profile.undefined")}
                   </div>
                   <div>{email}</div>
 
-                  <div>{location.description}</div>
+                  <div>
+                    {this.renderValue(
+                      location.description,
+                      "profile.undefined.location"
+                    )}
+                  </div>
                 </div>
               </Grid.Row>
             </Grid>

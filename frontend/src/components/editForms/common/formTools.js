@@ -39,6 +39,7 @@ export const generateCommonProps = (props, name, control, tempField) => {
 
     commonProps.defaultValue =
       profileInfo[name] && (profileInfo[name].id || profileInfo[name]);
+
     commonProps.options = editProfileOptions[name];
     //commonProps.disabled = false;
   } else if (control === Input) {

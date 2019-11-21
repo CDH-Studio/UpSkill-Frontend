@@ -66,9 +66,11 @@ class ProfileLayoutController extends Component {
     }
     if (typeof info === "object") {
       if (info === null) {
+        return info;
         const { intl } = this.props;
         return intl.formatMessage({ id: "profile.undefined" });
-      } else if (Array.isArray(info)) {
+      }
+      if (Array.isArray(info)) {
         let returnArray = [];
         info.forEach(element =>
           returnArray.push(this.setProfileInfo(element, language))

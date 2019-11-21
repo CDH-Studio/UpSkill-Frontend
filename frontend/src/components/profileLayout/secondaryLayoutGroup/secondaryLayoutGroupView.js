@@ -7,11 +7,17 @@ import ProfileCardController from "../profileCard/profileCardController";
 import EditLanguageProficiencyController from "../editModals/editLanguageProficiency/editLanguageProficiencyController";
 import EditManagerController from "../editModals/editManager/editManagerController";
 import EditTalentManagementController from "../editModals/editTalentManagement/editTalentManagementController";
+import { renderValue } from "../common/profileTools";
+
+import "../common/common.css";
 import "./secondaryLayoutGroup.css";
 
 class SecondaryLayoutGroupView extends Component {
   constructor(props) {
     super(props);
+    const { intl } = props;
+
+    this.renderValue = renderValue.bind(this, intl);
     this.renderManagerCard = this.renderManagerCard.bind(this);
     this.renderLanguageProficiencyCard = this.renderLanguageProficiencyCard.bind(
       this
@@ -69,7 +75,7 @@ class SecondaryLayoutGroupView extends Component {
         <span className="colorLabel">
           <FormattedMessage id="profile.manager" />:
         </span>
-        <span>{manager}</span>
+        <span>{this.renderValue(manager)}</span>
       </ProfileCardController>
     );
   }
@@ -97,7 +103,7 @@ class SecondaryLayoutGroupView extends Component {
           <span className="boldLabel">
             <FormattedMessage id="profile.first.language" />
           </span>
-          <span>{firstLanguage}</span>
+          <span>{this.renderValue(firstLanguage)}</span>
         </div>
         <p className="boldLabel noGapBelow">
           <FormattedMessage id="profile.second.language.proficiency" />
@@ -113,47 +119,44 @@ class SecondaryLayoutGroupView extends Component {
           <Table.Body id="proficiencyTableBody">
             <Table.Row>
               <Table.Cell>
-                <FormattedMessage id="profile.reading" />
+                <FormattedMessage
+                  className={secondaryReadingProficiency ? "greyedOut" : null}
+                  id="profile.reading"
+                />
               </Table.Cell>
-              <Table.Cell>
-                {secondaryReadingProficiency != "Undefined"
-                  ? secondaryReadingProficiency
-                  : ""}
-              </Table.Cell>
+              <Table.Cell>{secondaryReadingProficiency}</Table.Cell>
               <Table.Cell>
                 {moment(secondaryReadingDate).isValid()
                   ? moment(secondaryReadingDate).format("ll")
-                  : ""}
+                  : null}
               </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
-                <FormattedMessage id="profile.writing" />
+                <FormattedMessage
+                  className={secondaryWritingProficiency ? "greyedOut" : null}
+                  id="profile.writing"
+                />
               </Table.Cell>
-              <Table.Cell>
-                {secondaryWritingProficiency != "Undefined"
-                  ? secondaryWritingProficiency
-                  : ""}
-              </Table.Cell>
+              <Table.Cell>{secondaryWritingProficiency}</Table.Cell>
               <Table.Cell>
                 {moment(secondaryWritingDate).isValid()
                   ? moment(secondaryWritingDate).format("ll")
-                  : ""}
+                  : null}
               </Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>
-                <FormattedMessage id="profile.oral" />
+                <FormattedMessage
+                  className={secondaryOralProficiency ? "greyedOut" : null}
+                  id="profile.oral"
+                />
               </Table.Cell>
-              <Table.Cell>
-                {secondaryOralProficiency != "Undefined"
-                  ? secondaryOralProficiency
-                  : ""}
-              </Table.Cell>
+              <Table.Cell>{secondaryOralProficiency}</Table.Cell>
               <Table.Cell>
                 {moment(secondaryOralDate).isValid()
                   ? moment(secondaryOralDate).format("ll")
-                  : ""}
+                  : null}
               </Table.Cell>
             </Table.Row>
           </Table.Body>
@@ -181,13 +184,13 @@ class SecondaryLayoutGroupView extends Component {
           <span className="boldLabel">
             <FormattedMessage id="profile.career.mobility" />
           </span>
-          <span>{careerMobility.description}</span>
+          <span>{this.renderValue(careerMobility.description)}</span>
         </div>
         <div>
           <span className="boldLabel">
             <FormattedMessage id="profile.talent.matrix.result" />
           </span>
-          <span>{talentMatrixResult.description}</span>
+          <span>{this.renderValue(talentMatrixResult.description)}</span>
         </div>
         {exFeeder && intl.formatMessage({ id: "profile.is.ex.feeder" })}
       </ProfileCardController>

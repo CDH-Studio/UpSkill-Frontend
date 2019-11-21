@@ -6,10 +6,15 @@ import moment from "moment";
 import ProfileCardController from "../profileCard/profileCardController";
 import "./historyCard.css";
 
+import { renderValue } from "../common/profileTools";
+import "../common/common.css";
+
 class HistoryCardView extends Component {
   constructor(props) {
     super(props);
+    const { intl } = this.props;
 
+    this.renderValue = renderValue.bind(this, intl);
     this.state = { expanded: false };
     this.expandable = props.cardEntries.length > 2;
   }
@@ -33,7 +38,10 @@ class HistoryCardView extends Component {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column className="entryName" width={8}>
-                      {value.header || value.diploma.description}
+                      {this.renderValue(
+                        value.header ||
+                          (value.diploma && value.diploma.description)
+                      )}
                     </Grid.Column>
                     <Grid.Column className="dateInfo" width={8}>
                       {moment(value.startDate).isValid()
@@ -54,7 +62,10 @@ class HistoryCardView extends Component {
                       }}
                       width={16}
                     >
-                      {value.subheader || value.school.description}
+                      {this.renderValue(
+                        value.subheader ||
+                          (value.school && value.school.description)
+                      )}
                     </Grid.Column>
                   </Grid.Row>
                   {value.content && (
