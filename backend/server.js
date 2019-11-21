@@ -7,13 +7,28 @@ const session = require("express-session");
 const expressHbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
-const geds = require("./API/geds/index");
-const db = require("./API/dbTest/queries");
+const sequelizedb = require("./config/database");
 
 const app = express(); // define our app using express
 
-// Config() function reads the .env file and sets the environment variables
-dotenv.config();
+const profile = require("./API/profile");
+const user = require("./API/user");
+const geds = require("./API/geds");
+const profileGeneration = require("./API/profileGeneration");
+const options = require("./API/options").optionRouter;
+const search = require("./API/search/");
+
+dotenv.config(); // Config() function reads the .env file and sets the environment variables
+
+// Testing the Postgres Connection
+sequelizedb
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch(err => {
+    console.error("Unable to connect to the database:", err);
+  });
 
 // Register 'handelbars' extension with The Mustache Express
 app.engine(
@@ -39,6 +54,16 @@ app.use(
   })
 );
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, OPTIONS");
+  next();
+});
+
 app.use(keycloak.middleware());
 
 // configure app to use bodyParser()
@@ -46,13 +71,13 @@ app.use(keycloak.middleware());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 8080; // set our port
+const port = process.env.PORT || 8181; // set our port
 
 // ROUTES FOR OUR API ===============================================
 const router = express.Router(); // get an instance of the express Router
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api/)
-router.get("/", keycloak.protect(), function(req, res) {
+router.get("/", function(req, res) {
   res.json({ message: "hooray! welcome to our api!" });
 });
 
@@ -65,12 +90,27 @@ router.get("/getEmployeeInfo/:searchValue", keycloak.protect(), async function(
   res.json(JSON.parse(data.body));
 });
 
-router.get("/users", keycloak.protect(), db.getUsers);
-router.get("/users/:id", keycloak.protect(), db.getUserById);
-router.post("/users", keycloak.protect(), db.createUser);
-router.put("/users/:id", keycloak.protect(), db.updateUser);
-router.delete("/users/:id", keycloak.protect(), db.deleteUser);
-// more routes for our API will happen here
+router.get("/geds/:searchValue", geds.getEmployeeInfo);
+
+//User endpoints
+router.get("/user/", user.getUser);
+router.get("/user/:id", user.getUserById);
+router.post("/user/", user.createUser);
+
+//Profile endpoints
+router.get("/profile/", profile.getProfile);
+router
+  .route("/profile/:id")
+  .get(profile.getProfileById)
+  .post(profile.createProfile)
+  .put(profile.updateProfile);
+
+router.use("/option", options);
+
+router.get("/profGen/:id", profileGeneration.getGedsAssist);
+
+// Search routes
+router.get("/search/basicSearch/:searchValue", search.getProfileByName);
 
 // REGISTER OUR ROUTES ===============================================
 // Note: All of our routes will be prefixed with /api
@@ -81,5 +121,5 @@ app.use("/api", router);
 app.use(keycloak.middleware({ logout: "/" }));
 
 // START THE SERVER ==================================================
-app.listen(port);
+app.listen(8080);
 console.log("Magic happens on port " + port);

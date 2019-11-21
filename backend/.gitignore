@@ -1,8 +1,0 @@
-# package directories
-node_modules
-
-#config files
-config.json
-
-# Keycloak configuration file
-keycloak.json
