@@ -61,7 +61,6 @@ async function getEmployeeInfo(request, response) {
             ...contactInfo
           };
           info.push(empInfo);
-          console.log(empInfo);
         });
         if (info.length == 0) {
           response.status(204).send("No results found");

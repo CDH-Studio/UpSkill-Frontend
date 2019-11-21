@@ -24,7 +24,7 @@ const createProfile = async (request, response) => {
     dbObject.jobTitleFr = dbObject.jobTitle.fr;
   }
 
-  dbObject.locationId = dbObject.locationId.id;
+  if (dbObject.locationId.id) dbObject.locationId = dbObject.locationId.id;
 
   try {
     const [profile, created] = await Profile.upsert(
@@ -55,8 +55,6 @@ const createProfile = async (request, response) => {
     }
 
     if (dbObject.experience) {
-      console.log(dbObject.experience);
-
       Experience.destroy({ where: { profileId: profile.id } }).then(() => {
         dbObject.experience.forEach(exp => {
           let startDate = moment(exp.startDate);
