@@ -17,30 +17,8 @@ jobs:
           name: Unit tests
           command: cd frontend && npm test
 
-  backend-test:
-    working_directory: ~/UpSkill
-    docker:
-      - image: circleci/node:10.16.3
-    steps:
-      - checkout
-      - run:
-          name: Install Node dependencies
-          command: cd backend && npm i
-      - run:
-          name: Deploy serverless offline
-          command: cd backend && npm run serve
-          background: true
-
-      - run:
-          name: Install Node dependencies
-          command: cd backend && npm test
-
 workflows:
   version: 2
   build-deploy-frontend:
     jobs:
       - frontend-test
-
-  build-deploy-backend:
-    jobs:
-      - backend-test
