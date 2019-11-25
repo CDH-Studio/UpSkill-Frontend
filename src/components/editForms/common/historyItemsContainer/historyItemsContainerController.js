@@ -3,6 +3,9 @@ import axios from "axios";
 
 import HistoryItemsContainerView from "./historyItemsContainerView";
 
+import config from "../../../../config";
+const { backendAddress } = config;
+
 export default class HistoryItemsContainerController extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +40,7 @@ export default class HistoryItemsContainerController extends Component {
   onSubmit() {
     const { infoName } = this.props;
     let url =
-      "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
+      backendAddress+"api/profile/" + localStorage.getItem("userId");
     axios
       .put(url, { [infoName]: this.fields })
       .then(response => window.location.reload())

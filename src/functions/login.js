@@ -1,7 +1,9 @@
 const post = require("axios").post;
 
+const backendAddress = require("../config").default.backendAddress;
+
 const createUser = (email, name) => {
-  return post("http://localhost:8080/api/user/", {
+  return post(backendAddress + "api/user/", {
     email,
     name
   })

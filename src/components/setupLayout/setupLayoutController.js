@@ -205,7 +205,7 @@ class SetupLayoutController extends Component {
       developmentalGoals: formatOptions(
         (
           await axios.get(
-            "http://localhost:8080/api/option/getDevelopmentalGoals"
+            backendAddress+"api/option/getDevelopmentalGoals"
           )
         ).data
       ),
