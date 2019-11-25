@@ -43,8 +43,11 @@ class HomeLayoutView extends Component {
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <SearchForm
+              maxFormWidth="600px"
               showAdvancedFields={showAdvancedFields}
               updateSearch={updateSearch}
+              redirectFunction={redirectFunction}
+              toggleButton
             />
           </Grid.Row>
           <Grid.Row style={styles.row}>

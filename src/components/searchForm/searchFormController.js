@@ -1,7 +1,14 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { formatOptions } from "../editForms/common/formTools";
+import queryString from "query-string";
 import { injectIntl } from "react-intl";
+import config from "../../config";
+import FormManagingComponent from "../editForms/common/formTools";
 
 import SearchFormView from "./searchFormView";
+
+const backendAddress = config.backendAddress;
 
 /**
  * A form for creating a search query
@@ -20,80 +27,107 @@ import SearchFormView from "./searchFormView";
  * updateSearch             []                      Function to call to update the search query
  */
 class SearchFormController extends Component {
+  constructor(props) {
+    super(props);
+    const { defaultAdvanced } = this.props;
+    this.fields = {};
+
+    this.state = { advancedOptions: null, advancedSearch: defaultAdvanced };
+
+    if (defaultAdvanced) {
+      this.getAdvancedOptions();
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  async getAdvancedOptions() {
+    let advancedOptions = {
+      groupOrLevel: formatOptions(
+        (await axios.get(backendAddress + "api/option/getGroupLevel")).data
+      ),
+      developmentalGoals: formatOptions(
+        (
+          await axios.get(
+            "http://localhost:8080/api/option/getDevelopmentalGoals"
+          )
+        ).data
+      ),
+      location: formatOptions(
+        (await axios.get(backendAddress + "api/option/getLocation")).data
+      )
+    };
+
+    this.setState({ advancedOptions: advancedOptions });
+  }
+
+  handleChange(e, { name, value, checked }) {
+    this.fields[name] = value || checked;
+  }
+
+  handleSubmit() {
+    const { redirectFunction } = this.props;
+
+    let query;
+    console.log("submit", this.fields);
+    if (this.state.advancedSearch) {
+      delete this.fields.fuzzySearch;
+      query = queryString.stringify(this.fields);
+    } else {
+      query = queryString.stringify({
+        fuzzySearch: this.fields.fuzzySearch
+      });
+    }
+    redirectFunction("/results?" + query);
+  }
+
+  handleToggle() {
+    this.setState({
+      advancedSearch: !this.state.advancedSearch
+    });
+  }
+
   render() {
     const {
-      advancedFieldWidth,
-      departments,
-      intl,
-      invertLabels,
-      jobTitles,
-      locations,
-      primaryFieldWidth,
-      securityClearances,
-      showAdvancedFields,
-      updateSearch
+      advancedOptions,
+      advancedSearch,
+      maxFormWidth,
+      horizontalLayout,
+      toggleButton
     } = this.props;
 
     return (
       <SearchFormView
-        advancedFieldWidth={advancedFieldWidth}
-        departments={departments}
-        intl={intl}
-        invertLabels={invertLabels}
-        jobTitles={jobTitles}
-        locations={locations}
-        primaryFieldWidth={primaryFieldWidth}
-        securityClearances={securityClearances}
-        showAdvancedFields={showAdvancedFields}
-        skills={[
-          {
-            key: "axios",
-            text: intl.formatMessage({
-              id: "search.field.primary.dropdown.axios"
-            }),
-            value: "axios"
-          },
-          {
-            key: "css",
-            text: intl.formatMessage({
-              id: "search.field.primary.dropdown.css"
-            }),
-            value: "css"
-          },
-          {
-            key: "enzyme",
-            text: intl.formatMessage({
-              id: "search.field.primary.dropdown.enzyme"
-            }),
-            value: "enzyme"
-          },
-          {
-            key: "html",
-            text: intl.formatMessage({
-              id: "search.field.primary.dropdown.html"
-            }),
-            value: "html"
-          },
-          {
-            key: "javascript",
-            text: intl.formatMessage({
-              id: "search.field.primary.dropdown.javascript"
-            }),
-            value: "javascript"
-          },
-          {
-            key: "jest",
-            text: intl.formatMessage({
-              id: "search.field.primary.dropdown.jest"
-            }),
-            value: "jest"
-          }
-        ]}
-        updateSearch={updateSearch}
+        advancedOptions={advancedOptions}
+        maxFormWidth={maxFormWidth}
+        advancedSearch={this.state.advancedSearch}
+        horizontalLayout={horizontalLayout}
+        handleToggle={toggleButton ? this.handleToggle : null}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        maxFormWidth={maxFormWidth}
       />
     );
   }
 }
+
+/*
+              color="blue"
+              id="searchButton"
+              onClick={performSearch}
+              style={styles.button}
+            >
+              <FormattedMessage id="search.button.text" />
+            </Button>
+            <Button
+              basic
+              color="blue"
+              id="toggleAdvancedButton"
+              onClick={() => redirectFunction(typeButtonURL)}
+              style={styles.button}
+*/
 
 SearchFormController.defaultProps = {
   advancedFieldWidth: "400px",
