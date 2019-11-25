@@ -18,7 +18,7 @@
   },
   "scripts": {
     "startold": "craco start",
-    "start": "craco build && serve -s build",
+    "start": "npm i && craco build && serve -s build",
     "build": "craco build",
     "eject": "craco eject",
     "test": "jest",
