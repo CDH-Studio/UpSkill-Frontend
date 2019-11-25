@@ -12,10 +12,12 @@
     "react-router-dom": "^5.1.0",
     "react-scripts": "3.1.2",
     "semantic-ui-calendar-react": "^0.15.3",
-    "semantic-ui-react": "^0.88.1"
+    "semantic-ui-react": "^0.88.1",
+    "serve": "^11.2.0"
   },
   "scripts": {
-    "start": "craco start",
+    "startold": "craco start",
+    "start": "craco build && serve -s build",
     "build": "craco build",
     "eject": "craco eject",
     "test": "jest",

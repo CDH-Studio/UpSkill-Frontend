@@ -1,3 +1,6 @@
 export default {
-  backendAddress: "http://localhost:8080/"
+  backendAddress:
+    "http://upskill-backend-upskill.apps.dev.openshift.ised-isde.canada.ca/"
 };
+
+console.log(process.env.REACT_APP_API_ADDRESS);

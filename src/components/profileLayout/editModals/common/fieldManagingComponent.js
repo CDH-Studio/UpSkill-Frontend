@@ -1,6 +1,9 @@
 import { Component } from "react";
 import axios from "axios";
 
+import config from "../../../../config";
+const { backendAddress } = config;
+
 export default class FieldManagingComponent extends Component {
   constructor(props) {
     super(props);
@@ -11,8 +14,7 @@ export default class FieldManagingComponent extends Component {
   }
 
   handleApply() {
-    let url =
-      "http://localhost:8080/api/profile/" + localStorage.getItem("userId");
+    let url = backendAddress + "api/profile/" + localStorage.getItem("userId");
     axios
       .put(url, this.fields)
       .then(function(response) {

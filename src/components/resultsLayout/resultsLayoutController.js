@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import ResultsLayoutView from "./resultsLayoutView";
 import axios from "axios";
 
+import config from "../../config";
+const { backendAddress } = config;
+
 export default class ResultsLayoutController extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +43,7 @@ export default class ResultsLayoutController extends Component {
       // Make a request for a user with a given ID
       axios
         .get(
-          "http://localhost:8080/api/geds/" +
+          backendAddress+"api/geds/" +
             encodeURI(searchQuery.firstName + " " + searchQuery.lastName)
         )
         .then(this.handleResponse)
