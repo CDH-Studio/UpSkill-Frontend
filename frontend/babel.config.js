@@ -13,5 +13,10 @@ module.exports = {
   plugins: [
     "@babel/plugin-proposal-class-properties",
     "transform-es2015-modules-commonjs"
-  ]
+  ],
+  env: {
+    test: {
+      plugins: ["@babel/plugin-transform-runtime"]
+    }
+  }
 };

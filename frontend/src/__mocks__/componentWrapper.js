@@ -4,7 +4,7 @@ import { IntlProvider } from "react-intl";
 import { mount } from "enzyme";
 import { Router } from "react-router-dom";
 
-import messages_en from "../src/i18n/en_CA.json";
+import messages_en from "../i18n/en_CA.json";
 
 export default function wrapThenMount(node, useIntl = true, useRouter = true) {
   if (useRouter) {

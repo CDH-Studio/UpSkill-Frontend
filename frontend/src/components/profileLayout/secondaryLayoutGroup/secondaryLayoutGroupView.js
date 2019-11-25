@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Table, Icon } from "semantic-ui-react";
-import { FormattedMessage, injectIntl } from "react-intl";
+import { FormattedMessage, injectIntl, useIntl } from "react-intl";
 import moment from "moment";
 
 import ProfileCardController from "../profileCard/profileCardController";
@@ -17,7 +17,8 @@ class SecondaryLayoutGroupView extends Component {
     super(props);
     const { intl } = props;
 
-    this.renderValue = renderValue.bind(this, intl);
+    this.renderValue = (val, intlId, forceDisable) =>
+      renderValue(val, intlId, forceDisable);
     this.renderManagerCard = this.renderManagerCard.bind(this);
     this.renderLanguageProficiencyCard = this.renderLanguageProficiencyCard.bind(
       this

@@ -41,6 +41,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
@@ -70,7 +71,7 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy",
-      "\\.(svg|png)$": "<rootDir>/__mocks__/fileMock.js"
+      "\\.(svg|png|gif)$": "<rootDir>/src/__mocks__/fileMock.js"
     }
   }
 }
