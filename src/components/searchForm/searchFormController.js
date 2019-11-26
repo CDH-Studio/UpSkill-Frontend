@@ -77,10 +77,12 @@ class SearchFormController extends Component {
       query = queryString.stringify(this.fields);
     } else {
       query = queryString.stringify({
-        fuzzySearch: this.fields.fuzzySearch
+        searchValue: this.fields.searchValue
       });
+
+      redirectFunction("/results/fuzzySearch?" + encodeURI(query));
     }
-    redirectFunction("/results?" + query);
+    redirectFunction("/results?" + encodeURI(query));
   }
 
   handleToggle() {

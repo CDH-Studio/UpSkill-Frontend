@@ -45,7 +45,6 @@ class HomeLayoutView extends Component {
             <SearchForm
               maxFormWidth="600px"
               showAdvancedFields={showAdvancedFields}
-              updateSearch={updateSearch}
               redirectFunction={redirectFunction}
               toggleButton
             />

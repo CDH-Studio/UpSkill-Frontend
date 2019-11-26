@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ResultsLayoutView from "./resultsLayoutView";
 import axios from "axios";
+import queryString from "query-string";
 
 import config from "../../config";
 const { backendAddress } = config;
@@ -24,7 +25,46 @@ export default class ResultsLayoutController extends Component {
   }
 
   componentDidMount() {
-    const { searchQuery } = this.props;
+    const urlSections = window.location.toString().split("?");
+
+    if (urlSections.length == 2) {
+      console.log(urlSections[1]);
+
+      this.gatherResults(urlSections[1]);
+    } else {
+      this.setState({ results: new Error("invalid query") });
+    }
+  }
+
+  async gatherResults(query) {
+    const results = (
+      await axios.get(backendAddress + "api/search/fuzzySearch?" + query)
+    ).data;
+
+    this.setState({ results: results });
+  }
+
+  render() {
+    const {
+      changeLanguage,
+      keycloak,
+      searchQuery,
+      redirectFunction
+    } = this.props;
+
+    return (
+      <ResultsLayoutView
+        changeLanguage={changeLanguage}
+        keycloak={keycloak}
+        results={this.state.results}
+        redirectFunction={redirectFunction}
+        searchQuery={searchQuery}
+      />
+    );
+  }
+}
+
+/*    const { searchQuery } = this.props;
     let url = "/search?";
     let validSearch = false;
 
@@ -43,7 +83,8 @@ export default class ResultsLayoutController extends Component {
       // Make a request for a user with a given ID
       axios
         .get(
-          backendAddress+"api/geds/" +
+          backendAddress +
+            "api/geds/" +
             encodeURI(searchQuery.firstName + " " + searchQuery.lastName)
         )
         .then(this.handleResponse)
@@ -51,19 +92,4 @@ export default class ResultsLayoutController extends Component {
         .finally(function() {
           // always executed
         });
-    }
-  }
-
-  render() {
-    const { changeLanguage, keycloak, searchQuery } = this.props;
-
-    return (
-      <ResultsLayoutView
-        changeLanguage={changeLanguage}
-        keycloak={keycloak}
-        results={this.state.results}
-        searchQuery={searchQuery}
-      />
-    );
-  }
-}
+    }*/

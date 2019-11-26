@@ -46,7 +46,7 @@ class SearchFormView extends Component {
         ) : (
           <React.Fragment>
             <Form.Field
-              name="fuzzySearch"
+              name="searchValue"
               control={Input}
               onChange={handleChange}
               onSubmit={handleSubmit}
