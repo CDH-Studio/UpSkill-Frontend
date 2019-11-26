@@ -121,6 +121,24 @@ class App extends Component {
             <Router>
               {this.state.redirect}
               <div>
+                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                <div>
+                {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
+                {/* <div>
+                  <form>
+                    <textarea
+                      ref={textarea => (this.textArea = textarea)}
+                      value={keycloak.token}
+                    />
+                  </form>
+                  {document.queryCommandSupported("copy") && (
+                    <div>
+                      <button onClick={this.copyToClipboard}>Copy</button>
+                      {this.state.copySuccess}
+                    </div>
+                  )}
+                </div> */}
+                {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
                 <Route
                   exact
                   path="/"
@@ -203,6 +221,15 @@ class App extends Component {
     }
     return <div>{dimmer()}</div>;
   }
+
+  //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  copyToClipboard = e => {
+    this.textArea.select();
+    document.execCommand("copy");
+    e.target.focus();
+    this.setState({ copySuccess: "Copied!" });
+  };
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   changeLanguage(lang) {
     localStorage.setItem("lang", lang);
