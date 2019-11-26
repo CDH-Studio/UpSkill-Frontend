@@ -86,6 +86,13 @@ class App extends Component {
     keycloak
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
+        axios.interceptors.request.use(config =>
+          keycloak.updateToken(5).then(() => {
+            config.headers.Authorization = "Bearer " + keycloak.token;
+            return Promise.resolve(config).catch(keycloak.login);
+          })
+        );
+
         this.setState({ keycloak: keycloak, authenticated: authenticated });
         this.renderRedirect().then(redirect => {
           this.setState({ redirect: redirect });
