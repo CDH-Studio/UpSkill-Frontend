@@ -18,7 +18,16 @@
 .env.test.local
 .env.production.local
 .env
+<<<<<<< HEAD
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+=======
+backend3/.env
+backend3/keycloak.json
+backend3/config/database.js
+backend3/db/config/config.json
+backend3/config/database.js
+backend3/config/database.js
+>>>>>>> development
