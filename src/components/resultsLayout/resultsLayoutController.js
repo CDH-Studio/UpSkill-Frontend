@@ -27,7 +27,7 @@ export default class ResultsLayoutController extends Component {
   componentDidMount() {
     const urlSections = window.location.toString().split("?");
 
-    if (urlSections.length == 2) {
+    if (urlSections.length === 2) {
       console.log(urlSections[1]);
 
       this.gatherResults(urlSections[1]);

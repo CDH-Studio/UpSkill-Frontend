@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { formatOptions } from "../editForms/common/formTools";
+import prepareInfo from "../../functions/prepareInfo";
 import queryString from "query-string";
 import { injectIntl } from "react-intl";
 import config from "../../config";
@@ -34,30 +34,40 @@ class SearchFormController extends Component {
 
     this.state = { advancedOptions: null, advancedSearch: defaultAdvanced };
 
-    if (defaultAdvanced) {
-      this.getAdvancedOptions();
-    }
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.getAdvancedOptions = this.getAdvancedOptions.bind(this);
   }
 
   async getAdvancedOptions() {
+    const lang = localStorage.getItem("lang");
     let advancedOptions = {
-      groupOrLevel: formatOptions(
-        (await axios.get(backendAddress + "api/option/getGroupLevel")).data
-      ),
-      developmentalGoals: formatOptions(
-        (
-          await axios.get(
-            "http://localhost:8080/api/option/getDevelopmentalGoals"
-          )
-        ).data
-      ),
-      location: formatOptions(
-        (await axios.get(backendAddress + "api/option/getLocation")).data
-      )
+      groupOrLevel: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getGroupLevel")).data,
+        lang
+      ).map(obj => ({
+        key: obj.description,
+        value: obj.id,
+        text: obj.description
+      })),
+      developmentalGoals: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getDevelopmentalGoals"))
+          .data,
+        lang
+      ).map(obj => ({
+        key: obj.description,
+        value: obj.id,
+        text: obj.description
+      })),
+      location: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getLocation")).data,
+        lang
+      ).map(obj => ({
+        key: obj.description,
+        value: obj.id,
+        text: obj.description
+      }))
     };
 
     this.setState({ advancedOptions: advancedOptions });
@@ -75,6 +85,7 @@ class SearchFormController extends Component {
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
       query = queryString.stringify(this.fields);
+      redirectFunction("/results/advancedSearch?" + encodeURI(query));
     } else {
       query = queryString.stringify({
         searchValue: this.fields.searchValue
@@ -82,7 +93,6 @@ class SearchFormController extends Component {
 
       redirectFunction("/results/fuzzySearch?" + encodeURI(query));
     }
-    redirectFunction("/results?" + encodeURI(query));
   }
 
   handleToggle() {
@@ -93,7 +103,6 @@ class SearchFormController extends Component {
 
   render() {
     const {
-      advancedOptions,
       advancedSearch,
       maxFormWidth,
       horizontalLayout,
@@ -102,10 +111,11 @@ class SearchFormController extends Component {
 
     return (
       <SearchFormView
-        advancedOptions={advancedOptions}
+        advancedOptions={this.state.advancedOptions}
         maxFormWidth={maxFormWidth}
         advancedSearch={this.state.advancedSearch}
         horizontalLayout={horizontalLayout}
+        getAdvancedOptions={this.getAdvancedOptions}
         handleToggle={toggleButton ? this.handleToggle : null}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}

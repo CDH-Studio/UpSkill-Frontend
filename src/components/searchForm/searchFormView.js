@@ -7,7 +7,8 @@ import {
   Dropdown,
   Form,
   Input,
-  Select
+  Select,
+  Loader
 } from "semantic-ui-react";
 
 /**
@@ -40,7 +41,15 @@ class SearchFormView extends Component {
     } = this.props;
 
     return (
-      <Form style={{ width: "100%", maxWidth: maxFormWidth }} fluid>
+      <Form
+        style={{
+          margin: "0px auto",
+          paddingLeft: "50px",
+          paddingRight: "50px",
+          width: maxFormWidth
+        }}
+        fluid
+      >
         {advancedSearch ? (
           this.renderAdvancedFields()
         ) : (
@@ -70,11 +79,24 @@ class SearchFormView extends Component {
       handleChange,
       handleToggle,
       handleSubmit,
-      horizontalLayout
+      horizontalLayout,
+      advancedOptions,
+      getAdvancedOptions
     } = this.props;
+
+    if (!advancedOptions) {
+      getAdvancedOptions();
+      return (
+        <Form.Field>
+          <Loader />
+        </Form.Field>
+      );
+    }
+
     const fields = (
       <React.Fragment>
         <Form.Field
+          fluid
           control={Input}
           name="name"
           label="Name"
@@ -82,13 +104,18 @@ class SearchFormView extends Component {
           onSubmit={handleSubmit}
         />
         <Form.Field
+          fluid
           control={Select}
           name="skills"
-          label="Skills / Competencies"
+          label="Skills"
+          multiple
+          search
+          options={advancedOptions.developmentalGoals}
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
         <Form.Field
+          fluid
           control={Select}
           name="branch"
           label="Branch"
@@ -96,39 +123,53 @@ class SearchFormView extends Component {
           onSubmit={handleSubmit}
         />
         <Form.Field
+          fluid
           control={Select}
           name="location"
           label="Location"
+          options={advancedOptions.location}
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
         <Form.Field
+          fluid
           control={Select}
           name="classification"
           label="classification"
+          options={advancedOptions.groupOrLevel}
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
         <Form.Field
+          fluid
           control={Checkbox}
           name="exFeeder"
           label="Is Ex Feeder"
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
-        <Button color="blue" onClick={handleSubmit}>
-          Search
-        </Button>
+        <Form.Field
+          fluid
+          control={Button}
+          color="blue"
+          content="Search"
+          onClick={handleSubmit}
+        />
         {handleToggle && (
-          <Button basic color="blue" onClick={handleToggle}>
-            Basic Search
-          </Button>
+          <Form.Field
+            fluid
+            control={Button}
+            content="Basic Search"
+            basic
+            color="blue"
+            onClick={handleToggle}
+          />
         )}
       </React.Fragment>
     );
 
     if (horizontalLayout) {
-      return <Form.Group>{fields}</Form.Group>;
+      return <Form.Group widths="equal">{fields}</Form.Group>;
     }
     return fields;
   }

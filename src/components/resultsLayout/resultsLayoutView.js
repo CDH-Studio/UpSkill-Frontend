@@ -17,12 +17,12 @@ export default class ResultsLayoutView extends Component {
     const { changeLanguage, keycloak, redirectFunction } = this.props;
     return (
       <div>
-        <NavigationBar changeLanguage={changeLanguage} keycloak={keycloak} />
-        <SearchFormController
-          maxFormWidth="1200px"
-          showAdvancedFields={true}
-          redirectFunction={redirectFunction}
+        <NavigationBar
+          changeLanguage={changeLanguage}
+          keycloak={keycloak}
+          includeSearchForm
         />
+
         <div className="resultContent">
           <Grid>
             <Grid.Row>{this.renderResultCards()}</Grid.Row>
