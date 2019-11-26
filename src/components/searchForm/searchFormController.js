@@ -85,13 +85,13 @@ class SearchFormController extends Component {
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
       query = queryString.stringify(this.fields);
-      redirectFunction("/results/advancedSearch?" + encodeURI(query));
+      redirectFunction("/secured/results?" + encodeURI(query));
     } else {
       query = queryString.stringify({
         searchValue: this.fields.searchValue
       });
 
-      redirectFunction("/results/fuzzySearch?" + encodeURI(query));
+      redirectFunction("/secured/results/fuzzySearch?" + encodeURI(query));
     }
   }
 

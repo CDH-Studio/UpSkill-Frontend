@@ -52,7 +52,7 @@ export default class ResultsLayoutView extends Component {
       console.log(person);
 
       cards.push(
-        <Card onClick={() => redirectFunction("/profile/" + person.id)}>
+        <Card onClick={() => redirectFunction("/secured/profile/" + person.id)}>
           <Card.Content>
             <Image floated="right" size="mini" src={tempProfilePicture} />
             <Card.Header>

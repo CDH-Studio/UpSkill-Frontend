@@ -8,7 +8,7 @@ import HomeLayoutView from "./homeLayoutView";
  *
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * redirectButtonText       "Advanced search"       The text to display on the redirect button
- * redirectButtonURL        "/advanced"             the url of the page to redirect to
+ * redirectButtonURL        "/secured/advanced"             the url of the page to redirect to
  * redirectFunction         None                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
@@ -29,7 +29,7 @@ class HomeLayoutController extends Component {
   performSearch() {
     const { redirectFunction } = this.props;
 
-    redirectFunction("/results", { searchQuery: this.searchQuery });
+    redirectFunction("/secured/results", { searchQuery: this.searchQuery });
   }
 
   render() {
@@ -61,7 +61,7 @@ class HomeLayoutController extends Component {
 
 HomeLayoutController.defaultProps = {
   typeButtonText: <FormattedMessage id="advanced.search.button.text" />,
-  typeButtonURL: "/advanced",
+  typeButtonURL: "/secured/advanced",
   showAdvancedFields: false
 };
 

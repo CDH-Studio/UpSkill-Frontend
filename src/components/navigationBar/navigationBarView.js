@@ -33,13 +33,13 @@ export default class NavigationBarView extends Component {
       <Menu color="blue" fixed="top" fluid inverted>
         <Menu.Item
           style={{ paddingBottom: "8px", paddingTop: "8px" }}
-          href="/home"
+          href="/secured/home"
         >
           <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
         <Menu.Menu position="right">
           {/* <Menu.Item name="My Profile" /> */}
-          <Menu.Item href="/profile">
+          <Menu.Item href="/secured/profile">
             <FormattedMessage id="my.profile" />
           </Menu.Item>
           <Logout id="logoutButton" keycloak={keycloak} />
