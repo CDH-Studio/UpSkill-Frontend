@@ -127,7 +127,7 @@ class SearchFormView extends Component {
         />
         <Form.Field
           fluid
-          control={Select}
+          control={Input}
           name="branch"
           label="Branch"
           onChange={handleChange}
@@ -138,6 +138,8 @@ class SearchFormView extends Component {
           control={Select}
           name="location"
           label="Location"
+          multiple
+          search
           options={advancedOptions.location}
           onChange={handleChange}
           onSubmit={handleSubmit}
@@ -147,6 +149,8 @@ class SearchFormView extends Component {
           control={Select}
           name="classification"
           label="classification"
+          multiple
+          search
           options={advancedOptions.groupOrLevel}
           onChange={handleChange}
           onSubmit={handleSubmit}

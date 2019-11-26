@@ -60,18 +60,21 @@ export default class ResultsLayoutView extends Component {
             </Card.Header>
             <Card.Meta>{person.jobTitle}</Card.Meta>
           </Card.Content>
-          <Card.Content>
-            <Label
-              style={{ marginBottom: "2px", marginTop: "2px" }}
-              color="blue"
-            >
-              React
-            </Label>
-          </Card.Content>
+          <Card.Content>{this.renderTags(person)}</Card.Content>
         </Card>
       );
     });
     return <Card.Group fluid>{cards}</Card.Group>;
+  }
+
+  renderTags(person) {
+    const tags = person.resultSkills.map(skill => (
+      <Label style={{ marginBottom: "2px", marginTop: "2px" }} color="blue">
+        {skill}
+      </Label>
+    ));
+
+    return tags;
   }
 }
 
