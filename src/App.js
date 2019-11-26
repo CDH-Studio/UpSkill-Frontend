@@ -221,14 +221,6 @@ class App extends Component {
     }
     return <div>{dimmer()}</div>;
   }
-  //Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  copyToClipboard = e => {
-    this.textArea.select();
-    document.execCommand("copy");
-    e.target.focus();
-    this.setState({ copySuccess: "Copied!" });
-  };
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   changeLanguage(lang) {
     localStorage.setItem("lang", lang);
