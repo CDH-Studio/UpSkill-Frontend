@@ -22,7 +22,7 @@ class Advanced extends Component {
         typeButtonText={intl.formatMessage({
           id: "basic.search.button.text"
         })}
-        typeButtonURL={"/home"}
+        typeButtonURL={"/secured/home"}
       />
     );
   }
