@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ResultsLayoutView from "./resultsLayoutView";
 import axios from "axios";
-import queryString from "query-string";
 
 import config from "../../config";
 const { backendAddress } = config;
@@ -27,7 +26,7 @@ export default class ResultsLayoutController extends Component {
   componentDidMount() {
     const urlSections = window.location.toString().split("?");
 
-    if (urlSections.length == 2) {
+    if (urlSections.length === 2) {
       console.log(urlSections[1]);
 
       this.gatherResults(urlSections[1]);
