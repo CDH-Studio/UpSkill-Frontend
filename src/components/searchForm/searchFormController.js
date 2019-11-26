@@ -80,9 +80,9 @@ class SearchFormController extends Component {
         searchValue: this.fields.searchValue
       });
 
-      redirectFunction("/results/fuzzySearch?" + encodeURI(query));
+      redirectFunction("/secured/results/fuzzySearch?" + encodeURI(query));
     }
-    redirectFunction("/results?" + encodeURI(query));
+    redirectFunction("/secured/results?" + encodeURI(query));
   }
 
   handleToggle() {

@@ -12,10 +12,10 @@ jobs:
       - checkout
       - run:
           name: Install Node dependencies
-          command: cd frontend && npm i
+          command: npm i
       - run:
           name: Unit tests
-          command: cd frontend && npm test
+          command: npm test
 
 workflows:
   version: 2
