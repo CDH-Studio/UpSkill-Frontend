@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ResultsLayoutView from "./resultsLayoutView";
 import axios from "axios";
-import queryString from "query-string";
 
 import config from "../../config";
 const { backendAddress } = config;
