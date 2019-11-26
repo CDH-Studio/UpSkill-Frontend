@@ -5,7 +5,7 @@ import { createBrowserHistory } from "history";
 
 import { Dimmer, Image } from "semantic-ui-react";
 
-import animatedLogo from "./assets/animatedLogo.gif";
+import animatedLogo from "../../assets/animatedLogo.gif";
 
 import {
   Advanced,
@@ -14,9 +14,7 @@ import {
   Profile,
   Setup,
   ProfileGeneration
-} from "./pages";
-
-const loginFunc = require("./functions/login");
+} from "../../pages";
 
 const history = createBrowserHistory();
 
@@ -34,8 +32,7 @@ class Secured extends Component {
 
     this.state = {
       authenticated: false,
-      keycloak: null,
-      redirect: dimmer()
+      keycloak: null
     };
 
     this.changeLanguage = this.props.changeLanguage;
@@ -47,9 +44,6 @@ class Secured extends Component {
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         this.setState({ keycloak: keycloak, authenticated: authenticated });
-        this.renderRedirect().then(redirect => {
-          this.setState({ redirect: redirect });
-        });
       });
   }
 
@@ -64,7 +58,6 @@ class Secured extends Component {
     const keycloak = this.state.keycloak;
     if (keycloak) {
       if (this.state.authenticated) {
-        console.log(keycloak);
         return (
           <div>
             {this.state.redirect}
@@ -91,12 +84,12 @@ class Secured extends Component {
 
             <Route
               exact
-              path="/secured/profile-generation"
+              path="/admin/profile-generation"
               component={ProfileGeneration}
             />
             <Route
               exact
-              path="/secured/advanced"
+              path="/admin/advanced"
               render={routeProps => (
                 <Advanced
                   keycloak={keycloak}
@@ -107,7 +100,7 @@ class Secured extends Component {
             />
             <Route
               exact
-              path="/secured/home"
+              path="/admin/home"
               render={routeProps => (
                 <Home
                   keycloak={keycloak}
@@ -118,7 +111,7 @@ class Secured extends Component {
             />
             <Route
               exact
-              path="/secured/results"
+              path="/admin/results"
               render={routeProps => (
                 <Results
                   keycloak={keycloak}
@@ -129,7 +122,7 @@ class Secured extends Component {
             />
             <Route
               exact
-              path="/secured/profile"
+              path="/admin/profile"
               render={routeProps => (
                 <Profile
                   keycloak={keycloak}
@@ -140,7 +133,7 @@ class Secured extends Component {
             />
             <Route
               exact
-              path="/secured/setup"
+              path="/admin/setup"
               render={routeProps => (
                 <Setup
                   keycloak={keycloak}
@@ -165,22 +158,6 @@ class Secured extends Component {
     this.setState({ copySuccess: "Copied!" });
   };
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-  profileExist = () => {
-    return this.state.keycloak.loadUserInfo().then(async userInfo => {
-      return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
-        // console.log("res", res);
-        return res.hasProfile;
-      });
-    });
-  };
-
-  renderRedirect = () => {
-    return this.profileExist().then(profileExist => {
-      if (!profileExist) return <Redirect to="/secured/setup"></Redirect>;
-      else return <div />;
-    });
-  };
 }
 
 export default Secured;
