@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { IntlProvider } from "react-intl";
 
-import Secured from "./Secured";
+import { Secured, Admin } from "./components/routes";
 
 import messages_en from "./i18n/en_CA.json";
 import messages_fr from "./i18n/fr_CA.json";
@@ -78,6 +78,12 @@ class App extends Component {
               path="/secured"
               render={routeProps => (
                 <Secured changeLanguage={this.changeLanguage} {...routeProps} />
+              )}
+            />
+            <Route
+              path="/admin"
+              render={routeProps => (
+                <Admin changeLanguage={this.changeLanguage} {...routeProps} />
               )}
             />
           </div>
