@@ -60,16 +60,27 @@ class SearchFormView extends Component {
               onChange={handleChange}
               onSubmit={handleSubmit}
             />
-            <Button color="blue" onClick={handleSubmit}>
-              search
-            </Button>
-            {handleToggle && (
-              <Button basic color="blue" onClick={handleToggle}>
-                Advanced Search
-              </Button>
-            )}
           </React.Fragment>
         )}
+        <Form.Group>
+          <Form.Field
+            fluid
+            control={Button}
+            color="blue"
+            content="Search"
+            onClick={handleSubmit}
+          />
+          {handleToggle && (
+            <Form.Field
+              fluid
+              control={Button}
+              content="Basic Search"
+              basic
+              color="blue"
+              onClick={handleToggle}
+            />
+          )}
+        </Form.Group>
       </Form>
     );
   }
@@ -148,23 +159,6 @@ class SearchFormView extends Component {
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
-        <Form.Field
-          fluid
-          control={Button}
-          color="blue"
-          content="Search"
-          onClick={handleSubmit}
-        />
-        {handleToggle && (
-          <Form.Field
-            fluid
-            control={Button}
-            content="Basic Search"
-            basic
-            color="blue"
-            onClick={handleToggle}
-          />
-        )}
       </React.Fragment>
     );
 

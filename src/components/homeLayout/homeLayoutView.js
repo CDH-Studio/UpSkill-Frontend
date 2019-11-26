@@ -49,25 +49,6 @@ class HomeLayoutView extends Component {
               toggleButton
             />
           </Grid.Row>
-          <Grid.Row style={styles.row}>
-            <Button
-              color="blue"
-              id="searchButton"
-              onClick={performSearch}
-              style={styles.button}
-            >
-              <FormattedMessage id="search.button.text" />
-            </Button>
-            <Button
-              basic
-              color="blue"
-              id="toggleAdvancedButton"
-              onClick={() => redirectFunction(typeButtonURL)}
-              style={styles.button}
-            >
-              {typeButtonText}
-            </Button>
-          </Grid.Row>
         </Grid>
       </div>
     );

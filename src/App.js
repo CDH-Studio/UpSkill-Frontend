@@ -174,7 +174,6 @@ class App extends Component {
                   )}
                 />
                 <Route
-                  exact
                   path="/results"
                   render={routeProps => (
                     <Results
