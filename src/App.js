@@ -3,6 +3,7 @@ import Keycloak from "keycloak-js";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { IntlProvider } from "react-intl";
+import axios from "axios";
 
 import { Dimmer, Loader, Image } from "semantic-ui-react";
 
@@ -116,7 +117,7 @@ class App extends Component {
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 <div>
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-                {/* <div>
+                <div>
                   <form>
                     <textarea
                       ref={textarea => (this.textArea = textarea)}
@@ -130,10 +131,7 @@ class App extends Component {
                     </div>
                   )}
                 </div>
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-
                 {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-
                 <Route
                   exact
                   path="/"
