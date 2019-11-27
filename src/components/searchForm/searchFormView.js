@@ -31,6 +31,7 @@ class SearchFormView extends Component {
   render() {
     const {
       advancedSearch,
+      advancedOptions,
       handleChange,
       handleSubmit,
       handleToggle,
@@ -41,6 +42,7 @@ class SearchFormView extends Component {
 
     return (
       <Form
+        loading={advancedSearch && !advancedOptions}
         style={{
           margin: "0px auto",
           paddingLeft: "50px",
@@ -107,11 +109,7 @@ class SearchFormView extends Component {
 
     if (!advancedOptions) {
       getAdvancedOptions();
-      return (
-        <Form.Field>
-          <Loader />
-        </Form.Field>
-      );
+      return null;
     }
 
     const fields = (
