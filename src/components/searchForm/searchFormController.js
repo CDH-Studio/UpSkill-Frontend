@@ -85,7 +85,7 @@ class SearchFormController extends Component {
 
   handleSubmit() {
     const { redirectFunction } = this.props;
-
+    const oldUrl = window.location.toString();
     let query;
     console.log("submit", this.fields);
     if (this.state.advancedSearch) {
@@ -98,6 +98,11 @@ class SearchFormController extends Component {
       });
 
       redirectFunction("/secured/results/fuzzySearch?" + encodeURI(query));
+    }
+
+    if (oldUrl.includes("/results")) {
+      //this.forceUpdate();
+      window.location.reload();
     }
   }
 
