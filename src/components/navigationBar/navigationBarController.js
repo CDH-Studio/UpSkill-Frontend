@@ -4,13 +4,19 @@ import NavigationBarView from "./navigationBarView";
 
 export default class NavigationBarController extends Component {
   render() {
-    const { changeLanguage, keycloak, includeSearchForm } = this.props;
+    const {
+      changeLanguage,
+      includeSearchForm,
+      keycloak,
+      redirectFunction
+    } = this.props;
 
     return (
       <NavigationBarView
         changeLanguage={changeLanguage}
-        keycloak={keycloak}
         includeSearchForm={includeSearchForm}
+        keycloak={keycloak}
+        redirectFunction={redirectFunction}
       />
     );
   }

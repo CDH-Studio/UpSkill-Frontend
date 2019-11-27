@@ -4,7 +4,6 @@ import prepareInfo from "../../functions/prepareInfo";
 import queryString from "query-string";
 import { injectIntl } from "react-intl";
 import config from "../../config";
-import FormManagingComponent from "../editForms/common/formTools";
 
 import SearchFormView from "./searchFormView";
 
@@ -102,23 +101,17 @@ class SearchFormController extends Component {
   }
 
   render() {
-    const {
-      advancedSearch,
-      maxFormWidth,
-      horizontalLayout,
-      toggleButton
-    } = this.props;
+    const { horizontalLayout, maxFormWidth, toggleButton } = this.props;
 
     return (
       <SearchFormView
         advancedOptions={this.state.advancedOptions}
-        maxFormWidth={maxFormWidth}
         advancedSearch={this.state.advancedSearch}
-        horizontalLayout={horizontalLayout}
         getAdvancedOptions={this.getAdvancedOptions}
-        handleToggle={toggleButton ? this.handleToggle : null}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleToggle={toggleButton ? this.handleToggle : null}
+        horizontalLayout={horizontalLayout}
         maxFormWidth={maxFormWidth}
       />
     );

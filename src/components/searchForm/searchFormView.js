@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import FormManagingComponent from "../editForms/common/formTools";
 import {
   Button,
   Checkbox,
-  Dropdown,
   Form,
   Input,
-  Select,
-  Loader
+  Loader,
+  Select
 } from "semantic-ui-react";
 
 /**
@@ -32,11 +30,11 @@ class SearchFormView extends Component {
 
   render() {
     const {
-      intl,
-      handleToggle,
       advancedSearch,
       handleChange,
       handleSubmit,
+      handleToggle,
+      intl,
       maxFormWidth
     } = this.props;
 
@@ -55,29 +53,35 @@ class SearchFormView extends Component {
         ) : (
           <React.Fragment>
             <Form.Field
-              name="searchValue"
               control={Input}
+              name="searchValue"
               onChange={handleChange}
               onSubmit={handleSubmit}
             />
           </React.Fragment>
         )}
-        <Form.Group>
+        <Form.Group style={{ padding: "0 auto" }}>
           <Form.Field
             fluid
+            style={{ width: "200px" }}
             control={Button}
             color="blue"
-            content="Search"
+            content={intl.formatMessage({ id: "search.button.text" })}
             onClick={handleSubmit}
           />
           {handleToggle && (
             <Form.Field
-              fluid
-              control={Button}
-              content="Basic Search"
               basic
               color="blue"
+              content={intl.formatMessage({
+                id: advancedSearch
+                  ? "basic.search.button.text"
+                  : "advanced.search.button.text"
+              })}
+              control={Button}
+              fluid
               onClick={handleToggle}
+              style={{ width: "200px" }}
             />
           )}
         </Form.Group>
@@ -87,12 +91,12 @@ class SearchFormView extends Component {
 
   renderAdvancedFields() {
     const {
+      advancedOptions,
+      getAdvancedOptions,
       handleChange,
-      handleToggle,
       handleSubmit,
       horizontalLayout,
-      advancedOptions,
-      getAdvancedOptions
+      intl
     } = this.props;
 
     if (!advancedOptions) {
@@ -107,59 +111,61 @@ class SearchFormView extends Component {
     const fields = (
       <React.Fragment>
         <Form.Field
-          fluid
           control={Input}
+          fluid
+          label={intl.formatMessage({ id: "advanced.search.form.name" })}
           name="name"
-          label="Name"
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
         <Form.Field
-          fluid
           control={Select}
+          fluid
+          label={intl.formatMessage({ id: "advanced.search.form.skills" })}
+          multiple
           name="skills"
-          label="Skills"
-          multiple
-          search
+          onChange={handleChange}
+          onSubmit={handleSubmit}
           options={advancedOptions.developmentalGoals}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          search
         />
         <Form.Field
-          fluid
           control={Input}
+          fluid
+          label={intl.formatMessage({ id: "advanced.search.form.branch" })}
           name="branch"
-          label="Branch"
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
         <Form.Field
-          fluid
           control={Select}
+          fluid
+          label={intl.formatMessage({ id: "advanced.search.form.location" })}
+          multiple
           name="location"
-          label="Location"
-          multiple
-          search
+          onChange={handleChange}
+          onSubmit={handleSubmit}
           options={advancedOptions.location}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
-        />
-        <Form.Field
-          fluid
-          control={Select}
-          name="classification"
-          label="classification"
-          multiple
           search
-          options={advancedOptions.groupOrLevel}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
         />
         <Form.Field
+          control={Select}
           fluid
+          label={intl.formatMessage({
+            id: "advanced.search.form.classification"
+          })}
+          multiple
+          name="classification"
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+          options={advancedOptions.groupOrLevel}
+          search
+        />
+        <Form.Field
           control={Checkbox}
+          fluid
+          label={intl.formatMessage({ id: "advanced.search.form.ex.feeder" })}
           name="exFeeder"
-          label="Is Ex Feeder"
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
@@ -172,52 +178,5 @@ class SearchFormView extends Component {
     return fields;
   }
 }
-/*
-
-        <Form.Field style={styles.formRow}>
-          <label>
-            {intl.formatMessage({
-              id: "advanced.search.form.desired.skills"
-            })}
-          </label>
-          <Dropdown
-            fluid
-            multiple
-            name="primaryDropdown"
-            onChange={updateSearch}
-            options={skills}
-            placeholder={intl.formatMessage({
-              id: "advanced.search.form.desired.skills"
-            })}
-            search
-            selection
-            style={styles.primaryDropdown}
-          />
-        </Form.Field>
-  */
-
-const styles = {
-  advancedComponent: {
-    textAlign: "left",
-    maxWidth: "400px",
-    width: "100%"
-  },
-
-  form: {
-    width: "100%",
-    maxWidth: "800px"
-  },
-
-  formRow: {
-    padding: "3px",
-    textAlign: "left"
-  },
-
-  primaryDropdown: {
-    textAlign: "left",
-    maxWidth: "800px",
-    width: "100%"
-  }
-};
 
 export default injectIntl(SearchFormView);

@@ -8,7 +8,7 @@ import Logo from "../../assets/Logo5.png";
 
 export default class NavigationBarView extends Component {
   render() {
-    const { changeLanguage, keycloak, includeSearchForm } = this.props;
+    const { includeSearchForm, redirectFunction } = this.props;
 
     if (includeSearchForm) {
       return (
@@ -16,9 +16,10 @@ export default class NavigationBarView extends Component {
           <Grid.Row>{this.renderMainBar()}</Grid.Row>
           <Grid.Row style={{ paddingTop: "50px", backgroundColor: "#aaaaaa" }}>
             <SearchFormController
-              horizontalLayout
               defaultAdvanced
-              maxFormWidth="1500px"
+              horizontalLayout
+              maxFormWidth="1750px"
+              redirectFunction={redirectFunction}
             />
           </Grid.Row>
         </Grid>

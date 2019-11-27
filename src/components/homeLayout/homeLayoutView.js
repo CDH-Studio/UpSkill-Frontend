@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Button, Grid, Image } from "semantic-ui-react";
-import { FormattedMessage } from "react-intl";
+import { Grid, Image } from "semantic-ui-react";
 
 import logo3 from "../../assets/fullLogo3.svg";
 import SearchForm from "../searchForm/searchFormController";
@@ -21,12 +20,8 @@ class HomeLayoutView extends Component {
     const {
       changeLanguage,
       keycloak,
-      performSearch,
       redirectFunction,
-      showAdvancedFields,
-      typeButtonText,
-      typeButtonURL,
-      updateSearch
+      showAdvancedFields
     } = this.props;
 
     return (
@@ -43,7 +38,7 @@ class HomeLayoutView extends Component {
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <SearchForm
-              maxFormWidth="600px"
+              maxFormWidth="850px"
               showAdvancedFields={showAdvancedFields}
               redirectFunction={redirectFunction}
               toggleButton

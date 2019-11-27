@@ -4,7 +4,6 @@ import { Card, Grid, Image, Label, Loader } from "semantic-ui-react";
 import tempProfilePicture from "../../assets/tempProfilePicture.png";
 import "./resultStyles.css";
 import NavigationBar from "../navigationBar/navigationBarController";
-import SearchFormController from "../searchForm/searchFormController";
 import prepareInfo from "../../functions/prepareInfo";
 
 export default class ResultsLayoutView extends Component {
@@ -19,8 +18,9 @@ export default class ResultsLayoutView extends Component {
       <div>
         <NavigationBar
           changeLanguage={changeLanguage}
-          keycloak={keycloak}
           includeSearchForm
+          keycloak={keycloak}
+          redirectFunction={redirectFunction}
         />
 
         <div className="resultContent">
