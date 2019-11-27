@@ -28,9 +28,10 @@ export default class ResultsLayoutController extends Component {
 
     if (urlSections.length === 2) {
       console.log(urlSections[1]);
-
+      this.queryString = urlSections[1];
       this.gatherResults(urlSections[1]);
     } else {
+      this.queryString = "";
       this.setState({ results: new Error("invalid query") });
     }
   }

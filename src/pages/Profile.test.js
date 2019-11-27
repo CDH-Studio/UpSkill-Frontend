@@ -25,6 +25,13 @@ it("ProfileLayoutController with filled fields contains expected components & va
     configurable: true,
     value: 1920
   });
+  debugger;
+  Object.defineProperty(process, "env", {
+    writable: true,
+    configurable: true,
+    value: { REACT_APP_API_ADDRESS: "http://localhost:8080/" }
+  });
+
   const wrapper = wrapThenMount(<Profile />);
   expect(axios.getUrlCalls()).toEqual([
     "http://localhost:8080/api/profile/null"

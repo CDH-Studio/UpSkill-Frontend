@@ -29,7 +29,14 @@ class SearchFormController extends Component {
   constructor(props) {
     super(props);
     const { defaultAdvanced } = this.props;
-    this.fields = {};
+
+    const windowLocation = window.location.toString();
+
+    if (windowLocation.includes("/results")) {
+      this.fields = queryString.parseUrl(decodeURI(windowLocation)).query;
+    } else {
+      this.fields = {};
+    }
 
     this.state = { advancedOptions: null, advancedSearch: defaultAdvanced };
 
@@ -113,6 +120,7 @@ class SearchFormController extends Component {
         handleToggle={toggleButton ? this.handleToggle : null}
         navBarLayout={navBarLayout}
         maxFormWidth={maxFormWidth}
+        defaultValues={this.fields}
       />
     );
   }

@@ -52,14 +52,12 @@ class SearchFormView extends Component {
         {advancedSearch ? (
           this.renderAdvancedFields()
         ) : (
-          <React.Fragment>
-            <Form.Field
-              control={Input}
-              name="searchValue"
-              onChange={handleChange}
-              onSubmit={handleSubmit}
-            />
-          </React.Fragment>
+          <Form.Field
+            control={Input}
+            name="searchValue"
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+          />
         )}
         {!navBarLayout && (
           <Form.Group style={{ padding: "0 auto" }}>
@@ -99,6 +97,7 @@ class SearchFormView extends Component {
   renderAdvancedFields() {
     const {
       advancedOptions,
+      defaultValues,
       getAdvancedOptions,
       handleChange,
       handleSubmit,
@@ -117,11 +116,25 @@ class SearchFormView extends Component {
 
     const fields = (
       <React.Fragment>
+        {navBarLayout && (
+          <Form.Field
+            control={Input}
+            fluid
+            label={intl.formatMessage({
+              id: "advanced.search.form.broad.search"
+            })}
+            name="searchValue"
+            defaultValue={defaultValues["searchValue"]}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+          />
+        )}
         <Form.Field
           control={Input}
           fluid
           label={intl.formatMessage({ id: "advanced.search.form.name" })}
           name="name"
+          defaultValue={defaultValues["name"]}
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
@@ -131,6 +144,7 @@ class SearchFormView extends Component {
           label={intl.formatMessage({ id: "advanced.search.form.skills" })}
           multiple
           name="skills"
+          defaultValue={defaultValues["skills"]}
           onChange={handleChange}
           onSubmit={handleSubmit}
           options={advancedOptions.developmentalGoals}
@@ -141,6 +155,7 @@ class SearchFormView extends Component {
           fluid
           label={intl.formatMessage({ id: "advanced.search.form.branch" })}
           name="branch"
+          defaultValue={defaultValues["branch"]}
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
@@ -150,6 +165,7 @@ class SearchFormView extends Component {
           label={intl.formatMessage({ id: "advanced.search.form.location" })}
           multiple
           name="location"
+          defaultValue={defaultValues["location"]}
           onChange={handleChange}
           onSubmit={handleSubmit}
           options={advancedOptions.location}
@@ -163,6 +179,7 @@ class SearchFormView extends Component {
           })}
           multiple
           name="classification"
+          defaultValue={defaultValues["classification"]}
           onChange={handleChange}
           onSubmit={handleSubmit}
           options={advancedOptions.groupOrLevel}
@@ -173,6 +190,7 @@ class SearchFormView extends Component {
           fluid
           label={intl.formatMessage({ id: "advanced.search.form.ex.feeder" })}
           name="exFeeder"
+          defaultValue={defaultValues["exFeeder"]}
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
