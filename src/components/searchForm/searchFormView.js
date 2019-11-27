@@ -35,7 +35,8 @@ class SearchFormView extends Component {
       handleSubmit,
       handleToggle,
       intl,
-      maxFormWidth
+      maxFormWidth,
+      navBarLayout
     } = this.props;
 
     return (
@@ -60,31 +61,37 @@ class SearchFormView extends Component {
             />
           </React.Fragment>
         )}
-        <Form.Group style={{ padding: "0 auto" }}>
-          <Form.Field
-            fluid
-            style={{ width: "200px" }}
-            control={Button}
-            color="blue"
-            content={intl.formatMessage({ id: "search.button.text" })}
-            onClick={handleSubmit}
-          />
-          {handleToggle && (
-            <Form.Field
-              basic
-              color="blue"
-              content={intl.formatMessage({
-                id: advancedSearch
-                  ? "basic.search.button.text"
-                  : "advanced.search.button.text"
-              })}
-              control={Button}
-              fluid
-              onClick={handleToggle}
-              style={{ width: "200px" }}
-            />
-          )}
-        </Form.Group>
+        {!navBarLayout && (
+          <Form.Group style={{ padding: "0 auto" }}>
+            <Form.Group style={{ margin: "0 auto" }}>
+              <Form.Field
+                fluid
+                style={{ width: "200px" }}
+                control={Button}
+                color="blue"
+                content={intl.formatMessage({
+                  id: "search.button.text"
+                })}
+                onClick={handleSubmit}
+              />
+              {handleToggle && (
+                <Form.Field
+                  basic
+                  color="blue"
+                  content={intl.formatMessage({
+                    id: advancedSearch
+                      ? "basic.search.button.text"
+                      : "advanced.search.button.text"
+                  })}
+                  control={Button}
+                  fluid
+                  onClick={handleToggle}
+                  style={{ width: "200px" }}
+                />
+              )}
+            </Form.Group>
+          </Form.Group>
+        )}
       </Form>
     );
   }
@@ -95,7 +102,7 @@ class SearchFormView extends Component {
       getAdvancedOptions,
       handleChange,
       handleSubmit,
-      horizontalLayout,
+      navBarLayout,
       intl
     } = this.props;
 
@@ -169,10 +176,22 @@ class SearchFormView extends Component {
           onChange={handleChange}
           onSubmit={handleSubmit}
         />
+        {navBarLayout && (
+          <Form.Field
+            fluid
+            style={{ width: "200px" }}
+            control={Button}
+            color="blue"
+            content={intl.formatMessage({
+              id: "apply.button.text"
+            })}
+            onClick={handleSubmit}
+          />
+        )}
       </React.Fragment>
     );
 
-    if (horizontalLayout) {
+    if (navBarLayout) {
       return <Form.Group widths="equal">{fields}</Form.Group>;
     }
     return fields;

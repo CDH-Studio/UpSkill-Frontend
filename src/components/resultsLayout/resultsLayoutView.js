@@ -59,6 +59,7 @@ export default class ResultsLayoutView extends Component {
               {person.firstName + " " + person.lastName}
             </Card.Header>
             <Card.Meta>{person.jobTitle}</Card.Meta>
+            <Card.Meta>{person.branch}</Card.Meta>
           </Card.Content>
           <Card.Content>{this.renderTags(person)}</Card.Content>
         </Card>

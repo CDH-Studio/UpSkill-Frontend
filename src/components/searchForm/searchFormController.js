@@ -101,7 +101,7 @@ class SearchFormController extends Component {
   }
 
   render() {
-    const { horizontalLayout, maxFormWidth, toggleButton } = this.props;
+    const { navBarLayout, maxFormWidth, toggleButton } = this.props;
 
     return (
       <SearchFormView
@@ -111,7 +111,7 @@ class SearchFormController extends Component {
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         handleToggle={toggleButton ? this.handleToggle : null}
-        horizontalLayout={horizontalLayout}
+        navBarLayout={navBarLayout}
         maxFormWidth={maxFormWidth}
       />
     );

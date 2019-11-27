@@ -17,7 +17,7 @@ export default class NavigationBarView extends Component {
           <Grid.Row style={{ paddingTop: "50px", backgroundColor: "#aaaaaa" }}>
             <SearchFormController
               defaultAdvanced
-              horizontalLayout
+              navBarLayout
               maxFormWidth="1750px"
               redirectFunction={redirectFunction}
             />
