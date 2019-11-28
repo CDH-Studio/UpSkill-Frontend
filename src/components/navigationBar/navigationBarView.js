@@ -1,14 +1,35 @@
 import React, { Component } from "react";
-import { Menu, Image } from "semantic-ui-react";
+import { Menu, Image, Grid } from "semantic-ui-react";
 import Logout from "../logout/Logout";
 import ChangeLanguage from "../changeLanguage/ChangeLanguage";
 import { FormattedMessage } from "react-intl";
+import SearchFormController from "../searchForm/searchFormController";
 import Logo from "../../assets/Logo5.png";
 
 export default class NavigationBarView extends Component {
   render() {
-    const { changeLanguage, keycloak } = this.props;
+    const { includeSearchForm, redirectFunction } = this.props;
 
+    if (includeSearchForm) {
+      return (
+        <Grid>
+          <Grid.Row>{this.renderMainBar()}</Grid.Row>
+          <Grid.Row style={{ paddingTop: "50px", backgroundColor: "#aaaaaa" }}>
+            <SearchFormController
+              defaultAdvanced
+              navBarLayout
+              maxFormWidth="1750px"
+              redirectFunction={redirectFunction}
+            />
+          </Grid.Row>
+        </Grid>
+      );
+    }
+    return this.renderMainBar();
+  }
+
+  renderMainBar() {
+    const { changeLanguage, keycloak } = this.props;
     return (
       <Menu
         color="blue"

@@ -2,14 +2,14 @@
   "admin": "Admin",
 
   "advanced.search.button.text": "Advanced search",
-  "advanced.search.form.department": "Department",
-  "advanced.search.form.desired.skills": "Desired skills",
-  "advanced.search.form.first.name": "First name",
-  "advanced.search.form.job.title": "Job title",
-  "advanced.search.form.last.name": "Last name",
+  "advanced.search.form.name": "Name",
+  "advanced.search.form.skills": "Skills",
   "advanced.search.form.location": "Location",
-  "advanced.search.form.security.clearance": "Security clearence",
-
+  "advanced.search.form.broad.search": "Broad Search",
+  "advanced.search.form.branch": "Branch",
+  "advanced.search.form.classification": "Classification",
+  "advanced.search.form.ex.feeder": "Ex Feeder",
+  "apply.button.text": "Apply",
   "basic.search.button.text": "Basic search",
 
   "setup.primary.information": "Primary information",

@@ -24,13 +24,14 @@ class ProfileLayoutController extends Component {
       changeLanguage,
       keycloak,
       profileInfo,
-      updateProfileInfo
+      updateProfileInfo,
+      editable
     } = this.props;
 
     return (
       <ProfileLayoutView
         changeLanguage={changeLanguage}
-        editable={true}
+        editable={editable}
         keycloak={keycloak}
         profileInfo={prepareInfo(profileInfo, localStorage.getItem("lang"), {
           acting: undefined,

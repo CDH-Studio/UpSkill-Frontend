@@ -6,19 +6,23 @@ export default class Landing extends Component {
 
   render() {
     return (
-      <div>
-        <h2>This is our Splash page!!!</h2>
-        <Button
-          animated="fade"
-          color="violet"
-          inverted
-          onClick={() => this.goto("/secured/home")}
-        >
-          <Button.Content visible>Login</Button.Content>
-          <Button.Content hidden>
-            <Icon name="sign-in" />
-          </Button.Content>
-        </Button>
+      <div style={{ width: "100%" }}>
+        <center>
+          <h2 style={{ marginBottom: "100px", marginTop: "100px" }}>
+            Welcome to Upskill
+          </h2>
+          <Button
+            animated="fade"
+            color="violet"
+            inverted
+            onClick={() => this.goto("/secured/home")}
+          >
+            <Button.Content visible>Login</Button.Content>
+            <Button.Content hidden>
+              <Icon name="sign-in" />
+            </Button.Content>
+          </Button>
+        </center>
       </div>
     );
   }

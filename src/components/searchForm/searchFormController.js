@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { formatOptions } from "../editForms/common/formTools";
+import prepareInfo from "../../functions/prepareInfo";
 import queryString from "query-string";
 import { injectIntl } from "react-intl";
 import config from "../../config";
-import FormManagingComponent from "../editForms/common/formTools";
 
 import SearchFormView from "./searchFormView";
 
@@ -30,34 +29,51 @@ class SearchFormController extends Component {
   constructor(props) {
     super(props);
     const { defaultAdvanced } = this.props;
-    this.fields = {};
+
+    const windowLocation = window.location.toString();
+
+    if (windowLocation.includes("/results")) {
+      this.fields = queryString.parseUrl(decodeURI(windowLocation)).query;
+    } else {
+      this.fields = {};
+    }
 
     this.state = { advancedOptions: null, advancedSearch: defaultAdvanced };
-
-    if (defaultAdvanced) {
-      this.getAdvancedOptions();
-    }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.getAdvancedOptions = this.getAdvancedOptions.bind(this);
   }
 
   async getAdvancedOptions() {
+    const lang = localStorage.getItem("lang");
     let advancedOptions = {
-      groupOrLevel: formatOptions(
-        (await axios.get(backendAddress + "api/option/getGroupLevel")).data
-      ),
-      developmentalGoals: formatOptions(
-        (
-          await axios.get(
-            "http://localhost:8080/api/option/getDevelopmentalGoals"
-          )
-        ).data
-      ),
-      location: formatOptions(
-        (await axios.get(backendAddress + "api/option/getLocation")).data
-      )
+      groupOrLevel: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getGroupLevel")).data,
+        lang
+      ).map(obj => ({
+        key: obj.description,
+        value: obj.id,
+        text: obj.description
+      })),
+      developmentalGoals: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getDevelopmentalGoals"))
+          .data,
+        lang
+      ).map(obj => ({
+        key: obj.description,
+        value: obj.id,
+        text: obj.description
+      })),
+      location: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getLocation")).data,
+        lang
+      ).map(obj => ({
+        key: obj.description,
+        value: obj.id,
+        text: obj.description
+      }))
     };
 
     this.setState({ advancedOptions: advancedOptions });
@@ -75,6 +91,7 @@ class SearchFormController extends Component {
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
       query = queryString.stringify(this.fields);
+      redirectFunction("/secured/results?" + encodeURI(query));
     } else {
       query = queryString.stringify({
         searchValue: this.fields.searchValue
@@ -82,7 +99,6 @@ class SearchFormController extends Component {
 
       redirectFunction("/secured/results/fuzzySearch?" + encodeURI(query));
     }
-    redirectFunction("/secured/results?" + encodeURI(query));
   }
 
   handleToggle() {
@@ -92,24 +108,19 @@ class SearchFormController extends Component {
   }
 
   render() {
-    const {
-      advancedOptions,
-      advancedSearch,
-      maxFormWidth,
-      horizontalLayout,
-      toggleButton
-    } = this.props;
+    const { navBarLayout, maxFormWidth, toggleButton } = this.props;
 
     return (
       <SearchFormView
-        advancedOptions={advancedOptions}
-        maxFormWidth={maxFormWidth}
+        advancedOptions={this.state.advancedOptions}
         advancedSearch={this.state.advancedSearch}
-        horizontalLayout={horizontalLayout}
-        handleToggle={toggleButton ? this.handleToggle : null}
+        getAdvancedOptions={this.getAdvancedOptions}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleToggle={toggleButton ? this.handleToggle : null}
+        navBarLayout={navBarLayout}
         maxFormWidth={maxFormWidth}
+        defaultValues={this.fields}
       />
     );
   }
