@@ -1,4 +1,6 @@
 {
+  "admin": "Admin",
+
   "advanced.search.button.text": "Advanced search",
   "advanced.search.form.department": "Department",
   "advanced.search.form.desired.skills": "Desired skills",

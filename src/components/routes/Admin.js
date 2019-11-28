@@ -15,6 +15,7 @@ import {
   Setup,
   ProfileGeneration
 } from "../../pages";
+import { AdminSkill } from "../../pages/admin";
 
 const history = createBrowserHistory();
 
@@ -82,11 +83,7 @@ class Secured extends Component {
 
             {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
 
-            <Route
-              exact
-              path="/admin/profile-generation"
-              component={ProfileGeneration}
-            />
+            <Route exact path="/admin/skill" component={AdminSkill} />
             <Route
               exact
               path="/admin/advanced"

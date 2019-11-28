@@ -1,4 +1,6 @@
 {
+  "admin": "Admin",
+
   "advanced.search.button.text": "Recherche avancée",
   "advanced.search.form.desired.skills": "Compétences désirées",
   "advanced.search.form.job.title": "Titre du poste",
