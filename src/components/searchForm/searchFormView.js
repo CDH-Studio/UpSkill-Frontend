@@ -115,7 +115,7 @@ class SearchFormView extends Component {
     };
 
     if (name === "exFeeder") {
-      retVal.defaultChecked = defaultVal !== "false";
+      retVal.defaultChecked = defaultVal && defaultVal !== "false";
     } else {
       retVal.defaultValue = defaultVal;
     }
