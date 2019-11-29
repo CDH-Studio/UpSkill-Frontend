@@ -96,12 +96,30 @@ class SearchFormView extends Component {
     );
   }
 
+  generateCommonProps(name) {
+    const { defaultValues, handleChange, handleSubmit } = this.props;
+
+    let defaultVal = defaultValues[name];
+    if (
+      ["skills", "location", "classification"].includes(name) &&
+      typeof defaultVal !== "object"
+    ) {
+      defaultVal = [defaultVal];
+    }
+
+    return {
+      fluid: true,
+      name: name,
+      defaultValue: defaultVal,
+      onChange: handleChange,
+      onSubmit: handleSubmit
+    };
+  }
+
   renderAdvancedFields() {
     const {
       advancedOptions,
-      defaultValues,
       getAdvancedOptions,
-      handleChange,
       handleSubmit,
       navBarLayout,
       intl
@@ -117,80 +135,52 @@ class SearchFormView extends Component {
         {navBarLayout && (
           <Form.Field
             control={Input}
-            fluid
             label={intl.formatMessage({
               id: "advanced.search.form.broad.search"
             })}
-            name="searchValue"
-            defaultValue={defaultValues["searchValue"]}
-            onChange={handleChange}
-            onSubmit={handleSubmit}
+            {...this.generateCommonProps("searchValue")}
           />
         )}
         <Form.Field
           control={Input}
-          fluid
           label={intl.formatMessage({ id: "advanced.search.form.name" })}
-          name="name"
-          defaultValue={defaultValues["name"]}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          {...this.generateCommonProps("name")}
         />
         <Form.Field
           control={Select}
-          fluid
           label={intl.formatMessage({ id: "advanced.search.form.skills" })}
           multiple
-          name="skills"
-          defaultValue={defaultValues["skills"]}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
           options={advancedOptions.developmentalGoals}
           search
+          {...this.generateCommonProps("skills")}
         />
         <Form.Field
           control={Input}
-          fluid
           label={intl.formatMessage({ id: "advanced.search.form.branch" })}
-          name="branch"
-          defaultValue={defaultValues["branch"]}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          {...this.generateCommonProps("branch")}
         />
         <Form.Field
           control={Select}
-          fluid
           label={intl.formatMessage({ id: "advanced.search.form.location" })}
           multiple
-          name="location"
-          defaultValue={defaultValues["location"]}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
           options={advancedOptions.location}
           search
+          {...this.generateCommonProps("location")}
         />
         <Form.Field
           control={Select}
-          fluid
           label={intl.formatMessage({
             id: "advanced.search.form.classification"
           })}
           multiple
-          name="classification"
-          defaultValue={defaultValues["classification"]}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
           options={advancedOptions.groupOrLevel}
           search
+          {...this.generateCommonProps("classification")}
         />
         <Form.Field
           control={Checkbox}
-          fluid
           label={intl.formatMessage({ id: "advanced.search.form.ex.feeder" })}
-          name="exFeeder"
-          defaultValue={defaultValues["exFeeder"]}
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          {...this.generateCommonProps("exFeeder")}
         />
         {navBarLayout && (
           <Form.Field
