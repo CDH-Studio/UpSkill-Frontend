@@ -107,13 +107,20 @@ class SearchFormView extends Component {
       defaultVal = [defaultVal];
     }
 
-    return {
+    let retVal = {
       fluid: true,
       name: name,
-      defaultValue: defaultVal,
       onChange: handleChange,
       onSubmit: handleSubmit
     };
+
+    if (name === "exFeeder") {
+      retVal.defaultChecked = defaultVal !== "false";
+    } else {
+      retVal.defaultValue = defaultVal;
+    }
+
+    return retVal;
   }
 
   renderAdvancedFields() {
