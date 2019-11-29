@@ -33,7 +33,9 @@ class SearchFormController extends Component {
     const windowLocation = window.location.toString();
 
     if (windowLocation.includes("/results")) {
-      this.fields = queryString.parseUrl(decodeURI(windowLocation)).query;
+      this.fields = queryString.parseUrl(decodeURI(windowLocation), {
+        arrayFormat: "bracket"
+      }).query;
     } else {
       this.fields = {};
     }
@@ -90,12 +92,15 @@ class SearchFormController extends Component {
     console.log("submit", this.fields);
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
-      query = queryString.stringify(this.fields);
+      query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
       redirectFunction("/secured/results?" + encodeURI(query));
     } else {
-      query = queryString.stringify({
-        searchValue: this.fields.searchValue
-      });
+      query = queryString.stringify(
+        {
+          searchValue: this.fields.searchValue
+        },
+        { arrayFormat: "bracket" }
+      );
 
       redirectFunction("/secured/results/fuzzySearch?" + encodeURI(query));
     }

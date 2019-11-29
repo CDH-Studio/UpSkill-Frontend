@@ -100,12 +100,12 @@ class SearchFormView extends Component {
     const { defaultValues, handleChange, handleSubmit } = this.props;
 
     let defaultVal = defaultValues[name];
-    if (
+    /*if (
       ["skills", "location", "classification"].includes(name) &&
       typeof defaultVal !== "object"
     ) {
       defaultVal = [defaultVal];
-    }
+    }*/
 
     let retVal = {
       fluid: true,
