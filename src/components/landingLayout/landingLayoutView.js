@@ -11,7 +11,7 @@ import { injectIntl, FormattedMessage } from "react-intl";
 import LandingNavBarController from "./landingNavBar/landingNavBarController";
 import LargeLogo from "../../assets/FullLogo4.svg";
 
-import backgroundImage from "../../assets/homeBackground.png";
+import backgroundImage from "../../assets/homeBackground.jpg";
 import cdhLogo from "../../assets/cdhlogo.png";
 
 import "./landingLayout.css";
@@ -28,7 +28,8 @@ export default class landingLayoutController extends Component {
             top: "0px",
             width: "100%",
             height: "575px",
-            backgroundImage: `url(${backgroundImage})`
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: "cover"
           }}
         >
           <Image
@@ -46,7 +47,12 @@ export default class landingLayoutController extends Component {
             <div>
               <FormattedMessage id="landing.slogan" />
             </div>
-            <Button inverted style={{ margin: "0 auto" }}>
+            <Button
+              href="/secured/home"
+              as="a"
+              inverted
+              style={{ margin: "0 auto", zIndex: "9" }}
+            >
               <FormattedMessage id="landing.login.button" />
             </Button>
           </div>
@@ -55,11 +61,8 @@ export default class landingLayoutController extends Component {
         <div style={{ paddingTop: "0px" }}>
           <LandingNavBarController changeLanguage={changeLanguage} />
         </div>
-        <Grid>
-          <Grid.Row>
-            <div style={{ paddingTop: "560px" }}></div>
-          </Grid.Row>
-          <Grid.Row className="bg-light-gray" style={{ padding: "75px" }}>
+        <Grid style={{ marginTop: "560px" }}>
+          <Grid.Row className="bg-light-gray" style={{ padding: "75px 0px" }}>
             <div style={{ width: "100%", textAlign: "center" }}>
               <h1>Benefits</h1>
             </div>
@@ -96,7 +99,7 @@ export default class landingLayoutController extends Component {
               </Card>
             </Card.Group>
           </Grid.Row>
-          <Grid.Row className="bg-white" style={{ padding: "75px" }}>
+          <Grid.Row className="bg-white" style={{ padding: "75px 35px" }}>
             <div style={{ textAlign: "center" }}>
               <h1>Features</h1>
               <Grid>
@@ -106,7 +109,7 @@ export default class landingLayoutController extends Component {
                       <FormattedMessage id="landing.feature.assisted.profile.generation" />
                     </h4>
                     <text>
-                      <FormattedMessage id="landing.feature.assisted.profile.generation" />
+                      <FormattedMessage id="landing.feature.assisted.profile.generation.content" />
                     </text>
                   </Grid.Column>
                   <Grid.Column>
