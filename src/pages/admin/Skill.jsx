@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AdminMenu from "../../components/admin/menu";
+import AdminMenu from "../../components/admin/AdminMenu";
 import {
   Table,
   Modal,
@@ -8,7 +8,7 @@ import {
   Icon,
   Input,
   Form,
-  Confirm
+  Pagination
 } from "semantic-ui-react";
 import _ from "lodash";
 import axios from "axios";
@@ -16,6 +16,8 @@ import { FormattedMessage, injectIntl } from "react-intl";
 
 import config from "../../config";
 const { backendAddress } = config;
+
+const ELEMENT_PER_PAGE = 10;
 
 class AdminSkill extends Component {
   goto = (link, state) => this.props.history.push(link, state);
@@ -31,11 +33,13 @@ class AdminSkill extends Component {
       modal: null,
       loading: true,
       english: null,
-      french: null
+      french: null,
+      activePage: 1
     };
   }
 
   componentDidMount() {
+    document.title = "Skills - Admin | UpSkill";
     this.setState({ loading: true });
     axios.get(backendAddress + "api/admin/options/skill").then(res =>
       this.setState({
@@ -71,7 +75,7 @@ class AdminSkill extends Component {
 
   handleEditChange = (e, { name, value }) => this.setState({ [name]: value });
 
-  handleChange = (e, { value }) => {
+  handleFilter = (e, { value }) => {
     const newData = this.state.allData.filter(
       skill =>
         (skill.descriptionEn &&
@@ -97,7 +101,10 @@ class AdminSkill extends Component {
                 .replace(/[\u0300-\u036f]/g, "")
             ))
     );
-    this.setState({ data: _.sortBy(newData, [this.state.column]) });
+    this.setState({
+      data: _.sortBy(newData, [this.state.column]),
+      activePage: 1
+    });
   };
 
   handleClick = (type, id, en, fr) => {
@@ -108,7 +115,6 @@ class AdminSkill extends Component {
     const { id, english, french } = this.state;
 
     const url = backendAddress + "api/admin/options/skill/" + id;
-    this.setState({ loading: true });
     axios
       .put(url, { descriptionEn: english, descriptionFr: french })
       .then(() => {
@@ -121,7 +127,6 @@ class AdminSkill extends Component {
     const { id } = this.state;
 
     const url = backendAddress + "api/admin/options/skill/" + id;
-    this.setState({ loading: true });
     axios.delete(url).then(() => {
       this.setState({ id: null, english: null, french: null, modal: null });
       window.location.reload();
@@ -132,7 +137,6 @@ class AdminSkill extends Component {
     const { english, french } = this.state;
 
     const url = backendAddress + "api/admin/options/skill";
-    this.setState({ loading: true });
     axios
       .post(url, { descriptionEn: english, descriptionFr: french })
       .then(() => {
@@ -140,6 +144,8 @@ class AdminSkill extends Component {
         window.location.reload();
       });
   };
+
+  handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
 
   renderEditButtons = (id, en, fr) => {
     return (
@@ -308,9 +314,19 @@ class AdminSkill extends Component {
     );
   };
 
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~RENDER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
   render() {
-    const { column, data, direction, loading } = this.state;
+    const { column, data, direction, loading, activePage } = this.state;
     const { changeLanguage, keycloak } = this.props;
+
+    let totalPages = 0;
+    if (data) totalPages = Math.ceil(data.length / ELEMENT_PER_PAGE);
+
+    const dataStart = ELEMENT_PER_PAGE * (activePage - 1);
+    const dataEnd = dataStart + ELEMENT_PER_PAGE;
+
+    const pageData = _.slice(data, dataStart, dataEnd);
 
     return (
       <AdminMenu
@@ -323,7 +339,9 @@ class AdminSkill extends Component {
         {this.deleteModal()}
         {this.addModal()}
 
-        <Input onChange={this.handleChange} label="Filter" icon="filter" />
+        <Header as="h1">Skills</Header>
+
+        <Input onChange={this.handleFilter} label="Filter" icon="filter" />
         <Button
           color="green"
           floated="right"
@@ -346,11 +364,11 @@ class AdminSkill extends Component {
               >
                 <FormattedMessage id="language.french" />
               </Table.HeaderCell>
-              <Table.HeaderCell>Edit Or Delete</Table.HeaderCell>
+              <Table.HeaderCell width="3">Edit Or Delete</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {_.map(data, ({ id, descriptionEn, descriptionFr }) => (
+            {_.map(pageData, ({ id, descriptionEn, descriptionFr }) => (
               <Table.Row key={id}>
                 <Table.Cell>{descriptionEn}</Table.Cell>
                 <Table.Cell>{descriptionFr}</Table.Cell>
@@ -361,6 +379,31 @@ class AdminSkill extends Component {
             ))}
           </Table.Body>
         </Table>
+        <center>
+          <Pagination
+            activePage={activePage}
+            totalPages={totalPages}
+            onPageChange={this.handlePaginationChange}
+            boundaryRange="2"
+            siblingRange="2"
+            firstItem={{
+              content: <Icon name="angle double left" color="blue" />,
+              icon: true
+            }}
+            lastItem={{
+              content: <Icon name="angle double right" color="blue" />,
+              icon: true
+            }}
+            prevItem={{
+              content: <Icon name="angle left" color="blue" />,
+              icon: true
+            }}
+            nextItem={{
+              content: <Icon name="angle right" color="blue" />,
+              icon: true
+            }}
+          />
+        </center>
       </AdminMenu>
     );
   }

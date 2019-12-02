@@ -27,7 +27,7 @@ export default class AdminMenu extends Component {
         />
         <Grid padded="horizontally">
           <Grid.Column width={4}>
-            <Segment fluid>
+            <Segment>
               <Menu fluid vertical color="blue" pointing secondary>
                 <Menu.Item
                   name="dashboard"
