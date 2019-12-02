@@ -1,5 +1,12 @@
 import React, { Component, ImageBackground, Text } from "react";
-import { Image, Card, Grid, Icon, Button } from "semantic-ui-react";
+import {
+  Image,
+  Card,
+  Grid,
+  Icon,
+  Button,
+  FormTextArea
+} from "semantic-ui-react";
 import { injectIntl, FormattedMessage } from "react-intl";
 import LandingNavBarController from "./landingNavBar/landingNavBarController";
 import LargeLogo from "../../assets/FullLogo4.svg";
@@ -20,7 +27,7 @@ export default class landingLayoutController extends Component {
             position: "fixed",
             top: "0px",
             width: "100%",
-            height: "525px",
+            height: "575px",
             backgroundImage: `url(${backgroundImage})`
           }}
         >
@@ -29,6 +36,20 @@ export default class landingLayoutController extends Component {
             src={LargeLogo}
             size="large"
           />
+          <div
+            style={{
+              width: "100%",
+              textAlign: "center",
+              color: "#ffffff"
+            }}
+          >
+            <div>
+              <FormattedMessage id="landing.slogan" />
+            </div>
+            <Button inverted style={{ margin: "0 auto" }}>
+              <FormattedMessage id="landing.login.button" />
+            </Button>
+          </div>
         </div>
 
         <div style={{ paddingTop: "0px" }}>
@@ -36,7 +57,7 @@ export default class landingLayoutController extends Component {
         </div>
         <Grid>
           <Grid.Row>
-            <div style={{ paddingTop: "500px" }}></div>
+            <div style={{ paddingTop: "560px" }}></div>
           </Grid.Row>
           <Grid.Row className="bg-light-gray" style={{ padding: "75px" }}>
             <div style={{ width: "100%", textAlign: "center" }}>
@@ -89,17 +110,19 @@ export default class landingLayoutController extends Component {
                     </text>
                   </Grid.Column>
                   <Grid.Column>
-                    <h4>Skill Tracking</h4>
+                    <h4>
+                      <FormattedMessage id="landing.feature.skill.tracking" />
+                    </h4>
                     <text>
-                      Create your own profile with a listing of skills
-                      proficiencies and projects for co-workers to view.
+                      <FormattedMessage id="landing.feature.skill.tracking.content" />
                     </text>
                   </Grid.Column>
                   <Grid.Column>
-                    <h4>Dynamic Search</h4>
+                    <h4>
+                      <FormattedMessage id="landing.feature.dynamic.search" />
+                    </h4>
                     <text>
-                      Quickly search through all profiles for employees with
-                      your desired skill proficiencies, projects, and more.
+                      <FormattedMessage id="landing.feature.dynamic.search.content" />
                     </text>
                   </Grid.Column>
                 </Grid.Row>
@@ -160,7 +183,9 @@ export default class landingLayoutController extends Component {
           <Grid.Row className="bg-white">
             <Grid columns={3} style={{ textAlign: "center" }}>
               <Grid.Row>
-                <Grid.Column>Copyright © UpSkill 2019</Grid.Column>
+                <Grid.Column>
+                  <FormattedMessage id="landing.copyright" />
+                </Grid.Column>
                 <Grid.Column>
                   <Button
                     style={{ margin: "0 auto" }}
@@ -171,11 +196,11 @@ export default class landingLayoutController extends Component {
                 </Grid.Column>
                 <Grid.Column>
                   <a href="file:///C:/Users/Trevor/Documents/UpSkill/docs/index.html#">
-                    Privacy Policy
+                    <FormattedMessage id="landing.privacy.policy" />
                   </a>
                   |
                   <a href="file:///C:/Users/Trevor/Documents/UpSkill/docs/index.html#">
-                    Terms of Use
+                    <FormattedMessage id="landing.terms.of.use" />
                   </a>
                 </Grid.Column>
               </Grid.Row>
