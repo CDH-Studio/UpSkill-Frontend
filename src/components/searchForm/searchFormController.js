@@ -55,7 +55,7 @@ class SearchFormController extends Component {
         (await axios.get(backendAddress + "api/option/getGroupLevel")).data,
         lang
       ).map(obj => ({
-        key: obj.description,
+        key: obj.id, //obj.description,
         value: obj.id,
         text: obj.description
       })),
@@ -64,7 +64,7 @@ class SearchFormController extends Component {
           .data,
         lang
       ).map(obj => ({
-        key: obj.description,
+        key: obj.id, //obj.description,
         value: obj.id,
         text: obj.description
       })),
@@ -72,7 +72,7 @@ class SearchFormController extends Component {
         (await axios.get(backendAddress + "api/option/getLocation")).data,
         lang
       ).map(obj => ({
-        key: obj.description,
+        key: obj.id, //obj.description,
         value: obj.id,
         text: obj.description
       }))
