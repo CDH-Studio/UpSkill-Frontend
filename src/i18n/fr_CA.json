@@ -1,5 +1,17 @@
 {
   "admin": "Admin",
+  "admin.skill.plural": "Compétences",
+  "admin.skill.singular": "Compétence",
+  "admin.competency.plural": "Habiletés",
+  "admin.competency.singular": "Habileté",
+  "admin.diploma.plural": "Diplômes",
+  "admin.diploma.singular": "Diplôme",
+  "admin.school.plural": "Écoles",
+  "admin.school.singular": "École",
+  "admin.name": "Nom",
+  "admin.state": "Province",
+  "admin.country": "Pays",
+  "admin.editHeader": "Modifier ou supprimer",
 
   "advanced.search.button.text": "Recherche avancée",
   "advanced.search.form.desired.skills": "Compétences désirées",

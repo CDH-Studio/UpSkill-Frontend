@@ -1,3 +1,6 @@
-import AdminSkill from "./Skill.jsx";
+import AdminSkill from "./Skill";
+import AdminCompetency from "./Competency";
+import AdminDiploma from "./Diploma";
+import AdminSchool from "./School";
 
-export { AdminSkill };
+export { AdminSkill, AdminCompetency, AdminDiploma, AdminSchool };

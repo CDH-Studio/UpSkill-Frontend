@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Segment, Grid, Dimmer, Image } from "semantic-ui-react";
+import { Menu, Segment, Grid, Dimmer, Image, Header } from "semantic-ui-react";
 import NavigationBarView from "../navigationBar/navigationBarView";
 
 import animatedLogo from "../../assets/animatedLogo.gif";
@@ -9,7 +9,6 @@ export default class AdminMenu extends Component {
 
   handleItemClick = (e, { name }) => {
     this.props.goto(name);
-    this.setState({ activeItem: name });
   };
 
   render() {
@@ -36,27 +35,30 @@ export default class AdminMenu extends Component {
                 />
                 <Menu.Item
                   name="users"
-                  active={activeItem === "users"}
+                  active={activeItem === "user"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
-                  name="skills"
-                  active={activeItem === "skills"}
+                  name="skill"
+                  active={activeItem === "skill"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
-                  name="competencies"
-                  active={activeItem === "competencies"}
+                  name="competency"
+                  content={"Competencies"}
+                  active={activeItem === "competency"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
                   name="diploma"
+                  content={"Dimplomas"}
                   active={activeItem === "diploma"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
-                  name="schools"
-                  active={activeItem === "schools"}
+                  name="school"
+                  content={"Schools"}
+                  active={activeItem === "school"}
                   onClick={this.handleItemClick}
                 />
               </Menu>
