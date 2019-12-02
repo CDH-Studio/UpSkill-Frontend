@@ -1,36 +1,72 @@
 import React, { Component } from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Segment, Grid, Dimmer, Image } from "semantic-ui-react";
+import NavigationBarView from "../navigationBar/navigationBarView";
+
+import animatedLogo from "../../assets/animatedLogo.gif";
 
 export default class AdminMenu extends Component {
-  state = { activeItem: "bio" };
+  state = { activeItem: this.props.active };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) => {
+    this.props.goto(name);
+    this.setState({ activeItem: name });
+  };
 
   render() {
     const { activeItem } = this.state;
+    const { changeLanguage, keycloak, loading } = this.props;
+
     return (
-      <Menu fluid vertical tabular>
-        <Menu.Item
-          name="bio"
-          active={activeItem === "bio"}
-          onClick={this.handleItemClick}
+      <div>
+        <Dimmer active={loading}>
+          <Image src={animatedLogo} size="tiny" />
+        </Dimmer>
+        <NavigationBarView
+          changeLanguage={changeLanguage}
+          keycloak={keycloak}
         />
-        <Menu.Item
-          name="pics"
-          active={activeItem === "pics"}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name="companies"
-          active={activeItem === "companies"}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          name="links"
-          active={activeItem === "links"}
-          onClick={this.handleItemClick}
-        />
-      </Menu>
+        <Grid padded="horizontally">
+          <Grid.Column width={4}>
+            <Segment fluid>
+              <Menu fluid vertical color="blue" pointing secondary>
+                <Menu.Item
+                  name="dashboard"
+                  active={activeItem === "dashboard"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name="users"
+                  active={activeItem === "users"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name="skills"
+                  active={activeItem === "skills"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name="competencies"
+                  active={activeItem === "competencies"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name="diploma"
+                  active={activeItem === "diploma"}
+                  onClick={this.handleItemClick}
+                />
+                <Menu.Item
+                  name="schools"
+                  active={activeItem === "schools"}
+                  onClick={this.handleItemClick}
+                />
+              </Menu>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column stretched width="12">
+            <Segment loading={loading}>{this.props.children}</Segment>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

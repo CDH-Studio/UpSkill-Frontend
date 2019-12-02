@@ -13,7 +13,7 @@ class Profile extends Component {
     this.state = { profileInfo: undefined };
 
     this.handleSuccess = response => {
-      console.log("Recieved", response);
+      console.log("Received", response);
 
       const convertDropdownOptions = list => {
         let newList = [];

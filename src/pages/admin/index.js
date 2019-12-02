@@ -1,3 +1,3 @@
-import AdminSkill from "./Skill.js";
+import AdminSkill from "./Skill.jsx";
 
 export { AdminSkill };

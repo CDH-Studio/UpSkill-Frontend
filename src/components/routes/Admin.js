@@ -83,7 +83,17 @@ class Secured extends Component {
 
             {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
 
-            <Route exact path="/admin/skill" component={AdminSkill} />
+            <Route
+              exact
+              path="/admin/skills"
+              render={routeProps => (
+                <AdminSkill
+                  keycloak={keycloak}
+                  changeLanguage={this.changeLanguage}
+                  {...routeProps}
+                />
+              )}
+            />
             <Route
               exact
               path="/admin/advanced"
