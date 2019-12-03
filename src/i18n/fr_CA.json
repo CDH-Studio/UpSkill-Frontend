@@ -1,5 +1,8 @@
 {
   "admin": "Admin",
+  "admin.dashboard": "Tableau de bord",
+  "admin.user.plural": "Utilisateur",
+  "admin.user.singular": "Utilisateurs",
   "admin.skill.plural": "Compétences",
   "admin.skill.singular": "Compétence",
   "admin.competency.plural": "Habiletés",
@@ -12,6 +15,14 @@
   "admin.state": "Province",
   "admin.country": "Pays",
   "admin.editHeader": "Modifier ou supprimer",
+  "admin≈.registered": "Inscrit",
+  "admin.tenure": "Mandat",
+  "admin.pri": "CIDP",
+  "admin.add": "Ajouter",
+  "admin.edit": "Modifier",
+  "admin.delete": "Supprimer",
+  "admin.cancel": "Annuler",
+  "admin.none": "Aucun spécifié",
 
   "advanced.search.button.text": "Recherche avancée",
   "advanced.search.form.desired.skills": "Compétences désirées",
@@ -110,6 +121,7 @@
 
   "lang": "English",
   "lang.code": "en",
+  "language.code": "fr",
   "language.english": "Anglais",
   "language.french": "Français",
 

@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import AdminMenu from "../../components/admin/AdminMenu";
 import {
   Table,
-  Modal,
   Header,
   Button,
   Icon,
   Input,
-  Form,
   Pagination
 } from "semantic-ui-react";
 import _ from "lodash";
@@ -15,17 +13,18 @@ import axios from "axios";
 import { FormattedMessage, injectIntl } from "react-intl";
 
 import config from "../../config";
+import moment from "moment";
 const { backendAddress } = config;
 
 const ELEMENT_PER_PAGE = 10;
 
-class AdminSchool extends React.Component {
+class AdminUser extends React.Component {
   goto = (link, state) => this.props.history.push(link, state);
 
   constructor(props) {
     super(props);
     this.state = {
-      type: "school",
+      type: "user",
       column: null,
       allData: null,
       data: null,
@@ -45,17 +44,15 @@ class AdminSchool extends React.Component {
 
     document.title = this.getDisplayType(true) + " - Admin | UpSkill";
     this.setState({ loading: true });
-    axios
-      .get(backendAddress + "api/admin/options/" + this.state.type)
-      .then(res =>
-        this.setState({
-          allData: res.data,
-          data: _.sortBy(res.data, ["descriptionEn"]),
-          loading: false,
-          column: "english",
-          direction: "ascending"
-        })
-      );
+    axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
+      this.setState({
+        allData: res.data,
+        data: _.sortBy(res.data, ["firstName"]),
+        loading: false,
+        column: "name",
+        direction: "ascending"
+      })
+    );
   }
 
   getDisplayType = plural => {
@@ -74,7 +71,11 @@ class AdminSchool extends React.Component {
   handleSort = clickedColumn => () => {
     const { column, data, direction } = this.state;
 
-    const dbAttributes = { english: "descriptionEn", french: "descriptionFr" };
+    const dbAttributes = {
+      name: "firstName",
+      registered: "createdAt",
+      tenure: "tenure.descriptionEn"
+    };
 
     if (column !== clickedColumn) {
       this.setState({
@@ -187,7 +188,7 @@ class AdminSchool extends React.Component {
 
   renderEditButtons = (id, description, state, country) => {
     return (
-      <center>
+      <centernp>
         <Button
           animated="fade"
           color="blue"
@@ -217,176 +218,7 @@ class AdminSchool extends React.Component {
             <Icon name="x" />
           </Button.Content>
         </Button>
-      </center>
-    );
-  };
-
-  editModal = () => {
-    const { modal, description, state, country } = this.state;
-
-    return (
-      <Modal
-        size="small"
-        open={modal === "edit"}
-        onClose={() => this.setState({ id: null, modal: null })}
-        dimmer="blurring"
-        closeIcon
-      >
-        <Header content={"Edit " + this.getDisplayType(false)} as="h2" />
-        <Modal.Content>
-          <Form onSubmit={() => alert()}>
-            <Form.Field>
-              <label>Name</label>
-              <Input
-                placeholder="Name"
-                name="description"
-                value={description}
-                onChange={this.handleEditChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>Province</label>
-              <Input
-                placeholder="Province"
-                name="state"
-                value={state}
-                onChange={this.handleEditChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>Country</label>
-              <Input
-                placeholder="Country"
-                name="country"
-                value={country}
-                onChange={this.handleEditChange}
-              />
-            </Form.Field>
-          </Form>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button
-            color="red"
-            inverted
-            onClick={() => this.setState({ modal: null })}
-          >
-            <Icon name="remove" />
-            <FormattedMessage id="admin.cancel" />
-          </Button>
-          <Button color="green" onClick={this.handleSubmitEdit}>
-            <Icon name="checkmark" /> Apply
-          </Button>
-        </Modal.Actions>
-      </Modal>
-    );
-  };
-
-  deleteModal = () => {
-    const { modal, english, french } = this.state;
-
-    return (
-      <Modal
-        size="small"
-        open={modal === "delete"}
-        onClose={() => this.setState({ id: null, modal: null })}
-        dimmer="blurring"
-        closeIcon
-      >
-        <Header content={"Delete " + this.getDisplayType(false)} as="h2" />
-        <Modal.Content>
-          <h5>
-            Are you sure you want to delete "{english} / {french}"?
-          </h5>
-        </Modal.Content>
-
-        <Modal.Actions>
-          <Button
-            color="green"
-            floated="right"
-            onClick={this.handleSubmitDelete}
-            style={{ marginTop: "18px", marginBottom: "18px" }}
-          >
-            <Icon name="trash" /> Delete
-          </Button>
-          <Button
-            color="red"
-            inverted
-            floated="right"
-            onClick={() => this.setState({ modal: null })}
-            style={{ marginTop: "18px", marginBottom: "18px" }}
-          >
-            <Icon name="remove" />
-            <FormattedMessage id="admin.cancel" />
-          </Button>
-        </Modal.Actions>
-      </Modal>
-    );
-  };
-
-  addModal = () => {
-    const { modal, description, state, country } = this.state;
-
-    return (
-      <Modal
-        size="small"
-        open={modal === "add"}
-        onClose={() => this.setState({ id: null, modal: null })}
-        dimmer="blurring"
-        closeIcon
-      >
-        <Header content={"Add " + this.getDisplayType(false)} as="h2" />
-        <Modal.Content>
-          <Form onSubmit={() => alert()}>
-            <Form.Field>
-              <label>
-                <FormattedMessage id="admin.name" />
-              </label>
-              <Input
-                placeholder="Name"
-                name="description"
-                value={description}
-                onChange={this.handleEditChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>
-                <FormattedMessage id="admin.province" />
-              </label>
-              <Input
-                placeholder="Province"
-                name="state"
-                value={state}
-                onChange={this.handleEditChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>
-                <FormattedMessage id="admin.country" />
-              </label>
-              <Input
-                placeholder="Country"
-                name="country"
-                value={country}
-                onChange={this.handleEditChange}
-              />
-            </Form.Field>
-          </Form>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button
-            color="red"
-            inverted
-            onClick={() => this.setState({ modal: null })}
-          >
-            <Icon name="remove" />
-            <FormattedMessage id="admin.cancel" />
-          </Button>
-          <Button color="green" onClick={this.handleSubmitAdd}>
-            <Icon name="add" />
-            <FormattedMessage id="admin.add" />
-          </Button>
-        </Modal.Actions>
-      </Modal>
+      </centernp>
     );
   };
 
@@ -396,22 +228,28 @@ class AdminSchool extends React.Component {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell
-              sorted={column === "description" ? direction : null}
-              onClick={this.handleSort("description")}
+              sorted={column === "name" ? direction : null}
+              onClick={this.handleSort("name")}
             >
               <FormattedMessage id="admin.name" />
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === "state" ? direction : null}
-              onClick={this.handleSort("state")}
+              sorted={column === "pri" ? direction : null}
+              onClick={this.handleSort("pri")}
             >
-              <FormattedMessage id="admin.state" />
+              <FormattedMessage id="admin.pri" />
             </Table.HeaderCell>
             <Table.HeaderCell
-              sorted={column === "country" ? direction : null}
-              onClick={this.handleSort("country")}
+              sorted={column === "registered" ? direction : null}
+              onClick={this.handleSort("registered")}
             >
-              <FormattedMessage id="admin.country" />
+              <FormattedMessage id="admin.registered" />
+            </Table.HeaderCell>
+            <Table.HeaderCell
+              sorted={column === "tenure" ? direction : null}
+              onClick={this.handleSort("tenure")}
+            >
+              <FormattedMessage id="admin.tenure" />
             </Table.HeaderCell>
             <Table.HeaderCell
               width={
@@ -425,14 +263,24 @@ class AdminSchool extends React.Component {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {_.map(pageData, ({ id, description, state, country }) => (
-            <Table.Row key={id}>
-              <Table.Cell>{description}</Table.Cell>
-              <Table.Cell>{state}</Table.Cell>
-              <Table.Cell>{country}</Table.Cell>
+          {_.map(pageData, ({ id, user, createdAt, tenure, flagged }) => (
+            <Table.Row key={id} error={flagged} disabled={user.inactive}>
+              <Table.Cell>{user.name}</Table.Cell>
+              <Table.Cell>{Math.floor(Math.random() * 100000000)}</Table.Cell>
+              <Table.Cell>{moment(createdAt).format("LLL")}</Table.Cell>
               <Table.Cell>
-                {this.renderEditButtons(id, description, state, country)}
+                {tenure ? (
+                  this.props.intl.formatMessage({ id: "language.code" }) ===
+                  "en" ? (
+                    tenure.descriptionEn
+                  ) : (
+                    tenure.descriptionFr
+                  )
+                ) : (
+                  <FormattedMessage id="admin.none" />
+                )}
               </Table.Cell>
+              <Table.Cell>{this.renderEditButtons(id, user)}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
@@ -462,10 +310,6 @@ class AdminSchool extends React.Component {
         loading={loading}
         goto={this.goto}
       >
-        {this.editModal()}
-        {this.deleteModal()}
-        {this.addModal()}
-
         <Header as="h1">{this.getDisplayType(true)}</Header>
 
         <Input onChange={this.handleFilter} label="Filter" icon="filter" />
@@ -510,4 +354,4 @@ class AdminSchool extends React.Component {
   }
 }
 
-export default injectIntl(AdminSchool);
+export default injectIntl(AdminUser);

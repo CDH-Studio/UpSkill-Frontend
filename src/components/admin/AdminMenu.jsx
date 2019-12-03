@@ -3,6 +3,7 @@ import { Menu, Segment, Grid, Dimmer, Image, Header } from "semantic-ui-react";
 import NavigationBarView from "../navigationBar/navigationBarView";
 
 import animatedLogo from "../../assets/animatedLogo.gif";
+import { FormattedMessage } from "react-intl";
 
 export default class AdminMenu extends Component {
   state = { activeItem: this.props.active };
@@ -25,46 +26,49 @@ export default class AdminMenu extends Component {
           keycloak={keycloak}
         />
         <Grid padded="horizontally">
-          <Grid.Column width={4}>
-            <Segment>
-              <Menu fluid vertical color="blue" pointing secondary>
+          <Grid.Column width={3}>
+            <Segment inverted color="blue">
+              <Menu fluid vertical color="blue" inverted>
                 <Menu.Item
                   name="dashboard"
+                  content={<FormattedMessage id="admin.dashboard" />}
                   active={activeItem === "dashboard"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
-                  name="users"
+                  name="user"
+                  content={<FormattedMessage id="admin.user.plural" />}
                   active={activeItem === "user"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
                   name="skill"
+                  content={<FormattedMessage id="admin.skill.plural" />}
                   active={activeItem === "skill"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
                   name="competency"
-                  content={"Competencies"}
+                  content={<FormattedMessage id="admin.competency.plural" />}
                   active={activeItem === "competency"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
                   name="diploma"
-                  content={"Dimplomas"}
+                  content={<FormattedMessage id="admin.diploma.plural" />}
                   active={activeItem === "diploma"}
                   onClick={this.handleItemClick}
                 />
                 <Menu.Item
                   name="school"
-                  content={"Schools"}
+                  content={<FormattedMessage id="admin.school.plural" />}
                   active={activeItem === "school"}
                   onClick={this.handleItemClick}
                 />
               </Menu>
             </Segment>
           </Grid.Column>
-          <Grid.Column stretched width="12">
+          <Grid.Column stretched width={13}>
             <Segment loading={loading}>{this.props.children}</Segment>
           </Grid.Column>
         </Grid>
