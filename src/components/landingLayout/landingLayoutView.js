@@ -64,7 +64,9 @@ export default class landingLayoutController extends Component {
         <Grid style={{ marginTop: "560px" }}>
           <Grid.Row className="bg-light-gray" style={{ padding: "75px 0px" }}>
             <div style={{ width: "100%", textAlign: "center" }}>
-              <h1>Benefits</h1>
+              <h1>
+                <FormattedMessage id="landing.benefits" />
+              </h1>
             </div>
             <Card.Group itemsPerRow={3} style={{ padding: "0 50px" }}>
               <Card>
@@ -101,7 +103,9 @@ export default class landingLayoutController extends Component {
           </Grid.Row>
           <Grid.Row className="bg-white" style={{ padding: "75px 35px" }}>
             <div style={{ textAlign: "center" }}>
-              <h1>Features</h1>
+              <h1>
+                <FormattedMessage id="landing.features" />
+              </h1>
               <Grid>
                 <Grid.Row columns={3}>
                   <Grid.Column>
