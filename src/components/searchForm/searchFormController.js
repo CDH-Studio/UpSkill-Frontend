@@ -6,6 +6,7 @@ import { injectIntl } from "react-intl";
 import config from "../../config";
 
 import SearchFormView from "./searchFormView";
+import { object } from "prop-types";
 
 const backendAddress = config.backendAddress;
 
@@ -40,7 +41,11 @@ class SearchFormController extends Component {
       this.fields = {};
     }
 
-    this.state = { advancedOptions: null, advancedSearch: defaultAdvanced };
+    this.state = {
+      advancedOptions: null,
+      advancedSearch: defaultAdvanced,
+      disableSearch: Object.entries(this.fields).length === 0
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -89,7 +94,21 @@ class SearchFormController extends Component {
   }
 
   handleChange(e, { name, value, checked }) {
-    this.fields[name] = value || checked;
+    const newVal = value || checked;
+    if (
+      newVal === undefined ||
+      (Array.isArray(newVal) && newVal.length === 0)
+    ) {
+      delete this.fields[name];
+      this.setState({
+        disableSearch: Object.entries(this.fields).length === 0
+      });
+    } else {
+      this.fields[name] = newVal;
+      this.setState({
+        disableSearch: false
+      });
+    }
   }
 
   handleSubmit() {
@@ -138,6 +157,7 @@ class SearchFormController extends Component {
         navBarLayout={navBarLayout}
         maxFormWidth={maxFormWidth}
         defaultValues={this.fields}
+        disableSearch={this.state.disableSearch}
       />
     );
   }

@@ -9,7 +9,7 @@ import {
 } from "semantic-ui-react";
 import { injectIntl, FormattedMessage } from "react-intl";
 import LandingNavBarController from "./landingNavBar/landingNavBarController";
-import LargeLogo from "../../assets/FullLogo4.svg";
+import LargeLogo from "../../assets/whiteFullLogo.svg";
 
 import backgroundImage from "../../assets/homeBackground.jpg";
 import cdhLogo from "../../assets/cdhlogo.png";
@@ -27,9 +27,10 @@ export default class landingLayoutController extends Component {
             position: "fixed",
             top: "0px",
             width: "100%",
-            height: "575px",
+            height: "655px",
             backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: "cover"
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat"
           }}
         >
           <Image
@@ -61,7 +62,7 @@ export default class landingLayoutController extends Component {
         <div style={{ paddingTop: "0px" }}>
           <LandingNavBarController changeLanguage={changeLanguage} />
         </div>
-        <Grid style={{ marginTop: "560px" }}>
+        <Grid style={{ position: "absolute", top: "650px" }}>
           <Grid.Row className="bg-light-gray" style={{ padding: "75px 0px" }}>
             <div style={{ width: "100%", textAlign: "center" }}>
               <h1>
@@ -163,7 +164,7 @@ export default class landingLayoutController extends Component {
                       margin: "0 auto !important",
                       display: "inline-block"
                     }}
-                    size="medium"
+                    size="small"
                   />
                 </Grid.Column>
                 <Grid.Column>
@@ -171,7 +172,7 @@ export default class landingLayoutController extends Component {
                     style={{
                       whiteSpace: "nowrap",
                       margin: "0 auto",
-                      fontSize: "24pt"
+                      fontSize: "20pt"
                     }}
                   >
                     <Icon name="envelope" />
@@ -196,6 +197,7 @@ export default class landingLayoutController extends Component {
                 <Grid.Column>
                   <Button
                     style={{ margin: "0 auto" }}
+                    color="blue"
                     href="https://github.com/CDH-Studio/UpSkill"
                   >
                     <Icon style={{ margin: "0px" }} name="github" />
@@ -205,7 +207,7 @@ export default class landingLayoutController extends Component {
                   <a href="file:///C:/Users/Trevor/Documents/UpSkill/docs/index.html#">
                     <FormattedMessage id="landing.privacy.policy" />
                   </a>
-                  |
+                  <span style={{ padding: "0 5px" }}>|</span>
                   <a href="file:///C:/Users/Trevor/Documents/UpSkill/docs/index.html#">
                     <FormattedMessage id="landing.terms.of.use" />
                   </a>

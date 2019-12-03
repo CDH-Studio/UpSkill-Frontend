@@ -36,6 +36,7 @@ class SearchFormView extends Component {
       handleSubmit,
       handleToggle,
       intl,
+      disableSearch,
       maxFormWidth,
       navBarLayout
     } = this.props;
@@ -72,6 +73,7 @@ class SearchFormView extends Component {
                 content={intl.formatMessage({
                   id: "search.button.text"
                 })}
+                disabled={disableSearch}
                 onClick={handleSubmit}
               />
               {handleToggle && (
@@ -129,6 +131,7 @@ class SearchFormView extends Component {
       getAdvancedOptions,
       handleSubmit,
       navBarLayout,
+      disableSearch,
       intl
     } = this.props;
 
@@ -201,6 +204,7 @@ class SearchFormView extends Component {
             content={intl.formatMessage({
               id: "apply.button.text"
             })}
+            disabled={disableSearch}
             onClick={handleSubmit}
           />
         )}
