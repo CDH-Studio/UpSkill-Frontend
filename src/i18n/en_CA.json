@@ -30,6 +30,7 @@
   "landing.terms.of.use": "Terms of Use",
   "landing.slogan": "UpSkill your team by looking UpSkills you need.",
   "landing.login.button": "Sign in",
+  "landing.contact.us": "Contact us",
 
   "setup.primary.information": "Primary information",
   "setup.labeled": "Employment data",
@@ -44,7 +45,7 @@
   "setup.select.geds.card": "Select your Goverment Employee Database information",
   "setup.projects": "Projects",
 
-  "lang": "Francais",
+  "lang": "Français",
   "lang.code": "fr",
   "language.english": "English",
   "language.french": "French",
