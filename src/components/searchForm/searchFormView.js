@@ -162,8 +162,11 @@ class SearchFormView extends Component {
           {...this.generateCommonProps("skills")}
         />
         <Form.Field
-          control={Input}
+          control={Select}
           label={intl.formatMessage({ id: "advanced.search.form.branch" })}
+          multiple
+          options={advancedOptions.branch}
+          search
           {...this.generateCommonProps("branch")}
         />
         <Form.Field

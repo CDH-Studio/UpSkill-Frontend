@@ -75,7 +75,14 @@ class SearchFormController extends Component {
         key: obj.id, //obj.description,
         value: obj.id,
         text: obj.description
-      }))
+      })),
+      branch: (await axios.get(backendAddress + "api/option/getBranch")).data
+        .filter(elem => elem.description && elem.description.en)
+        .map(obj => ({
+          key: obj.description.en,
+          value: obj.description.en,
+          text: obj.description[lang]
+        }))
     };
 
     this.setState({ advancedOptions: advancedOptions });
