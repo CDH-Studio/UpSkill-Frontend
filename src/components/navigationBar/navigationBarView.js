@@ -45,7 +45,7 @@ export default class NavigationBarView extends Component {
           <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
         <Menu.Menu position="right">
-          <Menu.Item href="/admin/skills">
+          <Menu.Item href="/admin/skill">
             <FormattedMessage id="admin" />
           </Menu.Item>
           <Menu.Item href="/secured/profile">
