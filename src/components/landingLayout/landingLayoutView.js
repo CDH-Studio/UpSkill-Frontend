@@ -33,19 +33,31 @@ export default class landingLayoutController extends Component {
             backgroundRepeat: "no-repeat"
           }}
         >
-          <Image
-            style={{ margin: "175px auto 0px" }}
-            src={LargeLogo}
-            size="large"
-          />
+          <div
+            style={{
+              margin: "250px auto 0px",
+              width: "100%",
+              textAlign: "center",
+              color: "#ffffff",
+              fontSize: "52pt"
+            }}
+          >
+            Welcome to UpSkill.
+          </div>
           <div
             style={{
               width: "100%",
-              textAlign: "center",
-              color: "#ffffff"
+              textAlign: "center"
             }}
           >
-            <div>
+            <div
+              style={{
+                color: "#ffffff",
+                fontSize: "20pt",
+                marginTop: "18pt",
+                marginBottom: "24pt"
+              }}
+            >
               <FormattedMessage id="landing.slogan" />
             </div>
             <Button

@@ -32,6 +32,7 @@ class SearchFormView extends Component {
     const {
       advancedSearch,
       advancedOptions,
+      defaultValues,
       handleChange,
       handleSubmit,
       handleToggle,
@@ -58,6 +59,7 @@ class SearchFormView extends Component {
           <Form.Field
             control={Input}
             name="searchValue"
+            defaultValue={defaultValues["searchValue"]}
             onChange={handleChange}
             onSubmit={handleSubmit}
           />

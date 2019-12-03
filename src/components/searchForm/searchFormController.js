@@ -29,7 +29,7 @@ const backendAddress = config.backendAddress;
 class SearchFormController extends Component {
   constructor(props) {
     super(props);
-    const { defaultAdvanced } = this.props;
+    const { defaultAdvanced, navBarLayout } = this.props;
 
     const windowLocation = window.location.toString();
 
@@ -47,6 +47,7 @@ class SearchFormController extends Component {
       disableSearch: Object.entries(this.fields).length === 0
     };
 
+    this.checkDisabled = this.checkDisabled.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -93,16 +94,32 @@ class SearchFormController extends Component {
     this.setState({ advancedOptions: advancedOptions });
   }
 
+  checkDisabled() {
+    const { navBarLayout } = this.props;
+    const { advancedSearch } = this.state;
+    const fieldKeys = Object.keys(this.fields);
+    const navBarEmpty = navBarLayout && fieldKeys.length === 0;
+    const basicHomeEmpty =
+      !navBarLayout && !advancedSearch && !fieldKeys.includes("searchValue");
+
+    const advancedKeyLengthTarget = +fieldKeys.includes("searchValue");
+    const advancedHomeEmpty =
+      !navBarLayout &&
+      advancedSearch &&
+      !(fieldKeys.length > advancedKeyLengthTarget);
+    const isDisabled = Boolean(
+      navBarEmpty || basicHomeEmpty || advancedHomeEmpty
+    );
+    this.setState({
+      disableSearch: isDisabled
+    });
+  }
+
   handleChange(e, { name, value, checked }) {
     const newVal = value || checked;
-    if (
-      newVal === undefined ||
-      (Array.isArray(newVal) && newVal.length === 0)
-    ) {
+    if (!newVal || newVal.length === 0) {
       delete this.fields[name];
-      this.setState({
-        disableSearch: Object.entries(this.fields).length === 0
-      });
+      this.checkDisabled();
     } else {
       this.fields[name] = newVal;
       this.setState({
@@ -138,9 +155,15 @@ class SearchFormController extends Component {
   }
 
   handleToggle() {
-    this.setState({
-      advancedSearch: !this.state.advancedSearch
-    });
+    //const {navBarLayout} = this.props;
+    this.setState(
+      {
+        advancedSearch: !this.state.advancedSearch
+      },
+      () => this.checkDisabled()
+    );
+
+    //if ()
   }
 
   render() {
