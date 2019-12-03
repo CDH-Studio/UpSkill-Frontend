@@ -152,7 +152,7 @@ export default class landingLayoutController extends Component {
                 fontSize: "32pt"
               }}
             >
-              Contact Us
+              <FormattedMessage id="landing.contact.us" />
             </p>
 
             <Grid style={{ width: "100%" }}>
