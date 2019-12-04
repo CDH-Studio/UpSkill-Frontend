@@ -19,7 +19,7 @@ const { backendAddress } = config;
 
 const ELEMENT_PER_PAGE = 10;
 
-class AdminSchool extends React.Component {
+class AdminSchool extends Component {
   goto = (link, state) => this.props.history.push(link, state);
 
   constructor(props) {

@@ -19,7 +19,7 @@ const { backendAddress } = config;
 
 const ELEMENT_PER_PAGE = 10;
 
-class AdminUser extends React.Component {
+class AdminUser extends Component {
   goto = (link, state) => this.props.history.push(link, state);
 
   constructor(props) {
@@ -94,8 +94,6 @@ class AdminUser extends React.Component {
       direction: direction === "ascending" ? "descending" : "ascending"
     });
   };
-
-  handleEditChange = (e, { name, value }) => this.setState({ [name]: value });
 
   handleFilter = (e, { value }) => {
     const newData = this.state.allData.filter(
@@ -216,7 +214,7 @@ class AdminUser extends React.Component {
                   : 4
               }
             >
-              <FormattedMessage id="admin.profileStatus" />
+              <FormattedMessage id="admin.prooeStatus" />
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
