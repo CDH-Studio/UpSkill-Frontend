@@ -91,7 +91,7 @@ class AdminDashboard extends Component {
             <Statistic>
               <Statistic.Value>42</Statistic.Value>
               <Statistic.Label>
-                <FormattedMessage id="admin.dashboard.team.members" />
+                <FormattedMessage id="admin.dashboard.ex.feeders" />
               </Statistic.Label>
             </Statistic>
           </Statistic.Group>
