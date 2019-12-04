@@ -6,7 +6,8 @@ import {
   Button,
   Icon,
   Input,
-  Pagination
+  Pagination,
+  Dropdown
 } from "semantic-ui-react";
 import _ from "lodash";
 import axios from "axios";
@@ -72,15 +73,16 @@ class AdminUser extends React.Component {
     const { column, data, direction } = this.state;
 
     const dbAttributes = {
-      name: "firstName",
-      registered: "createdAt",
-      tenure: "tenure.descriptionEn"
+      name: ["firstName"],
+      registered: ["createdAt"],
+      tenure: ["tenure.descriptionEn"],
+      profStatus: ["flagged", "user.inactive"]
     };
 
     if (column !== clickedColumn) {
       this.setState({
         column: clickedColumn,
-        data: _.sortBy(data, [dbAttributes[clickedColumn]]),
+        data: _.sortBy(data, dbAttributes[clickedColumn]),
         direction: "ascending"
       });
 
@@ -98,8 +100,8 @@ class AdminUser extends React.Component {
   handleFilter = (e, { value }) => {
     const newData = this.state.allData.filter(
       option =>
-        (option.description &&
-          option.description
+        (option.user.name &&
+          option.user.name
             .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
@@ -109,8 +111,8 @@ class AdminUser extends React.Component {
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
             )) ||
-        (option.state &&
-          option.state
+        (option.tenure &&
+          option.tenure.descriptionEn
             .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
@@ -120,8 +122,19 @@ class AdminUser extends React.Component {
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
             )) ||
-        (option.country &&
-          option.country
+        (option.tenure &&
+          option.tenure.descriptionFr
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .includes(
+              value
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+            )) ||
+        ((option.flagged || option.user.inactive) &&
+          this.profileStatusValue(option.user.inactive, option.flagged)
             .toLowerCase()
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
@@ -138,87 +151,30 @@ class AdminUser extends React.Component {
     });
   };
 
-  handleClick = (type, id, description, state, country) => {
-    this.setState({ id: id, modal: type, description, state, country });
-  };
-
-  handleSubmitEdit = () => {
-    const { type, id, description, state, country } = this.state;
-
-    const url = backendAddress + "api/admin/options/" + type + "/" + id;
-    axios.put(url, { description, state, country }).then(() => {
-      this.setState({
-        id: null,
-        description: null,
-        state: null,
-        country: null,
-        modal: null
-      });
-      window.location.reload();
-    });
-  };
-
-  handleSubmitDelete = () => {
-    const { type, id } = this.state;
-
-    const url = backendAddress + "api/admin/options/" + type + "/" + id;
-    axios.delete(url).then(() => {
-      this.setState({ id: null, english: null, french: null, modal: null });
-      window.location.reload();
-    });
-  };
-
-  handleSubmitAdd = () => {
-    const { type, description, state, country } = this.state;
-
-    const url = backendAddress + "api/admin/options/" + type;
-    axios.post(url, { description, state, country }).then(() => {
-      this.setState({
-        id: null,
-        description: null,
-        state: null,
-        country: null,
-        modal: null
-      });
-      window.location.reload();
-    });
-  };
-
   handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
 
-  renderEditButtons = (id, description, state, country) => {
+  profileStatusValue = (inactive, flagged) => {
+    if (inactive) return "Inactive";
+    else if (flagged) return "Hidden";
+    return "Active";
+  };
+
+  renderStatusDropdown = (id, inactive, flagged) => {
+    const options = [
+      { value: "Active", text: "Active", key: "active" },
+      { value: "Inactive", text: "Inactive", key: "inactive" },
+      { value: "Hidden", text: "Hidden", key: "flagged" }
+    ];
     return (
-      <centernp>
-        <Button
-          animated="fade"
-          color="blue"
-          onClick={() =>
-            this.handleClick("edit", id, description, state, country)
-          }
-        >
-          <Button.Content visible>
-            <FormattedMessage id="admin.edit" />
-          </Button.Content>
-          <Button.Content hidden>
-            <Icon name="edit" />
-          </Button.Content>
-        </Button>
-        <Button
-          animated="fade"
-          color="red"
-          inverted
-          onClick={() =>
-            this.handleClick("delete", id, description, state, country)
-          }
-        >
-          <Button.Content visible>
-            <FormattedMessage id="admin.delete" />
-          </Button.Content>
-          <Button.Content hidden>
-            <Icon name="x" />
-          </Button.Content>
-        </Button>
-      </centernp>
+      <center>
+        <Dropdown
+          placeholder="Select Friend"
+          fluid
+          selection
+          value={this.profileStatusValue(inactive, flagged)}
+          options={options}
+        />
+      </center>
     );
   };
 
@@ -252,13 +208,15 @@ class AdminUser extends React.Component {
               <FormattedMessage id="admin.tenure" />
             </Table.HeaderCell>
             <Table.HeaderCell
+              sorted={column === "profStatus" ? direction : null}
+              onClick={this.handleSort("profStatus")}
               width={
                 this.props.intl.formatMessage({ id: "lang.code" }) === "fr"
                   ? 3
                   : 4
               }
             >
-              <FormattedMessage id="admin.editHeader" />
+              <FormattedMessage id="admin.profileStatus" />
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -280,7 +238,9 @@ class AdminUser extends React.Component {
                   <FormattedMessage id="admin.none" />
                 )}
               </Table.Cell>
-              <Table.Cell>{this.renderEditButtons(id, user)}</Table.Cell>
+              <Table.Cell style={{ overflow: "visible" }}>
+                {this.renderStatusDropdown(id, user.inactive, flagged)}
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

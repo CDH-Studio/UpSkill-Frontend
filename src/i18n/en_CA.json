@@ -16,11 +16,13 @@
   "admin.country": "Country",
   "admin.editHeader": "Edit or Delete",
   "admin.registered": "Registered",
+  "admin.profileStatus": "Profile Status",
   "admin.tenure": "Tenure",
   "admin.pri": "PRI",
   "admin.add": "Add",
   "admin.edit": "Edit",
   "admin.delete": "Delete",
+  "admin.cancel": "Cancel",
   "admin.none": "None Specified",
 
   "advanced.search.button.text": "Advanced search",
