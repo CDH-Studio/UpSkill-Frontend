@@ -65,36 +65,37 @@ class AdminDashboard extends Component {
         goto={this.goto}
       >
         <Header as="h1">{this.getDisplayType(true)}</Header>
-        <Statistic.Group>
-          <Statistic>
-            <Statistic.Value>22</Statistic.Value>
-            <Statistic.Label>Saves</Statistic.Label>
-          </Statistic>
+        <Table color="blue">
+          <Statistic.Group>
+            <Statistic>
+              <Statistic.Value>22</Statistic.Value>
+              <Statistic.Label>
+                <FormattedMessage id="admin.dashboard.total.users" />
+              </Statistic.Label>
+            </Statistic>
 
-          <Statistic>
-            <Statistic.Value text>
-              Three
-              <br />
-              Thousand
-            </Statistic.Value>
-            <Statistic.Label>Signups</Statistic.Label>
-          </Statistic>
+            <Statistic>
+              <Statistic.Value>6</Statistic.Value>
+              <Statistic.Label>
+                <FormattedMessage id="admin.dashboard.inactive.users" />
+              </Statistic.Label>
+            </Statistic>
 
-          <Statistic>
-            <Statistic.Value>
-              <Icon name="plane" />5
-            </Statistic.Value>
-            <Statistic.Label>Flights</Statistic.Label>
-          </Statistic>
+            <Statistic>
+              <Statistic.Value>5</Statistic.Value>
+              <Statistic.Label>
+                <FormattedMessage id="admin.dashboard.flagged.profiles" />
+              </Statistic.Label>
+            </Statistic>
 
-          <Statistic>
-            <Statistic.Value>
-              <Image src="/images/avatar/small/joe.jpg" inline circular />
-              42
-            </Statistic.Value>
-            <Statistic.Label>Team Members</Statistic.Label>
-          </Statistic>
-        </Statistic.Group>
+            <Statistic>
+              <Statistic.Value>42</Statistic.Value>
+              <Statistic.Label>
+                <FormattedMessage id="admin.dashboard.team.members" />
+              </Statistic.Label>
+            </Statistic>
+          </Statistic.Group>
+        </Table>
       </AdminMenu>
     );
   }
