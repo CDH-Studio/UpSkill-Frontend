@@ -251,6 +251,7 @@ class AdminUser extends Component {
   render() {
     const { type, column, data, direction, loading, activePage } = this.state;
     const { changeLanguage, keycloak } = this.props;
+    console.log("alldaata", data);
 
     let totalPages = 0;
     if (data) totalPages = Math.ceil(data.length / ELEMENT_PER_PAGE);

@@ -21,23 +21,25 @@ class AdminDashboard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { type: "dashboard", loading: true };
+    this.state = {
+      type: "dashboard",
+      loading: true,
+      data: { user: 0, exFeeder: 0, flagged: 0, inactive: 0 }
+    };
   }
 
   componentDidMount() {
     // console.log(this.getDisplayType(true));
 
     document.title = this.getDisplayType(true) + " - Admin | UpSkill";
-    this.setState({ loading: false });
-    // axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
-    //   this.setState({
-    //     allData: res.data,
-    //     data: _.sortBy(res.data, ["firstName"]),
-    //     loading: false,
-    //     column: "name",
-    //     direction: "ascending"
-    //   })
-    // );
+    this.setState({ loading: true });
+    axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
+      this.setState({
+        // allData: res.data,
+        data: res.data,
+        loading: false
+      })
+    );
   }
 
   getDisplayType = plural => {
@@ -54,8 +56,11 @@ class AdminDashboard extends Component {
   };
 
   render() {
-    const { type, loading } = this.state;
+    const { type, loading, data } = this.state;
+    // const { user, profile, flagged, inactive } = this.state.data;
     const { changeLanguage, keycloak } = this.props;
+
+    console.log("allData", data);
 
     return (
       <AdminMenu
@@ -69,28 +74,28 @@ class AdminDashboard extends Component {
         <Divider />
         <Statistic.Group color="blue" widths={16}>
           <Statistic>
-            <Statistic.Value>22</Statistic.Value>
+            <Statistic.Value>{data.user}</Statistic.Value>
             <Statistic.Label>
               <FormattedMessage id="admin.dashboard.total.users" />
             </Statistic.Label>
           </Statistic>
 
           <Statistic>
-            <Statistic.Value>6</Statistic.Value>
+            <Statistic.Value>{data.inactive}</Statistic.Value>
             <Statistic.Label>
               <FormattedMessage id="admin.dashboard.inactive.users" />
             </Statistic.Label>
           </Statistic>
 
           <Statistic>
-            <Statistic.Value>5</Statistic.Value>
+            <Statistic.Value>{data.flagged}</Statistic.Value>
             <Statistic.Label>
               <FormattedMessage id="admin.dashboard.flagged.profiles" />
             </Statistic.Label>
           </Statistic>
 
           <Statistic>
-            <Statistic.Value>42</Statistic.Value>
+            <Statistic.Value>{data.exFeeder}</Statistic.Value>
             <Statistic.Label>
               <FormattedMessage id="admin.dashboard.ex.feeders" />
             </Statistic.Label>

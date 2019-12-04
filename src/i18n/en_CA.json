@@ -26,6 +26,10 @@
   "admin.delete": "Delete",
   "admin.cancel": "Cancel",
   "admin.none": "None Specified",
+  "admin.dashboard.total.users": "Total users",
+  "admin.dashboard.inactive.users": "Inactive users",
+  "admin.dashboard.flagged.profiles": "Flagged profiles",
+  "admin.dashboard.ex.feeders": "Total Ex-Feeders",
 
   "advanced.search.button.text": "Advanced search",
   "advanced.search.form.name": "Name",
