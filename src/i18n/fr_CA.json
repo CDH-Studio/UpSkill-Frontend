@@ -31,7 +31,6 @@
   "admin.dashboard.flagged.profiles": "Profils signalées",
   "admin.dashboard.ex.feeders": "Nombre total d'Ex Feeders",
 
-  "advanced.search.button.text": "Recherche avancée",
   "advanced.search.form.job.title": "Titre du poste",
   "advanced.search.form.department": "Departement",
   "advanced.search.form.location": "Lieu de travail",
@@ -39,12 +38,14 @@
   "advanced.search.form.first.name": "Prénom",
   "advanced.search.form.last.name": "Nom de famille",
 
+  "advanced.search.button.text": "Recherche avancée",
   "advanced.search.form.name": "Name",
-  "advanced.search.form.skills": "Skills",
-  "advanced.search.form.broad.search": "Broad Search",
-  "advanced.search.form.branch": "Branch",
+  "advanced.search.form.skills": "Compétences",
+  "advanced.search.form.broad.search": "Recherche générale",
+  "advanced.search.form.branch": "Branche",
   "advanced.search.form.classification": "Classification",
   "advanced.search.form.ex.feeder": "Ex Feeder",
+  "apply.button.text": "Apply",
 
   "search.button.text": "Rechercher",
   "basic.search.button.text": "Recherche basique",
