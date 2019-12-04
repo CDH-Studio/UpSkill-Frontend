@@ -12,7 +12,7 @@ import NavigationBar from "../navigationBar/navigationBarController";
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * keycloak                 null                    The keycloak instance being used
  * typeButtonText           "Advanced search"       The text to display on the toggle search type button
- * typeButtonURL            "/advanced"             The url of the page the search type button should redirect to
+ * typeButtonURL            "/secured/advanced"             The url of the page the search type button should redirect to
  * redirectFunction         null                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
@@ -43,8 +43,10 @@ class HomeLayoutView extends Component {
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <SearchForm
+              maxFormWidth="600px"
               showAdvancedFields={showAdvancedFields}
-              updateSearch={updateSearch}
+              redirectFunction={redirectFunction}
+              toggleButton
             />
           </Grid.Row>
           <Grid.Row style={styles.row}>

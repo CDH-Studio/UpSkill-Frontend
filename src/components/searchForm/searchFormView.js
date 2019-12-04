@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-
-import { Dropdown, Form, Input } from "semantic-ui-react";
+import FormManagingComponent from "../editForms/common/formTools";
+import {
+  Button,
+  Checkbox,
+  Dropdown,
+  Form,
+  Input,
+  Select
+} from "semantic-ui-react";
 
 /**
  *
@@ -23,9 +30,111 @@ class SearchFormView extends Component {
   }
 
   render() {
-    const { intl, invertLabels, skills, updateSearch } = this.props;
+    const {
+      intl,
+      handleToggle,
+      advancedSearch,
+      handleChange,
+      handleSubmit,
+      maxFormWidth
+    } = this.props;
+
     return (
-      <Form inverted={invertLabels} style={styles.form}>
+      <Form style={{ width: "100%", maxWidth: maxFormWidth }} fluid>
+        {advancedSearch ? (
+          this.renderAdvancedFields()
+        ) : (
+          <React.Fragment>
+            <Form.Field
+              name="searchValue"
+              control={Input}
+              onChange={handleChange}
+              onSubmit={handleSubmit}
+            />
+            <Button color="blue" onClick={handleSubmit}>
+              search
+            </Button>
+            {handleToggle && (
+              <Button basic color="blue" onClick={handleToggle}>
+                Advanced Search
+              </Button>
+            )}
+          </React.Fragment>
+        )}
+      </Form>
+    );
+  }
+
+  renderAdvancedFields() {
+    const {
+      handleChange,
+      handleToggle,
+      handleSubmit,
+      horizontalLayout
+    } = this.props;
+    const fields = (
+      <React.Fragment>
+        <Form.Field
+          control={Input}
+          name="name"
+          label="Name"
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
+        <Form.Field
+          control={Select}
+          name="skills"
+          label="Skills / Competencies"
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
+        <Form.Field
+          control={Select}
+          name="branch"
+          label="Branch"
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
+        <Form.Field
+          control={Select}
+          name="location"
+          label="Location"
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
+        <Form.Field
+          control={Select}
+          name="classification"
+          label="classification"
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
+        <Form.Field
+          control={Checkbox}
+          name="exFeeder"
+          label="Is Ex Feeder"
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
+        <Button color="blue" onClick={handleSubmit}>
+          Search
+        </Button>
+        {handleToggle && (
+          <Button basic color="blue" onClick={handleToggle}>
+            Basic Search
+          </Button>
+        )}
+      </React.Fragment>
+    );
+
+    if (horizontalLayout) {
+      return <Form.Group>{fields}</Form.Group>;
+    }
+    return fields;
+  }
+}
+/*
+
         <Form.Field style={styles.formRow}>
           <label>
             {intl.formatMessage({
@@ -46,135 +155,7 @@ class SearchFormView extends Component {
             style={styles.primaryDropdown}
           />
         </Form.Field>
-        {this.renderAdvancedFields()}
-      </Form>
-    );
-  }
-
-  renderAdvancedFields() {
-    const {
-      departments,
-      intl,
-      jobTitles,
-      locations,
-      securityClearances,
-      showAdvancedFields,
-      updateSearch
-    } = this.props;
-
-    if (!showAdvancedFields) {
-      return null;
-    }
-    return (
-      <React.Fragment>
-        <Form.Field style={styles.formRow}>
-          <label>
-            {intl.formatMessage({
-              id: "advanced.search.form.job.title"
-            })}
-          </label>
-          <Dropdown
-            fluid
-            options={jobTitles}
-            placeholder={intl.formatMessage({
-              id: "advanced.search.form.job.title"
-            })}
-            search
-            selection
-            style={styles.advancedComponent}
-          />
-        </Form.Field>
-
-        <Form.Field style={styles.formRow}>
-          <label>
-            {intl.formatMessage({
-              id: "advanced.search.form.department"
-            })}
-          </label>
-          <Dropdown
-            fluid
-            options={departments}
-            placeholder={intl.formatMessage({
-              id: "advanced.search.form.department"
-            })}
-            search
-            selection
-            style={styles.advancedComponent}
-          />
-        </Form.Field>
-
-        <Form.Field style={styles.formRow}>
-          <label>
-            {intl.formatMessage({
-              id: "advanced.search.form.location"
-            })}
-          </label>
-          <Dropdown
-            fluid
-            options={locations}
-            placeholder={intl.formatMessage({
-              id: "advanced.search.form.location"
-            })}
-            search
-            selection
-            style={styles.advancedComponent}
-          />
-        </Form.Field>
-
-        <Form.Field style={styles.formRow}>
-          <label>
-            {intl.formatMessage({
-              id: "advanced.search.form.security.clearance"
-            })}
-          </label>
-          <Dropdown
-            fluid
-            options={securityClearances}
-            placeholder={intl.formatMessage({
-              id: "advanced.search.form.security.clearance"
-            })}
-            search
-            selection
-            style={styles.advancedComponent}
-          />
-        </Form.Field>
-
-        <Form.Field style={styles.formRow}>
-          <label>
-            {intl.formatMessage({
-              id: "advanced.search.form.first.name"
-            })}
-          </label>
-
-          <Input
-            name="firstName"
-            onChange={updateSearch}
-            placeholder={intl.formatMessage({
-              id: "advanced.search.form.first.name"
-            })}
-            style={styles.advancedComponent}
-          />
-        </Form.Field>
-
-        <Form.Field style={styles.formRow}>
-          <label>
-            {intl.formatMessage({
-              id: "advanced.search.form.last.name"
-            })}
-          </label>
-          <Input
-            name="lastName"
-            onChange={updateSearch}
-            placeholder={intl.formatMessage({
-              id: "advanced.search.form.last.name"
-            })}
-            style={styles.advancedComponent}
-          />
-        </Form.Field>
-      </React.Fragment>
-    );
-  }
-}
+  */
 
 const styles = {
   advancedComponent: {

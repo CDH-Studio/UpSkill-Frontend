@@ -1,9 +1,11 @@
 import React, { Component } from "react";
-import { Card, Grid, Image, Label } from "semantic-ui-react";
+import { Card, Grid, Image, Label, Loader } from "semantic-ui-react";
 
 import tempProfilePicture from "../../assets/tempProfilePicture.png";
 import "./resultStyles.css";
 import NavigationBar from "../navigationBar/navigationBarController";
+import SearchFormController from "../searchForm/searchFormController";
+import prepareInfo from "../../functions/prepareInfo";
 
 export default class ResultsLayoutView extends Component {
   constructor(props) {
@@ -12,10 +14,15 @@ export default class ResultsLayoutView extends Component {
   }
 
   render() {
-    const { changeLanguage, keycloak } = this.props;
+    const { changeLanguage, keycloak, redirectFunction } = this.props;
     return (
       <div>
         <NavigationBar changeLanguage={changeLanguage} keycloak={keycloak} />
+        <SearchFormController
+          maxFormWidth="1200px"
+          showAdvancedFields={true}
+          redirectFunction={redirectFunction}
+        />
         <div className="resultContent">
           <Grid>
             <Grid.Row>{this.renderResultCards()}</Grid.Row>
@@ -26,10 +33,10 @@ export default class ResultsLayoutView extends Component {
   }
 
   renderResultCards() {
-    const { results } = this.props;
+    const { results, redirectFunction } = this.props;
 
     if (!results) {
-      return null;
+      return <Loader />;
     }
     if (results instanceof Error) {
       return (
@@ -37,54 +44,28 @@ export default class ResultsLayoutView extends Component {
       );
     }
 
+    const preparedResults = prepareInfo(results, localStorage.getItem("lang"));
+
     let cards = [];
 
-    results.data.forEach(person => {
+    preparedResults.forEach(person => {
       console.log(person);
 
       cards.push(
-        <Card>
+        <Card onClick={() => redirectFunction("/secured/profile/" + person.id)}>
           <Card.Content>
             <Image floated="right" size="mini" src={tempProfilePicture} />
-            <Card.Header>{person.givenName + " " + person.surname}</Card.Header>
-            <Card.Meta>{person.title.en}</Card.Meta>
+            <Card.Header>
+              {person.firstName + " " + person.lastName}
+            </Card.Header>
+            <Card.Meta>{person.jobTitle}</Card.Meta>
           </Card.Content>
           <Card.Content>
             <Label
               style={{ marginBottom: "2px", marginTop: "2px" }}
-              color="purple"
+              color="blue"
             >
               React
-            </Label>
-            <Label
-              style={{ marginBottom: "2px", marginTop: "2px" }}
-              color="purple"
-            >
-              Javascript
-            </Label>
-            <Label
-              style={{ marginBottom: "2px", marginTop: "2px" }}
-              color="purple"
-            >
-              CSS
-            </Label>
-            <Label
-              style={{ marginBottom: "2px", marginTop: "2px" }}
-              color="grey"
-            >
-              Redux
-            </Label>
-            <Label
-              style={{ marginBottom: "2px", marginTop: "2px" }}
-              color="grey"
-            >
-              Database management
-            </Label>
-            <Label
-              style={{ marginBottom: "2px", marginTop: "2px" }}
-              color="grey"
-            >
-              Python
             </Label>
           </Card.Content>
         </Card>

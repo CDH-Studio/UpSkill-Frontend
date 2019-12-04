@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { formatOptions } from "../editForms/common/formTools";
 import config from "../../config";
+import prepareInfo from "../../functions/prepareInfo";
 
 import SetupLayoutView from "./setupLayoutView";
 
@@ -94,7 +95,7 @@ class SetupLayoutController extends Component {
   }
 
   render() {
-    const gedsInfoList = this.setunchangeableInfo(
+    const gedsInfoList = prepareInfo(
       this.state.gedsInfoList,
       localStorage.getItem("lang")
     );
@@ -146,6 +147,7 @@ class SetupLayoutController extends Component {
   getTenure
   */
 
+  /*
   setunchangeableInfo(info, language, specialUndefineds) {
     if (specialUndefineds && typeof info == "object") {
       for (let key in specialUndefineds) {
@@ -176,7 +178,7 @@ class SetupLayoutController extends Component {
       }
     }
     return info;
-  }
+  }*/
 
   async getSetupData() {
     let skillOptions = formatOptions(
@@ -203,11 +205,8 @@ class SetupLayoutController extends Component {
       ),
       competencies: competencyOptions,
       developmentalGoals: formatOptions(
-        (
-          await axios.get(
-            backendAddress+"api/option/getDevelopmentalGoals"
-          )
-        ).data
+        (await axios.get(backendAddress + "api/option/getDevelopmentalGoals"))
+          .data
       ),
       location: formatOptions(
         (await axios.get(backendAddress + "api/option/getLocation")).data
@@ -246,7 +245,7 @@ class SetupLayoutController extends Component {
       )
       .then(response => {
         console.log(response);
-        redirectFunction("/home");
+        redirectFunction("/secured/home");
       })
       .catch(function(error) {
         console.log(error);
