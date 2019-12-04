@@ -69,7 +69,9 @@ export default class AdminMenu extends Component {
             </Segment>
           </Grid.Column>
           <Grid.Column stretched width={13}>
-            <Segment loading={loading}>{this.props.children}</Segment>
+            <Segment loading={loading} color="blue">
+              {this.props.children}
+            </Segment>
           </Grid.Column>
         </Grid>
       </div>

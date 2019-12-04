@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import AdminMenu from "../../components/admin/AdminMenu";
 import {
-  Table,
+  Segment,
   Header,
   Button,
   Icon,
   Image,
-  Statistic
+  Statistic,
+  Divider
 } from "semantic-ui-react";
 import _ from "lodash";
 import axios from "axios";
@@ -65,37 +66,36 @@ class AdminDashboard extends Component {
         goto={this.goto}
       >
         <Header as="h1">{this.getDisplayType(true)}</Header>
-        <Table color="blue">
-          <Statistic.Group>
-            <Statistic>
-              <Statistic.Value>22</Statistic.Value>
-              <Statistic.Label>
-                <FormattedMessage id="admin.dashboard.total.users" />
-              </Statistic.Label>
-            </Statistic>
+        <Divider />
+        <Statistic.Group color="blue" widths={16}>
+          <Statistic>
+            <Statistic.Value>22</Statistic.Value>
+            <Statistic.Label>
+              <FormattedMessage id="admin.dashboard.total.users" />
+            </Statistic.Label>
+          </Statistic>
 
-            <Statistic>
-              <Statistic.Value>6</Statistic.Value>
-              <Statistic.Label>
-                <FormattedMessage id="admin.dashboard.inactive.users" />
-              </Statistic.Label>
-            </Statistic>
+          <Statistic>
+            <Statistic.Value>6</Statistic.Value>
+            <Statistic.Label>
+              <FormattedMessage id="admin.dashboard.inactive.users" />
+            </Statistic.Label>
+          </Statistic>
 
-            <Statistic>
-              <Statistic.Value>5</Statistic.Value>
-              <Statistic.Label>
-                <FormattedMessage id="admin.dashboard.flagged.profiles" />
-              </Statistic.Label>
-            </Statistic>
+          <Statistic>
+            <Statistic.Value>5</Statistic.Value>
+            <Statistic.Label>
+              <FormattedMessage id="admin.dashboard.flagged.profiles" />
+            </Statistic.Label>
+          </Statistic>
 
-            <Statistic>
-              <Statistic.Value>42</Statistic.Value>
-              <Statistic.Label>
-                <FormattedMessage id="admin.dashboard.ex.feeders" />
-              </Statistic.Label>
-            </Statistic>
-          </Statistic.Group>
-        </Table>
+          <Statistic>
+            <Statistic.Value>42</Statistic.Value>
+            <Statistic.Label>
+              <FormattedMessage id="admin.dashboard.ex.feeders" />
+            </Statistic.Label>
+          </Statistic>
+        </Statistic.Group>
       </AdminMenu>
     );
   }
