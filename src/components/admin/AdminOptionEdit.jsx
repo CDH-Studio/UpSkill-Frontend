@@ -13,7 +13,6 @@ import {
 import _ from "lodash";
 import axios from "axios";
 import { FormattedMessage, injectIntl } from "react-intl";
-import PropTypes from "prop-types";
 
 import config from "../../config";
 const { backendAddress } = config;
@@ -166,13 +165,15 @@ class AdminOptionEdit extends React.Component {
 
   renderEditButtons = (id, en, fr) => {
     return (
-      <div>
+      <center>
         <Button
           animated="fade"
           color="blue"
           onClick={() => this.handleClick("edit", id, en, fr)}
         >
-          <Button.Content visible>Edit</Button.Content>
+          <Button.Content visible>
+            <FormattedMessage id="admin.edit" />
+          </Button.Content>
           <Button.Content hidden>
             <Icon name="edit" />
           </Button.Content>
@@ -183,12 +184,14 @@ class AdminOptionEdit extends React.Component {
           inverted
           onClick={() => this.handleClick("delete", id, en, fr)}
         >
-          <Button.Content visible>Delete</Button.Content>
+          <Button.Content visible>
+            <FormattedMessage id="admin.delete" />
+          </Button.Content>
           <Button.Content hidden>
             <Icon name="x" />
           </Button.Content>
         </Button>
-      </div>
+      </center>
     );
   };
 
@@ -231,7 +234,7 @@ class AdminOptionEdit extends React.Component {
             inverted
             onClick={() => this.setState({ modal: null })}
           >
-            <Icon name="remove" /> Cancel
+            <Icon name="remove" /><FormattedMessage id="admin.cancel"/>
           </Button>
           <Button color="green" onClick={this.handleSubmitEdit}>
             <Icon name="checkmark" /> Apply
@@ -275,7 +278,7 @@ class AdminOptionEdit extends React.Component {
             onClick={() => this.setState({ modal: null })}
             style={{ marginTop: "18px", marginBottom: "18px" }}
           >
-            <Icon name="remove" /> Cancel
+            <Icon name="remove" /><FormattedMessage id="admin.cancel"/>
           </Button>
         </Modal.Actions>
       </Modal>
@@ -321,10 +324,11 @@ class AdminOptionEdit extends React.Component {
             inverted
             onClick={() => this.setState({ modal: null })}
           >
-            <Icon name="remove" /> Cancel
+            <Icon name="remove" /><FormattedMessage id="admin.cancel"/>
           </Button>
           <Button color="green" onClick={this.handleSubmitAdd}>
-            <Icon name="add" /> Add
+            <Icon name="add" />
+            <FormattedMessage id="admin.add" />
           </Button>
         </Modal.Actions>
       </Modal>
@@ -348,8 +352,13 @@ class AdminOptionEdit extends React.Component {
             >
               <FormattedMessage id="language.french" />
             </Table.HeaderCell>
-            <Table.HeaderCell width="3">
-              {" "}
+            <Table.HeaderCell
+              width={
+                this.props.intl.formatMessage({ id: "lang.code" }) === "fr"
+                  ? 3
+                  : 4
+              }
+            >
               <FormattedMessage id="admin.editHeader" />
             </Table.HeaderCell>
           </Table.Row>
@@ -403,7 +412,8 @@ class AdminOptionEdit extends React.Component {
           floated="right"
           onClick={() => this.handleClick("add")}
         >
-          <Icon name="add" /> Add
+          <Icon name="add" />
+          <FormattedMessage id="admin.add" />
         </Button>
 
         {this.generateTable(column, direction, pageData)}
@@ -437,9 +447,5 @@ class AdminOptionEdit extends React.Component {
     );
   }
 }
-
-AdminOptionEdit.contextTypes = {
-  intl: PropTypes.object.isRequired
-};
 
 export default injectIntl(AdminOptionEdit);

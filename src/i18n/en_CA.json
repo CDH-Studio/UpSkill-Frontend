@@ -1,5 +1,8 @@
 {
   "admin": "Admin",
+  "admin.dashboard": "Dashboard",
+  "admin.user.plural": "User",
+  "admin.user.singular": "Users",
   "admin.skill.plural": "Skills",
   "admin.skill.singular": "Skill",
   "admin.competency.plural": "Competencies",
@@ -12,6 +15,13 @@
   "admin.state": "Province",
   "admin.country": "Country",
   "admin.editHeader": "Edit or Delete",
+  "admin.registered": "Registered",
+  "admin.tenure": "Tenure",
+  "admin.pri": "PRI",
+  "admin.add": "Add",
+  "admin.edit": "Edit",
+  "admin.delete": "Delete",
+  "admin.none": "None Specified",
 
   "advanced.search.button.text": "Advanced search",
   "advanced.search.form.name": "Name",
@@ -39,6 +49,7 @@
 
   "lang": "Francais",
   "lang.code": "fr",
+  "language.code": "en",
   "language.english": "English",
   "language.french": "French",
 
