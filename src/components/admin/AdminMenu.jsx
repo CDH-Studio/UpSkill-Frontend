@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Segment, Grid, Dimmer, Image, Header } from "semantic-ui-react";
+import { Menu, Segment, Grid, Dimmer, Image } from "semantic-ui-react";
 import NavigationBarView from "../navigationBar/navigationBarView";
 
 import animatedLogo from "../../assets/animatedLogo.gif";

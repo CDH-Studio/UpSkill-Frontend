@@ -19,7 +19,7 @@ const { backendAddress } = config;
 
 const ELEMENT_PER_PAGE = 10;
 
-class AdminOptionEdit extends React.Component {
+class AdminOptionEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -234,7 +234,8 @@ class AdminOptionEdit extends React.Component {
             inverted
             onClick={() => this.setState({ modal: null })}
           >
-            <Icon name="remove" /><FormattedMessage id="admin.cancel"/>
+            <Icon name="remove" />
+            <FormattedMessage id="admin.cancel" />
           </Button>
           <Button color="green" onClick={this.handleSubmitEdit}>
             <Icon name="checkmark" /> Apply
@@ -278,7 +279,8 @@ class AdminOptionEdit extends React.Component {
             onClick={() => this.setState({ modal: null })}
             style={{ marginTop: "18px", marginBottom: "18px" }}
           >
-            <Icon name="remove" /><FormattedMessage id="admin.cancel"/>
+            <Icon name="remove" />
+            <FormattedMessage id="admin.cancel" />
           </Button>
         </Modal.Actions>
       </Modal>
@@ -324,7 +326,8 @@ class AdminOptionEdit extends React.Component {
             inverted
             onClick={() => this.setState({ modal: null })}
           >
-            <Icon name="remove" /><FormattedMessage id="admin.cancel"/>
+            <Icon name="remove" />
+            <FormattedMessage id="admin.cancel" />
           </Button>
           <Button color="green" onClick={this.handleSubmitAdd}>
             <Icon name="add" />
