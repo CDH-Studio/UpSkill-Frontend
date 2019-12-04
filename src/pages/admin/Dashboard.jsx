@@ -76,6 +76,7 @@ class AdminDashboard extends Component {
           <Statistic>
             <Statistic.Value>{data.user}</Statistic.Value>
             <Statistic.Label>
+              <Icon circular inverted color="blue" size="large" name="users" />
               <FormattedMessage id="admin.dashboard.total.users" />
             </Statistic.Label>
           </Statistic>
@@ -83,6 +84,14 @@ class AdminDashboard extends Component {
           <Statistic>
             <Statistic.Value>{data.inactive}</Statistic.Value>
             <Statistic.Label>
+              <Icon
+                disabled
+                circular
+                inverted
+                color="blue"
+                size="large"
+                name="users"
+              />
               <FormattedMessage id="admin.dashboard.inactive.users" />
             </Statistic.Label>
           </Statistic>
@@ -90,6 +99,13 @@ class AdminDashboard extends Component {
           <Statistic>
             <Statistic.Value>{data.flagged}</Statistic.Value>
             <Statistic.Label>
+              <Icon
+                circular
+                inverted
+                color="blue"
+                size="large"
+                name="remove users"
+              />
               <FormattedMessage id="admin.dashboard.flagged.profiles" />
             </Statistic.Label>
           </Statistic>
@@ -97,6 +113,13 @@ class AdminDashboard extends Component {
           <Statistic>
             <Statistic.Value>{data.exFeeder}</Statistic.Value>
             <Statistic.Label>
+              <Icon
+                circular
+                inverted
+                color="blue"
+                size="large"
+                name="address book"
+              />
               <FormattedMessage id="admin.dashboard.ex.feeders" />
             </Statistic.Label>
           </Statistic>
