@@ -1,6 +1,8 @@
 {
   "admin": "Admin",
   "admin.dashboard": "Dashboard",
+  "admin.dashboard.singular": "Dashboard",
+  "admin.dashboard.plural": "Dashboard",
   "admin.user.plural": "User",
   "admin.user.singular": "Users",
   "admin.skill.plural": "Skills",
