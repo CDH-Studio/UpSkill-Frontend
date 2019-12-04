@@ -29,7 +29,7 @@
   "admin.dashboard.total.users": "Total users",
   "admin.dashboard.inactive.users": "Inactive users",
   "admin.dashboard.flagged.profiles": "Flagged profiles",
-  "admin.dashboard.ex.feeders": "Total Ex-Feeders",
+  "admin.dashboard.ex.feeders": "Total Ex Feeders",
 
   "advanced.search.button.text": "Advanced search",
   "advanced.search.form.name": "Name",
@@ -39,6 +39,7 @@
   "advanced.search.form.branch": "Branch",
   "advanced.search.form.classification": "Classification",
   "advanced.search.form.ex.feeder": "Ex Feeder",
+
   "apply.button.text": "Apply",
   "basic.search.button.text": "Basic search",
 
