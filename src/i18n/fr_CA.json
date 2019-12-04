@@ -28,7 +28,7 @@
   "admin.none": "Aucun spécifié",
   "admin.dashboard.total.users": "Utilisateurs totals",
   "admin.dashboard.inactive.users": "Utilisateurs inactif",
-  "admin.dashboard.flagged.profiles": "Profils signalées",
+  "admin.dashboard.flagged.profiles": "Profils cachés",
   "admin.dashboard.ex.feeders": "Nombre total d'Ex Feeders",
 
   "advanced.search.form.job.title": "Titre du poste",

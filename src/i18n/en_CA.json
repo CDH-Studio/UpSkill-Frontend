@@ -28,7 +28,7 @@
   "admin.none": "None Specified",
   "admin.dashboard.total.users": "Total users",
   "admin.dashboard.inactive.users": "Inactive users",
-  "admin.dashboard.flagged.profiles": "Flagged profiles",
+  "admin.dashboard.flagged.profiles": "Hidden profiles",
   "admin.dashboard.ex.feeders": "Total Ex Feeders",
 
   "advanced.search.button.text": "Advanced search",

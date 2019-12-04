@@ -74,52 +74,44 @@ class AdminDashboard extends Component {
         <Divider />
         <Statistic.Group color="blue" widths={16}>
           <Statistic>
-            <Statistic.Value>{data.user}</Statistic.Value>
+            <Statistic.Value>
+              <Icon name="user circle" color="green" /> {data.user}
+            </Statistic.Value>
             <Statistic.Label>
-              <Icon circular inverted color="blue" size="large" name="users" />
               <FormattedMessage id="admin.dashboard.total.users" />
             </Statistic.Label>
           </Statistic>
 
           <Statistic>
-            <Statistic.Value>{data.inactive}</Statistic.Value>
+            <Statistic.Value>
+              <Icon name="user circle" color="grey" /> {data.inactive}
+            </Statistic.Value>
             <Statistic.Label>
-              <Icon
-                disabled
-                circular
-                inverted
-                color="blue"
-                size="large"
-                name="users"
-              />
               <FormattedMessage id="admin.dashboard.inactive.users" />
             </Statistic.Label>
           </Statistic>
 
           <Statistic>
-            <Statistic.Value>{data.flagged}</Statistic.Value>
+            <Statistic.Value>
+              <Icon name="hide circle" color="red" /> {data.flagged}
+            </Statistic.Value>
             <Statistic.Label>
-              <Icon
-                circular
-                inverted
-                color="blue"
-                size="large"
-                name="remove users"
-              />
               <FormattedMessage id="admin.dashboard.flagged.profiles" />
             </Statistic.Label>
           </Statistic>
 
           <Statistic>
-            <Statistic.Value>{data.exFeeder}</Statistic.Value>
+            <Statistic.Value>
+              <Icon name="address book circle" color="teal" /> {data.exFeeder}
+            </Statistic.Value>
             <Statistic.Label>
-              <Icon
+              {/* <Icon
                 circular
                 inverted
                 color="blue"
                 size="large"
                 name="address book"
-              />
+              /> */}
               <FormattedMessage id="admin.dashboard.ex.feeders" />
             </Statistic.Label>
           </Statistic>
