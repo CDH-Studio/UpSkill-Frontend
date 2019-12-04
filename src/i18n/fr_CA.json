@@ -1,6 +1,8 @@
 {
   "admin": "Admin",
   "admin.dashboard": "Tableau de bord",
+  "admin.dashboard.singular": "Tableau de bord",
+  "admin.dashboard.plural": "Tableau de bord",
   "admin.user.plural": "Utilisateur",
   "admin.user.singular": "Utilisateurs",
   "admin.skill.plural": "Compétences",
@@ -24,6 +26,10 @@
   "admin.delete": "Supprimer",
   "admin.cancel": "Annuler",
   "admin.none": "Aucun spécifié",
+  "admin.dashboard.total.users": "Utilisateurs totals",
+  "admin.dashboard.inactive.users": "Utilisateurs inactif",
+  "admin.dashboard.flagged.profiles": "Profils signalées",
+  "admin.dashboard.ex.feeders": "Nombre total d'Ex Feeders",
 
   "advanced.search.button.text": "Recherche avancée",
   "advanced.search.form.desired.skills": "Compétences désirées",
