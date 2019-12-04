@@ -116,7 +116,6 @@ class Secured extends Component {
               )}
             />
             <Route
-              exact
               path="/secured/results"
               render={routeProps => (
                 <Results
@@ -127,7 +126,6 @@ class Secured extends Component {
               )}
             />
             <Route
-              exact
               path="/secured/profile"
               render={routeProps => (
                 <Profile

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import FormManagingComponent from "../editForms/common/formTools";
 import {
   Button,
   Checkbox,
-  Dropdown,
   Form,
   Input,
+  Loader,
   Select
 } from "semantic-ui-react";
 
@@ -31,154 +30,194 @@ class SearchFormView extends Component {
 
   render() {
     const {
-      intl,
-      handleToggle,
       advancedSearch,
+      advancedOptions,
+      defaultValues,
       handleChange,
       handleSubmit,
-      maxFormWidth
+      handleToggle,
+      intl,
+      disableSearch,
+      maxFormWidth,
+      navBarLayout
     } = this.props;
 
     return (
-      <Form style={{ width: "100%", maxWidth: maxFormWidth }} fluid>
+      <Form
+        loading={advancedSearch && !advancedOptions}
+        style={{
+          margin: "0px auto",
+          paddingLeft: "50px",
+          paddingRight: "50px",
+          width: maxFormWidth
+        }}
+        fluid
+      >
         {advancedSearch ? (
           this.renderAdvancedFields()
         ) : (
-          <React.Fragment>
-            <Form.Field
-              name="searchValue"
-              control={Input}
-              onChange={handleChange}
-              onSubmit={handleSubmit}
-            />
-            <Button color="blue" onClick={handleSubmit}>
-              search
-            </Button>
-            {handleToggle && (
-              <Button basic color="blue" onClick={handleToggle}>
-                Advanced Search
-              </Button>
-            )}
-          </React.Fragment>
+          <Form.Field
+            control={Input}
+            name="searchValue"
+            defaultValue={defaultValues["searchValue"]}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+          />
+        )}
+        {!navBarLayout && (
+          <Form.Group style={{ padding: "0 auto" }}>
+            <Form.Group style={{ margin: "0 auto" }}>
+              <Form.Field
+                fluid
+                style={{ width: "200px" }}
+                control={Button}
+                color="blue"
+                content={intl.formatMessage({
+                  id: "search.button.text"
+                })}
+                disabled={disableSearch}
+                onClick={handleSubmit}
+              />
+              {handleToggle && (
+                <Form.Field
+                  basic
+                  color="blue"
+                  content={intl.formatMessage({
+                    id: advancedSearch
+                      ? "basic.search.button.text"
+                      : "advanced.search.button.text"
+                  })}
+                  control={Button}
+                  fluid
+                  onClick={handleToggle}
+                  style={{ width: "200px" }}
+                />
+              )}
+            </Form.Group>
+          </Form.Group>
         )}
       </Form>
     );
   }
 
+  generateCommonProps(name) {
+    const { defaultValues, handleChange, handleSubmit } = this.props;
+
+    let defaultVal = defaultValues[name];
+    /*if (
+      ["skills", "location", "classification"].includes(name) &&
+      typeof defaultVal !== "object"
+    ) {
+      defaultVal = [defaultVal];
+    }*/
+
+    let retVal = {
+      fluid: true,
+      name: name,
+      onChange: handleChange,
+      onSubmit: handleSubmit
+    };
+
+    if (name === "exFeeder") {
+      retVal.defaultChecked = defaultVal && defaultVal !== "false";
+    } else {
+      retVal.defaultValue = defaultVal;
+    }
+
+    return retVal;
+  }
+
   renderAdvancedFields() {
     const {
-      handleChange,
-      handleToggle,
+      advancedOptions,
+      getAdvancedOptions,
       handleSubmit,
-      horizontalLayout
+      navBarLayout,
+      disableSearch,
+      intl
     } = this.props;
+
+    if (!advancedOptions) {
+      getAdvancedOptions();
+      return null;
+    }
+
     const fields = (
       <React.Fragment>
+        {navBarLayout && (
+          <Form.Field
+            control={Input}
+            label={intl.formatMessage({
+              id: "advanced.search.form.broad.search"
+            })}
+            {...this.generateCommonProps("searchValue")}
+          />
+        )}
         <Form.Field
           control={Input}
-          name="name"
-          label="Name"
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          label={intl.formatMessage({ id: "advanced.search.form.name" })}
+          {...this.generateCommonProps("name")}
         />
         <Form.Field
           control={Select}
-          name="skills"
-          label="Skills / Competencies"
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          label={intl.formatMessage({ id: "advanced.search.form.skills" })}
+          multiple
+          options={advancedOptions.developmentalGoals}
+          search
+          {...this.generateCommonProps("skills")}
         />
         <Form.Field
           control={Select}
-          name="branch"
-          label="Branch"
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          label={intl.formatMessage({ id: "advanced.search.form.branch" })}
+          multiple
+          options={advancedOptions.branch}
+          search
+          {...this.generateCommonProps("branch")}
         />
         <Form.Field
           control={Select}
-          name="location"
-          label="Location"
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          label={intl.formatMessage({ id: "advanced.search.form.location" })}
+          multiple
+          options={advancedOptions.location}
+          search
+          {...this.generateCommonProps("location")}
         />
         <Form.Field
           control={Select}
-          name="classification"
-          label="classification"
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          label={intl.formatMessage({
+            id: "advanced.search.form.classification"
+          })}
+          multiple
+          options={advancedOptions.groupOrLevel}
+          search
+          {...this.generateCommonProps("classification")}
         />
         <Form.Field
           control={Checkbox}
-          name="exFeeder"
-          label="Is Ex Feeder"
-          onChange={handleChange}
-          onSubmit={handleSubmit}
+          label={intl.formatMessage({ id: "advanced.search.form.ex.feeder" })}
+          {...this.generateCommonProps("exFeeder")}
         />
-        <Button color="blue" onClick={handleSubmit}>
-          Search
-        </Button>
-        {handleToggle && (
-          <Button basic color="blue" onClick={handleToggle}>
-            Basic Search
-          </Button>
+        {navBarLayout && (
+          <Form.Field
+            fluid
+            style={{ width: "200px" }}
+            control={Button}
+            color="blue"
+            content={intl.formatMessage({
+              id: "apply.button.text"
+            })}
+            disabled={disableSearch}
+            onClick={handleSubmit}
+          />
         )}
       </React.Fragment>
     );
 
-    if (horizontalLayout) {
-      return <Form.Group>{fields}</Form.Group>;
+    if (navBarLayout) {
+      return <Form.Group widths="equal">{fields}</Form.Group>;
     }
     return fields;
   }
 }
-/*
-
-        <Form.Field style={styles.formRow}>
-          <label>
-            {intl.formatMessage({
-              id: "advanced.search.form.desired.skills"
-            })}
-          </label>
-          <Dropdown
-            fluid
-            multiple
-            name="primaryDropdown"
-            onChange={updateSearch}
-            options={skills}
-            placeholder={intl.formatMessage({
-              id: "advanced.search.form.desired.skills"
-            })}
-            search
-            selection
-            style={styles.primaryDropdown}
-          />
-        </Form.Field>
-  */
-
-const styles = {
-  advancedComponent: {
-    textAlign: "left",
-    maxWidth: "400px",
-    width: "100%"
-  },
-
-  form: {
-    width: "100%",
-    maxWidth: "800px"
-  },
-
-  formRow: {
-    padding: "3px",
-    textAlign: "left"
-  },
-
-  primaryDropdown: {
-    textAlign: "left",
-    maxWidth: "800px",
-    width: "100%"
-  }
-};
 
 export default injectIntl(SearchFormView);

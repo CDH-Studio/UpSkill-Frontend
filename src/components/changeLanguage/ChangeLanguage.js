@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Menu } from "semantic-ui-react";
 import { FormattedMessage, injectIntl } from "react-intl";
+import { Icon } from "semantic-ui-react";
 
 class ChangeLanguage extends Component {
   changeLanguage = lang => {
@@ -13,6 +14,7 @@ class ChangeLanguage extends Component {
 
     return (
       <Menu.Item onClick={() => this.changeLanguage(languageCode)}>
+        <Icon name="world" />
         <FormattedMessage id="lang" />
       </Menu.Item>
     );

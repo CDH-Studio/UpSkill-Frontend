@@ -12,8 +12,6 @@ function prepareInfo(info, language, specialUndefineds) {
   if (typeof info === "object") {
     if (info === null) {
       return info;
-      const { intl } = this.props;
-      return intl.formatMessage({ id: "profile.undefined" });
     }
     if (Array.isArray(info)) {
       let returnArray = [];
@@ -28,7 +26,6 @@ function prepareInfo(info, language, specialUndefineds) {
       }
       return returnObject;
     }
-    return info;
   }
   return info;
 }
