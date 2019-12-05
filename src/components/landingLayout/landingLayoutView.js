@@ -9,7 +9,6 @@ import {
 } from "semantic-ui-react";
 import { injectIntl, FormattedMessage } from "react-intl";
 import LandingNavBarController from "./landingNavBar/landingNavBarController";
-import LargeLogo from "../../assets/whiteFullLogo.svg";
 
 import backgroundImage from "../../assets/homeBackground.jpg";
 import cdhLogo from "../../assets/cdhlogo.png";
