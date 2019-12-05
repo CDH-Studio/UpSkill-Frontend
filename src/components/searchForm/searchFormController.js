@@ -6,6 +6,7 @@ import { injectIntl } from "react-intl";
 import config from "../../config";
 
 import SearchFormView from "./searchFormView";
+import { object } from "prop-types";
 
 const backendAddress = config.backendAddress;
 
@@ -28,18 +29,25 @@ const backendAddress = config.backendAddress;
 class SearchFormController extends Component {
   constructor(props) {
     super(props);
-    const { defaultAdvanced } = this.props;
+    const { defaultAdvanced, navBarLayout } = this.props;
 
     const windowLocation = window.location.toString();
 
     if (windowLocation.includes("/results")) {
-      this.fields = queryString.parseUrl(decodeURI(windowLocation)).query;
+      this.fields = queryString.parseUrl(decodeURI(windowLocation), {
+        arrayFormat: "bracket"
+      }).query;
     } else {
       this.fields = {};
     }
 
-    this.state = { advancedOptions: null, advancedSearch: defaultAdvanced };
+    this.state = {
+      advancedOptions: null,
+      advancedSearch: defaultAdvanced,
+      disableSearch: Object.entries(this.fields).length === 0
+    };
 
+    this.checkDisabled = this.checkDisabled.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
@@ -53,7 +61,7 @@ class SearchFormController extends Component {
         (await axios.get(backendAddress + "api/option/getGroupLevel")).data,
         lang
       ).map(obj => ({
-        key: obj.description,
+        key: obj.id, //obj.description,
         value: obj.id,
         text: obj.description
       })),
@@ -62,7 +70,7 @@ class SearchFormController extends Component {
           .data,
         lang
       ).map(obj => ({
-        key: obj.description,
+        key: obj.id, //obj.description,
         value: obj.id,
         text: obj.description
       })),
@@ -70,41 +78,92 @@ class SearchFormController extends Component {
         (await axios.get(backendAddress + "api/option/getLocation")).data,
         lang
       ).map(obj => ({
-        key: obj.description,
+        key: obj.id, //obj.description,
         value: obj.id,
         text: obj.description
-      }))
+      })),
+      branch: (await axios.get(backendAddress + "api/option/getBranch")).data
+        .filter(elem => elem.description && elem.description.en)
+        .map(obj => ({
+          key: obj.description.en,
+          value: obj.description.en,
+          text: obj.description[lang]
+        }))
     };
 
     this.setState({ advancedOptions: advancedOptions });
   }
 
+  checkDisabled() {
+    const { navBarLayout } = this.props;
+    const { advancedSearch } = this.state;
+    const fieldKeys = Object.keys(this.fields);
+    const navBarEmpty = navBarLayout && fieldKeys.length === 0;
+    const basicHomeEmpty =
+      !navBarLayout && !advancedSearch && !fieldKeys.includes("searchValue");
+
+    const advancedKeyLengthTarget = +fieldKeys.includes("searchValue");
+    const advancedHomeEmpty =
+      !navBarLayout &&
+      advancedSearch &&
+      !(fieldKeys.length > advancedKeyLengthTarget);
+    const isDisabled = Boolean(
+      navBarEmpty || basicHomeEmpty || advancedHomeEmpty
+    );
+    this.setState({
+      disableSearch: isDisabled
+    });
+  }
+
   handleChange(e, { name, value, checked }) {
-    this.fields[name] = value || checked;
+    const newVal = value || checked;
+    if (!newVal || newVal.length === 0) {
+      delete this.fields[name];
+      this.checkDisabled();
+    } else {
+      this.fields[name] = newVal;
+      this.setState({
+        disableSearch: false
+      });
+    }
   }
 
   handleSubmit() {
     const { redirectFunction } = this.props;
-
+    const oldUrl = window.location.toString();
     let query;
     console.log("submit", this.fields);
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
-      query = queryString.stringify(this.fields);
+      query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
       redirectFunction("/secured/results?" + encodeURI(query));
     } else {
-      query = queryString.stringify({
-        searchValue: this.fields.searchValue
-      });
+      query = queryString.stringify(
+        {
+          searchValue: this.fields.searchValue
+        },
+        { arrayFormat: "bracket" }
+      );
 
       redirectFunction("/secured/results/fuzzySearch?" + encodeURI(query));
+    }
+
+    if (oldUrl.includes("/results")) {
+      //this.forceUpdate();
+      window.location.reload();
     }
   }
 
   handleToggle() {
-    this.setState({
-      advancedSearch: !this.state.advancedSearch
-    });
+    //const {navBarLayout} = this.props;
+    this.setState(
+      {
+        advancedSearch: !this.state.advancedSearch
+      },
+      () => this.checkDisabled()
+    );
+
+    //if ()
   }
 
   render() {
@@ -121,6 +180,7 @@ class SearchFormController extends Component {
         navBarLayout={navBarLayout}
         maxFormWidth={maxFormWidth}
         defaultValues={this.fields}
+        disableSearch={this.state.disableSearch}
       />
     );
   }

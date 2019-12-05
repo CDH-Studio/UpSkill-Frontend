@@ -268,8 +268,13 @@ class PrimaryLayoutGroupView extends Component {
                   <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
 
                   <Popup
-                    on="click"
-                    trigger={<h5 className="noGapAbove">{branch}</h5>}
+                    on="hover"
+                    wide="very"
+                    trigger={
+                      <h5 className="noGapAbove">
+                        {branch} <Icon name="angle down" />
+                      </h5>
+                    }
                   >
                     <Popup.Content>
                       {this.renderOrganizationList([...organizationList, team])}
