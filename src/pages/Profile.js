@@ -36,7 +36,22 @@ class Profile extends Component {
         profileInfo.developmentalGoals
       );
 
-      this.setState({ profileInfo: profileInfo });
+      this.setState({
+        profileInfo: {
+          ...profileInfo,
+          ...{
+            interestedInRemote: true,
+            willingToRelocateTo: [
+              { id: "aaaa", description: "Toronto" },
+              { id: "bbbb", description: "Nunavut" }
+            ],
+            lookingForNewJob: {
+              id: "cccc",
+              description: "Not looking but open to offers"
+            }
+          }
+        }
+      });
     };
 
     const url = window.location.toString();
