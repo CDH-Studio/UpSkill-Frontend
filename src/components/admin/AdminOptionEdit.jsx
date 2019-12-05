@@ -178,7 +178,7 @@ class AdminOptionEdit extends Component {
 
   handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
 
-  renderEditButtons = (id, en, fr) => {
+  renderEditButton = (id, en, fr) => {
     return (
       <center>
         <Button
@@ -366,13 +366,16 @@ class AdminOptionEdit extends Component {
             <Table.Row key={id}>
               <Table.Cell>
                 <center>
-                  <Checkbox onClick={() => this.handleCheckbox(id)} />
+                  <Checkbox
+                    onClick={() => this.handleCheckbox(id)}
+                    checked={this.state.deleteValues.includes(id)}
+                  />
                 </center>
               </Table.Cell>
               <Table.Cell>{descriptionEn}</Table.Cell>
               <Table.Cell>{descriptionFr}</Table.Cell>
               <Table.Cell>
-                {this.renderEditButtons(id, descriptionEn, descriptionFr)}
+                {this.renderEditButton(id, descriptionEn, descriptionFr)}
               </Table.Cell>
             </Table.Row>
           ))}
