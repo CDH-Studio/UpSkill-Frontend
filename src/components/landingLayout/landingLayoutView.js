@@ -1,13 +1,6 @@
-import React, { Component, ImageBackground, Text } from "react";
-import {
-  Image,
-  Card,
-  Grid,
-  Icon,
-  Button,
-  FormTextArea
-} from "semantic-ui-react";
-import { injectIntl, FormattedMessage } from "react-intl";
+import React, { Component } from "react";
+import { Image, Card, Grid, Icon, Button } from "semantic-ui-react";
+import { FormattedMessage } from "react-intl";
 import LandingNavBarController from "./landingNavBar/landingNavBarController";
 
 import backgroundImage from "../../assets/homeBackground.jpg";
