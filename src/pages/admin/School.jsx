@@ -41,8 +41,6 @@ class AdminSchool extends Component {
   }
 
   componentDidMount() {
-    console.log(this.getDisplayType(true));
-
     document.title = this.getDisplayType(true) + " - Admin | UpSkill";
     this.setState({ loading: true });
     axios
@@ -131,8 +129,11 @@ class AdminSchool extends Component {
                 .replace(/[\u0300-\u036f]/g, "")
             ))
     );
+
+    const dbAttributes = { english: "descriptionEn", french: "descriptionFr" };
+
     this.setState({
-      data: _.sortBy(newData, [this.state.column]),
+      data: _.sortBy(newData, [dbAttributes[this.state.column]]),
       activePage: 1
     });
   };
@@ -234,7 +235,7 @@ class AdminSchool extends Component {
       >
         <Header content={"Edit " + this.getDisplayType(false)} as="h2" />
         <Modal.Content>
-          <Form onSubmit={() => alert()}>
+          <Form>
             <Form.Field>
               <label>Name</label>
               <Input
@@ -336,7 +337,7 @@ class AdminSchool extends Component {
       >
         <Header content={"Add " + this.getDisplayType(false)} as="h2" />
         <Modal.Content>
-          <Form onSubmit={() => alert()}>
+          <Form>
             <Form.Field>
               <label>
                 <FormattedMessage id="admin.name" />

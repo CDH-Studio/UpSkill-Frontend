@@ -8,7 +8,8 @@ import {
   Icon,
   Input,
   Form,
-  Pagination
+  Pagination,
+  Checkbox
 } from "semantic-ui-react";
 import _ from "lodash";
 import axios from "axios";
@@ -33,13 +34,12 @@ class AdminOptionEdit extends Component {
       loading: true,
       english: null,
       french: null,
+      deleteValues: [],
       activePage: 1
     };
   }
 
   componentDidMount() {
-    console.log(this.getDisplayType(true));
-
     document.title = this.getDisplayType(true) + " - Admin | UpSkill";
     this.setState({ loading: true });
     axios
@@ -91,6 +91,13 @@ class AdminOptionEdit extends Component {
 
   handleEditChange = (e, { name, value }) => this.setState({ [name]: value });
 
+  handleCheckbox = id => {
+    this.setState(({ deleteValues }) => {
+      deleteValues = _.xor(deleteValues, [id]);
+      return { deleteValues };
+    });
+  };
+
   handleFilter = (e, { value }) => {
     const newData = this.state.allData.filter(
       option =>
@@ -117,8 +124,11 @@ class AdminOptionEdit extends Component {
                 .replace(/[\u0300-\u036f]/g, "")
             ))
     );
+
+    const dbAttributes = { english: "descriptionEn", french: "descriptionFr" };
+
     this.setState({
-      data: _.sortBy(newData, [this.state.column]),
+      data: _.sortBy(newData, [dbAttributes[this.state.column]]),
       activePage: 1
     });
   };
@@ -140,11 +150,16 @@ class AdminOptionEdit extends Component {
   };
 
   handleSubmitDelete = () => {
-    const { type, id } = this.state;
+    const { type, deleteValues } = this.state;
 
-    const url = backendAddress + "api/admin/options/" + type + "/" + id;
-    axios.delete(url).then(() => {
-      this.setState({ id: null, english: null, french: null, modal: null });
+    const url = backendAddress + "api/admin/delete/" + type;
+    axios.post(url, { ids: deleteValues }).then(() => {
+      this.setState({
+        deleteValues: [],
+        english: null,
+        french: null,
+        modal: null
+      });
       window.location.reload();
     });
   };
@@ -163,7 +178,7 @@ class AdminOptionEdit extends Component {
 
   handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
 
-  renderEditButtons = (id, en, fr) => {
+  renderEditButton = (id, en, fr) => {
     return (
       <center>
         <Button
@@ -176,19 +191,6 @@ class AdminOptionEdit extends Component {
           </Button.Content>
           <Button.Content hidden>
             <Icon name="edit" />
-          </Button.Content>
-        </Button>
-        <Button
-          animated="fade"
-          color="red"
-          inverted
-          onClick={() => this.handleClick("delete", id, en, fr)}
-        >
-          <Button.Content visible>
-            <FormattedMessage id="admin.delete" />
-          </Button.Content>
-          <Button.Content hidden>
-            <Icon name="x" />
           </Button.Content>
         </Button>
       </center>
@@ -207,7 +209,7 @@ class AdminOptionEdit extends Component {
       >
         <Header content={"Edit " + this.getDisplayType(false)} as="h2" />
         <Modal.Content>
-          <Form onSubmit={() => alert()}>
+          <Form>
             <Form.Field>
               <label>English</label>
               <Input
@@ -238,7 +240,7 @@ class AdminOptionEdit extends Component {
             <FormattedMessage id="admin.cancel" />
           </Button>
           <Button color="green" onClick={this.handleSubmitEdit}>
-            <Icon name="checkmark" /> Apply
+            <Icon name="checkmark" /> <FormattedMessage id="admin.apply" />
           </Button>
         </Modal.Actions>
       </Modal>
@@ -246,7 +248,7 @@ class AdminOptionEdit extends Component {
   };
 
   deleteModal = () => {
-    const { modal, english, french } = this.state;
+    const { modal } = this.state;
 
     return (
       <Modal
@@ -258,19 +260,17 @@ class AdminOptionEdit extends Component {
       >
         <Header content={"Delete " + this.getDisplayType(false)} as="h2" />
         <Modal.Content>
-          <h5>
-            Are you sure you want to delete "{english} / {french}"?
-          </h5>
+          <h5>Are you sure you want to delete all the selected values?</h5>
         </Modal.Content>
 
         <Modal.Actions>
           <Button
-            color="green"
+            color="red"
             floated="right"
             onClick={this.handleSubmitDelete}
             style={{ marginTop: "18px", marginBottom: "18px" }}
           >
-            <Icon name="trash" /> Delete
+            <Icon name="trash" /> <FormattedMessage id="admin.delete" />
           </Button>
           <Button
             color="red"
@@ -299,7 +299,7 @@ class AdminOptionEdit extends Component {
       >
         <Header content={"Add " + this.getDisplayType(false)} as="h2" />
         <Modal.Content>
-          <Form onSubmit={() => alert()}>
+          <Form>
             <Form.Field>
               <label>English</label>
               <Input
@@ -343,6 +343,7 @@ class AdminOptionEdit extends Component {
       <Table sortable celled fixed striped color="blue">
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell width={1} />
             <Table.HeaderCell
               sorted={column === "english" ? direction : null}
               onClick={this.handleSort("english")}
@@ -355,13 +356,7 @@ class AdminOptionEdit extends Component {
             >
               <FormattedMessage id="language.french" />
             </Table.HeaderCell>
-            <Table.HeaderCell
-              width={
-                this.props.intl.formatMessage({ id: "lang.code" }) === "fr"
-                  ? 3
-                  : 4
-              }
-            >
+            <Table.HeaderCell width={2} textAlign="center">
               <FormattedMessage id="admin.editHeader" />
             </Table.HeaderCell>
           </Table.Row>
@@ -369,10 +364,18 @@ class AdminOptionEdit extends Component {
         <Table.Body>
           {_.map(pageData, ({ id, descriptionEn, descriptionFr }) => (
             <Table.Row key={id}>
+              <Table.Cell>
+                <center>
+                  <Checkbox
+                    onClick={() => this.handleCheckbox(id)}
+                    checked={this.state.deleteValues.includes(id)}
+                  />
+                </center>
+              </Table.Cell>
               <Table.Cell>{descriptionEn}</Table.Cell>
               <Table.Cell>{descriptionFr}</Table.Cell>
               <Table.Cell>
-                {this.renderEditButtons(id, descriptionEn, descriptionFr)}
+                {this.renderEditButton(id, descriptionEn, descriptionFr)}
               </Table.Cell>
             </Table.Row>
           ))}
@@ -384,7 +387,15 @@ class AdminOptionEdit extends Component {
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~RENDER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   render() {
-    const { type, column, data, direction, loading, activePage } = this.state;
+    const {
+      type,
+      column,
+      data,
+      direction,
+      loading,
+      activePage,
+      deleteValues
+    } = this.state;
     const { changeLanguage, keycloak } = this.props;
 
     let totalPages = 0;
@@ -417,6 +428,15 @@ class AdminOptionEdit extends Component {
         >
           <Icon name="add" />
           <FormattedMessage id="admin.add" />
+        </Button>
+        <Button
+          color="red"
+          floated="right"
+          onClick={() => this.handleClick("delete")}
+          disabled={deleteValues.length === 0}
+        >
+          <Icon name="trash" />
+          <FormattedMessage id="admin.delete" />
         </Button>
 
         {this.generateTable(column, direction, pageData)}

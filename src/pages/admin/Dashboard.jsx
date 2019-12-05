@@ -29,8 +29,6 @@ class AdminDashboard extends Component {
   }
 
   componentDidMount() {
-    // console.log(this.getDisplayType(true));
-
     document.title = this.getDisplayType(true) + " - Admin | UpSkill";
     this.setState({ loading: true });
     axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
@@ -59,8 +57,6 @@ class AdminDashboard extends Component {
     const { type, loading, data } = this.state;
     // const { user, profile, flagged, inactive } = this.state.data;
     const { changeLanguage, keycloak } = this.props;
-
-    console.log("allData", data);
 
     return (
       <AdminMenu

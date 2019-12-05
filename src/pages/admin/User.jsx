@@ -137,18 +137,26 @@ class AdminUser extends Component {
                 .replace(/[\u0300-\u036f]/g, "")
             ))
     );
+
+    const dbAttributes = {
+      name: ["firstName"],
+      registered: ["createdAt"],
+      tenure: ["tenure.descriptionEn"],
+      profStatus: ["flagged", "user.inactive"]
+    };
+
     this.setState({
-      data: _.sortBy(newData, [this.state.column]),
+      data: _.sortBy(newData, dbAttributes[this.state.column]),
       activePage: 1
     });
   };
 
   handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
 
-  handleApply = () => {
-    axios
+  handleApply = async () => {
+    await axios
       .put(backendAddress + "api/admin/profileStatus", this.state.statuses)
-      .then(window.location.reload());
+      .then(() => window.location.reload());
   };
 
   handleDropdownChange = (status, id) => {
@@ -237,14 +245,14 @@ class AdminUser extends Component {
             >
               <FormattedMessage id="admin.tenure" />
             </Table.HeaderCell>
+            <Table.HeaderCell width={1} textAlign="center">
+              <FormattedMessage id="admin.view" />
+            </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "profStatus" ? direction : null}
               onClick={this.handleSort("profStatus")}
-              width={
-                this.props.intl.formatMessage({ id: "lang.code" }) === "fr"
-                  ? 3
-                  : 4
-              }
+              collapsing
+              width={2}
             >
               <FormattedMessage id="admin.profileStatus" />
             </Table.HeaderCell>
@@ -274,6 +282,18 @@ class AdminUser extends Component {
                   <FormattedMessage id="admin.none" />
                 )}
               </Table.Cell>
+              <Table.Cell>
+                <center>
+                  <Button
+                    color="blue"
+                    onClick={() =>
+                      window.open("/secured/profile/" + id, "_blank")
+                    }
+                    compact
+                    icon="eye"
+                  ></Button>
+                </center>
+              </Table.Cell>
               <Table.Cell
                 style={{ overflow: "visible" }}
                 active={Object.keys(this.state.statuses).includes(id)}
@@ -300,8 +320,6 @@ class AdminUser extends Component {
       statuses
     } = this.state;
     const { changeLanguage, keycloak } = this.props;
-    console.log("alldaata", data);
-
     let totalPages = 0;
     if (data) totalPages = Math.ceil(data.length / ELEMENT_PER_PAGE);
 
@@ -309,7 +327,6 @@ class AdminUser extends Component {
     const dataEnd = dataStart + ELEMENT_PER_PAGE;
 
     const pageData = _.slice(data, dataStart, dataEnd);
-    console.log(statuses, Object.entries(statuses).length === 0);
 
     return (
       <AdminMenu
