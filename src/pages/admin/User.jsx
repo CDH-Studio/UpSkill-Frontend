@@ -300,6 +300,7 @@ class AdminUser extends Component {
       statuses
     } = this.state;
     const { changeLanguage, keycloak } = this.props;
+    console.log("alldaata", data);
 
     let totalPages = 0;
     if (data) totalPages = Math.ceil(data.length / ELEMENT_PER_PAGE);

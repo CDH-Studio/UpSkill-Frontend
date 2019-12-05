@@ -12,7 +12,8 @@ import {
   AdminCompetency,
   AdminDiploma,
   AdminSchool,
-  AdminUser
+  AdminUser,
+  AdminDasboard
 } from "../../pages/admin";
 
 const history = createBrowserHistory();
@@ -85,6 +86,17 @@ class Secured extends Component {
               exact
               path="/admin/"
               render={() => <Redirect to="/admin/dashboard" />}
+            />
+            <Route
+              exact
+              path="/admin/dashboard"
+              render={routeProps => (
+                <AdminDasboard
+                  keycloak={keycloak}
+                  changeLanguage={this.changeLanguage}
+                  {...routeProps}
+                />
+              )}
             />
             <Route
               exact
