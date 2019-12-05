@@ -26,6 +26,7 @@
   "admin.delete": "Supprimer",
   "admin.cancel": "Annuler",
   "admin.none": "Aucun spécifié",
+  "admin.view": "Voir",
   "admin.dashboard.total.users": "Utilisateurs totals",
   "admin.dashboard.inactive.users": "Utilisateurs inactif",
   "admin.dashboard.flagged.profiles": "Profils cachés",

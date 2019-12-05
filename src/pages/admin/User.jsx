@@ -145,10 +145,10 @@ class AdminUser extends Component {
 
   handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
 
-  handleApply = () => {
-    axios
+  handleApply = async () => {
+    await axios
       .put(backendAddress + "api/admin/profileStatus", this.state.statuses)
-      .then(window.location.reload());
+      .then(() => window.location.reload());
   };
 
   handleDropdownChange = (status, id) => {
@@ -237,14 +237,14 @@ class AdminUser extends Component {
             >
               <FormattedMessage id="admin.tenure" />
             </Table.HeaderCell>
+            <Table.HeaderCell width={1} textAlign="center">
+              <FormattedMessage id="admin.view" />
+            </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "profStatus" ? direction : null}
               onClick={this.handleSort("profStatus")}
-              width={
-                this.props.intl.formatMessage({ id: "lang.code" }) === "fr"
-                  ? 3
-                  : 4
-              }
+              collapsing
+              width={2}
             >
               <FormattedMessage id="admin.profileStatus" />
             </Table.HeaderCell>
@@ -273,6 +273,18 @@ class AdminUser extends Component {
                 ) : (
                   <FormattedMessage id="admin.none" />
                 )}
+              </Table.Cell>
+              <Table.Cell>
+                <center>
+                  <Button
+                    color="blue"
+                    onClick={() =>
+                      window.open("/secured/profile/" + id, "_blank")
+                    }
+                    compact
+                    icon="eye"
+                  ></Button>
+                </center>
               </Table.Cell>
               <Table.Cell
                 style={{ overflow: "visible" }}
