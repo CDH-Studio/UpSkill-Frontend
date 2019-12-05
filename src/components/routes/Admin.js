@@ -8,13 +8,13 @@ import { Dimmer, Image } from "semantic-ui-react";
 import animatedLogo from "../../assets/animatedLogo.gif";
 
 import {
-  Advanced,
-  Home,
-  Results,
-  Profile,
-  Setup,
-  ProfileGeneration
-} from "../../pages";
+  AdminSkill,
+  AdminCompetency,
+  AdminDiploma,
+  AdminSchool,
+  AdminUser,
+  AdminDasboard
+} from "../../pages/admin";
 
 const history = createBrowserHistory();
 
@@ -84,14 +84,14 @@ class Secured extends Component {
 
             <Route
               exact
-              path="/admin/profile-generation"
-              component={ProfileGeneration}
+              path="/admin/"
+              render={() => <Redirect to="/admin/dashboard" />}
             />
             <Route
               exact
-              path="/admin/advanced"
+              path="/admin/dashboard"
               render={routeProps => (
-                <Advanced
+                <AdminDasboard
                   keycloak={keycloak}
                   changeLanguage={this.changeLanguage}
                   {...routeProps}
@@ -100,9 +100,9 @@ class Secured extends Component {
             />
             <Route
               exact
-              path="/admin/home"
+              path="/admin/skill"
               render={routeProps => (
-                <Home
+                <AdminSkill
                   keycloak={keycloak}
                   changeLanguage={this.changeLanguage}
                   {...routeProps}
@@ -111,9 +111,9 @@ class Secured extends Component {
             />
             <Route
               exact
-              path="/admin/results"
+              path="/admin/competency"
               render={routeProps => (
-                <Results
+                <AdminCompetency
                   keycloak={keycloak}
                   changeLanguage={this.changeLanguage}
                   {...routeProps}
@@ -122,9 +122,9 @@ class Secured extends Component {
             />
             <Route
               exact
-              path="/admin/profile"
+              path="/admin/diploma"
               render={routeProps => (
-                <Profile
+                <AdminDiploma
                   keycloak={keycloak}
                   changeLanguage={this.changeLanguage}
                   {...routeProps}
@@ -133,9 +133,20 @@ class Secured extends Component {
             />
             <Route
               exact
-              path="/admin/setup"
+              path="/admin/school"
               render={routeProps => (
-                <Setup
+                <AdminSchool
+                  keycloak={keycloak}
+                  changeLanguage={this.changeLanguage}
+                  {...routeProps}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/admin/user"
+              render={routeProps => (
+                <AdminUser
                   keycloak={keycloak}
                   changeLanguage={this.changeLanguage}
                   {...routeProps}
