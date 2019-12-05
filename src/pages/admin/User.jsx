@@ -30,19 +30,13 @@ class AdminUser extends Component {
       allData: null,
       data: null,
       direction: null,
-      id: null,
-      modal: null,
+      statuses: {},
       loading: true,
-      description: null,
-      state: null,
-      country: null,
       activePage: 1
     };
   }
 
   componentDidMount() {
-    console.log(this.getDisplayType(true));
-
     document.title = this.getDisplayType(true) + " - Admin | UpSkill";
     this.setState({ loading: true });
     axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
@@ -151,6 +145,41 @@ class AdminUser extends Component {
 
   handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
 
+  handleApply = () => {
+    axios
+      .put(backendAddress + "api/admin/profileStatus", this.state.statuses)
+      .then(window.location.reload());
+  };
+
+  handleDropdownChange = (status, id) => {
+    this.setState(({ statuses, allData }) => {
+      statuses[id] = status;
+
+      let changedUser = _.remove(allData, user => user.id === id);
+
+      changedUser = changedUser[0];
+
+      if (status === "Active") {
+        changedUser.flagged = false;
+        changedUser.user.inactive = false;
+      }
+
+      if (status === "Inactive") {
+        changedUser.flagged = false;
+        changedUser.user.inactive = true;
+      }
+
+      if (status === "Hidden") {
+        changedUser.flagged = true;
+        changedUser.user.inactive = false;
+      }
+
+      allData.push(changedUser);
+
+      return { statuses, allData };
+    });
+  };
+
   profileStatusValue = (inactive, flagged) => {
     if (inactive) return "Inactive";
     else if (flagged) return "Hidden";
@@ -163,12 +192,15 @@ class AdminUser extends Component {
       { value: "Inactive", text: "Inactive", key: "inactive" },
       { value: "Hidden", text: "Hidden", key: "flagged" }
     ];
+
     return (
       <center>
         <Dropdown
           placeholder="Select Friend"
           fluid
           selection
+          key={id}
+          onChange={(e, target) => this.handleDropdownChange(target.value, id)}
           value={this.profileStatusValue(inactive, flagged)}
           options={options}
         />
@@ -214,17 +246,23 @@ class AdminUser extends Component {
                   : 4
               }
             >
-              <FormattedMessage id="admin.prooeStatus" />
+              <FormattedMessage id="admin.profileStatus" />
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {_.map(pageData, ({ id, user, createdAt, tenure, flagged }) => (
-            <Table.Row key={id} error={flagged} disabled={user.inactive}>
-              <Table.Cell>{user.name}</Table.Cell>
-              <Table.Cell>{Math.floor(Math.random() * 100000000)}</Table.Cell>
-              <Table.Cell>{moment(createdAt).format("LLL")}</Table.Cell>
-              <Table.Cell>
+            <Table.Row key={id}>
+              <Table.Cell disabled={user.inactive} error={flagged}>
+                {user.name}
+              </Table.Cell>
+              <Table.Cell disabled={user.inactive} error={flagged}>
+                {Math.floor(Math.random() * 100000000)}
+              </Table.Cell>
+              <Table.Cell disabled={user.inactive} error={flagged}>
+                {moment(createdAt).format("LLL")}
+              </Table.Cell>
+              <Table.Cell disabled={user.inactive} error={flagged}>
                 {tenure ? (
                   this.props.intl.formatMessage({ id: "language.code" }) ===
                   "en" ? (
@@ -236,7 +274,10 @@ class AdminUser extends Component {
                   <FormattedMessage id="admin.none" />
                 )}
               </Table.Cell>
-              <Table.Cell style={{ overflow: "visible" }}>
+              <Table.Cell
+                style={{ overflow: "visible" }}
+                active={Object.keys(this.state.statuses).includes(id)}
+              >
                 {this.renderStatusDropdown(id, user.inactive, flagged)}
               </Table.Cell>
             </Table.Row>
@@ -249,7 +290,15 @@ class AdminUser extends Component {
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~RENDER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   render() {
-    const { type, column, data, direction, loading, activePage } = this.state;
+    const {
+      type,
+      column,
+      data,
+      direction,
+      loading,
+      activePage,
+      statuses
+    } = this.state;
     const { changeLanguage, keycloak } = this.props;
 
     let totalPages = 0;
@@ -259,6 +308,7 @@ class AdminUser extends Component {
     const dataEnd = dataStart + ELEMENT_PER_PAGE;
 
     const pageData = _.slice(data, dataStart, dataEnd);
+    console.log(statuses, Object.entries(statuses).length === 0);
 
     return (
       <AdminMenu
@@ -274,10 +324,11 @@ class AdminUser extends Component {
         <Button
           color="green"
           floated="right"
-          onClick={() => this.handleClick("add")}
+          onClick={this.handleApply}
+          disabled={Object.entries(statuses).length === 0}
         >
-          <Icon name="add" />
-          <FormattedMessage id="admin.add" />
+          <Icon name="check circle outline" />
+          <FormattedMessage id="admin.apply" />
         </Button>
 
         {this.generateTable(column, direction, pageData)}
