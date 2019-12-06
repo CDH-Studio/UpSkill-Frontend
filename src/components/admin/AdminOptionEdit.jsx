@@ -185,7 +185,6 @@ class AdminOptionEdit extends Component {
           color="blue"
           onClick={() => this.handleClick("edit", id, en, fr)}
           name="pencil"
-          size="large"
         />
       </center>
     );
