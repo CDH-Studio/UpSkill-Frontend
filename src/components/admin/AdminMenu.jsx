@@ -5,6 +5,8 @@ import NavigationBarView from "../navigationBar/navigationBarView";
 import animatedLogo from "../../assets/animatedLogo.gif";
 import { FormattedMessage } from "react-intl";
 
+import "./adminMenu.css";
+
 export default class AdminMenu extends Component {
   state = { activeItem: this.props.active };
 
@@ -67,7 +69,7 @@ export default class AdminMenu extends Component {
             </Menu>
           </Grid.Column>
           <Grid.Column stretched width={13}>
-            <Segment loading={loading} color="blue" className="profileCard">
+            <Segment loading={loading} color="blue" className="adminSegment">
               {this.props.children}
             </Segment>
           </Grid.Column>
