@@ -24,7 +24,7 @@ class AdminDashboard extends Component {
     this.state = {
       type: "dashboard",
       loading: true,
-      data: { user: 0, exFeeder: 0, flagged: 0, inactive: 0 }
+      data: { user: 5, exFeeder: 4, flagged: 3, inactive: 2 }
     };
   }
 
@@ -33,8 +33,13 @@ class AdminDashboard extends Component {
     this.setState({ loading: true });
     // axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
     this.setState({
+<<<<<<< Updated upstream
       // data: res.data,
       data: { user: 5, exFeeder: 4, flagged: 3, inactive: 2 },
+=======
+      // allData: res.data,
+      // data: res.data,
+>>>>>>> Stashed changes
       loading: false
     });
     // );
