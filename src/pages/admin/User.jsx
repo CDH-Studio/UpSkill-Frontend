@@ -374,6 +374,8 @@ class AdminUser extends Component {
               content: <Icon name="angle right" color="blue" />,
               icon: true
             }}
+            inverted
+            color="blue"
           />
         </center>
       </AdminMenu>

@@ -465,6 +465,7 @@ class AdminOptionEdit extends Component {
               icon: true
             }}
             inverted
+            color="blue"
           />
         </center>
       </AdminMenu>
