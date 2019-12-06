@@ -181,18 +181,12 @@ class AdminOptionEdit extends Component {
   renderEditButton = (id, en, fr) => {
     return (
       <center>
-        <Button
-          animated="fade"
+        <Icon
           color="blue"
           onClick={() => this.handleClick("edit", id, en, fr)}
-        >
-          <Button.Content visible>
-            <FormattedMessage id="admin.edit" />
-          </Button.Content>
-          <Button.Content hidden>
-            <Icon name="edit" />
-          </Button.Content>
-        </Button>
+          name="pencil"
+          size="large"
+        />
       </center>
     );
   };
@@ -464,7 +458,6 @@ class AdminOptionEdit extends Component {
               content: <Icon name="angle right" />,
               icon: true
             }}
-            inverted
           />
         </center>
       </AdminMenu>
