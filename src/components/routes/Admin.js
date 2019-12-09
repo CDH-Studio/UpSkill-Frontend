@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Keycloak from "keycloak-js";
 import { Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import axios from "axios";
 
 import { Dimmer, Image } from "semantic-ui-react";
 
@@ -43,6 +44,12 @@ class Secured extends Component {
     keycloak
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
+        axios.interceptors.request.use(config =>
+          keycloak.updateToken(300).then(() => {
+            config.headers.Authorization = "Bearer " + keycloak.token;
+            return Promise.resolve(config).catch(keycloak.login);
+          })
+        );
         this.setState({ keycloak: keycloak, authenticated: authenticated });
       });
   }
