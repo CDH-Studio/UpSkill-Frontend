@@ -13,7 +13,7 @@ class Profile extends Component {
     this.state = { profileInfo: undefined };
 
     this.handleSuccess = response => {
-      console.log("Recieved", response);
+      console.log("Received", response);
 
       const convertDropdownOptions = list => {
         let newList = [];
@@ -39,13 +39,24 @@ class Profile extends Component {
       this.setState({ profileInfo: profileInfo });
     };
 
+    const url = window.location.toString();
+
+    const profileIdStartIndex = url.indexOf("/secured/profile") + 17;
+
+    if (url.length < profileIdStartIndex + 2) {
+      console.log(profileIdStartIndex);
+      this.profileId = localStorage.getItem("userId");
+    } else {
+      this.profileId = url.substring(profileIdStartIndex);
+    }
+
     this.updateProfileInfo = () => {
       axios
         .get(
           //"http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
           //"http://localhost:8080/api/profile/faba08aa-ffe3-11e9-8d71-362b9e155667"
           //"http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
-          backendAddress + "api/profile/" + localStorage.getItem("userId")
+          backendAddress + "api/profile/" + this.profileId
         )
         .then(this.handleSuccess)
         .catch(function(error) {
@@ -67,6 +78,7 @@ class Profile extends Component {
       <ProfileLayoutController
         changeLanguage={changeLanguage}
         keycloak={keycloak}
+        editable={localStorage.getItem("userId") === this.profileId}
         profileInfo={this.state.profileInfo}
         updateProfileInfo={this.updateProfileInfo}
         redirectFunction={this.goto}

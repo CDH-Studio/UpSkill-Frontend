@@ -4,7 +4,6 @@ import { Card, Grid, Image, Label, Loader } from "semantic-ui-react";
 import tempProfilePicture from "../../assets/tempProfilePicture.png";
 import "./resultStyles.css";
 import NavigationBar from "../navigationBar/navigationBarController";
-import SearchFormController from "../searchForm/searchFormController";
 import prepareInfo from "../../functions/prepareInfo";
 
 export default class ResultsLayoutView extends Component {
@@ -17,12 +16,13 @@ export default class ResultsLayoutView extends Component {
     const { changeLanguage, keycloak, redirectFunction } = this.props;
     return (
       <div>
-        <NavigationBar changeLanguage={changeLanguage} keycloak={keycloak} />
-        <SearchFormController
-          maxFormWidth="1200px"
-          showAdvancedFields={true}
+        <NavigationBar
+          changeLanguage={changeLanguage}
+          includeSearchForm
+          keycloak={keycloak}
           redirectFunction={redirectFunction}
         />
+
         <div className="resultContent">
           <Grid>
             <Grid.Row>{this.renderResultCards()}</Grid.Row>
@@ -52,26 +52,30 @@ export default class ResultsLayoutView extends Component {
       console.log(person);
 
       cards.push(
-        <Card onClick={() => redirectFunction("/profile/" + person.id)}>
+        <Card onClick={() => redirectFunction("/secured/profile/" + person.id)}>
           <Card.Content>
             <Image floated="right" size="mini" src={tempProfilePicture} />
             <Card.Header>
               {person.firstName + " " + person.lastName}
             </Card.Header>
             <Card.Meta>{person.jobTitle}</Card.Meta>
+            <Card.Meta>{person.branch}</Card.Meta>
           </Card.Content>
-          <Card.Content>
-            <Label
-              style={{ marginBottom: "2px", marginTop: "2px" }}
-              color="blue"
-            >
-              React
-            </Label>
-          </Card.Content>
+          <Card.Content>{this.renderTags(person)}</Card.Content>
         </Card>
       );
     });
     return <Card.Group fluid>{cards}</Card.Group>;
+  }
+
+  renderTags(person) {
+    const tags = person.resultSkills.map(skill => (
+      <Label style={{ marginBottom: "2px", marginTop: "2px" }} color="blue">
+        {skill}
+      </Label>
+    ));
+
+    return tags;
   }
 }
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Button, Grid, Image } from "semantic-ui-react";
-import { FormattedMessage } from "react-intl";
+import { Grid, Image } from "semantic-ui-react";
 
 import logo3 from "../../assets/fullLogo3.svg";
 import SearchForm from "../searchForm/searchFormController";
@@ -12,7 +11,7 @@ import NavigationBar from "../navigationBar/navigationBarController";
  * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
  * keycloak                 null                    The keycloak instance being used
  * typeButtonText           "Advanced search"       The text to display on the toggle search type button
- * typeButtonURL            "/advanced"             The url of the page the search type button should redirect to
+ * typeButtonURL            "/secured/advanced"             The url of the page the search type button should redirect to
  * redirectFunction         null                    The function to call with the redirectButtonURL
  * showAdvancedFields       False                   Whether or not to show advanced options or just skills
  */
@@ -21,12 +20,8 @@ class HomeLayoutView extends Component {
     const {
       changeLanguage,
       keycloak,
-      performSearch,
       redirectFunction,
-      showAdvancedFields,
-      typeButtonText,
-      typeButtonURL,
-      updateSearch
+      showAdvancedFields
     } = this.props;
 
     return (
@@ -43,30 +38,11 @@ class HomeLayoutView extends Component {
           </Grid.Row>
           <Grid.Row style={styles.row}>
             <SearchForm
-              maxFormWidth="600px"
+              maxFormWidth="850px"
               showAdvancedFields={showAdvancedFields}
               redirectFunction={redirectFunction}
               toggleButton
             />
-          </Grid.Row>
-          <Grid.Row style={styles.row}>
-            <Button
-              color="blue"
-              id="searchButton"
-              onClick={performSearch}
-              style={styles.button}
-            >
-              <FormattedMessage id="search.button.text" />
-            </Button>
-            <Button
-              basic
-              color="blue"
-              id="toggleAdvancedButton"
-              onClick={() => redirectFunction(typeButtonURL)}
-              style={styles.button}
-            >
-              {typeButtonText}
-            </Button>
           </Grid.Row>
         </Grid>
       </div>

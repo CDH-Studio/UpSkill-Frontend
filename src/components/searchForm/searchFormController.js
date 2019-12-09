@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { formatOptions } from "../editForms/common/formTools";
+import prepareInfo from "../../functions/prepareInfo";
 import queryString from "query-string";
 import { injectIntl } from "react-intl";
 import config from "../../config";
-import FormManagingComponent from "../editForms/common/formTools";
 
 import SearchFormView from "./searchFormView";
+import { object } from "prop-types";
 
 const backendAddress = config.backendAddress;
 
@@ -29,87 +29,158 @@ const backendAddress = config.backendAddress;
 class SearchFormController extends Component {
   constructor(props) {
     super(props);
-    const { defaultAdvanced } = this.props;
-    this.fields = {};
+    const { defaultAdvanced, navBarLayout } = this.props;
 
-    this.state = { advancedOptions: null, advancedSearch: defaultAdvanced };
+    const windowLocation = window.location.toString();
 
-    if (defaultAdvanced) {
-      this.getAdvancedOptions();
+    if (windowLocation.includes("/results")) {
+      this.fields = queryString.parseUrl(decodeURI(windowLocation), {
+        arrayFormat: "bracket"
+      }).query;
+    } else {
+      this.fields = {};
     }
 
+    this.state = {
+      advancedOptions: null,
+      advancedSearch: defaultAdvanced,
+      disableSearch: Object.entries(this.fields).length === 0
+    };
+
+    this.checkDisabled = this.checkDisabled.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.getAdvancedOptions = this.getAdvancedOptions.bind(this);
   }
 
   async getAdvancedOptions() {
+    const lang = localStorage.getItem("lang");
     let advancedOptions = {
-      groupOrLevel: formatOptions(
-        (await axios.get(backendAddress + "api/option/getGroupLevel")).data
-      ),
-      developmentalGoals: formatOptions(
-        (
-          await axios.get(
-            "http://localhost:8080/api/option/getDevelopmentalGoals"
-          )
-        ).data
-      ),
-      location: formatOptions(
-        (await axios.get(backendAddress + "api/option/getLocation")).data
-      )
+      groupOrLevel: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getGroupLevel")).data,
+        lang
+      ).map(obj => ({
+        key: obj.id, //obj.description,
+        value: obj.id,
+        text: obj.description
+      })),
+      developmentalGoals: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getDevelopmentalGoals"))
+          .data,
+        lang
+      ).map(obj => ({
+        key: obj.id, //obj.description,
+        value: obj.id,
+        text: obj.description
+      })),
+      location: prepareInfo(
+        (await axios.get(backendAddress + "api/option/getLocation")).data,
+        lang
+      ).map(obj => ({
+        key: obj.id, //obj.description,
+        value: obj.id,
+        text: obj.description
+      })),
+      branch: (await axios.get(backendAddress + "api/option/getBranch")).data
+        .filter(elem => elem.description && elem.description.en)
+        .map(obj => ({
+          key: obj.description.en,
+          value: obj.description.en,
+          text: obj.description[lang]
+        }))
     };
 
     this.setState({ advancedOptions: advancedOptions });
   }
 
+  checkDisabled() {
+    const { navBarLayout } = this.props;
+    const { advancedSearch } = this.state;
+    const fieldKeys = Object.keys(this.fields);
+    const navBarEmpty = navBarLayout && fieldKeys.length === 0;
+    const basicHomeEmpty =
+      !navBarLayout && !advancedSearch && !fieldKeys.includes("searchValue");
+
+    const advancedKeyLengthTarget = +fieldKeys.includes("searchValue");
+    const advancedHomeEmpty =
+      !navBarLayout &&
+      advancedSearch &&
+      !(fieldKeys.length > advancedKeyLengthTarget);
+    const isDisabled = Boolean(
+      navBarEmpty || basicHomeEmpty || advancedHomeEmpty
+    );
+    this.setState({
+      disableSearch: isDisabled
+    });
+  }
+
   handleChange(e, { name, value, checked }) {
-    this.fields[name] = value || checked;
+    const newVal = value || checked;
+    if (!newVal || newVal.length === 0) {
+      delete this.fields[name];
+      this.checkDisabled();
+    } else {
+      this.fields[name] = newVal;
+      this.setState({
+        disableSearch: false
+      });
+    }
   }
 
   handleSubmit() {
     const { redirectFunction } = this.props;
-
+    const oldUrl = window.location.toString();
     let query;
     console.log("submit", this.fields);
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
-      query = queryString.stringify(this.fields);
+      query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
+      redirectFunction("/secured/results?" + encodeURI(query));
     } else {
-      query = queryString.stringify({
-        searchValue: this.fields.searchValue
-      });
+      query = queryString.stringify(
+        {
+          searchValue: this.fields.searchValue
+        },
+        { arrayFormat: "bracket" }
+      );
 
-      redirectFunction("/results/fuzzySearch?" + encodeURI(query));
+      redirectFunction("/secured/results/fuzzySearch?" + encodeURI(query));
     }
-    redirectFunction("/results?" + encodeURI(query));
+
+    if (oldUrl.includes("/results")) {
+      //this.forceUpdate();
+      window.location.reload();
+    }
   }
 
   handleToggle() {
-    this.setState({
-      advancedSearch: !this.state.advancedSearch
-    });
+    //const {navBarLayout} = this.props;
+    this.setState(
+      {
+        advancedSearch: !this.state.advancedSearch
+      },
+      () => this.checkDisabled()
+    );
+
+    //if ()
   }
 
   render() {
-    const {
-      advancedOptions,
-      advancedSearch,
-      maxFormWidth,
-      horizontalLayout,
-      toggleButton
-    } = this.props;
+    const { navBarLayout, maxFormWidth, toggleButton } = this.props;
 
     return (
       <SearchFormView
-        advancedOptions={advancedOptions}
-        maxFormWidth={maxFormWidth}
+        advancedOptions={this.state.advancedOptions}
         advancedSearch={this.state.advancedSearch}
-        horizontalLayout={horizontalLayout}
-        handleToggle={toggleButton ? this.handleToggle : null}
+        getAdvancedOptions={this.getAdvancedOptions}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleToggle={toggleButton ? this.handleToggle : null}
+        navBarLayout={navBarLayout}
         maxFormWidth={maxFormWidth}
+        defaultValues={this.fields}
+        disableSearch={this.state.disableSearch}
       />
     );
   }
