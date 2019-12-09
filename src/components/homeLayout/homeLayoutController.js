@@ -60,7 +60,7 @@ class HomeLayoutController extends Component {
 }
 
 HomeLayoutController.defaultProps = {
-  typeButtonText: <FormattedMessage id="advanced.search.button.text" />,
+  typeButtonText: <FormattedMessage id="button.advanced.search" />,
   typeButtonURL: "/secured/advanced",
   showAdvancedFields: false
 };

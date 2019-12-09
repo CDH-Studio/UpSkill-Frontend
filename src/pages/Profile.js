@@ -13,8 +13,6 @@ class Profile extends Component {
     this.state = { profileInfo: undefined };
 
     this.handleSuccess = response => {
-      console.log("Received", response);
-
       const convertDropdownOptions = list => {
         let newList = [];
         list.forEach(element => {
@@ -36,7 +34,9 @@ class Profile extends Component {
         profileInfo.developmentalGoals
       );
 
-      this.setState({ profileInfo: profileInfo });
+      this.setState({
+        profileInfo: profileInfo
+      });
     };
 
     const url = window.location.toString();

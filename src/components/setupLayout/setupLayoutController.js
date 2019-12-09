@@ -19,6 +19,7 @@ import PrimaryInformationFormController from "../editForms/primaryInformationFor
 import SkillsFormController from "../editForms/skillsForm/skillsFormController";
 import TalentManagmentController from "../editForms/talentManagementForm/talentManagementFormController";
 import ProjectsFormController from "../editForms/projectsForm/projectsFormController";
+import CareerInterestsFormController from "../editForms/careerInterestsForm/careerInterestsFormController";
 
 const { backendAddress } = config;
 
@@ -57,6 +58,10 @@ const formList = [
   {
     name: "setup.projects",
     form: ProjectsFormController
+  },
+  {
+    name: "setup.career.interests",
+    form: CareerInterestsFormController
   }
 ];
 
@@ -72,7 +77,6 @@ class SetupLayoutController extends Component {
 
     this.state = {
       formIndex: 0,
-      maxEnabledIndex: 0,
       editProfileOptions: null,
       gedsInfoList: null,
       gedsIndex: null
@@ -110,7 +114,6 @@ class SetupLayoutController extends Component {
         handleRegister={this.handleRegister}
         isEarlyRegister={this.state.formIndex !== formList.length - 1}
         keycloakEmail={this.state.email}
-        maxEnabledIndex={this.state.maxEnabledIndex}
         profileInfo={this.changes}
         setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
         setFormIndex={this.setFormIndex}
@@ -224,6 +227,14 @@ class SetupLayoutController extends Component {
       ),
       tenure: formatOptions(
         (await axios.get(backendAddress + "api/option/getTenure")).data
+      ),
+      willingToRelocateTo: formatOptions(
+        (await axios.get(backendAddress + "api/option/getWillingToRelocateTo"))
+          .data
+      ),
+      lookingForNewJob: formatOptions(
+        (await axios.get(backendAddress + "api/option/getLookingForANewJob"))
+          .data
       )
     };
 
@@ -254,9 +265,6 @@ class SetupLayoutController extends Component {
 
   setFormIndex(index) {
     this.setState({ formIndex: index });
-    if (index > this.state.maxEnabledIndex) {
-      this.setState({ maxEnabledIndex: index });
-    }
   }
 
   setFormChanges(index, changes) {

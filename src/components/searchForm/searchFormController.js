@@ -192,7 +192,7 @@ class SearchFormController extends Component {
               onClick={performSearch}
               style={styles.button}
             >
-              <FormattedMessage id="search.button.text" />
+              <FormattedMessage id="button.search" />
             </Button>
             <Button
               basic

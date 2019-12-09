@@ -1,4 +1,6 @@
 {
+  "button.advanced.search": "Recherche avancée",
+  "advanced.search.form.desired.skills": "Compétences désirées",
   "admin": "Admin",
   "admin.dashboard": "Tableau de bord",
   "admin.dashboard.singular": "Tableau de bord",
@@ -41,6 +43,8 @@
   "advanced.search.form.first.name": "Prénom",
   "advanced.search.form.last.name": "Nom de famille",
 
+  "button.search": "Rechercher",
+  "button.basic.search": "Recherche basique",
   "advanced.search.button.text": "Recherche avancée",
   "advanced.search.form.name": "Name",
   "advanced.search.form.skills": "Compétences",

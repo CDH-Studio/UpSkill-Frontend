@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { injectIntl } from "react-intl";
+import { injectIntl, FormattedMessage } from "react-intl";
 
 import NavigationBar from "../navigationBar/navigationBarController";
 import { Dimmer, Grid, Label, Loader } from "semantic-ui-react";
 
+import { renderValue } from "./common/profileTools";
 import { EditableProvider } from "./editableProvider/editableProvider";
 
+import EditCareerInterestsController from "./editModals/editCareerInterests/editCareerInterestsController";
 import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";
 import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
 import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";
@@ -22,6 +24,14 @@ import SecondaryLayoutGroupController from "./secondaryLayoutGroup/secondaryLayo
 import "./profileLayout.css";
 
 class ProfileLayoutView extends Component {
+  constructor(props) {
+    super(props);
+
+    const { intl } = this.props;
+
+    this.renderValue = renderValue.bind(this, intl);
+  }
+
   render() {
     const {
       changeLanguage,
@@ -83,6 +93,9 @@ class ProfileLayoutView extends Component {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column>{this.renderProjectsCard()}</Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>{this.renderCareerInterests()}</Grid.Column>
             </Grid.Row>
           </Grid>
         </div>
@@ -169,6 +182,56 @@ class ProfileLayoutView extends Component {
       intl.formatMessage({ id: "profile.projects" }),
       currentProjects,
       EditProjectsController
+    );
+  }
+
+  renderCareerInterests() {
+    const { intl, profileInfo } = this.props;
+
+    const {
+      interestedInRemote,
+      relocationLocations,
+      lookingForNewJob
+    } = profileInfo;
+
+    return (
+      <ProfileCardController
+        button={EditCareerInterestsController}
+        cardName={"Career Interests"}
+      >
+        <div>
+          <span className="boldLabel">
+            <FormattedMessage id="profile.interested.in.remote" />
+          </span>
+          <span>
+            {this.renderValue(
+              {
+                [null]: null,
+                [true]: intl.formatMessage({ id: "profile.yes" }),
+                [false]: intl.formatMessage({ id: "profile.no" })
+              }[interestedInRemote]
+            )}
+          </span>
+        </div>
+        <div className="boldLabel">
+          <FormattedMessage id="profile.willing.to.relocate.to" />
+        </div>
+        <div>
+          {relocationLocations
+            ? relocationLocations.map(element => (
+                <Label color="blue" basic>
+                  <p style={{ color: "black" }}>{element.description}</p>
+                </Label>
+              ))
+            : null}
+        </div>
+        <span className="boldLabel">
+          <FormattedMessage id="profile.looking.for.new.job" />
+        </span>
+        <span>
+          {this.renderValue(lookingForNewJob && lookingForNewJob.description)}
+        </span>
+      </ProfileCardController>
     );
   }
 }

@@ -20,7 +20,7 @@ class Advanced extends Component {
         redirectFunction={this.goto}
         showAdvancedFields={true}
         typeButtonText={intl.formatMessage({
-          id: "basic.search.button.text"
+          id: "button.basic.search"
         })}
         typeButtonURL={"/secured/home"}
       />
