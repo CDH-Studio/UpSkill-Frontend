@@ -31,13 +31,12 @@ class AdminDashboard extends Component {
   componentDidMount() {
     document.title = this.getDisplayType(true) + " - Admin | UpSkill";
     this.setState({ loading: true });
-    // axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
-    this.setState({
-      // data: res.data,
-      data: { user: 5, exFeeder: 4, flagged: 3, inactive: 2 },
-      loading: false
-    });
-    // );
+    axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
+      this.setState({
+        data: res.data,
+        loading: false
+      })
+    );
   }
 
   getDisplayType = plural => {
