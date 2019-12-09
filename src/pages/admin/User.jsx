@@ -343,7 +343,6 @@ class AdminUser extends Component {
           floated="right"
           onClick={this.handleApply}
           disabled={Object.entries(statuses).length === 0}
-          inverted
         >
           <Icon name="check circle outline" />
           <FormattedMessage id="admin.apply" />
