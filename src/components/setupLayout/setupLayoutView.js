@@ -89,7 +89,7 @@ export default class RegisterLayoutView extends Component {
             </Card.Group>
           </Modal.Content>
         </Modal>
-        <Grid style={{ maxWidth: "1250px", margin: "25px auto 0px auto" }}>
+        <Grid style={{ maxWidth: "1250px", margin: "0px auto 0px auto" }}>
           <Grid.Column width={4}>{this.renderButtons()}</Grid.Column>
           <Grid.Column width={12}>
             <Card fluid>
