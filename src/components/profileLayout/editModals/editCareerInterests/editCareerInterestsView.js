@@ -13,7 +13,7 @@ class EditCareerInterestsView extends Component {
         {...this.props}
         editOptionPaths={{
           willingToRelocateTo: "api/option/getWillingToRelocateTo",
-          lookingForANewJob: "api/option/getLookingForANewJob"
+          lookingForNewJob: "api/option/getLookingForANewJob"
         }}
         form={CareerInterestsFormController}
         handleApply={handleApply}

@@ -1,5 +1,5 @@
 {
-  "advanced.search.button.text": "Recherche avancée",
+  "button.advanced.search": "Recherche avancée",
   "advanced.search.form.desired.skills": "Compétences désirées",
   "advanced.search.form.job.title": "Titre du poste",
   "advanced.search.form.department": "Departement",
@@ -8,8 +8,8 @@
   "advanced.search.form.first.name": "Prénom",
   "advanced.search.form.last.name": "Nom de famille",
 
-  "search.button.text": "Rechercher",
-  "basic.search.button.text": "Recherche basique",
+  "button.search": "Rechercher",
+  "button.basic.search": "Recherche basique",
 
   "landing.login.and.enter": "Connexion",
   "landing.benefits": "Avantages",

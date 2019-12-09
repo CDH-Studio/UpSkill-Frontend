@@ -73,7 +73,7 @@ class SearchFormView extends Component {
                 control={Button}
                 color="blue"
                 content={intl.formatMessage({
-                  id: "search.button.text"
+                  id: "button.search"
                 })}
                 disabled={disableSearch}
                 onClick={handleSubmit}
@@ -84,8 +84,8 @@ class SearchFormView extends Component {
                   color="blue"
                   content={intl.formatMessage({
                     id: advancedSearch
-                      ? "basic.search.button.text"
-                      : "advanced.search.button.text"
+                      ? "button.basic.search"
+                      : "button.advanced.search"
                   })}
                   control={Button}
                   fluid
@@ -204,7 +204,7 @@ class SearchFormView extends Component {
             control={Button}
             color="blue"
             content={intl.formatMessage({
-              id: "apply.button.text"
+              id: "button.apply"
             })}
             disabled={disableSearch}
             onClick={handleSubmit}

@@ -190,7 +190,7 @@ class ProfileLayoutView extends Component {
 
     const {
       interestedInRemote,
-      willingToRelocateTo,
+      relocationLocations,
       lookingForNewJob
     } = profileInfo;
 
@@ -216,21 +216,21 @@ class ProfileLayoutView extends Component {
         <div className="boldLabel">
           <FormattedMessage id="profile.willing.to.relocate.to" />
         </div>
-        {this.renderValue(
-          willingToRelocateTo ? (
-            <div>
-              {willingToRelocateTo.map(element => (
+        <div>
+          {relocationLocations
+            ? relocationLocations.map(element => (
                 <Label color="blue" basic>
                   <p style={{ color: "black" }}>{element.description}</p>
                 </Label>
-              ))}
-            </div>
-          ) : null
-        )}
+              ))
+            : null}
+        </div>
         <span className="boldLabel">
           <FormattedMessage id="profile.looking.for.new.job" />
         </span>
-        <span>{this.renderValue(lookingForNewJob.description)}</span>
+        <span>
+          {this.renderValue(lookingForNewJob && lookingForNewJob.description)}
+        </span>
       </ProfileCardController>
     );
   }

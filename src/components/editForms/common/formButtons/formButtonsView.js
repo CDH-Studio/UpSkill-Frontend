@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 
 import { Button } from "semantic-ui-react";
+import { injectIntl } from "react-intl";
 
-export default class ModalButtonsView extends Component {
+class ModalButtonsView extends Component {
   render() {
     const {
       fields,
@@ -11,7 +12,8 @@ export default class ModalButtonsView extends Component {
       handleNext,
       handlePrevious,
       handleRegister,
-      isEarlyRegister
+      isEarlyRegister,
+      intl
     } = this.props;
 
     return (
@@ -24,12 +26,12 @@ export default class ModalButtonsView extends Component {
             }}
           >
             <React.Fragment>
-              <Button color="blue" onClick={handleApply}>
-                Apply
+              <Button color="blue">
+                {intl.formatMessage({ id: "button.apply" })}
               </Button>
 
               <Button color="blue" onClick={handleCancle} secondary>
-                Cancel
+                {intl.formatMessage({ id: "button.cancel" })}
               </Button>
             </React.Fragment>
           </div>
@@ -54,19 +56,19 @@ export default class ModalButtonsView extends Component {
               onClick={e => handlePrevious(fields)}
               secondary
             >
-              Back
+              {intl.formatMessage({ id: "button.back" })}
             </Button>
           )}
 
           {handleNext && isEarlyRegister && (
             <Button color="blue" onClick={e => handleNext(fields)}>
-              Next
+              {intl.formatMessage({ id: "button.next" })}
             </Button>
           )}
 
           {handleRegister && !isEarlyRegister && (
             <Button color="blue" onClick={handleRegister}>
-              Finish
+              {intl.formatMessage({ id: "button.finish" })}
             </Button>
           )}
         </div>
@@ -74,3 +76,5 @@ export default class ModalButtonsView extends Component {
     );
   }
 }
+
+export default injectIntl(ModalButtonsView);

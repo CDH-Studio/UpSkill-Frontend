@@ -13,8 +13,6 @@ class Profile extends Component {
     this.state = { profileInfo: undefined };
 
     this.handleSuccess = response => {
-      console.log("Recieved", response);
-
       const convertDropdownOptions = list => {
         let newList = [];
         list.forEach(element => {
@@ -37,20 +35,7 @@ class Profile extends Component {
       );
 
       this.setState({
-        profileInfo: {
-          ...profileInfo,
-          ...{
-            interestedInRemote: true,
-            willingToRelocateTo: [
-              { id: "aaaa", description: "Toronto" },
-              { id: "bbbb", description: "Nunavut" }
-            ],
-            lookingForNewJob: {
-              id: "cccc",
-              description: "Not looking but open to offers"
-            }
-          }
-        }
+        profileInfo: profileInfo
       });
     };
 
