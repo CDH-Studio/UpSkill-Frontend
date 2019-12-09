@@ -8,7 +8,8 @@ import {
   Icon,
   Input,
   Form,
-  Pagination
+  Pagination,
+  Checkbox
 } from "semantic-ui-react";
 import _ from "lodash";
 import axios from "axios";
@@ -36,6 +37,7 @@ class AdminSchool extends Component {
       description: null,
       state: null,
       country: null,
+      deleteValues: [],
       activePage: 1
     };
   }
@@ -48,9 +50,9 @@ class AdminSchool extends Component {
       .then(res =>
         this.setState({
           allData: res.data,
-          data: _.sortBy(res.data, ["descriptionEn"]),
+          data: _.sortBy(res.data, ["description"]),
           loading: false,
-          column: "english",
+          column: "name",
           direction: "ascending"
         })
       );
@@ -72,7 +74,11 @@ class AdminSchool extends Component {
   handleSort = clickedColumn => () => {
     const { column, data, direction } = this.state;
 
-    const dbAttributes = { english: "descriptionEn", french: "descriptionFr" };
+    const dbAttributes = {
+      name: "description",
+      state: "state",
+      country: "country"
+    };
 
     if (column !== clickedColumn) {
       this.setState({
@@ -91,6 +97,13 @@ class AdminSchool extends Component {
   };
 
   handleEditChange = (e, { name, value }) => this.setState({ [name]: value });
+
+  handleCheckbox = id => {
+    this.setState(({ deleteValues }) => {
+      deleteValues = _.xor(deleteValues, [id]);
+      return { deleteValues };
+    });
+  };
 
   handleFilter = (e, { value }) => {
     const newData = this.state.allData.filter(
@@ -159,11 +172,16 @@ class AdminSchool extends Component {
   };
 
   handleSubmitDelete = () => {
-    const { type, id } = this.state;
+    const { type, deleteValues } = this.state;
 
-    const url = backendAddress + "api/admin/options/" + type + "/" + id;
-    axios.delete(url).then(() => {
-      this.setState({ id: null, english: null, french: null, modal: null });
+    const url = backendAddress + "api/admin/delete/" + type;
+    axios.post(url, { ids: deleteValues }).then(() => {
+      this.setState({
+        deleteValues: [],
+        english: null,
+        french: null,
+        modal: null
+      });
       window.location.reload();
     });
   };
@@ -186,38 +204,16 @@ class AdminSchool extends Component {
 
   handlePaginationChange = (e, { activePage }) => this.setState({ activePage });
 
-  renderEditButtons = (id, description, state, country) => {
+  renderEditButton = (id, description, state, country) => {
     return (
       <center>
-        <Button
-          animated="fade"
+        <Icon
           color="blue"
           onClick={() =>
             this.handleClick("edit", id, description, state, country)
           }
-        >
-          <Button.Content visible>
-            <FormattedMessage id="admin.edit" />
-          </Button.Content>
-          <Button.Content hidden>
-            <Icon name="edit" />
-          </Button.Content>
-        </Button>
-        <Button
-          animated="fade"
-          color="red"
-          inverted
-          onClick={() =>
-            this.handleClick("delete", id, description, state, country)
-          }
-        >
-          <Button.Content visible>
-            <FormattedMessage id="admin.delete" />
-          </Button.Content>
-          <Button.Content hidden>
-            <Icon name="x" />
-          </Button.Content>
-        </Button>
+          name="pencil"
+        />
       </center>
     );
   };
@@ -283,7 +279,7 @@ class AdminSchool extends Component {
   };
 
   deleteModal = () => {
-    const { modal, english, french } = this.state;
+    const { modal } = this.state;
 
     return (
       <Modal
@@ -295,19 +291,17 @@ class AdminSchool extends Component {
       >
         <Header content={"Delete " + this.getDisplayType(false)} as="h2" />
         <Modal.Content>
-          <h5>
-            Are you sure you want to delete "{english} / {french}"?
-          </h5>
+          <h5>Are you sure you want to delete all the selected values?</h5>
         </Modal.Content>
 
         <Modal.Actions>
           <Button
-            color="green"
+            color="red"
             floated="right"
             onClick={this.handleSubmitDelete}
             style={{ marginTop: "18px", marginBottom: "18px" }}
           >
-            <Icon name="trash" /> Delete
+            <Icon name="trash" /> <FormattedMessage id="admin.delete" />
           </Button>
           <Button
             color="red"
@@ -396,9 +390,10 @@ class AdminSchool extends Component {
       <Table sortable celled fixed striped color="blue">
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell width={1} />
             <Table.HeaderCell
-              sorted={column === "description" ? direction : null}
-              onClick={this.handleSort("description")}
+              sorted={column === "name" ? direction : null}
+              onClick={this.handleSort("name")}
             >
               <FormattedMessage id="admin.name" />
             </Table.HeaderCell>
@@ -414,13 +409,7 @@ class AdminSchool extends Component {
             >
               <FormattedMessage id="admin.country" />
             </Table.HeaderCell>
-            <Table.HeaderCell
-              width={
-                this.props.intl.formatMessage({ id: "lang.code" }) === "fr"
-                  ? 3
-                  : 4
-              }
-            >
+            <Table.HeaderCell width={2} textAlign="center">
               <FormattedMessage id="admin.editHeader" />
             </Table.HeaderCell>
           </Table.Row>
@@ -428,11 +417,19 @@ class AdminSchool extends Component {
         <Table.Body>
           {_.map(pageData, ({ id, description, state, country }) => (
             <Table.Row key={id}>
+              <Table.Cell>
+                <center>
+                  <Checkbox
+                    onClick={() => this.handleCheckbox(id)}
+                    checked={this.state.deleteValues.includes(id)}
+                  />
+                </center>
+              </Table.Cell>
               <Table.Cell>{description}</Table.Cell>
               <Table.Cell>{state}</Table.Cell>
               <Table.Cell>{country}</Table.Cell>
               <Table.Cell>
-                {this.renderEditButtons(id, description, state, country)}
+                {this.renderEditButton(id, description, state, country)}
               </Table.Cell>
             </Table.Row>
           ))}
@@ -444,7 +441,15 @@ class AdminSchool extends Component {
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~RENDER~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   render() {
-    const { type, column, data, direction, loading, activePage } = this.state;
+    const {
+      type,
+      column,
+      data,
+      direction,
+      loading,
+      activePage,
+      deleteValues
+    } = this.state;
     const { changeLanguage, keycloak } = this.props;
 
     let totalPages = 0;
@@ -477,6 +482,15 @@ class AdminSchool extends Component {
         >
           <Icon name="add" />
           <FormattedMessage id="admin.add" />
+        </Button>
+        <Button
+          color="red"
+          floated="right"
+          onClick={() => this.handleClick("delete")}
+          disabled={deleteValues.length === 0}
+        >
+          <Icon name="trash" />
+          <FormattedMessage id="admin.delete" />
         </Button>
 
         {this.generateTable(column, direction, pageData)}
