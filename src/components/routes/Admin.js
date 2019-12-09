@@ -45,7 +45,7 @@ class Secured extends Component {
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
         axios.interceptors.request.use(config =>
-          keycloak.updateToken(5).then(() => {
+          keycloak.updateToken(300).then(() => {
             config.headers.Authorization = "Bearer " + keycloak.token;
             return Promise.resolve(config).catch(keycloak.login);
           })
