@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { generateCommonProps } from "../common/formTools";
-import { Form, Checkbox, Dropdown, Select } from "semantic-ui-react";
+import { Form, Select } from "semantic-ui-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 import { injectIntl, FormattedMessage } from "react-intl";
 
@@ -48,6 +48,7 @@ class CareerInterestsFormView extends Component {
             <FormattedMessage id="profile.willing.to.relocate.to" />
           </label>
           <Select
+            search
             multiple
             defaultValue={
               profileInfo["relocationLocations"] &&
