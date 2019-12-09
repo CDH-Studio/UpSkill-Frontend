@@ -31,20 +31,20 @@ class Secured extends Component {
     super(props);
 
     this.state = {
-      authenticated: false,
-      keycloak: null
+      authenticated: true,
+      keycloak: true
     };
 
     this.changeLanguage = this.props.changeLanguage;
   }
 
   componentDidMount() {
-    const keycloak = Keycloak("/keycloak.json");
-    keycloak
-      .init({ onLoad: "login-required", promiseType: "native" })
-      .then(authenticated => {
-        this.setState({ keycloak: keycloak, authenticated: authenticated });
-      });
+    // const keycloak = Keycloak("/keycloak.json");
+    // keycloak
+    //   .init({ onLoad: "login-required", promiseType: "native" })
+    //   .then(authenticated => {
+    //     this.setState({ keycloak: keycloak, authenticated: authenticated });
+    //   });
   }
 
   goto = link => history.push(link);
