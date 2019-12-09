@@ -10,7 +10,8 @@
   "button.apply": "Apply",
   "button.cancel": "Cancel",
   "button.next": "Next",
-  "button.previous": "Previous",
+  "button.back": "Back",
+  "button.finish": "Finish",
 
   "button.basic.search": "Basic search",
 

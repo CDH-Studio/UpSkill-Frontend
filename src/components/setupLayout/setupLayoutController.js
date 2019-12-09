@@ -227,6 +227,14 @@ class SetupLayoutController extends Component {
       ),
       tenure: formatOptions(
         (await axios.get(backendAddress + "api/option/getTenure")).data
+      ),
+      willingToRelocateTo: formatOptions(
+        (await axios.get(backendAddress + "api/option/getWillingToRelocateTo"))
+          .data
+      ),
+      lookingForNewJob: formatOptions(
+        (await axios.get(backendAddress + "api/option/getLookingForANewJob"))
+          .data
       )
     };
 
