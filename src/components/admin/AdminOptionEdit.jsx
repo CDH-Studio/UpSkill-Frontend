@@ -181,18 +181,11 @@ class AdminOptionEdit extends Component {
   renderEditButton = (id, en, fr) => {
     return (
       <center>
-        <Button
-          animated="fade"
+        <Icon
           color="blue"
           onClick={() => this.handleClick("edit", id, en, fr)}
-        >
-          <Button.Content visible>
-            <FormattedMessage id="admin.edit" />
-          </Button.Content>
-          <Button.Content hidden>
-            <Icon name="edit" />
-          </Button.Content>
-        </Button>
+          name="pencil"
+        />
       </center>
     );
   };
@@ -449,19 +442,19 @@ class AdminOptionEdit extends Component {
             boundaryRange="2"
             siblingRange="2"
             firstItem={{
-              content: <Icon name="angle double left" color="blue" />,
+              content: <Icon name="angle double left" />,
               icon: true
             }}
             lastItem={{
-              content: <Icon name="angle double right" color="blue" />,
+              content: <Icon name="angle double right" />,
               icon: true
             }}
             prevItem={{
-              content: <Icon name="angle left" color="blue" />,
+              content: <Icon name="angle left" />,
               icon: true
             }}
             nextItem={{
-              content: <Icon name="angle right" color="blue" />,
+              content: <Icon name="angle right" />,
               icon: true
             }}
           />

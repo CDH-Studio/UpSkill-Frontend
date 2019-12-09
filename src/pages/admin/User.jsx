@@ -221,6 +221,9 @@ class AdminUser extends Component {
       <Table sortable celled fixed striped color="blue">
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell width={1} textAlign="center">
+              <FormattedMessage id="admin.view" />
+            </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "name" ? direction : null}
               onClick={this.handleSort("name")}
@@ -245,9 +248,6 @@ class AdminUser extends Component {
             >
               <FormattedMessage id="admin.tenure" />
             </Table.HeaderCell>
-            <Table.HeaderCell width={1} textAlign="center">
-              <FormattedMessage id="admin.view" />
-            </Table.HeaderCell>
             <Table.HeaderCell
               sorted={column === "profStatus" ? direction : null}
               onClick={this.handleSort("profStatus")}
@@ -261,6 +261,17 @@ class AdminUser extends Component {
         <Table.Body>
           {_.map(pageData, ({ id, user, createdAt, tenure, flagged }) => (
             <Table.Row key={id}>
+              <Table.Cell>
+                <center>
+                  <Icon
+                    name="external"
+                    color="blue"
+                    onClick={() =>
+                      window.open("/secured/profile/" + id, "_blank")
+                    }
+                  />{" "}
+                </center>
+              </Table.Cell>
               <Table.Cell disabled={user.inactive} error={flagged}>
                 {user.name}
               </Table.Cell>
@@ -281,18 +292,6 @@ class AdminUser extends Component {
                 ) : (
                   <FormattedMessage id="admin.none" />
                 )}
-              </Table.Cell>
-              <Table.Cell>
-                <center>
-                  <Button
-                    color="blue"
-                    onClick={() =>
-                      window.open("/secured/profile/" + id, "_blank")
-                    }
-                    compact
-                    icon="eye"
-                  ></Button>
-                </center>
               </Table.Cell>
               <Table.Cell
                 style={{ overflow: "visible" }}
@@ -344,6 +343,7 @@ class AdminUser extends Component {
           floated="right"
           onClick={this.handleApply}
           disabled={Object.entries(statuses).length === 0}
+          inverted
         >
           <Icon name="check circle outline" />
           <FormattedMessage id="admin.apply" />

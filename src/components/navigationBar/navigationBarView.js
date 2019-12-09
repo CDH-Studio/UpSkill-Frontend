@@ -6,6 +6,8 @@ import { FormattedMessage } from "react-intl";
 import SearchFormController from "../searchForm/searchFormController";
 import Logo from "../../assets/Logo5.png";
 
+import "./navBar.css";
+
 export default class NavigationBarView extends Component {
   render() {
     const { includeSearchForm, redirectFunction } = this.props;
@@ -37,6 +39,7 @@ export default class NavigationBarView extends Component {
         fluid
         inverted
         style={{ position: "relative" }}
+        className="gradientBack"
       >
         <Menu.Item
           style={{ paddingBottom: "8px", paddingTop: "8px" }}

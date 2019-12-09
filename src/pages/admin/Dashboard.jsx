@@ -33,7 +33,6 @@ class AdminDashboard extends Component {
     this.setState({ loading: true });
     axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
       this.setState({
-        // allData: res.data,
         data: res.data,
         loading: false
       })
