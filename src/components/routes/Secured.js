@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Keycloak from "keycloak-js";
 import { Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
+import axios from "axios";
 
 import { Dimmer, Image } from "semantic-ui-react";
 
