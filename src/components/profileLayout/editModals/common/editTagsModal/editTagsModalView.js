@@ -7,8 +7,6 @@ import EditModalController, {
   generateCommonProps
 } from "../editModal/editModalController.js";
 
-import "./editTagsModal.css";
-
 class EditTagsView extends Component {
   render() {
     const { dropdownName, handleApply, name, tooManyItems } = this.props;

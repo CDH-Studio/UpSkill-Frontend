@@ -15,7 +15,8 @@ export const generateCommonProps = (props, name, control, tempField) => {
     onFieldChange,
     unchangeableInfo,
     onTempFieldChange,
-    profileInfo
+    profileInfo,
+    tempFields
   } = props;
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
@@ -33,7 +34,7 @@ export const generateCommonProps = (props, name, control, tempField) => {
   };
 
   if (control === Checkbox) {
-    commonProps.defaultChecked = profileInfo[name];
+    commonProps.defaultChecked = profileInfo[name] || tempFields[name];
   } else if (control === Select) {
     commonProps.search = true;
 

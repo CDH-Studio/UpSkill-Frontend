@@ -187,7 +187,7 @@ class SearchFormView extends Component {
             id: "advanced.search.form.classification"
           })}
           multiple
-          options={advancedOptions.groupOrLevel}
+          options={advancedOptions.classification}
           search
           {...this.generateCommonProps("classification")}
         />

@@ -26,11 +26,16 @@ class ModalButtonsView extends Component {
             }}
           >
             <React.Fragment>
-              <Button color="blue">
+              <Button type="submit" color="blue">
                 {intl.formatMessage({ id: "button.apply" })}
               </Button>
 
-              <Button color="blue" onClick={handleCancle} secondary>
+              <Button
+                type="button"
+                color="blue"
+                onClick={handleCancle}
+                secondary
+              >
                 {intl.formatMessage({ id: "button.cancel" })}
               </Button>
             </React.Fragment>
@@ -38,7 +43,7 @@ class ModalButtonsView extends Component {
         )}
 
         {handleRegister && isEarlyRegister && (
-          <Button color="blue" onClick={handleRegister}>
+          <Button type="button" color="blue" onClick={handleRegister}>
             Save and finish
           </Button>
         )}
@@ -51,6 +56,7 @@ class ModalButtonsView extends Component {
         >
           {handleRegister && (
             <Button
+              type="button"
               color="blue"
               disabled={!Boolean(handlePrevious)}
               onClick={e => handlePrevious(fields)}
@@ -61,13 +67,17 @@ class ModalButtonsView extends Component {
           )}
 
           {handleNext && isEarlyRegister && (
-            <Button color="blue" onClick={e => handleNext(fields)}>
+            <Button
+              type="button"
+              color="blue"
+              onClick={e => handleNext(fields)}
+            >
               {intl.formatMessage({ id: "button.next" })}
             </Button>
           )}
 
           {handleRegister && !isEarlyRegister && (
-            <Button color="blue" onClick={handleRegister}>
+            <Button type="button" color="blue" onClick={handleRegister}>
               {intl.formatMessage({ id: "button.finish" })}
             </Button>
           )}

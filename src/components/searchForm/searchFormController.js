@@ -57,7 +57,7 @@ class SearchFormController extends Component {
   async getAdvancedOptions() {
     const lang = localStorage.getItem("lang");
     let advancedOptions = {
-      groupOrLevel: prepareInfo(
+      classification: prepareInfo(
         (await axios.get(backendAddress + "api/option/getGroupLevel")).data,
         lang
       ).map(obj => ({

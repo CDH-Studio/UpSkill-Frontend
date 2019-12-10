@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { generateCommonProps } from "../common/formTools";
-import { Form, Select } from "semantic-ui-react";
+import { Form, Checkbox, Dropdown, Select } from "semantic-ui-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 import { injectIntl, FormattedMessage } from "react-intl";
 
 import "../common/form.css";
+
 class CareerInterestsFormView extends Component {
   render() {
     const {
@@ -48,6 +49,7 @@ class CareerInterestsFormView extends Component {
             <FormattedMessage id="profile.willing.to.relocate.to" />
           </label>
           <Select
+            className="editTagsDropdown"
             search
             multiple
             defaultValue={

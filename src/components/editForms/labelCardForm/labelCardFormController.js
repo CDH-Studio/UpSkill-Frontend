@@ -7,21 +7,22 @@ import moment from "moment";
 export default class LabelCardFormController extends FormManagingComponent {
   constructor(props) {
     super(props);
-    const profileInfo = this.props;
+    const { profileInfo } = this.props;
 
     const isActing =
-      Boolean(profileInfo["actingStartDate"]) && Boolean(profileInfo["acting"]);
+      Boolean(profileInfo["actingPeriodStartDate"]) &&
+      Boolean(profileInfo["acting"]);
 
     this.tempFields["actingHasEndDate"] =
-      isActing && Boolean(profileInfo["actingEndDate"]);
+      isActing && Boolean(profileInfo["actingPeriodEndDate"]);
     this.tempFields["isActing"] = isActing;
 
-    this.onChangeFuncs["actingEndDate"] = () => this.forceUpdate();
+    this.onChangeFuncs["actingPeriodEndDate"] = () => this.forceUpdate();
     this.onChangeFuncs["actingHasEndDate"] = () => this.forceUpdate();
-    this.onChangeFuncs["actingStartDate"] = () => this.forceUpdate();
+    this.onChangeFuncs["actingPeriodStartDate"] = () => this.forceUpdate();
     this.onChangeFuncs["isActing"] = () => this.forceUpdate();
 
-    this.transformOnChangeValueFuncs["actingStartDate"] = value =>
+    this.transformOnChangeValueFuncs["actingPeriodStartDate"] = value =>
       moment(value, "MMM DD YYYY");
   }
 
@@ -31,11 +32,11 @@ export default class LabelCardFormController extends FormManagingComponent {
     return (
       <LabelCardFormView
         actingDisabled={actingDisabled}
-        actingEndDate={this.getCurrentValue("actingEndDate")}
+        actingPeriodEndDate={this.getCurrentValue("actingPeriodEndDate")}
         actingEndDisabled={
           !Boolean(this.getCurrentValue("actingHasEndDate")) || actingDisabled
         }
-        actingStartDate={this.getCurrentValue("actingStartDate")}
+        actingPeriodStartDate={this.getCurrentValue("actingPeriodStartDate")}
         buttons={buttons}
         fields={this.fields}
         getCurrentValue={this.getCurrentValue}

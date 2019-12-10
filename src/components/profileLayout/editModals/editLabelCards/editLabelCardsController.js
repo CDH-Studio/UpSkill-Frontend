@@ -11,7 +11,7 @@ export default class EditLabelCardsController extends FieldManagingComponent {
     this.oldHandleApply = this.handleApply;
 
     this.fields["actingHasEndDate"] = Boolean(
-      this.props.profileInfo["actingEndDate"]
+      this.props.profileInfo["actingPeriodEndDate"]
     );
 
     this.fields["isActing"] = Boolean(this.props.profileInfo["acting"]);
@@ -29,12 +29,12 @@ export default class EditLabelCardsController extends FieldManagingComponent {
     };
 
     this.handleApply = () => {
-      this.fields["actingEndDate"] = this.fields["actingHasEndDate"]
-        ? moment(this.fields["actingEndDate"], "MMM DD YYYY").format()
+      this.fields["actingPeriodEndDate"] = this.fields["actingHasEndDate"]
+        ? moment(this.fields["actingPeriodEndDate"], "MMM DD YYYY").format()
         : null;
 
-      this.fields["actingStartDate"] = moment(
-        this.fields["actingStartDate"],
+      this.fields["actingPeriodStartDate"] = moment(
+        this.fields["actingPeriodStartDate"],
         "MMM DD YYYY"
       ).format();
 
@@ -51,9 +51,9 @@ export default class EditLabelCardsController extends FieldManagingComponent {
       <EditLabelCardsView
         fields={this.fields}
         profileInfo={{
-          groupOrLevel: null,
+          classification: null,
           security: null,
-          tenure: null,
+          temporaryRole: null,
           yearsOfService: null
         }}
         updateField={this.updateField}
@@ -62,41 +62,3 @@ export default class EditLabelCardsController extends FieldManagingComponent {
     );
   }
 }
-
-/*
- if (o.checked && this.fields["actingPeriod"]) {
-          const periodSeperatorIndex = this.fields["actingPeriod"].indexOf(
-            " - "
-          );
-          if (periodSeperatorIndex !== -1) {
-            this.oldUpdateField(null, {
-              name: "actingPeriod",
-              value: this.fields["actingPeriod"].substring(
-                0,
-                periodSeperatorIndex
-              )
-            });
-          }
-        }
-        this.forceUpdate();
-      } else if (o.name == "actingPeriod") {
-        if (this.fields["noActingEndDate"]) {
-          const periodSeperatorIndex = o.value.indexOf(" - ");
-          let value;
-          if (periodSeperatorIndex === -1) {
-            value = o.value;
-          } else {
-            value = o.value.substring(periodSeperatorIndex + 3);
-          }
-          this.oldUpdateField(e, { ...o, value });
-        } else {
-          this.oldUpdateField(e, o);
-        }
-        this.forceUpdate();
-      } else if (o.name == "isActing") {
-        this.oldUpdateField(e, o);
-        this.forceUpdate();
-      } else {
-        this.oldUpdateField(e, o);
-      }
-      */
