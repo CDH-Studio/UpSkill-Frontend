@@ -18,29 +18,48 @@ class LabelCardFormView extends Component {
       handlePrevious,
       handleRegister,
       isEarlyRegister,
-      onSubmit
+      onSubmit,
+      profileInfo,
+      intl
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
     return (
       <Form onSubmit={onSubmit}>
-        <Form.Field {...generateProps("tenure", Select)} />
-        <Form.Field {...generateProps("security", Select)} />
         <Form.Field
-          input="number"
-          {...generateProps("yearsOfService", Input)}
+          {...generateProps("substantive", Select)}
+          options={[
+            {
+              key: true,
+              value: true,
+              text: intl.formatMessage({ id: "profile.indeterminate" })
+            },
+            {
+              key: false,
+              value: false,
+              text: intl.formatMessage({ id: "profile.term" })
+            },
+            {
+              key: null,
+              value: null,
+              text: intl.formatMessage({ id: "profile.do.not.specify" })
+            }
+          ]}
+          defaultValue={profileInfo["indeterminate"]}
         />
-        <Form.Field {...generateProps("groupOrLevel", Select)} />
+        <Form.Field {...generateProps("classification", Select)} />
+
+        <Form.Field {...generateProps("temporaryRole", Select)} />
 
         <Form.Field {...generateProps("isActing", Checkbox, true)} />
         <Form.Field
           {...generateProps("acting", Select)}
           disabled={actingDisabled}
-          options={editProfileOptions["groupOrLevel"]}
+          options={editProfileOptions["classification"]}
         />
         <Form.Group>
           <Form.Field
-            {...generateProps("actingStartDate", DateInput)}
+            {...generateProps("actingPeriodStartDate", DateInput)}
             disabled={actingDisabled}
             width={6}
           />
@@ -52,11 +71,12 @@ class LabelCardFormView extends Component {
           />
 
           <Form.Field
-            {...generateProps("actingEndDate", DateInput)}
+            {...generateProps("actingPeriodEndDate", DateInput)}
             disabled={actingEndDisabled}
             width={6}
           />
         </Form.Group>
+        <Form.Field {...generateProps("security", Select)} />
         <FormButtonsController
           handleRegister={handleRegister}
           isEarlyRegister={isEarlyRegister}

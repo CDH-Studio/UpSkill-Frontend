@@ -48,6 +48,7 @@ class CareerInterestsFormView extends Component {
             <FormattedMessage id="profile.willing.to.relocate.to" />
           </label>
           <Select
+            className="editTagsDropdown"
             multiple
             defaultValue={
               profileInfo["relocationLocations"] &&

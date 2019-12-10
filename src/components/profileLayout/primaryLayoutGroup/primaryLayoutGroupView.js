@@ -36,7 +36,7 @@ class PrimaryLayoutGroupView extends Component {
         <Grid.Row>
           <Grid.Column width={11}>{this.renderPrimaryCard()}</Grid.Column>
           <Grid.Column width={5} className="noGapAbove">
-            {this.renderLabeledCards()}
+            {this.renderInfoCard()}
           </Grid.Column>
         </Grid.Row>
       );
@@ -47,22 +47,23 @@ class PrimaryLayoutGroupView extends Component {
             <Grid.Column>{this.renderPrimaryCard()}</Grid.Column>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column>{this.renderLabeledCards()}</Grid.Column>
+            <Grid.Column>{this.renderInfoCard()}</Grid.Column>
           </Grid.Row>
         </React.Fragment>
       );
     }
   }
 
-  renderLabeledCards() {
+  renderInfoCard() {
     const { intl, profileInfo, windowWidth } = this.props;
     const {
       acting,
       actingPeriodEndDate,
       actingPeriodStartDate,
       classification,
+      indeterminate,
       security,
-      tenure,
+      temporaryRole,
       yearsOfService
     } = profileInfo;
 
@@ -75,15 +76,15 @@ class PrimaryLayoutGroupView extends Component {
     const classificationLabel = intl.formatMessage({
       id: "profile.classification"
     });
+    const substantiveLabel = intl.formatMessage({ id: "profile.substantive" });
     const securityLabel = intl.formatMessage({ id: "profile.security" });
-    const tenureLabel = intl.formatMessage({ id: "profile.tenure" });
-    const yearsOfServiceLabel = intl.formatMessage({
-      id: "profile.years.of.service"
+    const temporaryRoleLabel = intl.formatMessage({
+      id: "profile.temporary.role"
     });
-    const startDateString = moment(actingPeriodStartDate).format("MMM DD YYYY");
+    const startDateString = moment(actingPeriodStartDate).format("DD/MM/YYYY");
     const endDateString =
       actingPeriodEndDate !== "Undefined"
-        ? moment(actingPeriodEndDate).format("MMM DD YYYY")
+        ? moment(actingPeriodEndDate).format("DD/MM/YYYY")
         : intl.formatMessage({ id: "profile.ongoing" });
 
     const actingDateText = actingDisabled ? (
@@ -91,7 +92,7 @@ class PrimaryLayoutGroupView extends Component {
         {intl.formatMessage({ id: "profile.na" })}
       </span>
     ) : (
-      startDateString + "-" + endDateString
+      startDateString + " - " + endDateString
     );
 
     // When using the medium wideness view there are 2 columns of labeled cards
@@ -106,19 +107,29 @@ class PrimaryLayoutGroupView extends Component {
             <Grid.Column width={8}>
               <Grid>
                 {this.renderLabeledItem(
-                  tenureLabel,
-                  this.renderValue(tenure.description, "profile.undefined")
-                )}
-                {this.renderLabeledItem(
-                  yearsOfServiceLabel,
-                  this.renderValue(yearsOfService, "profile.undefined")
-                )}
-                {this.renderLabeledItem(
-                  actingLabel,
+                  substantiveLabel,
                   this.renderValue(
-                    acting.description,
-                    "profile.na",
-                    actingDisabled
+                    {
+                      [true]: intl.formatMessage({
+                        id: "profile.indeterminate"
+                      }),
+                      [false]: intl.formatMessage({ id: "profile.term" }),
+                      [null]: null
+                    }[indeterminate]
+                  )
+                )}
+                {this.renderLabeledItem(
+                  classificationLabel,
+                  this.renderValue(
+                    classification.description,
+                    "profile.undefined"
+                  )
+                )}
+                {this.renderLabeledItem(
+                  temporaryRoleLabel,
+                  this.renderValue(
+                    temporaryRole.description,
+                    "profile.undefined"
                   )
                 )}
               </Grid>
@@ -129,15 +140,19 @@ class PrimaryLayoutGroupView extends Component {
                   securityLabel,
                   this.renderValue(security.description, "profile.undefined")
                 )}
-
                 {this.renderLabeledItem(
-                  classificationLabel,
+                  actingLabel,
                   this.renderValue(
-                    classification.description,
-                    "profile.undefined"
+                    acting.description,
+                    "profile.na",
+                    actingDisabled
                   )
                 )}
-                {this.renderLabeledItem(actingPeriodLabel, actingDateText)}
+                {acting.description ? (
+                  <div style={{ width: "100%", textAlign: "center" }}>
+                    {actingDateText}
+                  </div>
+                ) : null}
               </Grid>
             </Grid.Column>
           </Grid>
@@ -154,28 +169,41 @@ class PrimaryLayoutGroupView extends Component {
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
+          {/*this.renderLabeledItem(
+            SubstantiveLabel,
+            this.renderValue(indeterminate.description, "profile.undefined")
+          )*/}
           {this.renderLabeledItem(
-            tenureLabel,
-            this.renderValue(tenure.description, "profile.undefined")
+            substantiveLabel,
+            this.renderValue(
+              {
+                [true]: intl.formatMessage({ id: "profile.indeterminate" }),
+                [false]: intl.formatMessage({ id: "profile.term" }),
+                [null]: null
+              }[indeterminate]
+            )
           )}
-          {this.renderLabeledItem(
-            securityLabel,
-            this.renderValue(security.description, "profile.undefined")
-          )}
-          {this.renderLabeledItem(
-            yearsOfServiceLabel,
-            this.renderValue(yearsOfService, "profile.undefined")
-          )}
-
           {this.renderLabeledItem(
             classificationLabel,
             this.renderValue(classification.description, "profile.undefined")
           )}
           {this.renderLabeledItem(
+            temporaryRoleLabel,
+            this.renderValue(temporaryRole.description, "profile.undefined")
+          )}
+          {this.renderLabeledItem(
             actingLabel,
             this.renderValue(acting.description, "profile.na", actingDisabled)
           )}
-          {this.renderLabeledItem(actingPeriodLabel, actingDateText)}
+          {acting.description ? (
+            <div style={{ width: "100%", textAlign: "center" }}>
+              {actingDateText}
+            </div>
+          ) : null}
+          {this.renderLabeledItem(
+            securityLabel,
+            this.renderValue(security.description, "profile.undefined")
+          )}
         </Grid>
       </ProfileCardController>
     );
@@ -277,7 +305,9 @@ class PrimaryLayoutGroupView extends Component {
                     }
                   >
                     <Popup.Content>
-                      {this.renderOrganizationList([...organizationList, team])}
+                      {this.renderOrganizationList(
+                        team ? [...organizationList, team] : organizationList
+                      )}
                     </Popup.Content>
                   </Popup>
 

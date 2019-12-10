@@ -203,7 +203,7 @@ class SetupLayoutController extends Component {
       diploma: formatOptions(
         (await axios.get(backendAddress + "api/option/getDiploma")).data
       ),
-      groupOrLevel: formatOptions(
+      classification: formatOptions(
         (await axios.get(backendAddress + "api/option/getGroupLevel")).data
       ),
       competencies: competencyOptions,
@@ -225,7 +225,7 @@ class SetupLayoutController extends Component {
         (await axios.get(backendAddress + "api/option/getTalentMatrixResult"))
           .data
       ),
-      tenure: formatOptions(
+      temporaryRole: formatOptions(
         (await axios.get(backendAddress + "api/option/getTenure")).data
       ),
       willingToRelocateTo: formatOptions(

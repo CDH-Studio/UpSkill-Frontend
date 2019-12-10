@@ -17,7 +17,7 @@ class EditCareerInterestsView extends Component {
         }}
         form={CareerInterestsFormController}
         handleApply={handleApply}
-        name={intl.formatMessage({ id: "profile.edit.manager" })}
+        name={intl.formatMessage({ id: "profile.career.interests" })}
       />
     );
   }
