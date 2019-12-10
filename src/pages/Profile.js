@@ -81,21 +81,22 @@ class Profile extends Component {
         keycloak={keycloak}
         editable={ownProfile}
         privateView={ownProfile}
-        hiddenProfileCards={
+        visibleProfileCards={
           ownProfile
             ? null
             : {
-                info: true,
-                manager: true,
-                talentManagement: true,
-                officialLanguage: true,
-                skills: true,
-                competencies: false,
-                developmentalGoals: false,
+                careerInterests: true,
+                competencies: true,
+                developmentalGoals: true,
                 education: true,
                 experience: true,
+                info: true,
+                languageProficiency: true,
+                manager: true,
+                officialLanguage: true,
                 projects: true,
-                careerInterests: false
+                skills: true,
+                talentManagement: true
               }
         }
         profileInfo={this.state.profileInfo}

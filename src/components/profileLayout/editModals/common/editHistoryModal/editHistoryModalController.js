@@ -117,12 +117,9 @@ export default class EditHistoryModalController extends Component {
         myMoment.format("MMM YYY")
       );*/
     });
-
-    console.log("should perform update with", this.fields);
   }
 
   updateListField(index, name, value) {
-    console.log("list field update", name, value);
     this.fields[index][name] = value;
   }
 }

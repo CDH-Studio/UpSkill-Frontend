@@ -59,7 +59,7 @@ class ProfileLayoutView extends Component {
 
     const { intl } = this.props;
 
-    this.ungroupedCards = [
+    this.alwaysUngroupedCards = [
       {
         isHiddenKey: "skills",
         renderFunction: this.renderSkillsCard
@@ -101,7 +101,7 @@ class ProfileLayoutView extends Component {
       keycloak,
       profileInfo,
       windowWidth,
-      hiddenProfileCards
+      visibleProfileCards
     } = this.props;
 
     if (profileInfo === undefined) {
@@ -127,53 +127,163 @@ class ProfileLayoutView extends Component {
         />
 
         <div className="body">
-          {hiddenProfileCards
-            ? this.renderPublicProfile()
-            : this.renderPrivateProfile()}
+          {visibleProfileCards
+            ? this.renderPublicProfileBody()
+            : this.renderPrivateProfileBody()}
         </div>
       </EditableProvider>
     );
   }
 
-  renderPublicProfile() {
-    const {
-      changeLanguage,
-      editProfileOptions,
-      editable,
-      keycloak,
-      profileInfo,
-      windowWidth,
-      hiddenProfileCards
-    } = this.props;
+  renderPublicProfileBody() {
+    const { windowWidth, visibleProfileCards } = this.props;
+
+    let ungroupedCardRows;
+    let groupedCardRows;
+
+    //Wide width - some cards up top need to be grouped
+    if (windowWidth > 1250) {
+      //generate primary group cards
+      ungroupedCardRows = this.alwaysUngroupedCards;
+
+      const infoVisible = visibleProfileCards["info"];
+      const primaryGroupRow = (
+        <Grid.Row>
+          <Grid.Column width={infoVisible ? 11 : 16}>
+            {this.renderPrimaryCard()}
+          </Grid.Column>
+          {infoVisible && (
+            <Grid.Column width={5}> {this.renderInfoCard()} </Grid.Column>
+          )}
+        </Grid.Row>
+      );
+
+      //Generate secondary group of cards
+      let secondaryGroupRow;
+      const hasLeftCol =
+        visibleProfileCards["manager"] ||
+        visibleProfileCards["talentManagement"];
+      const hasRightCol = visibleProfileCards["languageProficiency"];
+      if (hasLeftCol && hasRightCol) {
+        secondaryGroupRow = (
+          <Grid.Row>
+            <Grid.Column width={11}>
+              {visibleProfileCards["manager"] && this.renderManagerCard()}
+              {visibleProfileCards["talentManagement"] &&
+                this.renderTalentManagementCard()}
+            </Grid.Column>
+            <Grid.Column width={5}>
+              {this.renderLanguageProficiencyCard()}
+            </Grid.Column>
+          </Grid.Row>
+        );
+      } else if (hasLeftCol) {
+        secondaryGroupRow = (
+          <Grid.Row>
+            <Grid.Column width={16}>
+              {visibleProfileCards["manager"] && this.renderManagerCard()}
+              {visibleProfileCards["talentManagement"] &&
+                this.renderTalentManagementCard()}
+            </Grid.Column>
+          </Grid.Row>
+        );
+      } else if (hasRightCol) {
+        secondaryGroupRow = (
+          <Grid.Column width={16}>
+            {this.renderLanguageProficiencyCard()}
+          </Grid.Column>
+        );
+      }
+
+      groupedCardRows = [primaryGroupRow, secondaryGroupRow];
+
+      //Narrow view - no cards are grouped
+    } else {
+      groupedCardRows = null;
+
+      ungroupedCardRows = [
+        { isHiddenKey: null, renderFunction: this.renderPrimaryCard },
+        { isHiddenKey: "info", renderFunction: this.renderInfoCard },
+        { isHiddenKey: "manager", renderFunction: this.renderManagerCard },
+        {
+          isHiddenKey: "languageProficiency",
+          renderFunction: this.renderLanguageProficiencyCard
+        },
+        {
+          isHiddenKey: "talentManagement",
+          renderFunction: this.renderTalentManagementCard
+        },
+        ...this.alwaysUngroupedCards
+      ];
+    }
 
     return (
       <Grid className="bodyGrid">
-        {this.ungroupedCards.map(
-          ({ isHiddenKey, renderFunction }) =>
-            (!hiddenProfileCards || hiddenProfileCards[isHiddenKey]) && (
-              <Grid.Row>
-                <Grid.Column>{renderFunction.bind(this)()}</Grid.Column>
-              </Grid.Row>
-            )
-        )}
+        {groupedCardRows}
+        {ungroupedCardRows
+          .filter(
+            ({ isHiddenKey }) =>
+              !isHiddenKey || visibleProfileCards[isHiddenKey]
+          )
+          .map(({ renderFunction }) => (
+            <Grid.Row>
+              <Grid.Column>{renderFunction.bind(this)()}</Grid.Column>
+            </Grid.Row>
+          ))}
       </Grid>
     );
   }
 
-  renderPrivateProfile() {
-    const {
-      changeLanguage,
-      editProfileOptions,
-      editable,
-      keycloak,
-      profileInfo,
-      windowWidth,
-      hiddenProfileCards
-    } = this.props;
+  renderPrivateProfileBody() {
+    const { windowWidth } = this.props;
+
+    let ungroupedCardRows;
+    let groupedCardRows;
+
+    //Wide width - some cards up top need to be grouped
+    if (windowWidth > 1250) {
+      ungroupedCardRows = this.alwaysUngroupedCards;
+
+      groupedCardRows = [
+        <Grid.Row>
+          <Grid.Column width={11}> {this.renderPrimaryCard()} </Grid.Column>
+          <Grid.Column width={5}> {this.renderInfoCard()} </Grid.Column>
+        </Grid.Row>,
+        <Grid.Row className="noGapBelow">
+          <Grid.Column className="noGapAbove noGapBelow" width={11}>
+            {this.renderManagerCard()}
+            {this.renderTalentManagementCard()}
+          </Grid.Column>
+          <Grid.Column className="noGapAbove noGapBelow" width={5}>
+            {this.renderLanguageProficiencyCard()}
+          </Grid.Column>
+        </Grid.Row>
+      ];
+
+      //Narrow view - no cards are grouped
+    } else {
+      groupedCardRows = null;
+
+      ungroupedCardRows = [
+        { isHiddenKey: null, renderFunction: this.renderPrimaryCard },
+        { isHiddenKey: "info", renderFunction: this.renderInfoCard },
+        { isHiddenKey: "manager", renderFunction: this.renderManagerCard },
+        {
+          isHiddenKey: "languageProficiency",
+          renderFunction: this.renderLanguageProficiencyCard
+        },
+        {
+          isHiddenKey: "talentManagement",
+          renderFunction: this.renderTalentManagementCard
+        },
+        ...this.alwaysUngroupedCards
+      ];
+    }
 
     return (
       <Grid className="bodyGrid">
-        {this.ungroupedCards.map(({ renderFunction }) => (
+        {groupedCardRows}
+        {ungroupedCardRows.map(({ renderFunction }) => (
           <Grid.Row>
             <Grid.Column>{renderFunction.bind(this)()}</Grid.Column>
           </Grid.Row>

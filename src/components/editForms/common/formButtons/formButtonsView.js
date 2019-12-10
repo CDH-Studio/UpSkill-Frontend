@@ -26,7 +26,7 @@ class ModalButtonsView extends Component {
             }}
           >
             <React.Fragment>
-              <Button type="submit" color="blue">
+              <Button type="button" onClick={handleApply} color="blue">
                 {intl.formatMessage({ id: "button.apply" })}
               </Button>
 

@@ -26,7 +26,7 @@ class ProfileLayoutController extends Component {
       profileInfo,
       updateProfileInfo,
       editable,
-      hiddenProfileCards
+      visibleProfileCards
     } = this.props;
 
     return (
@@ -34,7 +34,7 @@ class ProfileLayoutController extends Component {
         changeLanguage={changeLanguage}
         editable={editable}
         keycloak={keycloak}
-        hiddenProfileCards={hiddenProfileCards}
+        visibleProfileCards={visibleProfileCards}
         profileInfo={prepareInfo(profileInfo, localStorage.getItem("lang"), {
           acting: undefined,
           actingPeriodStartDate: undefined,
