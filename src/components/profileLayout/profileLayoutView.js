@@ -143,9 +143,9 @@ class ProfileLayoutView extends Component {
 
     //Wide width - some cards up top need to be grouped
     if (windowWidth > 1250) {
-      //generate primary group cards
       ungroupedCardRows = this.alwaysUngroupedCards;
 
+      //generate primary group cards
       const infoVisible = visibleProfileCards["info"];
       const primaryGroupRow = (
         <Grid.Row>
