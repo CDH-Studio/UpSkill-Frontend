@@ -51,7 +51,6 @@ class SearchFormView extends Component {
           paddingRight: "50px",
           width: maxFormWidth
         }}
-        fluid
       >
         {advancedSearch ? (
           this.renderAdvancedFields()

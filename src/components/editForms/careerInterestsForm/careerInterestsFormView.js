@@ -5,6 +5,7 @@ import FormButtonsController from "../common/formButtons/formButtonsController";
 import { injectIntl, FormattedMessage } from "react-intl";
 
 import "../common/form.css";
+
 class CareerInterestsFormView extends Component {
   render() {
     const {
@@ -49,6 +50,7 @@ class CareerInterestsFormView extends Component {
           </label>
           <Select
             className="editTagsDropdown"
+            search
             multiple
             defaultValue={
               profileInfo["relocationLocations"] &&
