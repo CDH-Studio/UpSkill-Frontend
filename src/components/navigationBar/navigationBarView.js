@@ -5,6 +5,8 @@ import ChangeLanguage from "../changeLanguage/ChangeLanguage";
 import { FormattedMessage } from "react-intl";
 import SearchFormController from "../searchForm/searchFormController";
 import Logo from "../../assets/Logo5.png";
+// import tempProfilePic from "../../../../assets/tempProfilePicture.png";
+import tempProfilePic from "../../assets/tempProfilePicture.png";
 
 import "./navBar.css";
 
@@ -52,8 +54,7 @@ export default class NavigationBarView extends Component {
           <Dropdown
             trigger={
               <span>
-                <Icon name="user" />
-                Hello, Mamadou
+                <Image avatar alt="missing profile" src={tempProfilePic} />
               </span>
             }
             pointing
@@ -61,9 +62,11 @@ export default class NavigationBarView extends Component {
           >
             <Dropdown.Menu>
               <Dropdown.Item href="/secured/profile">
+                <Icon name="user" />
                 <FormattedMessage id="my.profile" />
               </Dropdown.Item>
               <Dropdown.Item href="/admin">
+                <Icon name="setting" />
                 <FormattedMessage id="admin" />
               </Dropdown.Item>
               <Dropdown.Divider />
