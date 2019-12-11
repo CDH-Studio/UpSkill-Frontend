@@ -79,23 +79,20 @@ class Secured extends Component {
                 <div>
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
             {/* <div>
-                  <form>
-                    <textarea
-                      ref={textarea => (this.textArea = textarea)}
-                      value={keycloak.token}
-                    />
-                  </form>
-                  {document.queryCommandSupported("copy") && (
-                    <div>
-                      <button onClick={this.copyToClipboard}>Copy</button>
-                      {this.state.copySuccess}
-                    </div>
-                  )}
+              <form>
+                <textarea
+                  ref={textarea => (this.textArea = textarea)}
+                  value={keycloak.token}
+                />
+              </form>
+              {document.queryCommandSupported("copy") && (
+                <div>
+                  <button onClick={this.copyToClipboard}>Copy</button>
+                  {this.state.copySuccess}
                 </div>
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-
+              )}
+            </div> */}
             {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-
             <Route
               exact
               path="/secured/profile-generation"
