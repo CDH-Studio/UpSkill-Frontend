@@ -52,7 +52,7 @@ const formList = [
     form: EducationFormController
   },
   {
-    name: "setup.career.overview",
+    name: "setup.experience",
     form: CareerOverviewFormController
   },
   {

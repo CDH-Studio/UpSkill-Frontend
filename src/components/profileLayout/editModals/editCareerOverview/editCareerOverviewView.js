@@ -9,7 +9,7 @@ class EditCareerOverviewView extends Component {
     return (
       <EditModal
         form={CareerOverviewFormController}
-        name={intl.formatMessage({ id: "profile.edit.career.overview" })}
+        name={intl.formatMessage({ id: "profile.edit.experience" })}
         {...this.props}
       />
     );

@@ -83,7 +83,19 @@ class Profile extends Component {
         privateView={ownProfile}
         visibleProfileCards={
           ownProfile
-            ? null
+            ? {
+                careerInterests: true,
+                competencies: true,
+                developmentalGoals: true,
+                education: true,
+                experience: true,
+                info: true,
+                manager: true,
+                officialLanguage: false,
+                projects: true,
+                skills: true,
+                talentManagement: true
+              }
             : {
                 careerInterests: true,
                 competencies: true,

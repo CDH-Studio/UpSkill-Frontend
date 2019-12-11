@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { injectIntl, FormattedMessage } from "react-intl";
 import moment from "moment";
+import map from "lodash/map";
+
 import {
+  Button,
   Card,
   Dimmer,
   Grid,
@@ -12,7 +15,10 @@ import {
   Menu,
   Popup,
   Table,
-  Segment
+  Segment,
+  Sidebar,
+  Checkbox,
+  Form
 } from "semantic-ui-react";
 
 import tempProfilePic from "./../../assets/tempProfilePicture.png";
@@ -44,7 +50,7 @@ class ProfileLayoutView extends Component {
   constructor(props) {
     super(props);
 
-    const { intl } = this.props;
+    const { intl, editable } = this.props;
 
     this.alwaysUngroupedCards = [
       {
@@ -77,6 +83,11 @@ class ProfileLayoutView extends Component {
       }
     ];
 
+    this.state = {
+      settingsSidebar: editable ? false : null,
+      previewPublic: false
+    };
+
     this.renderValue = renderValue.bind(this, intl);
   }
 
@@ -87,7 +98,10 @@ class ProfileLayoutView extends Component {
       editable,
       keycloak,
       profileInfo,
-      visibleProfileCards
+      publicLayout,
+      visibleProfileCards,
+      updateVisibleProfileCards,
+      windowWidth
     } = this.props;
 
     if (profileInfo === undefined) {
@@ -112,12 +126,95 @@ class ProfileLayoutView extends Component {
           logoRedirectHome={true}
         />
 
-        <div className="body">
-          {visibleProfileCards
-            ? this.renderPublicProfileBody()
-            : this.renderPrivateProfileBody()}
-        </div>
+        <Sidebar.Pushable>
+          {this.renderSidebar()}
+          <Sidebar.Pusher>
+            <div style={{ minHeight: "calc(100vh - 53px)" }}>
+              <div className="body">
+                {this.state.settingsSidebar !== null && (
+                  <Button
+                    onClick={() =>
+                      this.setState(oldState => ({
+                        settingsSidebar: !oldState.settingsSidebar
+                      }))
+                    }
+                    //disabled={this.state.settingsSidebar === true}
+                  >
+                    Profile Settings
+                  </Button>
+                )}
+
+                {publicLayout ||
+                (this.state.settingsSidebar && this.state.previewPublic)
+                  ? this.renderPublicProfileBody()
+                  : this.renderPrivateProfileBody()}
+              </div>
+            </div>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </EditableProvider>
+    );
+  }
+
+  renderSidebar() {
+    const {
+      windowWidth,
+      visibleProfileCards,
+      updateVisibleProfileCards,
+      applyVisibleProfileCards,
+      disableApplyVisibleProfileCards,
+      intl
+    } = this.props;
+    return (
+      <Sidebar
+        as={Menu}
+        animation={windowWidth > 1800 ? "push" : "scale down"}
+        visible={this.state.settingsSidebar}
+        vertical
+      >
+        <Menu.Menu>
+          <Menu.Header>Preview Public View</Menu.Header>
+          <Menu.Item>
+            <Checkbox
+              label="Use public view"
+              toggle
+              onChange={(e, { checked }) =>
+                this.setState({ previewPublic: checked })
+              }
+            />
+          </Menu.Item>
+        </Menu.Menu>
+        <Menu.Menu position="right">
+          <Menu.Header>Publicly visible cards</Menu.Header>
+          {map(visibleProfileCards, (value, key) => (
+            <Menu.Item position="right">
+              <Checkbox
+                label={intl.formatMessage({
+                  id:
+                    "profile." +
+                    key
+                      .toString()
+                      .replace(/([A-Z])/g, ".$1")
+                      .toLowerCase()
+                })}
+                defaultChecked={value}
+                toggle
+                onChange={(e, { checked }) =>
+                  updateVisibleProfileCards({ [key]: checked })
+                }
+              />
+            </Menu.Item>
+          ))}
+          <Menu.Item>
+            <Button
+              disabled={disableApplyVisibleProfileCards}
+              onClick={applyVisibleProfileCards}
+            >
+              <FormattedMessage id="button.apply" />
+            </Button>
+          </Menu.Item>
+        </Menu.Menu>
+      </Sidebar>
     );
   }
 
@@ -149,7 +246,7 @@ class ProfileLayoutView extends Component {
       const hasLeftCol =
         visibleProfileCards["manager"] ||
         visibleProfileCards["talentManagement"];
-      const hasRightCol = visibleProfileCards["languageProficiency"];
+      const hasRightCol = visibleProfileCards["officialLanguage"];
 
       if (hasLeftCol || hasRightCol) {
         secondaryGroupRow = (
@@ -185,7 +282,7 @@ class ProfileLayoutView extends Component {
         { visibilityKey: "info", renderFunction: this.renderInfoCard },
         { visibilityKey: "manager", renderFunction: this.renderManagerCard },
         {
-          visibilityKey: "languageProficiency",
+          visibilityKey: "officialLanguage",
           renderFunction: this.renderLanguageProficiencyCard
         },
         {
@@ -249,7 +346,7 @@ class ProfileLayoutView extends Component {
         { visibilityKey: "info", renderFunction: this.renderInfoCard },
         { visibilityKey: "manager", renderFunction: this.renderManagerCard },
         {
-          visibilityKey: "languageProficiency",
+          visibilityKey: "officialLanguage",
           renderFunction: this.renderLanguageProficiencyCard
         },
         {
@@ -455,7 +552,7 @@ class ProfileLayoutView extends Component {
       return (
         <ProfileCardController
           button={EditLabelCardsController}
-          cardName="Info"
+          cardName={intl.formatMessage({ id: "profile.info" })}
           className="labeledItemCard compactCard"
         >
           <Grid>
@@ -519,7 +616,7 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController
         button={EditLabelCardsController}
-        cardName="Info"
+        cardName={intl.formatMessage({ id: "profile.info" })}
         className="labeledItemCard compactCard"
         fullHeight={true}
       >
@@ -673,7 +770,7 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController
         button={EditTalentManagementController}
-        cardName={intl.formatMessage({ id: "profile.talent.manager" })}
+        cardName={intl.formatMessage({ id: "profile.talent.management" })}
         cardIcon={
           <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
             <Icon name="external alternate" />
@@ -752,7 +849,7 @@ class ProfileLayoutView extends Component {
       <HistoryCardController
         button={EditCareerOverviewController}
         cardEntries={careerSummary}
-        cardName={intl.formatMessage({ id: "profile.career.overview" })}
+        cardName={intl.formatMessage({ id: "profile.experience" })}
       />
     );
   }

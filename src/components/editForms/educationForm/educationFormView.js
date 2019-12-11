@@ -34,7 +34,7 @@ export default injectIntl(EducationFormView);
           id: "profile.career.content.name"
         })}
         headerName={intl.formatMessage({ id: "profile.career.header.name" })}
-        name={intl.formatMessage({ id: "profile.edit.career.overview" })}
+        name={intl.formatMessage({ id: "profile.edit.experience" })}
         subheaderName={intl.formatMessage({
           id: "profile.career.subheader.name"
         })}
