@@ -47,6 +47,14 @@ class Secured extends Component {
     keycloak
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
+        if (keycloak.tokenParsed.resource_access)
+          sessionStorage.setItem(
+            "admin",
+            keycloak.tokenParsed.resource_access[
+              "upskill-client"
+            ].roles.includes("view-admin-console")
+          );
+        else sessionStorage.removeItem("admin");
         axios.interceptors.request.use(config =>
           keycloak.updateToken(5).then(() => {
             config.headers.Authorization = "Bearer " + keycloak.token;
