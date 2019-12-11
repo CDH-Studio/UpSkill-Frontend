@@ -37,7 +37,8 @@ class Secured extends Component {
     this.state = {
       authenticated: false,
       keycloak: null,
-      isAdmin: false
+      isAdmin: false,
+      loading: true
     };
 
     this.changeLanguage = this.props.changeLanguage;
@@ -55,13 +56,24 @@ class Secured extends Component {
           })
         );
 
-        axios.get(backendAddress + "api/admin/check").then(res => {
-          this.setState({
-            keycloak: keycloak,
-            authenticated: authenticated,
-            isAdmin: res.status === 200
-          });
-        });
+        axios.get(backendAddress + "api/admin/check").then(
+          () => {
+            this.setState({
+              keycloak: keycloak,
+              authenticated: authenticated,
+              isAdmin: true,
+              loading: false
+            });
+          },
+          () => {
+            this.setState({
+              keycloak: keycloak,
+              authenticated: authenticated,
+              isAdmin: false,
+              loading: false
+            });
+          }
+        );
       });
   }
 
@@ -72,7 +84,9 @@ class Secured extends Component {
     if (!/MSIE|Trident/.test(window.navigator.userAgent)) {
       document.body.style = "background-color: #eeeeee";
     }
-
+    if (this.state.loading) {
+      return dimmer();
+    }
     if (!this.state.isAdmin) {
       return (
         <div>
