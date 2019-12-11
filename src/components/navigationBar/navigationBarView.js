@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Menu, Image, Grid } from "semantic-ui-react";
+import { Menu, Image, Grid, Dropdown, Icon } from "semantic-ui-react";
 import Logout from "../logout/Logout";
 import ChangeLanguage from "../changeLanguage/ChangeLanguage";
 import { FormattedMessage } from "react-intl";
@@ -47,15 +47,30 @@ export default class NavigationBarView extends Component {
         >
           <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
+
         <Menu.Menu position="right">
-          <Menu.Item href="/admin">
-            <FormattedMessage id="admin" />
-          </Menu.Item>
-          <Menu.Item href="/secured/profile">
-            <FormattedMessage id="my.profile" />
-          </Menu.Item>
-          <Logout id="logoutButton" keycloak={keycloak} />
-          <ChangeLanguage changeLanguage={changeLanguage} />
+          <Dropdown
+            trigger={
+              <span>
+                <Icon name="user" />
+                Hello, Mamadou
+              </span>
+            }
+            pointing
+            className="link item"
+          >
+            <Dropdown.Menu>
+              <Dropdown.Item href="/secured/profile">
+                <FormattedMessage id="my.profile" />
+              </Dropdown.Item>
+              <Dropdown.Item href="/admin">
+                <FormattedMessage id="admin" />
+              </Dropdown.Item>
+              <Dropdown.Divider />
+              <ChangeLanguage changeLanguage={changeLanguage} />
+              <Logout id="logoutButton" keycloak={keycloak} />
+            </Dropdown.Menu>
+          </Dropdown>
         </Menu.Menu>
       </Menu>
     );
