@@ -157,6 +157,10 @@ class ProfileLayoutView extends Component {
             {hasLeftCol && (
               <Grid.Column width={hasRightCol ? 11 : 16}>
                 {visibleProfileCards["manager"] && this.renderManagerCard()}
+                {visibleProfileCards["manager"] &&
+                  visibleProfileCards["talentManagement"] && (
+                    <div style={{ height: "2em" }} />
+                  )}
                 {visibleProfileCards["talentManagement"] &&
                   this.renderTalentManagementCard()}
               </Grid.Column>
@@ -227,6 +231,7 @@ class ProfileLayoutView extends Component {
         <Grid.Row className="noGapBelow">
           <Grid.Column className="noGapAbove noGapBelow" width={11}>
             {this.renderManagerCard()}
+            <div style={{ height: "2em" }} />
             {this.renderTalentManagementCard()}
           </Grid.Column>
           <Grid.Column className="noGapAbove noGapBelow" width={5}>
@@ -372,7 +377,8 @@ class ProfileLayoutView extends Component {
             color="blue"
             inverted
             widths={
-              [linkedinUrl, githubUrl, twitterUrl].filter(word => word).length
+              [linkedinUrl, githubUrl, twitterUrl].filter(word => word).length +
+              1
             }
           >
             {linkedinUrl && (
@@ -394,6 +400,10 @@ class ProfileLayoutView extends Component {
                 <FormattedMessage id="profile.twitter" />
               </Menu.Item>
             )}
+            <Menu.Item href={"mailto:" + email}>
+              <Icon name="envelope" />
+              <FormattedMessage id="profile.email" />
+            </Menu.Item>
           </Menu>
         </Card>
       </EditWrapperController>
@@ -409,8 +419,7 @@ class ProfileLayoutView extends Component {
       classification,
       indeterminate,
       security,
-      temporaryRole,
-      yearsOfService
+      temporaryRole
     } = profileInfo;
 
     const actingDisabled = !(acting && actingPeriodStartDate);
@@ -562,9 +571,7 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController
         button={EditManagerController}
-        className={
-          windowWidth > 1250 ? "noGapAbove belowGapCard" : "noGapAbove"
-        }
+        className="noGapAbove"
       >
         <span className="colorLabel">
           <FormattedMessage id="profile.manager" />:
