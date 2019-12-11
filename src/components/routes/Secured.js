@@ -98,8 +98,8 @@ class Secured extends Component {
 
             <Route
               exact
-              path="/secured/profile-generation"
-              component={ProfileGeneration}
+              path="/secured/"
+              component={() => <Redirect to="/secured/home" />}
             />
             <Route
               exact
@@ -182,7 +182,7 @@ class Secured extends Component {
 
   renderRedirect = () => {
     return this.profileExist().then(profileExist => {
-      if (!profileExist) return <Redirect to="/secured/setup"></Redirect>;
+      if (!profileExist) return <Redirect to="/secured/setup" />;
       else return <div />;
     });
   };
