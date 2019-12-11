@@ -1,41 +1,25 @@
 import React, { Component } from "react";
 import { injectIntl, FormattedMessage } from "react-intl";
-
-import NavigationBar from "../navigationBar/navigationBarController";
+import moment from "moment";
 import {
   Card,
   Dimmer,
   Grid,
-  Label,
-  Loader,
-  Table,
   Icon,
+  Label,
   List,
+  Loader,
+  Menu,
   Popup,
-  Menu
+  Table,
+  Segment
 } from "semantic-ui-react";
 
-import EditWrapperController from "./editWrapper/editWrapperController";
-
-import { renderValue } from "./common/profileTools";
-
-import moment from "moment";
-
 import tempProfilePic from "./../../assets/tempProfilePicture.png";
-
-import EditLabelCardsController from "./editModals/editLabelCards/editLabelCardsController";
-import EditPrimaryInformationController from "./editModals/editPrimaryInformation/editPrimaryInformationController";
-import EditProfilePictureController from "./editModals/editProfilePicture/editProfilePictureController";
-
+import NavigationBar from "../navigationBar/navigationBarController";
 import ProfileCardController from "./profileCard/profileCardController";
-
-//import "./primaryLayoutGroup.css";
-//import "../common/common.css";
-
-import EditLanguageProficiencyController from "./editModals/editLanguageProficiency/editLanguageProficiencyController";
-import EditManagerController from "./editModals/editManager/editManagerController";
-import EditTalentManagementController from "./editModals/editTalentManagement/editTalentManagementController";
-
+import EditWrapperController from "./editWrapper/editWrapperController";
+import { renderValue } from "./common/profileTools";
 import { EditableProvider } from "./editableProvider/editableProvider";
 
 import EditCareerInterestsController from "./editModals/editCareerInterests/editCareerInterestsController";
@@ -43,13 +27,16 @@ import EditCareerOverviewController from "./editModals/editCareerOverview/editCa
 import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
 import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";
 import EditEducationController from "./editModals/editEducation/editEducationController";
-import EditSkillController from "./editModals/editSkills/editSkillsController";
+import EditLabelCardsController from "./editModals/editLabelCards/editLabelCardsController";
+import EditLanguageProficiencyController from "./editModals/editLanguageProficiency/editLanguageProficiencyController";
+import EditManagerController from "./editModals/editManager/editManagerController";
+import EditPrimaryInformationController from "./editModals/editPrimaryInformation/editPrimaryInformationController";
+import EditProfilePictureController from "./editModals/editProfilePicture/editProfilePictureController";
 import EditProjectsController from "./editModals/editProjects/editProjectsController";
+import EditSkillController from "./editModals/editSkills/editSkillsController";
+import EditTalentManagementController from "./editModals/editTalentManagement/editTalentManagementController";
 
 import HistoryCardController from "./historyCard/historyCardController";
-
-import PrimaryLayoutGroupController from "./primaryLayoutGroup/primaryLayoutGroupController";
-import SecondaryLayoutGroupController from "./secondaryLayoutGroup/secondaryLayoutGroupController";
 
 import "./profileLayout.css";
 
@@ -61,31 +48,31 @@ class ProfileLayoutView extends Component {
 
     this.alwaysUngroupedCards = [
       {
-        isHiddenKey: "skills",
+        visibilityKey: "skills",
         renderFunction: this.renderSkillsCard
       },
       {
-        isHiddenKey: "competencies",
+        visibilityKey: "competencies",
         renderFunction: this.renderCompetenciesCard
       },
       {
-        isHiddenKey: "developmentalGoals",
+        visibilityKey: "developmentalGoals",
         renderFunction: this.renderDevelopmentalGoalsCard
       },
       {
-        isHiddenKey: "education",
+        visibilityKey: "education",
         renderFunction: this.renderEducationCard
       },
       {
-        isHiddenKey: "careerOverview",
+        visibilityKey: "careerOverview",
         renderFunction: this.renderCareerOverviewCard
       },
       {
-        isHiddenKey: "projects",
+        visibilityKey: "projects",
         renderFunction: this.renderProjectsCard
       },
       {
-        isHiddenKey: "careerInterests",
+        visibilityKey: "careerInterests",
         renderFunction: this.renderCareerInterests
       }
     ];
@@ -100,7 +87,6 @@ class ProfileLayoutView extends Component {
       editable,
       keycloak,
       profileInfo,
-      windowWidth,
       visibleProfileCards
     } = this.props;
 
@@ -164,34 +150,23 @@ class ProfileLayoutView extends Component {
         visibleProfileCards["manager"] ||
         visibleProfileCards["talentManagement"];
       const hasRightCol = visibleProfileCards["languageProficiency"];
-      if (hasLeftCol && hasRightCol) {
+
+      if (hasLeftCol || hasRightCol) {
         secondaryGroupRow = (
           <Grid.Row>
-            <Grid.Column width={11}>
-              {visibleProfileCards["manager"] && this.renderManagerCard()}
-              {visibleProfileCards["talentManagement"] &&
-                this.renderTalentManagementCard()}
-            </Grid.Column>
-            <Grid.Column width={5}>
-              {this.renderLanguageProficiencyCard()}
-            </Grid.Column>
+            {hasLeftCol && (
+              <Grid.Column width={hasRightCol ? 11 : 16}>
+                {visibleProfileCards["manager"] && this.renderManagerCard()}
+                {visibleProfileCards["talentManagement"] &&
+                  this.renderTalentManagementCard()}
+              </Grid.Column>
+            )}
+            {hasRightCol && (
+              <Grid.Column width={hasLeftCol ? 5 : 16}>
+                {this.renderLanguageProficiencyCard()}
+              </Grid.Column>
+            )}
           </Grid.Row>
-        );
-      } else if (hasLeftCol) {
-        secondaryGroupRow = (
-          <Grid.Row>
-            <Grid.Column width={16}>
-              {visibleProfileCards["manager"] && this.renderManagerCard()}
-              {visibleProfileCards["talentManagement"] &&
-                this.renderTalentManagementCard()}
-            </Grid.Column>
-          </Grid.Row>
-        );
-      } else if (hasRightCol) {
-        secondaryGroupRow = (
-          <Grid.Column width={16}>
-            {this.renderLanguageProficiencyCard()}
-          </Grid.Column>
         );
       }
 
@@ -202,15 +177,15 @@ class ProfileLayoutView extends Component {
       groupedCardRows = null;
 
       ungroupedCardRows = [
-        { isHiddenKey: null, renderFunction: this.renderPrimaryCard },
-        { isHiddenKey: "info", renderFunction: this.renderInfoCard },
-        { isHiddenKey: "manager", renderFunction: this.renderManagerCard },
+        { visibilityKey: null, renderFunction: this.renderPrimaryCard },
+        { visibilityKey: "info", renderFunction: this.renderInfoCard },
+        { visibilityKey: "manager", renderFunction: this.renderManagerCard },
         {
-          isHiddenKey: "languageProficiency",
+          visibilityKey: "languageProficiency",
           renderFunction: this.renderLanguageProficiencyCard
         },
         {
-          isHiddenKey: "talentManagement",
+          visibilityKey: "talentManagement",
           renderFunction: this.renderTalentManagementCard
         },
         ...this.alwaysUngroupedCards
@@ -222,8 +197,8 @@ class ProfileLayoutView extends Component {
         {groupedCardRows}
         {ungroupedCardRows
           .filter(
-            ({ isHiddenKey }) =>
-              !isHiddenKey || visibleProfileCards[isHiddenKey]
+            ({ visibilityKey }) =>
+              !visibilityKey || visibleProfileCards[visibilityKey]
           )
           .map(({ renderFunction }) => (
             <Grid.Row>
@@ -265,15 +240,15 @@ class ProfileLayoutView extends Component {
       groupedCardRows = null;
 
       ungroupedCardRows = [
-        { isHiddenKey: null, renderFunction: this.renderPrimaryCard },
-        { isHiddenKey: "info", renderFunction: this.renderInfoCard },
-        { isHiddenKey: "manager", renderFunction: this.renderManagerCard },
+        { visibilityKey: null, renderFunction: this.renderPrimaryCard },
+        { visibilityKey: "info", renderFunction: this.renderInfoCard },
+        { visibilityKey: "manager", renderFunction: this.renderManagerCard },
         {
-          isHiddenKey: "languageProficiency",
+          visibilityKey: "languageProficiency",
           renderFunction: this.renderLanguageProficiencyCard
         },
         {
-          isHiddenKey: "talentManagement",
+          visibilityKey: "talentManagement",
           renderFunction: this.renderTalentManagementCard
         },
         ...this.alwaysUngroupedCards
@@ -422,274 +397,6 @@ class ProfileLayoutView extends Component {
           </Menu>
         </Card>
       </EditWrapperController>
-    );
-  }
-
-  renderSkillsCard() {
-    const { intl, profileInfo } = this.props;
-    const currentSkills = profileInfo.skills;
-
-    return this.renderGenericTagsCard(
-      intl.formatMessage({ id: "profile.skills" }),
-      currentSkills,
-      EditSkillController
-    );
-  }
-
-  renderCompetenciesCard() {
-    const { intl, profileInfo } = this.props;
-    const { competencies } = profileInfo;
-
-    return this.renderGenericTagsCard(
-      intl.formatMessage({ id: "profile.competencies" }),
-      competencies,
-      EditCompetenciesController
-    );
-  }
-
-  renderDevelopmentalGoalsCard() {
-    const { intl, profileInfo } = this.props;
-    const { developmentalGoals } = profileInfo;
-
-    return this.renderGenericTagsCard(
-      intl.formatMessage({ id: "profile.developmental.goals" }),
-      developmentalGoals,
-      EditDevelopmentalGoalsController
-    );
-  }
-
-  renderGenericTagsCard(cardName, cardTags, button) {
-    return (
-      <ProfileCardController button={button} cardName={cardName}>
-        {cardTags.map((value, index) => (
-          <Label color="blue" basic>
-            <p style={{ color: "black" }}>{value.text}</p>
-          </Label>
-        ))}
-      </ProfileCardController>
-    );
-  }
-
-  renderEducationCard() {
-    const { intl, profileInfo } = this.props;
-    const { education } = profileInfo;
-
-    return (
-      <HistoryCardController
-        button={EditEducationController}
-        cardEntries={education}
-        cardName={intl.formatMessage({ id: "profile.education" })}
-      />
-    );
-  }
-
-  renderCareerOverviewCard() {
-    const { intl, profileInfo } = this.props;
-    const { careerSummary } = profileInfo;
-
-    return (
-      <HistoryCardController
-        button={EditCareerOverviewController}
-        cardEntries={careerSummary}
-        cardName={intl.formatMessage({ id: "profile.career.overview" })}
-      />
-    );
-  }
-
-  renderProjectsCard() {
-    const { intl, profileInfo } = this.props;
-    const currentProjects = profileInfo.projects || [];
-
-    return this.renderGenericTagsCard(
-      intl.formatMessage({ id: "profile.projects" }),
-      currentProjects,
-      EditProjectsController
-    );
-  }
-
-  renderCareerInterests() {
-    const { intl, profileInfo } = this.props;
-
-    const {
-      interestedInRemote,
-      relocationLocations,
-      lookingForNewJob
-    } = profileInfo;
-
-    return (
-      <ProfileCardController
-        button={EditCareerInterestsController}
-        cardName={"Career Interests"}
-      >
-        <div>
-          <span className="boldLabel">
-            <FormattedMessage id="profile.interested.in.remote" />
-          </span>
-          <span>
-            {this.renderValue(
-              {
-                [null]: null,
-                [true]: intl.formatMessage({ id: "profile.yes" }),
-                [false]: intl.formatMessage({ id: "profile.no" })
-              }[interestedInRemote]
-            )}
-          </span>
-        </div>
-        <div className="boldLabel">
-          <FormattedMessage id="profile.willing.to.relocate.to" />
-        </div>
-        <div>
-          {relocationLocations
-            ? relocationLocations.map(element => (
-                <Label color="blue" basic>
-                  <p style={{ color: "black" }}>{element.description}</p>
-                </Label>
-              ))
-            : null}
-        </div>
-        <span className="boldLabel">
-          <FormattedMessage id="profile.looking.for.new.job" />
-        </span>
-        <span>
-          {this.renderValue(lookingForNewJob && lookingForNewJob.description)}
-        </span>
-      </ProfileCardController>
-    );
-  }
-
-  renderManagerCard() {
-    const { profileInfo, windowWidth } = this.props;
-    const { manager } = profileInfo;
-
-    return (
-      <ProfileCardController
-        button={EditManagerController}
-        className={
-          windowWidth > 1250 ? "belowGapCard noGapAbove" : "noGapAbove"
-        }
-      >
-        <span className="colorLabel">
-          <FormattedMessage id="profile.manager" />:
-        </span>
-        <span>{this.renderValue(manager)}</span>
-      </ProfileCardController>
-    );
-  }
-
-  renderLanguageProficiencyCard() {
-    const { intl, profileInfo, windowWidth } = this.props;
-    const {
-      firstLanguage,
-      secondaryOralDate,
-      secondaryOralProficiency,
-      secondaryReadingDate,
-      secondaryReadingProficiency,
-      secondaryWritingDate,
-      secondaryWritingProficiency
-    } = profileInfo;
-
-    return (
-      <ProfileCardController
-        button={EditLanguageProficiencyController}
-        cardName={intl.formatMessage({ id: "profile.official.language" })}
-        className={windowWidth > 1250 ? "compactCard" : null}
-        fullHeight={windowWidth > 1250}
-      >
-        <div>
-          <span className="boldLabel">
-            <FormattedMessage id="profile.first.language" />
-          </span>
-          <span>{this.renderValue(firstLanguage)}</span>
-        </div>
-        <p className="boldLabel noGapBelow">
-          <FormattedMessage id="profile.second.language.proficiency" />
-        </p>
-        <Table
-          basic="very"
-          celled
-          className="noGapAbove"
-          collapsing
-          style={{ margin: "0px auto" }}
-          unstackable
-        >
-          <Table.Body id="proficiencyTableBody">
-            <Table.Row>
-              <Table.Cell>
-                <FormattedMessage
-                  className={secondaryReadingProficiency ? "greyedOut" : null}
-                  id="profile.reading"
-                />
-              </Table.Cell>
-              <Table.Cell>{secondaryReadingProficiency}</Table.Cell>
-              <Table.Cell>
-                {moment(secondaryReadingDate).isValid()
-                  ? moment(secondaryReadingDate).format("ll")
-                  : null}
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>
-                <FormattedMessage
-                  className={secondaryWritingProficiency ? "greyedOut" : null}
-                  id="profile.writing"
-                />
-              </Table.Cell>
-              <Table.Cell>{secondaryWritingProficiency}</Table.Cell>
-              <Table.Cell>
-                {moment(secondaryWritingDate).isValid()
-                  ? moment(secondaryWritingDate).format("ll")
-                  : null}
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>
-                <FormattedMessage
-                  className={secondaryOralProficiency ? "greyedOut" : null}
-                  id="profile.oral"
-                />
-              </Table.Cell>
-              <Table.Cell>{secondaryOralProficiency}</Table.Cell>
-              <Table.Cell>
-                {moment(secondaryOralDate).isValid()
-                  ? moment(secondaryOralDate).format("ll")
-                  : null}
-              </Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
-      </ProfileCardController>
-    );
-  }
-
-  renderTalentManagementCard() {
-    const { intl, profileInfo } = this.props;
-    const { careerMobility, talentMatrixResult, exFeeder } = profileInfo;
-
-    return (
-      <ProfileCardController
-        button={EditTalentManagementController}
-        cardName={intl.formatMessage({ id: "profile.talent.manager" })}
-        cardIcon={
-          <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
-            <Icon name="external alternate" />
-          </a>
-        }
-        className="noGapBelow"
-      >
-        <div>
-          <span className="boldLabel">
-            <FormattedMessage id="profile.career.mobility" />
-          </span>
-          <span>{this.renderValue(careerMobility.description)}</span>
-        </div>
-        <div>
-          <span className="boldLabel">
-            <FormattedMessage id="profile.talent.matrix.result" />
-          </span>
-          <span>{this.renderValue(talentMatrixResult.description)}</span>
-        </div>
-        {exFeeder && intl.formatMessage({ id: "profile.is.ex.feeder" })}
-      </ProfileCardController>
     );
   }
 
@@ -844,6 +551,274 @@ class ProfileLayoutView extends Component {
             this.renderValue(security.description, "profile.undefined")
           )}
         </Grid>
+      </ProfileCardController>
+    );
+  }
+
+  renderManagerCard() {
+    const { profileInfo, windowWidth } = this.props;
+    const { manager } = profileInfo;
+
+    return (
+      <ProfileCardController
+        button={EditManagerController}
+        className={
+          windowWidth > 1250 ? "noGapAbove belowGapCard" : "noGapAbove"
+        }
+      >
+        <span className="colorLabel">
+          <FormattedMessage id="profile.manager" />:
+        </span>
+        <span>{this.renderValue(manager)}</span>
+      </ProfileCardController>
+    );
+  }
+
+  renderLanguageProficiencyCard() {
+    const { intl, profileInfo, windowWidth } = this.props;
+    const {
+      firstLanguage,
+      secondaryOralDate,
+      secondaryOralProficiency,
+      secondaryReadingDate,
+      secondaryReadingProficiency,
+      secondaryWritingDate,
+      secondaryWritingProficiency
+    } = profileInfo;
+
+    return (
+      <ProfileCardController
+        button={EditLanguageProficiencyController}
+        cardName={intl.formatMessage({ id: "profile.official.language" })}
+        className={windowWidth > 1250 ? "compactCard" : null}
+        fullHeight={windowWidth > 1250}
+      >
+        <div>
+          <span className="boldLabel">
+            <FormattedMessage id="profile.first.language" />
+          </span>
+          <span>{this.renderValue(firstLanguage)}</span>
+        </div>
+        <p className="boldLabel noGapBelow">
+          <FormattedMessage id="profile.second.language.proficiency" />
+        </p>
+        <Table
+          basic="very"
+          celled
+          className="noGapAbove"
+          collapsing
+          style={{ margin: "0px auto" }}
+          unstackable
+        >
+          <Table.Body id="proficiencyTableBody">
+            <Table.Row>
+              <Table.Cell>
+                <FormattedMessage
+                  className={secondaryReadingProficiency ? "greyedOut" : null}
+                  id="profile.reading"
+                />
+              </Table.Cell>
+              <Table.Cell>{secondaryReadingProficiency}</Table.Cell>
+              <Table.Cell>
+                {moment(secondaryReadingDate).isValid()
+                  ? moment(secondaryReadingDate).format("ll")
+                  : null}
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                <FormattedMessage
+                  className={secondaryWritingProficiency ? "greyedOut" : null}
+                  id="profile.writing"
+                />
+              </Table.Cell>
+              <Table.Cell>{secondaryWritingProficiency}</Table.Cell>
+              <Table.Cell>
+                {moment(secondaryWritingDate).isValid()
+                  ? moment(secondaryWritingDate).format("ll")
+                  : null}
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                <FormattedMessage
+                  className={secondaryOralProficiency ? "greyedOut" : null}
+                  id="profile.oral"
+                />
+              </Table.Cell>
+              <Table.Cell>{secondaryOralProficiency}</Table.Cell>
+              <Table.Cell>
+                {moment(secondaryOralDate).isValid()
+                  ? moment(secondaryOralDate).format("ll")
+                  : null}
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      </ProfileCardController>
+    );
+  }
+
+  renderTalentManagementCard() {
+    const { intl, profileInfo } = this.props;
+    const { careerMobility, talentMatrixResult, exFeeder } = profileInfo;
+
+    return (
+      <ProfileCardController
+        button={EditTalentManagementController}
+        cardName={intl.formatMessage({ id: "profile.talent.manager" })}
+        cardIcon={
+          <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
+            <Icon name="external alternate" />
+          </a>
+        }
+        className="noGapBelow"
+      >
+        <div>
+          <span className="boldLabel">
+            <FormattedMessage id="profile.career.mobility" />
+          </span>
+          <span>{this.renderValue(careerMobility.description)}</span>
+        </div>
+        <div>
+          <span className="boldLabel">
+            <FormattedMessage id="profile.talent.matrix.result" />
+          </span>
+          <span>{this.renderValue(talentMatrixResult.description)}</span>
+        </div>
+        {exFeeder && intl.formatMessage({ id: "profile.is.ex.feeder" })}
+      </ProfileCardController>
+    );
+  }
+
+  renderSkillsCard() {
+    const { intl, profileInfo } = this.props;
+    const currentSkills = profileInfo.skills;
+
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.skills" }),
+      currentSkills,
+      EditSkillController
+    );
+  }
+
+  renderCompetenciesCard() {
+    const { intl, profileInfo } = this.props;
+    const { competencies } = profileInfo;
+
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.competencies" }),
+      competencies,
+      EditCompetenciesController
+    );
+  }
+
+  renderDevelopmentalGoalsCard() {
+    const { intl, profileInfo } = this.props;
+    const { developmentalGoals } = profileInfo;
+
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.developmental.goals" }),
+      developmentalGoals,
+      EditDevelopmentalGoalsController
+    );
+  }
+
+  renderEducationCard() {
+    const { intl, profileInfo } = this.props;
+    const { education } = profileInfo;
+
+    return (
+      <HistoryCardController
+        button={EditEducationController}
+        cardEntries={education}
+        cardName={intl.formatMessage({ id: "profile.education" })}
+      />
+    );
+  }
+
+  renderCareerOverviewCard() {
+    const { intl, profileInfo } = this.props;
+    const { careerSummary } = profileInfo;
+
+    return (
+      <HistoryCardController
+        button={EditCareerOverviewController}
+        cardEntries={careerSummary}
+        cardName={intl.formatMessage({ id: "profile.career.overview" })}
+      />
+    );
+  }
+
+  renderProjectsCard() {
+    const { intl, profileInfo } = this.props;
+    const currentProjects = profileInfo.projects || [];
+
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.projects" }),
+      currentProjects,
+      EditProjectsController
+    );
+  }
+
+  renderCareerInterests() {
+    const { intl, profileInfo } = this.props;
+
+    const {
+      interestedInRemote,
+      relocationLocations,
+      lookingForNewJob
+    } = profileInfo;
+
+    return (
+      <ProfileCardController
+        button={EditCareerInterestsController}
+        cardName={"Career Interests"}
+      >
+        <div>
+          <span className="boldLabel">
+            <FormattedMessage id="profile.interested.in.remote" />
+          </span>
+          <span>
+            {this.renderValue(
+              {
+                [null]: null,
+                [true]: intl.formatMessage({ id: "profile.yes" }),
+                [false]: intl.formatMessage({ id: "profile.no" })
+              }[interestedInRemote]
+            )}
+          </span>
+        </div>
+        <div className="boldLabel">
+          <FormattedMessage id="profile.willing.to.relocate.to" />
+        </div>
+        <div>
+          {relocationLocations
+            ? relocationLocations.map(element => (
+                <Label color="blue" basic>
+                  <p style={{ color: "black" }}>{element.description}</p>
+                </Label>
+              ))
+            : null}
+        </div>
+        <span className="boldLabel">
+          <FormattedMessage id="profile.looking.for.new.job" />
+        </span>
+        <span>
+          {this.renderValue(lookingForNewJob && lookingForNewJob.description)}
+        </span>
+      </ProfileCardController>
+    );
+  }
+
+  renderGenericTagsCard(cardName, cardTags, button) {
+    return (
+      <ProfileCardController button={button} cardName={cardName}>
+        {cardTags.map((value, index) => (
+          <Label color="blue" basic>
+            <p style={{ color: "black" }}>{value.text}</p>
+          </Label>
+        ))}
       </ProfileCardController>
     );
   }

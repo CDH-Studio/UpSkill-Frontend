@@ -91,12 +91,12 @@ class Profile extends Component {
                 education: true,
                 experience: true,
                 info: true,
-                languageProficiency: true,
+                //languageProficiency: true,
                 manager: true,
                 officialLanguage: true,
                 projects: true,
-                skills: true,
-                talentManagement: true
+                skills: true
+                //talentManagement: true
               }
         }
         profileInfo={this.state.profileInfo}
