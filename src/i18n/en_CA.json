@@ -1,5 +1,6 @@
 {
   "admin": "Admin",
+  "admin.console": "Admin Console",
   "admin.dashboard": "Dashboard",
   "admin.dashboard.singular": "Dashboard",
   "admin.dashboard.plural": "Dashboard",

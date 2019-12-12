@@ -100,7 +100,7 @@ export default class FormManagingComponent extends Component {
         .put(url, this.fields)
         .then(response => window.location.reload())
         .catch(function(error) {
-          console.log(error);
+          console.error(error);
         });
     }
   }

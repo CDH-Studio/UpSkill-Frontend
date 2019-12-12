@@ -255,7 +255,6 @@ class SetupLayoutController extends Component {
 
   handleRegister() {
     const { redirectFunction } = this.props;
-    console.log("registering with data", this.changes);
     axios
       .post(
         backendAddress + "api/profile/" + localStorage.getItem("userId"),
@@ -265,7 +264,7 @@ class SetupLayoutController extends Component {
         redirectFunction("/secured/home");
       })
       .catch(function(error) {
-        console.log(error);
+        console.error(error);
       });
   }
 
