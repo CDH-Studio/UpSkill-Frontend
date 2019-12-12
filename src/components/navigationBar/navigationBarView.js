@@ -31,7 +31,7 @@ export default class NavigationBarView extends Component {
   }
 
   renderMainBar() {
-    const { changeLanguage, keycloak } = this.props;
+    const { changeLanguage, keycloak, admin } = this.props;
     return (
       <Menu
         color="blue"
@@ -48,9 +48,11 @@ export default class NavigationBarView extends Component {
           <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
         <Menu.Menu position="right">
-          <Menu.Item href="/admin">
-            <FormattedMessage id="admin" />
-          </Menu.Item>
+          {admin ? (
+            <Menu.Item href="/admin">
+              <FormattedMessage id="admin" />
+            </Menu.Item>
+          ) : null}
           <Menu.Item href="/secured/profile">
             <FormattedMessage id="my.profile" />
           </Menu.Item>

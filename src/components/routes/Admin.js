@@ -4,7 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import axios from "axios";
 
-import { Dimmer, Image } from "semantic-ui-react";
+import { Dimmer, Image, Header, Button, Grid, Modal } from "semantic-ui-react";
 
 import animatedLogo from "../../assets/animatedLogo.gif";
 
@@ -16,6 +16,9 @@ import {
   AdminUser,
   AdminDasboard
 } from "../../pages/admin";
+
+import config from "../../config";
+const { backendAddress } = config;
 
 const history = createBrowserHistory();
 
@@ -33,7 +36,9 @@ class Secured extends Component {
 
     this.state = {
       authenticated: false,
-      keycloak: null
+      keycloak: null,
+      isAdmin: false,
+      loading: true
     };
 
     this.changeLanguage = this.props.changeLanguage;
@@ -50,7 +55,25 @@ class Secured extends Component {
             return Promise.resolve(config).catch(keycloak.login);
           })
         );
-        this.setState({ keycloak: keycloak, authenticated: authenticated });
+
+        axios.get(backendAddress + "api/admin/check").then(
+          () => {
+            this.setState({
+              keycloak: keycloak,
+              authenticated: authenticated,
+              isAdmin: true,
+              loading: false
+            });
+          },
+          () => {
+            this.setState({
+              keycloak: keycloak,
+              authenticated: authenticated,
+              isAdmin: false,
+              loading: false
+            });
+          }
+        );
       });
   }
 
@@ -60,6 +83,38 @@ class Secured extends Component {
     //If NOT using some version of Internet Explorer
     if (!/MSIE|Trident/.test(window.navigator.userAgent)) {
       document.body.style = "background-color: #eeeeee";
+    }
+    if (this.state.loading) {
+      return dimmer();
+    }
+    if (!this.state.isAdmin) {
+      return (
+        <div>
+          <Modal open basic style={{ height: "40%" }} size="fullscreen">
+            <Grid stretched style={{ height: "100%" }}>
+              <Grid.Column textAlign="center">
+                <Grid.Row stretched>
+                  <Header inverted as="h1" style={{ fontSize: "100px" }}>
+                    403 Forbidden
+                  </Header>
+                </Grid.Row>
+
+                <Grid.Row stretched>
+                  <Header inverted as="h4">
+                    Looks like someone doesn't belong here
+                  </Header>
+                </Grid.Row>
+
+                <Grid.Row stretched>
+                  <Button as="a" href="/secured/" color="blue">
+                    Go back to Homepage
+                  </Button>
+                </Grid.Row>
+              </Grid.Column>
+            </Grid>
+          </Modal>
+        </div>
+      );
     }
 
     const keycloak = this.state.keycloak;
