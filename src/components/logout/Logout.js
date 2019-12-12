@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+import { Menu, Icon } from "semantic-ui-react";
 import { FormattedMessage } from "react-intl";
 
 class Logout extends Component {
@@ -14,6 +14,7 @@ class Logout extends Component {
   render() {
     return (
       <Menu.Item onClick={() => this.logout()}>
+        <Icon name="log out" />
         <FormattedMessage id="sign.out" />
       </Menu.Item>
     );
