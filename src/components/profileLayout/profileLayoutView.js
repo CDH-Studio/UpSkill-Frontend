@@ -15,7 +15,7 @@ import {
   Menu,
   Popup,
   Table,
-  Segment,
+  Confirm,
   Sidebar,
   Checkbox,
   Form
@@ -85,7 +85,8 @@ class ProfileLayoutView extends Component {
 
     this.state = {
       settingsSidebar: editable ? false : null,
-      previewPublic: false
+      previewPublic: false,
+      confirmItem: null
     };
 
     this.renderValue = renderValue.bind(this, intl);
@@ -100,6 +101,8 @@ class ProfileLayoutView extends Component {
       profileInfo,
       publicLayout
     } = this.props;
+
+    const { confirmItem } = this.state;
 
     if (profileInfo === undefined) {
       return (
@@ -125,6 +128,19 @@ class ProfileLayoutView extends Component {
           logoRedirectHome={true}
         />
 
+        <Confirm
+          open={Boolean(confirmItem)}
+          header={confirmItem && confirmItem.header}
+          content={confirmItem && confirmItem.content}
+          onConfirm={() => {
+            confirmItem &&
+              confirmItem.handleConfirm &&
+              confirmItem.handleConfirm();
+            this.setState({ confirmItem: null });
+          }}
+          onCancel={() => this.setState({ confirmItem: null })}
+        />
+
         <Sidebar.Pushable>
           {this.renderSidebar()}
           <Sidebar.Pusher>
@@ -132,6 +148,7 @@ class ProfileLayoutView extends Component {
               <div className="body">
                 {this.state.settingsSidebar !== null && (
                   <Button
+                    color="blue"
                     onClick={() =>
                       this.setState(oldState => ({
                         settingsSidebar: !oldState.settingsSidebar
@@ -162,6 +179,8 @@ class ProfileLayoutView extends Component {
       updateCardVisibility,
       applyVisibleProfileCards,
       disableApplyVisibleProfileCards,
+      handleClickDelete,
+      handleClickDeactivate,
       intl
     } = this.props;
     return (
@@ -210,10 +229,53 @@ class ProfileLayoutView extends Component {
           ))}
           <Menu.Item>
             <Button
+              color="blue"
+              fluid
               disabled={disableApplyVisibleProfileCards}
               onClick={applyVisibleProfileCards}
             >
               <FormattedMessage id="button.apply" />
+            </Button>
+          </Menu.Item>
+        </Menu.Menu>
+        <Menu.Menu>
+          <Menu.Header>
+            <FormattedMessage id="profile.account.removal.options" />
+          </Menu.Header>
+          <Menu.Item>
+            <Button
+              onClick={() =>
+                this.setState({
+                  confirmItem: {
+                    header: "Are you sure you want to deactivate your account?",
+                    content:
+                      "Your account will be made unsearchable but your data will remain stored.",
+                    handleConfirm: handleClickDeactivate
+                  }
+                })
+              }
+              color="blue"
+              fluid
+            >
+              <FormattedMessage id="button.deactivate.account" />
+            </Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button
+              onClick={() =>
+                this.setState({
+                  confirmItem: {
+                    header: "Are you sure you want to delete your account?",
+                    content:
+                      "Your account will be made unsearchable and your data will be deleted after [TODO] days.",
+                    handleConfirm: handleClickDelete
+                  }
+                })
+              }
+              color="blue"
+              fluid
+            >
+              <FormattedMessage id="button.delete.account" />
             </Button>
           </Menu.Item>
         </Menu.Menu>
@@ -454,20 +516,15 @@ class ProfileLayoutView extends Component {
 
                   <div className="phoneNumberArea">
                     <FormattedMessage id="profile.telephone" />:
-                    {this.renderValue(telephone, "profile.undefined")}
+                    {this.renderValue(telephone)}
                   </div>
                   <div className="phoneNumberArea">
                     <FormattedMessage id="profile.cellphone" />:
-                    {this.renderValue(cellphone, "profile.undefined")}
+                    {this.renderValue(cellphone)}
                   </div>
                   <div>{email}</div>
 
-                  <div>
-                    {this.renderValue(
-                      location.description,
-                      "profile.undefined.location"
-                    )}
-                  </div>
+                  <div>{this.renderValue(location.description)}</div>
                 </div>
               </Grid.Row>
             </Grid>
@@ -575,17 +632,11 @@ class ProfileLayoutView extends Component {
                 )}
                 {this.renderLabeledItem(
                   classificationLabel,
-                  this.renderValue(
-                    classification.description,
-                    "profile.undefined"
-                  )
+                  this.renderValue(classification.description)
                 )}
                 {this.renderLabeledItem(
                   temporaryRoleLabel,
-                  this.renderValue(
-                    temporaryRole.description,
-                    "profile.undefined"
-                  )
+                  this.renderValue(temporaryRole.description)
                 )}
               </Grid>
             </Grid.Column>
@@ -593,7 +644,7 @@ class ProfileLayoutView extends Component {
               <Grid>
                 {this.renderLabeledItem(
                   securityLabel,
-                  this.renderValue(security.description, "profile.undefined")
+                  this.renderValue(security.description)
                 )}
                 {this.renderLabeledItem(
                   actingLabel,
@@ -624,10 +675,6 @@ class ProfileLayoutView extends Component {
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
-          {/*this.renderLabeledItem(
-            SubstantiveLabel,
-            this.renderValue(indeterminate.description, "profile.undefined")
-          )*/}
           {this.renderLabeledItem(
             substantiveLabel,
             this.renderValue(
@@ -640,11 +687,11 @@ class ProfileLayoutView extends Component {
           )}
           {this.renderLabeledItem(
             classificationLabel,
-            this.renderValue(classification.description, "profile.undefined")
+            this.renderValue(classification.description)
           )}
           {this.renderLabeledItem(
             temporaryRoleLabel,
-            this.renderValue(temporaryRole.description, "profile.undefined")
+            this.renderValue(temporaryRole.description)
           )}
           {this.renderLabeledItem(
             actingLabel,
@@ -657,7 +704,7 @@ class ProfileLayoutView extends Component {
           ) : null}
           {this.renderLabeledItem(
             securityLabel,
-            this.renderValue(security.description, "profile.undefined")
+            this.renderValue(security.description)
           )}
         </Grid>
       </ProfileCardController>

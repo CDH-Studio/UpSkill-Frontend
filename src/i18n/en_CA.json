@@ -50,8 +50,10 @@
   "button.next": "Next",
   "button.back": "Back",
   "button.finish": "Finish",
-
+  "button.deactivate.account": "Deactivate account",
+  "button.delete.account": "Delete account",
   "button.basic.search": "Basic search",
+
   "apply.button.text": "Apply",
 
   "basic.search.button.text": "Basic search",
@@ -203,6 +205,7 @@
   "profile.settings.and.privacy": "Settings & Privacy",
   "profile.preview.public.view": "Preview public view",
   "profile.select.publicly.visible.cards": "Select publicly visible cards",
+  "profile.account.removal.options": "Account removal options",
 
   "sign.out": "Logout"
 }
