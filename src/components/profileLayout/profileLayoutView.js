@@ -109,7 +109,9 @@ class ProfileLayoutView extends Component {
               <Loader />
             </Grid.Row>
 
-            <Grid.Row>Gathering profile info...</Grid.Row>
+            <Grid.Row>
+              <FormattedMessage id="profile.gathering.profile.info" />
+            </Grid.Row>
           </Grid>
         </Dimmer>
       );
@@ -137,7 +139,7 @@ class ProfileLayoutView extends Component {
                     }
                     //disabled={this.state.settingsSidebar === true}
                   >
-                    Profile Settings
+                    <FormattedMessage id="profile.settings.and.privacy" />
                   </Button>
                 )}
 
@@ -170,7 +172,9 @@ class ProfileLayoutView extends Component {
         vertical
       >
         <Menu.Menu>
-          <Menu.Header>Preview Public View</Menu.Header>
+          <Menu.Header>
+            <FormattedMessage id="profile.preview.public.view" />
+          </Menu.Header>
           <Menu.Item>
             <Checkbox
               label="Use public view"
@@ -182,7 +186,9 @@ class ProfileLayoutView extends Component {
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu position="right">
-          <Menu.Header>Publicly visible cards</Menu.Header>
+          <Menu.Header>
+            <FormattedMessage id="profile.select.publicly.visible.cards" />
+          </Menu.Header>
           {map(visibleProfileCards, (value, key) => (
             <Menu.Item position="right">
               <Checkbox
@@ -218,12 +224,12 @@ class ProfileLayoutView extends Component {
   renderPublicProfileBody() {
     const { windowWidth, visibleProfileCards } = this.props;
 
-    let ungroupedCardRows;
+    let ungroupedCardItems;
     let groupedCardRows;
 
     //Wide width - some cards up top need to be grouped
     if (windowWidth > 1250) {
-      ungroupedCardRows = this.alwaysUngroupedCards;
+      ungroupedCardItems = this.alwaysUngroupedCards;
 
       //generate primary group cards
       const infoVisible = visibleProfileCards["info"];
@@ -274,7 +280,7 @@ class ProfileLayoutView extends Component {
     } else {
       groupedCardRows = null;
 
-      ungroupedCardRows = [
+      ungroupedCardItems = [
         { visibilityKey: null, renderFunction: this.renderPrimaryCard },
         { visibilityKey: "info", renderFunction: this.renderInfoCard },
         { visibilityKey: "manager", renderFunction: this.renderManagerCard },
@@ -293,7 +299,7 @@ class ProfileLayoutView extends Component {
     return (
       <Grid className="bodyGrid">
         {groupedCardRows}
-        {ungroupedCardRows
+        {ungroupedCardItems
           .filter(
             ({ visibilityKey }) =>
               !visibilityKey || visibleProfileCards[visibilityKey]
@@ -310,12 +316,12 @@ class ProfileLayoutView extends Component {
   renderPrivateProfileBody() {
     const { windowWidth } = this.props;
 
-    let ungroupedCardRows;
+    let ungroupedCardItems;
     let groupedCardRows;
 
     //Wide width - some cards up top need to be grouped
     if (windowWidth > 1250) {
-      ungroupedCardRows = this.alwaysUngroupedCards;
+      ungroupedCardItems = this.alwaysUngroupedCards;
 
       groupedCardRows = [
         <Grid.Row>
@@ -338,7 +344,7 @@ class ProfileLayoutView extends Component {
     } else {
       groupedCardRows = null;
 
-      ungroupedCardRows = [
+      ungroupedCardItems = [
         { visibilityKey: null, renderFunction: this.renderPrimaryCard },
         { visibilityKey: "info", renderFunction: this.renderInfoCard },
         { visibilityKey: "manager", renderFunction: this.renderManagerCard },
@@ -357,7 +363,7 @@ class ProfileLayoutView extends Component {
     return (
       <Grid className="bodyGrid">
         {groupedCardRows}
-        {ungroupedCardRows.map(({ renderFunction }) => (
+        {ungroupedCardItems.map(({ renderFunction }) => (
           <Grid.Row>
             <Grid.Column>{renderFunction.bind(this)()}</Grid.Column>
           </Grid.Row>

@@ -196,6 +196,10 @@
   "profile.do.not.specify": "Do not specify",
   "profile.relocation.locations": "I am willing to relocate to",
   "profile.career.interests": "Career interests",
+  "profile.gathering.profile.info": "Gathering profile info...",
+  "profile.settings.and.privacy": "Settings & Privacy",
+  "profile.preview.public.view": "Preview public view",
+  "profile.select.publicly.visible.cards": "Select publicly visible cards",
 
   "search.field.primary.dropdown.axios": "Axios",
   "search.field.primary.dropdown.css": "CSS",
