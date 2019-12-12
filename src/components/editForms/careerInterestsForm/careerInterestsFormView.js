@@ -28,6 +28,11 @@ class CareerInterestsFormView extends Component {
           {...generateProps("interestedInRemote", Select)}
           options={[
             {
+              key: null,
+              value: null,
+              text: intl.formatMessage({ id: "profile.do.not.specify" })
+            },
+            {
               key: true,
               value: true,
               text: intl.formatMessage({ id: "profile.yes" })
@@ -36,11 +41,6 @@ class CareerInterestsFormView extends Component {
               key: false,
               value: false,
               text: intl.formatMessage({ id: "profile.no" })
-            },
-            {
-              key: null,
-              value: null,
-              text: intl.formatMessage({ id: "profile.do.not.specify" })
             }
           ]}
         />

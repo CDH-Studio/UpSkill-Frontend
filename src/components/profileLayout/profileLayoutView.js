@@ -516,20 +516,15 @@ class ProfileLayoutView extends Component {
 
                   <div className="phoneNumberArea">
                     <FormattedMessage id="profile.telephone" />:
-                    {this.renderValue(telephone, "profile.undefined")}
+                    {this.renderValue(telephone)}
                   </div>
                   <div className="phoneNumberArea">
                     <FormattedMessage id="profile.cellphone" />:
-                    {this.renderValue(cellphone, "profile.undefined")}
+                    {this.renderValue(cellphone)}
                   </div>
                   <div>{email}</div>
 
-                  <div>
-                    {this.renderValue(
-                      location.description,
-                      "profile.undefined.location"
-                    )}
-                  </div>
+                  <div>{this.renderValue(location.description)}</div>
                 </div>
               </Grid.Row>
             </Grid>
@@ -637,17 +632,11 @@ class ProfileLayoutView extends Component {
                 )}
                 {this.renderLabeledItem(
                   classificationLabel,
-                  this.renderValue(
-                    classification.description,
-                    "profile.undefined"
-                  )
+                  this.renderValue(classification.description)
                 )}
                 {this.renderLabeledItem(
                   temporaryRoleLabel,
-                  this.renderValue(
-                    temporaryRole.description,
-                    "profile.undefined"
-                  )
+                  this.renderValue(temporaryRole.description)
                 )}
               </Grid>
             </Grid.Column>
@@ -655,7 +644,7 @@ class ProfileLayoutView extends Component {
               <Grid>
                 {this.renderLabeledItem(
                   securityLabel,
-                  this.renderValue(security.description, "profile.undefined")
+                  this.renderValue(security.description)
                 )}
                 {this.renderLabeledItem(
                   actingLabel,
@@ -686,10 +675,6 @@ class ProfileLayoutView extends Component {
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
-          {/*this.renderLabeledItem(
-            SubstantiveLabel,
-            this.renderValue(indeterminate.description, "profile.undefined")
-          )*/}
           {this.renderLabeledItem(
             substantiveLabel,
             this.renderValue(
@@ -702,11 +687,11 @@ class ProfileLayoutView extends Component {
           )}
           {this.renderLabeledItem(
             classificationLabel,
-            this.renderValue(classification.description, "profile.undefined")
+            this.renderValue(classification.description)
           )}
           {this.renderLabeledItem(
             temporaryRoleLabel,
-            this.renderValue(temporaryRole.description, "profile.undefined")
+            this.renderValue(temporaryRole.description)
           )}
           {this.renderLabeledItem(
             actingLabel,
@@ -719,7 +704,7 @@ class ProfileLayoutView extends Component {
           ) : null}
           {this.renderLabeledItem(
             securityLabel,
-            this.renderValue(security.description, "profile.undefined")
+            this.renderValue(security.description)
           )}
         </Grid>
       </ProfileCardController>
