@@ -34,7 +34,8 @@ export const generateCommonProps = (props, name, control, tempField) => {
   };
 
   if (control === Checkbox) {
-    commonProps.defaultChecked = profileInfo[name] || tempFields[name];
+    commonProps.defaultChecked =
+      (profileInfo && profileInfo[name]) || (tempFields && tempFields[name]);
   } else if (control === Select) {
     commonProps.search = true;
 
@@ -93,15 +94,13 @@ export default class FormManagingComponent extends Component {
 
   onSubmit() {
     if (!this.props.handleRegister) {
-      console.log("FieldManagingComponent onSubmit with fields:", this.fields);
-
       let url =
         backendAddress + "api/profile/" + localStorage.getItem("userId");
       axios
         .put(url, this.fields)
         .then(response => window.location.reload())
         .catch(function(error) {
-          console.log(error);
+          console.error(error);
         });
     }
   }

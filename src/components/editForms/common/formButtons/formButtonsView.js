@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import { Button } from "semantic-ui-react";
 import { injectIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 class ModalButtonsView extends Component {
   render() {
@@ -26,7 +27,7 @@ class ModalButtonsView extends Component {
             }}
           >
             <React.Fragment>
-              <Button type="submit" color="blue">
+              <Button type="button" onClick={handleApply} color="blue">
                 {intl.formatMessage({ id: "button.apply" })}
               </Button>
 
@@ -44,7 +45,7 @@ class ModalButtonsView extends Component {
 
         {handleRegister && isEarlyRegister && (
           <Button type="button" color="blue" onClick={handleRegister}>
-            Save and finish
+            <FormattedMessage id="setup.save.and.finish" />
           </Button>
         )}
 

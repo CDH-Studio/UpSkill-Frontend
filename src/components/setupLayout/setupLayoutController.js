@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import axios from "axios";
+import { FormattedMessage } from "react-intl";
 
 import { formatOptions } from "../editForms/common/formTools";
 import config from "../../config";
@@ -25,42 +26,48 @@ const { backendAddress } = config;
 
 const formList = [
   {
-    name: "setup.primary.information",
+    name: <FormattedMessage id="setup.primary.information" />,
     form: PrimaryInformationFormController
   },
-  { name: "setup.labeled", form: LabelCardFormController },
-  { name: "setup.manager", form: ManagerFormController },
   {
-    name: "setup.language.proficiency",
+    name: <FormattedMessage id="setup.labeled" />,
+    form: LabelCardFormController
+  },
+  {
+    name: <FormattedMessage id="setup.manager" />,
+    form: ManagerFormController
+  },
+  {
+    name: <FormattedMessage id="setup.language.proficiency" />,
     form: LanguageProficiencyFormController
   },
   {
-    name: "setup.talent.management",
+    name: <FormattedMessage id="setup.talent.management" />,
     form: TalentManagmentController
   },
-  { name: "setup.skills", form: SkillsFormController },
+  { name: <FormattedMessage id="setup.skills" />, form: SkillsFormController },
   {
-    name: "setup.competencies",
+    name: <FormattedMessage id="setup.competencies" />,
     form: CompetenciesFormController
   },
   {
-    name: "setup.developmental.goals",
+    name: <FormattedMessage id="setup.developmental.goals" />,
     form: DevelopmentalGoalsFormController
   },
   {
-    name: "setup.education",
+    name: <FormattedMessage id="setup.education" />,
     form: EducationFormController
   },
   {
-    name: "setup.career.overview",
+    name: <FormattedMessage id="setup.experience" />,
     form: CareerOverviewFormController
   },
   {
-    name: "setup.projects",
+    name: <FormattedMessage id="setup.projects" />,
     form: ProjectsFormController
   },
   {
-    name: "setup.career.interests",
+    name: <FormattedMessage id="setup.career.interests" />,
     form: CareerInterestsFormController
   }
 ];
@@ -103,9 +110,11 @@ class SetupLayoutController extends Component {
       this.state.gedsInfoList,
       localStorage.getItem("lang")
     );
+    const { changeLanguage } = this.props;
 
     return (
       <SetupLayoutView
+        changeLanguage={changeLanguage}
         editProfileOptions={this.state.editProfileOptions}
         formIndex={this.state.formIndex}
         formList={this.formList}
@@ -238,8 +247,6 @@ class SetupLayoutController extends Component {
       )
     };
 
-    console.log(JSON.stringify(epo));
-
     this.setState({
       editProfileOptions: epo,
       gedsInfoList
@@ -248,18 +255,16 @@ class SetupLayoutController extends Component {
 
   handleRegister() {
     const { redirectFunction } = this.props;
-    console.log("registering with data", this.changes);
     axios
       .post(
         backendAddress + "api/profile/" + localStorage.getItem("userId"),
         this.changes
       )
       .then(response => {
-        console.log(response);
         redirectFunction("/secured/home");
       })
       .catch(function(error) {
-        console.log(error);
+        console.error(error);
       });
   }
 

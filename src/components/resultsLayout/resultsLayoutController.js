@@ -11,13 +11,12 @@ export default class ResultsLayoutController extends Component {
     this.state = { results: null };
 
     const handleResponse = response => {
-      console.log("handleResponse", response);
       this.setState({ results: response });
     };
     this.handleResponse = handleResponse.bind(this);
 
     const handleError = error => {
-      console.log("handleError", error);
+      console.error(error);
       this.setState({ results: error });
     };
     this.handleError = handleError.bind(this);
@@ -27,7 +26,6 @@ export default class ResultsLayoutController extends Component {
     const urlSections = window.location.toString().split("?");
 
     if (urlSections.length === 2) {
-      console.log(urlSections[1]);
       this.queryString = urlSections[1];
       this.gatherResults(urlSections[1]);
     } else {
@@ -63,33 +61,3 @@ export default class ResultsLayoutController extends Component {
     );
   }
 }
-
-/*    const { searchQuery } = this.props;
-    let url = "/search?";
-    let validSearch = false;
-
-    for (let key in searchQuery) {
-      if (searchQuery[key]) {
-        url += key + "=" + String(searchQuery[key]) + "&";
-        validSearch = true;
-      }
-    }
-
-    if (validSearch) {
-      url.substring(0, url.length - 1);
-      url = encodeURI(url);
-      console.log("should run query with", url);
-
-      // Make a request for a user with a given ID
-      axios
-        .get(
-          backendAddress +
-            "api/geds/" +
-            encodeURI(searchQuery.firstName + " " + searchQuery.lastName)
-        )
-        .then(this.handleResponse)
-        .catch(this.handleError)
-        .finally(function() {
-          // always executed
-        });
-    }*/

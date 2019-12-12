@@ -33,7 +33,7 @@ export default class NavigationBarView extends Component {
   }
 
   renderMainBar() {
-    const { changeLanguage, keycloak } = this.props;
+    const { changeLanguage, keycloak, admin } = this.props;
     return (
       <Menu
         color="blue"
@@ -74,6 +74,16 @@ export default class NavigationBarView extends Component {
               <Logout id="logoutButton" keycloak={keycloak} />
             </Dropdown.Menu>
           </Dropdown>
+          {/* {admin ? (
+            <Menu.Item href="/admin">
+              <FormattedMessage id="admin" />
+            </Menu.Item>
+          ) : null}
+          <Menu.Item href="/secured/profile">
+            <FormattedMessage id="my.profile" />
+          </Menu.Item>
+          <Logout id="logoutButton" keycloak={keycloak} />
+          <ChangeLanguage changeLanguage={changeLanguage} /> */}
         </Menu.Menu>
       </Menu>
     );

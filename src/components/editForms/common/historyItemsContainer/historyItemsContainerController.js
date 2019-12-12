@@ -39,16 +39,13 @@ export default class HistoryItemsContainerController extends Component {
 
   onSubmit() {
     const { infoName } = this.props;
-    let url =
-      backendAddress+"api/profile/" + localStorage.getItem("userId");
+    let url = backendAddress + "api/profile/" + localStorage.getItem("userId");
     axios
       .put(url, { [infoName]: this.fields })
       .then(response => window.location.reload())
       .catch(function(error) {
-        console.log(error);
+        console.error(error);
       });
-
-    console.log("histroy form submit", { [infoName]: this.fields });
   }
 
   removeItem(index) {
@@ -88,7 +85,7 @@ export default class HistoryItemsContainerController extends Component {
         myMoment.format("MMM YYY")
       );*/
 
-    console.log("should perform update with", this.fields);
+    console.log("why is this being called", this.fields);
   }
 
   updateRegisterComponent() {
@@ -101,8 +98,6 @@ export default class HistoryItemsContainerController extends Component {
   }
 
   updateListField(index, name, value) {
-    console.log("list field update", name, value);
-
     this.fields[index][name] = value;
     this.updateRegisterComponent();
   }

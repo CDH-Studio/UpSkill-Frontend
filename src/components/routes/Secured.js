@@ -8,14 +8,7 @@ import { Dimmer, Image } from "semantic-ui-react";
 
 import animatedLogo from "../../assets/animatedLogo.gif";
 
-import {
-  Advanced,
-  Home,
-  Results,
-  Profile,
-  Setup,
-  ProfileGeneration
-} from "../../pages";
+import { Advanced, Home, Results, Profile, Setup } from "../../pages";
 
 const loginFunc = require("../../functions/login");
 
@@ -47,6 +40,14 @@ class Secured extends Component {
     keycloak
       .init({ onLoad: "login-required", promiseType: "native" })
       .then(authenticated => {
+        if (keycloak.tokenParsed.resource_access)
+          sessionStorage.setItem(
+            "admin",
+            keycloak.tokenParsed.resource_access[
+              "upskill-client"
+            ].roles.includes("view-admin-console")
+          );
+        else sessionStorage.removeItem("admin");
         axios.interceptors.request.use(config =>
           keycloak.updateToken(5).then(() => {
             config.headers.Authorization = "Bearer " + keycloak.token;
@@ -79,27 +80,24 @@ class Secured extends Component {
                 <div>
                 {/* Added for copying token ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
             {/* <div>
-                  <form>
-                    <textarea
-                      ref={textarea => (this.textArea = textarea)}
-                      value={keycloak.token}
-                    />
-                  </form>
-                  {document.queryCommandSupported("copy") && (
-                    <div>
-                      <button onClick={this.copyToClipboard}>Copy</button>
-                      {this.state.copySuccess}
-                    </div>
-                  )}
+              <form>
+                <textarea
+                  ref={textarea => (this.textArea = textarea)}
+                  value={keycloak.token}
+                />
+              </form>
+              {document.queryCommandSupported("copy") && (
+                <div>
+                  <button onClick={this.copyToClipboard}>Copy</button>
+                  {this.state.copySuccess}
                 </div>
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-
+              )}
+            </div> */}
             {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/}
-
             <Route
               exact
-              path="/secured/profile-generation"
-              component={ProfileGeneration}
+              path="/secured/"
+              component={() => <Redirect to="/secured/home" />}
             />
             <Route
               exact
@@ -182,7 +180,7 @@ class Secured extends Component {
 
   renderRedirect = () => {
     return this.profileExist().then(profileExist => {
-      if (!profileExist) return <Redirect to="/secured/setup"></Redirect>;
+      if (!profileExist) return <Redirect to="/secured/setup" />;
       else return <div />;
     });
   };

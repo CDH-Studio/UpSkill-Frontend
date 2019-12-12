@@ -15,7 +15,7 @@ class CareerOverviewView extends Component {
         headerName={intl.formatMessage({ id: "profile.career.header.name" })}
         infoName={"careerSummary"}
         itemType={HistoryItemFormController}
-        name={intl.formatMessage({ id: "profile.edit.career.overview" })}
+        name={intl.formatMessage({ id: "profile.edit.experience" })}
         subheaderName={intl.formatMessage({
           id: "profile.career.subheader.name"
         })}
