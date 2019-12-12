@@ -8,14 +8,7 @@ import { Dimmer, Image } from "semantic-ui-react";
 
 import animatedLogo from "../../assets/animatedLogo.gif";
 
-import {
-  Advanced,
-  Home,
-  Results,
-  Profile,
-  Setup,
-  ProfileGeneration
-} from "../../pages";
+import { Advanced, Home, Results, Profile, Setup } from "../../pages";
 
 const loginFunc = require("../../functions/login");
 

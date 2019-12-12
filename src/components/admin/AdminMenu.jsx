@@ -29,6 +29,11 @@ export default class AdminMenu extends Component {
         />
         <Grid padded="horizontally">
           <Grid.Column width={3}>
+            <Segment inverted color="blue" className="gradientBack">
+              <h1>
+                <FormattedMessage id="admin.console" />
+              </h1>
+            </Segment>
             <Menu fluid vertical color="blue" secondary pointing>
               <Menu.Item
                 name="dashboard"
