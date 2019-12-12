@@ -24,11 +24,18 @@ class LabelCardFormView extends Component {
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
+    const classificationProps = generateProps("classification", Select);
+
     return (
       <Form onSubmit={onSubmit}>
         <Form.Field
           {...generateProps("substantive", Select)}
           options={[
+            {
+              key: null,
+              value: null,
+              text: intl.formatMessage({ id: "profile.do.not.specify" })
+            },
             {
               key: true,
               value: true,
@@ -38,16 +45,11 @@ class LabelCardFormView extends Component {
               key: false,
               value: false,
               text: intl.formatMessage({ id: "profile.term" })
-            },
-            {
-              key: null,
-              value: null,
-              text: intl.formatMessage({ id: "profile.do.not.specify" })
             }
           ]}
           defaultValue={profileInfo["indeterminate"]}
         />
-        <Form.Field {...generateProps("classification", Select)} />
+        <Form.Field {...classificationProps} />
 
         <Form.Field {...generateProps("temporaryRole", Select)} />
 
@@ -55,7 +57,7 @@ class LabelCardFormView extends Component {
         <Form.Field
           {...generateProps("acting", Select)}
           disabled={actingDisabled}
-          options={editProfileOptions["classification"]}
+          options={classificationProps.options}
         />
         <Form.Group>
           <Form.Field
