@@ -71,6 +71,7 @@ class EducationItemFormView extends Component {
               <Grid.Column className="noHorizontalGaps" width={3}>
                 <Form.Field
                   {...this.generateProps("isOngoing", Checkbox, true)}
+                  defaultChecked={isOngoing}
                 />
               </Grid.Column>
               <Grid.Column className="smallLeftPadding" width={8}>

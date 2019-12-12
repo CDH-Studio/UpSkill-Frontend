@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Dropdown, Label } from "semantic-ui-react";
+import { Dropdown, Label, Form } from "semantic-ui-react";
 
 import FormButtonsController from "../formButtons/formButtonsController";
 import { generateCommonProps } from "../formTools";
@@ -83,14 +83,15 @@ class EditTagFormView extends Component {
       : editProfileOptions[dropdownName] || [];
 
     return (
-      <React.Fragment>
+      <Form onSubmit={onSubmit}>
         {tooManyItems && (
           <Label pointing="below">
             You have selected too many items from this dropdown.
           </Label>
         )}
+
         <Dropdown
-          className="editTagFormDropdown"
+          className="editTagsDropdown"
           {...valueProp}
           fluid
           label={intl.formatMessage({
@@ -125,7 +126,7 @@ class EditTagFormView extends Component {
           handleRegister={handleRegister}
           isEarlyRegister={isEarlyRegister}
         />
-      </React.Fragment>
+      </Form>
     );
   }
 }

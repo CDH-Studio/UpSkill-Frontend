@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import { Grid, Button, Icon } from "semantic-ui-react";
+import { FormattedMessage } from "react-intl";
 
 import FormButtonsController from "../formButtons/formButtonsController";
 import "./historyItemsContainer.css";
@@ -50,7 +51,8 @@ class EditHistoryModalView extends Component {
             }}
           >
             <Icon name="add" />
-            Add Item
+
+            <FormattedMessage id="setup.add.item" />
           </Button>
         </Grid.Row>
         <FormButtonsController

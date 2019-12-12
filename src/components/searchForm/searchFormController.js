@@ -57,7 +57,7 @@ class SearchFormController extends Component {
   async getAdvancedOptions() {
     const lang = localStorage.getItem("lang");
     let advancedOptions = {
-      groupOrLevel: prepareInfo(
+      classification: prepareInfo(
         (await axios.get(backendAddress + "api/option/getGroupLevel")).data,
         lang
       ).map(obj => ({
@@ -132,7 +132,6 @@ class SearchFormController extends Component {
     const { redirectFunction } = this.props;
     const oldUrl = window.location.toString();
     let query;
-    console.log("submit", this.fields);
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
       query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
@@ -192,7 +191,7 @@ class SearchFormController extends Component {
               onClick={performSearch}
               style={styles.button}
             >
-              <FormattedMessage id="search.button.text" />
+              <FormattedMessage id="button.search" />
             </Button>
             <Button
               basic

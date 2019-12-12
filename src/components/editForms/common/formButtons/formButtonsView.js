@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 
 import { Button } from "semantic-ui-react";
+import { injectIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
-export default class ModalButtonsView extends Component {
+class ModalButtonsView extends Component {
   render() {
     const {
       fields,
@@ -11,7 +13,8 @@ export default class ModalButtonsView extends Component {
       handleNext,
       handlePrevious,
       handleRegister,
-      isEarlyRegister
+      isEarlyRegister,
+      intl
     } = this.props;
 
     return (
@@ -24,20 +27,25 @@ export default class ModalButtonsView extends Component {
             }}
           >
             <React.Fragment>
-              <Button color="blue" onClick={handleApply}>
-                Apply
+              <Button type="button" onClick={handleApply} color="blue">
+                {intl.formatMessage({ id: "button.apply" })}
               </Button>
 
-              <Button color="blue" onClick={handleCancle} secondary>
-                Cancel
+              <Button
+                type="button"
+                color="blue"
+                onClick={handleCancle}
+                secondary
+              >
+                {intl.formatMessage({ id: "button.cancel" })}
               </Button>
             </React.Fragment>
           </div>
         )}
 
         {handleRegister && isEarlyRegister && (
-          <Button color="blue" onClick={handleRegister}>
-            Save and finish
+          <Button type="button" color="blue" onClick={handleRegister}>
+            <FormattedMessage id="setup.save.and.finish" />
           </Button>
         )}
 
@@ -49,24 +57,29 @@ export default class ModalButtonsView extends Component {
         >
           {handleRegister && (
             <Button
+              type="button"
               color="blue"
               disabled={!Boolean(handlePrevious)}
               onClick={e => handlePrevious(fields)}
               secondary
             >
-              Back
+              {intl.formatMessage({ id: "button.back" })}
             </Button>
           )}
 
           {handleNext && isEarlyRegister && (
-            <Button color="blue" onClick={e => handleNext(fields)}>
-              Next
+            <Button
+              type="button"
+              color="blue"
+              onClick={e => handleNext(fields)}
+            >
+              {intl.formatMessage({ id: "button.next" })}
             </Button>
           )}
 
           {handleRegister && !isEarlyRegister && (
-            <Button color="blue" onClick={handleRegister}>
-              Finish
+            <Button type="button" color="blue" onClick={handleRegister}>
+              {intl.formatMessage({ id: "button.finish" })}
             </Button>
           )}
         </div>
@@ -74,3 +87,5 @@ export default class ModalButtonsView extends Component {
     );
   }
 }
+
+export default injectIntl(ModalButtonsView);

@@ -10,12 +10,13 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { profileInfo: undefined };
+    this.state = { profileInfo: undefined, visibleProfileCards: undefined };
 
     this.handleSuccess = response => {
-      console.log("Received", response);
-
       const convertDropdownOptions = list => {
+        if (!this.ownProfile) {
+          return null;
+        }
         let newList = [];
         list.forEach(element => {
           newList.push({
@@ -36,7 +37,10 @@ class Profile extends Component {
         profileInfo.developmentalGoals
       );
 
-      this.setState({ profileInfo: profileInfo });
+      this.setState({
+        profileInfo: profileInfo,
+        visibleProfileCards: profileInfo.visibleCards
+      });
     };
 
     const url = window.location.toString();
@@ -44,11 +48,11 @@ class Profile extends Component {
     const profileIdStartIndex = url.indexOf("/secured/profile") + 17;
 
     if (url.length < profileIdStartIndex + 2) {
-      console.log(profileIdStartIndex);
       this.profileId = localStorage.getItem("userId");
     } else {
       this.profileId = url.substring(profileIdStartIndex);
     }
+    this.ownProfile = this.profileId === localStorage.getItem("userId");
 
     this.updateProfileInfo = () => {
       axios
@@ -56,7 +60,9 @@ class Profile extends Component {
           //"http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
           //"http://localhost:8080/api/profile/faba08aa-ffe3-11e9-8d71-362b9e155667"
           //"http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
-          backendAddress + "api/profile/" + this.profileId
+          backendAddress +
+            (this.ownProfile ? "api/private/profile/" : "api/profile/") +
+            this.profileId
         )
         .then(this.handleSuccess)
         .catch(function(error) {
@@ -78,7 +84,9 @@ class Profile extends Component {
       <ProfileLayoutController
         changeLanguage={changeLanguage}
         keycloak={keycloak}
-        editable={localStorage.getItem("userId") === this.profileId}
+        editable={this.ownProfile}
+        privateView={this.ownProfile}
+        visibleProfileCards={this.state.visibleProfileCards}
         profileInfo={this.state.profileInfo}
         updateProfileInfo={this.updateProfileInfo}
         redirectFunction={this.goto}

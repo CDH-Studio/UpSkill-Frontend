@@ -11,12 +11,15 @@ export default class NavigationBarController extends Component {
       redirectFunction
     } = this.props;
 
+    const admin = sessionStorage.getItem("admin") === "true";
+
     return (
       <NavigationBarView
         changeLanguage={changeLanguage}
         includeSearchForm={includeSearchForm}
         keycloak={keycloak}
         redirectFunction={redirectFunction}
+        admin={admin}
       />
     );
   }

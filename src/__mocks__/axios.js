@@ -83,7 +83,7 @@ const profileMockData = {
       }
     },
     skills: [],
-    tenure: {
+    temporaryRole: {
       id: null,
       description: {
         en: null,

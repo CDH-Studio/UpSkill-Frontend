@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import axios from "axios";
+import { FormattedMessage } from "react-intl";
 
 import { formatOptions } from "../editForms/common/formTools";
 import config from "../../config";
@@ -19,44 +20,55 @@ import PrimaryInformationFormController from "../editForms/primaryInformationFor
 import SkillsFormController from "../editForms/skillsForm/skillsFormController";
 import TalentManagmentController from "../editForms/talentManagementForm/talentManagementFormController";
 import ProjectsFormController from "../editForms/projectsForm/projectsFormController";
+import CareerInterestsFormController from "../editForms/careerInterestsForm/careerInterestsFormController";
 
 const { backendAddress } = config;
 
 const formList = [
   {
-    name: "setup.primary.information",
+    name: <FormattedMessage id="setup.primary.information" />,
     form: PrimaryInformationFormController
   },
-  { name: "setup.labeled", form: LabelCardFormController },
-  { name: "setup.manager", form: ManagerFormController },
   {
-    name: "setup.language.proficiency",
+    name: <FormattedMessage id="setup.labeled" />,
+    form: LabelCardFormController
+  },
+  {
+    name: <FormattedMessage id="setup.manager" />,
+    form: ManagerFormController
+  },
+  {
+    name: <FormattedMessage id="setup.language.proficiency" />,
     form: LanguageProficiencyFormController
   },
   {
-    name: "setup.talent.management",
+    name: <FormattedMessage id="setup.talent.management" />,
     form: TalentManagmentController
   },
-  { name: "setup.skills", form: SkillsFormController },
+  { name: <FormattedMessage id="setup.skills" />, form: SkillsFormController },
   {
-    name: "setup.competencies",
+    name: <FormattedMessage id="setup.competencies" />,
     form: CompetenciesFormController
   },
   {
-    name: "setup.developmental.goals",
+    name: <FormattedMessage id="setup.developmental.goals" />,
     form: DevelopmentalGoalsFormController
   },
   {
-    name: "setup.education",
+    name: <FormattedMessage id="setup.education" />,
     form: EducationFormController
   },
   {
-    name: "setup.career.overview",
+    name: <FormattedMessage id="setup.experience" />,
     form: CareerOverviewFormController
   },
   {
-    name: "setup.projects",
+    name: <FormattedMessage id="setup.projects" />,
     form: ProjectsFormController
+  },
+  {
+    name: <FormattedMessage id="setup.career.interests" />,
+    form: CareerInterestsFormController
   }
 ];
 
@@ -72,7 +84,6 @@ class SetupLayoutController extends Component {
 
     this.state = {
       formIndex: 0,
-      maxEnabledIndex: 0,
       editProfileOptions: null,
       gedsInfoList: null,
       gedsIndex: null
@@ -99,9 +110,11 @@ class SetupLayoutController extends Component {
       this.state.gedsInfoList,
       localStorage.getItem("lang")
     );
+    const { changeLanguage } = this.props;
 
     return (
       <SetupLayoutView
+        changeLanguage={changeLanguage}
         editProfileOptions={this.state.editProfileOptions}
         formIndex={this.state.formIndex}
         formList={this.formList}
@@ -110,7 +123,6 @@ class SetupLayoutController extends Component {
         handleRegister={this.handleRegister}
         isEarlyRegister={this.state.formIndex !== formList.length - 1}
         keycloakEmail={this.state.email}
-        maxEnabledIndex={this.state.maxEnabledIndex}
         profileInfo={this.changes}
         setFormChanges={this.setFormChanges.bind(this, this.state.formIndex)}
         setFormIndex={this.setFormIndex}
@@ -200,7 +212,7 @@ class SetupLayoutController extends Component {
       diploma: formatOptions(
         (await axios.get(backendAddress + "api/option/getDiploma")).data
       ),
-      groupOrLevel: formatOptions(
+      classification: formatOptions(
         (await axios.get(backendAddress + "api/option/getGroupLevel")).data
       ),
       competencies: competencyOptions,
@@ -222,12 +234,18 @@ class SetupLayoutController extends Component {
         (await axios.get(backendAddress + "api/option/getTalentMatrixResult"))
           .data
       ),
-      tenure: formatOptions(
+      temporaryRole: formatOptions(
         (await axios.get(backendAddress + "api/option/getTenure")).data
+      ),
+      willingToRelocateTo: formatOptions(
+        (await axios.get(backendAddress + "api/option/getWillingToRelocateTo"))
+          .data
+      ),
+      lookingForNewJob: formatOptions(
+        (await axios.get(backendAddress + "api/option/getLookingForANewJob"))
+          .data
       )
     };
-
-    console.log(JSON.stringify(epo));
 
     this.setState({
       editProfileOptions: epo,
@@ -244,7 +262,6 @@ class SetupLayoutController extends Component {
         this.changes
       )
       .then(response => {
-        console.log(response);
         redirectFunction("/secured/home");
       })
       .catch(function(error) {
@@ -254,9 +271,6 @@ class SetupLayoutController extends Component {
 
   setFormIndex(index) {
     this.setState({ formIndex: index });
-    if (index > this.state.maxEnabledIndex) {
-      this.setState({ maxEnabledIndex: index });
-    }
   }
 
   setFormChanges(index, changes) {
