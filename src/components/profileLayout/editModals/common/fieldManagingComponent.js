@@ -21,7 +21,7 @@ export default class FieldManagingComponent extends Component {
         console.log("should this be called?", response);
       })
       .catch(function(error) {
-        console.log(error);
+        console.error(error);
       });
     this.fields = {};
   }

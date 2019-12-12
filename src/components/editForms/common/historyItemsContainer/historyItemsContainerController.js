@@ -44,7 +44,7 @@ export default class HistoryItemsContainerController extends Component {
       .put(url, { [infoName]: this.fields })
       .then(response => window.location.reload())
       .catch(function(error) {
-        console.log(error);
+        console.error(error);
       });
   }
 

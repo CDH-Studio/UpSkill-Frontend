@@ -60,7 +60,7 @@ class Profile extends Component {
         .then(this.handleSuccess)
         .catch(function(error) {
           // handle error
-          console.log(error);
+          console.error(error);
         })
         .finally(function() {
           // always executed
