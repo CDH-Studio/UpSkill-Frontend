@@ -87,9 +87,11 @@
   "setup.developmental.goals": "Developmental goals",
   "setup.education": "Education",
   "setup.experience": "Experience",
+  "setup.add.item": "Add Item",
   "setup.select.geds.card": "Select your Goverment Employee Database information",
   "setup.projects": "Projects",
   "setup.career.interests": "Career interests",
+  "setup.save.and.finish": "Save and finish",
 
   "lang": "Français",
   "lang.code": "fr",
@@ -127,9 +129,9 @@
   "profile.edit": "Edit",
   "profile.na": "N/A",
   "profile.indeterminate": "Indeterminate",
-  "profile.interested.in.remote": "Interested in remote",
-  "profile.willing.to.relocate.to": "Willing to relocate to",
-  "profile.looking.for.new.job": "Looking for a new job",
+  "profile.interested.in.remote": "I'm open to work remotly",
+  "profile.willing.to.relocate.to": "Where would you like your next job to be located?",
+  "profile.looking.for.new.job": "Where are you in your search?",
   "profile.yes": "Yes",
   "profile.no": "No",
   "profile.education": "Education",
@@ -196,13 +198,10 @@
   "profile.do.not.specify": "Do not specify",
   "profile.relocation.locations": "I am willing to relocate to",
   "profile.career.interests": "Career interests",
-
-  "search.field.primary.dropdown.axios": "Axios",
-  "search.field.primary.dropdown.css": "CSS",
-  "search.field.primary.dropdown.enzyme": "Enzyme",
-  "search.field.primary.dropdown.html": "HTML",
-  "search.field.primary.dropdown.javascript": "Javascript",
-  "search.field.primary.dropdown.jest": "Jest",
+  "profile.gathering.profile.info": "Gathering profile info...",
+  "profile.settings.and.privacy": "Settings & Privacy",
+  "profile.preview.public.view": "Preview public view",
+  "profile.select.publicly.visible.cards": "Select publicly visible cards",
 
   "sign.out": "Logout"
 }

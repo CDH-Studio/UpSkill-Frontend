@@ -10,10 +10,13 @@ class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { profileInfo: undefined };
+    this.state = { profileInfo: undefined, visibleProfileCards: undefined };
 
     this.handleSuccess = response => {
       const convertDropdownOptions = list => {
+        if (!this.ownProfile) {
+          return null;
+        }
         let newList = [];
         list.forEach(element => {
           newList.push({
@@ -35,7 +38,8 @@ class Profile extends Component {
       );
 
       this.setState({
-        profileInfo: profileInfo
+        profileInfo: profileInfo,
+        visibleProfileCards: profileInfo.visibleCards
       });
     };
 
@@ -48,6 +52,7 @@ class Profile extends Component {
     } else {
       this.profileId = url.substring(profileIdStartIndex);
     }
+    this.ownProfile = this.profileId === localStorage.getItem("userId");
 
     this.updateProfileInfo = () => {
       axios
@@ -55,7 +60,9 @@ class Profile extends Component {
           //"http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
           //"http://localhost:8080/api/profile/faba08aa-ffe3-11e9-8d71-362b9e155667"
           //"http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
-          backendAddress + "api/profile/" + this.profileId
+          backendAddress +
+            (this.ownProfile ? "api/private/profile/" : "api/profile/") +
+            this.profileId
         )
         .then(this.handleSuccess)
         .catch(function(error) {
@@ -73,44 +80,13 @@ class Profile extends Component {
   render() {
     const { changeLanguage, keycloak } = this.props;
 
-    const ownProfile = this.profileId === localStorage.getItem("userId");
-
     return (
       <ProfileLayoutController
         changeLanguage={changeLanguage}
         keycloak={keycloak}
-        editable={ownProfile}
-        privateView={ownProfile}
-        visibleProfileCards={
-          ownProfile
-            ? {
-                careerInterests: true,
-                competencies: true,
-                developmentalGoals: true,
-                education: true,
-                experience: true,
-                info: true,
-                manager: true,
-                officialLanguage: false,
-                projects: true,
-                skills: true,
-                talentManagement: true
-              }
-            : {
-                careerInterests: true,
-                competencies: true,
-                developmentalGoals: true,
-                education: true,
-                experience: true,
-                info: true,
-                languageProficiency: true,
-                manager: true,
-                officialLanguage: true,
-                projects: true,
-                skills: true,
-                talentManagement: true
-              }
-        }
+        editable={this.ownProfile}
+        privateView={this.ownProfile}
+        visibleProfileCards={this.state.visibleProfileCards}
         profileInfo={this.state.profileInfo}
         updateProfileInfo={this.updateProfileInfo}
         redirectFunction={this.goto}
