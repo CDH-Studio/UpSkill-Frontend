@@ -18,7 +18,7 @@ export default class FieldManagingComponent extends Component {
     axios
       .put(url, this.fields)
       .then(function(response) {
-        console.log(response);
+        console.log("should this be called?", response);
       })
       .catch(function(error) {
         console.log(error);
@@ -34,7 +34,6 @@ export default class FieldManagingComponent extends Component {
     } else {
       newVal = value;
     }
-    console.log("field update", name, newVal);
     this.fields[name] = newVal;
   }
 }
