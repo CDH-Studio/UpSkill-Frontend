@@ -49,8 +49,6 @@ export default class ResultsLayoutView extends Component {
     let cards = [];
 
     preparedResults.forEach(person => {
-      console.log(person);
-
       cards.push(
         <Card onClick={() => redirectFunction("/secured/profile/" + person.id)}>
           <Card.Content>

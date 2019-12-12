@@ -52,7 +52,7 @@ const formList = [
     form: EducationFormController
   },
   {
-    name: "setup.career.overview",
+    name: "setup.experience",
     form: CareerOverviewFormController
   },
   {
@@ -238,8 +238,6 @@ class SetupLayoutController extends Component {
       )
     };
 
-    console.log(JSON.stringify(epo));
-
     this.setState({
       editProfileOptions: epo,
       gedsInfoList
@@ -255,7 +253,6 @@ class SetupLayoutController extends Component {
         this.changes
       )
       .then(response => {
-        console.log(response);
         redirectFunction("/secured/home");
       })
       .catch(function(error) {

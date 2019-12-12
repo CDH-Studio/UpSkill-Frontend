@@ -44,7 +44,6 @@ class Profile extends Component {
     const profileIdStartIndex = url.indexOf("/secured/profile") + 17;
 
     if (url.length < profileIdStartIndex + 2) {
-      console.log(profileIdStartIndex);
       this.profileId = localStorage.getItem("userId");
     } else {
       this.profileId = url.substring(profileIdStartIndex);
@@ -74,11 +73,44 @@ class Profile extends Component {
   render() {
     const { changeLanguage, keycloak } = this.props;
 
+    const ownProfile = this.profileId === localStorage.getItem("userId");
+
     return (
       <ProfileLayoutController
         changeLanguage={changeLanguage}
         keycloak={keycloak}
-        editable={localStorage.getItem("userId") === this.profileId}
+        editable={ownProfile}
+        privateView={ownProfile}
+        visibleProfileCards={
+          ownProfile
+            ? {
+                careerInterests: true,
+                competencies: true,
+                developmentalGoals: true,
+                education: true,
+                experience: true,
+                info: true,
+                manager: true,
+                officialLanguage: false,
+                projects: true,
+                skills: true,
+                talentManagement: true
+              }
+            : {
+                careerInterests: true,
+                competencies: true,
+                developmentalGoals: true,
+                education: true,
+                experience: true,
+                info: true,
+                languageProficiency: true,
+                manager: true,
+                officialLanguage: true,
+                projects: true,
+                skills: true,
+                talentManagement: true
+              }
+        }
         profileInfo={this.state.profileInfo}
         updateProfileInfo={this.updateProfileInfo}
         redirectFunction={this.goto}

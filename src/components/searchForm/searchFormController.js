@@ -132,7 +132,6 @@ class SearchFormController extends Component {
     const { redirectFunction } = this.props;
     const oldUrl = window.location.toString();
     let query;
-    console.log("submit", this.fields);
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
       query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
