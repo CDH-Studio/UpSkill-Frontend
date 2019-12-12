@@ -98,10 +98,7 @@ class ProfileLayoutView extends Component {
       editable,
       keycloak,
       profileInfo,
-      publicLayout,
-      visibleProfileCards,
-      updateVisibleProfileCards,
-      windowWidth
+      publicLayout
     } = this.props;
 
     if (profileInfo === undefined) {
@@ -160,7 +157,7 @@ class ProfileLayoutView extends Component {
     const {
       windowWidth,
       visibleProfileCards,
-      updateVisibleProfileCards,
+      updateCardVisibility,
       applyVisibleProfileCards,
       disableApplyVisibleProfileCards,
       intl
@@ -200,7 +197,7 @@ class ProfileLayoutView extends Component {
                 defaultChecked={value}
                 toggle
                 onChange={(e, { checked }) =>
-                  updateVisibleProfileCards({ [key]: checked })
+                  updateCardVisibility(key, checked)
                 }
               />
             </Menu.Item>
