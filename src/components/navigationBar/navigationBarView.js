@@ -89,7 +89,7 @@ export default class NavigationBarView extends Component {
                 <Icon name="angle down" size="large" />
               </Menu.Item>
             }
-            on="focus"
+            on="click"
           >
             <Card fluid>
               <Image src={tempProfilePic} size="small" centered />
