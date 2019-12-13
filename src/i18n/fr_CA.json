@@ -59,6 +59,8 @@
   "button.next": "Suivant",
   "button.back": "Précédent",
   "button.finish": "Terminer",
+  "button.deactivate.account": "Desactivé votre compte",
+  "button.hide.account": "Masquer votre compte",
 
   "apply.button.text": "Enregistrer",
 
@@ -210,6 +212,12 @@
   "profile.settings.and.privacy": "Préférences et confidentialité",
   "profile.preview.public.view": "Aperçu du profil public",
   "profile.select.publicly.visible.cards": "Modifier la visibilité de votre profil public",
+  "profile.account.hide.and.deactivate": "Masquer et desactivé",
+
+  "profile.hide.account.confirm.header": "Voulez-vous vraiment masquer votre compte ?",
+  "profile.deactivate.account.confirm.header": "Voulez-vous vraiment désactiver votre compte ?",
+  "profile.hide.account.confirm.content": "Votre compte sera rendu inaccessible, mais les personnes disposant d'un lien direct pourront toujours le consulter.",
+  "profile.deactivate.account.confirm.content": "Votre compte sera rendu inaccessible, mais vos données resteront stockées.",
 
   "profile.is.ongoing": "Courant",
 
