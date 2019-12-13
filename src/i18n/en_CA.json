@@ -51,7 +51,7 @@
   "button.back": "Back",
   "button.finish": "Finish",
   "button.deactivate.account": "Deactivate account",
-  "button.delete.account": "Delete account",
+  "button.hide.account": "Hide account",
   "button.basic.search": "Basic search",
 
   "apply.button.text": "Apply",
@@ -205,7 +205,10 @@
   "profile.settings.and.privacy": "Settings & Privacy",
   "profile.preview.public.view": "Preview public view",
   "profile.select.publicly.visible.cards": "Select publicly visible cards",
-  "profile.account.removal.options": "Account removal options",
-
+  "profile.account.hide.and.deactivate": "Hide and deactivate",
+  "profile.hide.account.confirm.header": "Are you sure you want to hide your account?",
+  "profile.deactivate.account.confirm.header": "Are you sure you want to deactivate your account?",
+  "profile.hide.account.confirm.content": "Your account will be made unsearchable but people with a direct link will still be able to view it.",
+  "profile.deactivate.account.confirm.content": "Your account will be made unsearchable but your data will remain stored.",
   "sign.out": "Logout"
 }
