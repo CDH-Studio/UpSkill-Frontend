@@ -581,7 +581,7 @@ class ProfileLayoutView extends Component {
 
     const actingDisabled = !(acting && actingPeriodStartDate);
 
-    const actingLabel = intl.formatMessage({ id: "profile.acting" });
+    const actingLabel = intl.formatMessage({ id: "profile.acting.label.only" });
     const actingPeriodLabel = intl.formatMessage({
       id: "profile.acting.period"
     });

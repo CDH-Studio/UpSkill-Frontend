@@ -2,12 +2,13 @@ import React from "react";
 
 import FormManagingComponent from "../common/formTools";
 import LabelCardFormView from "./labelCardFormView";
+import find from "lodash/find";
 import moment from "moment";
 
 export default class LabelCardFormController extends FormManagingComponent {
   constructor(props) {
     super(props);
-    const { profileInfo } = this.props;
+    const { profileInfo, editProfileOptions } = this.props;
 
     const isActing =
       Boolean(profileInfo["actingPeriodStartDate"]) &&
@@ -15,20 +16,35 @@ export default class LabelCardFormController extends FormManagingComponent {
 
     this.tempFields["actingHasEndDate"] =
       isActing && Boolean(profileInfo["actingPeriodEndDate"]);
-    this.tempFields["isActing"] = isActing;
 
     this.onChangeFuncs["actingPeriodEndDate"] = () => this.forceUpdate();
     this.onChangeFuncs["actingHasEndDate"] = () => this.forceUpdate();
     this.onChangeFuncs["actingPeriodStartDate"] = () => this.forceUpdate();
-    this.onChangeFuncs["isActing"] = () => this.forceUpdate();
 
     this.transformOnChangeValueFuncs["actingPeriodStartDate"] = value =>
       moment(value, "MMM DD YYYY");
+
+    this.onChangeFuncs["temporaryRole"] = () => this.forceUpdate();
+  }
+
+  getActingIsDisabled() {
+    const { editProfileOptions, profileInfo } = this.props;
+    let selectedObj = editProfileOptions.temporaryRole.find(
+      obj =>
+        obj.value ===
+        (this.fields.temporaryRole ||
+          (profileInfo.temporaryRole && profileInfo.temporaryRole.id))
+    );
+
+    return !Boolean(
+      selectedObj &&
+        (selectedObj.text === "Par intérim" || selectedObj.text === "Acting")
+    );
   }
 
   render() {
     const { buttons } = this.props;
-    const actingDisabled = !Boolean(this.getCurrentValue("isActing"));
+    const actingDisabled = this.getActingIsDisabled();
     return (
       <LabelCardFormView
         actingDisabled={actingDisabled}
@@ -42,6 +58,12 @@ export default class LabelCardFormController extends FormManagingComponent {
         getCurrentValue={this.getCurrentValue}
         onFieldChange={this.onFieldChange}
         onSubmit={() => {
+          if (this.getActingIsDisabled()) {
+            this.fields["acting"] = null;
+            this.fields["actingPeriodStartDate"] = null;
+            this.fields["actingPeriodEndDate"] = null;
+          }
+
           this.onSubmit();
         }}
         onTempFieldChange={this.onTempFieldChange}
