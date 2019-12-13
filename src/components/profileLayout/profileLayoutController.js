@@ -59,6 +59,7 @@ class ProfileLayoutController extends Component {
         profileInfo={prepareInfo(profileInfo, localStorage.getItem("lang"), {
           acting: undefined,
           actingPeriodStartDate: undefined,
+          developmentalGoals: [],
           careerSummary: [],
           competencies: [],
           education: [],
