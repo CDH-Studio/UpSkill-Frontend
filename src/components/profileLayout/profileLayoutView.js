@@ -240,16 +240,40 @@ class ProfileLayoutView extends Component {
         </Menu.Menu>
         <Menu.Menu>
           <Menu.Header>
-            <FormattedMessage id="profile.account.removal.options" />
+            <FormattedMessage id="profile.account.hide.and.deactivate" />
           </Menu.Header>
           <Menu.Item>
             <Button
               onClick={() =>
                 this.setState({
                   confirmItem: {
-                    header: "Are you sure you want to deactivate your account?",
-                    content:
-                      "Your account will be made unsearchable but your data will remain stored.",
+                    header: intl.formatMessage({
+                      id: "profile.hide.account.confirm.header"
+                    }),
+                    content: intl.formatMessage({
+                      id: "profile.hide.account.confirm.content"
+                    }),
+                    handleConfirm: handleClickDelete
+                  }
+                })
+              }
+              color="blue"
+              fluid
+            >
+              <FormattedMessage id="button.hide.account" />
+            </Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button
+              onClick={() =>
+                this.setState({
+                  confirmItem: {
+                    header: intl.formatMessage({
+                      id: "profile.deactivate.account.confirm.header"
+                    }),
+                    content: intl.formatMessage({
+                      id: "profile.deactivate.account.confirm.content"
+                    }),
                     handleConfirm: handleClickDeactivate
                   }
                 })
@@ -258,24 +282,6 @@ class ProfileLayoutView extends Component {
               fluid
             >
               <FormattedMessage id="button.deactivate.account" />
-            </Button>
-          </Menu.Item>
-          <Menu.Item>
-            <Button
-              onClick={() =>
-                this.setState({
-                  confirmItem: {
-                    header: "Are you sure you want to delete your account?",
-                    content:
-                      "Your account will be made unsearchable and your data will be deleted after [TODO] days.",
-                    handleConfirm: handleClickDelete
-                  }
-                })
-              }
-              color="blue"
-              fluid
-            >
-              <FormattedMessage id="button.delete.account" />
             </Button>
           </Menu.Item>
         </Menu.Menu>
