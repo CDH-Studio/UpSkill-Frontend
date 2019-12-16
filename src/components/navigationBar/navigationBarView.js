@@ -42,7 +42,8 @@ export default class NavigationBarView extends Component {
   }
 
   renderMainBar() {
-    const { changeLanguage, keycloak, admin } = this.props;
+    // const { changeLanguage, keycloak, admin } = this.props;
+    const { changeLanguage } = this.props;
     const name = localStorage.getItem("name");
     const email = localStorage.getItem("email");
 
@@ -105,14 +106,17 @@ export default class NavigationBarView extends Component {
                     <Icon name="user" />
                     <FormattedMessage id="my.profile" />
                   </Menu.Item>
-                  {admin ? (
-                    <Menu.Item href="/admin">
-                      <Icon name="settings" />
-                      <FormattedMessage id="admin" />
-                    </Menu.Item>
-                  ) : null}
+                  <Menu.Item href="/admin">
+                    <Icon name="settings" />
+                    <FormattedMessage id="admin" />
+                  </Menu.Item>
+
                   <Divider />
-                  <Logout id="logoutButton" keycloak={keycloak} />
+                  {/* <Logout id="logoutButton" keycloak={keycloak} /> */}
+                  <Menu.Item href="/">
+                    <Icon name="log out" />
+                    <FormattedMessage id="sign.out" />
+                  </Menu.Item>
                 </Menu>
               </Card.Content>
             </Card>
