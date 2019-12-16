@@ -58,7 +58,7 @@ export default class LabelCardFormController extends FormManagingComponent {
         getCurrentValue={this.getCurrentValue}
         onFieldChange={this.onFieldChange}
         onSubmit={() => {
-          if (this.getActingIsDisabled()) {
+          if (actingDisabled) {
             this.fields["acting"] = null;
             this.fields["actingPeriodStartDate"] = null;
             this.fields["actingPeriodEndDate"] = null;
