@@ -17,7 +17,6 @@ const loginFunc = require("../../functions/login");
 const history = createBrowserHistory();
 
 const { disableKeycloak } = config;
-console.log("disablekeycloak", disableKeycloak);
 
 const dimmer = () => {
   return (
@@ -42,7 +41,23 @@ class Secured extends Component {
 
   componentDidMount() {
     const keycloak = Keycloak("/keycloak.json");
-    if (!disableKeycloak) {
+    console.log();
+    if (disableKeycloak) {
+      this.setState({
+        keycloak: {
+          ...keycloak,
+          loadUserInfo: async () => ({
+            email: "rizvi.rab@canada.ca",
+            name: "Rab, Rizvi"
+          })
+        },
+
+        authenticated: true
+      });
+      this.renderRedirect().then(redirect => {
+        this.setState({ redirect: redirect });
+      });
+    } else {
       keycloak
         .init({ onLoad: "login-required", promiseType: "native" })
         .then(authenticated => {
@@ -77,7 +92,15 @@ class Secured extends Component {
       document.body.style = "background-color: #eeeeee";
     }
 
-    const keycloak = this.state.keycloak;
+    const keycloak = disableKeycloak
+      ? {
+          loadUserInfo: async () => ({
+            email: "rizvi.rab@canada.ca",
+            name: "Rab, Rizvi"
+          })
+        }
+      : this.state.keycloak;
+
     if (keycloak || disableKeycloak) {
       if (this.state.authenticated || disableKeycloak) {
         return (
@@ -177,6 +200,20 @@ class Secured extends Component {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   profileExist = () => {
+    if (disableKeycloak) {
+      return loginFunc
+        .createUser("rizvi.rab@canada.ca", "Rab, Rizvi")
+        .then(res => {
+          // console.log("res", res);
+
+          // Add name and email to local storage
+          localStorage.setItem("name", "Rab, Rizvi");
+          localStorage.setItem("email", "rizvi.rab@canada.ca");
+
+          return res.hasProfile;
+        });
+    }
+
     return this.state.keycloak.loadUserInfo().then(async userInfo => {
       return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
         // console.log("res", res);
