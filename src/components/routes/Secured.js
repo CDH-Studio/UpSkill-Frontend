@@ -43,6 +43,7 @@ class Secured extends Component {
     const keycloak = Keycloak("/keycloak.json");
     console.log();
     if (disableKeycloak) {
+      sessionStorage.setItem("admin", true);
       this.setState({
         keycloak: {
           ...keycloak,
