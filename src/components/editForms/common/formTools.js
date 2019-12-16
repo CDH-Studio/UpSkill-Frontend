@@ -7,7 +7,13 @@ import axios from "axios";
 import config from "../../../config";
 const { backendAddress } = config;
 
-export const generateCommonProps = (props, name, control, tempField) => {
+export const generateCommonProps = (
+  props,
+  name,
+  control,
+  tempField,
+  disableDoNotSpecify
+) => {
   const {
     editProfileOptions,
     getCurrentValue,
@@ -39,10 +45,21 @@ export const generateCommonProps = (props, name, control, tempField) => {
   } else if (control === Select) {
     commonProps.search = true;
 
+    if (disableDoNotSpecify) {
+      commonProps.options = editProfileOptions[name];
+    } else {
+      commonProps.options = name in editProfileOptions && [
+        {
+          key: null,
+          value: null,
+          text: props.intl.formatMessage({ id: "profile.do.not.specify" })
+        },
+        ...editProfileOptions[name]
+      ];
+    }
     commonProps.defaultValue =
       profileInfo[name] && (profileInfo[name].id || profileInfo[name]);
 
-    commonProps.options = editProfileOptions[name];
     //commonProps.disabled = false;
   } else if (control === Input) {
     commonProps.placeholder = profileInfo[name];
@@ -100,7 +117,7 @@ export default class FormManagingComponent extends Component {
         .put(url, this.fields)
         .then(response => window.location.reload())
         .catch(function(error) {
-          console.log(error);
+          console.error(error);
         });
     }
   }

@@ -33,6 +33,11 @@ class LanguageProficiencyFormView extends Component {
                 {...this.generateProps("firstLanguage", Select)}
                 options={[
                   {
+                    key: null,
+                    value: null,
+                    text: intl.formatMessage({ id: "profile.do.not.specify" })
+                  },
+                  {
                     key: "en",
                     value: "en",
                     text: intl.formatMessage({ id: "language.english" })
@@ -68,7 +73,7 @@ class LanguageProficiencyFormView extends Component {
   }
 
   renderSecondaryGrading() {
-    const { secondaryGradingDisabled } = this.props;
+    const { intl, secondaryGradingDisabled } = this.props;
     return (
       <React.Fragment>
         <Grid.Row>
@@ -82,6 +87,11 @@ class LanguageProficiencyFormView extends Component {
                   )}
                   disabled={secondaryGradingDisabled}
                   options={[
+                    {
+                      key: null,
+                      value: null,
+                      text: intl.formatMessage({ id: "profile.do.not.specify" })
+                    },
                     { key: "A", value: "A", text: "A" },
                     { key: "B", value: "B", text: "B" },
                     { key: "C", value: "C", text: "C" },

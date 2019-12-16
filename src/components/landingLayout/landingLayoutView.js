@@ -34,7 +34,7 @@ export default class landingLayoutController extends Component {
               fontSize: "52pt"
             }}
           >
-            Welcome to UpSkill.
+            Welcome to UpSkill
           </div>
           <div
             style={{

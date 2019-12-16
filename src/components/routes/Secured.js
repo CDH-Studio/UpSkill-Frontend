@@ -8,14 +8,7 @@ import { Dimmer, Image } from "semantic-ui-react";
 
 import animatedLogo from "../../assets/animatedLogo.gif";
 
-import {
-  Advanced,
-  Home,
-  Results,
-  Profile,
-  Setup,
-  ProfileGeneration
-} from "../../pages";
+import { Advanced, Home, Results, Profile, Setup } from "../../pages";
 
 const loginFunc = require("../../functions/login");
 
@@ -180,6 +173,11 @@ class Secured extends Component {
     return this.state.keycloak.loadUserInfo().then(async userInfo => {
       return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
         // console.log("res", res);
+
+        // Add name and email to local storage
+        localStorage.setItem("name", userInfo.name);
+        localStorage.setItem("email", userInfo.email);
+
         return res.hasProfile;
       });
     });

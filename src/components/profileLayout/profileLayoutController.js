@@ -24,6 +24,8 @@ class ProfileLayoutController extends Component {
     this.determineWidth = this.determineWidth.bind(this);
     this.updateCardVisibility = this.updateCardVisibility.bind(this);
     this.applyVisibleProfileCards = this.applyVisibleProfileCards.bind(this);
+    this.handleClickDeactivate = this.handleClickDeactivate.bind(this);
+    this.handleClickDelete = this.handleClickDelete.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +59,7 @@ class ProfileLayoutController extends Component {
         profileInfo={prepareInfo(profileInfo, localStorage.getItem("lang"), {
           acting: undefined,
           actingPeriodStartDate: undefined,
+          developmentalGoals: [],
           careerSummary: [],
           competencies: [],
           education: [],
@@ -64,6 +67,8 @@ class ProfileLayoutController extends Component {
           projects: [],
           skills: []
         })}
+        handleClickDeactivate={this.handleClickDeactivate}
+        handleClickDelete={this.handleClickDelete}
         disableApplyVisibleProfileCards={
           this.state.changedCardVisibilities.length === 0
         }
@@ -118,6 +123,10 @@ class ProfileLayoutController extends Component {
   determineWidth() {
     this.setState({ windowWidth: window.innerWidth });
   }
+
+  handleClickDelete() {}
+
+  handleClickDeactivate() {}
 }
 
 export default injectIntl(ProfileLayoutController);

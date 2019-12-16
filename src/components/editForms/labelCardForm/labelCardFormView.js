@@ -24,38 +24,41 @@ class LabelCardFormView extends Component {
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
+    const classificationProps = generateProps("classification", Select);
+
     return (
       <Form onSubmit={onSubmit}>
-        <Form.Field
-          {...generateProps("substantive", Select)}
-          options={[
-            {
-              key: true,
-              value: true,
-              text: intl.formatMessage({ id: "profile.indeterminate" })
-            },
-            {
-              key: false,
-              value: false,
-              text: intl.formatMessage({ id: "profile.term" })
-            },
-            {
-              key: null,
-              value: null,
-              text: intl.formatMessage({ id: "profile.do.not.specify" })
-            }
-          ]}
-          defaultValue={profileInfo["indeterminate"]}
-        />
-        <Form.Field {...generateProps("classification", Select)} />
+        <Form.Group>
+          <Form.Field
+            {...generateProps("substantive", Select)}
+            options={[
+              {
+                key: null,
+                value: null,
+                text: intl.formatMessage({ id: "profile.do.not.specify" })
+              },
+              {
+                key: true,
+                value: true,
+                text: intl.formatMessage({ id: "profile.indeterminate" })
+              },
+              {
+                key: false,
+                value: false,
+                text: intl.formatMessage({ id: "profile.term" })
+              }
+            ]}
+            defaultValue={profileInfo["indeterminate"]}
+            width={8}
+          />
+          <Form.Field {...classificationProps} width={8} />
+        </Form.Group>
 
         <Form.Field {...generateProps("temporaryRole", Select)} />
-
-        <Form.Field {...generateProps("isActing", Checkbox, true)} />
         <Form.Field
           {...generateProps("acting", Select)}
           disabled={actingDisabled}
-          options={editProfileOptions["classification"]}
+          options={classificationProps.options}
         />
         <Form.Group>
           <Form.Field

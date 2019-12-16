@@ -46,8 +46,12 @@ class EducationItemFormView extends Component {
 
         <Form style={{ margin: "0px auto", width: "95%" }}>
           <Form.Group widths="equal">
-            <Form.Field {...this.generateProps("diploma", Select)} />
-            <Form.Field {...this.generateProps("school", Select)} />
+            <Form.Field
+              {...this.generateProps("diploma", Select, false, true)}
+            />
+            <Form.Field
+              {...this.generateProps("school", Select, false, true)}
+            />
           </Form.Group>
           <Form.Group
             className="noHorizontalGaps"

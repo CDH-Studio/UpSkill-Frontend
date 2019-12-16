@@ -16,7 +16,7 @@ export default class ResultsLayoutController extends Component {
     this.handleResponse = handleResponse.bind(this);
 
     const handleError = error => {
-      console.log("handleError", error);
+      console.error(error);
       this.setState({ results: error });
     };
     this.handleError = handleError.bind(this);

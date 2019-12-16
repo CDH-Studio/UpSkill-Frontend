@@ -15,7 +15,7 @@ import {
   Menu,
   Popup,
   Table,
-  Segment,
+  Confirm,
   Sidebar,
   Checkbox,
   Form
@@ -85,7 +85,8 @@ class ProfileLayoutView extends Component {
 
     this.state = {
       settingsSidebar: editable ? false : null,
-      previewPublic: false
+      previewPublic: false,
+      confirmItem: null
     };
 
     this.renderValue = renderValue.bind(this, intl);
@@ -100,6 +101,8 @@ class ProfileLayoutView extends Component {
       profileInfo,
       publicLayout
     } = this.props;
+
+    const { confirmItem } = this.state;
 
     if (profileInfo === undefined) {
       return (
@@ -125,6 +128,19 @@ class ProfileLayoutView extends Component {
           logoRedirectHome={true}
         />
 
+        <Confirm
+          open={Boolean(confirmItem)}
+          header={confirmItem && confirmItem.header}
+          content={confirmItem && confirmItem.content}
+          onConfirm={() => {
+            confirmItem &&
+              confirmItem.handleConfirm &&
+              confirmItem.handleConfirm();
+            this.setState({ confirmItem: null });
+          }}
+          onCancel={() => this.setState({ confirmItem: null })}
+        />
+
         <Sidebar.Pushable>
           {this.renderSidebar()}
           <Sidebar.Pusher>
@@ -132,6 +148,7 @@ class ProfileLayoutView extends Component {
               <div className="body">
                 {this.state.settingsSidebar !== null && (
                   <Button
+                    color="blue"
                     onClick={() =>
                       this.setState(oldState => ({
                         settingsSidebar: !oldState.settingsSidebar
@@ -162,6 +179,8 @@ class ProfileLayoutView extends Component {
       updateCardVisibility,
       applyVisibleProfileCards,
       disableApplyVisibleProfileCards,
+      handleClickDelete,
+      handleClickDeactivate,
       intl
     } = this.props;
     return (
@@ -210,10 +229,59 @@ class ProfileLayoutView extends Component {
           ))}
           <Menu.Item>
             <Button
+              color="blue"
+              fluid
               disabled={disableApplyVisibleProfileCards}
               onClick={applyVisibleProfileCards}
             >
               <FormattedMessage id="button.apply" />
+            </Button>
+          </Menu.Item>
+        </Menu.Menu>
+        <Menu.Menu>
+          <Menu.Header>
+            <FormattedMessage id="profile.account.hide.and.deactivate" />
+          </Menu.Header>
+          <Menu.Item>
+            <Button
+              onClick={() =>
+                this.setState({
+                  confirmItem: {
+                    header: intl.formatMessage({
+                      id: "profile.hide.account.confirm.header"
+                    }),
+                    content: intl.formatMessage({
+                      id: "profile.hide.account.confirm.content"
+                    }),
+                    handleConfirm: handleClickDelete
+                  }
+                })
+              }
+              color="blue"
+              fluid
+            >
+              <FormattedMessage id="button.hide.account" />
+            </Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button
+              onClick={() =>
+                this.setState({
+                  confirmItem: {
+                    header: intl.formatMessage({
+                      id: "profile.deactivate.account.confirm.header"
+                    }),
+                    content: intl.formatMessage({
+                      id: "profile.deactivate.account.confirm.content"
+                    }),
+                    handleConfirm: handleClickDeactivate
+                  }
+                })
+              }
+              color="blue"
+              fluid
+            >
+              <FormattedMessage id="button.deactivate.account" />
             </Button>
           </Menu.Item>
         </Menu.Menu>
@@ -454,20 +522,15 @@ class ProfileLayoutView extends Component {
 
                   <div className="phoneNumberArea">
                     <FormattedMessage id="profile.telephone" />:
-                    {this.renderValue(telephone, "profile.undefined")}
+                    {this.renderValue(telephone)}
                   </div>
                   <div className="phoneNumberArea">
                     <FormattedMessage id="profile.cellphone" />:
-                    {this.renderValue(cellphone, "profile.undefined")}
+                    {this.renderValue(cellphone)}
                   </div>
                   <div>{email}</div>
 
-                  <div>
-                    {this.renderValue(
-                      location.description,
-                      "profile.undefined.location"
-                    )}
-                  </div>
+                  <div>{this.renderValue(location.description)}</div>
                 </div>
               </Grid.Row>
             </Grid>
@@ -522,32 +585,70 @@ class ProfileLayoutView extends Component {
       temporaryRole
     } = profileInfo;
 
+    const substantiveItem = this.renderLabeledItem(
+      intl.formatMessage({ id: "profile.substantive" }),
+      this.renderValue(
+        {
+          [true]: intl.formatMessage({ id: "profile.indeterminate" }),
+          [false]: intl.formatMessage({ id: "profile.term" }),
+          [null]: null
+        }[indeterminate]
+      )
+    );
+
+    const classificationItem = this.renderLabeledItem(
+      intl.formatMessage({
+        id: "profile.classification"
+      }),
+      this.renderValue(classification.description)
+    );
+
+    const tempRoleItem = this.renderLabeledItem(
+      intl.formatMessage({
+        id: "profile.temporary.role"
+      }),
+      this.renderValue(temporaryRole.description)
+    );
+
     const actingDisabled = !(acting && actingPeriodStartDate);
 
-    const actingLabel = intl.formatMessage({ id: "profile.acting" });
-    const actingPeriodLabel = intl.formatMessage({
-      id: "profile.acting.period"
-    });
-    const classificationLabel = intl.formatMessage({
-      id: "profile.classification"
-    });
-    const substantiveLabel = intl.formatMessage({ id: "profile.substantive" });
-    const securityLabel = intl.formatMessage({ id: "profile.security" });
-    const temporaryRoleLabel = intl.formatMessage({
-      id: "profile.temporary.role"
-    });
     const startDateString = moment(actingPeriodStartDate).format("DD/MM/YYYY");
     const endDateString =
       actingPeriodEndDate !== "Undefined"
         ? moment(actingPeriodEndDate).format("DD/MM/YYYY")
         : intl.formatMessage({ id: "profile.ongoing" });
-
     const actingDateText = actingDisabled ? (
       <span className="greyedOut">
         {intl.formatMessage({ id: "profile.na" })}
       </span>
     ) : (
       startDateString + " - " + endDateString
+    );
+
+    const actingItem = (
+      <React.Fragment>
+        {this.renderLabeledItem(
+          intl.formatMessage({ id: "profile.acting.label.only" }),
+          this.renderValue(acting.description, "profile.na", actingDisabled)
+        )}
+
+        {acting.description ? (
+          <div
+            style={{
+              width: "100%",
+              textAlign: "center",
+              paddingBottom: "16px"
+            }}
+          >
+            {actingDateText}
+          </div>
+        ) : null}
+      </React.Fragment>
+    );
+
+    const securityItem = this.renderLabeledItem(
+      intl.formatMessage({ id: "profile.security" }),
+      this.renderValue(security.description)
     );
 
     // When using the medium wideness view there are 2 columns of labeled cards
@@ -561,53 +662,15 @@ class ProfileLayoutView extends Component {
           <Grid>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(
-                  substantiveLabel,
-                  this.renderValue(
-                    {
-                      [true]: intl.formatMessage({
-                        id: "profile.indeterminate"
-                      }),
-                      [false]: intl.formatMessage({ id: "profile.term" }),
-                      [null]: null
-                    }[indeterminate]
-                  )
-                )}
-                {this.renderLabeledItem(
-                  classificationLabel,
-                  this.renderValue(
-                    classification.description,
-                    "profile.undefined"
-                  )
-                )}
-                {this.renderLabeledItem(
-                  temporaryRoleLabel,
-                  this.renderValue(
-                    temporaryRole.description,
-                    "profile.undefined"
-                  )
-                )}
+                {substantiveItem}
+                {classificationItem}
+                {tempRoleItem}
               </Grid>
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(
-                  securityLabel,
-                  this.renderValue(security.description, "profile.undefined")
-                )}
-                {this.renderLabeledItem(
-                  actingLabel,
-                  this.renderValue(
-                    acting.description,
-                    "profile.na",
-                    actingDisabled
-                  )
-                )}
-                {acting.description ? (
-                  <div style={{ width: "100%", textAlign: "center" }}>
-                    {actingDateText}
-                  </div>
-                ) : null}
+                {actingItem}
+                {securityItem}
               </Grid>
             </Grid.Column>
           </Grid>
@@ -624,41 +687,11 @@ class ProfileLayoutView extends Component {
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
-          {/*this.renderLabeledItem(
-            SubstantiveLabel,
-            this.renderValue(indeterminate.description, "profile.undefined")
-          )*/}
-          {this.renderLabeledItem(
-            substantiveLabel,
-            this.renderValue(
-              {
-                [true]: intl.formatMessage({ id: "profile.indeterminate" }),
-                [false]: intl.formatMessage({ id: "profile.term" }),
-                [null]: null
-              }[indeterminate]
-            )
-          )}
-          {this.renderLabeledItem(
-            classificationLabel,
-            this.renderValue(classification.description, "profile.undefined")
-          )}
-          {this.renderLabeledItem(
-            temporaryRoleLabel,
-            this.renderValue(temporaryRole.description, "profile.undefined")
-          )}
-          {this.renderLabeledItem(
-            actingLabel,
-            this.renderValue(acting.description, "profile.na", actingDisabled)
-          )}
-          {acting.description ? (
-            <div style={{ width: "100%", textAlign: "center" }}>
-              {actingDateText}
-            </div>
-          ) : null}
-          {this.renderLabeledItem(
-            securityLabel,
-            this.renderValue(security.description, "profile.undefined")
-          )}
+          {substantiveItem}
+          {classificationItem}
+          {tempRoleItem}
+          {actingItem}
+          {securityItem}
         </Grid>
       </ProfileCardController>
     );
