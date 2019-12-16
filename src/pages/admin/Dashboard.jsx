@@ -1,17 +1,7 @@
 import React, { Component } from "react";
 import AdminMenu from "../../components/admin/AdminMenu";
-import {
-  Segment,
-  Header,
-  Button,
-  Icon,
-  Image,
-  Statistic,
-  Divider
-} from "semantic-ui-react";
-import _ from "lodash";
+import { Header, Icon, Statistic, Divider } from "semantic-ui-react";
 import axios from "axios";
-import moment from "moment";
 import { FormattedMessage, injectIntl } from "react-intl";
 import config from "../../config";
 const { backendAddress } = config;
