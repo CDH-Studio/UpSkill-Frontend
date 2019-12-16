@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Loader,
-  Select
-} from "semantic-ui-react";
+import { Button, Checkbox, Form, Input, Select } from "semantic-ui-react";
 
 /**
  *

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { injectIntl, FormattedMessage } from "react-intl";
 import moment from "moment";
 import map from "lodash/map";
+import uuid from "uuid/v1";
 
 import {
   Button,
@@ -17,8 +18,7 @@ import {
   Table,
   Confirm,
   Sidebar,
-  Checkbox,
-  Form
+  Checkbox
 } from "semantic-ui-react";
 
 import tempProfilePic from "./../../assets/tempProfilePicture.png";
@@ -209,7 +209,7 @@ class ProfileLayoutView extends Component {
             <FormattedMessage id="profile.select.publicly.visible.cards" />
           </Menu.Header>
           {map(visibleProfileCards, (value, key) => (
-            <Menu.Item position="right">
+            <Menu.Item position="right" key={key}>
               <Checkbox
                 label={intl.formatMessage({
                   id:
@@ -302,7 +302,7 @@ class ProfileLayoutView extends Component {
       //generate primary group cards
       const infoVisible = visibleProfileCards["info"];
       const primaryGroupRow = (
-        <Grid.Row>
+        <Grid.Row key={uuid()}>
           <Grid.Column width={infoVisible ? 11 : 16}>
             {this.renderPrimaryCard()}
           </Grid.Column>
@@ -321,7 +321,7 @@ class ProfileLayoutView extends Component {
 
       if (hasLeftCol || hasRightCol) {
         secondaryGroupRow = (
-          <Grid.Row>
+          <Grid.Row key={uuid()}>
             {hasLeftCol && (
               <Grid.Column width={hasRightCol ? 11 : 16}>
                 {visibleProfileCards["manager"] && this.renderManagerCard()}
@@ -373,7 +373,7 @@ class ProfileLayoutView extends Component {
               !visibilityKey || visibleProfileCards[visibilityKey]
           )
           .map(({ renderFunction }) => (
-            <Grid.Row>
+            <Grid.Row key={uuid()}>
               <Grid.Column>{renderFunction.bind(this)()}</Grid.Column>
             </Grid.Row>
           ))}
@@ -698,7 +698,7 @@ class ProfileLayoutView extends Component {
   }
 
   renderManagerCard() {
-    const { profileInfo, windowWidth } = this.props;
+    const { profileInfo } = this.props;
     const { manager } = profileInfo;
 
     return (
@@ -955,7 +955,7 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController button={button} cardName={cardName}>
         {cardTags.map((value, index) => (
-          <Label color="blue" basic>
+          <Label color="blue" basic key={index}>
             <p style={{ color: "black" }}>{value.text || value.description}</p>
           </Label>
         ))}
@@ -972,7 +972,6 @@ class ProfileLayoutView extends Component {
         >
           <Label
             className={disabled ? "disabled" : null}
-            fluid
             style={{ fontSize: "12pt", fontWeight: "normal", width: "90%" }}
           >
             {labelText}

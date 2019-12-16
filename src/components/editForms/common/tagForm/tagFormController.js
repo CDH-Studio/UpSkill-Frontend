@@ -29,7 +29,8 @@ export default class TagFormController extends FieldManagingComponent {
 
     this.onFieldChange(e, o);
 
-    if (o.value.length > maxItems !== this.state.tooManyItems) {
+    const isLength = o.value.length > maxItems;
+    if (isLength !== this.state.tooManyItems) {
       this.setState({ tooManyItems: !this.state.tooManyItems });
     }
   }
