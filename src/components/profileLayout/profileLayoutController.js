@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import isEqual from "lodash/isEqual";
 import omit from "lodash/omit";
 
 import prepareInfo from "../../functions/prepareInfo";
@@ -44,10 +45,6 @@ class ProfileLayoutController extends Component {
       editable,
       visibleProfileCards
     } = this.props;
-
-    if (profileInfo)
-      document.title =
-        profileInfo.firstName + " " + profileInfo.lastName + " | UpSkill";
 
     return (
       <ProfileLayoutView

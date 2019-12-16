@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button, Icon } from "semantic-ui-react";
 import LandingLayoutController from "../components/landingLayout/landingLayoutController";
 
 import "./landing.css";
@@ -92,6 +93,51 @@ export default class Landing extends Component {
             </div>
 
             {/*<!-- Collect the nav links, forms, and other content for toggling -->*/}
+            <div
+              class="collapse navbar-collapse"
+              id="bs-example-navbar-collapse-1"
+            >
+              <ul class="nav navbar-nav navbar-right">
+                <li class="hidden">
+                  <a href="#page-top"></a>
+                </li>
+                <li>
+                  <a class="page-scroll" href="#benefits">
+                    Benefits
+                  </a>
+                </li>
+                <li>
+                  <a class="page-scroll" href="#features">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a class="page-scroll" href="#prototype">
+                    Prototype
+                  </a>
+                </li>
+                <li>
+                  <a class="page-scroll" href="#architecture">
+                    Architecture
+                  </a>
+                </li>
+                <li>
+                  <a class="page-scroll" href="#timeline">
+                    Timeline
+                  </a>
+                </li>
+                <li>
+                  <a class="page-scroll" href="#ourTeam">
+                    Our Team
+                  </a>
+                </li>
+                <li>
+                  <a class="page-scroll" href="#contact">
+                    Contact Us
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
         {/*<!-- Navigation end -->*/}
@@ -167,6 +213,7 @@ export default class Landing extends Component {
             <div class="row">
               <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Features</h2>
+                <h3 class="section-subheading text-muted"></h3>
               </div>
             </div>
             <div class="row text-center">
@@ -244,6 +291,34 @@ export default class Landing extends Component {
           </div>
         </section>
         {/*<!-- Architecture Section end -->*/}
+        {/*<!-- Clients Aside -->*/}
+        <aside class="clients bg-white">
+          <div class="container">
+            <div class="row client-parent" style={{ padding: "10px" }}>
+              <span class="fa-stack fa-3x client-child">
+                <a href="https://aws.amazon.com/">
+                  <img src="assets/images/tech/AWS.png" />
+                </a>
+              </span>
+              <span class="fa-stack fa-3x client-child">
+                <a href="https://nodejs.org/en/">
+                  <img src="assets/images/tech/nodejs.png" />
+                </a>
+              </span>
+              <span class="fa-stack fa-3x client-child">
+                <a href="https://reactjs.org">
+                  <img src="assets/images/tech/react.png" />
+                </a>
+              </span>
+
+              <span class="fa-stack fa-3x client-child">
+                <a href="https://serverless.com">
+                  <img src="assets/images/tech/serverless.png" />
+                </a>
+              </span>
+            </div>
+          </div>
+        </aside>
         {/*<!-- Timeline Section start -->*/}
         <section id="timeline" class="bg-light-gray">
           <div class="container">
@@ -331,6 +406,7 @@ export default class Landing extends Component {
             <div class="row">
               <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Our Team</h2>
+                <h3 class="section-subheading text-muted"></h3>
               </div>
             </div>
 
@@ -426,6 +502,7 @@ export default class Landing extends Component {
             <div class="row flex-row">
               <div class="col-lg-12 text-center">
                 <h2 class="section-heading">Contact Us</h2>
+                <h3 class="section-subheading text-muted"></h3>
               </div>
             </div>
             <div class="row" id="cdh-div">
@@ -476,10 +553,10 @@ export default class Landing extends Component {
               <div class="col-md-4">
                 <ul class="list-inline quicklinks">
                   <li>
-                    {/*  <a href="#">Privacy Policy</a>
+                    <a href="#">Privacy Policy</a>
                   </li>
                   <li>
-                    <a href="#">Terms of Use</a> */}
+                    <a href="#">Terms of Use</a>
                   </li>
                 </ul>
               </div>
