@@ -48,7 +48,7 @@ class Secured extends Component {
           ...keycloak,
           loadUserInfo: async () => ({
             email: "rizvi.rab@canada.ca",
-            name: "Rab, Rizvi"
+            name: "Rizvi Rab"
           })
         },
 
@@ -96,7 +96,7 @@ class Secured extends Component {
       ? {
           loadUserInfo: async () => ({
             email: "rizvi.rab@canada.ca",
-            name: "Rab, Rizvi"
+            name: "Rizvi Rab"
           })
         }
       : this.state.keycloak;
@@ -202,12 +202,12 @@ class Secured extends Component {
   profileExist = () => {
     if (disableKeycloak) {
       return loginFunc
-        .createUser("rizvi.rab@canada.ca", "Rab, Rizvi")
+        .createUser("rizvi.rab@canada.ca", "Rizvi Rab")
         .then(res => {
           // console.log("res", res);
 
           // Add name and email to local storage
-          localStorage.setItem("name", "Rab, Rizvi");
+          localStorage.setItem("name", "Rizvi Rab");
           localStorage.setItem("email", "rizvi.rab@canada.ca");
 
           return res.hasProfile;

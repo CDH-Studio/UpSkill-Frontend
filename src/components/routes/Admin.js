@@ -49,7 +49,50 @@ class Secured extends Component {
 
   componentDidMount() {
     const keycloak = Keycloak("/keycloak.json");
-    if (!disableKeycloak) {
+
+    console.log();
+    if (disableKeycloak) {
+      const keycloak = {
+        loadUserInfo: async () => ({
+          email: "rizvi.rab@canada.ca",
+          name: "Rizvi Rab"
+        }),
+        updateToken: async () => {}
+      };
+
+      this.setState({
+        keycloak: keycloak,
+        authenticated: true
+      });
+
+      axios.interceptors.request.use(config =>
+        keycloak.updateToken(300).then(() => {
+          config.headers.Authorization = "Bearer " + keycloak.token;
+          return Promise.resolve(config).catch(keycloak.login);
+        })
+      );
+
+      axios.get(backendAddress + "api/admin/check").then(
+        () => {
+          this.setState({
+            keycloak: keycloak,
+            authenticated: true,
+            isAdmin: true,
+            loading: false
+          });
+        },
+        () => {
+          this.setState({
+            keycloak: keycloak,
+            authenticated: true,
+            isAdmin: true,
+            loading: false
+          });
+        }
+      );
+    } else {
+      const keycloak = Keycloak("/keycloak.json");
+
       keycloak
         .init({ onLoad: "login-required", promiseType: "native" })
         .then(authenticated => {
