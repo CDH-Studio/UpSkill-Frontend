@@ -972,7 +972,6 @@ class ProfileLayoutView extends Component {
         >
           <Label
             className={disabled ? "disabled" : null}
-            fluid
             style={{ fontSize: "12pt", fontWeight: "normal", width: "90%" }}
           >
             {labelText}
