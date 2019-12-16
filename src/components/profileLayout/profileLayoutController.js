@@ -49,8 +49,6 @@ class ProfileLayoutController extends Component {
       document.title =
         profileInfo.firstName + " " + profileInfo.lastName + " | UpSkill";
 
-    console.log(profileInfo);
-
     return (
       <ProfileLayoutView
         changeLanguage={changeLanguage}

@@ -955,7 +955,7 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController button={button} cardName={cardName}>
         {cardTags.map((value, index) => (
-          <Label color="blue" basic>
+          <Label color="blue" basic key={index}>
             <p style={{ color: "black" }}>{value.text || value.description}</p>
           </Label>
         ))}
