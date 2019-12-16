@@ -579,32 +579,70 @@ class ProfileLayoutView extends Component {
       temporaryRole
     } = profileInfo;
 
+    const substantiveItem = this.renderLabeledItem(
+      intl.formatMessage({ id: "profile.substantive" }),
+      this.renderValue(
+        {
+          [true]: intl.formatMessage({ id: "profile.indeterminate" }),
+          [false]: intl.formatMessage({ id: "profile.term" }),
+          [null]: null
+        }[indeterminate]
+      )
+    );
+
+    const classificationItem = this.renderLabeledItem(
+      intl.formatMessage({
+        id: "profile.classification"
+      }),
+      this.renderValue(classification.description)
+    );
+
+    const tempRoleItem = this.renderLabeledItem(
+      intl.formatMessage({
+        id: "profile.temporary.role"
+      }),
+      this.renderValue(temporaryRole.description)
+    );
+
     const actingDisabled = !(acting && actingPeriodStartDate);
 
-    const actingLabel = intl.formatMessage({ id: "profile.acting.label.only" });
-    const actingPeriodLabel = intl.formatMessage({
-      id: "profile.acting.period"
-    });
-    const classificationLabel = intl.formatMessage({
-      id: "profile.classification"
-    });
-    const substantiveLabel = intl.formatMessage({ id: "profile.substantive" });
-    const securityLabel = intl.formatMessage({ id: "profile.security" });
-    const temporaryRoleLabel = intl.formatMessage({
-      id: "profile.temporary.role"
-    });
     const startDateString = moment(actingPeriodStartDate).format("DD/MM/YYYY");
     const endDateString =
       actingPeriodEndDate !== "Undefined"
         ? moment(actingPeriodEndDate).format("DD/MM/YYYY")
         : intl.formatMessage({ id: "profile.ongoing" });
-
     const actingDateText = actingDisabled ? (
       <span className="greyedOut">
         {intl.formatMessage({ id: "profile.na" })}
       </span>
     ) : (
       startDateString + " - " + endDateString
+    );
+
+    const actingItem = (
+      <React.Fragment>
+        {this.renderLabeledItem(
+          intl.formatMessage({ id: "profile.acting.label.only" }),
+          this.renderValue(acting.description, "profile.na", actingDisabled)
+        )}
+
+        {acting.description ? (
+          <div
+            style={{
+              width: "100%",
+              textAlign: "center",
+              paddingBottom: "16px"
+            }}
+          >
+            {actingDateText}
+          </div>
+        ) : null}
+      </React.Fragment>
+    );
+
+    const securityItem = this.renderLabeledItem(
+      intl.formatMessage({ id: "profile.security" }),
+      this.renderValue(security.description)
     );
 
     // When using the medium wideness view there are 2 columns of labeled cards
@@ -618,47 +656,15 @@ class ProfileLayoutView extends Component {
           <Grid>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(
-                  substantiveLabel,
-                  this.renderValue(
-                    {
-                      [true]: intl.formatMessage({
-                        id: "profile.indeterminate"
-                      }),
-                      [false]: intl.formatMessage({ id: "profile.term" }),
-                      [null]: null
-                    }[indeterminate]
-                  )
-                )}
-                {this.renderLabeledItem(
-                  classificationLabel,
-                  this.renderValue(classification.description)
-                )}
-                {this.renderLabeledItem(
-                  temporaryRoleLabel,
-                  this.renderValue(temporaryRole.description)
-                )}
+                {substantiveItem}
+                {classificationItem}
+                {tempRoleItem}
               </Grid>
             </Grid.Column>
             <Grid.Column width={8}>
               <Grid>
-                {this.renderLabeledItem(
-                  securityLabel,
-                  this.renderValue(security.description)
-                )}
-                {this.renderLabeledItem(
-                  actingLabel,
-                  this.renderValue(
-                    acting.description,
-                    "profile.na",
-                    actingDisabled
-                  )
-                )}
-                {acting.description ? (
-                  <div style={{ width: "100%", textAlign: "center" }}>
-                    {actingDateText}
-                  </div>
-                ) : null}
+                {actingItem}
+                {securityItem}
               </Grid>
             </Grid.Column>
           </Grid>
@@ -675,37 +681,11 @@ class ProfileLayoutView extends Component {
         fullHeight={true}
       >
         <Grid columns={2} style={{ paddingTop: "16px" }}>
-          {this.renderLabeledItem(
-            substantiveLabel,
-            this.renderValue(
-              {
-                [true]: intl.formatMessage({ id: "profile.indeterminate" }),
-                [false]: intl.formatMessage({ id: "profile.term" }),
-                [null]: null
-              }[indeterminate]
-            )
-          )}
-          {this.renderLabeledItem(
-            classificationLabel,
-            this.renderValue(classification.description)
-          )}
-          {this.renderLabeledItem(
-            temporaryRoleLabel,
-            this.renderValue(temporaryRole.description)
-          )}
-          {this.renderLabeledItem(
-            actingLabel,
-            this.renderValue(acting.description, "profile.na", actingDisabled)
-          )}
-          {acting.description ? (
-            <div style={{ width: "100%", textAlign: "center" }}>
-              {actingDateText}
-            </div>
-          ) : null}
-          {this.renderLabeledItem(
-            securityLabel,
-            this.renderValue(security.description)
-          )}
+          {substantiveItem}
+          {classificationItem}
+          {tempRoleItem}
+          {actingItem}
+          {securityItem}
         </Grid>
       </ProfileCardController>
     );
