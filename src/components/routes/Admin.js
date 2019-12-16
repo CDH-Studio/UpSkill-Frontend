@@ -19,6 +19,9 @@ import {
 
 import config from "../../config";
 const { backendAddress } = config;
+const { disableKeycloak } = config;
+
+console.log("disablekeycloak", disableKeycloak);
 
 const history = createBrowserHistory();
 
@@ -46,35 +49,37 @@ class Secured extends Component {
 
   componentDidMount() {
     const keycloak = Keycloak("/keycloak.json");
-    keycloak
-      .init({ onLoad: "login-required", promiseType: "native" })
-      .then(authenticated => {
-        axios.interceptors.request.use(config =>
-          keycloak.updateToken(300).then(() => {
-            config.headers.Authorization = "Bearer " + keycloak.token;
-            return Promise.resolve(config).catch(keycloak.login);
-          })
-        );
+    if (!disableKeycloak) {
+      keycloak
+        .init({ onLoad: "login-required", promiseType: "native" })
+        .then(authenticated => {
+          axios.interceptors.request.use(config =>
+            keycloak.updateToken(300).then(() => {
+              config.headers.Authorization = "Bearer " + keycloak.token;
+              return Promise.resolve(config).catch(keycloak.login);
+            })
+          );
 
-        axios.get(backendAddress + "api/admin/check").then(
-          () => {
-            this.setState({
-              keycloak: keycloak,
-              authenticated: authenticated,
-              isAdmin: true,
-              loading: false
-            });
-          },
-          () => {
-            this.setState({
-              keycloak: keycloak,
-              authenticated: authenticated,
-              isAdmin: false,
-              loading: false
-            });
-          }
-        );
-      });
+          axios.get(backendAddress + "api/admin/check").then(
+            () => {
+              this.setState({
+                keycloak: keycloak,
+                authenticated: authenticated,
+                isAdmin: true,
+                loading: false
+              });
+            },
+            () => {
+              this.setState({
+                keycloak: keycloak,
+                authenticated: authenticated,
+                isAdmin: false,
+                loading: false
+              });
+            }
+          );
+        });
+    }
   }
 
   goto = link => history.push(link);
@@ -118,8 +123,8 @@ class Secured extends Component {
     }
 
     const keycloak = this.state.keycloak;
-    if (keycloak) {
-      if (this.state.authenticated) {
+    if (keycloak || disableKeycloak) {
+      if (this.state.authenticated || disableKeycloak) {
         return (
           <div>
             {this.state.redirect}

@@ -6,6 +6,8 @@ import axios from "axios";
 
 import { Dimmer, Image } from "semantic-ui-react";
 
+import config from "../../config";
+
 import animatedLogo from "../../assets/animatedLogo.gif";
 
 import { Advanced, Home, Results, Profile, Setup } from "../../pages";
@@ -13,6 +15,9 @@ import { Advanced, Home, Results, Profile, Setup } from "../../pages";
 const loginFunc = require("../../functions/login");
 
 const history = createBrowserHistory();
+
+const { disableKeycloak } = config;
+console.log("disablekeycloak", disableKeycloak);
 
 const dimmer = () => {
   return (
@@ -37,29 +42,31 @@ class Secured extends Component {
 
   componentDidMount() {
     const keycloak = Keycloak("/keycloak.json");
-    keycloak
-      .init({ onLoad: "login-required", promiseType: "native" })
-      .then(authenticated => {
-        if (keycloak.tokenParsed.resource_access)
-          sessionStorage.setItem(
-            "admin",
-            keycloak.tokenParsed.resource_access[
-              "upskill-client"
-            ].roles.includes("view-admin-console")
+    if (!disableKeycloak) {
+      keycloak
+        .init({ onLoad: "login-required", promiseType: "native" })
+        .then(authenticated => {
+          if (keycloak.tokenParsed.resource_access)
+            sessionStorage.setItem(
+              "admin",
+              keycloak.tokenParsed.resource_access[
+                "upskill-client"
+              ].roles.includes("view-admin-console")
+            );
+          else sessionStorage.removeItem("admin");
+          axios.interceptors.request.use(config =>
+            keycloak.updateToken(5).then(() => {
+              config.headers.Authorization = "Bearer " + keycloak.token;
+              return Promise.resolve(config).catch(keycloak.login);
+            })
           );
-        else sessionStorage.removeItem("admin");
-        axios.interceptors.request.use(config =>
-          keycloak.updateToken(5).then(() => {
-            config.headers.Authorization = "Bearer " + keycloak.token;
-            return Promise.resolve(config).catch(keycloak.login);
-          })
-        );
 
-        this.setState({ keycloak: keycloak, authenticated: authenticated });
-        this.renderRedirect().then(redirect => {
-          this.setState({ redirect: redirect });
+          this.setState({ keycloak: keycloak, authenticated: authenticated });
+          this.renderRedirect().then(redirect => {
+            this.setState({ redirect: redirect });
+          });
         });
-      });
+    }
   }
 
   goto = link => history.push(link);
@@ -71,8 +78,8 @@ class Secured extends Component {
     }
 
     const keycloak = this.state.keycloak;
-    if (keycloak) {
-      if (this.state.authenticated) {
+    if (keycloak || disableKeycloak) {
+      if (this.state.authenticated || disableKeycloak) {
         return (
           <div>
             {this.state.redirect}

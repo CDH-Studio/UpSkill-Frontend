@@ -4,7 +4,8 @@ import axios from "axios";
 import config from "../config";
 import ProfileLayoutController from "../components/profileLayout/profileLayoutController";
 
-const backendAddress = config.backendAddress;
+const { backendAddress, disableKeycloak } = config;
+
 class Profile extends Component {
   goto = link => this.props.history.push(link);
 
