@@ -15,7 +15,7 @@ class Profile extends Component {
     this.handleSuccess = response => {
       const convertDropdownOptions = list => {
         if (!this.ownProfile) {
-          return null;
+          return list;
         }
         let newList = [];
         list.forEach(element => {
