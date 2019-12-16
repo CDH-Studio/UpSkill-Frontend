@@ -19,6 +19,9 @@ import tempProfilePic from "../../assets/tempProfilePicture.png";
 
 import "./navBar.css";
 
+import config from "../../config";
+const { keycloakDisabled } = config;
+
 export default class NavigationBarView extends Component {
   render() {
     const { includeSearchForm, redirectFunction } = this.props;
@@ -42,8 +45,7 @@ export default class NavigationBarView extends Component {
   }
 
   renderMainBar() {
-    // const { changeLanguage, keycloak, admin } = this.props;
-    const { changeLanguage } = this.props;
+    const { changeLanguage, keycloak, admin } = this.props;
     const name = localStorage.getItem("name");
     const email = localStorage.getItem("email");
 
@@ -106,17 +108,30 @@ export default class NavigationBarView extends Component {
                     <Icon name="user" />
                     <FormattedMessage id="my.profile" />
                   </Menu.Item>
-                  <Menu.Item href="/admin">
-                    <Icon name="settings" />
-                    <FormattedMessage id="admin" />
-                  </Menu.Item>
-
-                  <Divider />
-                  {/* <Logout id="logoutButton" keycloak={keycloak} /> */}
-                  <Menu.Item href="/">
-                    <Icon name="log out" />
-                    <FormattedMessage id="sign.out" />
-                  </Menu.Item>
+                  {keycloakDisabled ? (
+                    <React.Fragment>
+                      <Menu.Item href="/admin">
+                        <Icon name="settings" />
+                        <FormattedMessage id="admin" />
+                      </Menu.Item>
+                      <Divider />
+                      <Menu.Item href="/">
+                        <Icon name="log out" />
+                        <FormattedMessage id="sign.out" />
+                      </Menu.Item>
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      {admin ? (
+                        <Menu.Item href="/admin">
+                          <Icon name="settings" />
+                          <FormattedMessage id="admin" />
+                        </Menu.Item>
+                      ) : null}
+                      <Divider />
+                      <Logout id="logoutButton" keycloak={keycloak} />
+                    </React.Fragment>
+                  )}
                 </Menu>
               </Card.Content>
             </Card>

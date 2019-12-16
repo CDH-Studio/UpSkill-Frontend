@@ -65,13 +65,6 @@ class Secured extends Component {
         authenticated: true
       });
 
-      axios.interceptors.request.use(config =>
-        keycloak.updateToken(300).then(() => {
-          config.headers.Authorization = "Bearer " + keycloak.token;
-          return Promise.resolve(config).catch(keycloak.login);
-        })
-      );
-
       axios.get(backendAddress + "api/admin/check").then(
         () => {
           this.setState({
