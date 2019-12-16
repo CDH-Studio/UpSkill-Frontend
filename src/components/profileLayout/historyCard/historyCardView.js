@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Grid, Button } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import moment from "moment";
 
 import ProfileCardController from "../profileCard/profileCardController";
@@ -93,15 +93,14 @@ class HistoryCardView extends Component {
     if (this.expandable) {
       return (
         <div className="resizeButtonContainer">
-          <Button
+          <a
             className="blueColoredText"
-            inverted
             onClick={e => this.setState({ expanded: !this.state.expanded })}
           >
             {this.state.expanded
               ? "- " + intl.formatMessage({ id: "profile.shrink" })
               : "+ " + intl.formatMessage({ id: "profile.expand" })}
-          </Button>
+          </a>
         </div>
       );
     }

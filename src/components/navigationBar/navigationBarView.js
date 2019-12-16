@@ -5,6 +5,7 @@ import {
   Grid,
   Popup,
   Icon,
+  Button,
   Card,
   Divider
 } from "semantic-ui-react";
@@ -79,7 +80,7 @@ export default class NavigationBarView extends Component {
             </Dropdown.Menu> */}
           <Popup
             flowing
-            position="top center"
+            position="top"
             trigger={
               <Menu.Item>
                 <Icon name="user" size="large" />

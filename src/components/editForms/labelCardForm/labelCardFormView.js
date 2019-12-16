@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { generateCommonProps } from "../common/formTools";
-import { Form, Checkbox, Select } from "semantic-ui-react";
+import { Form, Checkbox, Input, Select } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 
@@ -12,6 +12,7 @@ class LabelCardFormView extends Component {
     const {
       actingDisabled,
       actingEndDisabled,
+      editProfileOptions,
       handleCancle,
       handleNext,
       handlePrevious,
