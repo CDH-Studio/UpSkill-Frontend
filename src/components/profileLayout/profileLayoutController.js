@@ -46,6 +46,10 @@ class ProfileLayoutController extends Component {
       visibleProfileCards
     } = this.props;
 
+    if (profileInfo)
+      document.title =
+        profileInfo.firstName + " " + profileInfo.lastName + " | UpSkill";
+
     return (
       <ProfileLayoutView
         changeLanguage={changeLanguage}
