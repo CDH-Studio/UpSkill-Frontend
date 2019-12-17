@@ -46,7 +46,29 @@ TODO
 
 # Local Development
 
-TODO
+The following is a guide on how to bring up the pieces of the application for development.
+
+## Running the Entire Application
+
+To run the frontend service locally, run the following:
+
+```
+npm start
+```
+
+To run the backend service locally, run the following:
+
+```
+npm run dbsetup
+```
+
+Then run:
+
+```
+npm run dev
+```
+
+You can then access the frontend at `localhost:3000`.
 
 # Wiki
 
