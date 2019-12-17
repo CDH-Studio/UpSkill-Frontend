@@ -34,7 +34,11 @@ TODO
 
 # Tech Stack
 
-TODO
+- Frontend Service Framework: React
+- Backend Service Framework: Node + Express
+- Database: Postgres
+- Testing Framework: Jest
+- Hosting: OpenShift/GCP
 
 # Repo Structure
 
