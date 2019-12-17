@@ -1,6 +1,10 @@
 # UpSkill
 
-An improved directory and employee search tool
+An improved directory and employee search tool.
+
+![Upskill Screenshot](docs/wikiFiles/upskill-splash.png?raw=true)
+
+Upskill can be accessed [here](http://upskill-upskill.apps.dev.openshift.ised-isde.canada.ca/).
 
 [![CircleCI](https://circleci.com/gh/CDH-Studio/UpSkill.svg?style=svg)](https://circleci.com/gh/CDH-Studio/UpSkill)
 
@@ -88,5 +92,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [CDH Studio Website](https://cdhstudio.ca/)
 
 - [Our Promotional Website](https://cdh-studio.github.io/UpSkill/)
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
