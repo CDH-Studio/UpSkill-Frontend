@@ -42,6 +42,13 @@ Any ISED employee will be able to login to Upskill with their windows credential
 - Testing Framework: Jest
 - Hosting: OpenShift/GCP
 
+# Architecture Overview
+
+Upskill is broken down into two different services: Frontend and Backend.
+
+- Frontend: Serves the React app that is the web interface for Upskill.
+- Backend: Manages data coming into and out of the database.
+
 # Local Development
 
 The following is a guide on how to bring up the pieces of the application for development.
