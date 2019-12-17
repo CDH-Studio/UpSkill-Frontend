@@ -8,7 +8,7 @@ Upskill can be accessed [here](http://upskill-upskill.apps.dev.openshift.ised-is
 
 [![CircleCI](https://circleci.com/gh/CDH-Studio/UpSkill.svg?style=svg)](https://circleci.com/gh/CDH-Studio/UpSkill)
 
-[Website](https://cdh-studio.github.io/UpSkill/)
+[Our promotional website](https://cdh-studio.github.io/UpSkill/)
 
 # Table of Contents
 
