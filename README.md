@@ -21,7 +21,9 @@ An improved directory and employee search tool
 
 # What is UpSkill?
 
-Upskill is an internal web-application that would enable employees to share information about their employment status, job position, skills, and credentials. Any ISED employee will be able to login to Upskill with their windows credentials create a profile or search for employees with the right expertise, education, competencies, experience and other essential qualifications at any time for talent management, staffing, succession planning, or simply for insight on a project or file.
+Upskill is an internal web-application that would enable employees to share information about their employment status, job position, skills, and credentials.
+
+Any ISED employee will be able to login to Upskill with their windows credentials create a profile or search for employees with the right expertise, education, competencies, experience and other essential qualifications at any time for talent management, staffing, succession planning, or simply for insight on a project or file.
 
 # Contributors
 
@@ -39,10 +41,6 @@ Upskill is an internal web-application that would enable employees to share info
 - Database: Postgres
 - Testing Framework: Jest
 - Hosting: OpenShift/GCP
-
-# Repo Structure
-
-TODO
 
 # Local Development
 
