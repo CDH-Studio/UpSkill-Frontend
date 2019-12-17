@@ -61,13 +61,13 @@ To run the frontend service locally, run the following:
 npm start
 ```
 
-To run the backend service locally, run the following:
+To setup the database schema, run the following:
 
 ```
 npm run dbsetup
 ```
 
-Then run:
+To run the backend service locally, run the following:
 
 ```
 npm run dev
