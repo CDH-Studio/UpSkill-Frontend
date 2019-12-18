@@ -1,10 +1,14 @@
 # UpSkill
 
-An improved directory and employee search tool
+An improved directory and employee search tool.
+
+![Upskill Screenshot](docs/wikiFiles/upskill-splash.png?raw=true)
+
+Upskill can be accessed [here](http://upskill-upskill.apps.dev.openshift.ised-isde.canada.ca/).
 
 [![CircleCI](https://circleci.com/gh/CDH-Studio/UpSkill.svg?style=svg)](https://circleci.com/gh/CDH-Studio/UpSkill)
 
-[Website](https://cdh-studio.github.io/UpSkill/)
+[Our promotional website](https://cdh-studio.github.io/UpSkill/)
 
 # Table of Contents
 
@@ -21,7 +25,9 @@ An improved directory and employee search tool
 
 # What is UpSkill?
 
-TODO
+Upskill is an internal web-application that would enable employees to share information about their employment status, job position, skills, and credentials.
+
+Any ISED employee will be able to login to Upskill with their windows credentials create a profile or search for employees with the right expertise, education, competencies, experience and other essential qualifications at any time for talent management, staffing, succession planning, or simply for insight on a project or file.
 
 # Contributors
 
@@ -34,15 +40,44 @@ TODO
 
 # Tech Stack
 
-TODO
+- Frontend Service Framework: React
+- Backend Service Framework: Node + Express
+- Database: Postgres
+- Testing Framework: Jest
+- Hosting: OpenShift/GCP
 
-# Repo Structure
+# Architecture Overview
 
-TODO
+Upskill is broken down into two different services: Frontend and Backend.
+
+- Frontend: Serves the React app that is the web interface for Upskill.
+- Backend: Manages data coming into and out of the database.
 
 # Local Development
 
-TODO
+The following is a guide on how to bring up the pieces of the application for development.
+
+## Running the Entire Application
+
+To run the frontend service locally, run the following:
+
+```
+npm start
+```
+
+To setup the database schema, run the following:
+
+```
+npm run dbsetup
+```
+
+To run the backend service locally, run the following:
+
+```
+npm run dev
+```
+
+You can then access the frontend at `localhost:3000`.
 
 # Wiki
 
@@ -57,72 +92,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [CDH Studio Website](https://cdhstudio.ca/)
 
 - [Our Promotional Website](https://cdh-studio.github.io/UpSkill/)
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
