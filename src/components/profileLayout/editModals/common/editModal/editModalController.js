@@ -42,8 +42,8 @@ export default class EditGenericModalController extends Component {
     return (
       <EditGenericModalView
         {...this.props}
-        handleOpen={this.handleOpen}
         editProfileOptions={this.state.editProfileOptions}
+        handleOpen={this.handleOpen}
       />
     );
   }

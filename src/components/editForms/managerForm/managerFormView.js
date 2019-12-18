@@ -10,13 +10,14 @@ import "../common/form.css";
 class ManagerFormView extends Component {
   render() {
     const {
-      handleCancle,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
       isEarlyRegister,
       onSubmit
     } = this.props;
+
     const generateProps = generateCommonProps.bind(this, this.props);
 
     return (
@@ -24,7 +25,7 @@ class ManagerFormView extends Component {
         <Form.Field {...generateProps("manager", Input)} />
         <FormButtonsController
           handleApply={onSubmit}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}

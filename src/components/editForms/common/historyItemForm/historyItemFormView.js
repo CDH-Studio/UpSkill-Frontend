@@ -5,7 +5,7 @@ import { Checkbox, Form, Grid, Icon, Input, TextArea } from "semantic-ui-react";
 import { injectIntl } from "react-intl";
 
 //import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
-import DateInputFieldGroup from "../../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
+import DateInputFieldGroup from "../dateInputFieldGroup/dateInputFieldGroupController";
 
 import "./historyItemForm.css";
 import "../form.css";
@@ -67,6 +67,7 @@ class EditHistoryItemView extends Component {
               value={item.subheader}
             />
           </Form.Group>
+
           <Form.Group
             className="noHorizontalGaps"
             style={{ marginBottom: "1em" }}
@@ -77,23 +78,23 @@ class EditHistoryItemView extends Component {
             >
               <Grid.Column className="noHorizontalGaps" width={5}>
                 <DateInputFieldGroup
+                  groupLabelText={intl.formatMessage({
+                    id: "profile.history.item.start.date"
+                  })}
                   initialMonth={startDateMonth}
                   initialYear={startDateYear}
                   name="startDate"
                   updateField={onTempFieldChange}
-                  groupLabelText={intl.formatMessage({
-                    id: "profile.history.item.start.date"
-                  })}
                 />
               </Grid.Column>
               <Grid.Column className="noHorizontalGaps" width={3}>
                 <Form.Field
                   control={Checkbox}
+                  defaultChecked={isOngoing}
                   label={intl.formatMessage({
                     id: "profile.history.item.is.ongoing"
                   })}
                   name="isOngoing"
-                  defaultChecked={isOngoing}
                   onChange={onTempFieldChange}
                 />
               </Grid.Column>
@@ -111,6 +112,7 @@ class EditHistoryItemView extends Component {
               </Grid.Column>
             </Grid>
           </Form.Group>
+
           <Form.Field>
             <label>{contentName}</label>
             <TextArea

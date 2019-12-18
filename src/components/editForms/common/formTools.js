@@ -19,10 +19,10 @@ export const generateCommonProps = (
     getCurrentValue,
     intl,
     onFieldChange,
-    unchangeableInfo,
     onTempFieldChange,
     profileInfo,
-    tempFields
+    tempFields,
+    unchangeableInfo
   } = props;
 
   //convert camelcase to `.` seperated and add `profile.` to beginning
@@ -30,13 +30,13 @@ export const generateCommonProps = (
   const hasUnchangableValue = unchangeableInfo && unchangeableInfo[name]; // && unchangeableInfo !== "";
 
   let commonProps = {
+    className: hasUnchangableValue ? "unchangeableField" : "",
     control: control,
+    disabled: hasUnchangableValue,
     fluid: true,
     label: intl.formatMessage({ id: intlId }),
     name: name,
-    onChange: tempField ? onTempFieldChange : onFieldChange,
-    disabled: hasUnchangableValue,
-    className: hasUnchangableValue ? "unchangeableField" : ""
+    onChange: tempField ? onTempFieldChange : onFieldChange
   };
 
   if (control === Checkbox) {

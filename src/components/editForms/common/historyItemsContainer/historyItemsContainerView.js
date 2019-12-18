@@ -14,7 +14,7 @@ class EditHistoryModalView extends Component {
       contentName,
       editProfileOptions,
       handleApply,
-      handleCancle,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
@@ -55,9 +55,10 @@ class EditHistoryModalView extends Component {
             <FormattedMessage id="setup.add.item" />
           </Button>
         </Grid.Row>
+
         <FormButtonsController
           handleApply={handleApply}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}

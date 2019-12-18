@@ -7,22 +7,18 @@ import FormButtonsController from "../common/formButtons/formButtonsController";
 import "../common/form.css";
 
 class LanguageProficiencyFormView extends Component {
-  constructor(props) {
-    super(props);
-
-    this.generateProps = generateCommonProps.bind(this, this.props);
-  }
-
   render() {
     const {
-      handleCancle,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
+      intl,
       isEarlyRegister,
-      onSubmit,
-      intl
+      onSubmit
     } = this.props;
+
+    this.generateProps = generateCommonProps.bind(this, this.props);
 
     return (
       <Form onSubmit={onSubmit}>
@@ -62,7 +58,7 @@ class LanguageProficiencyFormView extends Component {
         </Grid>
         <FormButtonsController
           handleApply={onSubmit}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}

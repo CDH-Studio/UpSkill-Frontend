@@ -5,6 +5,12 @@ import "./editWrapper.css";
 
 class EditWrapperView extends Component {
   render() {
+    const { children } = this.props;
+
+    return this.renderEditWrappedChildren() || children;
+  }
+
+  renderEditWrappedChildren() {
     const {
       button,
       children,
@@ -23,7 +29,6 @@ class EditWrapperView extends Component {
         </div>
       );
     }
-    return children;
   }
 }
 

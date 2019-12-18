@@ -15,11 +15,11 @@ export default class NavigationBarController extends Component {
 
     return (
       <NavigationBarView
+        admin={admin}
         changeLanguage={changeLanguage}
         includeSearchForm={includeSearchForm}
         keycloak={keycloak}
         redirectFunction={redirectFunction}
-        admin={admin}
       />
     );
   }

@@ -6,24 +6,16 @@ import moment from "moment";
 import ProfileCardController from "../profileCard/profileCardController";
 import "./historyCard.css";
 
-import { renderValue } from "../common/profileTools";
+import { renderValue } from "../common/profileTools"; //"../common/profileTools";
 import "../common/common.css";
 
 class HistoryCardView extends Component {
-  constructor(props) {
-    super(props);
-    const { intl } = this.props;
-
-    this.renderValue = renderValue.bind(this, intl);
-    this.state = { expanded: false };
-    this.expandable = props.cardEntries.length > 2;
-  }
-
   render() {
-    const { button, cardEntries, cardName } = this.props;
+    const { button, cardEntries, cardName, intl, expanded } = this.props;
+    const bindedRenderValue = renderValue.bind(this, intl);
 
     let usedEntries;
-    if (this.state.expanded) {
+    if (expanded) {
       usedEntries = cardEntries;
     } else {
       usedEntries = cardEntries.slice(0, 2);
@@ -38,7 +30,7 @@ class HistoryCardView extends Component {
                 <Grid>
                   <Grid.Row>
                     <Grid.Column className="entryName" width={8}>
-                      {this.renderValue(
+                      {bindedRenderValue(
                         value.header ||
                           (value.diploma && value.diploma.description)
                       )}
@@ -62,7 +54,7 @@ class HistoryCardView extends Component {
                       }}
                       width={16}
                     >
-                      {this.renderValue(
+                      {bindedRenderValue(
                         value.subheader ||
                           (value.school && value.school.description)
                       )}
@@ -88,16 +80,15 @@ class HistoryCardView extends Component {
   }
 
   renderSizeButton() {
-    const { intl } = this.props;
+    const { cardEntries, expanded, handleToggleExpanded, intl } = this.props;
 
-    if (this.expandable) {
+    const expandable = cardEntries.length > 2;
+
+    if (expandable) {
       return (
         <div className="resizeButtonContainer">
-          <a
-            className="blueColoredText"
-            onClick={e => this.setState({ expanded: !this.state.expanded })}
-          >
-            {this.state.expanded
+          <a className="blueColoredText" onClick={handleToggleExpanded}>
+            {expanded
               ? "- " + intl.formatMessage({ id: "profile.shrink" })
               : "+ " + intl.formatMessage({ id: "profile.expand" })}
           </a>

@@ -172,14 +172,14 @@ class SearchFormController extends Component {
       <SearchFormView
         advancedOptions={this.state.advancedOptions}
         advancedSearch={this.state.advancedSearch}
+        defaultValues={this.fields}
+        disableSearch={this.state.disableSearch}
         getAdvancedOptions={this.getAdvancedOptions}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
         handleToggle={toggleButton ? this.handleToggle : null}
-        navBarLayout={navBarLayout}
         maxFormWidth={maxFormWidth}
-        defaultValues={this.fields}
-        disableSearch={this.state.disableSearch}
+        navBarLayout={navBarLayout}
       />
     );
   }

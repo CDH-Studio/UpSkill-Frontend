@@ -91,7 +91,7 @@ class editModalView extends Component {
       );
     } else {
       return React.createElement(form, {
-        handleCancle: e => this.setState({ open: false }),
+        handleCancel: e => this.setState({ open: false }),
         ...this.props
       });
     }

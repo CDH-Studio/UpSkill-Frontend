@@ -46,16 +46,16 @@ export default class ResultsLayoutController extends Component {
     const {
       changeLanguage,
       keycloak,
-      searchQuery,
-      redirectFunction
+      redirectFunction,
+      searchQuery
     } = this.props;
 
     return (
       <ResultsLayoutView
         changeLanguage={changeLanguage}
         keycloak={keycloak}
-        results={this.state.results}
         redirectFunction={redirectFunction}
+        results={this.state.results}
         searchQuery={searchQuery}
       />
     );

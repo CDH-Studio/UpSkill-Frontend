@@ -8,7 +8,7 @@ import "../common/form.css";
 class TalentManagementFormView extends Component {
   render() {
     const {
-      handleCancle,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
@@ -24,7 +24,7 @@ class TalentManagementFormView extends Component {
         <Form.Field {...generateProps("exFeeder", Checkbox)} />
         <FormButtonsController
           handleApply={onSubmit}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}

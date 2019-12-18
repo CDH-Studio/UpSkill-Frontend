@@ -39,8 +39,8 @@ class HomeLayoutView extends Component {
           <Grid.Row style={styles.row}>
             <SearchForm
               maxFormWidth="850px"
-              showAdvancedFields={showAdvancedFields}
               redirectFunction={redirectFunction}
+              showAdvancedFields={showAdvancedFields}
               toggleButton
             />
           </Grid.Row>

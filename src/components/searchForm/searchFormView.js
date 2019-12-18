@@ -30,14 +30,14 @@ class SearchFormView extends Component {
 
   render() {
     const {
-      advancedSearch,
       advancedOptions,
+      advancedSearch,
       defaultValues,
+      disableSearch,
       handleChange,
       handleSubmit,
       handleToggle,
       intl,
-      disableSearch,
       maxFormWidth,
       navBarLayout
     } = this.props;
@@ -57,8 +57,8 @@ class SearchFormView extends Component {
         ) : (
           <Form.Field
             control={Input}
-            name="searchValue"
             defaultValue={defaultValues["searchValue"]}
+            name="searchValue"
             onChange={handleChange}
             onSubmit={handleSubmit}
           />
@@ -67,15 +67,13 @@ class SearchFormView extends Component {
           <Form.Group style={{ padding: "0 auto" }}>
             <Form.Group style={{ margin: "0 auto" }}>
               <Form.Field
-                fluid
-                style={{ width: "200px" }}
-                control={Button}
                 color="blue"
-                content={intl.formatMessage({
-                  id: "button.search"
-                })}
+                content={intl.formatMessage({ id: "button.search" })}
+                control={Button}
                 disabled={disableSearch}
+                fluid
                 onClick={handleSubmit}
+                style={{ width: "200px" }}
               />
               {handleToggle && (
                 <Form.Field
@@ -103,12 +101,6 @@ class SearchFormView extends Component {
     const { defaultValues, handleChange, handleSubmit } = this.props;
 
     let defaultVal = defaultValues[name];
-    /*if (
-      ["skills", "location", "classification"].includes(name) &&
-      typeof defaultVal !== "object"
-    ) {
-      defaultVal = [defaultVal];
-    }*/
 
     let retVal = {
       fluid: true,
@@ -129,11 +121,11 @@ class SearchFormView extends Component {
   renderAdvancedFields() {
     const {
       advancedOptions,
+      disableSearch,
       getAdvancedOptions,
       handleSubmit,
-      navBarLayout,
-      disableSearch,
-      intl
+      intl,
+      navBarLayout
     } = this.props;
 
     if (!advancedOptions) {

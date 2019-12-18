@@ -145,53 +145,6 @@ class SetupLayoutController extends Component {
     this.setState({ gedsIndex: index });
   }
 
-  /*
-  getCareerMobility,
-  getCompetency,
-  getDiploma,
-  getGroupLevel,
-  getKeyCompetency,
-  getLocation,
-  getSchool,
-  getSecurityClearance,
-  getSkill,
-  getTalentMatrixResult,
-  getTenure
-  */
-
-  /*
-  setunchangeableInfo(info, language, specialUndefineds) {
-    if (specialUndefineds && typeof info == "object") {
-      for (let key in specialUndefineds) {
-        if (info[key] !== null) {
-          delete specialUndefineds[key];
-        }
-      }
-      info = Object.assign(info, specialUndefineds);
-    }
-    if (typeof info === "object") {
-      if (info === null) {
-        const { intl } = this.props;
-        return intl.formatMessage({ id: "profile.undefined" });
-      } else if (Array.isArray(info)) {
-        let returnArray = [];
-        info.forEach(element =>
-          returnArray.push(this.setunchangeableInfo(element, language))
-        );
-        return returnArray;
-      } else if ("en" in info) {
-        return info[language];
-      } else {
-        let returnObject = {};
-        for (let key in info) {
-          returnObject[key] = this.setunchangeableInfo(info[key], language);
-        }
-        return returnObject;
-      }
-    }
-    return info;
-  }*/
-
   async getSetupData() {
     let skillOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getSkill")).data

@@ -21,11 +21,11 @@ class ProfileLayoutController extends Component {
       changedCardVisibilities: []
     };
 
-    this.determineWidth = this.determineWidth.bind(this);
-    this.updateCardVisibility = this.updateCardVisibility.bind(this);
     this.applyVisibleProfileCards = this.applyVisibleProfileCards.bind(this);
+    this.determineWidth = this.determineWidth.bind(this);
     this.handleClickDeactivate = this.handleClickDeactivate.bind(this);
     this.handleClickDelete = this.handleClickDelete.bind(this);
+    this.updateCardVisibility = this.updateCardVisibility.bind(this);
   }
 
   componentDidMount() {
@@ -39,10 +39,10 @@ class ProfileLayoutController extends Component {
   render() {
     const {
       changeLanguage,
+      editable,
       keycloak,
       profileInfo,
       updateProfileInfo,
-      editable,
       visibleProfileCards
     } = this.props;
 
@@ -52,14 +52,15 @@ class ProfileLayoutController extends Component {
 
     return (
       <ProfileLayoutView
+        applyVisibleProfileCards={this.applyVisibleProfileCards}
         changeLanguage={changeLanguage}
+        disableApplyVisibleProfileCards={
+          this.state.changedCardVisibilities.length === 0
+        }
         editable={editable}
+        handleClickDeactivate={this.handleClickDeactivate}
+        handleClickDelete={this.handleClickDelete}
         keycloak={keycloak}
-        publicLayout={!editable} // note: will probably need to change when special roles work
-        visibleProfileCards={{
-          ...visibleProfileCards,
-          ...this.state.changedCardVisibilities
-        }}
         profileInfo={prepareInfo(profileInfo, localStorage.getItem("lang"), {
           acting: undefined,
           actingPeriodStartDate: undefined,
@@ -71,14 +72,13 @@ class ProfileLayoutController extends Component {
           projects: [],
           skills: []
         })}
-        handleClickDeactivate={this.handleClickDeactivate}
-        handleClickDelete={this.handleClickDelete}
-        disableApplyVisibleProfileCards={
-          this.state.changedCardVisibilities.length === 0
-        }
-        applyVisibleProfileCards={this.applyVisibleProfileCards}
-        updateProfileInfo={updateProfileInfo}
+        publicLayout={!editable} // note: will probably need to change when special roles work
         updateCardVisibility={this.updateCardVisibility}
+        updateProfileInfo={updateProfileInfo}
+        visibleProfileCards={{
+          ...visibleProfileCards,
+          ...this.state.changedCardVisibilities
+        }}
         windowWidth={this.state.windowWidth}
       />
     );

@@ -13,17 +13,17 @@ class LabelCardFormView extends Component {
       actingDisabled,
       actingEndDisabled,
       editProfileOptions,
-      handleCancle,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
+      intl,
       isEarlyRegister,
       onSubmit,
-      profileInfo,
-      intl
+      profileInfo
     } = this.props;
-    const generateProps = generateCommonProps.bind(this, this.props);
 
+    const generateProps = generateCommonProps.bind(this, this.props);
     const classificationProps = generateProps("classification", Select);
 
     return (
@@ -81,12 +81,12 @@ class LabelCardFormView extends Component {
         </Form.Group>
         <Form.Field {...generateProps("security", Select)} />
         <FormButtonsController
-          handleRegister={handleRegister}
-          isEarlyRegister={isEarlyRegister}
           handleApply={onSubmit}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
         />
       </Form>
     );

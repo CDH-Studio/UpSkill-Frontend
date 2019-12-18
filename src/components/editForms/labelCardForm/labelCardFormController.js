@@ -48,10 +48,10 @@ export default class LabelCardFormController extends FormManagingComponent {
     return (
       <LabelCardFormView
         actingDisabled={actingDisabled}
-        actingPeriodEndDate={this.getCurrentValue("actingPeriodEndDate")}
         actingEndDisabled={
           !Boolean(this.getCurrentValue("actingHasEndDate")) || actingDisabled
         }
+        actingPeriodEndDate={this.getCurrentValue("actingPeriodEndDate")}
         actingPeriodStartDate={this.getCurrentValue("actingPeriodStartDate")}
         buttons={buttons}
         fields={this.fields}

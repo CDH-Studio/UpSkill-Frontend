@@ -30,9 +30,9 @@ export default class HistoryItemsContainerController extends Component {
     } else {
       let newItem = {};
       itemType.getFieldNames().forEach(element => (newItem[element] = null));
-
       this.fields.push(newItem);
     }
+
     this.updateRegisterComponent();
     this.forceUpdate();
   }

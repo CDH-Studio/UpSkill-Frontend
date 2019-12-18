@@ -9,16 +9,16 @@ import "../common/form.css";
 class CareerInterestsFormView extends Component {
   render() {
     const {
-      handleCancle,
+      editProfileOptions,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
-      isEarlyRegister,
       intl,
+      isEarlyRegister,
       onFieldChange,
       onSubmit,
-      profileInfo,
-      editProfileOptions
+      profileInfo
     } = this.props;
     const generateProps = generateCommonProps.bind(this, this.props);
 
@@ -66,7 +66,7 @@ class CareerInterestsFormView extends Component {
         <Form.Field {...generateProps("lookingForNewJob", Select)} />
         <FormButtonsController
           handleApply={onSubmit}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}

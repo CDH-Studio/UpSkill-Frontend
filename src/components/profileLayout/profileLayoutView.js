@@ -46,6 +46,10 @@ import HistoryCardController from "./historyCard/historyCardController";
 
 import "./profileLayout.css";
 
+const SMALL_WIDTH = 750;
+const MEDIUM_WIDTH = 1250;
+const SIDEBAR_SHRINK_ANIMATION_WIDTH = 1800;
+
 class ProfileLayoutView extends Component {
   constructor(props) {
     super(props);
@@ -129,16 +133,16 @@ class ProfileLayoutView extends Component {
         />
 
         <Confirm
-          open={Boolean(confirmItem)}
-          header={confirmItem && confirmItem.header}
           content={confirmItem && confirmItem.content}
+          header={confirmItem && confirmItem.header}
+          onCancel={() => this.setState({ confirmItem: null })}
           onConfirm={() => {
             confirmItem &&
               confirmItem.handleConfirm &&
               confirmItem.handleConfirm();
             this.setState({ confirmItem: null });
           }}
-          onCancel={() => this.setState({ confirmItem: null })}
+          open={Boolean(confirmItem)}
         />
 
         <Sidebar.Pushable>
@@ -174,19 +178,21 @@ class ProfileLayoutView extends Component {
 
   renderSidebar() {
     const {
-      windowWidth,
-      visibleProfileCards,
-      updateCardVisibility,
       applyVisibleProfileCards,
       disableApplyVisibleProfileCards,
-      handleClickDelete,
       handleClickDeactivate,
-      intl
+      handleClickDelete,
+      intl,
+      updateCardVisibility,
+      visibleProfileCards,
+      windowWidth
     } = this.props;
     return (
       <Sidebar
         as={Menu}
-        animation={windowWidth > 1800 ? "push" : "scale down"}
+        animation={
+          windowWidth > SIDEBAR_SHRINK_ANIMATION_WIDTH ? "push" : "scale down"
+        }
         visible={this.state.settingsSidebar}
         vertical
       >
@@ -197,10 +203,10 @@ class ProfileLayoutView extends Component {
           <Menu.Item>
             <Checkbox
               label="Use public view"
-              toggle
               onChange={(e, { checked }) =>
                 this.setState({ previewPublic: checked })
               }
+              toggle
             />
           </Menu.Item>
         </Menu.Menu>
@@ -211,6 +217,7 @@ class ProfileLayoutView extends Component {
           {map(visibleProfileCards, (value, key) => (
             <Menu.Item position="right">
               <Checkbox
+                defaultChecked={value}
                 label={intl.formatMessage({
                   id:
                     "profile." +
@@ -219,19 +226,18 @@ class ProfileLayoutView extends Component {
                       .replace(/([A-Z])/g, ".$1")
                       .toLowerCase()
                 })}
-                defaultChecked={value}
-                toggle
                 onChange={(e, { checked }) =>
                   updateCardVisibility(key, checked)
                 }
+                toggle
               />
             </Menu.Item>
           ))}
           <Menu.Item>
             <Button
               color="blue"
-              fluid
               disabled={disableApplyVisibleProfileCards}
+              fluid
               onClick={applyVisibleProfileCards}
             >
               <FormattedMessage id="button.apply" />
@@ -244,6 +250,8 @@ class ProfileLayoutView extends Component {
           </Menu.Header>
           <Menu.Item>
             <Button
+              color="blue"
+              fluid
               onClick={() =>
                 this.setState({
                   confirmItem: {
@@ -257,14 +265,14 @@ class ProfileLayoutView extends Component {
                   }
                 })
               }
-              color="blue"
-              fluid
             >
               <FormattedMessage id="button.hide.account" />
             </Button>
           </Menu.Item>
           <Menu.Item>
             <Button
+              color="blue"
+              fluid
               onClick={() =>
                 this.setState({
                   confirmItem: {
@@ -278,8 +286,6 @@ class ProfileLayoutView extends Component {
                   }
                 })
               }
-              color="blue"
-              fluid
             >
               <FormattedMessage id="button.deactivate.account" />
             </Button>
@@ -296,7 +302,7 @@ class ProfileLayoutView extends Component {
     let groupedCardRows;
 
     //Wide width - some cards up top need to be grouped
-    if (windowWidth > 1250) {
+    if (windowWidth > MEDIUM_WIDTH) {
       ungroupedCardItems = this.alwaysUngroupedCards;
 
       //generate primary group cards
@@ -388,7 +394,7 @@ class ProfileLayoutView extends Component {
     let groupedCardRows;
 
     //Wide width - some cards up top need to be grouped
-    if (windowWidth > 1250) {
+    if (windowWidth > MEDIUM_WIDTH) {
       ungroupedCardItems = this.alwaysUngroupedCards;
 
       groupedCardRows = [
@@ -443,6 +449,7 @@ class ProfileLayoutView extends Component {
   renderPrimaryCard() {
     const {
       branch,
+      cellphone,
       email,
       firstName,
       githubUrl,
@@ -450,7 +457,6 @@ class ProfileLayoutView extends Component {
       lastName,
       linkedinUrl,
       location,
-      cellphone,
       organizationList,
       team,
       telephone,
@@ -652,7 +658,7 @@ class ProfileLayoutView extends Component {
     );
 
     // When using the medium wideness view there are 2 columns of labeled cards
-    if (windowWidth <= 1250 && windowWidth > 750) {
+    if (windowWidth <= MEDIUM_WIDTH && windowWidth > SMALL_WIDTH) {
       return (
         <ProfileCardController
           button={EditLabelCardsController}
@@ -730,8 +736,8 @@ class ProfileLayoutView extends Component {
       <ProfileCardController
         button={EditLanguageProficiencyController}
         cardName={intl.formatMessage({ id: "profile.official.language" })}
-        className={windowWidth > 1250 ? "compactCard" : null}
-        fullHeight={windowWidth > 1250}
+        className={windowWidth > MEDIUM_WIDTH ? "compactCard" : null}
+        fullHeight={windowWidth > MEDIUM_WIDTH}
       >
         <div>
           <span className="boldLabel">

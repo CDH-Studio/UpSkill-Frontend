@@ -30,8 +30,8 @@ export default class NavigationBarView extends Component {
           <Grid.Row style={{ paddingTop: "50px", backgroundColor: "#aaaaaa" }}>
             <SearchFormController
               defaultAdvanced
-              navBarLayout
               maxFormWidth="1750px"
+              navBarLayout
               redirectFunction={redirectFunction}
             />
           </Grid.Row>
@@ -48,12 +48,12 @@ export default class NavigationBarView extends Component {
 
     return (
       <Menu
+        className="gradientBack"
         color="blue"
         fixed="top"
         fluid
         inverted
         style={{ position: "relative" }}
-        className="gradientBack"
       >
         <Menu.Item
           style={{ paddingBottom: "8px", paddingTop: "8px" }}
@@ -80,16 +80,14 @@ export default class NavigationBarView extends Component {
             </Dropdown.Menu> */}
           <Popup
             flowing
+            on="click"
             position="top"
             trigger={
               <Menu.Item>
-                <Icon name="user" size="large" />
-                {name}
-
+                <Icon name="user" size="large" /> {name}
                 <Icon name="angle down" size="large" />
               </Menu.Item>
             }
-            on="click"
           >
             <Card fluid>
               <Image src={tempProfilePic} size="small" centered />

@@ -40,13 +40,13 @@ export default class RegisterLayoutView extends Component {
     return (
       <React.Fragment>
         <NavigationBar
-          logoRedirectHome={true}
           changeLanguage={changeLanguage}
+          logoRedirectHome={true}
         />
         <Modal
-          open={gedsIndex === null}
           closeOnDimmerClick={false}
           closeOnEscape={false}
+          open={gedsIndex === null}
         >
           <Modal.Content>
             <h1 style={{ textAlign: "center" }}>
@@ -96,18 +96,7 @@ export default class RegisterLayoutView extends Component {
               <Card.Header>{formList[formIndex].name}</Card.Header>
               <Card.Content>
                 {React.createElement(formList[formIndex].form, {
-                  handleRegister: handleRegister,
-                  setFormChanges: setFormChanges,
                   editProfileOptions: editProfileOptions,
-                  unchangeableInfo: gedsInfo && {
-                    firstName: gedsInfo.firstName,
-                    lastName: gedsInfo.lastName,
-                    organizations: gedsInfo.organizations,
-                    jobTitle: gedsInfo.jobTitle,
-                    email: keycloakEmail
-                  },
-                  isEarlyRegister: isEarlyRegister,
-                  profileInfo: profileInfo,
                   handleNext: fieldsUpdate => {
                     formList[formIndex].changes = {
                       ...formList[formIndex].changes,
@@ -124,7 +113,18 @@ export default class RegisterLayoutView extends Component {
                             ...fieldsUpdate
                           };
                           setFormIndex(formIndex - 1);
-                        }
+                        },
+                  handleRegister: handleRegister,
+                  isEarlyRegister: isEarlyRegister,
+                  profileInfo: profileInfo,
+                  setFormChanges: setFormChanges,
+                  unchangeableInfo: gedsInfo && {
+                    email: keycloakEmail,
+                    firstName: gedsInfo.firstName,
+                    jobTitle: gedsInfo.jobTitle,
+                    lastName: gedsInfo.lastName,
+                    organizations: gedsInfo.organizations
+                  }
                 })}
               </Card.Content>
             </Card>
@@ -135,15 +135,15 @@ export default class RegisterLayoutView extends Component {
   }
 
   renderButtons() {
-    const { formIndex, setFormIndex, formList } = this.props;
+    const { formIndex, formList, setFormIndex } = this.props;
     let buttons = [];
     formList.forEach((value, index) =>
       buttons.push(
         <Button
+          basic={index !== formIndex}
           color="blue"
           fluid
           onClick={e => setFormIndex(index)}
-          basic={index !== formIndex}
         >
           {value.name}
         </Button>

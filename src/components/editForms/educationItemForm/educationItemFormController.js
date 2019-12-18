@@ -1,11 +1,11 @@
 import React from "react";
-
+import { injectIntl } from "react-intl";
 import FieldManagingComponent from "../common/formTools";
 
 import EducationItemFormView from "./educationItemFormView";
 import moment from "moment";
 
-export default class EducationItemFormController extends FieldManagingComponent {
+class EducationItemFormController extends FieldManagingComponent {
   static getFieldNames() {
     return ["diploma", "endDate", "school", "startDate"];
   }
@@ -106,3 +106,5 @@ export default class EducationItemFormController extends FieldManagingComponent 
     }
   }
 }
+
+export default injectIntl(EducationItemFormController);
