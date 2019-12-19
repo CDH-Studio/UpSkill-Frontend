@@ -6,7 +6,6 @@ import { injectIntl } from "react-intl";
 import config from "../../config";
 
 import SearchFormView from "./searchFormView";
-import { object } from "prop-types";
 
 const backendAddress = config.backendAddress;
 
@@ -29,7 +28,7 @@ const backendAddress = config.backendAddress;
 class SearchFormController extends Component {
   constructor(props) {
     super(props);
-    const { defaultAdvanced, navBarLayout } = this.props;
+    const { defaultAdvanced } = this.props;
 
     const windowLocation = window.location.toString();
 

@@ -6,6 +6,8 @@ import map from "lodash/map";
 import {
   Button,
   Card,
+  Checkbox,
+  Confirm,
   Dimmer,
   Grid,
   Icon,
@@ -14,11 +16,8 @@ import {
   Loader,
   Menu,
   Popup,
-  Table,
-  Confirm,
   Sidebar,
-  Checkbox,
-  Form
+  Table
 } from "semantic-ui-react";
 
 import tempProfilePic from "./../../assets/tempProfilePicture.png";
@@ -28,27 +27,29 @@ import EditWrapperController from "./editWrapper/editWrapperController";
 import { renderValue } from "./common/profileTools";
 import { EditableProvider } from "./editableProvider/editableProvider";
 
-import EditCareerInterestsController from "./editModals/editCareerInterests/editCareerInterestsController";
-import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";
-import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
-import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";
-import EditEducationController from "./editModals/editEducation/editEducationController";
-import EditLabelCardsController from "./editModals/editLabelCards/editLabelCardsController";
-import EditLanguageProficiencyController from "./editModals/editLanguageProficiency/editLanguageProficiencyController";
-import EditManagerController from "./editModals/editManager/editManagerController";
-import EditPrimaryInformationController from "./editModals/editPrimaryInformation/editPrimaryInformationController";
-import EditProfilePictureController from "./editModals/editProfilePicture/editProfilePictureController";
-import EditProjectsController from "./editModals/editProjects/editProjectsController";
-import EditSkillController from "./editModals/editSkills/editSkillsController";
-import EditTalentManagementController from "./editModals/editTalentManagement/editTalentManagementController";
+import CareerInterestsFormController from "../editForms/careerInterestsForm/careerInterestsFormController";
+import CareerOverviewFormController from "../editForms/careerOverviewForm/careerOverviewFormController";
+import CompetenciesFormController from "../editForms/competenciesForm/competenciesFormController";
+import DevelopmentalGoalsFormController from "../editForms/developmentalGoalsForm/developmentalGoalsFormController";
+import EducationFormController from "../editForms/educationForm/educationFormController";
+import LabelCardsFormController from "../editForms/labelCardForm/labelCardFormController";
+import LanguageProficiencyFormController from "../editForms/languageProficiencyForm/languageProficiencyFormController";
+import ManagerFormController from "../editForms/managerForm/managerFormController";
+import PrimaryInformationFormController from "../editForms/primaryInformationForm/primaryInformationFormController";
+import ProjectsFormController from "../editForms/projectsForm/projectsFormController";
+import SkillsFormController from "../editForms/skillsForm/skillsFormController";
+import TalentManagementFormController from "../editForms/talentManagementForm/talentManagementFormController";
 
 import HistoryCardController from "./historyCard/historyCardController";
 
 import "./profileLayout.css";
 
+//Used to determine which layout to use for the profile cards
 const SMALL_WIDTH = 750;
 const MEDIUM_WIDTH = 1250;
-const SIDEBAR_SHRINK_ANIMATION_WIDTH = 1800;
+
+//Determines if sidebar should push or shrink body
+const SIDEBAR_ANIMATION_DETERMINING_WIDTH = 1800;
 
 class ProfileLayoutView extends Component {
   constructor(props) {
@@ -158,7 +159,6 @@ class ProfileLayoutView extends Component {
                         settingsSidebar: !oldState.settingsSidebar
                       }))
                     }
-                    //disabled={this.state.settingsSidebar === true}
                   >
                     <FormattedMessage id="profile.settings.and.privacy" />
                   </Button>
@@ -191,7 +191,9 @@ class ProfileLayoutView extends Component {
       <Sidebar
         as={Menu}
         animation={
-          windowWidth > SIDEBAR_SHRINK_ANIMATION_WIDTH ? "push" : "scale down"
+          windowWidth > SIDEBAR_ANIMATION_DETERMINING_WIDTH
+            ? "push"
+            : "scale down"
         }
         visible={this.state.settingsSidebar}
         vertical
@@ -447,6 +449,8 @@ class ProfileLayoutView extends Component {
   }
 
   renderPrimaryCard() {
+    const { intl, profileInfo } = this.props;
+
     const {
       branch,
       cellphone,
@@ -461,12 +465,18 @@ class ProfileLayoutView extends Component {
       team,
       telephone,
       twitterUrl
-    } = this.props.profileInfo;
+    } = profileInfo;
 
     return (
       <EditWrapperController
         id="primaryCard"
-        button={EditPrimaryInformationController}
+        editOptionPaths={{
+          location: "api/option/getLocation"
+        }}
+        form={PrimaryInformationFormController}
+        formName={intl.formatMessage({
+          id: "profile.edit.primary.information"
+        })}
       >
         <Card className="profileCard compactCard" fluid>
           <Card.Content>
@@ -485,7 +495,8 @@ class ProfileLayoutView extends Component {
               </Grid.Row>
               <Grid.Row className="noGapBelow">
                 <EditWrapperController
-                  button={EditProfilePictureController}
+                  form={null}
+                  buttonType="profilePictureButton"
                   wrapperType="compactWrapper"
                 >
                   <img
@@ -661,7 +672,13 @@ class ProfileLayoutView extends Component {
     if (windowWidth <= MEDIUM_WIDTH && windowWidth > SMALL_WIDTH) {
       return (
         <ProfileCardController
-          button={EditLabelCardsController}
+          editOptionPaths={{
+            classification: "api/option/getGroupLevel",
+            security: "api/option/getSecurityClearance",
+            temporaryRole: "api/option/getTenure"
+          }}
+          form={LabelCardsFormController}
+          formName={intl.formatMessage({ id: "profile.edit.info" })}
           cardName={intl.formatMessage({ id: "profile.info" })}
           className="labeledItemCard compactCard"
         >
@@ -687,7 +704,13 @@ class ProfileLayoutView extends Component {
 
     return (
       <ProfileCardController
-        button={EditLabelCardsController}
+        form={LabelCardsFormController}
+        editOptionPaths={{
+          classification: "api/option/getGroupLevel",
+          security: "api/option/getSecurityClearance",
+          temporaryRole: "api/option/getTenure"
+        }}
+        formName={intl.formatMessage({ id: "profile.edit.info" })}
         cardName={intl.formatMessage({ id: "profile.info" })}
         className="labeledItemCard compactCard"
         fullHeight={true}
@@ -704,12 +727,13 @@ class ProfileLayoutView extends Component {
   }
 
   renderManagerCard() {
-    const { profileInfo, windowWidth } = this.props;
+    const { profileInfo, intl } = this.props;
     const { manager } = profileInfo;
 
     return (
       <ProfileCardController
-        button={EditManagerController}
+        form={ManagerFormController}
+        formName={intl.formatMessage({ id: "profile.edit.manager" })}
         className="noGapAbove"
       >
         <span className="colorLabel">
@@ -734,7 +758,10 @@ class ProfileLayoutView extends Component {
 
     return (
       <ProfileCardController
-        button={EditLanguageProficiencyController}
+        form={LanguageProficiencyFormController}
+        formName={intl.formatMessage({
+          id: "profile.edit.language.proficiency"
+        })}
         cardName={intl.formatMessage({ id: "profile.official.language" })}
         className={windowWidth > MEDIUM_WIDTH ? "compactCard" : null}
         fullHeight={windowWidth > MEDIUM_WIDTH}
@@ -811,7 +838,12 @@ class ProfileLayoutView extends Component {
 
     return (
       <ProfileCardController
-        button={EditTalentManagementController}
+        form={TalentManagementFormController}
+        editOptionPaths={{
+          careerMobility: "api/option/getCareerMobility",
+          talentMatrixResult: "api/option/getTalentMatrixResult"
+        }}
+        formName={intl.formatMessage({ id: "profile.edit.talent.management" })}
         cardName={intl.formatMessage({ id: "profile.talent.management" })}
         cardIcon={
           <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
@@ -843,8 +875,12 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.skills" }),
+      intl.formatMessage({ id: "profile.edit.skills" }),
       currentSkills,
-      EditSkillController
+      SkillsFormController,
+      {
+        skills: "api/option/getSkill"
+      }
     );
   }
 
@@ -854,8 +890,12 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.competencies" }),
+      intl.formatMessage({ id: "profile.edit.competencies" }),
       competencies,
-      EditCompetenciesController
+      CompetenciesFormController,
+      {
+        competencies: "api/option/getCompetency"
+      }
     );
   }
 
@@ -865,8 +905,12 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.developmental.goals" }),
+      intl.formatMessage({ id: "profile.edit.developmental.goals" }),
       developmentalGoals,
-      EditDevelopmentalGoalsController
+      DevelopmentalGoalsFormController,
+      {
+        developmentalGoals: "api/option/getDevelopmentalGoals"
+      }
     );
   }
 
@@ -876,8 +920,9 @@ class ProfileLayoutView extends Component {
 
     return (
       <HistoryCardController
-        button={EditEducationController}
+        form={EducationFormController}
         cardEntries={education}
+        formName={intl.formatMessage({ id: "profile.edit.education" })}
         cardName={intl.formatMessage({ id: "profile.education" })}
       />
     );
@@ -889,7 +934,8 @@ class ProfileLayoutView extends Component {
 
     return (
       <HistoryCardController
-        button={EditCareerOverviewController}
+        form={CareerOverviewFormController}
+        formName={intl.formatMessage({ id: "profile.edit.experience" })}
         cardEntries={careerSummary}
         cardName={intl.formatMessage({ id: "profile.experience" })}
       />
@@ -902,8 +948,9 @@ class ProfileLayoutView extends Component {
 
     return this.renderGenericTagsCard(
       intl.formatMessage({ id: "profile.projects" }),
+      intl.formatMessage({ id: "profile.edit.projects" }),
       currentProjects,
-      EditProjectsController
+      ProjectsFormController
     );
   }
 
@@ -918,7 +965,7 @@ class ProfileLayoutView extends Component {
 
     return (
       <ProfileCardController
-        button={EditCareerInterestsController}
+        form={CareerInterestsFormController}
         cardName={"Career Interests"}
       >
         <div>
@@ -957,9 +1004,14 @@ class ProfileLayoutView extends Component {
     );
   }
 
-  renderGenericTagsCard(cardName, cardTags, button) {
+  renderGenericTagsCard(cardName, formName, cardTags, form, editOptionPaths) {
     return (
-      <ProfileCardController button={button} cardName={cardName}>
+      <ProfileCardController
+        form={form}
+        formName={formName}
+        cardName={cardName}
+        editOptionPaths={editOptionPaths}
+      >
         {cardTags.map((value, index) => (
           <Label color="blue" basic>
             <p style={{ color: "black" }}>{value.text || value.description}</p>

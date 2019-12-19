@@ -8,7 +8,7 @@ import EditGenericModalView from "./editModalView";
 import config from "../../../../../config";
 const { backendAddress } = config;
 
-export default class EditGenericModalController extends Component {
+export default class EditModalController extends Component {
   constructor(props) {
     super(props);
     const { editOptionPaths } = this.props;
@@ -83,10 +83,4 @@ export const generateCommonProps = (name, control, props, dropdownControl) => {
   }
 
   return commonProps;
-};
-
-EditGenericModalController.defaultProps = {
-  buttonBackgroundColor: "rgba(0,0,0,0.05)",
-  buttonClass: "innerButton",
-  buttonColor: "#555555"
 };

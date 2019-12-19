@@ -47,12 +47,12 @@ export default class TagFormController extends FieldManagingComponent {
   render() {
     return (
       <TagFormView
-        fields={this.fields}
-        handleApply={this.onSubmit}
-        handleChange={this.handleChange}
-        handleAddItem={this.handleAddItem}
         addedItems={this.state.addedItems}
         currentValue={this.state.currentValue}
+        fields={this.fields}
+        handleAddItem={this.handleAddItem}
+        handleApply={this.onSubmit}
+        handleChange={this.handleChange}
         onSubmit={this.onSubmit}
         tooManyItems={this.state.tooManyItems}
         {...this.props}

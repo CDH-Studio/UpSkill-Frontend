@@ -102,9 +102,3 @@ export default class HistoryItemsContainerController extends Component {
     this.updateRegisterComponent();
   }
 }
-
-HistoryItemsContainerController.defaultProps = {
-  buttonBackgroundColor: "rgba(0,0,0,0.05)",
-  buttonClass: "innerButton",
-  buttonColor: "#555555"
-};

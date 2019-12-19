@@ -3,19 +3,25 @@ import { injectIntl } from "react-intl";
 
 import "./editWrapper.css";
 
+import EditModalController from "../editModals/common/editModal/editModalController";
+
 class EditWrapperView extends Component {
   render() {
     const { children } = this.props;
 
-    return this.renderEditWrappedChildren() || children;
+    const ret = this.renderEditWrappedChildren() || children;
+
+    return ret;
   }
 
   renderEditWrappedChildren() {
     const {
-      button,
+      buttonType,
       children,
-      editProfileOptions,
       editable,
+      editOptionPaths,
+      form,
+      formName,
       profileInfo,
       style,
       wrapperType
@@ -24,7 +30,13 @@ class EditWrapperView extends Component {
     if (editable) {
       return (
         <div className={wrapperType} style={style}>
-          {React.createElement(button, { editProfileOptions, profileInfo })}
+          <EditModalController
+            buttonType={buttonType}
+            editOptionPaths={editOptionPaths}
+            form={form}
+            name={formName}
+            profileInfo={profileInfo}
+          />
           {children}
         </div>
       );

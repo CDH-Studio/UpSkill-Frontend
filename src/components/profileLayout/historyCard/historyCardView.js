@@ -11,7 +11,14 @@ import "../common/common.css";
 
 class HistoryCardView extends Component {
   render() {
-    const { button, cardEntries, cardName, intl, expanded } = this.props;
+    const {
+      form,
+      formName,
+      cardEntries,
+      cardName,
+      intl,
+      expanded
+    } = this.props;
     const bindedRenderValue = renderValue.bind(this, intl);
 
     let usedEntries;
@@ -22,7 +29,11 @@ class HistoryCardView extends Component {
     }
 
     return (
-      <ProfileCardController button={button} cardName={cardName}>
+      <ProfileCardController
+        form={form}
+        formName={formName}
+        cardName={cardName}
+      >
         <Grid className="historyList" divided="vertically">
           {usedEntries.map((value, index) => (
             <Grid.Row>

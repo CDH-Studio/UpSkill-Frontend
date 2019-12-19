@@ -5,7 +5,6 @@ import {
   Grid,
   Popup,
   Icon,
-  Button,
   Card,
   Divider
 } from "semantic-ui-react";

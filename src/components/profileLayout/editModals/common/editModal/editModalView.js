@@ -4,38 +4,10 @@ import { Dimmer, Icon, Loader, Modal, Grid } from "semantic-ui-react";
 
 import "./editModal.css";
 
-export const renderEditButton = (
-  buttonBackgroundColor,
-  buttonClass,
-  buttonColor
-) => {
-  if (!buttonBackgroundColor) {
-    return (
-      <Icon
-        className={buttonClass}
-        name="pencil alternate"
-        style={{
-          color: buttonColor
-        }}
-      />
-    );
-  }
-
+export const renderEditButton = buttonType => {
   return (
-    <div
-      className={buttonClass}
-      style={{
-        backgroundColor: buttonBackgroundColor,
-        borderRadius: "12px",
-        padding: "1px 3px 2px 5px"
-      }}
-    >
-      <Icon
-        name="pencil alternate"
-        style={{
-          color: buttonColor
-        }}
-      />
+    <div className={buttonType ? "editButton " + buttonType : "editButton"}>
+      <Icon name="pencil alternate" />
     </div>
   );
 };
@@ -47,13 +19,7 @@ class editModalView extends Component {
   }
 
   render() {
-    const {
-      buttonBackgroundColor,
-      buttonClass,
-      buttonColor,
-      handleOpen,
-      name
-    } = this.props;
+    const { buttonType, handleOpen, name } = this.props;
 
     return (
       <Modal
@@ -63,11 +29,7 @@ class editModalView extends Component {
           handleOpen();
         }}
         open={this.state.open}
-        trigger={renderEditButton(
-          buttonBackgroundColor,
-          buttonClass,
-          buttonColor
-        )}
+        trigger={renderEditButton(buttonType)}
       >
         <Modal.Header>{name}</Modal.Header>
         <Modal.Content>{this.renderContents()}</Modal.Content>
@@ -90,10 +52,13 @@ class editModalView extends Component {
         </Dimmer>
       );
     } else {
-      return React.createElement(form, {
-        handleCancel: e => this.setState({ open: false }),
-        ...this.props
-      });
+      return (
+        form &&
+        React.createElement(form, {
+          handleCancel: e => this.setState({ open: false }),
+          ...this.props
+        })
+      );
     }
   }
 }

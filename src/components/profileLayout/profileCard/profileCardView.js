@@ -7,7 +7,9 @@ import "./profileCard.css";
 export default class profileCardView extends Component {
   render() {
     const {
-      button,
+      form,
+      formName,
+      editOptionPaths,
       cardIcon,
       cardName,
       children,
@@ -21,7 +23,9 @@ export default class profileCardView extends Component {
 
     return (
       <EditWrapperController
-        button={button}
+        form={form}
+        formName={formName}
+        editOptionPaths={editOptionPaths}
         style={heightStyle}
         wrapperType={wrapperType}
       >

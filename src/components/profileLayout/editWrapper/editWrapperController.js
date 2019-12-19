@@ -15,6 +15,5 @@ export default class EditWrapperController extends Component {
 }
 
 EditWrapperController.defaultProps = {
-  buttonPosition: "innerButton",
   wrapperType: "defaultWrapper"
 };

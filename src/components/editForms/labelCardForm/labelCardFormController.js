@@ -2,7 +2,6 @@ import React from "react";
 
 import FormManagingComponent from "../common/formTools";
 import LabelCardFormView from "./labelCardFormView";
-import find from "lodash/find";
 import moment from "moment";
 
 export default class LabelCardFormController extends FormManagingComponent {

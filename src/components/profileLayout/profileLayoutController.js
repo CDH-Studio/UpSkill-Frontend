@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import isEqual from "lodash/isEqual";
 import omit from "lodash/omit";
 
 import prepareInfo from "../../functions/prepareInfo";
