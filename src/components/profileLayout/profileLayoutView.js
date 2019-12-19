@@ -100,7 +100,6 @@ class ProfileLayoutView extends Component {
   render() {
     const {
       changeLanguage,
-      editProfileOptions,
       editable,
       keycloak,
       profileInfo,
@@ -126,7 +125,7 @@ class ProfileLayoutView extends Component {
     }
 
     return (
-      <EditableProvider value={{ editProfileOptions, editable, profileInfo }}>
+      <EditableProvider value={{ editable, profileInfo }}>
         <NavigationBar
           changeLanguage={changeLanguage}
           keycloak={keycloak}

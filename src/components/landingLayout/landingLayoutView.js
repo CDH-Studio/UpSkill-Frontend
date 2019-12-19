@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Image, Card, Grid, Icon, Button } from "semantic-ui-react";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+
 import LandingNavBarController from "./landingNavBar/landingNavBarController";
 
 import backgroundImage from "../../assets/homeBackground.jpg";
@@ -8,7 +10,13 @@ import cdhLogo from "../../assets/cdhlogo.png";
 
 import "./landingLayout.css";
 
+/** UI for the landing route layout */
 export default class landingLayoutController extends Component {
+  static propTypes = {
+    /** Function used to change the language intl-react is using */
+    changeLanguage: PropTypes.func.isRequired
+  };
+
   render() {
     const { changeLanguage } = this.props;
 
