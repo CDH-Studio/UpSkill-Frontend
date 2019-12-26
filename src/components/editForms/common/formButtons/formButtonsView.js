@@ -1,10 +1,30 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import { injectIntl } from "react-intl";
 import { FormattedMessage } from "react-intl";
 
-class ModalButtonsView extends Component {
+/**
+ * UI for buttons to include in forms
+ */
+class FormButtonsView extends Component {
+  static propTypes = {
+    /** I'm not sure if this is needed */
+    fields: PropTypes.any,
+    /** function to apply an edit to a card */
+    handleApply: PropTypes.func,
+    /** function to cancel editting a card */
+    handleCancel: PropTypes.func,
+    /** function to go to next form on /setup route */
+    handleNext: PropTypes.func,
+    /** function to go to previous form on /setup route */
+    handlePrevious: PropTypes.func,
+    /** intl-react translation object */
+    intl: PropTypes.object,
+    /** Whether this is an early register or note */
+    isEarlyRegister: PropTypes.bool
+  };
+
   render() {
     return (
       <div style={{ width: "100%", paddingTop: "20px" }}>
@@ -13,6 +33,7 @@ class ModalButtonsView extends Component {
     );
   }
 
+  /** renders the apply & cancel buttons present when editing the modal */
   renderEditButtonGroup() {
     const { handleApply, handleCancel, intl } = this.props;
     return (
@@ -36,6 +57,7 @@ class ModalButtonsView extends Component {
     );
   }
 
+  /** Renders the Next, back & finish buttons present when on the /setup route */
   renderRegisterButtonGroup() {
     const {
       fields,
@@ -93,4 +115,4 @@ class ModalButtonsView extends Component {
   }
 }
 
-export default injectIntl(ModalButtonsView);
+export default injectIntl(FormButtonsView);

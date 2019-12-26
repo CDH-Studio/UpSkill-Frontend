@@ -13,7 +13,7 @@
 }
 
 .dateNumberInput {
-  width: 4em !important;
+  width: 7em !important;
 }
 
 .dateNumberInput input {
@@ -28,4 +28,9 @@
 .dateNumberGroup {
   padding: 0px !important;
   margin: 0px !important;
+}
+
+.dateDropdown {
+  min-width: 8.5em !important;
+  width: 8.5em !important;
 }

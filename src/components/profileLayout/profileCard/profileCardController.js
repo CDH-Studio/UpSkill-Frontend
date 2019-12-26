@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import ProfileCardView from "./profileCardView";
 
-export default class LabeledCardController extends Component {
+/** Logic for displaying a profile card */
+export default class ProfileCardController extends Component {
   render() {
     return <ProfileCardView {...this.props} />;
   }
 }
 
-LabeledCardController.defaultProps = {
+ProfileCardController.defaultProps = {
   cardName: null
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 
-import FormManagingComponent from "../common/formTools";
+import FormManagingComponent from "../common/formManagingComponent";
 import LanguageProficiencyFormView from "./languageProficiencyFormView";
 
 export default class LanguageProficiencyFormController extends FormManagingComponent {

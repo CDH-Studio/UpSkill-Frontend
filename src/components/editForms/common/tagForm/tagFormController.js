@@ -1,8 +1,11 @@
 import React from "react";
-
-import FieldManagingComponent from "../formTools";
+import PropTypes from "prop-types";
+import FieldManagingComponent from "../formManagingComponent";
 import TagFormView from "./tagFormView";
 
+/**
+ * Logic for forms that consist of a single list of tags
+ */
 export default class TagFormController extends FieldManagingComponent {
   constructor(props) {
     super(props);
@@ -23,6 +26,7 @@ export default class TagFormController extends FieldManagingComponent {
     this.handleAddItem = this.handleAddItem.bind(this);
   }
 
+  /** handles added a new custom tag */
   handleAddItem(e, { value }) {
     const { useCustomTags } = this.props;
 
@@ -33,6 +37,11 @@ export default class TagFormController extends FieldManagingComponent {
     }
   }
 
+  /**
+   * handles changing the list of selected tags
+   * @param {PropTypes.object} e unused even object
+   * @param {PropTypes.object} o object containing the new value
+   */
   handleChange(e, o) {
     this.setState({ currentValue: o.value });
     const { maxItems } = this.props;

@@ -4,6 +4,7 @@ import { Card } from "semantic-ui-react";
 import EditWrapperController from "../editWrapper/editWrapperController";
 import "./profileCard.css";
 
+/** UI for displaying a profile card */
 export default class profileCardView extends Component {
   render() {
     const {

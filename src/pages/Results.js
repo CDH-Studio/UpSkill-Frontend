@@ -6,6 +6,7 @@ import ResultsLayout from "../components/resultsLayout/resultsLayoutController";
 import config from "../config";
 const { backendAddress } = config;
 
+/** Page rendered on the /results route */
 export default class Results extends Component {
   goto = link => this.props.history.push(link);
 

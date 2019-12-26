@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
+import { generateCommonFormProps } from "../../../functions/formTools";
 import { Form, Input, Select } from "semantic-ui-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 
@@ -17,7 +17,7 @@ class PrimaryInformationFormView extends Component {
       isEarlyRegister,
       onSubmit
     } = this.props;
-    const generateProps = generateCommonProps.bind(this, this.props);
+    const generateProps = generateCommonFormProps.bind(this, this.props);
 
     let emailProps = generateProps("email", Input);
 

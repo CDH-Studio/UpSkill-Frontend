@@ -6,7 +6,10 @@ import FormButtonsController from "../formButtons/formButtonsController";
 
 import "../form.css";
 
-class EditTagFormView extends Component {
+/**
+ * UI for forms that consist of a single list of tags
+ */
+class TagFormView extends Component {
   render() {
     const {
       addedItems,
@@ -97,4 +100,4 @@ class EditTagFormView extends Component {
   }
 }
 
-export default injectIntl(EditTagFormView);
+export default injectIntl(TagFormView);

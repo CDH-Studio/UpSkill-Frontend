@@ -1,27 +1,13 @@
 import React, { Component } from "react";
-//import { generateCommonProps } from "../formTools";
 import { Checkbox, Form, Grid, Icon, Input, TextArea } from "semantic-ui-react";
 
 import { injectIntl } from "react-intl";
-
-//import { MonthRangeInput, MonthInput } from "semantic-ui-calendar-react";
 import DateInputFieldGroup from "../dateInputFieldGroup/dateInputFieldGroupController";
 
-import "./historyItemForm.css";
+import "./experienceItemForm.css";
 import "../form.css";
 
-/*
-
-import { Form, Checkbox, Input, Select } from "semantic-ui-react";
-import { DateInput } from "semantic-ui-calendar-react";
-
-export default class LabelCardFormView extends Component {
-  render() {
-    const { actingEndDisabled, actingDisabled, buttons, onSubmit } = this.props;
-    const generateProps = generateCommonProps.bind(this, this.props);
-*/
-
-class EditHistoryItemView extends Component {
+class ExperienceItemView extends Component {
   render() {
     const {
       contentName,
@@ -127,4 +113,4 @@ class EditHistoryItemView extends Component {
   }
 }
 
-export default injectIntl(EditHistoryItemView);
+export default injectIntl(ExperienceItemView);

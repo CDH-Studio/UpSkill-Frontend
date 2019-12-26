@@ -4,7 +4,7 @@ import { Checkbox, Form, Grid, Icon, Select } from "semantic-ui-react";
 
 import { injectIntl } from "react-intl";
 
-import { generateCommonProps } from "../common/formTools";
+import { generateCommonFormProps } from "../../../functions/formTools";
 
 import DateInputFieldGroup from "../common/dateInputFieldGroup/dateInputFieldGroupController";
 
@@ -26,7 +26,7 @@ class EducationItemFormView extends Component {
       startDateYear
     } = this.props;
 
-    const generateProps = generateCommonProps.bind(this, {
+    const generateProps = generateCommonFormProps.bind(this, {
       ...this.props,
       profileInfo: item
     });

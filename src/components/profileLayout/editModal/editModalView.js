@@ -29,16 +29,13 @@ class editModalView extends Component {
   }
 
   render() {
-    const { buttonType, handleOpen, name } = this.props;
+    const { buttonType, handleClose, handleOpen, name, open } = this.props;
 
     return (
       <Modal
-        onClose={() => this.setState({ open: false })}
-        onOpen={() => {
-          this.setState({ open: true });
-          handleOpen();
-        }}
-        open={this.state.open}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        open={open}
         trigger={renderEditButton(buttonType)}
       >
         <Modal.Header>{name}</Modal.Header>

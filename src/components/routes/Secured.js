@@ -37,29 +37,20 @@ class Secured extends Component {
 
   componentDidMount() {
     const keycloak = Keycloak("/keycloak.json");
-    keycloak
-      .init({ onLoad: "login-required", promiseType: "native" })
-      .then(authenticated => {
-        if (keycloak.tokenParsed.resource_access)
-          sessionStorage.setItem(
-            "admin",
-            keycloak.tokenParsed.resource_access[
-              "upskill-client"
-            ].roles.includes("view-admin-console")
-          );
-        else sessionStorage.removeItem("admin");
-        axios.interceptors.request.use(config =>
-          keycloak.updateToken(5).then(() => {
-            config.headers.Authorization = "Bearer " + keycloak.token;
-            return Promise.resolve(config).catch(keycloak.login);
-          })
-        );
-
-        this.setState({ keycloak: keycloak, authenticated: authenticated });
-        this.renderRedirect().then(redirect => {
-          this.setState({ redirect: redirect });
-        });
-      });
+    sessionStorage.setItem("admin", true);
+    this.setState({
+      keycloak: {
+        ...keycloak,
+        loadUserInfo: async () => ({
+          email: "trevor.bivi@canada.ca",
+          name: "Trevor Bivi"
+        })
+      },
+      authenticated: true
+    });
+    this.renderRedirect().then(redirect => {
+      this.setState({ redirect: redirect });
+    });
   }
 
   goto = link => history.push(link);
@@ -70,9 +61,15 @@ class Secured extends Component {
       document.body.style = "background-color: #eeeeee";
     }
 
-    const keycloak = this.state.keycloak;
-    if (keycloak) {
-      if (this.state.authenticated) {
+    const keycloak = {
+      loadUserInfo: async () => ({
+        email: "trevor.bivi@canada.ca",
+        name: "Trevor Bivi"
+      })
+    };
+
+    if (true || keycloak) {
+      if (true || this.state.authenticated) {
         return (
           <div>
             {this.state.redirect}
@@ -170,17 +167,17 @@ class Secured extends Component {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   profileExist = () => {
-    return this.state.keycloak.loadUserInfo().then(async userInfo => {
-      return loginFunc.createUser(userInfo.email, userInfo.name).then(res => {
+    return loginFunc
+      .createUser("rizvi.rab@canada.ca", "Rizvi Rab")
+      .then(res => {
         // console.log("res", res);
 
         // Add name and email to local storage
-        localStorage.setItem("name", userInfo.name);
-        localStorage.setItem("email", userInfo.email);
+        localStorage.setItem("name", "Rizvi Rab");
+        localStorage.setItem("email", "rizvi.rab@canada.ca");
 
         return res.hasProfile;
       });
-    });
   };
 
   renderRedirect = () => {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
+import { generateCommonFormProps } from "../../../functions/formTools";
 import { Form, Checkbox, Select } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
@@ -22,7 +22,7 @@ class LabelCardFormView extends Component {
       profileInfo
     } = this.props;
 
-    const generateProps = generateCommonProps.bind(this, this.props);
+    const generateProps = generateCommonFormProps.bind(this, this.props);
     const classificationProps = generateProps("classification", Select);
 
     return (

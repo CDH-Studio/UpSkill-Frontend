@@ -1,6 +1,6 @@
 import React from "react";
 import { injectIntl } from "react-intl";
-import FieldManagingComponent from "../common/formTools";
+import FieldManagingComponent from "../common/formManagingComponent";
 
 import EducationItemFormView from "./educationItemFormView";
 import moment from "moment";
@@ -23,7 +23,7 @@ class EducationItemFormController extends FieldManagingComponent {
     if (item.startDate) {
       const startMoment = moment(item.startDate);
       this.tempFields["startDateMonth"] = parseInt(startMoment.format("M"));
-      this.tempFields["startDateYear"] = parseInt(startMoment.format("YY"));
+      this.tempFields["startDateYear"] = parseInt(startMoment.format("YYYY"));
     } else {
       this.tempFields["startDateMonth"] = null;
       this.tempFields["startDateYear"] = null;
@@ -32,7 +32,7 @@ class EducationItemFormController extends FieldManagingComponent {
     if (item.endDate) {
       const endMoment = moment(item.endDate);
       this.tempFields["endDateMonth"] = parseInt(endMoment.format("M"));
-      this.tempFields["endDateYear"] = parseInt(endMoment.format("YY"));
+      this.tempFields["endDateYear"] = parseInt(endMoment.format("YYYY"));
     } else {
       this.tempFields["endDateMonth"] = null;
       this.tempFields["endDateYear"] = null;
@@ -46,7 +46,7 @@ class EducationItemFormController extends FieldManagingComponent {
           this.tempFields[startOrEnd + "DateMonth"] +
             " " +
             this.tempFields[startOrEnd + "DateYear"],
-          "M YY"
+          "M YYYY"
         ).format()
       );
       //this.forceUpdate();

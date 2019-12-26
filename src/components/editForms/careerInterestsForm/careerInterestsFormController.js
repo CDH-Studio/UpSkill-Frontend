@@ -1,6 +1,6 @@
 import React from "react";
 
-import FormManagingComponent from "../common/formTools";
+import FormManagingComponent from "../common/formManagingComponent";
 import CareerInterestsFormView from "./careerInterestsFormView";
 
 export default class CareerInterestsFormController extends FormManagingComponent {

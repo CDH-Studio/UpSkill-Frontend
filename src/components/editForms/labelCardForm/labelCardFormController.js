@@ -1,6 +1,6 @@
 import React from "react";
 
-import FormManagingComponent from "../common/formTools";
+import FormManagingComponent from "../common/formManagingComponent";
 import LabelCardFormView from "./labelCardFormView";
 import moment from "moment";
 

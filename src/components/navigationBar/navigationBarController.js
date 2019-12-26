@@ -12,8 +12,8 @@ export default class NavigationBarController extends Component {
     includeSearchForm: PropTypes.bool,
     /** The object representing the keycloak session */
     keycloak: PropTypes.object,
-    /** Function to change route */
-    redirectFunction: PropTypes.func.isRequired
+    /** Function to change route. NOTE: This is currently only used by the searchForm on /results route which could be moved out of the nav bar in future */
+    redirectFunction: PropTypes.func
   };
 
   render() {
