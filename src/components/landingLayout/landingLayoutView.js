@@ -61,8 +61,8 @@ export default class LandingLayoutController extends Component {
               <FormattedMessage id="landing.slogan" />
             </div>
             <Button
-              href="/secured/home"
               as="a"
+              href="/secured/home"
               inverted
               style={{ margin: "0 auto", zIndex: "9" }}
             >

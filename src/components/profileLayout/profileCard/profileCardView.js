@@ -8,13 +8,13 @@ import "./profileCard.css";
 export default class profileCardView extends Component {
   render() {
     const {
-      form,
-      formName,
-      editOptionPaths,
       cardIcon,
       cardName,
       children,
       className,
+      editOptionPaths,
+      form,
+      formName,
       fullHeight,
       id,
       wrapperType

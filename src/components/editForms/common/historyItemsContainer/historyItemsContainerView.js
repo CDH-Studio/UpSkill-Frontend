@@ -42,8 +42,6 @@ class HistoryItemsContainerView extends Component {
     items: PropTypes.arrayOf(PropTypes.object),
     /** Function to remove an item */
     removeItem: PropTypes.func,
-    /**  */
-    setContainerField: PropTypes.func,
     /** String to use for the sub header */
     subheaderName: PropTypes.string
   };

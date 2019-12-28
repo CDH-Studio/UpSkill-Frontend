@@ -15,10 +15,10 @@ class SearchFormController extends Component {
   propTypes = {
     /** Whether to display advanced fields by default or not */
     defaultAdvanced: PropTypes.bool,
-    /** Whether the search bar is using the navigation bar layout. NOTE: the way I wrote the code you still need to specify advancedSearch to get advanced fields */
-    navBarLayout: PropTypes.bool,
     /** The maximum width of the form */
     maxFormWidth: PropTypes.number,
+    /** Whether the search bar is using the navigation bar layout. NOTE: the way I wrote the code you still need to specify advancedSearch to get advanced fields */
+    navBarLayout: PropTypes.bool,
     /** Whether to display a toggle button or not */
     toggleButton: PropTypes.bool
   };
@@ -58,8 +58,8 @@ class SearchFormController extends Component {
         lang
       ).map(obj => ({
         key: obj.id, //obj.description,
-        value: obj.id,
-        text: obj.description
+        text: obj.description,
+        value: obj.id
       })),
       developmentalGoals: prepareInfo(
         (await axios.get(backendAddress + "api/option/getDevelopmentalGoals"))
@@ -67,23 +67,23 @@ class SearchFormController extends Component {
         lang
       ).map(obj => ({
         key: obj.id, //obj.description,
-        value: obj.id,
-        text: obj.description
+        text: obj.description,
+        value: obj.id
       })),
       location: prepareInfo(
         (await axios.get(backendAddress + "api/option/getLocation")).data,
         lang
       ).map(obj => ({
         key: obj.id, //obj.description,
-        value: obj.id,
-        text: obj.description
+        text: obj.description,
+        value: obj.id
       })),
       branch: (await axios.get(backendAddress + "api/option/getBranch")).data
         .filter(elem => elem.description && elem.description.en)
         .map(obj => ({
           key: obj.description.en,
-          value: obj.description.en,
-          text: obj.description[lang]
+          text: obj.description[lang],
+          value: obj.description.en
         }))
     };
 

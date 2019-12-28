@@ -1050,7 +1050,7 @@ class ProfileLayoutView extends Component {
    * @param {PropTypes.string} cardName The string to use for the name of the profile card
    * @param {PropTypes.string} formName This string to use for the header of the edit modal form
    * @param {PropTypes.arrayOf(PropTypes.object)} cardTags Array of objects that contain a property text or description that contains the translated text for the tag
-   * @param {PropTypes.symbol} form The form element to display in the modal
+   * @param {PropTypes.element} form The form element to display in the modal
    * @param {PropTypes.objectOf(PropTypes.string)} editOptionPaths Object representing necessary requests for field options. Expects key value pairs of <optionName>:<backendRequestSubUrl>
    */
   renderGenericTagsCard(cardName, formName, cardTags, form, editOptionPaths) {
@@ -1073,7 +1073,7 @@ class ProfileLayoutView extends Component {
   /**
    * Renders a row with a Label text in the first column and a content elemenet or a fallback message in the second column
    * @param {PropTypes.string} labelText The text to place in the label
-   * @param {PropTypes.symbol} contentElement The content element
+   * @param {PropTypes.element} contentElement The content element
    * @param {PropTypes.bool} disabled Whether the fallback message should be used even if a content element was provided or not
    */
   renderLabeledItem(labelText, contentElement, disabled) {
@@ -1101,7 +1101,7 @@ class ProfileLayoutView extends Component {
   /**
    * Recursively creates a list out of an array of string items
    * @param {PropTypes.arrayOf(PropTypes.string)} unlistedItems The array of strings to display in the list
-   * @param {PropTyles.symbol} generatedElement The currently generated element
+   * @param {PropTyles.element} generatedElement The currently generated element
    */
   renderOrganizationList(unlistedItems, generatedElement) {
     if (unlistedItems.length === 0) {

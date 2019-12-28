@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Dimmer, Icon, Loader, Modal, Grid } from "semantic-ui-react";
+import { Dimmer, Grid, Icon, Loader, Modal } from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 import "./editModal.css";

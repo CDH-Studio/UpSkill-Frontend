@@ -42,8 +42,7 @@ class SearchFormView extends Component {
       defaultValues,
       handleChange,
       handleSubmit,
-      maxFormWidth,
-      navBarLayout
+      maxFormWidth
     } = this.props;
 
     return (
@@ -218,15 +217,13 @@ class SearchFormView extends Component {
         />
         {navBarLayout && (
           <Form.Field
-            fluid
-            style={{ width: "200px" }}
-            control={Button}
             color="blue"
-            content={intl.formatMessage({
-              id: "button.apply"
-            })}
+            content={intl.formatMessage({ id: "button.apply" })}
+            control={Button}
             disabled={disableSearch}
+            fluid
             onClick={handleSubmit}
+            style={{ width: "200px" }}
           />
         )}
       </React.Fragment>

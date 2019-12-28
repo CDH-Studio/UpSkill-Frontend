@@ -5,7 +5,7 @@ import FieldManagingComponent from "../formManagingComponent";
 import HistoryItemFormView from "./experienceItemFormView";
 import moment from "moment";
 
-export default class ExperienceFormController extends FieldManagingComponent {
+export default class ExperienceItemFormController extends FieldManagingComponent {
   static getFieldNames() {
     return ["content", "endDate", "header", "startDate", "subheader"];
   }

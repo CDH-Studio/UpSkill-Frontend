@@ -57,13 +57,13 @@ export default class DateInputFieldGroupView extends Component {
                 disabled={disabled}
                 name={name + "Month"}
                 onChange={updateField}
-                placeholder="MM"
-                search
                 options={moment.months().map((value, index) => ({
                   key: index + 1,
-                  value: index + 1,
-                  text: value
+                  text: value,
+                  value: index + 1
                 }))}
+                placeholder="MM"
+                search
                 value={initialMonth}
               />
             </Form.Field>
