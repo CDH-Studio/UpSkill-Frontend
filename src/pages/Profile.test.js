@@ -1,4 +1,5 @@
 import React from "react";
+import flushPromises from "flush-promises";
 
 import Profile from "./profile";
 
@@ -16,10 +17,408 @@ import wrapThenMount from "../__mocks__/componentWrapper";
 /*
 
 */
-import { Item } from "semantic-ui-react";
 
+const PUBLIC_PROFILE_DATA = {
+  visibleCards: {
+    info: true,
+    manager: true,
+    talentManagement: true,
+    officialLanguage: true,
+    skills: true,
+    competencies: true,
+    developmentalGoals: true,
+    education: true,
+    experience: true,
+    projects: true,
+    careerInterests: true
+  },
+  firstName: "Mary",
+  lastName: "Doe",
+  branch: {
+    en: null,
+    fr: null
+  },
+  organizationList: [
+    {
+      en: "Innovation, Science and Economic Development Canada",
+      fr: "Innovation, Sciences et Développement économique Canada"
+    },
+    {
+      en: "Innovation, Science and Economic Development Canada",
+      fr: "Innovation, Sciences et Développement économique Canada"
+    },
+    {
+      en: "DIGITAL TRANSFORMATION SERVICE SECTOR",
+      fr: "SECTEUR DES SERVICES DE TRANSFORMATION NUMERIQUE"
+    },
+    {
+      en: "DIGITAL TRANSFORMATION SERVICE SECTOR",
+      fr: "SECTEUR DES SERVICES DE TRANSFORMATION NUMERIQUE"
+    },
+    {
+      en: "Chief Information Office",
+      fr: "Bureau de l'information en chef"
+    },
+    {
+      en: "Chief Information Office",
+      fr: "Bureau de l'information en chef"
+    },
+    {
+      en: "Digital Services Division",
+      fr: "Division des services numériques"
+    },
+    {
+      en: "Digital Services Division",
+      fr: "Division des services numériques"
+    },
+    {
+      en: "Business Line Solutions Directorate",
+      fr: "Direction des solutions métiers"
+    },
+    {
+      en: "Director General's Office",
+      fr: "Bureau du directeur général"
+    }
+  ],
+  email: "mary.doe@canada.ca",
+  location: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  telephone: "343-123-4567",
+  cellphone: "613-123-4567",
+  jobTitle: {
+    en: "Manager",
+    fr: "Gestionaire"
+  },
+  flagged: false,
+  linkedinUrl: "linkedinUrl",
+  githubUrl: "githubUrl",
+  twitterUrl: null,
+  team: "CDH Studio",
+  acting: {
+    id: null,
+    description: null
+  },
+  actingPeriodStartDate: null,
+  actingPeriodEndDate: null,
+  classification: {
+    id: null,
+    description: null
+  },
+  temporaryRole: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  security: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  indeterminate: true,
+  manager: "Chahine El Chaar",
+  careerMobility: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  exFeeder: null,
+  talentMatrixResult: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  gradedOnSecondLanguage: true,
+  secondaryOralDate: null,
+  secondaryOralProficiency: null,
+  secondaryReadingDate: null,
+  secondaryReadingProficiency: null,
+  secondaryWritingDate: null,
+  secondaryWritingProficiency: null,
+  secondLanguage: null,
+  skills: [],
+  competencies: [],
+  developmentalGoals: [],
+  education: [],
+  careerSummary: [
+    {
+      subheader: "Healt Canada",
+      header: "Medical Officer",
+      content:
+        "Overseeing the medical care of patients and the functions performed by medical staff",
+      startDate: "2019-12-16T18:46:50.626Z",
+      endDate: "2019-12-16T18:46:50.626Z"
+    },
+    {
+      subheader: "Canada Revenue Agency",
+      header: "Financial Analyst",
+      content: "Cancelled payments and monitored unauthorized purchases",
+      startDate: "2019-12-16T18:46:50.626Z",
+      endDate: "2019-12-16T18:46:50.626Z"
+    },
+    {
+      subheader: "Banque du Canada",
+      header: "Gestionnaire de projet TI",
+      content:
+        "Livrer les project à temps et maintenir le contact avec les clients",
+      startDate: "2019-12-16T18:46:50.626Z",
+      endDate: "2019-12-16T18:46:50.626Z"
+    }
+  ],
+  projects: [],
+  interestedInRemote: true,
+  relocationLocations: [],
+  lookingForNewJob: null
+};
+
+const PUBLIC_API_PROFILE_URL =
+  "localhost:8080/api/profile/faba08aa-ffe3-11e9-8d71-362b9e155667";
+
+const PUBLIC_WINDOW_PROFILE_URL =
+  "localhost:3000/secured/profile/faba08aa-ffe3-11e9-8d71-362b9e155667";
+
+import { Item } from "semantic-ui-react";
+import { JestEnvironment } from "@jest/environment";
+import JestMock from "jest-mock";
+
+jest.mock("../config", () => ({ backendAddress: "localhost:8080/" }));
+
+it("/Profile page makes expected axios call on a public profile", async () => {
+  axios._addGetRoute(PUBLIC_API_PROFILE_URL, async () => ({
+    data: PUBLIC_PROFILE_DATA
+  }));
+
+  delete window.location;
+  window.location = {
+    reload: jest.fn(),
+    toString: () =>
+      "localhost:3000/secured/profile/faba08aa-ffe3-11e9-8d71-362b9e155667"
+  };
+
+  wrapThenMount(<Profile changeLanguage={jest.fn()} keycloak={{}} />);
+
+  console.log("axios routes", axios._getGetRoutes());
+  await flushPromises();
+
+  const api_profile_route = axios._getGetRoutes()[PUBLIC_API_PROFILE_URL];
+
+  expect(api_profile_route.getCallCount()).toEqual(1);
+});
+
+const PRIVATE_PROFILE_DATA = {
+  visibleCards: {
+    info: true,
+    manager: true,
+    talentManagement: true,
+    officialLanguage: true,
+    skills: true,
+    competencies: true,
+    developmentalGoals: true,
+    education: true,
+    experience: true,
+    projects: true,
+    careerInterests: true
+  },
+  firstName: "Mary",
+  lastName: "Doe",
+  branch: {
+    en: null,
+    fr: null
+  },
+  organizationList: [
+    {
+      en: "Innovation, Science and Economic Development Canada",
+      fr: "Innovation, Sciences et Développement économique Canada"
+    },
+    {
+      en: "Innovation, Science and Economic Development Canada",
+      fr: "Innovation, Sciences et Développement économique Canada"
+    },
+    {
+      en: "DIGITAL TRANSFORMATION SERVICE SECTOR",
+      fr: "SECTEUR DES SERVICES DE TRANSFORMATION NUMERIQUE"
+    },
+    {
+      en: "DIGITAL TRANSFORMATION SERVICE SECTOR",
+      fr: "SECTEUR DES SERVICES DE TRANSFORMATION NUMERIQUE"
+    },
+    {
+      en: "Chief Information Office",
+      fr: "Bureau de l'information en chef"
+    },
+    {
+      en: "Chief Information Office",
+      fr: "Bureau de l'information en chef"
+    },
+    {
+      en: "Digital Services Division",
+      fr: "Division des services numériques"
+    },
+    {
+      en: "Digital Services Division",
+      fr: "Division des services numériques"
+    },
+    {
+      en: "Business Line Solutions Directorate",
+      fr: "Direction des solutions métiers"
+    },
+    {
+      en: "Director General's Office",
+      fr: "Bureau du directeur général"
+    }
+  ],
+  email: "mary.doe@canada.ca",
+  location: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  telephone: "343-123-4567",
+  cellphone: "613-123-4567",
+  jobTitle: {
+    en: "Manager",
+    fr: "Gestionaire"
+  },
+  flagged: false,
+  linkedinUrl: "linkedinUrl",
+  githubUrl: "githubUrl",
+  twitterUrl: null,
+  team: "CDH Studio",
+  acting: {
+    id: null,
+    description: null
+  },
+  actingPeriodStartDate: null,
+  actingPeriodEndDate: null,
+  classification: {
+    id: null,
+    description: null
+  },
+  temporaryRole: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  security: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  indeterminate: true,
+  manager: "Chahine El Chaar",
+  careerMobility: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  exFeeder: null,
+  talentMatrixResult: {
+    id: null,
+    description: {
+      en: null,
+      fr: null
+    }
+  },
+  gradedOnSecondLanguage: true,
+  secondaryOralDate: null,
+  secondaryOralProficiency: null,
+  secondaryReadingDate: null,
+  secondaryReadingProficiency: null,
+  secondaryWritingDate: null,
+  secondaryWritingProficiency: null,
+  secondLanguage: null,
+  skills: [],
+  competencies: [],
+  developmentalGoals: [],
+  education: [],
+  careerSummary: [
+    {
+      subheader: "Healt Canada",
+      header: "Medical Officer",
+      content:
+        "Overseeing the medical care of patients and the functions performed by medical staff",
+      startDate: "2019-12-16T18:46:50.626Z",
+      endDate: "2019-12-16T18:46:50.626Z"
+    },
+    {
+      subheader: "Canada Revenue Agency",
+      header: "Financial Analyst",
+      content: "Cancelled payments and monitored unauthorized purchases",
+      startDate: "2019-12-16T18:46:50.626Z",
+      endDate: "2019-12-16T18:46:50.626Z"
+    },
+    {
+      subheader: "Banque du Canada",
+      header: "Gestionnaire de projet TI",
+      content:
+        "Livrer les project à temps et maintenir le contact avec les clients",
+      startDate: "2019-12-16T18:46:50.626Z",
+      endDate: "2019-12-16T18:46:50.626Z"
+    }
+  ],
+  projects: [],
+  interestedInRemote: true,
+  relocationLocations: [],
+  lookingForNewJob: null
+};
+
+const PRIVATE_API_PROFILE_URL =
+  "localhost:8080/api/private/profile/1e3b88e6-2035-11ea-8771-fbf73ca08e3f";
+
+const PRIVATE_WINDOW_PROFILE_URL = "localhost:3000/secured/profile/";
+
+it("/Profile page makes expected axios call on a private profile", async () => {
+  debugger;
+  axios._addGetRoute(PRIVATE_API_PROFILE_URL, async () => ({
+    data: PRIVATE_PROFILE_DATA
+  }));
+
+  delete window.location;
+  window.location = {
+    reload: jest.fn(),
+    toString: () => PRIVATE_WINDOW_PROFILE_URL
+  };
+
+  delete window.localStorage;
+  window.localStorage = {
+    getItem: name => ({ userId: "1e3b88e6-2035-11ea-8771-fbf73ca08e3f" }[name])
+  };
+
+  wrapThenMount(<Profile changeLanguage={jest.fn()} keycloak={{}} />);
+
+  console.log("axios routes", axios._getGetRoutes());
+  debugger;
+  await flushPromises();
+  debugger;
+  const api_profile_route = axios._getGetRoutes()[PRIVATE_API_PROFILE_URL];
+
+  expect(api_profile_route.getCallCount()).toEqual(1);
+});
+
+/*
 it("ProfileLayoutController with filled fields contains expected components & values", () => {
   debugger;
+  
   Object.defineProperty(window, "innerWidth", {
     writable: true,
     configurable: true,
@@ -36,7 +435,8 @@ it("ProfileLayoutController with filled fields contains expected components & va
   expect(axios.getUrlCalls()).toEqual([
     "http://localhost:8080/api/profile/null"
   ]);
-});
+  expect(1 + 1).toEqual(2);
+});*/
 
 /*
 import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";

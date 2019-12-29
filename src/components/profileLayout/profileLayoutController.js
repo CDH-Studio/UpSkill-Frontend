@@ -19,9 +19,9 @@ class ProfileLayoutController extends Component {
     /** Clears the item being confirmed in the Confirm modal */
     editable: PropTypes.bool,
     /** Function to handle clicking deactivate profile button */
-    handleClickDeactivate: PropTypes.func.isRequired,
+    handleClickDeactivate: PropTypes.func,
     /** Function to handle clicking delete profile button */
-    handleClickDelete: PropTypes.func.isRequired,
+    handleClickDelete: PropTypes.func,
     /** React-Intl's translation object */
     intl: PropTypes.object.isRequired,
     /** Object representing Keycloak autherization */
