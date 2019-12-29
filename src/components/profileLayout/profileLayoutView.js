@@ -532,6 +532,7 @@ class ProfileLayoutView extends Component {
               <Grid.Row className="noGapBelow">
                 <EditWrapperController
                   form={null}
+                  formName="TODO profile picture form"
                   buttonType="profilePictureButton"
                   wrapperType="compactWrapper"
                 >
@@ -1007,6 +1008,7 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController
         form={CareerInterestsFormController}
+        formName={"Edit career interests"}
         cardName={"Career Interests"}
       >
         <div>
