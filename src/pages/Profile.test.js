@@ -2,21 +2,19 @@ import React from "react";
 import flushPromises from "flush-promises";
 
 import Profile from "./profile";
-
+import { IntlProvider, FormattedRelative, createIntl } from "react-intl";
 import axios from "axios";
+
+import { mountWithIntl, shallowWithIntl } from "../../test/intlHelper";
 
 import wrapThenMount from "../__mocks__/componentWrapper";
 
-/*
-    () => {
+/* () => {
     return { get: mockGet };s
   });
 });*/
-
 //import ProfileLayoutView from "./profileLayoutView";
-/*
-
-*/
+/**/
 
 const PUBLIC_PROFILE_DATA = {
   visibleCards: {
@@ -189,32 +187,34 @@ const PUBLIC_API_PROFILE_URL =
 const PUBLIC_WINDOW_PROFILE_URL =
   "localhost:3000/secured/profile/faba08aa-ffe3-11e9-8d71-362b9e155667";
 
-import { Item } from "semantic-ui-react";
-import { JestEnvironment } from "@jest/environment";
-import JestMock from "jest-mock";
-
+/** mock config's backend address */
 jest.mock("../config", () => ({ backendAddress: "localhost:8080/" }));
 
 it("/Profile page makes expected axios call on a public profile", async () => {
-  axios._addGetRoute(PUBLIC_API_PROFILE_URL, async () => ({
+  const mockGetProfile = jest.fn(async () => ({
     data: PUBLIC_PROFILE_DATA
   }));
+  axios._addGetRoute(PUBLIC_API_PROFILE_URL, mockGetProfile);
 
   delete window.location;
   window.location = {
     reload: jest.fn(),
-    toString: () =>
-      "localhost:3000/secured/profile/faba08aa-ffe3-11e9-8d71-362b9e155667"
+    toString: () => PUBLIC_WINDOW_PROFILE_URL
   };
 
-  wrapThenMount(<Profile changeLanguage={jest.fn()} keycloak={{}} />);
+  //const wrapper = wrapThenMount(
 
-  console.log("axios routes", axios._getGetRoutes());
+  const wrapper = mountWithIntl(
+    <Profile changeLanguage={jest.fn()} keycloak={{}} />
+  );
+  //);
+
   await flushPromises();
 
-  const api_profile_route = axios._getGetRoutes()[PUBLIC_API_PROFILE_URL];
+  expect(mockGetProfile.mock.calls.length).toEqual(1);
+  expect(wrapper.find("ProfileLayoutController").length).toBe(1);
 
-  expect(api_profile_route.getCallCount()).toEqual(1);
+  //expect(axios._getGetCalls()).toEqual(1);
 });
 
 const PRIVATE_PROFILE_DATA = {
@@ -388,31 +388,33 @@ const PRIVATE_API_PROFILE_URL =
 const PRIVATE_WINDOW_PROFILE_URL = "localhost:3000/secured/profile/";
 
 it("/Profile page makes expected axios call on a private profile", async () => {
-  debugger;
-  axios._addGetRoute(PRIVATE_API_PROFILE_URL, async () => ({
+  /** mock get request response for private profile */
+  const mockGetProfile = jest.fn().mockImplementation(async () => ({
     data: PRIVATE_PROFILE_DATA
   }));
+  axios._addGetRoute(PRIVATE_API_PROFILE_URL, mockGetProfile);
 
+  /** mock window location */
   delete window.location;
   window.location = {
     reload: jest.fn(),
     toString: () => PRIVATE_WINDOW_PROFILE_URL
   };
 
+  /** mock stored localId */
   delete window.localStorage;
   window.localStorage = {
     getItem: name => ({ userId: "1e3b88e6-2035-11ea-8771-fbf73ca08e3f" }[name])
   };
 
-  wrapThenMount(<Profile changeLanguage={jest.fn()} keycloak={{}} />);
+  const wrapper = mountWithIntl(
+    <Profile changeLanguage={jest.fn()} keycloak={{}} />
+  );
 
-  console.log("axios routes", axios._getGetRoutes());
-  debugger;
   await flushPromises();
-  debugger;
-  const api_profile_route = axios._getGetRoutes()[PRIVATE_API_PROFILE_URL];
-
-  expect(api_profile_route.getCallCount()).toEqual(1);
+  expect(mockGetProfile.mock.calls.length).toEqual(1);
+  expect(wrapper.find("ProfileLayoutController").length).toBe(1);
+  //expect(axios._getGetCalls()).toEqual(1);
 });
 
 /*

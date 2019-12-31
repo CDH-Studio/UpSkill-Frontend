@@ -4,7 +4,6 @@ import axios from "axios";
 import config from "../config";
 import ProfileLayoutController from "../components/profileLayout/profileLayoutController";
 
-console.log("#### config", config);
 const backendAddress = config.backendAddress;
 /** Page rendered on the /profile route */
 class Profile extends Component {
@@ -76,6 +75,9 @@ class Profile extends Component {
         });
     };
     this.updateProfileInfo = this.updateProfileInfo.bind(this);
+  }
+
+  componentDidMount() {
     this.updateProfileInfo();
   }
 

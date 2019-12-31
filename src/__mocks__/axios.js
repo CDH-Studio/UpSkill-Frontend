@@ -1,48 +1,29 @@
-import { tsConstructorType } from "@babel/types";
-
-let getCalls = [];
-
-const getFunc = jest.fn(url => {
-  getCalls.push(url);
-  return Promise.resolve(profileMockData);
-});
-
-class GetRoute {
-  constructor(url, func) {
-    this.func = func;
-    this.url = url;
-    this.callCount = 0;
-  }
-
-  async handleGet(url) {
-    this.callCount++;
-    return await this.func(url);
-  }
-
-  getCallCount() {
-    return this.callCount;
-  }
-}
-
 class AxiosMocker {
   constructor() {
     this.getRoutes = {};
     this.unknownRequests = 0;
+    this.getCalls = 0;
+
+    this.testFunc = jest.fn();
   }
 
   _addGetRoute(url, func) {
-    this.getRoutes = { ...this.getRoutes, [url]: new GetRoute(url, func) };
+    this.getRoutes = { ...this.getRoutes, [url]: func };
   }
 
   async get(url) {
-    const route = this.getRoutes[url];
-    if (route === undefined) {
+    this.getCalls++;
+    const getFunc = this.getRoutes[url];
+    if (getFunc === undefined) {
       console.log(" UNDEFINED ROUTE *****************", url);
       return {};
     } else {
-      console.log("REDINFED ROUTE", url);
-      return route.handleGet(url);
+      return getFunc(url);
     }
+  }
+
+  _getGetCalls() {
+    return this.getCalls;
   }
 
   _getGetRoutes() {
