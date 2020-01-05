@@ -1,7 +1,7 @@
 import React from "react";
 import flushPromises from "flush-promises";
 
-import Profile from "./profile";
+import Profile from "./Profile";
 import axios from "axios";
 
 import { mountWithIntl } from "../../test/intlHelper";
