@@ -4,7 +4,7 @@ import flushPromises from "flush-promises";
 import Profile from "./profile";
 import axios from "axios";
 
-import { mountWithIntl, shallowWithIntl } from "../../test/intlHelper";
+import { mountWithIntl } from "../../test/intlHelper";
 
 import { FULL_PROFILE_DATA } from "../../test/testValues";
 
