@@ -7,7 +7,7 @@ import DateInputFieldGroup from "../dateInputFieldGroup/dateInputFieldGroupContr
 import "./experienceItemForm.css";
 import "../form.css";
 
-class ExperienceItemView extends Component {
+class ExperienceItemFormView extends Component {
   render() {
     const {
       contentName,
@@ -113,4 +113,4 @@ class ExperienceItemView extends Component {
   }
 }
 
-export default injectIntl(ExperienceItemView);
+export default injectIntl(ExperienceItemFormView);

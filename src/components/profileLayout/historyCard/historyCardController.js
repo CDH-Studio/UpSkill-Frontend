@@ -12,7 +12,7 @@ export default class HistoryCardController extends Component {
     /** Key value pairs of <field name>:<backend suburl to get array of options from> */
     editOptionPaths: PropTypes.objectOf(PropTypes.string),
     /** The form to display for editing */
-    form: PropTypes.symbol.isRequired,
+    form: PropTypes.func.isRequired,
     /** Name displayed on the form */
     formName: PropTypes.string.isRequired
   };

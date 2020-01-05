@@ -1,248 +1,72 @@
 import React from "react";
+import flushPromises from "flush-promises";
 
 import Profile from "./profile";
-
 import axios from "axios";
 
-import wrapThenMount from "../__mocks__/componentWrapper";
+import { mountWithIntl } from "../../test/intlHelper";
 
-/*
-    () => {
-    return { get: mockGet };s
-  });
-});*/
+import { FULL_PROFILE_DATA } from "../../test/testValues";
 
-//import ProfileLayoutView from "./profileLayoutView";
-/*
+const BACK_PUBLIC_PROFILE_URL =
+  "localhost:8080/api/profile/faba08aa-ffe3-11e9-8d71-362b9e155667";
+const FRONT_PUBLIC_PROFILE_URL =
+  "localhost:3000/secured/profile/faba08aa-ffe3-11e9-8d71-362b9e155667";
+const BACK_PRIVATE_PROFILE_URL =
+  "localhost:8080/api/private/profile/1e3b88e6-2035-11ea-8771-fbf73ca08e3f";
+const FRONT_PRIVATE_PROFILE_URL = "localhost:3000/secured/profile/";
 
-*/
-import { Item } from "semantic-ui-react";
+/** mock config's backend address */
+jest.mock("../config", () => ({ backendAddress: "localhost:8080/" }));
 
-it("ProfileLayoutController with filled fields contains expected components & values", () => {
-  debugger;
-  Object.defineProperty(window, "innerWidth", {
-    writable: true,
-    configurable: true,
-    value: 1920
-  });
-  debugger;
-  Object.defineProperty(process, "env", {
-    writable: true,
-    configurable: true,
-    value: { REACT_APP_API_ADDRESS: "http://localhost:8080/" }
+it("/Profile page makes expected axios call on a public profile", async () => {
+  axios.get = jest.fn(async url => {
+    return { [BACK_PUBLIC_PROFILE_URL]: { data: FULL_PROFILE_DATA } }[url];
   });
 
-  const wrapper = wrapThenMount(<Profile />);
-  expect(axios.getUrlCalls()).toEqual([
-    "http://localhost:8080/api/profile/null"
-  ]);
+  delete window.location;
+  window.location = {
+    reload: jest.fn(),
+    toString: () => FRONT_PUBLIC_PROFILE_URL
+  };
+
+  const wrapper = mountWithIntl(
+    <Profile changeLanguage={jest.fn()} keycloak={{}} />
+  );
+  await flushPromises();
+
+  expect(wrapper.find("ProfileLayoutController").length).toBe(1);
+
+  expect(axios.get.mock.calls.length).toBe(1);
+  expect(axios.get.mock.calls[0][0]).toBe(BACK_PUBLIC_PROFILE_URL);
 });
 
-/*
-import EditCareerOverviewController from "./editModals/editCareerOverview/editCareerOverviewController";
-import EditCompetenciesController from "./editModals/editCompetencies/editCompetenciesController";
-import EditDevelopmentalGoalsController from "./editModals/editDevelopmentalGoals/editDevelopmentalGoalsController";
-import EditEducationController from "./editModals/editEducation/editEducationController";
-import EditSkillController from "./editModals/editSkills/editSkillsController";
-
-import EditLanguageProficiencyController from "./editModals/editLanguageProficiency/editLanguageProficiencyController";
-import EditManagerController from "./editModals/editManager/editManagerController";
-import EditTalentManagementController from "./editModals/editTalentManagement/editTalentManagementController";
-
-import EditLabelCardsController from "./editModals/editLabelCards/editLabelCardsController";
-import EditPrimaryInformationController from "./editModals/editPrimaryInformation/editPrimaryInformationController";
-import EditProfilePictureController from "./editModals/editProfilePicture/editProfilePictureController";
-import EditWrapperController from "./editWrapper/editWrapperController";
-
-
-*/
-
-/*
-it("Editable profile view contains expected components", () => {
-  const wrapper = wrapThenMount(
-    <ProfileLayoutView
-      profileInfo={{
-        acting: "EX 01",
-        actingPeriodStartDate: "01/10/20",
-        actingPeriodEndDate: "10/10/21",
-        branch: "Chief Information Office Branch",
-
-        building: "CD Howe, Room 368l",
-        careerMobility: "Ready for movement",
-        careerSummary: [
-          {
-            content: "this is content\nmore content",
-            endDate: "Present",
-            header: "Payments Canada",
-            startDate: "Aug 2017",
-            subheader: "Payment Analyst"
-          }
-        ],
-        city: "Ontario",
-
-        competencies: ["2"],
-        country: "Canada",
-        developmentalGoals: ["3"],
-
-        education: [
-          {
-            content: "this is content\ni am content",
-            subheader: "Telpher School of Buisness",
-            endDate: "Apr 2009",
-            header: "Masters of Business Administration",
-            startDate: "Sept 2007"
-          },
-          {
-            content: "this is content\ni am content",
-            subheader: "Carleton University",
-            endDate: "Apr 2005",
-            header: "Software Engineering",
-            startDate: "Sept 2000"
-          },
-          {
-            content: "this is content\ni am content",
-            subheader: "smart people shcool",
-            endDate: "Apr 2005",
-            header: "smart people class",
-            startDate: "Sept 2000"
-          }
-        ],
-        email: "mary.smith@canada.ca",
-        firstLanguage: "English",
-        firstName: "Massadry",
-        githubUrl: "https://www.google.com",
-        gradedOnSecondLanguage: true,
-        classification: "CS 04",
-        jobTitle: "Manager, Next Innovation",
-        lastName: "Smisdasth",
-        linkedinUrl: "https://www.bing.ca",
-        manager: "Chahine El Chaar",
-        cellphone: "613-402-8224",
-        organizationList: [
-          "ABC Directorate",
-          "ABC Division",
-          "Chief Information Office Branch",
-          "Digital Transformation Service Sector",
-          "Innovation, Science and Economic Development Canada"
-        ],
-        PO: "K1A 0H5",
-        province: "Ottawa",
-        secondaryOralDate: "Nov 29 2018",
-        secondaryOralProficiency: "C",
-        secondaryReadingDate: "Oct 17 2020",
-        secondaryReadingProficiency: "C",
-        secondaryWritingDate: "Oct 17 2021",
-        secondaryWritingProficiency: "B",
-        secondLanguage: null,
-        security: "Reliability",
-        skills: ["1"],
-        status: "Indeterminate",
-        street: "235 Queen Street",
-        talentMatrixResult: "Exceptional talent",
-        team: "ABC Team",
-        telephone: "343-291-1366",
-        twitterUrl: "https://www.baidu.com",
-        yearsOfService: 5.0
-      }}
-      editable={true}
-      windowWidth={1400}
-    />
+it("/Profile page makes expected axios call on a private profile", async () => {
+  /** mock get request response for private profile */
+  axios.get = jest.fn(
+    async url =>
+      ({ [BACK_PRIVATE_PROFILE_URL]: { data: FULL_PROFILE_DATA } }[url])
   );
 
-  const classes = [
-    EditCareerOverviewController,
-    EditCompetenciesController,
-    EditDevelopmentalGoalsController,
-    EditEducationController,
-    EditSkillController,
+  /** mock window location */
+  delete window.location;
+  window.location = {
+    reload: jest.fn(),
+    toString: () => FRONT_PRIVATE_PROFILE_URL
+  };
 
-    EditLanguageProficiencyController,
-    EditManagerController,
-    EditTalentManagementController,
+  /** mock stored localId */
+  delete window.localStorage;
+  window.localStorage = {
+    getItem: name => ({ userId: "1e3b88e6-2035-11ea-8771-fbf73ca08e3f" }[name])
+  };
 
-    EditLabelCardsController,
-    EditPrimaryInformationController,
-    EditProfilePictureController
-  ];
-
-  classes.forEach(val => {
-    let instances = wrapper.find({
-      button: val
-    });
-    expect(instances.length > 0).toBe(true);
-  });
-
-  const outerEditButtons = wrapper.find(".outerButton");
-  expect(outerEditButtons.length).toBe(0);
-
-  const innerEditButtons = wrapper.find(".innerButton");
-  expect(innerEditButtons.length).toBe(11);
-
-  const editWrappers = wrapper.find("EditWrapperView");
-  expect(editWrappers.length).toBe(11);
-
-  const cards = wrapper.find("Card");
-  expect(cards.length).toBe(10);
-
-  const navigationBarViews = wrapper.find("NavigationBarView");
-  expect(navigationBarViews.length).toBe(1);
-
-  const primaryGroups = wrapper.find("PrimaryLayoutGroupView");
-  expect(primaryGroups.length).toBe(1);
-
-  const secondaryGroups = wrapper.find("SecondaryLayoutGroupView");
-  expect(secondaryGroups.length).toBe(1);
-});
-
-it("Non-editable profile view contains expected components", () => {
-  const wrapper = wrapThenMount(
-    <ProfileLayoutView
-
-      editable={false}
-      windowWidth={1400}
-    />
+  const wrapper = mountWithIntl(
+    <Profile changeLanguage={jest.fn()} keycloak={{}} />
   );
 
-  const classes = [
-    "EditCareerOverviewController",
-    "EditCompetenciesController",
-    "EditDevelopmentalGoalsController",
-    "EditEducationController",
-    "EditSkillController",
-
-    "EditLanguageProficiencyController",
-    "EditManagerController",
-    "EditTalentManagementController",
-
-    "EditLabelCardsController",
-    "EditPrimaryInformationController",
-    "EditProfilePictureController"
-  ];
-
-  classes.forEach(val => {
-    let instances = wrapper.find(val);
-    expect(instances.length).toBe(0);
-  });
-
-  const outerEditButtons = wrapper.find(".outerButton");
-  expect(outerEditButtons.length).toBe(0);
-
-  const innerEditButtons = wrapper.find(".innerButton");
-  expect(innerEditButtons.length).toBe(0);
-
-  const editWrappers = wrapper.find("EditWrapperView");
-  expect(editWrappers.length).toBe(11);
-
-  const cards = wrapper.find("Card");
-  expect(cards.length).toBe(10);
-
-  const navigationBarViews = wrapper.find("NavigationBarView");
-  expect(navigationBarViews.length).toBe(1);
-
-  const primaryGroups = wrapper.find("PrimaryLayoutGroupView");
-  expect(primaryGroups.length).toBe(1);
-
-  const secondaryGroups = wrapper.find("SecondaryLayoutGroupView");
-  expect(secondaryGroups.length).toBe(1);
+  await flushPromises();
+  expect(wrapper.find("ProfileLayoutController").length).toBe(1);
+  expect(axios.get.mock.calls.length).toBe(1);
+  expect(axios.get.mock.calls[0][0]).toBe(BACK_PRIVATE_PROFILE_URL);
 });
-*/

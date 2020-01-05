@@ -7,7 +7,7 @@ import moment from "moment";
 export default class LabelCardFormController extends FormManagingComponent {
   constructor(props) {
     super(props);
-    const { profileInfo, editProfileOptions } = this.props;
+    const { profileInfo } = this.props;
 
     const isActing =
       Boolean(profileInfo["actingPeriodStartDate"]) &&

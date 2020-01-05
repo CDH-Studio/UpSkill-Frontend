@@ -42,8 +42,7 @@ class SearchFormView extends Component {
       defaultValues,
       handleChange,
       handleSubmit,
-      maxFormWidth,
-      navBarLayout
+      maxFormWidth
     } = this.props;
 
     return (
@@ -64,6 +63,7 @@ class SearchFormView extends Component {
             control={Input}
             defaultValue={defaultValues["searchValue"]}
             name="searchValue"
+            id="searchValueField"
             onChange={handleChange}
             onSubmit={handleSubmit}
           />
@@ -94,6 +94,7 @@ class SearchFormView extends Component {
               control={Button}
               disabled={disableSearch}
               fluid
+              id="searchButtonField"
               onClick={handleSubmit}
               style={{ width: "200px" }}
             />
@@ -107,6 +108,7 @@ class SearchFormView extends Component {
                     : "button.advanced.search"
                 })}
                 control={Button}
+                id="toggleButtonField"
                 fluid
                 onClick={handleToggle}
                 style={{ width: "200px" }}
@@ -131,7 +133,8 @@ class SearchFormView extends Component {
       fluid: true,
       name: name,
       onChange: handleChange,
-      onSubmit: handleSubmit
+      onSubmit: handleSubmit,
+      id: name + "Field"
     };
 
     if (name === "exFeeder") {
@@ -218,15 +221,14 @@ class SearchFormView extends Component {
         />
         {navBarLayout && (
           <Form.Field
-            fluid
-            style={{ width: "200px" }}
-            control={Button}
             color="blue"
-            content={intl.formatMessage({
-              id: "button.apply"
-            })}
+            content={intl.formatMessage({ id: "button.apply" })}
+            control={Button}
             disabled={disableSearch}
+            fluid
+            id="applyButtonField"
             onClick={handleSubmit}
+            style={{ width: "200px" }}
           />
         )}
       </React.Fragment>

@@ -99,7 +99,7 @@ class EducationItemFormController extends FieldManagingComponent {
 
   setField(fieldObj, name, value) {
     const { index, item, addItem, removeItem } = this.props;
-    super.setField(fieldObj, name, value);
+    fieldObj[name] = value;
     if (fieldObj === this.fields) {
       removeItem(index);
       addItem(index, Object.assign(item, fieldObj));

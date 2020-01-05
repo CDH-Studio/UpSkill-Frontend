@@ -96,10 +96,10 @@ class SetupLayoutController extends Component {
       .then(async userInfo => this.setState({ email: userInfo.email }));
 
     this.state = {
-      formIndex: 0, //Which form the user is being displayed
       editProfileOptions: null, //object with key value parts of <field name>:<array of field options>
-      gedsInfoList: null, //The list of potential matches for user in GEDS
-      gedsIndex: null //The index the user selects to be their information from gedsInfoList
+      formIndex: 0, //Which form the user is being displayed
+      gedsIndex: null, //The index the user selects to be their information from gedsInfoList
+      gedsInfoList: null //The list of potential matches for user in GEDS
     };
 
     this.changes = {};

@@ -28,7 +28,6 @@ class Profile extends Component {
         });
         return newList;
       };
-
       let profileInfo = response.data;
       profileInfo.skills = convertDropdownOptions(profileInfo.skills);
       profileInfo.competencies = convertDropdownOptions(
@@ -63,8 +62,7 @@ class Profile extends Component {
           //"http://localhost:8080/api/profile/6becd47a-ffe5-11e9-8d71-362b9e155667"
           backendAddress +
             (this.ownProfile ? "api/private/profile/" : "api/profile/") +
-            "1e3b88e6-2035-11ea-8771-fbf73ca08e3f"
-          //this.profileId
+            this.profileId
         )
         .then(this.handleSuccess)
         .catch(function(error) {
@@ -76,6 +74,9 @@ class Profile extends Component {
         });
     };
     this.updateProfileInfo = this.updateProfileInfo.bind(this);
+  }
+
+  componentDidMount() {
     this.updateProfileInfo();
   }
 

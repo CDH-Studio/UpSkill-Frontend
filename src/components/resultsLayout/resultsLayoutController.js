@@ -22,8 +22,8 @@ export default class ResultsLayoutController extends Component {
       changeLanguage,
       keycloak,
       redirectFunction,
-      searchQuery,
-      results
+      results,
+      searchQuery
     } = this.props;
 
     return (

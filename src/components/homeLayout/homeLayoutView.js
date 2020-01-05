@@ -65,8 +65,8 @@ const styles = {
   },
 
   grid: {
-    width: "100%",
-    margin: "0 auto"
+    margin: "0 auto",
+    width: "100%"
   },
 
   logo: {

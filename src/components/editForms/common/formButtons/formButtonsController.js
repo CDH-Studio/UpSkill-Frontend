@@ -19,7 +19,7 @@ export default class FormButtonsController extends Component {
     handlePrevious: PropTypes.func,
     /** intl-react translation object */
     intl: PropTypes.object,
-    /** Whether this is an early register or note */
+    /** Whether this is an early register or not */
     isEarlyRegister: PropTypes.bool
   };
 

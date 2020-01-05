@@ -24,7 +24,7 @@ class HistoryCardView extends Component {
     /** Name displayed on the card */
     cardName: PropTypes.string.isRequired,
     /** The form to display for editing */
-    form: PropTypes.symbol.isRequired,
+    form: PropTypes.func.isRequired,
     /** Name displayed on the form */
     formName: PropTypes.string.isRequired,
     /** The function to call to handle clicking the shrink/expand text of the card */

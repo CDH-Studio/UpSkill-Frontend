@@ -72,8 +72,8 @@ export default class NavigationBarView extends Component {
         style={{ position: "relative" }}
       >
         <Menu.Item
-          style={{ paddingBottom: "8px", paddingTop: "8px" }}
           href="/secured/home"
+          style={{ paddingBottom: "8px", paddingTop: "8px" }}
         >
           <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
