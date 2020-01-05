@@ -139,6 +139,7 @@ class SearchFormController extends Component {
     const { redirectFunction } = this.props;
     const oldUrl = window.location.toString();
     let query;
+
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
       query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
@@ -155,7 +156,6 @@ class SearchFormController extends Component {
     }
 
     if (oldUrl.includes("/results")) {
-      //this.forceUpdate();
       window.location.reload();
     }
   }
