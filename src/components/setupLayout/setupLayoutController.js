@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import axios from "axios";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 
-import { formatOptions } from "../editForms/common/formTools";
+import { formatOptions } from "../../functions/formTools";
 import config from "../../config";
 import prepareInfo from "../../functions/prepareInfo";
 
@@ -72,7 +73,19 @@ const formList = [
   }
 ];
 
+/** Logic for the /setup route */
 class SetupLayoutController extends Component {
+  static propTypes = {
+    /** Function to change the language intl-react is using */
+    changeLanguage: PropTypes.func.isRequired,
+    /** react-intl translation object */
+    intl: PropTypes.object.isRequired,
+    /** keycloak autherization object */
+    keycloak: PropTypes.object,
+    /** Function to change route */
+    redirectFunction: PropTypes.func
+  };
+
   constructor(props) {
     super(props);
 
@@ -83,10 +96,10 @@ class SetupLayoutController extends Component {
       .then(async userInfo => this.setState({ email: userInfo.email }));
 
     this.state = {
-      formIndex: 0,
-      editProfileOptions: null,
-      gedsInfoList: null,
-      gedsIndex: null
+      editProfileOptions: null, //object with key value parts of <field name>:<array of field options>
+      formIndex: 0, //Which form the user is being displayed
+      gedsIndex: null, //The index the user selects to be their information from gedsInfoList
+      gedsInfoList: null //The list of potential matches for user in GEDS
     };
 
     this.changes = {};
@@ -131,6 +144,10 @@ class SetupLayoutController extends Component {
     );
   }
 
+  /**
+   * Select user's information from gedsInfoList
+   * @param {PropTypes.number} index The index selected
+   */
   setGedsIndex(index) {
     const gedsInfo = this.state.gedsInfoList[index];
     this.changes = {
@@ -145,6 +162,9 @@ class SetupLayoutController extends Component {
     this.setState({ gedsIndex: index });
   }
 
+  /**
+   * Gathers the information needed from geds and the form options
+   */
   async getSetupData() {
     let skillOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getSkill")).data
@@ -206,6 +226,9 @@ class SetupLayoutController extends Component {
     });
   }
 
+  /**
+   * communicates user's profile setup information to backend
+   */
   handleRegister() {
     const { redirectFunction } = this.props;
     axios
@@ -221,12 +244,20 @@ class SetupLayoutController extends Component {
       });
   }
 
+  /**
+   * Sets the form currently being displayed to the user
+   * @param {PropTypes.number.isRequired} index The index of the form to display
+   */
   setFormIndex(index) {
     this.setState({ formIndex: index });
   }
 
+  /** Handles storing of changes made to profile setup forms
+   * @param {PropTypes.number} index the index of the form being changed.
+   * @param {PropTypes.object} changes key value pairs of type <field name>:<new value>
+   */
   setFormChanges(index, changes) {
-    this.changes = { ...this.changes, ...changes }; //[index]
+    this.changes = { ...this.changes, ...changes };
   }
 }
 

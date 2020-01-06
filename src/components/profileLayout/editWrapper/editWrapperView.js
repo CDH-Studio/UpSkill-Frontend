@@ -17,7 +17,7 @@ class EditWrapperView extends Component {
     /** Object of <optionName>:<backendRequestSubUrl> pairs */
     editOptionPaths: PropTypes.objectOf(PropTypes.string),
     /** The form component to render in the edit modal that gets displayed */
-    form: PropTypes.symbol.isRequired,
+    form: PropTypes.func,
     /** The header text of the modal that displays the edit form */
     formName: PropTypes.string.isRequired,
     /** The current values of the object to be edited (Not all pairs in the object have to be editable by the form) */

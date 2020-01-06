@@ -4,7 +4,7 @@ import { Checkbox, Input, Select } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import PropTypes from "prop-types";
 
-import { formatOptions } from "../../editForms/common/formTools";
+import { formatOptions } from "../../../functions/formTools";
 import EditGenericModalView from "./editModalView";
 import config from "../../../config";
 const { backendAddress } = config;
@@ -12,7 +12,7 @@ const { backendAddress } = config;
 /** Logic for modals used to edit a profile card */
 export default class EditModalController extends Component {
   static propTypes = {
-    /** Object of <optionName>:<backendRequestSubUrl> pairs */
+    /** Object representing necessary requests for field options. Expects key value pairs of <optionName>:<backendRequestSubUrl> */
     editOptionPaths: PropTypes.objectOf(PropTypes.string)
   };
 
@@ -20,8 +20,12 @@ export default class EditModalController extends Component {
     super(props);
     const { editOptionPaths } = this.props;
 
-    this.state = { editProfileOptions: editOptionPaths ? null : {} };
+    this.state = {
+      editProfileOptions: editOptionPaths ? null : {},
+      open: false
+    };
 
+    this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
   }
 
@@ -33,6 +37,11 @@ export default class EditModalController extends Component {
     if (this.state.editProfileOptions === null) {
       this.getEditOptions();
     }
+    this.setState({ open: true });
+  }
+
+  handleClose() {
+    this.setState({ open: false });
   }
 
   /** asyncronously gathers edit options and then updates then assigns this.state.editProfileOptions a non null value. When this state change happens the form will be displayed instead of a loading indicator */
@@ -56,11 +65,15 @@ export default class EditModalController extends Component {
         {...this.props}
         editProfileOptions={this.state.editProfileOptions}
         handleOpen={this.handleOpen}
+        handleClose={this.handleClose}
+        open={this.state.open}
       />
     );
   }
 }
 
+/** Generates the common props used by profile form fields
+ */
 export const generateCommonProps = (name, control, props, dropdownControl) => {
   const { editProfileOptions, fields, intl, profileInfo, updateField } = props;
 

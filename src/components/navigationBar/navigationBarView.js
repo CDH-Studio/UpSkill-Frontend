@@ -30,8 +30,8 @@ export default class NavigationBarView extends Component {
     includeSearchForm: PropTypes.bool,
     /** The object representing the keycloak session */
     keycloak: PropTypes.object,
-    /** Function to change route */
-    redirectFunction: PropTypes.func.isRequired
+    /** Function to change route. NOTE: This is currently only used by the searchForm on /results route which could be moved out of the nav bar in future */
+    redirectFunction: PropTypes.func
   };
 
   render() {
@@ -72,8 +72,8 @@ export default class NavigationBarView extends Component {
         style={{ position: "relative" }}
       >
         <Menu.Item
-          style={{ paddingBottom: "8px", paddingTop: "8px" }}
           href="/secured/home"
+          style={{ paddingBottom: "8px", paddingTop: "8px" }}
         >
           <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>

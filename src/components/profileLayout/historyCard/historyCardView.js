@@ -2,22 +2,46 @@ import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import { Grid } from "semantic-ui-react";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 import ProfileCardController from "../profileCard/profileCardController";
 import "./historyCard.css";
 
-import { renderValue } from "../common/profileTools"; //"../common/profileTools";
+import { renderValue } from "../../../functions/profileTools"; //"../common/profileTools";
 import "../common/common.css";
 
+const SHRUNK_DISPLAYED_ITEM_COUNT = 2; //How many items to show when not expanded
+
+/** UI for displaying the profile card with a user's list of education and the profile card for the card with a user's experience */
 class HistoryCardView extends Component {
+  static propTypes = {
+    /** Key value pairs of <field name>:<backend suburl to get array of options from> */
+    editOptionPaths: PropTypes.objectOf(PropTypes.string),
+    /** Whether the card is currently showing all items or first SHRUNK_DISPLAYED_ITEM_COUNT */
+    expanded: PropTypes.bool,
+    /** Array of history items */
+    cardEntries: PropTypes.arrayOf(PropTypes.object),
+    /** Name displayed on the card */
+    cardName: PropTypes.string.isRequired,
+    /** The form to display for editing */
+    form: PropTypes.func.isRequired,
+    /** Name displayed on the form */
+    formName: PropTypes.string.isRequired,
+    /** The function to call to handle clicking the shrink/expand text of the card */
+    handleToggleExpanded: PropTypes.func.isRequired,
+    /** React-Intl's translation object */
+    intl: PropTypes.object.isRequired
+  };
+
   render() {
     const {
-      form,
-      formName,
       cardEntries,
       cardName,
-      intl,
-      expanded
+      editOptionPaths,
+      expanded,
+      form,
+      formName,
+      intl
     } = this.props;
     const bindedRenderValue = renderValue.bind(this, intl);
 
@@ -25,7 +49,7 @@ class HistoryCardView extends Component {
     if (expanded) {
       usedEntries = cardEntries;
     } else {
-      usedEntries = cardEntries.slice(0, 2);
+      usedEntries = cardEntries.slice(0, SHRUNK_DISPLAYED_ITEM_COUNT);
     }
 
     return (
@@ -33,6 +57,7 @@ class HistoryCardView extends Component {
         form={form}
         formName={formName}
         cardName={cardName}
+        editOptionPaths={editOptionPaths}
       >
         <Grid className="historyList" divided="vertically">
           {usedEntries.map((value, index) => (
@@ -47,13 +72,7 @@ class HistoryCardView extends Component {
                       )}
                     </Grid.Column>
                     <Grid.Column className="dateInfo" width={8}>
-                      {moment(value.startDate).isValid()
-                        ? moment(value.startDate).format("MMM YYYY") +
-                          " - " +
-                          (moment(value.endDate).isValid()
-                            ? moment(value.endDate).format("MMM YYYY")
-                            : "Present")
-                        : ""}
+                      {this.renderDateString(value)}
                     </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
@@ -90,6 +109,7 @@ class HistoryCardView extends Component {
     );
   }
 
+  /** Renders the button used to expand / shrink the history card */
   renderSizeButton() {
     const { cardEntries, expanded, handleToggleExpanded, intl } = this.props;
 
@@ -107,6 +127,20 @@ class HistoryCardView extends Component {
       );
     }
     return null;
+  }
+
+  /** Renders a string describing the start and end date of a history item
+   *
+   * @param {PropTypes.object} item the history item who's date should be rendered
+   */
+  renderDateString(item) {
+    return moment(item.startDate).isValid()
+      ? moment(item.startDate).format("MMM YYYY") +
+          " - " +
+          (moment(item.endDate).isValid()
+            ? moment(item.endDate).format("MMM YYYY")
+            : "Present")
+      : "";
   }
 }
 

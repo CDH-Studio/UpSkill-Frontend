@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
+import { generateCommonFormProps } from "../../../functions/formTools";
 import { Checkbox, Form, Grid, Select } from "semantic-ui-react";
 import { injectIntl } from "react-intl";
 import { DateInput } from "semantic-ui-calendar-react";
@@ -18,7 +18,7 @@ class LanguageProficiencyFormView extends Component {
       onSubmit
     } = this.props;
 
-    this.generateProps = generateCommonProps.bind(this, this.props);
+    this.generateProps = generateCommonFormProps.bind(this, this.props);
 
     return (
       <Form onSubmit={onSubmit}>

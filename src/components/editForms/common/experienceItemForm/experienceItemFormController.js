@@ -1,11 +1,11 @@
 import React from "react";
 
-import FieldManagingComponent from "../formTools";
+import FieldManagingComponent from "../formManagingComponent";
 
-import HistoryItemFormView from "./historyItemFormView";
+import HistoryItemFormView from "./experienceItemFormView";
 import moment from "moment";
 
-export default class HistoryItemFormController extends FieldManagingComponent {
+export default class ExperienceItemFormController extends FieldManagingComponent {
   static getFieldNames() {
     return ["content", "endDate", "header", "startDate", "subheader"];
   }
@@ -23,7 +23,7 @@ export default class HistoryItemFormController extends FieldManagingComponent {
     if (item.startDate) {
       const startMoment = moment(item.startDate);
       this.tempFields["startDateMonth"] = parseInt(startMoment.format("M"));
-      this.tempFields["startDateYear"] = parseInt(startMoment.format("YY"));
+      this.tempFields["startDateYear"] = parseInt(startMoment.format("YYYY"));
     } else {
       this.tempFields["startDateMonth"] = null;
       this.tempFields["startDateYear"] = null;
@@ -32,7 +32,7 @@ export default class HistoryItemFormController extends FieldManagingComponent {
     if (item.endDate) {
       const endMoment = moment(item.endDate);
       this.tempFields["endDateMonth"] = parseInt(endMoment.format("M"));
-      this.tempFields["endDateYear"] = parseInt(endMoment.format("YY"));
+      this.tempFields["endDateYear"] = parseInt(endMoment.format("YYYY"));
     } else {
       this.tempFields["endDateMonth"] = null;
       this.tempFields["endDateYear"] = null;
@@ -46,7 +46,7 @@ export default class HistoryItemFormController extends FieldManagingComponent {
           this.tempFields[startOrEnd + "DateMonth"] +
             " " +
             this.tempFields[startOrEnd + "DateYear"],
-          "M YY"
+          "M YYYY"
         ).format()
       );
       //this.forceUpdate();
@@ -101,7 +101,7 @@ export default class HistoryItemFormController extends FieldManagingComponent {
 
   setField(fieldObj, name, value) {
     const { index, item, addItem, removeItem } = this.props;
-    super.setField(fieldObj, name, value);
+    fieldObj[name] = value;
     if (fieldObj === this.fields) {
       removeItem(index);
       addItem(index, Object.assign(item, fieldObj));

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 import { Form, Input } from "semantic-ui-react";
 
-import { generateCommonProps } from "../common/formTools";
+import { generateCommonFormProps } from "../../../functions/formTools";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 
 import "../common/form.css";
@@ -18,7 +18,7 @@ class ManagerFormView extends Component {
       onSubmit
     } = this.props;
 
-    const generateProps = generateCommonProps.bind(this, this.props);
+    const generateProps = generateCommonFormProps.bind(this, this.props);
 
     return (
       <Form onSubmit={onSubmit}>

@@ -11,7 +11,7 @@ import cdhLogo from "../../assets/cdhlogo.png";
 import "./landingLayout.css";
 
 /** UI for the landing route layout */
-export default class landingLayoutController extends Component {
+export default class LandingLayoutController extends Component {
   static propTypes = {
     /** Function used to change the language intl-react is using */
     changeLanguage: PropTypes.func.isRequired
@@ -61,8 +61,8 @@ export default class landingLayoutController extends Component {
               <FormattedMessage id="landing.slogan" />
             </div>
             <Button
-              href="/secured/home"
               as="a"
+              href="/secured/home"
               inverted
               style={{ margin: "0 auto", zIndex: "9" }}
             >

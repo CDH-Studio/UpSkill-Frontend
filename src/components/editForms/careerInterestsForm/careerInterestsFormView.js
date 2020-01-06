@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
+import { generateCommonFormProps } from "../../../functions/formTools";
 import { Form, Select } from "semantic-ui-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 import { injectIntl, FormattedMessage } from "react-intl";
@@ -20,7 +20,7 @@ class CareerInterestsFormView extends Component {
       onSubmit,
       profileInfo
     } = this.props;
-    const generateProps = generateCommonProps.bind(this, this.props);
+    const generateProps = generateCommonFormProps.bind(this, this.props);
 
     return (
       <Form onSubmit={onSubmit}>

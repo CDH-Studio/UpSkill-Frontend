@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import HistoryItemsContainerController from "../common/historyItemsContainer/historyItemsContainerController";
-import HistoryItemFormController from "../common/historyItemForm/historyItemFormController";
+import HistoryItemFormController from "../common/experienceItemForm/experienceItemFormController";
 import { injectIntl } from "react-intl";
 
 class CareerOverviewView extends Component {

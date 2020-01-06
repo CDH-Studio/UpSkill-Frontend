@@ -5,6 +5,7 @@ import config from "../config";
 import ProfileLayoutController from "../components/profileLayout/profileLayoutController";
 
 const backendAddress = config.backendAddress;
+/** Page rendered on the /profile route */
 class Profile extends Component {
   goto = link => this.props.history.push(link);
 
@@ -27,7 +28,6 @@ class Profile extends Component {
         });
         return newList;
       };
-
       let profileInfo = response.data;
       profileInfo.skills = convertDropdownOptions(profileInfo.skills);
       profileInfo.competencies = convertDropdownOptions(
@@ -74,6 +74,9 @@ class Profile extends Component {
         });
     };
     this.updateProfileInfo = this.updateProfileInfo.bind(this);
+  }
+
+  componentDidMount() {
     this.updateProfileInfo();
   }
 

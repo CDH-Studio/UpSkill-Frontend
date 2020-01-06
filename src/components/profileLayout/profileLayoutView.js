@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { injectIntl, FormattedMessage } from "react-intl";
 import moment from "moment";
 import map from "lodash/map";
-
+import PropTypes from "prop-types";
 import {
   Button,
   Card,
@@ -24,7 +24,7 @@ import tempProfilePic from "./../../assets/tempProfilePicture.png";
 import NavigationBar from "../navigationBar/navigationBarController";
 import ProfileCardController from "./profileCard/profileCardController";
 import EditWrapperController from "./editWrapper/editWrapperController";
-import { renderValue } from "./common/profileTools";
+import { renderValue } from "../../functions/profileTools";
 import { EditableProvider } from "./editableProvider/editableProvider";
 
 import CareerInterestsFormController from "../editForms/careerInterestsForm/careerInterestsFormController";
@@ -42,6 +42,7 @@ import TalentManagementFormController from "../editForms/talentManagementForm/ta
 
 import HistoryCardController from "./historyCard/historyCardController";
 
+import "./common/common.css";
 import "./profileLayout.css";
 
 //Used to determine which layout to use for the profile cards
@@ -51,11 +52,49 @@ const MEDIUM_WIDTH = 1250;
 //Determines if sidebar should push or shrink body
 const SIDEBAR_ANIMATION_DETERMINING_WIDTH = 1800;
 
+/** UI for the /profile route */
 class ProfileLayoutView extends Component {
+  static propTypes = {
+    /** Applys changes made to publicly visible cards */
+    applyVisibleProfileCards: PropTypes.func,
+    /** Function used to change the language intl-react is using */
+    changeLanguage: PropTypes.func.isRequired,
+    /** Clears the item being confirmed in the Confirm modal */
+    clearConfirmItem: PropTypes.func,
+    /** Disables the button to apply changes to publicly visible cards*/
+    disableApplyVisibleProfileCards: PropTypes.bool,
+    /** Whether or not the current profile is editabled */
+    editable: PropTypes.bool,
+    /** Function to handle clicking deactivate profile button */
+    handleClickDeactivate: PropTypes.func,
+    /** Function to handle clicking delete profile button */
+    handleClickDelete: PropTypes.func,
+    /** React-Intl's translation object */
+    intl: PropTypes.object.isRequired,
+    /** Object representing Keycloak autherization */
+    keycloak: PropTypes.object,
+    /** Whether the profile is private and being previewed as public or not */
+    previewPublic: PropTypes.bool,
+    /** Object containing data to display on profile */
+    profileInfo: PropTypes.object,
+    /** Whether this is a public profile view or not*/
+    publicLayout: PropTypes.bool,
+    /** function to set the value of previewPublic */
+    setPreviewPublicState: PropTypes.func,
+    /** function to set the value of settingsSidebar */
+    setSidebarOpenState: PropTypes.func,
+    /** Function to call in order to apply changes made to publicly visible cards */
+    updateCardVisibility: PropTypes.func,
+    /** List of publicly visible cards ( This will include unapplied changes when on your own profile) */
+    visibleProfileCards: PropTypes.objectOf(PropTypes.bool),
+    /** Width of the browser window */
+    windowWidth: PropTypes.number.isRequired
+  };
+
   constructor(props) {
     super(props);
 
-    const { intl, editable } = this.props;
+    const { intl } = this.props;
 
     this.alwaysUngroupedCards = [
       {
@@ -88,25 +127,22 @@ class ProfileLayoutView extends Component {
       }
     ];
 
-    this.state = {
-      settingsSidebar: editable ? false : null,
-      previewPublic: false,
-      confirmItem: null
-    };
-
     this.renderValue = renderValue.bind(this, intl);
   }
 
   render() {
     const {
       changeLanguage,
+      confirmItem,
+      clearConfirmItem,
       editable,
       keycloak,
+      previewPublic,
       profileInfo,
-      publicLayout
+      publicLayout,
+      setSidebarOpenState,
+      settingsSidebar
     } = this.props;
-
-    const { confirmItem } = this.state;
 
     if (profileInfo === undefined) {
       return (
@@ -135,12 +171,14 @@ class ProfileLayoutView extends Component {
         <Confirm
           content={confirmItem && confirmItem.content}
           header={confirmItem && confirmItem.header}
-          onCancel={() => this.setState({ confirmItem: null })}
+          onCancel={clearConfirmItem}
           onConfirm={() => {
             confirmItem &&
               confirmItem.handleConfirm &&
               confirmItem.handleConfirm();
-            this.setState({ confirmItem: null });
+            clearConfirmItem(); /*NOTE: I realised clearing the confirmItem after running it's handleConfirm
+                                  makes it impossible for a confirmItem to open another confirmItem.
+                                  I am not sure if clearing the item first could cause other unexpected behavior */
           }}
           open={Boolean(confirmItem)}
         />
@@ -150,21 +188,16 @@ class ProfileLayoutView extends Component {
           <Sidebar.Pusher>
             <div style={{ minHeight: "calc(100vh - 53px)" }}>
               <div className="body">
-                {this.state.settingsSidebar !== null && (
+                {settingsSidebar !== null && (
                   <Button
                     color="blue"
-                    onClick={() =>
-                      this.setState(oldState => ({
-                        settingsSidebar: !oldState.settingsSidebar
-                      }))
-                    }
+                    onClick={() => setSidebarOpenState(!settingsSidebar)}
                   >
                     <FormattedMessage id="profile.settings.and.privacy" />
                   </Button>
                 )}
 
-                {publicLayout ||
-                (this.state.settingsSidebar && this.state.previewPublic)
+                {publicLayout || (settingsSidebar && previewPublic)
                   ? this.renderPublicProfileBody()
                   : this.renderPrivateProfileBody()}
               </div>
@@ -182,10 +215,12 @@ class ProfileLayoutView extends Component {
       handleClickDeactivate,
       handleClickDelete,
       intl,
+      settingsSidebar,
       updateCardVisibility,
       visibleProfileCards,
       windowWidth
     } = this.props;
+
     return (
       <Sidebar
         as={Menu}
@@ -194,7 +229,7 @@ class ProfileLayoutView extends Component {
             ? "push"
             : "scale down"
         }
-        visible={this.state.settingsSidebar}
+        visible={settingsSidebar}
         vertical
       >
         <Menu.Menu>
@@ -296,6 +331,7 @@ class ProfileLayoutView extends Component {
     );
   }
 
+  /** Renders the profile body layout shown on a public profile or when previewing the public display */
   renderPublicProfileBody() {
     const { windowWidth, visibleProfileCards } = this.props;
 
@@ -388,6 +424,7 @@ class ProfileLayoutView extends Component {
     );
   }
 
+  /** Renderes the private profile layout when on own profile or possibly in future for HR */
   renderPrivateProfileBody() {
     const { windowWidth } = this.props;
 
@@ -495,6 +532,7 @@ class ProfileLayoutView extends Component {
               <Grid.Row className="noGapBelow">
                 <EditWrapperController
                   form={null}
+                  formName="TODO profile picture form"
                   buttonType="profilePictureButton"
                   wrapperType="compactWrapper"
                 >
@@ -919,6 +957,10 @@ class ProfileLayoutView extends Component {
 
     return (
       <HistoryCardController
+        editOptionPaths={{
+          school: "api/option/getSchool",
+          diploma: "api/option/getDiploma"
+        }}
         form={EducationFormController}
         cardEntries={education}
         formName={intl.formatMessage({ id: "profile.edit.education" })}
@@ -933,10 +975,11 @@ class ProfileLayoutView extends Component {
 
     return (
       <HistoryCardController
-        form={CareerOverviewFormController}
-        formName={intl.formatMessage({ id: "profile.edit.experience" })}
         cardEntries={careerSummary}
         cardName={intl.formatMessage({ id: "profile.experience" })}
+        /*editOptionPaths={}*/
+        form={CareerOverviewFormController}
+        formName={intl.formatMessage({ id: "profile.edit.experience" })}
       />
     );
   }
@@ -965,6 +1008,7 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController
         form={CareerInterestsFormController}
+        formName={"Edit career interests"}
         cardName={"Career Interests"}
       >
         <div>
@@ -1003,6 +1047,14 @@ class ProfileLayoutView extends Component {
     );
   }
 
+  /**
+   * Render a card that displays a list of tags
+   * @param {PropTypes.string} cardName The string to use for the name of the profile card
+   * @param {PropTypes.string} formName This string to use for the header of the edit modal form
+   * @param {PropTypes.arrayOf(PropTypes.object)} cardTags Array of objects that contain a property text or description that contains the translated text for the tag
+   * @param {PropTypes.element} form The form element to display in the modal
+   * @param {PropTypes.objectOf(PropTypes.string)} editOptionPaths Object representing necessary requests for field options. Expects key value pairs of <optionName>:<backendRequestSubUrl>
+   */
   renderGenericTagsCard(cardName, formName, cardTags, form, editOptionPaths) {
     return (
       <ProfileCardController
@@ -1020,7 +1072,13 @@ class ProfileLayoutView extends Component {
     );
   }
 
-  renderLabeledItem(labelText, contentText, disabled) {
+  /**
+   * Renders a row with a Label text in the first column and a content elemenet or a fallback message in the second column
+   * @param {PropTypes.string} labelText The text to place in the label
+   * @param {PropTypes.element} contentElement The content element
+   * @param {PropTypes.bool} disabled Whether the fallback message should be used even if a content element was provided or not
+   */
+  renderLabeledItem(labelText, contentElement, disabled) {
     const { intl } = this.props;
     return (
       <Grid.Row columns={2} style={{ padding: "3px 0px" }}>
@@ -1036,12 +1094,17 @@ class ProfileLayoutView extends Component {
           </Label>
         </Grid.Column>
         <Grid.Column style={{ padding: "0px" }}>
-          {disabled ? intl.formatMessage({ id: "profile.na" }) : contentText}
+          {disabled ? intl.formatMessage({ id: "profile.na" }) : contentElement}
         </Grid.Column>
       </Grid.Row>
     );
   }
 
+  /**
+   * Recursively creates a list out of an array of string items
+   * @param {PropTypes.arrayOf(PropTypes.string)} unlistedItems The array of strings to display in the list
+   * @param {PropTyles.element} generatedElement The currently generated element
+   */
   renderOrganizationList(unlistedItems, generatedElement) {
     if (unlistedItems.length === 0) {
       return <List className="organizationList"> {generatedElement} </List>;

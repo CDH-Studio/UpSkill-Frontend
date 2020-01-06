@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import { Dimmer, Icon, Loader, Modal, Grid } from "semantic-ui-react";
+import { Dimmer, Grid, Icon, Loader, Modal } from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 import "./editModal.css";
@@ -29,16 +29,13 @@ class editModalView extends Component {
   }
 
   render() {
-    const { buttonType, handleOpen, name } = this.props;
+    const { buttonType, handleClose, handleOpen, name, open } = this.props;
 
     return (
       <Modal
-        onClose={() => this.setState({ open: false })}
-        onOpen={() => {
-          this.setState({ open: true });
-          handleOpen();
-        }}
-        open={this.state.open}
+        onClose={handleClose}
+        onOpen={handleOpen}
+        open={open}
         trigger={renderEditButton(buttonType)}
       >
         <Modal.Header>{name}</Modal.Header>

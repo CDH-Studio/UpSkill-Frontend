@@ -1,6 +1,6 @@
 import React from "react";
 
-import FormManagingComponent from "../common/formTools";
+import FormManagingComponent from "../common/formManagingComponent";
 import ManagerFormView from "./managerFormView";
 
 export default class ManagerFormController extends FormManagingComponent {
