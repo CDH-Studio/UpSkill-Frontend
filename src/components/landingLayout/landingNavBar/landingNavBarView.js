@@ -1,10 +1,17 @@
 import React, { Component } from "react";
 import { Menu, Image } from "semantic-ui-react";
 import { injectIntl, FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
 import ChangeLanguage from "../../../components/changeLanguage/ChangeLanguage";
 import Logo from "../../../assets/Logo5.png";
 
+/** UI for the landing route's sign in navigation bar */
 class LandingNavBarView extends Component {
+  static propTypes = {
+    /** Function used to change the language intl-react is using */
+    changeLanguage: PropTypes.func.isRequired
+  };
+
   render() {
     const { changeLanguage } = this.props;
     return (

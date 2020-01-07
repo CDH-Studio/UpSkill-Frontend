@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
-import { Form, Checkbox, Dropdown, Select } from "semantic-ui-react";
+import { generateCommonFormProps } from "../../../functions/formTools";
+import { Form, Select } from "semantic-ui-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 import { injectIntl, FormattedMessage } from "react-intl";
 
@@ -9,18 +9,18 @@ import "../common/form.css";
 class CareerInterestsFormView extends Component {
   render() {
     const {
-      handleCancle,
+      editProfileOptions,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
-      isEarlyRegister,
       intl,
+      isEarlyRegister,
       onFieldChange,
       onSubmit,
-      profileInfo,
-      editProfileOptions
+      profileInfo
     } = this.props;
-    const generateProps = generateCommonProps.bind(this, this.props);
+    const generateProps = generateCommonFormProps.bind(this, this.props);
 
     return (
       <Form onSubmit={onSubmit}>
@@ -66,7 +66,7 @@ class CareerInterestsFormView extends Component {
         <Form.Field {...generateProps("lookingForNewJob", Select)} />
         <FormButtonsController
           handleApply={onSubmit}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 
 import HomeLayoutController from "../components/homeLayout/homeLayoutController";
-
+//*NOTE: I don't think this is needed any more
 class Advanced extends Component {
   goto = (link, state) => this.props.history.push(link, state);
 

@@ -190,5 +190,4 @@ class Secured extends Component {
     });
   };
 }
-
 export default Secured;

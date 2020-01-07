@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
-import { Form, Checkbox, Input, Select } from "semantic-ui-react";
+import { generateCommonFormProps } from "../../../functions/formTools";
+import { Form, Checkbox, Select } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 
@@ -12,18 +12,17 @@ class LabelCardFormView extends Component {
     const {
       actingDisabled,
       actingEndDisabled,
-      editProfileOptions,
-      handleCancle,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
+      intl,
       isEarlyRegister,
       onSubmit,
-      profileInfo,
-      intl
+      profileInfo
     } = this.props;
-    const generateProps = generateCommonProps.bind(this, this.props);
 
+    const generateProps = generateCommonFormProps.bind(this, this.props);
     const classificationProps = generateProps("classification", Select);
 
     return (
@@ -81,12 +80,12 @@ class LabelCardFormView extends Component {
         </Form.Group>
         <Form.Field {...generateProps("security", Select)} />
         <FormButtonsController
-          handleRegister={handleRegister}
-          isEarlyRegister={isEarlyRegister}
           handleApply={onSubmit}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
+          handleRegister={handleRegister}
+          isEarlyRegister={isEarlyRegister}
         />
       </Form>
     );

@@ -1,67 +1,44 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
+import PropTypes from "prop-types";
 
 import HomeLayoutView from "./homeLayoutView";
 
 /**
- * A form for creating a search query
- *
- * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
- * redirectButtonText       "Advanced search"       The text to display on the redirect button
- * redirectButtonURL        "/secured/advanced"             the url of the page to redirect to
- * redirectFunction         None                    The function to call with the redirectButtonURL
- * showAdvancedFields       False                   Whether or not to show advanced options or just skills
+ * Logic for the layout of the /home route
  */
 class HomeLayoutController extends Component {
-  constructor(props) {
-    super(props);
-    // To add a user into Users table
-    this.searchQuery = {};
-
-    this.performSearch = this.performSearch.bind(this);
-    this.updateSearch = this.updateSearch.bind(this);
-  }
-
-  updateSearch(e, { name, value }) {
-    this.searchQuery[name] = value;
-  }
-
-  performSearch() {
-    const { redirectFunction } = this.props;
-
-    redirectFunction("/secured/results", { searchQuery: this.searchQuery });
-  }
+  static propTypes = {
+    /** Function used to change the language intl-react is using */
+    changeLanguage: PropTypes.func.isRequired,
+    /** The object representing the keycloak session */
+    keycloak: PropTypes.object,
+    /** Function to change route */
+    redirectFunction: PropTypes.func.isRequired,
+    /** Whether should display advanced search form or not */
+    showAdvancedFields: PropTypes.bool
+  };
 
   render() {
     const {
       changeLanguage,
-      intl,
       keycloak,
       redirectFunction,
-      showAdvancedFields,
-      typeButtonText,
-      typeButtonURL
+      showAdvancedFields
     } = this.props;
 
     return (
       <HomeLayoutView
         changeLanguage={changeLanguage}
-        intl={intl}
         keycloak={keycloak}
-        performSearch={this.performSearch}
         redirectFunction={redirectFunction}
         showAdvancedFields={showAdvancedFields}
-        typeButtonText={typeButtonText}
-        typeButtonURL={typeButtonURL}
-        updateSearch={this.updateSearch}
       />
     );
   }
 }
 
 HomeLayoutController.defaultProps = {
-  typeButtonText: <FormattedMessage id="button.advanced.search" />,
-  typeButtonURL: "/secured/advanced",
   showAdvancedFields: false
 };
 

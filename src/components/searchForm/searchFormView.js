@@ -1,28 +1,35 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Loader,
-  Select
-} from "semantic-ui-react";
+import PropTypes from "prop-types";
+import { Button, Checkbox, Form, Input, Select } from "semantic-ui-react";
 
-/**
- *
- * PROPS:                   DEFAULT VALUE:          DESCRIPTION:
- * advancedFieldWidth       400px                   The width to use for advanced fields
- * departments              []                      Array of department options
- * invertLabels             false                   Whether to invert the label text of form fields
- * jobTitles                []                      Array of job title options
- * locations                []                      Array of location options
- * primaryFieldWidth        800px                   The width to use for the primary skills dropdown
- * securityClearances       []                      Array of security clearance options
- * showAdvancedFields       True                    Whether or not to show advanced options or just skills
- * skills                   []                      Array of skill options
- */
+/** UI for search forms used in /home and /results routes */
 class SearchFormView extends Component {
+  static propTypes = {
+    /** Object with key value pairs of <option name>:<array of some sort of options> */
+    advancedOptions: PropTypes.objectOf(PropTypes.array),
+    /** Whether advanced search fields are availabled. NOTE: This can either mean advanced search on home page or filter on results page */
+    advancedSearch: PropTypes.bool,
+    /** Default values for fields. NOTE: Currently only used on results page */
+    defaultValues: PropTypes.object,
+    /** Whether search button should be disabled because of no field changes or not */
+    disableSearch: PropTypes.bool,
+    /** Function to call if the advancedOptions being passed by props are currently null and advanced options are needed */
+    getAdvancedOptions: PropTypes.func,
+    /** Function called when a field changes */
+    handleChange: PropTypes.func.isRequired,
+    /** Function called when a search is performed */
+    handleSubmit: PropTypes.func.isRequired,
+    /** Function called when toggling between basic and advanced search on home page */
+    handleToggle: PropTypes.func.isRequired,
+    /** intl-react translation object */
+    intl: PropTypes.object.isRequired,
+    /** The maximum width the form should try and use */
+    maxFormWidth: PropTypes.number.isRequired,
+    /** Whether the search bar is using the navigation bar layout. NOTE: the way I wrote the code you still need to specify advancedSearch to get advanced fields */
+    navBarLayout: PropTypes.bool
+  };
+
   constructor(props) {
     super(props);
     this.renderAdvancedFields = this.renderAdvancedFields.bind(this);
@@ -30,16 +37,12 @@ class SearchFormView extends Component {
 
   render() {
     const {
-      advancedSearch,
       advancedOptions,
+      advancedSearch,
       defaultValues,
       handleChange,
       handleSubmit,
-      handleToggle,
-      intl,
-      disableSearch,
-      maxFormWidth,
-      navBarLayout
+      maxFormWidth
     } = this.props;
 
     return (
@@ -52,69 +55,86 @@ class SearchFormView extends Component {
           width: maxFormWidth
         }}
       >
+        {/* render correct search fields. NOTE: renderAdvancedSearchFields will also render a broad search field and apply button if navBarLayout is true */}
         {advancedSearch ? (
           this.renderAdvancedFields()
         ) : (
           <Form.Field
             control={Input}
-            name="searchValue"
             defaultValue={defaultValues["searchValue"]}
+            name="searchValue"
+            id="searchValueField"
             onChange={handleChange}
             onSubmit={handleSubmit}
           />
         )}
-        {!navBarLayout && (
-          <Form.Group style={{ padding: "0 auto" }}>
-            <Form.Group style={{ margin: "0 auto" }}>
-              <Form.Field
-                fluid
-                style={{ width: "200px" }}
-                control={Button}
-                color="blue"
-                content={intl.formatMessage({
-                  id: "button.search"
-                })}
-                disabled={disableSearch}
-                onClick={handleSubmit}
-              />
-              {handleToggle && (
-                <Form.Field
-                  basic
-                  color="blue"
-                  content={intl.formatMessage({
-                    id: advancedSearch
-                      ? "button.basic.search"
-                      : "button.advanced.search"
-                  })}
-                  control={Button}
-                  fluid
-                  onClick={handleToggle}
-                  style={{ width: "200px" }}
-                />
-              )}
-            </Form.Group>
-          </Form.Group>
-        )}
+
+        {this.renderMainButtons()}
       </Form>
     );
   }
 
+  /** Renders the search and toggle search type buttons below the form */
+  renderMainButtons() {
+    const {
+      advancedSearch,
+      disableSearch,
+      handleSubmit,
+      handleToggle,
+      intl,
+      navBarLayout
+    } = this.props;
+    return (
+      !navBarLayout && (
+        <Form.Group style={{ padding: "0 auto" }}>
+          <Form.Group style={{ margin: "0 auto" }}>
+            <Form.Field
+              color="blue"
+              content={intl.formatMessage({ id: "button.search" })}
+              control={Button}
+              disabled={disableSearch}
+              fluid
+              id="searchButtonField"
+              onClick={handleSubmit}
+              style={{ width: "200px" }}
+            />
+            {handleToggle && (
+              <Form.Field
+                basic
+                color="blue"
+                content={intl.formatMessage({
+                  id: advancedSearch
+                    ? "button.basic.search"
+                    : "button.advanced.search"
+                })}
+                control={Button}
+                id="toggleButtonField"
+                fluid
+                onClick={handleToggle}
+                style={{ width: "200px" }}
+              />
+            )}
+          </Form.Group>
+        </Form.Group>
+      )
+    );
+  }
+
+  /**
+   * Generates props for a form field
+   * @param {PropTypes.string} name the name of the field.
+   */
   generateCommonProps(name) {
     const { defaultValues, handleChange, handleSubmit } = this.props;
 
     let defaultVal = defaultValues[name];
-    /*if (
-      ["skills", "location", "classification"].includes(name) &&
-      typeof defaultVal !== "object"
-    ) {
-      defaultVal = [defaultVal];
-    }*/
 
     let retVal = {
       fluid: true,
       name: name,
       onChange: handleChange,
-      onSubmit: handleSubmit
+      onSubmit: handleSubmit,
+      id: name + "Field"
     };
 
     if (name === "exFeeder") {
@@ -126,14 +146,17 @@ class SearchFormView extends Component {
     return retVal;
   }
 
+  /**
+   * Render advanced form fields. If navBarLayout is true, a broad search and apply button will be included and all elements will be in a form group.
+   */
   renderAdvancedFields() {
     const {
       advancedOptions,
+      disableSearch,
       getAdvancedOptions,
       handleSubmit,
-      navBarLayout,
-      disableSearch,
-      intl
+      intl,
+      navBarLayout
     } = this.props;
 
     if (!advancedOptions) {
@@ -198,15 +221,14 @@ class SearchFormView extends Component {
         />
         {navBarLayout && (
           <Form.Field
-            fluid
-            style={{ width: "200px" }}
-            control={Button}
             color="blue"
-            content={intl.formatMessage({
-              id: "button.apply"
-            })}
+            content={intl.formatMessage({ id: "button.apply" })}
+            control={Button}
             disabled={disableSearch}
+            fluid
+            id="applyButtonField"
             onClick={handleSubmit}
+            style={{ width: "200px" }}
           />
         )}
       </React.Fragment>

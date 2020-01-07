@@ -1,0 +1,23 @@
+.modalButtonContainer {
+  padding-top: 16pt;
+  text-align: right;
+}
+
+.profilePictureButton {
+  margin-right: -30px;
+  position: absolute;
+  width: 32px;
+  text-align: right;
+  top: 0px !important;
+}
+
+.editButton {
+  background-color: RGBA(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 1px 3px 2px 5px;
+  font-size: 13pt;
+  position: absolute;
+  right: 14pt;
+  top: 22pt;
+  z-index: 10;
+}

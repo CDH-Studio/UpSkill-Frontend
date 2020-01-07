@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Image, Card, Grid, Icon, Button } from "semantic-ui-react";
 import { FormattedMessage } from "react-intl";
+import PropTypes from "prop-types";
+
 import LandingNavBarController from "./landingNavBar/landingNavBarController";
 
 import backgroundImage from "../../assets/homeBackground.jpg";
@@ -8,7 +10,13 @@ import cdhLogo from "../../assets/cdhlogo.png";
 
 import "./landingLayout.css";
 
-export default class landingLayoutController extends Component {
+/** UI for the landing route layout */
+export default class LandingLayoutController extends Component {
+  static propTypes = {
+    /** Function used to change the language intl-react is using */
+    changeLanguage: PropTypes.func.isRequired
+  };
+
   render() {
     const { changeLanguage } = this.props;
 
@@ -16,22 +24,22 @@ export default class landingLayoutController extends Component {
       <React.Fragment>
         <div
           style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            height: "655px",
             position: "fixed",
             top: "0px",
-            width: "100%",
-            height: "655px",
-            backgroundImage: `url(${backgroundImage})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat"
+            width: "100%"
           }}
         >
           <div
             style={{
-              margin: "250px auto 0px",
-              width: "100%",
-              textAlign: "center",
               color: "#ffffff",
-              fontSize: "52pt"
+              fontSize: "52pt",
+              margin: "250px auto 0px",
+              textAlign: "center",
+              width: "100%"
             }}
           >
             Welcome to UpSkill
@@ -46,15 +54,15 @@ export default class landingLayoutController extends Component {
               style={{
                 color: "#ffffff",
                 fontSize: "20pt",
-                marginTop: "18pt",
-                marginBottom: "24pt"
+                marginBottom: "24pt",
+                marginTop: "18pt"
               }}
             >
               <FormattedMessage id="landing.slogan" />
             </div>
             <Button
-              href="/secured/home"
               as="a"
+              href="/secured/home"
               inverted
               style={{ margin: "0 auto", zIndex: "9" }}
             >
@@ -68,7 +76,7 @@ export default class landingLayoutController extends Component {
         </div>
         <Grid style={{ position: "absolute", top: "650px" }}>
           <Grid.Row className="bg-light-gray" style={{ padding: "75px 0px" }}>
-            <div style={{ width: "100%", textAlign: "center" }}>
+            <div style={{ textAlign: "center", width: "100%" }}>
               <h1>
                 <FormattedMessage id="landing.benefits" />
               </h1>
@@ -76,7 +84,7 @@ export default class landingLayoutController extends Component {
             <Card.Group itemsPerRow={3} style={{ padding: "0 50px" }}>
               <Card>
                 <Card.Header
-                  style={{ textAlign: "center", fontWeight: "bold" }}
+                  style={{ fontWeight: "bold", textAlign: "center" }}
                 >
                   <FormattedMessage id="landing.benefit.find.people" />
                 </Card.Header>
@@ -86,7 +94,7 @@ export default class landingLayoutController extends Component {
               </Card>
               <Card>
                 <Card.Header
-                  style={{ textAlign: "center", fontWeight: "bold" }}
+                  style={{ fontWeight: "bold", textAlign: "center" }}
                 >
                   <FormattedMessage id="landing.benefit.wherever.whenever" />
                 </Card.Header>
@@ -96,7 +104,7 @@ export default class landingLayoutController extends Component {
               </Card>
               <Card>
                 <Card.Header
-                  style={{ textAlign: "center", fontWeight: "bold" }}
+                  style={{ fontWeight: "bold", textAlign: "center" }}
                 >
                   <FormattedMessage id="landing.benefit.find.expertise" />
                 </Card.Header>
@@ -144,16 +152,16 @@ export default class landingLayoutController extends Component {
           <Grid.Row
             className="contactSection"
             style={{
-              textAlign: "center",
               padding: "75px",
+              textAlign: "center",
               width: "100%"
             }}
           >
             <p
               style={{
+                fontSize: "32pt",
                 textAlign: "center !important",
-                width: "100%",
-                fontSize: "32pt"
+                width: "100%"
               }}
             >
               <FormattedMessage id="landing.contact.us" />
@@ -165,8 +173,8 @@ export default class landingLayoutController extends Component {
                   <Image
                     src={cdhLogo}
                     style={{
-                      margin: "0 auto !important",
-                      display: "inline-block"
+                      display: "inline-block",
+                      margin: "0 auto !important"
                     }}
                     size="small"
                   />
@@ -174,16 +182,16 @@ export default class landingLayoutController extends Component {
                 <Grid.Column>
                   <span
                     style={{
-                      whiteSpace: "nowrap",
+                      fontSize: "20pt",
                       margin: "0 auto",
-                      fontSize: "20pt"
+                      whiteSpace: "nowrap"
                     }}
                   >
                     <Icon name="envelope" />
                     <a
                       color="#ffffff"
-                      style={{ color: "#ffffff" }}
                       href="mailto:cdhstudio@canada.ca"
+                      style={{ color: "#ffffff" }}
                     >
                       cdhstudio@canada.ca
                     </a>
@@ -200,11 +208,11 @@ export default class landingLayoutController extends Component {
                 </Grid.Column>
                 <Grid.Column>
                   <Button
-                    style={{ margin: "0 auto" }}
                     color="blue"
                     href="https://github.com/CDH-Studio/UpSkill"
+                    style={{ margin: "0 auto" }}
                   >
-                    <Icon style={{ margin: "0px" }} name="github" />
+                    <Icon name="github" style={{ margin: "0px" }} />
                   </Button>
                 </Grid.Column>
                 <Grid.Column>

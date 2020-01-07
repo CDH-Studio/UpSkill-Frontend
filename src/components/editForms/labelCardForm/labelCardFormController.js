@@ -1,14 +1,13 @@
 import React from "react";
 
-import FormManagingComponent from "../common/formTools";
+import FormManagingComponent from "../common/formManagingComponent";
 import LabelCardFormView from "./labelCardFormView";
-import find from "lodash/find";
 import moment from "moment";
 
 export default class LabelCardFormController extends FormManagingComponent {
   constructor(props) {
     super(props);
-    const { profileInfo, editProfileOptions } = this.props;
+    const { profileInfo } = this.props;
 
     const isActing =
       Boolean(profileInfo["actingPeriodStartDate"]) &&
@@ -48,10 +47,10 @@ export default class LabelCardFormController extends FormManagingComponent {
     return (
       <LabelCardFormView
         actingDisabled={actingDisabled}
-        actingPeriodEndDate={this.getCurrentValue("actingPeriodEndDate")}
         actingEndDisabled={
           !Boolean(this.getCurrentValue("actingHasEndDate")) || actingDisabled
         }
+        actingPeriodEndDate={this.getCurrentValue("actingPeriodEndDate")}
         actingPeriodStartDate={this.getCurrentValue("actingPeriodStartDate")}
         buttons={buttons}
         fields={this.fields}
