@@ -31,12 +31,12 @@ class HomeLayoutView extends Component {
     } = this.props;
 
     return (
-      <div>
+      <div role="region" aria-labelledby="region1">
         <NavigationBar keycloak={keycloak} changeLanguage={changeLanguage} />
         <Grid centered style={styles.grid}>
           <Grid.Row style={styles.row}>
             <Image
-              alt="Skillhub"
+              alt="UpSkill Logo"
               size="large"
               src={logo3}
               style={styles.logo}

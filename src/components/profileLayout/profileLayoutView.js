@@ -279,6 +279,19 @@ class ProfileLayoutView extends Component {
               <FormattedMessage id="button.apply" />
             </Button>
           </Menu.Item>
+          <Menu.Item>
+            <Button
+              color="blue"
+              fluid
+              onClick={() =>
+                this.setState(oldState => ({
+                  settingsSidebar: !oldState.settingsSidebar
+                }))
+              }
+            >
+              <FormattedMessage id="button.close"/>
+            </Button>
+          </Menu.Item>
         </Menu.Menu>
         <Menu.Menu>
           <Menu.Header>
