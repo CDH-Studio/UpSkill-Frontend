@@ -75,7 +75,11 @@ export default class NavigationBarView extends Component {
           href="/secured/home"
           style={{ paddingBottom: "8px", paddingTop: "8px" }}
         >
-          <Image src={Logo} style={{ maxWidth: "37px", alt: "UpSkill Logo" }} />
+          <Image
+            alt="Small Image of Upskill logo"
+            src={Logo}
+            style={{ maxWidth: "37px" }}
+          />
         </Menu.Item>
 
         <Menu.Menu position="right">

@@ -85,7 +85,7 @@ export default class Landing extends Component {
                 <img
                   src="assets/images/Logo5.png"
                   height="50px"
-                  alt="Upskill logo"
+                  alt="Upskill Logo"
                   class="topLogo"
                 />
               </a>
