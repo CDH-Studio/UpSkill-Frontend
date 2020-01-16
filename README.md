@@ -57,6 +57,13 @@ Upskill is broken down into two different services: Frontend and Backend.
 
 The following is a guide on how to bring up the pieces of the application for development.
 
+## Web App Development Prerequisites
+
+You must have the following already installed:
+
+- Node.js
+- Visual code
+
 ## Running the Entire Application
 
 To run the frontend service locally, run the following:
