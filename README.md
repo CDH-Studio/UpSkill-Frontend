@@ -37,6 +37,12 @@ Any ISED employee will be able to login to Upskill with their windows credential
   - Full Stack Developer
 - [Trevor Bivi](https://www.linkedin.com/in/trevor-bivi-736181193/)
   - Full Stack Developer
+- [Kate Thornley](https://www.linkedin.com/in/kate-a-w-thornley/)
+  - Full Stack Developer
+- [Suku Sekhon](www.https://www.linkedin.com/in/sukhusekhon/)
+  - Full Stack Developer
+- [Sagal Maxamud](www.linkedin.com/in/s-glmxmd)
+  - Full Stack Developer
 
 # Tech Stack
 
