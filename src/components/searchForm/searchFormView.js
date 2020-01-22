@@ -179,15 +179,13 @@ class SearchFormView extends Component {
             {...this.generateCommonProps("searchValue")}
           />
         )}
-        <style textAlign="left">
-          <Form.Field
-            control={Input}
-            label={intl.formatMessage({
-              id: "advanced.search.form.name"
-            })}
-            {...this.generateCommonProps("name")}
-          />
-        </style>
+        <Form.Field
+          control={Input}
+          label={intl.formatMessage({
+            id: "advanced.search.form.name"
+          })}
+          {...this.generateCommonProps("name")}
+        />
         <Form.Field
           control={Select}
           label={intl.formatMessage({ id: "advanced.search.form.skills" })}
@@ -249,5 +247,12 @@ class SearchFormView extends Component {
     return fields;
   }
 }
+
+const styles = {
+  label: {
+    marginLeft: "0px",
+    color: "#32a87b"
+  }
+};
 
 export default injectIntl(SearchFormView);

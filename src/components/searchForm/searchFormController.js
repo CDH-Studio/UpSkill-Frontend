@@ -146,13 +146,18 @@ class SearchFormController extends Component {
     const fieldKeys = Object.keys(this.fields);
     const basicHomeEmpty =
       !navBarLayout && !advancedSearch && !fieldKeys.includes("searchValue");
+    const advancedKeyLengthTarget = +fieldKeys.includes("searchValue");
+    const advancedHomeEmpty =
+      !navBarLayout &&
+      advancedSearch &&
+      !(fieldKeys.length > advancedKeyLengthTarget);
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
       query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
       redirectFunction("/secured/results?" + encodeURI(query));
-    } else if (basicHomeEmpty) {
+    } else if (basicHomeEmpty && advancedHomeEmpty) {
       this.props.setEmpty(true);
-      console.log("isEmpty value:", this.isEmpty);
+      //console.log("isEmpty value:", this.isEmpty);
     } else {
       query = queryString.stringify(
         {
@@ -203,7 +208,19 @@ class SearchFormController extends Component {
 }
 SearchFormController.defaultProps = {
   advancedFieldWidth: "400px",
-  invertLabels: false,
+  departments: [
+    { key: "department1", text: "department1", value: "department1" },
+    { key: "department2", text: "department2", value: "department2" }
+  ],
+  invertLabels: true,
+  jobTitles: [
+    { key: "Job1", text: "Job1", value: "Job1" },
+    { key: "Job2", text: "Job2", value: "Job2" }
+  ],
+  locations: [
+    { key: "locations1", text: "locations1", value: "locations1" },
+    { key: "locations2", text: "locations2", value: "locations2" }
+  ],
   primaryFieldWidth: "800px",
   showAdvancedFields: true
 };
