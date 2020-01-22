@@ -8,16 +8,32 @@ import HomeLayoutView from "./homeLayoutView";
  * Logic for the layout of the /home route
  */
 class HomeLayoutController extends Component {
-  static propTypes = {
-    /** Function used to change the language intl-react is using */
-    changeLanguage: PropTypes.func.isRequired,
-    /** The object representing the keycloak session */
-    keycloak: PropTypes.object,
-    /** Function to change route */
-    redirectFunction: PropTypes.func.isRequired,
-    /** Whether should display advanced search form or not */
-    showAdvancedFields: PropTypes.bool
-  };
+  constructor(props) {
+    super(props);
+    // To add a user into Users table
+    this.searchQuery = {};
+
+    this.performSearch = this.performSearch.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
+
+    this.state = {
+      isEmpty: false
+    };
+  }
+
+  updateSearch(e, { name, value }) {
+    this.searchQuery[name] = value;
+  }
+
+  performSearch() {
+    const { redirectFunction } = this.props;
+
+    redirectFunction("/secured/results", { searchQuery: this.searchQuery });
+  }
+
+  setEmpty(isEmpty) {
+    this.setState({ isEmpty: isEmpty });
+  }
 
   render() {
     const {
@@ -33,6 +49,11 @@ class HomeLayoutController extends Component {
         keycloak={keycloak}
         redirectFunction={redirectFunction}
         showAdvancedFields={showAdvancedFields}
+        typeButtonText={typeButtonText}
+        typeButtonURL={typeButtonURL}
+        updateSearch={this.updateSearch}
+        setEmpty={this.setEmpty.bind(this)}
+        isEmpty={this.state.isEmpty}
       />
     );
   }
