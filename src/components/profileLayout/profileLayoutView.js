@@ -239,6 +239,8 @@ class ProfileLayoutView extends Component {
           <Menu.Item>
             <Checkbox
               label="Use public view"
+              id="usePubView"
+              toggle
               onChange={(e, { checked }) =>
                 this.setState({ previewPublic: checked })
               }
@@ -262,6 +264,16 @@ class ProfileLayoutView extends Component {
                       .replace(/([A-Z])/g, ".$1")
                       .toLowerCase()
                 })}
+                id={intl.formatMessage({
+                  id:
+                    "profile." +
+                    key
+                      .toString()
+                      .replace(/([A-Z])/g, ".$1")
+                      .toLowerCase()
+                })}
+                defaultChecked={value}
+                toggle
                 onChange={(e, { checked }) =>
                   updateCardVisibility(key, checked)
                 }
@@ -289,7 +301,7 @@ class ProfileLayoutView extends Component {
                 }))
               }
             >
-              <FormattedMessage id="button.close"/>
+              <FormattedMessage id="button.close" />
             </Button>
           </Menu.Item>
         </Menu.Menu>
@@ -895,11 +907,11 @@ class ProfileLayoutView extends Component {
         }}
         formName={intl.formatMessage({ id: "profile.edit.talent.management" })}
         cardName={intl.formatMessage({ id: "profile.talent.management" })}
-        cardIcon={
-          <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
-            <Icon name="external alternate" />
-          </a>
-        }
+        // cardIcon={
+        //   <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
+        //     <Icon name="external alternate" />
+        //   </a>
+        // }
         className="noGapBelow"
       >
         <div>
