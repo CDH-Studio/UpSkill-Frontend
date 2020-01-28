@@ -24,19 +24,21 @@ class AdminDashboard extends Component {
     this.state = {
       type: "dashboard",
       loading: true,
-      data: { user: 0, exFeeder: 0, flagged: 0, inactive: 0 }
+      data: {
+        dashboardCount: { user: 0, exFeeder: 0, flagged: 0, inactive: 0 }
+      }
     };
   }
 
   componentDidMount() {
     document.title = this.getDisplayType(true) + " - Admin | UpSkill";
     this.setState({ loading: true });
-    axios.get(backendAddress + "api/admin/" + this.state.type).then(res =>
+    axios.get(backendAddress + "api/admin/" + this.state.type).then(res => {
       this.setState({
         data: res.data,
         loading: false
-      })
-    );
+      });
+    });
   }
 
   getDisplayType = plural => {
@@ -54,6 +56,9 @@ class AdminDashboard extends Component {
 
   render() {
     const { type, loading, data } = this.state;
+    console.log(data);
+
+    const dashboardCount = data.dashboardCount;
     // const { user, profile, flagged, inactive } = this.state.data;
     const { changeLanguage, keycloak } = this.props;
 
@@ -70,7 +75,7 @@ class AdminDashboard extends Component {
         <Statistic.Group color="blue" widths={16}>
           <Statistic>
             <Statistic.Value>
-              <Icon name="user circle" color="green" /> {data.user}
+              <Icon name="user circle" color="green" /> {dashboardCount.user}
             </Statistic.Value>
             <Statistic.Label>
               <FormattedMessage id="admin.dashboard.total.users" />
@@ -79,7 +84,7 @@ class AdminDashboard extends Component {
 
           <Statistic>
             <Statistic.Value>
-              <Icon name="user circle" color="grey" /> {data.inactive}
+              <Icon name="user circle" color="grey" /> {dashboardCount.inactive}
             </Statistic.Value>
             <Statistic.Label>
               <FormattedMessage id="admin.dashboard.inactive.users" />
@@ -88,7 +93,7 @@ class AdminDashboard extends Component {
 
           <Statistic>
             <Statistic.Value>
-              <Icon name="hide circle" color="red" /> {data.flagged}
+              <Icon name="hide circle" color="red" /> {dashboardCount.flagged}
             </Statistic.Value>
             <Statistic.Label>
               <FormattedMessage id="admin.dashboard.flagged.profiles" />
@@ -97,7 +102,8 @@ class AdminDashboard extends Component {
 
           <Statistic>
             <Statistic.Value>
-              <Icon name="address book circle" color="teal" /> {data.exFeeder}
+              <Icon name="address book circle" color="teal" />{" "}
+              {dashboardCount.exFeeder}
             </Statistic.Value>
             <Statistic.Label>
               {/* <Icon
