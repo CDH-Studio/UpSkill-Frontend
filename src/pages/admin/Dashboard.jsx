@@ -56,7 +56,6 @@ class AdminDashboard extends Component {
 
   render() {
     const { type, loading, data } = this.state;
-    console.log(data);
 
     const dashboardCount = data.dashboardCount;
     // const { user, profile, flagged, inactive } = this.state.data;
