@@ -75,17 +75,14 @@ export default class NavigationBarView extends Component {
           href="/secured/home"
           style={{ paddingBottom: "8px", paddingTop: "8px" }}
         >
-          <Image
-            alt="Small Image of Upskill logo"
-            src={Logo}
-            style={{ maxWidth: "37px" }}
-          />
+          <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
 
         <Menu.Menu position="right">
           <Popup
             flowing
-            position="top center"
+            on="click"
+            position="top"
             trigger={
               <Menu.Item>
                 <Icon name="user" size="large" /> {name}
