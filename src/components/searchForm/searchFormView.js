@@ -55,12 +55,17 @@ class SearchFormView extends Component {
           width: maxFormWidth
         }}
       >
-        {/* render correct search fields. NOTE: renderAdvancedSearchFields will also render a broad search field and apply button if navBarLayout is true */}
+        <label htmlFor="search" hidden={true}>
+          Search
+        </label>
         {advancedSearch ? (
           this.renderAdvancedFields()
         ) : (
           <Form.Field
             control={Input}
+            placeholder="Search"
+            name="searchValue"
+            id="search"
             defaultValue={defaultValues["searchValue"]}
             name="searchValue"
             id="searchValueField"
@@ -107,11 +112,7 @@ class SearchFormView extends Component {
                     ? "button.basic.search"
                     : "button.advanced.search"
                 })}
-                control={Button}
-                id="toggleButtonField"
-                fluid
-                onClick={handleToggle}
-                style={{ width: "200px" }}
+                onClick={handleSubmit}
               />
             )}
           </Form.Group>
@@ -130,7 +131,6 @@ class SearchFormView extends Component {
     let defaultVal = defaultValues[name];
 
     let retVal = {
-      fluid: true,
       name: name,
       onChange: handleChange,
       onSubmit: handleSubmit,
@@ -155,8 +155,10 @@ class SearchFormView extends Component {
       disableSearch,
       getAdvancedOptions,
       handleSubmit,
-      intl,
-      navBarLayout
+      navBarLayout,
+      disableSearch,
+      emptyFieldWarning,
+      intl
     } = this.props;
 
     if (!advancedOptions) {
@@ -177,7 +179,9 @@ class SearchFormView extends Component {
         )}
         <Form.Field
           control={Input}
-          label={intl.formatMessage({ id: "advanced.search.form.name" })}
+          label={intl.formatMessage({
+            id: "advanced.search.form.name"
+          })}
           {...this.generateCommonProps("name")}
         />
         <Form.Field
@@ -219,6 +223,7 @@ class SearchFormView extends Component {
           label={intl.formatMessage({ id: "advanced.search.form.ex.feeder" })}
           {...this.generateCommonProps("exFeeder")}
         />
+
         {navBarLayout && (
           <Form.Field
             color="blue"
@@ -240,5 +245,12 @@ class SearchFormView extends Component {
     return fields;
   }
 }
+
+const styles = {
+  label: {
+    marginLeft: "0px",
+    color: "#32a87b"
+  }
+};
 
 export default injectIntl(SearchFormView);
