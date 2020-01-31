@@ -131,7 +131,6 @@ class SearchFormView extends Component {
     let defaultVal = defaultValues[name];
 
     let retVal = {
-      //fluid: true,
       name: name,
       onChange: handleChange,
       onSubmit: handleSubmit,
