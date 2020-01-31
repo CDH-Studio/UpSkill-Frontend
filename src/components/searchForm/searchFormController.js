@@ -5,7 +5,6 @@ import prepareInfo from "../../functions/prepareInfo";
 import queryString from "query-string";
 import { injectIntl } from "react-intl";
 import config from "../../config";
-import { Popup, Message } from "semantic-ui-react";
 
 import SearchFormView from "./searchFormView";
 
@@ -141,27 +140,10 @@ class SearchFormController extends Component {
     const oldUrl = window.location.toString();
     let query;
 
-    const { navBarLayout } = this.props;
-    const { advancedSearch } = this.state;
-    const fieldKeys = Object.keys(this.fields);
-    const basicHomeEmpty =
-      !navBarLayout && !advancedSearch && !fieldKeys.includes("searchValue");
-    const advancedKeyLengthTarget = +fieldKeys.includes("searchValue");
-    const advancedHomeEmpty =
-      !navBarLayout &&
-      !advancedSearch &&
-      !(fieldKeys.length > advancedKeyLengthTarget);
-
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
-      if (fieldKeys.length > advancedKeyLengthTarget) {
-        query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
-        redirectFunction("/secured/results?" + encodeURI(query));
-      } else if (!advancedKeyLengthTarget) {
-        this.props.setEmpty(true);
-      }
-    } else if (basicHomeEmpty) {
-      this.props.setEmpty(true);
+      query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
+      redirectFunction("/secured/results?" + encodeURI(query));
     } else {
       query = queryString.stringify(
         {
@@ -192,6 +174,7 @@ class SearchFormController extends Component {
 
   render() {
     const { navBarLayout, maxFormWidth, toggleButton } = this.props;
+
     return (
       <SearchFormView
         advancedOptions={this.state.advancedOptions}
@@ -203,28 +186,14 @@ class SearchFormController extends Component {
         handleSubmit={this.handleSubmit}
         handleToggle={toggleButton ? this.handleToggle : null}
         maxFormWidth={maxFormWidth}
-        defaultValues={this.fields}
-        disableSearch={this.state.disableSearch}
-        isEmpty={this.isEmpty}
+        navBarLayout={navBarLayout}
       />
     );
   }
 }
 SearchFormController.defaultProps = {
   advancedFieldWidth: "400px",
-  departments: [
-    { key: "department1", text: "department1", value: "department1" },
-    { key: "department2", text: "department2", value: "department2" }
-  ],
-  invertLabels: true,
-  jobTitles: [
-    { key: "Job1", text: "Job1", value: "Job1" },
-    { key: "Job2", text: "Job2", value: "Job2" }
-  ],
-  locations: [
-    { key: "locations1", text: "locations1", value: "locations1" },
-    { key: "locations2", text: "locations2", value: "locations2" }
-  ],
+  invertLabels: false,
   primaryFieldWidth: "800px",
   showAdvancedFields: true
 };

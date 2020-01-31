@@ -39,9 +39,7 @@ export default class LandingLayoutController extends Component {
               fontSize: "52pt",
               margin: "250px auto 0px",
               textAlign: "center",
-              color: "#ffffff",
-              fontSize: "52pt",
-              fontWeight: "bold"
+              width: "100%"
             }}
           >
             Welcome to UpSkill
@@ -54,16 +52,10 @@ export default class LandingLayoutController extends Component {
           >
             <div
               style={{
-                backgroundColor: "#062542",
-                borderRadius: "9px",
                 color: "#ffffff",
                 fontSize: "20pt",
-                marginTop: "24pt",
                 marginBottom: "24pt",
-                marginLeft: "auto",
-                marginRight: "auto",
-                padding: "6px",
-                width: "600px"
+                marginTop: "18pt"
               }}
             >
               <FormattedMessage id="landing.slogan" />
@@ -72,11 +64,7 @@ export default class LandingLayoutController extends Component {
               as="a"
               href="/secured/home"
               inverted
-              style={{
-                margin: "0 auto",
-                zIndex: "9",
-                backgroundColor: "#427C9E"
-              }}
+              style={{ margin: "0 auto", zIndex: "9" }}
             >
               <FormattedMessage id="landing.login.button" />
             </Button>
