@@ -582,14 +582,15 @@ class ProfileLayoutView extends Component {
                   }}
                 >
                   <h3 style={{ marginBottom: "3px" }}>{jobTitle}</h3>
-
                   <Popup
                     on="hover"
                     wide="very"
                     trigger={
-                      <h5 className="noGapAbove">
-                        {branch} <Icon name="angle down" />
-                      </h5>
+                      <p className="noGapAbove" style={{ fontSize: "25px" }}>
+                        <b>
+                          {branch} <Icon name="angle down" />
+                        </b>
+                      </p>
                     }
                   >
                     <Popup.Content>
@@ -763,7 +764,6 @@ class ProfileLayoutView extends Component {
       );
     }
     //When using the most wide or most skinny view there is only one column of labeled cards
-
     return (
       <ProfileCardController
         form={LabelCardsFormController}
@@ -1097,13 +1097,8 @@ class ProfileLayoutView extends Component {
     );
   }
 
-  /**
-   * Renders a row with a Label text in the first column and a content elemenet or a fallback message in the second column
-   * @param {PropTypes.string} labelText The text to place in the label
-   * @param {PropTypes.element} contentElement The content element
-   * @param {PropTypes.bool} disabled Whether the fallback message should be used even if a content element was provided or not
-   */
-  renderLabeledItem(labelText, contentElement, disabled) {
+  //Renders the label along with the information associated with the label's text
+  renderLabeledItem(labelText, contentText, disabled) {
     const { intl } = this.props;
     return (
       <Grid.Row columns={2} style={{ padding: "3px 0px" }}>
@@ -1111,15 +1106,22 @@ class ProfileLayoutView extends Component {
           style={{ textAlign: "center", padding: "3px 0px 3px 3px" }}
         >
           <Label
+            color="blue"
+            basic
             className={disabled ? "disabled" : null}
             fluid
-            style={{ fontSize: "12pt", fontWeight: "normal", width: "90%" }}
+            style={{
+              fontSize: "12pt",
+              fontWeight: "bold",
+              width: "90%",
+              padding: "5px"
+            }}
           >
-            {labelText}
+            <p style={{ color: "black" }}>{labelText}</p>
           </Label>
         </Grid.Column>
-        <Grid.Column style={{ padding: "0px" }}>
-          {disabled ? intl.formatMessage({ id: "profile.na" }) : contentElement}
+        <Grid.Column style={{ padding: "10px" }}>
+          {disabled ? intl.formatMessage({ id: "profile.na" }) : contentText}
         </Grid.Column>
       </Grid.Row>
     );

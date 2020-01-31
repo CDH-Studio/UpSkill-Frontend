@@ -19,11 +19,13 @@ import NavigationBar from "../navigationBar/navigationBarController";
  */
 class HomeLayoutView extends Component {
   emptyFieldWarning() {
+    console.log("Before if statement", this.props.isEmpty);
     if (this.props.isEmpty == true) {
+      console.log("in emptyFieldWarning function");
       return (
         <div>
           {/* <Message
-            attached
+            attachedktott
             content="To search: input a value into the search bar below. Example entries: John Doe, Javascript, CIOB"
           /> */}
           <Label basic color="red" pointing="below">

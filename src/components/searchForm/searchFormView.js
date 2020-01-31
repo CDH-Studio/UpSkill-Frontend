@@ -55,7 +55,7 @@ class SearchFormView extends Component {
           width: maxFormWidth
         }}
       >
-        <label htmlFor="search" hidden="true">
+        <label htmlFor="search" hidden={true}>
           Search
         </label>
         {advancedSearch ? (
@@ -132,7 +132,7 @@ class SearchFormView extends Component {
     let defaultVal = defaultValues[name];
 
     let retVal = {
-      fluid: true,
+      //fluid: true,
       name: name,
       onChange: handleChange,
       onSubmit: handleSubmit,

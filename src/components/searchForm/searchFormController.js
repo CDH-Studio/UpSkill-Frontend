@@ -149,15 +149,20 @@ class SearchFormController extends Component {
     const advancedKeyLengthTarget = +fieldKeys.includes("searchValue");
     const advancedHomeEmpty =
       !navBarLayout &&
-      advancedSearch &&
+      !advancedSearch &&
       !(fieldKeys.length > advancedKeyLengthTarget);
+
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
-      query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
-      redirectFunction("/secured/results?" + encodeURI(query));
-    } else if (basicHomeEmpty && advancedHomeEmpty) {
+      if (fieldKeys.length > advancedKeyLengthTarget) {
+        query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
+        redirectFunction("/secured/results?" + encodeURI(query));
+      } else if (!advancedKeyLengthTarget) {
+        this.props.setEmpty(true);
+      }
+    } else if (basicHomeEmpty) {
       this.props.setEmpty(true);
-      //console.log("isEmpty value:", this.isEmpty);
+      console.log("isEmpty value:", this.isEmpty);
     } else {
       query = queryString.stringify(
         {
