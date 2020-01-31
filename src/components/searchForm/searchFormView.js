@@ -112,7 +112,6 @@ class SearchFormView extends Component {
                     ? "button.basic.search"
                     : "button.advanced.search"
                 })}
-                //disabled={disableSearch}
                 onClick={handleSubmit}
               />
             )}

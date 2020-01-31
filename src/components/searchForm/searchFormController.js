@@ -162,7 +162,6 @@ class SearchFormController extends Component {
       }
     } else if (basicHomeEmpty) {
       this.props.setEmpty(true);
-      console.log("isEmpty value:", this.isEmpty);
     } else {
       query = queryString.stringify(
         {
