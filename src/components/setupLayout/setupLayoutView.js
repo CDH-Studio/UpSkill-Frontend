@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import NavigationBar from "../navigationBar/navigationBarController";
 import { FormattedMessage } from "react-intl";
-import { Grid, Button, Card, Dimmer, Loader, Modal } from "semantic-ui-react";
+import {
+  Grid,
+  Button,
+  Card,
+  Dimmer,
+  Loader,
+  Modal,
+  Form
+} from "semantic-ui-react";
 import PropTypes from "prop-types";
 
 export default class RegisterLayoutView extends Component {
@@ -173,6 +181,61 @@ export default class RegisterLayoutView extends Component {
               );
             })}
           </Card.Group>
+        </Modal.Content>
+      </Modal>
+    );
+  }
+
+  /** Render modal used to get user's PRI info */
+  renderPRIModal() {
+    const { gedsIndex, gedsInfoList, setGedsIndex } = this.props;
+    return (
+      <Modal
+        closeOnDimmerClick={false}
+        closeOnEscape={false}
+        open={gedsIndex === null}
+      >
+        <Modal.Content>
+          <h1 style={{ textAlign: "center" }}>
+            <FormattedMessage id="setup.select.geds.card" />
+          </h1>
+          <Form.Input label="PRI" required type="text" placeholder="Your PRI" />
+
+          {/* <Card.Group stackable itemsPerRow={3}>
+            {gedsInfoList.map((element, index) => {
+              return (
+                <Card onClick={(e, o) => setGedsIndex(index)}>
+                  <Card.Content>
+                    <div style={{ fontSize: "18pt", color: "#27348b" }}>
+                      {element.firstName + " " + element.lastName}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "16pt",
+                        color: "#444444"
+                      }}
+                    >
+                      {element.jobTitle}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "13pt",
+                        color: "#000000",
+                        paddingBottom: "8pt"
+                      }}
+                    >
+                      {element.organization &&
+                        element.organization.length &&
+                        element.organization[0].description}
+                    </div>
+                    <div style={{ fontSize: "13pt", color: "#000000" }}>
+                      {element.telephone}
+                    </div>
+                  </Card.Content>
+                </Card>
+              );
+            })}
+          </Card.Group> */}
         </Modal.Content>
       </Modal>
     );

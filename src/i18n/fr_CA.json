@@ -101,6 +101,7 @@
   "setup.experience": "Expérience",
   "setup.add.item": "Ajouter",
   "setup.select.geds.card": "Sélectionnez vos informations d'emploie",
+  "setup.enter.pri.card": "Veuillez entrer votre IRP pour le synchroniser avec vos données MyGCHR",
   "setup.projects": "Projets",
   "setup.career.interests": "Objectifs professionels",
   "setup.save.and.finish": "Enregistrer et terminer",

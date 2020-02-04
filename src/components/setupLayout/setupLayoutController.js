@@ -23,7 +23,7 @@ import TalentManagmentController from "../editForms/talentManagementForm/talentM
 import ProjectsFormController from "../editForms/projectsForm/projectsFormController";
 import CareerInterestsFormController from "../editForms/careerInterestsForm/careerInterestsFormController";
 
-const { backendAddress } = config;
+const { backendAddress, mygchrBackendAddress } = config;
 
 const formList = [
   {
@@ -80,7 +80,7 @@ class SetupLayoutController extends Component {
     changeLanguage: PropTypes.func.isRequired,
     /** react-intl translation object */
     intl: PropTypes.object.isRequired,
-    /** keycloak autherization object */
+    /** keycloak authorization object */
     keycloak: PropTypes.object,
     /** Function to change route */
     redirectFunction: PropTypes.func
@@ -177,6 +177,12 @@ class SetupLayoutController extends Component {
       .get(backendAddress + "api/profGen/" + localStorage.getItem("userId"))
       .then(response => response.data);
 
+    let mygchrInfo = await axios
+      .get(
+        mygchrBackendAddress + "api/profGen/" + localStorage.getItem("userPRI")
+      )
+      .then(response => response.data);
+
     let epo = {
       skills: skillOptions,
       careerMobility: formatOptions(
@@ -222,7 +228,8 @@ class SetupLayoutController extends Component {
 
     this.setState({
       editProfileOptions: epo,
-      gedsInfoList
+      gedsInfoList,
+      mygchrInfo
     });
   }
 

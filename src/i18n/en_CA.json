@@ -92,6 +92,7 @@
   "setup.experience": "Experience",
   "setup.add.item": "Add Item",
   "setup.select.geds.card": "Select your Goverment Employee Database information",
+  "setup.enter.pri.card": "Please enter your PRI to sync with MyGCHR",
   "setup.projects": "Projects",
   "setup.career.interests": "Career interests",
   "setup.save.and.finish": "Save and finish",
