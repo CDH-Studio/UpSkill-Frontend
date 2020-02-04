@@ -5,6 +5,7 @@ import prepareInfo from "../../functions/prepareInfo";
 import queryString from "query-string";
 import { injectIntl } from "react-intl";
 import config from "../../config";
+import { Popup, Message } from "semantic-ui-react";
 
 import SearchFormView from "./searchFormView";
 
@@ -140,10 +141,18 @@ class SearchFormController extends Component {
     const oldUrl = window.location.toString();
     let query;
 
+    const { navBarLayout } = this.props;
+    const { advancedSearch } = this.state;
+    const fieldKeys = Object.keys(this.fields);
+    const basicHomeEmpty =
+      !navBarLayout && !advancedSearch && !fieldKeys.includes("searchValue");
     if (this.state.advancedSearch) {
       delete this.fields.fuzzySearch;
       query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
       redirectFunction("/secured/results?" + encodeURI(query));
+    } else if (basicHomeEmpty) {
+      this.props.setEmpty(true);
+      console.log("isEmpty value:", this.isEmpty);
     } else {
       query = queryString.stringify(
         {
@@ -187,6 +196,9 @@ class SearchFormController extends Component {
         handleToggle={toggleButton ? this.handleToggle : null}
         maxFormWidth={maxFormWidth}
         navBarLayout={navBarLayout}
+        defaultValues={this.fields}
+        disableSearch={this.state.disableSearch}
+        isEmpty={this.isEmpty}
       />
     );
   }
