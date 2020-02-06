@@ -88,6 +88,7 @@
   "setup.skills": "Skills",
   "setup.competencies": "Competencies",
   "setup.developmental.goals": "Developmental goals",
+  "setup.mentorshipSkills": "Mentoring services",
   "setup.education": "Education",
   "setup.experience": "Experience",
   "setup.add.item": "Add Item",
@@ -172,6 +173,7 @@
   "profile.sector": "Sector",
   "profile.security": "Security",
   "profile.skills": "Skills",
+  "profile.mentorship.skills": "Mentoring Services",
   "profile.temporary.role": "Temporary role",
 
   "profile.tenure": "Substantive",
@@ -192,6 +194,7 @@
   "profile.shrink": "shrink",
   "profile.expand": "expand",
   "profile.edit.skills": "Edit skills",
+  "profile.edit.mentorship.skills": "Edit mentoring services",
   "profile.edit.competencies": "Edit competencies",
   "profile.edit.developmental.goals": "Edit developmental goals",
   "profile.edit.education": "Edit education",

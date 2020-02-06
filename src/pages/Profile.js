@@ -36,6 +36,9 @@ class Profile extends Component {
       profileInfo.developmentalGoals = convertDropdownOptions(
         profileInfo.developmentalGoals
       );
+      profileInfo.mentorshipSkills = convertDropdownOptions(
+        profileInfo.mentorshipSkills
+      );
 
       this.setState({
         profileInfo: profileInfo,

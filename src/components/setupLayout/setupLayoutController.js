@@ -19,6 +19,7 @@ import LanguageProficiencyFormController from "../editForms/languageProficiencyF
 import ManagerFormController from "../editForms/managerForm/managerFormController";
 import PrimaryInformationFormController from "../editForms/primaryInformationForm/primaryInformationFormController";
 import SkillsFormController from "../editForms/skillsForm/skillsFormController";
+import MentorshipSkillsFormController from "../editForms/mentorshipSkillsForm/mentorshipSkillsFormController";
 import TalentManagmentController from "../editForms/talentManagementForm/talentManagementFormController";
 import ProjectsFormController from "../editForms/projectsForm/projectsFormController";
 import CareerInterestsFormController from "../editForms/careerInterestsForm/careerInterestsFormController";
@@ -45,6 +46,10 @@ const formList = [
   {
     name: <FormattedMessage id="setup.talent.management" />,
     form: TalentManagmentController
+  },
+  {
+    name: <FormattedMessage id="setup.mentorshipSkills" />,
+    form: MentorshipSkillsFormController
   },
   { name: <FormattedMessage id="setup.skills" />, form: SkillsFormController },
   {
@@ -172,6 +177,9 @@ class SetupLayoutController extends Component {
     let competencyOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getCompetency")).data
     );
+    let mentorshipSkillOptions = formatOptions(
+      (await axios.get(backendAddress + "api/option/getMentorshipSkill")).data
+    );
 
     let gedsInfoList = await axios
       .get(backendAddress + "api/profGen/" + localStorage.getItem("userId"))
@@ -179,6 +187,7 @@ class SetupLayoutController extends Component {
 
     let epo = {
       skills: skillOptions,
+      mentorshipSkills: mentorshipSkillOptions,
       careerMobility: formatOptions(
         (await axios.get(backendAddress + "api/option/getCareerMobility")).data
       ),
