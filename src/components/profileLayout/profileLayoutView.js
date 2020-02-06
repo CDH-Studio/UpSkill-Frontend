@@ -520,7 +520,8 @@ class ProfileLayoutView extends Component {
       organizationList,
       team,
       telephone,
-      twitterUrl
+      twitterUrl,
+      manager
     } = profileInfo;
 
     return (
@@ -549,6 +550,7 @@ class ProfileLayoutView extends Component {
                   {firstName} {lastName}
                 </h1>
               </Grid.Row>
+
               <Grid.Row className="noGapBelow">
                 <EditWrapperController
                   form={null}
@@ -584,7 +586,7 @@ class ProfileLayoutView extends Component {
                     trigger={
                       <p className="noGapAbove" style={{ fontSize: "25px" }}>
                         <b>
-                          {branch} <Icon name="angle down" />
+                          {branch} <Icon name="fork" />
                         </b>
                       </p>
                     }
@@ -597,11 +599,16 @@ class ProfileLayoutView extends Component {
                   </Popup>
 
                   <div className="phoneNumberArea">
-                    <FormattedMessage id="profile.telephone" />:
+                    <b>
+                      <FormattedMessage id="profile.telephone" />:
+                    </b>
                     {this.renderValue(telephone)}
                   </div>
                   <div className="phoneNumberArea">
-                    <FormattedMessage id="profile.cellphone" />:
+                    <b>
+                      <FormattedMessage id="profile.cellphone" />:
+                    </b>
+
                     {this.renderValue(cellphone)}
                   </div>
                   <div>{email}</div>
@@ -787,18 +794,27 @@ class ProfileLayoutView extends Component {
 
   renderManagerCard() {
     const { profileInfo, intl } = this.props;
-    const { manager } = profileInfo;
+    const { manager, team } = profileInfo;
 
     return (
       <ProfileCardController
         form={ManagerFormController}
         formName={intl.formatMessage({ id: "profile.edit.manager" })}
+        cardName={intl.formatMessage({ id: "profile.team" })}
         className="noGapAbove"
       >
-        <span className="colorLabel">
-          <FormattedMessage id="profile.manager" />:
-        </span>
-        <span>{this.renderValue(manager)}</span>
+        <div>
+          <span className="colorLabel" style={{ fontWeight: "bold" }}>
+            <FormattedMessage id="profile.manager" />:
+          </span>
+          <span>{this.renderValue(manager)}</span>
+        </div>
+        <div>
+          <span className="colorLabel" style={{ fontWeight: "bold" }}>
+            <FormattedMessage id="profile.team" />:
+          </span>
+          <span>{this.renderValue(team)}</span>
+        </div>
       </ProfileCardController>
     );
   }
@@ -994,7 +1010,6 @@ class ProfileLayoutView extends Component {
       <HistoryCardController
         cardEntries={careerSummary}
         cardName={intl.formatMessage({ id: "profile.experience" })}
-        /*editOptionPaths={}*/
         form={CareerOverviewFormController}
         formName={intl.formatMessage({ id: "profile.edit.experience" })}
       />
