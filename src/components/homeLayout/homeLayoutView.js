@@ -34,10 +34,10 @@ class HomeLayoutView extends Component {
     if (this.props.isEmpty == true) {
       return (
         <div>
-          {/* <Message attached content-"To search: input a value into the search bar below. Example entries: John Doe, JavaScript, CIOB"/> */}
-          <label basic color="red" pointing="below">
+          {/* <Message attached content "To search: input a value into the search bar below. Example entries: John Doe, JavaScript, CIOB"/> */}
+          <Label basic color="red" pointing="below">
             To Search: input a value into the search bar below.
-          </label>
+          </Label>
         </div>
       );
     }

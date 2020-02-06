@@ -86,7 +86,7 @@ export default class NavigationBarView extends Component {
           <Popup
             flowing
             on="click"
-            position="top"
+            position="top center"
             trigger={
               <Menu.Item>
                 <Icon name="user" size="large" /> {name}

@@ -56,7 +56,7 @@ class SearchFormView extends Component {
         }}
       >
         {/* render correct search fields. NOTE: renderAdvancedSearchFields will also render a broad search field and apply button if navBarLayout is true */}
-        <label htmlFor="search" hidden="true">
+        <label htmlFor="search" hidden={true}>
           Search
         </label>
         {advancedSearch ? (
@@ -118,7 +118,6 @@ class SearchFormView extends Component {
                 fluid
                 onClick={handleToggle}
                 style={{ width: "200px" }}
-                onClick={handleSubmit}
               />
             )}
           </Form.Group>
@@ -137,7 +136,7 @@ class SearchFormView extends Component {
     let defaultVal = defaultValues[name];
 
     let retVal = {
-      fluid: true,
+      //fluid: true,
       name: name,
       onChange: handleChange,
       onSubmit: handleSubmit,
@@ -249,5 +248,12 @@ class SearchFormView extends Component {
     return fields;
   }
 }
+
+const styles = {
+  label: {
+    marginLeft: "0px",
+    color: "#32a87b"
+  }
+};
 
 export default injectIntl(SearchFormView);
