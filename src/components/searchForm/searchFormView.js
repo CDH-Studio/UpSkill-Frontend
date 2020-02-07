@@ -136,7 +136,7 @@ class SearchFormView extends Component {
     let defaultVal = defaultValues[name];
 
     let retVal = {
-      //fluid: true,
+      fluid: true,
       name: name,
       onChange: handleChange,
       onSubmit: handleSubmit,
@@ -162,8 +162,7 @@ class SearchFormView extends Component {
       getAdvancedOptions,
       handleSubmit,
       intl,
-      navBarLayout,
-      emptyFileWarning
+      navBarLayout
     } = this.props;
 
     if (!advancedOptions) {
@@ -243,17 +242,11 @@ class SearchFormView extends Component {
     );
 
     if (navBarLayout) {
+      console.log("NAV BAR LAYOUT DETECTED?", navBarLayout);
       return <Form.Group widths="equal">{fields}</Form.Group>;
     }
     return fields;
   }
 }
-
-const styles = {
-  label: {
-    marginLeft: "0px",
-    color: "#32a87b"
-  }
-};
 
 export default injectIntl(SearchFormView);

@@ -39,7 +39,7 @@ class SearchFormController extends Component {
 
     this.state = {
       advancedOptions: null,
-      advancedSearch: false,
+      advancedSearch: null,
       disableSearch: Object.entries(this.fields).length === 0
     };
 
@@ -151,13 +151,15 @@ class SearchFormController extends Component {
       !navBarLayout &&
       advancedSearch &&
       !(fieldKeys.length > advancedKeyLengthTarget);
+    console.log("NAV BAR LAYOUT: ", this.props.navBarLayout);
     if (this.state.advancedSearch) {
       if (advancedHomeEmpty) {
         this.props.setEmpty(true);
       } else {
         delete this.fields.fuzzySearch;
+
         query = queryString.stringify(this.fields, { arrayFormat: "bracket" });
-        redirectFunction("/secured/results?" + encodeURI(query));
+        redirectFunction("/secured/results/fuzzySearch?" + encodeURI(query));
       }
     } else if (basicHomeEmpty) {
       this.props.setEmpty(true);
