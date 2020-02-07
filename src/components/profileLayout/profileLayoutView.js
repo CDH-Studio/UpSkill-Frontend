@@ -239,7 +239,7 @@ class ProfileLayoutView extends Component {
           </Menu.Header>
           <Menu.Item>
             <Checkbox
-              label="usePubView"
+              label="Use Public View"
               toggle
               onChange={(e, { checked }) =>
                 this.setState({ previewPublic: checked })
