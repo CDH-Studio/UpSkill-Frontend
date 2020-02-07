@@ -39,7 +39,7 @@ class SearchFormController extends Component {
 
     this.state = {
       advancedOptions: null,
-      advancedSearch: null,
+      advancedSearch: defaultAdvanced,
       disableSearch: Object.entries(this.fields).length === 0
     };
 
