@@ -36,14 +36,17 @@ export default class profileCardView extends Component {
           id={id}
           style={heightStyle}
         >
-          <Card.Content>
+          <Card.Header style={{ padding: "0px" }}>
             {cardName && (
-              <h5 className="blueColoredText">
+              <h3
+                className="blueColoredText"
+                style={{ fontSize: "25px", color: "#fff", paddingLeft: "15px" }}
+              >
                 {cardName} {cardIcon}
-              </h5>
+              </h3>
             )}
-            {children}
-          </Card.Content>
+          </Card.Header>
+          <Card.Content>{children}</Card.Content>
         </Card>
       </EditWrapperController>
     );

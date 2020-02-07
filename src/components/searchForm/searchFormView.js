@@ -56,11 +56,17 @@ class SearchFormView extends Component {
         }}
       >
         {/* render correct search fields. NOTE: renderAdvancedSearchFields will also render a broad search field and apply button if navBarLayout is true */}
+        <label htmlFor="search" hidden={true}>
+          Search
+        </label>
         {advancedSearch ? (
           this.renderAdvancedFields()
         ) : (
           <Form.Field
             control={Input}
+            placeholder="Search"
+            name="searchValue"
+            id="search"
             defaultValue={defaultValues["searchValue"]}
             name="searchValue"
             id="searchValueField"
@@ -92,7 +98,7 @@ class SearchFormView extends Component {
               color="blue"
               content={intl.formatMessage({ id: "button.search" })}
               control={Button}
-              disabled={disableSearch}
+              //disabled={disableSearch}
               fluid
               id="searchButtonField"
               onClick={handleSubmit}
@@ -180,6 +186,7 @@ class SearchFormView extends Component {
           label={intl.formatMessage({ id: "advanced.search.form.name" })}
           {...this.generateCommonProps("name")}
         />
+
         <Form.Field
           control={Select}
           label={intl.formatMessage({ id: "advanced.search.form.skills" })}
@@ -235,6 +242,7 @@ class SearchFormView extends Component {
     );
 
     if (navBarLayout) {
+      console.log("NAV BAR LAYOUT DETECTED?", navBarLayout);
       return <Form.Group widths="equal">{fields}</Form.Group>;
     }
     return fields;
