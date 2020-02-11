@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 
-import SkillsTagFormController from "../common/skillsTagForm/skillsTagFormController";
+import MentorshipSkillsTagFormController from "../common/mentorshipSkillsTagForm/mentorshipSkillsTagFormController";
 
 class MentorshipSkillsFormView extends Component {
   render() {
@@ -10,7 +10,7 @@ class MentorshipSkillsFormView extends Component {
     // const { maxMentorshipSkillItems } = editProfileOptions;
 
     return (
-      <SkillsTagFormController
+      <MentorshipSkillsTagFormController
         dropdownName="mentorshipSkills"
         // maxItems={maxMentorshipSkillItems}
         maxItems={maxSkillItems}

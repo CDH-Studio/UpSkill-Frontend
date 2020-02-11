@@ -171,6 +171,9 @@ class SetupLayoutController extends Component {
    * Gathers the information needed from geds and the form options
    */
   async getSetupData() {
+    let categoryOptions = formatOptions(
+      (await axios.get(backendAddress + "api/option/getCategory")).data
+    );
     let skillOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getSkill")).data
     );
@@ -186,6 +189,7 @@ class SetupLayoutController extends Component {
       .then(response => response.data);
 
     let epo = {
+      categories: categoryOptions,
       skills: skillOptions,
       mentorshipSkills: mentorshipSkillOptions,
       careerMobility: formatOptions(
