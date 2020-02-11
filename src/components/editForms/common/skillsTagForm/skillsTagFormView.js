@@ -112,7 +112,7 @@ class SkillsTagFormView extends Component {
     const dropdownOptionsSkills = editProfileOptions["skills"];
     const dropdownOptionsCategories = editProfileOptions["categories"];
 
-    console.log(editProfileOptions);
+    console.log("hdsjabfhjsdbhjfsbdakufdskjanfkjds", dropdownOptionsCategories);
     return (
       <React.Fragment>
         <Form.Field>
