@@ -58,6 +58,9 @@ h6 {
   font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
+*[tabIndex]:focus {
+  border: solid rgb(214, 218, 228) 1.5px;
+}
 
 .img-centered {
   margin: 0 auto;

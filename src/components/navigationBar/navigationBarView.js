@@ -73,6 +73,7 @@ export default class NavigationBarView extends Component {
       >
         <Menu.Item
           href="/secured/home"
+          tabIndex="1"
           style={{ paddingBottom: "8px", paddingTop: "8px" }}
         >
           <Image
