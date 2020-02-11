@@ -86,10 +86,10 @@ export default class NavigationBarView extends Component {
         <Menu.Menu position="right">
           <Popup
             flowing
-            on="click"
+            on={"click" | "focus"}
             position="top center"
             trigger={
-              <Menu.Item>
+              <Menu.Item tabIndex="1">
                 <Icon name="user" size="large" /> {name}
                 <Icon name="angle down" size="large" />
               </Menu.Item>
@@ -105,12 +105,12 @@ export default class NavigationBarView extends Component {
               </Card.Content>
               <Card.Content>
                 <Menu vertical secondary fluid>
-                  <Menu.Item href="/secured/profile">
+                  <Menu.Item tabIndex="2" href="/secured/profile">
                     <Icon name="user" />
                     <FormattedMessage id="my.profile" />
                   </Menu.Item>
                   {admin ? (
-                    <Menu.Item href="/admin">
+                    <Menu.Item tabIndex="3" href="/admin">
                       <Icon name="settings" />
                       <FormattedMessage id="admin" />
                     </Menu.Item>

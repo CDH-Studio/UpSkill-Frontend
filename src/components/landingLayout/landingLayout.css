@@ -64,7 +64,8 @@ h6 {
 }
 
 *[tabIndex]:focus {
-  border: solid rgb(214, 218, 228) 1.5px;
+  color: #fff !important;
+  background-color: #5c6fda !important;
 }
 
 .img-centered {
@@ -467,10 +468,6 @@ img.upSkillLogo {
 
 .bg-darkest-gray {
   background-color: #222;
-}
-
-button:focus {
-  background-color: #f7f7f7;
 }
 
 ul.social-buttons {

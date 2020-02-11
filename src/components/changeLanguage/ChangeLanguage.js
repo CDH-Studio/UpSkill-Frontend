@@ -13,7 +13,7 @@ class ChangeLanguage extends Component {
     const languageCode = intl.formatMessage({ id: "lang.code" });
 
     return (
-      <Menu.Item tabIndex="2" onClick={() => this.changeLanguage(languageCode)}>
+      <Menu.Item tabIndex="0" onClick={() => this.changeLanguage(languageCode)}>
         <Icon name="world" />
         <FormattedMessage id="lang" />
       </Menu.Item>

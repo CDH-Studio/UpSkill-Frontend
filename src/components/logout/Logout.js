@@ -13,7 +13,7 @@ class Logout extends Component {
 
   render() {
     return (
-      <Menu.Item onClick={() => this.logout()}>
+      <Menu.Item tabIndex="4" onClick={() => this.logout()}>
         <Icon name="log out" />
         <FormattedMessage id="sign.out" />
       </Menu.Item>

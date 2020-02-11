@@ -62,7 +62,19 @@
   padding-top: 1em !important;
   padding-bottom: 1em !important;
 }
+*[tabIndex]:focus {
+  color: #fff !important;
+  background-color: #5c6fda !important;
+}
 
+button:focus {
+  color: #fff !important;
+  background-color: #5c6fda !important;
+}
+a:focus {
+  color: #fff !important;
+  background-color: #5c6fda !important;
+}
 .compactCard {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
