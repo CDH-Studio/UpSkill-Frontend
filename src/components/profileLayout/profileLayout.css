@@ -68,7 +68,9 @@
 
   background-color: #596cd9 !important;
 }
-
+.checkbox:focus {
+  background-color: #596cd9 !important;
+}
 button:focus {
   /* border-radius: 10px !important; */
   color: #fff !important;
