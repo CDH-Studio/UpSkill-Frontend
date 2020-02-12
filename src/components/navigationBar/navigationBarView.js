@@ -20,6 +20,7 @@ import tempProfilePic from "../../assets/tempProfilePicture.png";
 import "./navBar.css";
 
 /** UI for the navigation bar used by the secured routes */
+const keyed = false;
 export default class NavigationBarView extends Component {
   static propTypes = {
     /** Whether the user has admin permissions or not */
@@ -86,7 +87,8 @@ export default class NavigationBarView extends Component {
         <Menu.Menu position="right">
           <Popup
             flowing
-            on={"click" | "focus"}
+            on={"focus"}
+            //on={"click"}
             position="top center"
             trigger={
               <Menu.Item tabIndex="1">

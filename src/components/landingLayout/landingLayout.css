@@ -43,7 +43,7 @@ a {
 }
 
 a:focus {
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 
 a:hover,
@@ -64,6 +64,7 @@ h6 {
 }
 
 *[tabIndex]:focus {
+  /* border-radius: 10px !important; */
   color: #fff !important;
   background-color: #5c6fda !important;
 }

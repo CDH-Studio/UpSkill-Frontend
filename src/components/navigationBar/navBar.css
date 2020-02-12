@@ -3,6 +3,7 @@
 }
 
 *[tabIndex]:focus {
+  /* border-radius: 10px !important; */
   color: #fff !important;
   background-color: #596cd9 !important;
 }
