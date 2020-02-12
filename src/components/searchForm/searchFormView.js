@@ -106,8 +106,8 @@ class SearchFormView extends Component {
             />
             {handleToggle && (
               <Form.Field
-                basic
-                color="blue"
+                //basic
+                color="#EEEEEE"
                 content={intl.formatMessage({
                   id: advancedSearch
                     ? "button.basic.search"

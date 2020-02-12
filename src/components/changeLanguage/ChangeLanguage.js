@@ -8,12 +8,24 @@ class ChangeLanguage extends Component {
     this.props.changeLanguage(lang);
   };
 
+  handleKeyPress = (e, lang) => {
+    if (e.charCode === 32 || e.charCode === 13) {
+      // Prevent the default action to stop scrolling when space is pressed
+      e.preventDefault();
+      this.changeLanguage(lang);
+    }
+  };
+
   render() {
     const { intl } = this.props;
     const languageCode = intl.formatMessage({ id: "lang.code" });
 
     return (
-      <Menu.Item tabIndex="0" onClick={() => this.changeLanguage(languageCode)}>
+      <Menu.Item
+        tabIndex="0"
+        onKeyPress={e => this.handleKeyPress(e, languageCode)}
+        onClick={() => this.changeLanguage(languageCode)}
+      >
         <Icon name="world" />
         <FormattedMessage id="lang" />
       </Menu.Item>

@@ -65,7 +65,7 @@ class HomeLayoutView extends Component {
             />
           </Grid.Row>
           <Grid.Row style={styles.row}>
-            <div style={{ padding: "auto" }}>{this.emptyFieldWarning()}</div>
+            <div>{this.emptyFieldWarning()}</div>
           </Grid.Row>
           <Grid.Row>
             <SearchForm

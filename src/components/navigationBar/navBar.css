@@ -3,5 +3,6 @@
 }
 
 *[tabIndex]:focus {
-  background-color: #3446ab !important;
+  color: #fff !important;
+  background-color: #596cd9 !important;
 }
