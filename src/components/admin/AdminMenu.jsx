@@ -30,7 +30,7 @@ export default class AdminMenu extends Component {
         <Grid padded="horizontally">
           <Grid.Column width={3}>
             <Segment inverted color="blue" className="gradientBack">
-              <h1>
+              <h1 style={{ fontSize: 20 }} class="h2">
                 <FormattedMessage id="admin.console" />
               </h1>
             </Segment>
