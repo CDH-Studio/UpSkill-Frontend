@@ -7,6 +7,10 @@ body {
   background-color: #f7f7f7;
 }
 
+/* *[tabIndex]:focus {
+  border: solid rgb(214, 218, 228) 1.5px;
+} */
+
 /* CSS for text, p, h1, button, a, etc. */
 
 .text-centered {

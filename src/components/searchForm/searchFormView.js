@@ -8,7 +8,7 @@ class SearchFormView extends Component {
   static propTypes = {
     /** Object with key value pairs of <option name>:<array of some sort of options> */
     advancedOptions: PropTypes.objectOf(PropTypes.array),
-    /** Whether advanced search fields are availabled. NOTE: This can either mean advanced search on home page or filter on results page */
+    /** Whether advanced search fields are available. NOTE: This can either mean advanced search on home page or filter on results page */
     advancedSearch: PropTypes.bool,
     /** Default values for fields. NOTE: Currently only used on results page */
     defaultValues: PropTypes.object,
@@ -106,8 +106,7 @@ class SearchFormView extends Component {
             />
             {handleToggle && (
               <Form.Field
-                basic
-                color="blue"
+                //basic
                 content={intl.formatMessage({
                   id: advancedSearch
                     ? "button.basic.search"
