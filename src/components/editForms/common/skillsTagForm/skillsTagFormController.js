@@ -39,6 +39,7 @@ export default class SkillsTagFormController extends FieldManagingComponent {
 
     this.state = {
       skillsList: [],
+      isCategorySelected: false,
       tooManyItems: false,
       addedItems: [],
       currentValue: profileInfo[dropdownName]
@@ -91,11 +92,23 @@ export default class SkillsTagFormController extends FieldManagingComponent {
    * @param {PropTypes.object} o object containing the new value
    */
   handleCatChange(e, val) {
-    console.log(val.value.skillsCat);
+    // console.log(val.value.skillsCat);
+    console.log("VAL", val);
+    let skillsList = [];
+    val.value.forEach(skill => {
+      skillsList.push({
+        key: skill.id,
+        value: skill.id,
+        text:
+          skill["description"][localStorage.getItem("lang")] ||
+          skill["description"]
+      });
+    });
 
-    this.setState(skillsList => ({
-      skillsList: [{ value: val }, ...skillsList.skillsList]
-    }));
+    this.setState({
+      skillsList,
+      isCategorySelected: true
+    });
   }
 
   render() {
@@ -120,6 +133,8 @@ export default class SkillsTagFormController extends FieldManagingComponent {
         tooManyItems={this.state.tooManyItems}
         tempFields={this.tempFields}
         dropdownName={this.dropdownName}
+        skillsList={this.state.skillsList}
+        isCategorySelected={this.state.isCategorySelected}
         {...this.props}
       />
     );

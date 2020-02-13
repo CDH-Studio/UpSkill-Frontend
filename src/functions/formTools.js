@@ -97,28 +97,33 @@ export function formatSkillOptions(options) {
   options.forEach(v =>
     catOp.push({
       key: v.aCategory.skill.catId,
-      value: v.aCategory.skill,
+      value: v.aCategory.skill.skillsCat,
       text:
         v.aCategory.skill["description"][localStorage.getItem("lang")] ||
         v.aCategory.skill["description"]
     })
   );
+  console.log("ahhhh", catOp[0].value);
+
   for (var i = 0; i < catOp.length; i++) {
-    let temp = catOp[i].value.skillsCat;
-    temp.forEach(v =>
+    let temp = catOp[i].value;
+    temp.forEach(v => {
       skillOp.push({
-        key: catOp[i].value.catId,
-        value: v,
+        key: v.id,
+        value: v.id,
         text: v["description"][localStorage.getItem("lang")] || v["description"]
-      })
-    );
+      });
+    });
   }
+  console.log("HIIDFAJDFKADFJADSKFAJSDFKASDFKASDJFAKSDFKJADJFAKSDFJASDJ");
+
+  console.log("skillOp", skillOp);
   sOptions.push(
     { key: "categories", value: catOp },
     { key: "skills", value: skillOp }
   );
 
-  console.log(catOp);
+  console.log("skillOp", skillOp);
 
   return catOp;
 }

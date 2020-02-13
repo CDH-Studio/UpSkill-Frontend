@@ -88,6 +88,9 @@ class SkillsTagFormView extends Component {
   }
 
   renderSkillsDropdown() {
+    // this.setState({
+    //   selected: false
+    // });
     const { intl, handleChange, handleAddItem, handleCatChange } = this.props;
     const {
       addedItems,
@@ -98,7 +101,8 @@ class SkillsTagFormView extends Component {
       optionsSkillCategories,
       // isMentorSkillsDisabled,
       profileInfo,
-      useCustomTags
+      useCustomTags,
+      isCategorySelected
     } = this.props;
 
     let valueProp = {};
@@ -123,10 +127,11 @@ class SkillsTagFormView extends Component {
           <Dropdown
             className="editTagsDropdown"
             {...valueProp}
-            value={skillsList}
+            // value={skillsList}
             allowAdditions={Boolean(useCustomTags)}
             fluid
             selection={true}
+            // defaultValue={0}
             icon={useCustomTags ? null : "dropdown"}
             label={intl.formatMessage({
               id:
@@ -174,16 +179,18 @@ class SkillsTagFormView extends Component {
             }
             onAddItem={handleAddItem}
             onChange={handleChange}
-            options={skillsList ? null : dropdownOptionsSkills}
+            options={isCategorySelected ? skillsList : dropdownOptionsSkills}
             search
             selection={true}
+            // defaultValue={this.state.selected}
             // disabled={isMentorSkillsDisabled}
           />
         </Form.Field>
       </React.Fragment>
     );
     // console.log(addedItems);
-    console.log(this.props.skillsList);
+    console.log("Sagal", skillsList, dropdownOptionsSkills);
+    // console.log(dropdownOptionsSkills);
 
     return res;
   }
