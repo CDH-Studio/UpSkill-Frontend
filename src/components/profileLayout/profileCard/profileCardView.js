@@ -4,14 +4,17 @@ import { Card } from "semantic-ui-react";
 import EditWrapperController from "../editWrapper/editWrapperController";
 import "./profileCard.css";
 
+/** UI for displaying a profile card */
 export default class profileCardView extends Component {
   render() {
     const {
-      button,
       cardIcon,
       cardName,
       children,
       className,
+      editOptionPaths,
+      form,
+      formName,
       fullHeight,
       id,
       wrapperType
@@ -21,7 +24,9 @@ export default class profileCardView extends Component {
 
     return (
       <EditWrapperController
-        button={button}
+        form={form}
+        formName={formName}
+        editOptionPaths={editOptionPaths}
         style={heightStyle}
         wrapperType={wrapperType}
       >
@@ -31,14 +36,17 @@ export default class profileCardView extends Component {
           id={id}
           style={heightStyle}
         >
-          <Card.Content>
+          <Card.Header style={{ padding: "0px" }}>
             {cardName && (
-              <h5 className="blueColoredText">
+              <h3
+                className="blueColoredText"
+                style={{ fontSize: "25px", color: "#fff", paddingLeft: "15px" }}
+              >
                 {cardName} {cardIcon}
-              </h5>
+              </h3>
             )}
-            {children}
-          </Card.Content>
+          </Card.Header>
+          <Card.Content>{children}</Card.Content>
         </Card>
       </EditWrapperController>
     );

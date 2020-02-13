@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import HistoryItemsContainerController from "../common/historyItemsContainer/historyItemsContainerController";
-import HistoryItemFormController from "../common/historyItemForm/historyItemFormController";
+import HistoryItemFormController from "../common/experienceItemForm/experienceItemFormController";
 import { injectIntl } from "react-intl";
 
 class CareerOverviewView extends Component {
@@ -9,9 +9,7 @@ class CareerOverviewView extends Component {
     const { intl } = this.props;
     return (
       <HistoryItemsContainerController
-        contentName={intl.formatMessage({
-          id: "profile.career.content.name"
-        })}
+        contentName={intl.formatMessage({ id: "profile.career.content.name" })}
         headerName={intl.formatMessage({ id: "profile.career.header.name" })}
         infoName={"careerSummary"}
         itemType={HistoryItemFormController}
@@ -24,4 +22,5 @@ class CareerOverviewView extends Component {
     );
   }
 }
+
 export default injectIntl(CareerOverviewView);

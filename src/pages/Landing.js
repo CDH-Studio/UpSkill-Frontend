@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button, Icon } from "semantic-ui-react";
 import LandingLayoutController from "../components/landingLayout/landingLayoutController";
 
 import "./landing.css";

@@ -1,26 +1,17 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
+
 import { Checkbox, Form, Grid, Icon, Select } from "semantic-ui-react";
 
 import { injectIntl } from "react-intl";
 
-import DateInputFieldGroup from "../../profileLayout/editModals/common/dateInputFieldGroup/dateInputFieldGroupController";
+import { generateCommonFormProps } from "../../../functions/formTools";
+
+import DateInputFieldGroup from "../common/dateInputFieldGroup/dateInputFieldGroupController";
 
 import "./historyItemForm.css";
 import "../common/form.css";
 
 class EducationItemFormView extends Component {
-  constructor(props) {
-    super(props);
-
-    const { item } = this.props;
-
-    this.generateProps = generateCommonProps.bind(this, {
-      ...this.props,
-      profileInfo: item
-    });
-  }
-
   render() {
     const {
       endDateMonth,
@@ -28,11 +19,17 @@ class EducationItemFormView extends Component {
       index,
       intl,
       isOngoing,
+      item,
       onTempFieldChange,
       removeItem,
       startDateMonth,
       startDateYear
     } = this.props;
+
+    const generateProps = generateCommonFormProps.bind(this, {
+      ...this.props,
+      profileInfo: item
+    });
 
     return (
       <Grid.Row style={{ position: "relative" }} width={16}>
@@ -46,12 +43,8 @@ class EducationItemFormView extends Component {
 
         <Form style={{ margin: "0px auto", width: "95%" }}>
           <Form.Group widths="equal">
-            <Form.Field
-              {...this.generateProps("diploma", Select, false, true)}
-            />
-            <Form.Field
-              {...this.generateProps("school", Select, false, true)}
-            />
+            <Form.Field {...generateProps("diploma", Select, false, true)} />
+            <Form.Field {...generateProps("school", Select, false, true)} />
           </Form.Group>
           <Form.Group
             className="noHorizontalGaps"
@@ -74,7 +67,7 @@ class EducationItemFormView extends Component {
               </Grid.Column>
               <Grid.Column className="noHorizontalGaps" width={3}>
                 <Form.Field
-                  {...this.generateProps("isOngoing", Checkbox, true)}
+                  {...generateProps("isOngoing", Checkbox, true)}
                   defaultChecked={isOngoing}
                 />
               </Grid.Column>

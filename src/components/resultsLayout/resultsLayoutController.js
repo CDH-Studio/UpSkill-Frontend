@@ -1,61 +1,37 @@
 import React, { Component } from "react";
 import ResultsLayoutView from "./resultsLayoutView";
-import axios from "axios";
+import PropTypes from "prop-types";
 
-import config from "../../config";
-const { backendAddress } = config;
-
+/** Logic for the /results route layout */
 export default class ResultsLayoutController extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { results: null };
-
-    const handleResponse = response => {
-      this.setState({ results: response });
-    };
-    this.handleResponse = handleResponse.bind(this);
-
-    const handleError = error => {
-      console.error(error);
-      this.setState({ results: error });
-    };
-    this.handleError = handleError.bind(this);
-  }
-
-  componentDidMount() {
-    const urlSections = window.location.toString().split("?");
-
-    if (urlSections.length === 2) {
-      this.queryString = urlSections[1];
-      this.gatherResults(urlSections[1]);
-    } else {
-      this.queryString = "";
-      this.setState({ results: new Error("invalid query") });
-    }
-  }
-
-  async gatherResults(query) {
-    const results = (
-      await axios.get(backendAddress + "api/search/fuzzySearch?" + query)
-    ).data;
-
-    this.setState({ results: results });
-  }
+  static propTypes = {
+    /** Function used to change the language intl-react is using */
+    changeLanguage: PropTypes.func.isRequired,
+    /** React-Intl's translation object */
+    intl: PropTypes.object.isRequired,
+    /** Object representing Keycloak autherization */
+    keycloak: PropTypes.object,
+    /** Function to change route */
+    redirectFunction: PropTypes.func.isRequired,
+    /** Array of information on people who showed up on search query */
+    results: PropTypes.object
+  };
 
   render() {
     const {
       changeLanguage,
       keycloak,
-      searchQuery,
-      redirectFunction
+      redirectFunction,
+      results,
+      searchQuery
     } = this.props;
 
     return (
       <ResultsLayoutView
         changeLanguage={changeLanguage}
         keycloak={keycloak}
-        results={this.state.results}
         redirectFunction={redirectFunction}
+        results={results}
         searchQuery={searchQuery}
       />
     );

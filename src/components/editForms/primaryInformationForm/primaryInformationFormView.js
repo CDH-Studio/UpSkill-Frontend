@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { generateCommonProps } from "../common/formTools";
+import { generateCommonFormProps } from "../../../functions/formTools";
 import { Form, Input, Select } from "semantic-ui-react";
 import FormButtonsController from "../common/formButtons/formButtonsController";
 
@@ -10,14 +10,14 @@ import "../common/form.css";
 class PrimaryInformationFormView extends Component {
   render() {
     const {
-      handleCancle,
+      handleCancel,
       handleNext,
       handlePrevious,
       handleRegister,
       isEarlyRegister,
       onSubmit
     } = this.props;
-    const generateProps = generateCommonProps.bind(this, this.props);
+    const generateProps = generateCommonFormProps.bind(this, this.props);
 
     let emailProps = generateProps("email", Input);
 
@@ -45,7 +45,7 @@ class PrimaryInformationFormView extends Component {
 
         <FormButtonsController
           handleApply={onSubmit}
-          handleCancle={handleCancle}
+          handleCancel={handleCancel}
           handleNext={handleNext}
           handlePrevious={handlePrevious}
           handleRegister={handleRegister}

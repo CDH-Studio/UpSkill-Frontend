@@ -3,6 +3,7 @@ import { injectIntl } from "react-intl";
 
 import HomeLayoutController from "../components/homeLayout/homeLayoutController";
 
+/** Page rendered on the /home route */
 class Home extends Component {
   goto = (link, state) => this.props.history.push(link, state);
 

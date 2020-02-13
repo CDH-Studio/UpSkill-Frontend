@@ -36,6 +36,15 @@
   "admin.dashboard.inactive.users": "Utilisateurs inactif",
   "admin.dashboard.flagged.profiles": "Profils cachés",
   "admin.dashboard.ex.feeders": "Nombre total d'Ex Feeders",
+  "admin.dashboard.commonalities": "Points communs",
+  "admin.dashboard.popular.skills": "Habilités populaires",
+  "admin.dashboard.popular.competencies": "Compétences populaires",
+  "admin.dashboard.popular.development.goals": "Objectifs de développement populaires",
+  "admin.dashboard.number.of.occurrences": "Nombre d'utilisateurs",
+  "admin.dashboard.number.of.new.users": "Nombre de nouveaux utilisateurs",
+  "admin.dashboard.growth.rate.by.month": "Taux de croissance par mois",
+  "admin.dashboard.monthly.added": "Utilisateurs ajoutés ce mois-ci",
+  "admin.dashboard.growth.rate.percentage": "Taux de croissance par rapport au mois précédent",
 
   "advanced.search.form.job.title": "Titre du poste",
   "advanced.search.form.department": "Departement",
@@ -56,6 +65,7 @@
 
   "button.apply": "Enregistrer",
   "button.cancel": "Annuler",
+  "button.close": "Fermer",
   "button.next": "Suivant",
   "button.back": "Précédent",
   "button.finish": "Terminer",

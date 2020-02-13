@@ -1,11 +1,11 @@
 import React from "react";
-
-import FieldManagingComponent from "../common/formTools";
+import { injectIntl } from "react-intl";
+import FieldManagingComponent from "../common/formManagingComponent";
 
 import EducationItemFormView from "./educationItemFormView";
 import moment from "moment";
 
-export default class EducationItemFormController extends FieldManagingComponent {
+class EducationItemFormController extends FieldManagingComponent {
   static getFieldNames() {
     return ["diploma", "endDate", "school", "startDate"];
   }
@@ -23,7 +23,7 @@ export default class EducationItemFormController extends FieldManagingComponent 
     if (item.startDate) {
       const startMoment = moment(item.startDate);
       this.tempFields["startDateMonth"] = parseInt(startMoment.format("M"));
-      this.tempFields["startDateYear"] = parseInt(startMoment.format("YY"));
+      this.tempFields["startDateYear"] = parseInt(startMoment.format("YYYY"));
     } else {
       this.tempFields["startDateMonth"] = null;
       this.tempFields["startDateYear"] = null;
@@ -32,7 +32,7 @@ export default class EducationItemFormController extends FieldManagingComponent 
     if (item.endDate) {
       const endMoment = moment(item.endDate);
       this.tempFields["endDateMonth"] = parseInt(endMoment.format("M"));
-      this.tempFields["endDateYear"] = parseInt(endMoment.format("YY"));
+      this.tempFields["endDateYear"] = parseInt(endMoment.format("YYYY"));
     } else {
       this.tempFields["endDateMonth"] = null;
       this.tempFields["endDateYear"] = null;
@@ -46,7 +46,7 @@ export default class EducationItemFormController extends FieldManagingComponent 
           this.tempFields[startOrEnd + "DateMonth"] +
             " " +
             this.tempFields[startOrEnd + "DateYear"],
-          "M YY"
+          "M YYYY"
         ).format()
       );
       //this.forceUpdate();
@@ -99,10 +99,12 @@ export default class EducationItemFormController extends FieldManagingComponent 
 
   setField(fieldObj, name, value) {
     const { index, item, addItem, removeItem } = this.props;
-    super.setField(fieldObj, name, value);
+    fieldObj[name] = value;
     if (fieldObj === this.fields) {
       removeItem(index);
       addItem(index, Object.assign(item, fieldObj));
     }
   }
 }
+
+export default injectIntl(EducationItemFormController);

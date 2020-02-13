@@ -6,6 +6,11 @@ import HistoryItemsContainerView from "./historyItemsContainerView";
 import config from "../../../../config";
 const { backendAddress } = config;
 
+/** Logic for a list of form items.
+ *
+ * NOTE: Code could be reworked to remove props like contentName, subheader name, etc.
+ * these were made when I though it would be possible to use the same form type for education and experience items
+ */
 export default class HistoryItemsContainerController extends Component {
   constructor(props) {
     super(props);
@@ -23,6 +28,10 @@ export default class HistoryItemsContainerController extends Component {
     this.updateListField = this.updateListField.bind(this);
   }
 
+  /** Adds an item at a specified index
+   * @param {PropTypes.number} index the index the item should be added at
+   * @param {PropTypes.object} item the item to add
+   */
   addItem(index, item) {
     const { itemType } = this.props;
     if (typeof index === "number") {
@@ -30,13 +39,14 @@ export default class HistoryItemsContainerController extends Component {
     } else {
       let newItem = {};
       itemType.getFieldNames().forEach(element => (newItem[element] = null));
-
       this.fields.push(newItem);
     }
+
     this.updateRegisterComponent();
     this.forceUpdate();
   }
 
+  /** function to send edited data to backend */
   onSubmit() {
     const { infoName } = this.props;
     let url = backendAddress + "api/profile/" + localStorage.getItem("userId");
@@ -48,6 +58,7 @@ export default class HistoryItemsContainerController extends Component {
       });
   }
 
+  /** function to delete an item from the list */
   removeItem(index) {
     const fields = this.fields;
 
@@ -72,22 +83,13 @@ export default class HistoryItemsContainerController extends Component {
   }
 
   handleApply() {
-    /*
-        let myMoment = moment(
-        element.startDateYear + " " + element.startDateMonth,
-        "YY MM"
-      );
-      
-      console.log(
-        "this is my moment",
-        myMoment.format(),
-        "im in my element",
-        myMoment.format("MMM YYY")
-      );*/
-
     console.log("why is this being called", this.fields);
   }
 
+  /**
+   * calls the prop setFormChanges with changes made to the form.
+   * (This is currently used on the /setup route to remember the changes made to the form if the user returns to it.)
+   */
   updateRegisterComponent() {
     const { setFormChanges, infoName } = this.props;
     if (setFormChanges) {
@@ -102,9 +104,3 @@ export default class HistoryItemsContainerController extends Component {
     this.updateRegisterComponent();
   }
 }
-
-HistoryItemsContainerController.defaultProps = {
-  buttonBackgroundColor: "rgba(0,0,0,0.05)",
-  buttonClass: "innerButton",
-  buttonColor: "#555555"
-};
