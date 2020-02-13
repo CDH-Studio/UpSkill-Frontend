@@ -21,6 +21,8 @@ class MentorshipSkillsTagFormView extends Component {
     dropdownName: PropTypes.string,
     /** Object containing a key value pair of [dropdownName]:<dropdown option object> */
     editProfileOptions: PropTypes.objectOf(PropTypes.object),
+    /** Object containing a key value pair of [dropdownName]:<dropdown option object> FOR CATEGORIES */
+    optionsSkillCategories: PropTypes.objectOf(PropTypes.object),
     /** The function to handle adding an item for the form */
     handleAddItem: PropTypes.func,
     /** The function to handle canceling editing a profile on /profile route*/
@@ -110,19 +112,19 @@ class MentorshipSkillsTagFormView extends Component {
     const dropdownOptionsSkills = editProfileOptions["skills"];
     const dropdownOptionsCategories = editProfileOptions["categories"];
 
-    const dropdownOptions = useCustomTags
-      ? [
-          ...(profileInfo[dropdownName] || []).map(projectName => {
-            let projectValue = projectName.text || projectName;
-            return {
-              value: projectValue,
-              key: projectValue,
-              text: projectValue
-            };
-          }),
-          ...addedItems
-        ]
-      : editProfileOptions[dropdownName] || [];
+    // const dropdownOptions = useCustomTags
+    //   ? [
+    //       ...(profileInfo[dropdownName] || []).map(projectName => {
+    //         let projectValue = projectName.text || projectName;
+    //         return {
+    //           value: projectValue,
+    //           key: projectValue,
+    //           text: projectValue
+    //         };
+    //       }),
+    //       ...addedItems
+    //     ]
+    //   : editProfileOptions[dropdownName] || [];
 
     let res = (
       <React.Fragment>
@@ -133,6 +135,7 @@ class MentorshipSkillsTagFormView extends Component {
             {...valueProp}
             allowAdditions={Boolean(useCustomTags)}
             fluid
+            selection={true}
             icon={useCustomTags ? null : "dropdown"}
             label={intl.formatMessage({
               id:
@@ -151,7 +154,6 @@ class MentorshipSkillsTagFormView extends Component {
             onChange={handleCatChange}
             options={dropdownOptionsCategories}
             search
-            selection={true}
             disabled={isMentorSkillsDisabled}
             placeholder="Select a category"
           />

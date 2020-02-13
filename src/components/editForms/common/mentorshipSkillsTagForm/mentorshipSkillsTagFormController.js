@@ -12,6 +12,8 @@ export default class MentorshipSkillsTagFormController extends FieldManagingComp
     dropdownName: PropTypes.string,
     /** Object containing a key value pair of [dropdownName]:<dropdown option object> */
     editProfileOptions: PropTypes.objectOf(PropTypes.object),
+    /** Object containing a key value pair of [dropdownName]:<dropdown option object> FOR CATEGORIES */
+    optionsSkillCategories: PropTypes.objectOf(PropTypes.object),
     /** The function to handle canceling editing a profile on /profile route*/
     handleCancel: PropTypes.func,
     /** The function to handle going to the next form on /setup route */

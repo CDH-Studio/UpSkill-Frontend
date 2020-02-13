@@ -920,8 +920,13 @@ class ProfileLayoutView extends Component {
       intl.formatMessage({ id: "profile.edit.mentorship.skills" }),
       currentMentorshipSkills,
       MentorshipSkillsFormController,
+      // {
+      //   mentorshipSkills: "api/option/getMentorshipSkill"
+      // }
       {
-        mentorshipSkills: "api/option/getMentorshipSkill"
+        // categories: "api/option/getCategorySkills",
+        categories: "api/option/getCategorySkills",
+        skills: "api/option/getSkill"
       }
     );
   }
