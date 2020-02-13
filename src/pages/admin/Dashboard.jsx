@@ -236,10 +236,11 @@ class AdminDashboard extends Component {
           object => object.month == current_month - 1
         );
       }
-      const growthRate =
+      const growthRate = Math.round(
         ((current_month_additions.count - previous_month_additions.count) /
           previous_month_additions.count) *
-        100;
+          100
+      );
 
       const dashboardCount = data.dashboardCount;
       const { changeLanguage, keycloak } = this.props;
