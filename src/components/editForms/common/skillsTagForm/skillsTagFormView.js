@@ -21,12 +21,16 @@ class SkillsTagFormView extends Component {
     dropdownName: PropTypes.string,
     /** Object containing a key value pair of [dropdownName]:<dropdown option object> */
     editProfileOptions: PropTypes.objectOf(PropTypes.object),
+    /** Object containing a key value pair of [dropdownName]:<dropdown option object> FOR CATEGORIES */
+    optionsSkillCategories: PropTypes.objectOf(PropTypes.object),
     /** The function to handle adding an item for the form */
     handleAddItem: PropTypes.func,
     /** The function to handle canceling editing a profile on /profile route*/
     handleCancel: PropTypes.func,
     /** The function to handle updates to this form */
     handleChange: PropTypes.func,
+    handleCatChange: PropTypes.func,
+    skillsList: PropTypes.arrayOf(PropTypes.object),
     /** The function to handle going to the next form on /setup route */
     handleNext: PropTypes.func,
     /** The functiion to handle going to the previous form on /setup route */
@@ -52,6 +56,7 @@ class SkillsTagFormView extends Component {
       handleCancel,
       handleNext,
       handlePrevious,
+      getSkills,
       handleRegister,
       isEarlyRegister,
       onSubmit,
@@ -69,12 +74,6 @@ class SkillsTagFormView extends Component {
           </Label>
         )}
 
-        {/* Add display to mentorshipSkills card only */}
-
-        {/* {dropdownName == "mentorshipSkills" && (
-          <Form.Field {...this.generateProps("isMentor", Checkbox)} toggle />
-        )} */}
-
         {this.renderSkillsDropdown()}
         <FormButtonsController
           handleApply={onSubmit}
@@ -89,12 +88,14 @@ class SkillsTagFormView extends Component {
   }
 
   renderSkillsDropdown() {
-    const { intl, handleChange, handleAddItem } = this.props;
+    const { intl, handleChange, handleAddItem, handleCatChange } = this.props;
     const {
       addedItems,
       currentValue,
       dropdownName,
       editProfileOptions,
+      skillsList,
+      optionsSkillCategories,
       // isMentorSkillsDisabled,
       profileInfo,
       useCustomTags
@@ -110,25 +111,28 @@ class SkillsTagFormView extends Component {
     }
 
     const dropdownOptionsSkills = editProfileOptions["skills"];
-    const dropdownOptionsCategories = editProfileOptions["categories"];
 
-    console.log("hdsjabfhjsdbhjfsbdakufdskjanfkjds", dropdownOptionsCategories);
-    return (
+    const dropdownOptionsCategories = editProfileOptions["categories"];
+    // console.log(editProfileOptions["categories"][0].value[1].value.skillsCat);
+    // console.log(editProfileOptions["categories"]);
+    console.log(dropdownOptionsCategories);
+    let res = (
       <React.Fragment>
         <Form.Field>
           <label>Category</label>
           <Dropdown
             className="editTagsDropdown"
             {...valueProp}
+            value={skillsList}
             allowAdditions={Boolean(useCustomTags)}
             fluid
+            selection={true}
             icon={useCustomTags ? null : "dropdown"}
             label={intl.formatMessage({
               id:
                 "profile." +
                 dropdownName.replace(/([A-Z])/g, ".$1").toLowerCase()
             })}
-            multiple
             name={dropdownName}
             noResultsMessage={
               useCustomTags
@@ -137,11 +141,12 @@ class SkillsTagFormView extends Component {
                     id: "profile.edit.dropdown.no.results.found"
                   })
             }
+            onChange={handleCatChange}
             onAddItem={handleAddItem}
-            onChange={handleChange}
             options={dropdownOptionsCategories}
             search
-            selection={true}
+            placeholder="Select a category"
+
             // disabled={isMentorSkillsDisabled}
           />
         </Form.Field>
@@ -169,7 +174,7 @@ class SkillsTagFormView extends Component {
             }
             onAddItem={handleAddItem}
             onChange={handleChange}
-            options={dropdownOptionsSkills}
+            options={skillsList ? null : dropdownOptionsSkills}
             search
             selection={true}
             // disabled={isMentorSkillsDisabled}
@@ -177,6 +182,10 @@ class SkillsTagFormView extends Component {
         </Form.Field>
       </React.Fragment>
     );
+    // console.log(addedItems);
+    console.log(this.props.skillsList);
+
+    return res;
   }
 }
 

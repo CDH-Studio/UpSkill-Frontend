@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 
 import { formatOptions } from "../../functions/formTools";
+import { formatSkillOptions } from "../../functions/formTools";
 import config from "../../config";
 import prepareInfo from "../../functions/prepareInfo";
 
@@ -171,9 +172,14 @@ class SetupLayoutController extends Component {
    * Gathers the information needed from geds and the form options
    */
   async getSetupData() {
-    let categoryOptions = formatOptions(
-      (await axios.get(backendAddress + "api/option/getCategory")).data
+    // let categoryOptions = formatOptions(
+    //   (await axios.get(backendAddress + "api/option/getCategory")).data
+    // );
+
+    let categoryOptions = formatSkillOptions(
+      (await axios.get(backendAddress + "api/option/getCategorySkills")).data
     );
+
     let skillOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getSkill")).data
     );

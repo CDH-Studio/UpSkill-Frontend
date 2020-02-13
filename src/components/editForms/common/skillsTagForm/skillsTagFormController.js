@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import FieldManagingComponent from "../formManagingComponent";
 import SkillsTagFormView from "./skillsTagFormView";
+import skillsFormController from "../../skillsForm/skillsFormController";
 
 /**
  * Logic for forms that consist of a single list of tags
@@ -12,6 +13,8 @@ export default class SkillsTagFormController extends FieldManagingComponent {
     dropdownName: PropTypes.string,
     /** Object containing a key value pair of [dropdownName]:<dropdown option object> */
     editProfileOptions: PropTypes.objectOf(PropTypes.object),
+    /** Object containing a key value pair of [dropdownName]:<dropdown option object> FOR CATEGORIES */
+    optionsSkillCategories: PropTypes.objectOf(PropTypes.object),
     /** The function to handle canceling editing a profile on /profile route*/
     handleCancel: PropTypes.func,
     /** The function to handle going to the next form on /setup route */
@@ -35,6 +38,7 @@ export default class SkillsTagFormController extends FieldManagingComponent {
     const { profileInfo, dropdownName } = this.props;
 
     this.state = {
+      skillsList: [],
       tooManyItems: false,
       addedItems: [],
       currentValue: profileInfo[dropdownName]
@@ -50,6 +54,7 @@ export default class SkillsTagFormController extends FieldManagingComponent {
     this.onChangeFuncs["isMentor"] = () => this.forceUpdate();
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleCatChange = this.handleCatChange.bind(this);
     this.handleAddItem = this.handleAddItem.bind(this);
   }
 
@@ -69,6 +74,7 @@ export default class SkillsTagFormController extends FieldManagingComponent {
    * @param {PropTypes.object} e unused even object
    * @param {PropTypes.object} o object containing the new value
    */
+
   handleChange(e, o) {
     this.setState({ currentValue: o.value });
     const { maxItems } = this.props;
@@ -78,6 +84,18 @@ export default class SkillsTagFormController extends FieldManagingComponent {
     if (o.value.length > maxItems !== this.state.tooManyItems) {
       this.setState({ tooManyItems: !this.state.tooManyItems });
     }
+  }
+  /**
+   * handles changing the list of selected tags
+   * @param {PropTypes.object} e unused even object
+   * @param {PropTypes.object} o object containing the new value
+   */
+  handleCatChange(e, val) {
+    console.log(val.value.skillsCat);
+
+    this.setState(skillsList => ({
+      skillsList: [{ value: val }, ...skillsList.skillsList]
+    }));
   }
 
   render() {
@@ -90,6 +108,7 @@ export default class SkillsTagFormController extends FieldManagingComponent {
         handleAddItem={this.handleAddItem}
         handleApply={this.onSubmit}
         handleChange={this.handleChange}
+        handleCatChange={this.handleCatChange}
         onFieldChange={this.onFieldChange}
         onTempFieldChange={this.onTempFieldChange}
         isMentorSkillsDisabled={

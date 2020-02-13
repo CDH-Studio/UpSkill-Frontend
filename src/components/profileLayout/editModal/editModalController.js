@@ -4,7 +4,10 @@ import { Checkbox, Input, Select } from "semantic-ui-react";
 import { DateInput } from "semantic-ui-calendar-react";
 import PropTypes from "prop-types";
 
-import { formatOptions } from "../../../functions/formTools";
+import {
+  formatOptions,
+  formatSkillOptions
+} from "../../../functions/formTools";
 import EditGenericModalView from "./editModalView";
 import config from "../../../config";
 const { backendAddress } = config;
@@ -48,15 +51,29 @@ export default class EditModalController extends Component {
   async getEditOptions() {
     const { editOptionPaths } = this.props;
     let editProfileOptions = {};
+    let skillsCategoriesOptions = {};
+
+    skillsCategoriesOptions = formatSkillOptions(
+      (await axios.get(backendAddress + editOptionPaths["categories"])).data
+    );
     for (let key in editOptionPaths) {
-      editProfileOptions[key] = formatOptions(
-        (await axios.get(backendAddress + editOptionPaths[key])).data
-      );
+      if (key.match("categories")) {
+        editProfileOptions[key] = formatSkillOptions(
+          (await axios.get(backendAddress + editOptionPaths[key])).data
+        );
+      } else {
+        editProfileOptions[key] = formatOptions(
+          (await axios.get(backendAddress + editOptionPaths[key])).data
+        );
+      }
     }
 
     this.setState({
-      editProfileOptions: editProfileOptions
+      editProfileOptions: editProfileOptions,
+      optionsSkillCategories: skillsCategoriesOptions
     });
+
+    console.log(skillsCategoriesOptions);
   }
 
   render() {

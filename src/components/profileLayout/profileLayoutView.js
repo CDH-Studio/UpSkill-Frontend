@@ -936,8 +936,9 @@ class ProfileLayoutView extends Component {
       currentSkills,
       SkillsFormController,
       {
-        skills: "api/option/getSkill",
-        categories: "api/option/getCategory"
+        // categories: "api/option/getCategorySkills",
+        categories: "api/option/getCategorySkills",
+        skills: "api/option/getSkill"
       }
     );
   }

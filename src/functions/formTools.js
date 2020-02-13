@@ -88,3 +88,65 @@ export function formatOptions(options) {
   );
   return newOptions;
 }
+
+export function formatSkillOptions(options) {
+  let catOp = [];
+  let skillOp = [];
+  let sOptions = [];
+
+  options.forEach(v =>
+    catOp.push({
+      key: v.aCategory.skill.catId,
+      value: v.aCategory.skill,
+      text:
+        v.aCategory.skill["description"][localStorage.getItem("lang")] ||
+        v.aCategory.skill["description"]
+    })
+  );
+  for (var i = 0; i < catOp.length; i++) {
+    let temp = catOp[i].value.skillsCat;
+    temp.forEach(v =>
+      skillOp.push({
+        key: catOp[i].value.catId,
+        value: v,
+        text: v["description"][localStorage.getItem("lang")] || v["description"]
+      })
+    );
+  }
+  sOptions.push(
+    { key: "categories", value: catOp },
+    { key: "skills", value: skillOp }
+  );
+
+  console.log(catOp);
+
+  return catOp;
+}
+
+export function getCategories(item, current) {
+  let categories = [];
+  let skills = [];
+  let joined = [];
+  let iWannaDie = [];
+  //console.log(item, index);
+  categories.push({
+    key: item.aCategory.skill.catId,
+    value: item.aCategory.skill.cat
+  });
+  skills.push({
+    key: item.aCategory.skill.catId,
+    value: item.aCategory.skillsCat
+  });
+
+  joined.push({
+    key: "joined",
+    value: iWannaDie
+  });
+
+  // skills.forEach(val => console.log("i am crying", val));
+  // console.log(skills);
+  // console.log(categories);
+  // console.log("I scream", item.aCategory.category);
+  // console.log("I scream again", item.aCategory.skill);
+  return iWannaDie;
+}
