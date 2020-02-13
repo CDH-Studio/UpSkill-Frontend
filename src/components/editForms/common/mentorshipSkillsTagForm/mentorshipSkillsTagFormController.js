@@ -35,6 +35,8 @@ export default class MentorshipSkillsTagFormController extends FieldManagingComp
     const { profileInfo, dropdownName } = this.props;
 
     this.state = {
+      skillsList: [],
+      isCategorySelected: false,
       tooManyItems: false,
       addedItems: [],
       currentValue: profileInfo[dropdownName]
@@ -50,6 +52,7 @@ export default class MentorshipSkillsTagFormController extends FieldManagingComp
     this.onChangeFuncs["isMentor"] = () => this.forceUpdate();
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleCatChange = this.handleCatChange.bind(this);
     this.handleAddItem = this.handleAddItem.bind(this);
   }
 
@@ -80,16 +83,45 @@ export default class MentorshipSkillsTagFormController extends FieldManagingComp
     }
   }
 
+  /**
+   * handles changing the list of selected tags
+   * @param {PropTypes.object} e unused even object
+   * @param {PropTypes.object} val object containing the new value
+   */
+  handleCatChange(e, val) {
+    const { maxItems } = this.props;
+    let skillsList = [];
+    val.value.forEach(skill => {
+      skillsList.push({
+        key: skill.id,
+        value: skill.id,
+        text:
+          skill["description"][localStorage.getItem("lang")] ||
+          skill["description"]
+      });
+    });
+    this.setState({
+      skillsList,
+      isCategorySelected: true
+    });
+    this.onFieldChange(e, val);
+
+    if (val.value.length > maxItems !== this.state.tooManyItems) {
+      this.setState({ tooManyItems: !this.state.tooManyItems });
+    }
+  }
+
   render() {
     const { profileInfo } = this.props;
     return (
-      <MentorshipSkillsTagFormView 
+      <MentorshipSkillsTagFormView
         addedItems={this.state.addedItems}
         currentValue={this.state.currentValue}
         fields={this.fields}
         handleAddItem={this.handleAddItem}
         handleApply={this.onSubmit}
         handleChange={this.handleChange}
+        handleCatChange={this.handleCatChange}
         onFieldChange={this.onFieldChange}
         onTempFieldChange={this.onTempFieldChange}
         isMentorSkillsDisabled={
@@ -101,6 +133,8 @@ export default class MentorshipSkillsTagFormController extends FieldManagingComp
         tooManyItems={this.state.tooManyItems}
         tempFields={this.tempFields}
         dropdownName={this.dropdownName}
+        skillsList={this.state.skillsList}
+        isCategorySelected={this.state.isCategorySelected}
         {...this.props}
       />
     );

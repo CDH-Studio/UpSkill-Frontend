@@ -49,10 +49,10 @@ export default class SkillsTagFormController extends FieldManagingComponent {
         : []
     };
 
-    const isMentor = Boolean(profileInfo["isMentor"]);
-    this.tempFields["isMentor"] = isMentor;
+    // const isMentor = Boolean(profileInfo["isMentor"]);
+    // this.tempFields["isMentor"] = isMentor;
 
-    this.onChangeFuncs["isMentor"] = () => this.forceUpdate();
+    // this.onChangeFuncs["isMentor"] = () => this.forceUpdate();
 
     this.handleChange = this.handleChange.bind(this);
     this.handleCatChange = this.handleCatChange.bind(this);
@@ -89,11 +89,12 @@ export default class SkillsTagFormController extends FieldManagingComponent {
   /**
    * handles changing the list of selected tags
    * @param {PropTypes.object} e unused even object
-   * @param {PropTypes.object} o object containing the new value
+   * @param {PropTypes.object} val object containing the new value
    */
   handleCatChange(e, val) {
     // console.log(val.value.skillsCat);
-    console.log("VAL", val);
+    const { maxItems } = this.props;
+    // console.log("VAL", val);
     let skillsList = [];
     val.value.forEach(skill => {
       skillsList.push({
@@ -104,11 +105,15 @@ export default class SkillsTagFormController extends FieldManagingComponent {
           skill["description"]
       });
     });
-
     this.setState({
       skillsList,
       isCategorySelected: true
     });
+    this.onFieldChange(e, val);
+
+    if (val.value.length > maxItems !== this.state.tooManyItems) {
+      this.setState({ tooManyItems: !this.state.tooManyItems });
+    }
   }
 
   render() {
@@ -124,11 +129,11 @@ export default class SkillsTagFormController extends FieldManagingComponent {
         handleCatChange={this.handleCatChange}
         onFieldChange={this.onFieldChange}
         onTempFieldChange={this.onTempFieldChange}
-        isMentorSkillsDisabled={
-          "isMentor" in this.fields
-            ? !this.fields["isMentor"]
-            : !profileInfo["isMentor"]
-        }
+        // isMentorSkillsDisabled={
+        //   "isMentor" in this.fields
+        //     ? !this.fields["isMentor"]
+        //     : !profileInfo["isMentor"]
+        // }
         onSubmit={this.onSubmit}
         tooManyItems={this.state.tooManyItems}
         tempFields={this.tempFields}

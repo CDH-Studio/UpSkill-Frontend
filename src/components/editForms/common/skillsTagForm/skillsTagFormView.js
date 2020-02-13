@@ -56,11 +56,9 @@ class SkillsTagFormView extends Component {
       handleCancel,
       handleNext,
       handlePrevious,
-      getSkills,
       handleRegister,
       isEarlyRegister,
       onSubmit,
-      dropdownName,
       tooManyItems
     } = this.props;
 
@@ -88,18 +86,12 @@ class SkillsTagFormView extends Component {
   }
 
   renderSkillsDropdown() {
-    // this.setState({
-    //   selected: false
-    // });
     const { intl, handleChange, handleAddItem, handleCatChange } = this.props;
     const {
-      addedItems,
       currentValue,
       dropdownName,
       editProfileOptions,
       skillsList,
-      optionsSkillCategories,
-      // isMentorSkillsDisabled,
       profileInfo,
       useCustomTags,
       isCategorySelected
@@ -115,11 +107,8 @@ class SkillsTagFormView extends Component {
     }
 
     const dropdownOptionsSkills = editProfileOptions["skills"];
-
     const dropdownOptionsCategories = editProfileOptions["categories"];
-    // console.log(editProfileOptions["categories"][0].value[1].value.skillsCat);
-    // console.log(editProfileOptions["categories"]);
-    console.log(dropdownOptionsCategories);
+
     let res = (
       <React.Fragment>
         <Form.Field>
@@ -127,11 +116,9 @@ class SkillsTagFormView extends Component {
           <Dropdown
             className="editTagsDropdown"
             {...valueProp}
-            // value={skillsList}
             allowAdditions={Boolean(useCustomTags)}
             fluid
             selection={true}
-            // defaultValue={0}
             icon={useCustomTags ? null : "dropdown"}
             label={intl.formatMessage({
               id:
@@ -151,8 +138,6 @@ class SkillsTagFormView extends Component {
             options={dropdownOptionsCategories}
             search
             placeholder="Select a category"
-
-            // disabled={isMentorSkillsDisabled}
           />
         </Form.Field>
         <Form.Field>
@@ -182,15 +167,10 @@ class SkillsTagFormView extends Component {
             options={isCategorySelected ? skillsList : dropdownOptionsSkills}
             search
             selection={true}
-            // defaultValue={this.state.selected}
-            // disabled={isMentorSkillsDisabled}
           />
         </Form.Field>
       </React.Fragment>
     );
-    // console.log(addedItems);
-    console.log("Sagal", skillsList, dropdownOptionsSkills);
-    // console.log(dropdownOptionsSkills);
 
     return res;
   }

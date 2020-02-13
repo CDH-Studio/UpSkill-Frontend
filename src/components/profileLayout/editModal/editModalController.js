@@ -73,7 +73,7 @@ export default class EditModalController extends Component {
       optionsSkillCategories: skillsCategoriesOptions
     });
 
-    console.log(skillsCategoriesOptions);
+    // console.log(skillsCategoriesOptions);
   }
 
   render() {
