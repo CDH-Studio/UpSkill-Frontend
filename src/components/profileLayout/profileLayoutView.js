@@ -1076,8 +1076,6 @@ class ProfileLayoutView extends Component {
           <FormattedMessage id="profile.looking.for.new.job" />
         </span>
         <span>
-          {/* {this.renderValue(lookingForNewJob && lookingForNewJob.description)} */}
-          {/* {lookingForNewJobItem} */}
           {this.renderValue(lookingForNewJob && lookingForNewJob.description)}
         </span>
       </ProfileCardController>
