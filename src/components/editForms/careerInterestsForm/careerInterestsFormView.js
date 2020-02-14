@@ -21,7 +21,7 @@ class CareerInterestsFormView extends Component {
       profileInfo
     } = this.props;
 
-    const generateProps = generateCommonProps.bind(this, this.props);
+    const generateProps = generateCommonFormProps.bind(this, this.props);
 
     return (
       <Form onSubmit={onSubmit}>
