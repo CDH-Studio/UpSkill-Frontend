@@ -1036,11 +1036,20 @@ class ProfileLayoutView extends Component {
       relocationLocations,
       lookingForNewJob
     } = profileInfo;
+    console.log("Chocolate", profileInfo);
+    console.log("Chocolate1", interestedInRemote);
+    console.log("Chocolate2", relocationLocations);
+    console.log("Chocolate3", lookingForNewJob);
+
+    // this.renderValue(lookingForNewJob.description)
 
     return (
       <ProfileCardController
         form={CareerInterestsFormController}
-        formName={"Edit career interests"}
+        editOptionPaths={{
+          willingToRelocateTo: "api/option/getWillingToRelocateTo",
+          lookingForNewJob: "api/option/getLookingForANewJob"
+        }}
         cardName={"Career Interests"}
       >
         <div>
@@ -1073,6 +1082,8 @@ class ProfileLayoutView extends Component {
           <FormattedMessage id="profile.looking.for.new.job" />
         </span>
         <span>
+          {/* {this.renderValue(lookingForNewJob && lookingForNewJob.description)} */}
+          {/* {lookingForNewJobItem} */}
           {this.renderValue(lookingForNewJob && lookingForNewJob.description)}
         </span>
       </ProfileCardController>

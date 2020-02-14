@@ -20,7 +20,8 @@ class CareerInterestsFormView extends Component {
       onSubmit,
       profileInfo
     } = this.props;
-    const generateProps = generateCommonFormProps.bind(this, this.props);
+
+    const generateProps = generateCommonProps.bind(this, this.props);
 
     return (
       <Form onSubmit={onSubmit}>
@@ -63,6 +64,24 @@ class CareerInterestsFormView extends Component {
             options={editProfileOptions["willingToRelocateTo"]}
           />
         </Form.Field>
+
+        {/* <Form.Field fluid={true} name="lookingForNewJob">
+          <label>
+            <FormattedMessage id="profile.looking.for.new.job" />
+          </label>
+          <Select
+            className="editTagsDropdown"
+            search
+            defaultValue={
+              profileInfo["lookingForANewJob"] &&
+              profileInfo["lookingForANewJob"].map(element => element.id)
+            }
+            name="lookingForNewJob"
+            onChange={onFieldChange}
+            options={editProfileOptions["lookingForANewJob"]}
+          />
+        </Form.Field> */}
+        {/* <Form.Field {...generateProps("security", Select)} /> */}
         <Form.Field {...generateProps("lookingForNewJob", Select)} />
         <FormButtonsController
           handleApply={onSubmit}
