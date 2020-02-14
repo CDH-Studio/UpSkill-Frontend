@@ -53,9 +53,19 @@ export default class EditModalController extends Component {
     let editProfileOptions = {};
     let skillsCategoriesOptions = {};
 
-    skillsCategoriesOptions = formatSkillOptions(
-      (await axios.get(backendAddress + editOptionPaths["categories"])).data
+    console.log(
+      "Contenu de editOptionsPaths de before",
+      editOptionPaths["categories"]
     );
+    /** Before making a call to the backend to get skillsCategoriesOptions.
+     * We need to verify that the user is edit the mentor or skill card only
+     */
+    if (editOptionPaths["categories"]) {
+      skillsCategoriesOptions = formatSkillOptions(
+        (await axios.get(backendAddress + editOptionPaths["categories"])).data
+      );
+    }
+
     for (let key in editOptionPaths) {
       if (key.match("categories")) {
         editProfileOptions[key] = formatSkillOptions(
@@ -72,8 +82,6 @@ export default class EditModalController extends Component {
       editProfileOptions: editProfileOptions,
       optionsSkillCategories: skillsCategoriesOptions
     });
-
-    // console.log(skillsCategoriesOptions);
   }
 
   render() {

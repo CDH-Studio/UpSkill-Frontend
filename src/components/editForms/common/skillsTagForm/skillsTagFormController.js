@@ -92,9 +92,7 @@ export default class SkillsTagFormController extends FieldManagingComponent {
    * @param {PropTypes.object} val object containing the new value
    */
   handleCatChange(e, val) {
-    // console.log(val.value.skillsCat);
     const { maxItems } = this.props;
-    // console.log("VAL", val);
     let skillsList = [];
     val.value.forEach(skill => {
       skillsList.push({

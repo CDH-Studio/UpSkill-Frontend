@@ -103,7 +103,6 @@ export function formatSkillOptions(options) {
         v.aCategory.skill["description"]
     })
   );
-  console.log("ahhhh", catOp[0].value);
 
   for (var i = 0; i < catOp.length; i++) {
     let temp = catOp[i].value;
@@ -115,15 +114,11 @@ export function formatSkillOptions(options) {
       });
     });
   }
-  console.log("HIIDFAJDFKADFJADSKFAJSDFKASDFKASDJFAKSDFKJADJFAKSDFJASDJ");
 
-  console.log("skillOp", skillOp);
   sOptions.push(
     { key: "categories", value: catOp },
     { key: "skills", value: skillOp }
   );
-
-  console.log("skillOp", skillOp);
 
   return catOp;
 }
