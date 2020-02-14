@@ -1036,12 +1036,6 @@ class ProfileLayoutView extends Component {
       relocationLocations,
       lookingForNewJob
     } = profileInfo;
-    console.log("Chocolate", profileInfo);
-    console.log("Chocolate1", interestedInRemote);
-    console.log("Chocolate2", relocationLocations);
-    console.log("Chocolate3", lookingForNewJob);
-
-    // this.renderValue(lookingForNewJob.description)
 
     return (
       <ProfileCardController

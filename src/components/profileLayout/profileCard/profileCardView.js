@@ -20,8 +20,6 @@ export default class profileCardView extends Component {
       wrapperType
     } = this.props;
 
-    console.log("Greenish", editOptionPaths);
-
     const heightStyle = fullHeight ? { height: "100%" } : {};
 
     return (
