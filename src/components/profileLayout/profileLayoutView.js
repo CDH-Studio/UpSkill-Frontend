@@ -1040,7 +1040,10 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController
         form={CareerInterestsFormController}
-        formName={"Edit career interests"}
+        editOptionPaths={{
+          willingToRelocateTo: "api/option/getWillingToRelocateTo",
+          lookingForNewJob: "api/option/getLookingForANewJob"
+        }}
         cardName={"Career Interests"}
       >
         <div>

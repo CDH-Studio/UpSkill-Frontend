@@ -151,7 +151,6 @@ class SearchFormController extends Component {
       !navBarLayout &&
       advancedSearch &&
       !(fieldKeys.length > advancedKeyLengthTarget);
-    console.log("NAV BAR LAYOUT: ", this.props.navBarLayout);
     if (this.state.advancedSearch) {
       if (advancedHomeEmpty) {
         this.props.setEmpty(true);
