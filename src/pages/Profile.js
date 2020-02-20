@@ -29,8 +29,7 @@ class Profile extends Component {
         return newList;
       };
       let profileInfo = response.data;
-      console.log("profileInfo", profileInfo);
-      
+
       // profileInfo.categories = convertDropdownOptions(profileInfo.categories);
       profileInfo.skills = convertDropdownOptions(profileInfo.skills);
       profileInfo.competencies = convertDropdownOptions(

@@ -127,8 +127,7 @@ export function getCategories(item, current) {
   let categories = [];
   let skills = [];
   let joined = [];
-  let iWannaDie = [];
-  //console.log(item, index);
+  let joinedArrays = [];
   categories.push({
     key: item.aCategory.skill.catId,
     value: item.aCategory.skill.cat
@@ -140,13 +139,7 @@ export function getCategories(item, current) {
 
   joined.push({
     key: "joined",
-    value: iWannaDie
+    value: joinedArrays
   });
-
-  // skills.forEach(val => console.log("i am crying", val));
-  // console.log(skills);
-  // console.log(categories);
-  // console.log("I scream", item.aCategory.category);
-  // console.log("I scream again", item.aCategory.skill);
-  return iWannaDie;
+  return joinedArrays;
 }
