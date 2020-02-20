@@ -29,12 +29,17 @@ class Profile extends Component {
         return newList;
       };
       let profileInfo = response.data;
+
+      // profileInfo.categories = convertDropdownOptions(profileInfo.categories);
       profileInfo.skills = convertDropdownOptions(profileInfo.skills);
       profileInfo.competencies = convertDropdownOptions(
         profileInfo.competencies
       );
       profileInfo.developmentalGoals = convertDropdownOptions(
         profileInfo.developmentalGoals
+      );
+      profileInfo.mentorshipSkills = convertDropdownOptions(
+        profileInfo.mentorshipSkills
       );
 
       this.setState({

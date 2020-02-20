@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import PropTypes from "prop-types";
 
 import { formatOptions } from "../../functions/formTools";
+import { formatSkillOptions } from "../../functions/formTools";
 import config from "../../config";
 import prepareInfo from "../../functions/prepareInfo";
 
@@ -19,6 +20,7 @@ import LanguageProficiencyFormController from "../editForms/languageProficiencyF
 import ManagerFormController from "../editForms/managerForm/managerFormController";
 import PrimaryInformationFormController from "../editForms/primaryInformationForm/primaryInformationFormController";
 import SkillsFormController from "../editForms/skillsForm/skillsFormController";
+import MentorshipSkillsFormController from "../editForms/mentorshipSkillsForm/mentorshipSkillsFormController";
 import TalentManagmentController from "../editForms/talentManagementForm/talentManagementFormController";
 import ProjectsFormController from "../editForms/projectsForm/projectsFormController";
 import CareerInterestsFormController from "../editForms/careerInterestsForm/careerInterestsFormController";
@@ -45,6 +47,10 @@ const formList = [
   {
     name: <FormattedMessage id="setup.talent.management" />,
     form: TalentManagmentController
+  },
+  {
+    name: <FormattedMessage id="setup.mentorshipSkills" />,
+    form: MentorshipSkillsFormController
   },
   { name: <FormattedMessage id="setup.skills" />, form: SkillsFormController },
   {
@@ -166,11 +172,22 @@ class SetupLayoutController extends Component {
    * Gathers the information needed from geds and the form options
    */
   async getSetupData() {
+    // let categoryOptions = formatOptions(
+    //   (await axios.get(backendAddress + "api/option/getCategory")).data
+    // );
+
+    let categoryOptions = formatSkillOptions(
+      (await axios.get(backendAddress + "api/option/getCategorySkills")).data
+    );
+
     let skillOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getSkill")).data
     );
     let competencyOptions = formatOptions(
       (await axios.get(backendAddress + "api/option/getCompetency")).data
+    );
+    let mentorshipSkillOptions = formatOptions(
+      (await axios.get(backendAddress + "api/option/getMentorshipSkill")).data
     );
 
     let gedsInfoList = await axios
@@ -178,7 +195,9 @@ class SetupLayoutController extends Component {
       .then(response => response.data);
 
     let epo = {
+      categories: categoryOptions,
       skills: skillOptions,
+      mentorshipSkills: mentorshipSkillOptions,
       careerMobility: formatOptions(
         (await axios.get(backendAddress + "api/option/getCareerMobility")).data
       ),

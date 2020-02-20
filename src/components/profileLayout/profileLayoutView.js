@@ -38,6 +38,7 @@ import ManagerFormController from "../editForms/managerForm/managerFormControlle
 import PrimaryInformationFormController from "../editForms/primaryInformationForm/primaryInformationFormController";
 import ProjectsFormController from "../editForms/projectsForm/projectsFormController";
 import SkillsFormController from "../editForms/skillsForm/skillsFormController";
+import MentorshipSkillsFormController from "../editForms/mentorshipSkillsForm/mentorshipSkillsFormController";
 import TalentManagementFormController from "../editForms/talentManagementForm/talentManagementFormController";
 
 import HistoryCardController from "./historyCard/historyCardController";
@@ -97,6 +98,10 @@ class ProfileLayoutView extends Component {
     const { intl } = this.props;
 
     this.alwaysUngroupedCards = [
+      {
+        visibilityKey: "mentorshipSkills",
+        renderFunction: this.renderMentorshipSkillsCard
+      },
       {
         visibilityKey: "skills",
         renderFunction: this.renderSkillsCard
@@ -939,6 +944,26 @@ class ProfileLayoutView extends Component {
     );
   }
 
+  renderMentorshipSkillsCard() {
+    const { intl, profileInfo } = this.props;
+    const currentMentorshipSkills = profileInfo.mentorshipSkills;
+
+    return this.renderGenericTagsCard(
+      intl.formatMessage({ id: "profile.mentorship.skills" }),
+      intl.formatMessage({ id: "profile.edit.mentorship.skills" }),
+      currentMentorshipSkills,
+      MentorshipSkillsFormController,
+      // {
+      //   mentorshipSkills: "api/option/getMentorshipSkill"
+      // }
+      {
+        // categories: "api/option/getCategorySkills",
+        categories: "api/option/getCategorySkills",
+        skills: "api/option/getSkill"
+      }
+    );
+  }
+
   renderSkillsCard() {
     const { intl, profileInfo } = this.props;
     const currentSkills = profileInfo.skills;
@@ -949,6 +974,8 @@ class ProfileLayoutView extends Component {
       currentSkills,
       SkillsFormController,
       {
+        // categories: "api/option/getCategorySkills",
+        categories: "api/option/getCategorySkills",
         skills: "api/option/getSkill"
       }
     );
