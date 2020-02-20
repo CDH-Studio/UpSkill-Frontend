@@ -61,7 +61,17 @@ export default class FormManagingComponent extends Component {
   onChange(fieldObj, e, o) {
     const { name } = o;
 
-    let value = o.value || o.checked;
+    // let value = o.value || o.checked;
+    let value;
+    if (typeof o.value === "undefined" || o.value === null) {
+      // o.value is undefined or null
+      value = o.checked;
+    }
+    if (typeof o.checked === "undefined" || o.checked === null) {
+      // o.checked is undefined or null
+      value = o.value;
+    }
+
     if (name in this.transformOnChangeValueFuncs) {
       value = this.transformOnChangeValueFuncs[name](value);
     }

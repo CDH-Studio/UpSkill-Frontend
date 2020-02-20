@@ -19,7 +19,7 @@ class LandingNavBarView extends Component {
         <Menu.Item style={{ paddingBottom: "8px", paddingTop: "8px" }}>
           <Image src={Logo} style={{ maxWidth: "37px" }} />
         </Menu.Item>
-        <Menu.Item position="right" href="/secured/home">
+        <Menu.Item position="right" href="/secured/home" tabIndex="0">
           <FormattedMessage id="landing.login.and.enter" />
         </Menu.Item>
 

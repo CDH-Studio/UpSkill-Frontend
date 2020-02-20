@@ -20,6 +20,7 @@ import tempProfilePic from "../../assets/tempProfilePicture.png";
 import "./navBar.css";
 
 /** UI for the navigation bar used by the secured routes */
+const keyed = false;
 export default class NavigationBarView extends Component {
   static propTypes = {
     /** Whether the user has admin permissions or not */
@@ -73,18 +74,24 @@ export default class NavigationBarView extends Component {
       >
         <Menu.Item
           href="/secured/home"
+          tabIndex="1"
           style={{ paddingBottom: "8px", paddingTop: "8px" }}
         >
-          <Image src={Logo} style={{ maxWidth: "37px" }} />
+          <Image
+            alt="Small Image of UpSkill Logo"
+            src={Logo}
+            style={{ maxWidth: "37px", alt: "UpSkill Logo" }}
+          />
         </Menu.Item>
 
         <Menu.Menu position="right">
           <Popup
             flowing
-            on="click"
-            position="top"
+            on={"focus"}
+            //on={"click"}
+            position="top center"
             trigger={
-              <Menu.Item>
+              <Menu.Item tabIndex="1">
                 <Icon name="user" size="large" /> {name}
                 <Icon name="angle down" size="large" />
               </Menu.Item>
@@ -100,12 +107,12 @@ export default class NavigationBarView extends Component {
               </Card.Content>
               <Card.Content>
                 <Menu vertical secondary fluid>
-                  <Menu.Item href="/secured/profile">
+                  <Menu.Item tabIndex="2" href="/secured/profile">
                     <Icon name="user" />
                     <FormattedMessage id="my.profile" />
                   </Menu.Item>
                   {admin ? (
-                    <Menu.Item href="/admin">
+                    <Menu.Item tabIndex="3" href="/admin">
                       <Icon name="settings" />
                       <FormattedMessage id="admin" />
                     </Menu.Item>

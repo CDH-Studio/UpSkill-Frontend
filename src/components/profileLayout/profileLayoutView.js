@@ -223,7 +223,8 @@ class ProfileLayoutView extends Component {
       settingsSidebar,
       updateCardVisibility,
       visibleProfileCards,
-      windowWidth
+      windowWidth,
+      setSidebarOpenState
     } = this.props;
 
     return (
@@ -243,11 +244,11 @@ class ProfileLayoutView extends Component {
           </Menu.Header>
           <Menu.Item>
             <Checkbox
-              label="Use public view"
+              label="Use Public View"
+              toggle
               onChange={(e, { checked }) =>
                 this.setState({ previewPublic: checked })
               }
-              toggle
             />
           </Menu.Item>
         </Menu.Menu>
@@ -267,6 +268,16 @@ class ProfileLayoutView extends Component {
                       .replace(/([A-Z])/g, ".$1")
                       .toLowerCase()
                 })}
+                id={intl.formatMessage({
+                  id:
+                    "profile." +
+                    key
+                      .toString()
+                      .replace(/([A-Z])/g, ".$1")
+                      .toLowerCase()
+                })}
+                defaultChecked={value}
+                toggle
                 onChange={(e, { checked }) =>
                   updateCardVisibility(key, checked)
                 }
@@ -282,6 +293,15 @@ class ProfileLayoutView extends Component {
               onClick={applyVisibleProfileCards}
             >
               <FormattedMessage id="button.apply" />
+            </Button>
+          </Menu.Item>
+          <Menu.Item>
+            <Button
+              color="blue"
+              fluid
+              onClick={() => setSidebarOpenState(!settingsSidebar)}
+            >
+              <FormattedMessage id="button.close" />
             </Button>
           </Menu.Item>
         </Menu.Menu>
@@ -505,7 +525,8 @@ class ProfileLayoutView extends Component {
       organizationList,
       team,
       telephone,
-      twitterUrl
+      twitterUrl,
+      manager
     } = profileInfo;
 
     return (
@@ -534,6 +555,7 @@ class ProfileLayoutView extends Component {
                   {firstName} {lastName}
                 </h1>
               </Grid.Row>
+
               <Grid.Row className="noGapBelow">
                 <EditWrapperController
                   form={null}
@@ -567,9 +589,11 @@ class ProfileLayoutView extends Component {
                     on="hover"
                     wide="very"
                     trigger={
-                      <h5 className="noGapAbove">
-                        {branch} <Icon name="angle down" />
-                      </h5>
+                      <p className="noGapAbove" style={{ fontSize: "25px" }}>
+                        <b>
+                          {branch} <Icon name="fork" />
+                        </b>
+                      </p>
                     }
                   >
                     <Popup.Content>
@@ -580,11 +604,16 @@ class ProfileLayoutView extends Component {
                   </Popup>
 
                   <div className="phoneNumberArea">
-                    <FormattedMessage id="profile.telephone" />:
+                    <b>
+                      <FormattedMessage id="profile.telephone" />:
+                    </b>
                     {this.renderValue(telephone)}
                   </div>
                   <div className="phoneNumberArea">
-                    <FormattedMessage id="profile.cellphone" />:
+                    <b>
+                      <FormattedMessage id="profile.cellphone" />:
+                    </b>
+
                     {this.renderValue(cellphone)}
                   </div>
                   <div>{email}</div>
@@ -770,18 +799,27 @@ class ProfileLayoutView extends Component {
 
   renderManagerCard() {
     const { profileInfo, intl } = this.props;
-    const { manager } = profileInfo;
+    const { manager, team } = profileInfo;
 
     return (
       <ProfileCardController
         form={ManagerFormController}
         formName={intl.formatMessage({ id: "profile.edit.manager" })}
+        cardName={intl.formatMessage({ id: "profile.team" })}
         className="noGapAbove"
       >
-        <span className="colorLabel">
-          <FormattedMessage id="profile.manager" />:
-        </span>
-        <span>{this.renderValue(manager)}</span>
+        <div>
+          <span className="colorLabel" style={{ fontWeight: "bold" }}>
+            <FormattedMessage id="profile.manager" />:
+          </span>
+          <span>{this.renderValue(manager)}</span>
+        </div>
+        <div>
+          <span className="colorLabel" style={{ fontWeight: "bold" }}>
+            <FormattedMessage id="profile.team" />:
+          </span>
+          <span>{this.renderValue(team)}</span>
+        </div>
       </ProfileCardController>
     );
   }
@@ -887,11 +925,6 @@ class ProfileLayoutView extends Component {
         }}
         formName={intl.formatMessage({ id: "profile.edit.talent.management" })}
         cardName={intl.formatMessage({ id: "profile.talent.management" })}
-        cardIcon={
-          <a href="http://icintra.ic.gc.ca/eforms/forms/ISED-ISDE3730E.pdf">
-            <Icon name="external alternate" />
-          </a>
-        }
         className="noGapBelow"
       >
         <div>
@@ -1004,7 +1037,6 @@ class ProfileLayoutView extends Component {
       <HistoryCardController
         cardEntries={careerSummary}
         cardName={intl.formatMessage({ id: "profile.experience" })}
-        /*editOptionPaths={}*/
         form={CareerOverviewFormController}
         formName={intl.formatMessage({ id: "profile.edit.experience" })}
       />
@@ -1035,7 +1067,10 @@ class ProfileLayoutView extends Component {
     return (
       <ProfileCardController
         form={CareerInterestsFormController}
-        formName={"Edit career interests"}
+        editOptionPaths={{
+          willingToRelocateTo: "api/option/getWillingToRelocateTo",
+          lookingForNewJob: "api/option/getLookingForANewJob"
+        }}
         cardName={"Career Interests"}
       >
         <div>
@@ -1113,14 +1148,21 @@ class ProfileLayoutView extends Component {
           style={{ textAlign: "center", padding: "3px 0px 3px 3px" }}
         >
           <Label
+            basic
+            color="blue"
             className={disabled ? "disabled" : null}
             fluid
-            style={{ fontSize: "12pt", fontWeight: "normal", width: "90%" }}
+            style={{
+              fontSize: "12pt",
+              fontWeight: "bold",
+              width: "90%",
+              padding: "5px"
+            }}
           >
-            {labelText}
+            <p style={{ color: "black" }}>{labelText}</p>
           </Label>
         </Grid.Column>
-        <Grid.Column style={{ padding: "0px" }}>
+        <Grid.Column style={{ padding: "10px" }}>
           {disabled ? intl.formatMessage({ id: "profile.na" }) : contentElement}
         </Grid.Column>
       </Grid.Row>
