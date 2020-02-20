@@ -101,7 +101,8 @@ class ProfileLayoutController extends Component {
           education: [],
           organizationList: [],
           projects: [],
-          skills: []
+          skills: [],
+          mentorshipskills: []
         })}
         publicLayout={!editable} // note: will probably need to change when special roles work
         setPreviewPublicState={this.setPreviewPublic}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { injectIntl } from "react-intl";
 
-import TagFormController from "../common/tagForm/tagFormController";
+import SkillsTagFormController from "../common/skillsTagForm/skillsTagFormController";
 
 class SkillsFormView extends Component {
   render() {
@@ -9,7 +9,7 @@ class SkillsFormView extends Component {
     const { maxSkillItems } = editProfileOptions;
 
     return (
-      <TagFormController
+      <SkillsTagFormController
         dropdownName="skills"
         maxItems={maxSkillItems}
         name={intl.formatMessage({ id: "profile.edit.skills" })}
