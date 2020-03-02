@@ -49,8 +49,10 @@ class editModalView extends Component {
    * Otherwise it will render the edit form as long as the edit form was provided
    */
   renderContents() {
-    const { editProfileOptions, form } = this.props;
+    const { editProfileOptions, form, open } = this.props;
+
     if (editProfileOptions === null) {
+      console.log("in iiifff");
       return (
         <Dimmer active>
           <Grid>
@@ -63,10 +65,13 @@ class editModalView extends Component {
         </Dimmer>
       );
     } else {
+      console.log("in elssse");
+      console.log("form <==", form);
+      console.log("OpenValue", open);
       return (
         form &&
         React.createElement(form, {
-          handleCancel: e => this.setState({ open: false }),
+          handleCancel: e => this.setState({ open: true }),
           ...this.props
         })
       );

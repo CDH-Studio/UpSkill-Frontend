@@ -36,6 +36,8 @@ class FormButtonsView extends Component {
   /** renders the apply & cancel buttons present when editing the modal */
   renderEditButtonGroup() {
     const { handleApply, handleCancel, intl } = this.props;
+    console.log("handleCancel", handleCancel);
+    console.log("handleApply", handleApply);
     return (
       handleApply &&
       handleCancel && (

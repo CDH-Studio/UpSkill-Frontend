@@ -1066,12 +1066,14 @@ class ProfileLayoutView extends Component {
 
     return (
       <ProfileCardController
+        formName={intl.formatMessage({ id: "profile.edit.career.interests" })}
         form={CareerInterestsFormController}
         editOptionPaths={{
           willingToRelocateTo: "api/option/getWillingToRelocateTo",
           lookingForNewJob: "api/option/getLookingForANewJob"
         }}
-        cardName={"Career Interests"}
+        // cardName={"Career Interests"}
+        cardName={intl.formatMessage({ id: "profile.career.interests" })}
       >
         <div>
           <span className="boldLabel">

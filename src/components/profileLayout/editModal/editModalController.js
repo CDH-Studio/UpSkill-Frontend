@@ -53,10 +53,6 @@ export default class EditModalController extends Component {
     let editProfileOptions = {};
     let skillsCategoriesOptions = {};
 
-    console.log(
-      "Contenu de editOptionsPaths de before",
-      editOptionPaths["categories"]
-    );
     /** Before making a call to the backend to get skillsCategoriesOptions.
      * We need to verify that the user is edit the mentor or skill card only
      */
